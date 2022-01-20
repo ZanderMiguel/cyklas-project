@@ -1,0 +1,190 @@
+import React from 'react';
+import './Landingpage.css';
+
+//importing Mui
+import { Typography, Button, Box, Paper, TextField, Link } from '@mui/material';
+
+import { AddCircle } from '@mui/icons-material';
+//import image
+import Flatimage from '../assets/Images/illustration.svg';
+import MaleLogo from '../assets/Images/avatar_male.png';
+import Google from '../assets/Rectangle 134.svg';
+
+const style = { fontFamily: 'Poppins', marginTop: 1 };
+
+function Home() {
+  return (
+    <>
+      <Box>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          flexWrap="wrap"
+          height="90vh"
+          gap="6rem"
+        >
+          <Box className="left">
+            <Typography
+              variant="h4"
+              sx={{
+                ...style,
+                fontWeight: 'bold',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                color: '#3F3D56',
+              }}
+            >
+              Can't go to school? <br />
+              No problem! We can <br />
+              bring school to you.
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{
+                ...style,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                color: '#626170',
+              }}
+            >
+              The best Website for Virtual Class
+            </Typography>
+            <Button
+              disableRipple
+              variant="contained"
+              sx={{
+                backgroundColor: '#007FFF',
+                '&:hover': { backgroundColor: '#007FFF' },
+                textTransform: 'none',
+                ...style,
+                marginTop: 2,
+                fontSize: '0.9em',
+                fontWeight: '700',
+                padding: '10px 20px',
+                borderRadius: '10px',
+              }}
+              startIcon={<AddCircle sx={{ fontSize: 20 }} />}
+            >
+              Create your account now.
+            </Button>
+            <img
+              src={Flatimage}
+              alt="flat"
+              style={{
+                wheight: '300px',
+                width: '100%',
+                maxWidth: '600px',
+                marginTop: '16px',
+              }}
+            />
+          </Box>
+          <Paper
+            sx={{
+              width: '20rem',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'space-around',
+              padding: '30px',
+            }}
+          >
+            <img
+              src={MaleLogo}
+              alt="avatar"
+              style={{ width: '6rem', maxWidth: '', height: 'auto' }}
+            />
+
+            <TextField
+              required
+              id="standard-required"
+              placeholder="Enter your email address"
+              type="email"
+              variant="filled"
+              size="small"
+              fullWidth
+              margin="normal"
+            />
+
+            <TextField
+              required
+              id="standard-password-input"
+              placeholder="Enter your password"
+              type="password"
+              autoComplete="current-password"
+              variant="filled"
+              size="small"
+              margin="normal"
+              fullWidth
+            />
+            <Typography
+              sx={{ ...style }}
+              gutterBottom
+              alignSelf="right"
+              component="div"
+              variant="subtitle2"
+            >
+              <Link
+                href="#"
+                style={{ color: '#007FFF', textDecoration: 'none' }}
+              >
+                Forgot password?
+              </Link>
+            </Typography>
+
+            <Button
+              variant="contained"
+              fullWidth
+              sx={{
+                backgroundColor: '#007FFF',
+                '&:hover': { backgroundColor: '#007FFF' },
+                textTransform: 'none',
+                ...style,
+                marginTop: '10px',
+                marginBottom: '10px',
+                borderRadius: '10px',
+              }}
+            >
+              Log in
+            </Button>
+            <Typography
+              sx={{ ...style, fontWeight: 'bold' }}
+              gutterBottom
+              align="center"
+              component="div"
+              variant="subtitle2"
+            >
+              Don't have an account?
+              <Link
+                href="#"
+                style={{ color: '#007FFF', textDecoration: 'none' }}
+              >
+                Sign up
+              </Link>
+            </Typography>
+            <Button
+              variant="text"
+              fullWidth
+              sx={{
+                backgroundColor: 'white',
+                textTransform: 'none',
+                ...style,
+                marginTop: '10px',
+                color: '#007FFF',
+                border: '1px solid #EB7E42',
+                borderColor: '#007FFF',
+              }}
+              startIcon={<img src={Google} alt="Google Icon" />}
+            >
+              Continue to google
+            </Button>
+          </Paper>
+        </Box>
+      </Box>
+    </>
+  );
+}
+
+export default Home;
