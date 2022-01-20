@@ -47,7 +47,7 @@ function Navbar() {
             Dashboard
           </Typography>
 
-          <IconButton>
+          <IconButton size="small">
             <Badge badgeContent={2} color="primary">
               <NotificationsIcon sx={{ color: 'rgba(0, 0, 0, 0.54)' }} />
             </Badge>
