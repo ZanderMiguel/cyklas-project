@@ -1,5 +1,6 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Drawer from './components/Drawer';
+import Navbar_Inside from './components/Navbar_Inside';
 
 const theme = createTheme({
   typography: {
@@ -28,7 +29,7 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Drawer />
+        <Navbar_Inside />
       </ThemeProvider>
     </>
   );
