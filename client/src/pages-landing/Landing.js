@@ -6,6 +6,7 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
+import Telecon from '../Telecon/Telecon'
 //importing Mui
 
 //importing components
@@ -39,9 +40,11 @@ function Landing() {
     <ThemeProvider theme={theme}>
       <Router>
         <Switch>
+        <Route exact path={'/telecon'} component={Telecon}/>
           <Route exact path={'/:page?'}>
             <NavbarLandingpage />
           </Route>
+          
         </Switch>
       </Router>
     </ThemeProvider>
