@@ -1,6 +1,8 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Drawer from './components/Drawer';
 import Navbar_Inside from './components/Navbar_Inside';
+import Dialogform from './components/Dialogform';
+import Register from './Form_content/Register';
 
 const theme = createTheme({
   typography: {
@@ -29,7 +31,7 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Navbar_Inside />
+        <Register />
       </ThemeProvider>
     </>
   );
