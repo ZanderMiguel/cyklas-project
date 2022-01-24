@@ -3,6 +3,7 @@ import Drawer from './components/Drawer';
 import Navbar_Inside from './components/Navbar_Inside';
 import Dialogform from './components/Dialogform';
 import Register from './Form_content/Register';
+import Createroom from './Form_content/Create_room';
 
 const theme = createTheme({
   typography: {
@@ -31,7 +32,7 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Register />
+        <Createroom />
       </ThemeProvider>
     </>
   );

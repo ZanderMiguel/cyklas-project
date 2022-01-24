@@ -11,7 +11,7 @@ import Divider from '@mui/material/Divider';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-function Dialogform({ children }) {
+function Dialogform({ children, title }) {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -30,7 +30,7 @@ function Dialogform({ children }) {
       </Button>
       <Dialog fullScreen={fullScreen} open={open} onClose={handleClose}>
         <DialogTitle>
-          <Divider textAlign="left">Register Here</Divider>
+          <Divider textAlign="left">{title}</Divider>
         </DialogTitle>
         <DialogContent>{children}</DialogContent>
       </Dialog>

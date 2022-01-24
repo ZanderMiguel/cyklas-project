@@ -59,7 +59,7 @@ function Register() {
   return (
     <>
       <Router>
-        <Dialogform>
+        <Dialogform title="Register here">
           <Grid container overflow="auto" sx={{ mb: 2 }}>
             <Grid
               container
