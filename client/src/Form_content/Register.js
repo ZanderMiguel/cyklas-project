@@ -11,7 +11,10 @@ import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-import { Button, Stack, Avatar, Grid, Box } from '@mui/material';
+import { Button, Avatar, Grid, Box, Typography } from '@mui/material';
+import Dialogform from '../components/Dialogform';
+import Google from '../assets/Rectangle 134.svg';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 const genders = [
   {
@@ -55,128 +58,166 @@ function Register() {
 
   return (
     <>
-      <Grid container overflow="auto">
-        <Grid
-          container
-          item
-          xs={6}
-          justifyContent="space-around"
-          alignItems="center"
-        >
-          <Button sx={{ borderRadius: '20px' }} variant="outlined">
-            Professor
-          </Button>
-          <Button sx={{ borderRadius: '50px' }} variant="outlined">
-            Student
-          </Button>
-        </Grid>
-        <Grid
-          container
-          item
-          xs={6}
-          justifyContent="space-around"
-          alignItems="center"
-        >
-          <Avatar sx={{ height: '150px', width: '150px' }} />
-        </Grid>
-      </Grid>
-      <Grid
-        container
-        rowSpacing={{ xs: 1, md: 2, xl: 3 }}
-        columnSpacing={{ xs: 2 }}
-        sx={{ overflow: 'auto' }}
-      >
-        <Grid item xs={6}>
-          <Textfield
-            label="Firstname"
-            variant="outlined"
-            fullWidth="fullWidth"
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <Textfield label="Lastname" variant="outlined" />
-        </Grid>
-        <Grid item xs={6}>
-          <Textfield label="Contact Number" variant="outlined" />
-        </Grid>
-        <Grid item xs={6}>
-          <Select
-            sx={{ width: '150px' }}
-            select
-            label="Gender"
-            value={gender}
-            onChange={handleChange}
+      <Router>
+        <Dialogform>
+          <Grid container overflow="auto" sx={{ mb: 2 }}>
+            <Grid
+              container
+              item
+              xs={6}
+              justifyContent="space-around"
+              alignItems="center"
+            >
+              <Button sx={{ borderRadius: '20px' }} variant="outlined">
+                Professor
+              </Button>
+              <Button sx={{ borderRadius: '50px' }} variant="outlined">
+                Student
+              </Button>
+            </Grid>
+            <Grid
+              container
+              item
+              xs={6}
+              justifyContent="space-around"
+              alignItems="center"
+            >
+              <Avatar sx={{ height: '150px', width: '150px' }} />
+            </Grid>
+          </Grid>
+          <Grid
+            container
+            rowSpacing={{ xs: 3, md: 2 }}
+            columnSpacing={{ xs: 2 }}
+            sx={{ overflow: 'auto' }}
           >
-            {genders.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </Select>
-        </Grid>
+            <Grid item xs={6}>
+              <Textfield
+                label="Firstname"
+                variant="outlined"
+                fullWidth="fullWidth"
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <Textfield label="Lastname" variant="outlined" />
+            </Grid>
+            <Grid item xs={6}>
+              <Textfield label="Contact Number" variant="outlined" />
+            </Grid>
+            <Grid item xs={6}>
+              <Select
+                sx={{ width: '150px' }}
+                select
+                label="Gender"
+                value={gender}
+                onChange={handleChange}
+              >
+                {genders.map(({ value, label }) => (
+                  <MenuItem key={value} value={value}>
+                    {label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </Grid>
 
-        <Grid item xs={12}>
-          <Textfield label="Email Address" variant="outlined" />
-        </Grid>
-        <Grid item xs={6}>
-          <FormControl fullWidth required={true}>
-            <InputLabel htmlFor="outlined-adornment-password">
-              Password
-            </InputLabel>
-            <OutlinedInput
-              id="outlined-adornment-password"
-              name="password"
-              type={values.showPassword ? 'text' : 'password'}
-              onChange={handleChange}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                  >
-                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              label="Password"
-              fullWidth
-            />
-          </FormControl>
-        </Grid>
-        <Grid item xs={6}>
-          <FormControl fullWidth required={true}>
-            <InputLabel htmlFor="outlined-adornment-password">
-              Confirm Password
-            </InputLabel>
-            <OutlinedInput
-              id="outlined-adornment-password"
-              name="password2"
-              type={values.showConfirmPassword ? 'text' : 'password'}
-              onChange={handleChange}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowConfirmPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                  >
-                    {values.showConfirmPassword ? (
-                      <VisibilityOff />
-                    ) : (
-                      <Visibility />
-                    )}
-                  </IconButton>
-                </InputAdornment>
-              }
-              label="Confirm Password"
-              fullWidth
-            />
-          </FormControl>
-        </Grid>
-      </Grid>
+            <Grid item xs={12}>
+              <Textfield label="Email Address" variant="outlined" />
+            </Grid>
+            <Grid item xs={6}>
+              <FormControl fullWidth required={true}>
+                <InputLabel htmlFor="outlined-adornment-password">
+                  Password
+                </InputLabel>
+                <OutlinedInput
+                  id="outlined-adornment-password"
+                  name="password"
+                  type={values.showPassword ? 'text' : 'password'}
+                  onChange={handleChange}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {values.showPassword ? (
+                          <VisibilityOff />
+                        ) : (
+                          <Visibility />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  label="Password"
+                  fullWidth
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={6}>
+              <FormControl fullWidth required={true}>
+                <InputLabel htmlFor="outlined-adornment-password">
+                  Confirm Password
+                </InputLabel>
+                <OutlinedInput
+                  id="outlined-adornment-password"
+                  name="password2"
+                  type={values.showConfirmPassword ? 'text' : 'password'}
+                  onChange={handleChange}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowConfirmPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {values.showConfirmPassword ? (
+                          <VisibilityOff />
+                        ) : (
+                          <Visibility />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  label="Confirm Password"
+                  fullWidth
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={6}>
+              <Button
+                variant="outlined"
+                fullWidth
+                startIcon={<img src={Google} alt="Google Icon" />}
+              >
+                Continue to google
+              </Button>
+            </Grid>
+            <Grid item xs={6}>
+              <Button
+                variant="contained"
+                fullWidth
+                sx={{
+                  mb: 2,
+                  '& .MuiButton-label': {
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textAlign: 'left',
+                    display: 'block',
+                  },
+                }}
+              >
+                Create Account
+              </Button>
+              <Typography>
+                Already have an account? <Link to="/home"> Sign In</Link>
+              </Typography>
+            </Grid>
+          </Grid>
+        </Dialogform>
+      </Router>
     </>
   );
 }
