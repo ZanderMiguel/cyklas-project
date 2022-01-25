@@ -106,11 +106,11 @@ function Register() {
             </Grid>
             <Grid item xs={6}>
               <Select
-                sx={{ width: '150px' }}
                 select
                 label="Gender"
                 value={gender}
                 onChange={handleChange}
+                fullWidth
               >
                 {genders.map(({ value, label }) => (
                   <MenuItem key={value} value={value}>
