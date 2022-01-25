@@ -1,10 +1,8 @@
 import React from 'react';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Divider from '@mui/material/Divider';
 import CloseIcon from '@mui/icons-material/Close';
@@ -32,7 +30,12 @@ function Dialogform({ children, title, btn }) {
       <Button variant="outlined" onClick={handleClickOpen}>
         Open form dialog
       </Button>
-      <Dialog fullScreen={fullScreen} open={open} onClose={handleClose}>
+      <Dialog
+        fullScreen={fullScreen}
+        open={open}
+        onClose={handleClose}
+        maxWidth="md"
+      >
         <Grid container justifyContent="flex-end">
           <Grid item>
             <IconButton onClick={handleClose}>

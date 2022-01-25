@@ -4,7 +4,7 @@ import Home from '../pages-landing/Home';
 import Service from '../pages-landing/Service';
 import Contact from '../pages-landing/Contact';
 import { Link, useParams } from 'react-router-dom';
-import { styled } from '@mui/material/styles';
+
 //Import Mui
 import {
   AppBar,
@@ -14,19 +14,8 @@ import {
   Container,
   Tabs,
   Tab,
-  useMediaQuery,
-  useTheme,
 } from '@mui/material';
 import Logo from '../assets/Images/Ellipse 2.png';
-
-const anchors = {
-  textDecoration: 'none',
-};
-const Root = styled('Box')(({ theme }) => ({
-  [theme.breakpoints.down('md')]: {
-    display: 'none',
-  },
-}));
 
 function Navbar_landingpage() {
   const { page } = useParams();
@@ -45,10 +34,6 @@ function Navbar_landingpage() {
   React.useEffect(() => {
     setValue(value);
   }, [value]);
-
-  //Breakpoints
-  const theme = useTheme();
-  const isMatch = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <>

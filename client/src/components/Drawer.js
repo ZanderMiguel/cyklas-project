@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { IconContext } from 'react-icons';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import SideNav from '@mui/material/Drawer';
@@ -17,10 +16,8 @@ import { VscFileSubmodule } from 'react-icons/vsc';
 import { RiDashboardLine } from 'react-icons/ri';
 import { BsDoorOpen } from 'react-icons/bs';
 
-import Rooms from '../assets/Images/Rooms.png';
-
 function Drawer() {
-  const [drawer, setDrawer] = React.useState(false);
+  const [drawer, setDrawer] = useState(false);
   const toggleDrawer = (open) => (event) => {
     if (
       event.type === 'keydown' &&

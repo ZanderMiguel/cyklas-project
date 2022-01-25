@@ -11,7 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-import { Button, Avatar, Grid, Box, Typography } from '@mui/material';
+import { Button, Avatar, Grid, Typography } from '@mui/material';
 import Dialogform from '../components/Dialogform';
 import Google from '../assets/Rectangle 134.svg';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
@@ -93,16 +93,21 @@ function Register() {
           >
             <Grid item xs={6}>
               <Textfield
+                id="Firstname"
                 label="Firstname"
                 variant="outlined"
                 fullWidth="fullWidth"
               />
             </Grid>
             <Grid item xs={6}>
-              <Textfield label="Lastname" variant="outlined" />
+              <Textfield id="Lastname" label="Lastname" variant="outlined" />
             </Grid>
             <Grid item xs={6}>
-              <Textfield label="Contact Number" variant="outlined" />
+              <Textfield
+                id="Contact"
+                label="Contact Number"
+                variant="outlined"
+              />
             </Grid>
             <Grid item xs={6}>
               <Select
@@ -121,7 +126,7 @@ function Register() {
             </Grid>
 
             <Grid item xs={12}>
-              <Textfield label="Email Address" variant="outlined" />
+              <Textfield id="Email" label="Email Address" variant="outlined" />
             </Grid>
             <Grid item xs={6}>
               <FormControl fullWidth required={true}>
@@ -156,11 +161,11 @@ function Register() {
             </Grid>
             <Grid item xs={6}>
               <FormControl fullWidth required={true}>
-                <InputLabel htmlFor="outlined-adornment-password">
+                <InputLabel htmlFor="outlined-adornment-Confirmpassword">
                   Confirm Password
                 </InputLabel>
                 <OutlinedInput
-                  id="outlined-adornment-password"
+                  id="outlined-adornment-Confirmpassword"
                   name="password2"
                   type={values.showConfirmPassword ? 'text' : 'password'}
                   onChange={handleChange}

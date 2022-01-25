@@ -2,14 +2,7 @@ import React from 'react';
 import logo from '../assets/Ellipse 3.svg';
 
 //MUI imports
-import {
-  AppBar,
-  Box,
-  Toolbar,
-  Typography,
-  Button,
-  IconButton,
-} from '@mui/material';
+import { AppBar, Box, Toolbar, Typography, IconButton } from '@mui/material';
 import { Menu } from '@mui/icons-material';
 import { Badge } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
