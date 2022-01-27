@@ -5,23 +5,10 @@
 const Classes = require('../models/model-class')
 
 const createClass = async (req, res) => {
-    // const professorName = req.body.professorName
-    // const subjectName = req.body.subjectName
-    // const subjectCode = req.body.subjectCode
-    // const classTime = req.body.classTime
-    // const classDay = req.body.classDay
-    // const classTerm = req.body.classTerm
+
 
     try {
-        // const result = await Classes.create({
-        //     professorName,
-        //     subjectCode,
-        //     subjectName,
-        //     classTime,
-        //     classDay,
-        //     classTerm
-        // })
-        // console.log("Class created!")
+
         const addClass = new Classes({
             professorName: req.body.professorName,
             subjectCode: req.body.subjectCode,
