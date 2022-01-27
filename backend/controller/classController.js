@@ -41,6 +41,7 @@ const createClass = async (req, res) => {
             status: 'error',
             message: error
         })
+        
 
     }
 
