@@ -12,33 +12,19 @@ import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-function Dialogform({ children, title, btn }) {
-  const [open, setOpen] = React.useState(false);
+function Dialogform({ children, title, btn, open, close }) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   return (
     <>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      {/* <Button variant="outlined" onClick={handleClickOpen}>
         Open form dialog
-      </Button>
-      <Dialog
-        fullScreen={fullScreen}
-        open={open}
-        onClose={handleClose}
-        maxWidth="md"
-      >
+      </Button> */}
+      <Dialog fullScreen={fullScreen} open={open} onClose={close} maxWidth="sm">
         <Grid container justifyContent="flex-end">
           <Grid item>
-            <IconButton onClick={handleClose}>
+            <IconButton onClick={close}>
               <CloseIcon />
             </IconButton>
           </Grid>

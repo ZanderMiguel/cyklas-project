@@ -9,8 +9,22 @@ import Avatar from '@mui/material/Avatar';
 import Zander from '../assets/Images/zander.png';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import Drawer from './Drawer';
 
 function Navbar() {
+  const [open, setOpen] = React.useState(false);
+
+  const toggleDrawer = (open) => (event) => {
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
+
+    setOpen(open);
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -19,14 +33,7 @@ function Navbar() {
         elevation={1}
       >
         <Toolbar>
-          <IconButton
-            sx={{ marginRight: 2 }}
-            size="medium"
-            edge="start"
-            aria-label="menu"
-          >
-            <Menu />
-          </IconButton>
+          <Drawer />
           <img src={logo} alt="cyklasLogo" />
           <Typography
             sx={{

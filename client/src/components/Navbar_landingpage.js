@@ -28,7 +28,6 @@ function Navbar_landingpage() {
   };
   const [value, setValue] = useState(idx[page] === undefined ? 0 : idx[page]);
   const handleClickTab = (e, newValue) => {
-    console.log(newValue);
     setValue(newValue);
   };
   React.useEffect(() => {

@@ -27,7 +27,7 @@ const genders = [
   },
 ];
 
-function Register() {
+function Register({ open, close }) {
   const [gender, setGender] = React.useState('Male');
   const [values, setValues] = React.useState({
     showPassword: false,
@@ -59,7 +59,7 @@ function Register() {
   return (
     <>
       <Router>
-        <Dialogform title="Register here">
+        <Dialogform title="Register here" open={open} close={close}>
           <Grid container overflow="auto" sx={{ mb: 2 }}>
             <Grid
               container

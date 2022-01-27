@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Landingpage.css';
 
 //importing Mui
@@ -9,10 +9,18 @@ import { AddCircle } from '@mui/icons-material';
 import Flatimage from '../assets/Images/illustration.svg';
 import MaleLogo from '../assets/Images/avatar_male.png';
 import Google from '../assets/Rectangle 134.svg';
+import Register from '../Form_content/Register';
 
 const style = { fontFamily: 'Poppins', marginTop: 1 };
 
 function Home() {
+  const [opendialog, setOpenDialog] = useState(false);
+  const handleClickOpen = () => {
+    setOpenDialog(true);
+  };
+  const handleClose = () => {
+    setOpenDialog(false);
+  };
   return (
     <>
       <Box>
@@ -67,9 +75,11 @@ function Home() {
                 borderRadius: '10px',
               }}
               startIcon={<AddCircle sx={{ fontSize: 20 }} />}
+              onClick={handleClickOpen}
             >
               Create your account now.
             </Button>
+            {opendialog && <Register open={opendialog} close={handleClose} />}
             <img
               src={Flatimage}
               alt="flat"

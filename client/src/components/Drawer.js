@@ -15,6 +15,9 @@ import {
 import { VscFileSubmodule } from 'react-icons/vsc';
 import { RiDashboardLine } from 'react-icons/ri';
 import { BsDoorOpen } from 'react-icons/bs';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/icons-material/Menu';
+import { Link } from 'react-router-dom';
 
 function Drawer() {
   const [drawer, setDrawer] = useState(false);
@@ -33,26 +36,32 @@ function Drawer() {
     {
       icon: <RiDashboardLine size="25px" />,
       text: 'Dashboard',
+      path: '/Dashboard',
     },
     {
       icon: <BsDoorOpen size="25px" />,
       text: 'Rooms',
+      path: '/Rooms',
     },
     {
       icon: <MdQuiz size="25px" />,
       text: 'Quizlit',
+      path: '/Quizlit',
     },
     {
       icon: <MdOutlineVideoCameraFront size="25px" />,
       text: 'Telecon',
+      path: '/Telecon',
     },
     {
       icon: <VscFileSubmodule size="25px" />,
       text: 'Records',
+      path: '/Records',
     },
     {
       icon: <MdOutlineSettings size="25px" />,
       text: 'Setting',
+      path: '/Setting',
     },
   ];
 
@@ -65,25 +74,43 @@ function Drawer() {
     >
       <List sx={{ marginTop: '50px' }}>
         {drawerlist.map((item, index) => {
-          const { icon, text } = item;
+          const { icon, text, path } = item;
           return (
-            <ListItem
-              button
-              key={text}
-              sx={{
-                '&:hover': { backgroundColor: '#71707B', color: 'white' },
-                marginBottom: '10px',
-              }}
-            >
-              <ListItemIcon>{icon}</ListItemIcon>
-              <ListItemText
-                primary={
-                  <Typography variant="h6" sx={{ fontWeight: 500 }}>
-                    {text}
-                  </Typography>
-                }
-              />
-            </ListItem>
+            <Link style={{ textDecoration: 'none', color: 'blue' }} to={path}>
+              <ListItem
+                disableRipple
+                button
+                key={text}
+                sx={{
+                  '&:hover': {
+                    backgroundColor: '#71707B',
+                    '& .MuiListItemIcon-root': {
+                      color: 'white',
+                    },
+                  },
+                  marginBottom: '10px',
+                }}
+              >
+                <ListItemIcon>{icon}</ListItemIcon>
+
+                <ListItemText
+                  primary={
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        color: '#3F3D56',
+                        fontWeight: 500,
+                        '&:hover': {
+                          color: '#FFFFFF',
+                        },
+                      }}
+                    >
+                      {text}
+                    </Typography>
+                  }
+                />
+              </ListItem>
+            </Link>
           );
         })}
       </List>
@@ -92,7 +119,16 @@ function Drawer() {
 
   return (
     <>
-      <Button onClick={toggleDrawer(true)}>Click</Button>
+      <IconButton
+        sx={{ marginRight: 2 }}
+        size="medium"
+        edge="start"
+        aria-label="menu"
+        onClick={toggleDrawer(true)}
+      >
+        <Menu />
+      </IconButton>
+
       <SideNav anchor={'left'} open={drawer} onClose={toggleDrawer(false)}>
         {list()}
       </SideNav>
