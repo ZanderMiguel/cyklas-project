@@ -1,8 +1,12 @@
 const Registration = require('../models/model-registration')
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken')
 
 const createRegistration = async (req, res) => {
+    
     try{
 
+        const password = await bcrypt.hash(req.body.password,10)
         const addRegistration = new Registration({
             userType:req.body.userType,
             firstName: req.body.firstName,
@@ -12,8 +16,7 @@ const createRegistration = async (req, res) => {
             gender: req.body.gender,
             mobileNo: req.body.mobileNo,
             username: req.body.username,
-            password: req.body.password,
-            confirmPassword: req.body.confirmPassword,
+            password: password,
 
         }); 
         
@@ -28,6 +31,28 @@ const createRegistration = async (req, res) => {
         return res.json({
             status: 'error',
             message: error
+        })
+    }
+}
+const userLogIn = async (req,res) => {
+    const username = req.body.username
+    const password = req.body.password
+    const user = await Registration.findOne({username})
+    console.log(password)
+    if(!user){
+        return res.json({
+            status: 'error',
+            message: 'Invalid username or password!'
+        })
+    }
+    if(await bcrypt.compare(password, user.password)){
+        const token = jwt.sign({
+            id: user._id,
+            userName : user.userName
+        }, process.env.ACCESS_TOKEN, {expiresIn: '1h'})
+        return res.json({
+            status: 'succes',
+            token: token
         })
     }
 }
@@ -63,5 +88,6 @@ const deleteRegistration = async (req, res) => {
 module.exports = {
     createRegistrationController: createRegistration,
     displayRegistrationController:displayRegistration,
-    deleteRegistrationController:deleteRegistration
+    deleteRegistrationController:deleteRegistration,
+    userLogInController: userLogIn,
 }

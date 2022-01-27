@@ -12,10 +12,11 @@ router.delete('/myClasses/:id',deleteClassController)
 router.get('/enter-class/:id',enterClassController)
 router.get('/telecon/create',teleController)
 
-const {createRegistrationController, displayRegistrationController,deleteRegistrationController} = require('../controller/registrationController')
-router.post('/register',createRegistrationController)
+const {createRegistrationController, displayRegistrationController,deleteRegistrationController,userLogInController} = require('../controller/registrationController')
+router.post('/register/new-user',createRegistrationController)
 router.get('/register',displayRegistrationController)
 router.delete('/register/:id',deleteRegistrationController)
+router.post('/login', userLogInController)
 
 const {createActivityController,displayActivityController,deleteActivityController,updateActivityController}=require('../controller/createActivityController')
 router.post('/rooms/feed',createActivityController)
