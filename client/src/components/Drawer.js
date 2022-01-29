@@ -76,7 +76,11 @@ function Drawer() {
         {drawerlist.map((item, index) => {
           const { icon, text, path } = item;
           return (
-            <Link style={{ textDecoration: 'none', color: 'blue' }} to={path}>
+            <Link
+              key={item}
+              style={{ textDecoration: 'none', color: 'blue' }}
+              to={path}
+            >
               <ListItem
                 disableRipple
                 button

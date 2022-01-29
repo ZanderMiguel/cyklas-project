@@ -1,9 +1,8 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Drawer from './components/Drawer';
-import Navbar_Inside from './components/Navbar_Inside';
-import Dialogform from './components/Dialogform';
-import Register from './Form_content/Register';
-import Createroom from './Form_content/Create_room';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import Landing from './pages-landing/Landing';
+import App_layout from './App_layout';
 
 const theme = createTheme({
   typography: {
@@ -32,7 +31,16 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Register />
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <Landing />
+            </Route>
+            <Route exact path="/Dashboard">
+              <App_layout />
+            </Route>
+          </Switch>
+        </Router>
       </ThemeProvider>
     </>
   );

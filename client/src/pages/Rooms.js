@@ -6,7 +6,7 @@ import Room_layout from '../Room-content-layout/Room_layout';
 import useGet from '../customHooks/useGet';
 
 function Rooms() {
-  /* const [tiles, setRooms] = useState([
+  const [tiles, setRooms] = useState([
     {
       id: 1,
       title: 'Embedded Programming',
@@ -28,7 +28,7 @@ function Rooms() {
       date: 'Tuesday',
       time: '10:30',
     },
-  ]); */
+  ]);
 
   const { data } = useGet('http://192.168.1.10:5000/rooms/room-create');
 

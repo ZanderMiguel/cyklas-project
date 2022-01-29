@@ -1,6 +1,11 @@
 import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
 //importing Mui
 
 //importing components
@@ -34,6 +39,7 @@ function Landing() {
     <ThemeProvider theme={theme}>
       <Router>
         <Switch>
+          <Redirect from="/Home" to="/" />
           <Route exact path={'/:page?'}>
             <NavbarLandingpage />
           </Route>

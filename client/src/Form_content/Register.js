@@ -16,6 +16,8 @@ import Dialogform from '../components/Dialogform';
 import Google from '../assets/Rectangle 134.svg';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 
+import { GoogleLogin } from 'react-google-login';
+
 const genders = [
   {
     value: 'Male',
@@ -54,6 +56,14 @@ function Register({ open, close }) {
   };
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
+  };
+
+  const googleSuccess = async (res) => {
+    console.log(res);
+  };
+  const googleFailure = (error) => {
+    console.log(error);
+    console.log('Google Sign In was unsucessful. Try again later');
   };
 
   return (
@@ -191,13 +201,23 @@ function Register({ open, close }) {
               </FormControl>
             </Grid>
             <Grid item xs={6}>
-              <Button
-                variant="outlined"
-                fullWidth
-                startIcon={<img src={Google} alt="Google Icon" />}
-              >
-                Continue to google
-              </Button>
+              <GoogleLogin
+                clientId="579265708499-7ii87q3j1lhihqbuu20224o4mofhstme.apps.googleusercontent.com"
+                render={(renderProps) => (
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    startIcon={<img src={Google} alt="Google Icon" />}
+                    onClick={renderProps.onClick}
+                    disabled={renderProps.disabled}
+                  >
+                    Continue to google
+                  </Button>
+                )}
+                onSuccess={googleSuccess}
+                onFailure={googleFailure}
+                cookiePolicy="single_host_origin"
+              />
             </Grid>
             <Grid item xs={6}>
               <Button
