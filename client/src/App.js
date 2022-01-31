@@ -2,7 +2,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Landing from './pages-landing/Landing';
+import Container from '@mui/material/Container';
+import Navbar from './components/Navbar_Inside';
 import App_layout from './App_layout';
+
+import Dashboard from './pages/Dashboard';
 
 const theme = createTheme({
   typography: {
@@ -33,11 +37,11 @@ function App() {
       <ThemeProvider theme={theme}>
         <Router>
           <Switch>
-            <Route exact path="/">
+            <Route exact path="/:page?">
               <Landing />
             </Route>
-            <Route exact path="/Dashboard">
-              <App_layout />
+            <Route path="/Dashboard">
+              <Dashboard />
             </Route>
           </Switch>
         </Router>

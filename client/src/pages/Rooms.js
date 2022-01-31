@@ -52,8 +52,8 @@ function Rooms() {
           </Button>
         </Grid>
       </Grid>
-      <Grid item xs={12} sx={{ height: '75vh', overflow: 'auto' }}>
-        {data && <Room_layout data={data} />}
+      <Grid item xs={12} sx={{ height: '75vh' }}>
+        {tiles && <Room_layout data={tiles} />}
       </Grid>
     </Grid>
   );

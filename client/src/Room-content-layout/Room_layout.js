@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, Paper, IconButton, Box, Grid } from '@mui/material';
 import { MoreVert } from '@mui/icons-material';
-import { CssBaseline } from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
 
 function Room_layout({ data, elevation }) {
   return (
@@ -16,6 +16,7 @@ function Room_layout({ data, elevation }) {
         } = item;
         return (
           <Paper
+            elevation={0}
             key={index}
             data-index={index}
             sx={{
@@ -24,6 +25,10 @@ function Room_layout({ data, elevation }) {
               padding: '17px 17px 17px 35px',
               borderRadius: '0.5em',
               marginBottom: '10px',
+              '&:hover': {
+                boxShadow:
+                  '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
+              },
             }}
           >
             <Box className="RoomSubject" display="flex">
