@@ -1,0 +1,25 @@
+{
+    "rooms": [
+        {
+          "id": 1,
+          "title": "Embedded Programming",
+          "subtitle": "BSCS3A",
+          "date": "Monday",
+          "time": "10:25"
+        },
+        {
+          "id": 2,
+          "title": "Computational Science",
+          "subtitle": "BSCS3A",
+          "date": "Tuesday",
+          "time": "10:30"
+        },
+        {
+          "id": 3,
+          "title": "Practicum",
+          "subtitle": "BSCS3A",
+          "date": "Tuesday",
+          "time": "10:30"
+        }
+      ]
+}

@@ -1,22 +1,15 @@
-import React from 'react';
-import Textfield from './Textfield';
+import React, { useState } from 'react';
 import Select from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
+import { Grid, Button, Typography, Avatar } from '@mui/material';
 
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputAdornment from '@mui/material/InputAdornment';
-import IconButton from '@mui/material/IconButton';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-
-import { Button, Avatar, Grid, Typography } from '@mui/material';
 import Dialogform from '../components/Dialogform';
 import Google from '../assets/Rectangle 134.svg';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 import { GoogleLogin } from 'react-google-login';
+import Input from './Input';
+import { InputOutlined } from '@mui/icons-material';
 
 const genders = [
   {
@@ -30,33 +23,18 @@ const genders = [
 ];
 
 function Register({ open, close }) {
-  const [gender, setGender] = React.useState('Male');
-  const [values, setValues] = React.useState({
-    showPassword: false,
-    showConfirmPassword: false,
-    password: '',
-    confirmpassword: '',
-  });
+  const [gender, setGender] = useState('Male');
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleShowPassword = () =>
+    setShowPassword((prevShowPassword) => !prevShowPassword);
 
   const handleChange = (event) => {
     setGender(event.target.value);
   };
 
-  const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
-    });
-  };
-  const handleClickShowConfirmPassword = () => {
-    setValues({
-      ...values,
-      showConfirmPassword: !values.showConfirmPassword,
-    });
-  };
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
+  const handleSubmit = () => {};
+  const handleTextvalue = () => {};
 
   const googleSuccess = async (res) => {
     console.log(res);
@@ -92,155 +70,105 @@ function Register({ open, close }) {
               justifyContent="space-around"
               alignItems="center"
             >
-              <Avatar sx={{ height: '150px', width: '150px' }} />
+              <Avatar sx={{ height: '60px', width: '60px' }} />
             </Grid>
           </Grid>
-          <Grid
-            container
-            rowSpacing={{ xs: 3, md: 2 }}
-            columnSpacing={{ xs: 2 }}
-            sx={{ overflow: 'auto' }}
-          >
-            <Grid item xs={6}>
-              <Textfield
-                id="Firstname"
+          <form onSubmit={handleSubmit}>
+            <Grid container spacing={2}>
+              <Input
+                name="firstname"
                 label="Firstname"
-                variant="outlined"
-                fullWidth="fullWidth"
+                handlChange={handleChange}
+                autoFocus
+                half
               />
-            </Grid>
-            <Grid item xs={6}>
-              <Textfield id="Lastname" label="Lastname" variant="outlined" />
-            </Grid>
-            <Grid item xs={6}>
-              <Textfield
-                id="Contact"
-                label="Contact Number"
-                variant="outlined"
+              <Input
+                name="lastname"
+                label="Lastname"
+                handlChange={handleChange}
+                half
               />
-            </Grid>
-            <Grid item xs={6}>
-              <Select
-                select
-                label="Gender"
-                value={gender}
-                onChange={handleChange}
-                fullWidth
-              >
-                {genders.map(({ value, label }) => (
-                  <MenuItem key={value} value={value}>
-                    {label}
-                  </MenuItem>
-                ))}
-              </Select>
-            </Grid>
+              <Input
+                name="email"
+                label="Email Address"
+                type="email"
+                handlChange={handleChange}
+                half
+              />
 
-            <Grid item xs={12}>
-              <Textfield id="Email" label="Email Address" variant="outlined" />
-            </Grid>
-            <Grid item xs={6}>
-              <FormControl fullWidth required={true}>
-                <InputLabel htmlFor="outlined-adornment-password">
-                  Password
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-password"
-                  name="password"
-                  type={values.showPassword ? 'text' : 'password'}
+              <Grid item xs={6}>
+                <Select
+                  select
+                  label="Gender"
+                  value={gender}
                   onChange={handleChange}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {values.showPassword ? (
-                          <VisibilityOff />
-                        ) : (
-                          <Visibility />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  label="Password"
                   fullWidth
-                />
-              </FormControl>
-            </Grid>
-            <Grid item xs={6}>
-              <FormControl fullWidth required={true}>
-                <InputLabel htmlFor="outlined-adornment-Confirmpassword">
-                  Confirm Password
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-Confirmpassword"
-                  name="password2"
-                  type={values.showConfirmPassword ? 'text' : 'password'}
-                  onChange={handleChange}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowConfirmPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {values.showConfirmPassword ? (
-                          <VisibilityOff />
-                        ) : (
-                          <Visibility />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  label="Confirm Password"
-                  fullWidth
-                />
-              </FormControl>
-            </Grid>
-            <Grid item xs={6}>
-              <GoogleLogin
-                clientId="579265708499-7ii87q3j1lhihqbuu20224o4mofhstme.apps.googleusercontent.com"
-                render={(renderProps) => (
-                  <Button
-                    variant="outlined"
-                    fullWidth
-                    startIcon={<img src={Google} alt="Google Icon" />}
-                    onClick={renderProps.onClick}
-                    disabled={renderProps.disabled}
-                  >
-                    Continue to google
-                  </Button>
-                )}
-                onSuccess={googleSuccess}
-                onFailure={googleFailure}
-                cookiePolicy="single_host_origin"
+                >
+                  {genders.map(({ value, label }) => (
+                    <MenuItem key={value} value={value}>
+                      {label}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </Grid>
+              <Input
+                name="password"
+                label="Password"
+                type={showPassword ? 'text' : 'password'}
+                handleShowPassword={handleShowPassword}
+                handlChange={handleChange}
               />
+              <Input
+                name="confirm password"
+                label="Confirm Password"
+                type={showPassword ? 'text' : 'password'}
+                handleShowPassword={handleShowPassword}
+                handlChange={handleChange}
+              />
+
+              <Grid item xs={6}>
+                <GoogleLogin
+                  clientId="579265708499-7ii87q3j1lhihqbuu20224o4mofhstme.apps.googleusercontent.com"
+                  render={(renderProps) => (
+                    <Button
+                      variant="outlined"
+                      fullWidth
+                      startIcon={<img src={Google} alt="Google Icon" />}
+                      onClick={renderProps.onClick}
+                      disabled={renderProps.disabled}
+                    >
+                      Continue to google
+                    </Button>
+                  )}
+                  onSuccess={googleSuccess}
+                  onFailure={googleFailure}
+                  cookiePolicy="single_host_origin"
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <Button
+                  variant="contained"
+                  fullWidth
+                  sx={{
+                    mb: 2,
+                    '& .MuiButton-label': {
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textAlign: 'left',
+                      display: 'block',
+                    },
+                  }}
+                >
+                  Create Account
+                </Button>
+
+                <Typography>
+                  Already have an account? <Link to="/home"> Sign In</Link>
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid item xs={6}>
-              <Button
-                variant="contained"
-                fullWidth
-                sx={{
-                  mb: 2,
-                  '& .MuiButton-label': {
-                    textOverflow: 'ellipsis',
-                    whiteSpace: 'nowrap',
-                    overflow: 'hidden',
-                    textAlign: 'left',
-                    display: 'block',
-                  },
-                }}
-              >
-                Create Account
-              </Button>
-              <Typography>
-                Already have an account? <Link to="/home"> Sign In</Link>
-              </Typography>
-            </Grid>
-          </Grid>
+          </form>
         </Dialogform>
       </Router>
     </>

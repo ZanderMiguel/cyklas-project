@@ -3,17 +3,12 @@ import { Typography, Paper, IconButton, Box, Grid } from '@mui/material';
 import { MoreVert } from '@mui/icons-material';
 import CssBaseline from '@mui/material/CssBaseline';
 
-function Room_layout({ data, elevation }) {
+function Room_layout({ data }) {
   return (
     <>
       <CssBaseline />
       {data.map((item, index) => {
-        const {
-          RoomName: title,
-          Course: subtitle,
-          ClassDays: date,
-          ClassTime: time,
-        } = item;
+        const { title, subtitle, date, time } = item;
         return (
           <Paper
             elevation={0}

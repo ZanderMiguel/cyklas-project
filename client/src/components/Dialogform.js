@@ -18,9 +18,6 @@ function Dialogform({ children, title, btn, open, close }) {
 
   return (
     <>
-      {/* <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
-      </Button> */}
       <Dialog fullScreen={fullScreen} open={open} onClose={close} maxWidth="sm">
         <Grid container justifyContent="flex-end">
           <Grid item>
