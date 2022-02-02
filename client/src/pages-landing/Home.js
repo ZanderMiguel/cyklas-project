@@ -125,14 +125,15 @@ function Home() {
               <Grid container spacing={2} sx={{ mt: 2 }}>
                 <Input
                   name="email"
-                  label="Email Address"
+                  type="email"
+                  placeholder="Enter email address"
                   handlChange={handleChange}
                   autoFocus
                   size="medium"
                 />
                 <Input
                   name="password"
-                  label="Password"
+                  placeholder=" Enter password"
                   type={showPassword ? 'text' : 'password'}
                   handleShowPassword={handleShowPassword}
                   handlChange={handleChange}

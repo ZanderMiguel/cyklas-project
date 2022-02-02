@@ -40,21 +40,22 @@ function Rooms() {
           </Button>
         </Grid>
       </Grid>
-      {opendialog && (
-        <Create_room
-          open={opendialog}
-          close={handleCreateClose}
-          maxWidth="md"
-        />
-      )}
+      <Grid item>
+        {opendialog && (
+          <Create_room
+            open={opendialog}
+            close={handleCreateClose}
+            maxWidth="md"
+          />
+        )}
+      </Grid>
       <Grid item xs={12} sx={{ height: '75vh' }}>
         {error && <p>{error}</p>}
         {isPending && <CircularProgress />}
-
         {data && data.length > 0 ? (
           <Room_layout data={data} />
         ) : (
-          <p>nothing to display</p>
+          <p>Nothing to display</p>
         )}
       </Grid>
     </Grid>

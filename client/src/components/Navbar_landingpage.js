@@ -4,6 +4,12 @@ import Home from '../pages-landing/Home';
 import Service from '../pages-landing/Service';
 import Contact from '../pages-landing/Contact';
 import { Link, useParams } from 'react-router-dom';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 //Import Mui
 import {
@@ -14,11 +20,28 @@ import {
   Container,
   Tabs,
   Tab,
+  IconButton,
 } from '@mui/material';
 import Logo from '../assets/Images/Ellipse 2.png';
 
 function Navbar_landingpage() {
   const { page } = useParams();
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const [dropdown, setDropDown] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClose = () => {
+    setAnchorEl(null);
+    setDropDown((prevDropdown) => !prevDropdown);
+  };
+
+  const handleChangeIcon = (event) => {
+    setAnchorEl(event.currentTarget);
+    setDropDown((prevDropdown) => !prevDropdown);
+  };
 
   const idx = {
     Home: 0,
@@ -27,6 +50,8 @@ function Navbar_landingpage() {
     Contact: 3,
   };
   const [value, setValue] = useState(idx[page] === undefined ? 0 : idx[page]);
+
+  console.log(dropdown);
   const handleClickTab = (e, newValue) => {
     setValue(newValue);
   };
@@ -49,27 +74,56 @@ function Navbar_landingpage() {
               Cyklas
             </Typography>
             <Box sx={{ flexGrow: 1 }} />
-            <Tabs
-              onChange={handleClickTab}
-              value={value}
-              indicatorColor="primary"
-              style={{ textDecoration: 'none' }}
+            {fullScreen ? (
+              <IconButton
+                id="basic-button"
+                aria-controls={open ? 'basic-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+                onClick={handleChangeIcon}
+              >
+                {dropdown ? (
+                  <ArrowDropUpIcon sx={{ color: 'black' }} />
+                ) : (
+                  <ArrowDropDownIcon sx={{ color: 'black' }} />
+                )}
+              </IconButton>
+            ) : (
+              <Tabs
+                onChange={handleClickTab}
+                value={value}
+                indicatorColor="primary"
+                style={{ textDecoration: 'none' }}
+              >
+                <Tab disableRipple label="Home" component={Link} to="/" />
+                <Tab
+                  disableRipple
+                  label="Service"
+                  component={Link}
+                  to="/Service"
+                />
+                <Tab disableRipple label="About" component={Link} to="/About" />
+                <Tab
+                  disableRipple
+                  label="Contact"
+                  component={Link}
+                  to="/Contact"
+                />
+              </Tabs>
+            )}
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{
+                'aria-labelledby': 'basic-button',
+              }}
             >
-              <Tab disableRipple label="Home" component={Link} to="/" />
-              <Tab
-                disableRipple
-                label="Service"
-                component={Link}
-                to="/Service"
-              />
-              <Tab disableRipple label="About" component={Link} to="/About" />
-              <Tab
-                disableRipple
-                label="Contact"
-                component={Link}
-                to="/Contact"
-              />
-            </Tabs>
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleClose}>My account</MenuItem>
+              <MenuItem onClick={handleClose}>Logout</MenuItem>
+            </Menu>
           </Toolbar>
         </Container>
       </AppBar>

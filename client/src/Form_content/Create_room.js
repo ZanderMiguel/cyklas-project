@@ -71,16 +71,6 @@ function Create_room({ open, close, maxWidth }) {
       gradingsystem,
     };
     post('http://localhost:8000/rooms', room);
-
-    // axios
-    //   .post('http://localhost:8000/rooms', room)
-    //   .then((res) => {
-    //     console.log(res);
-    //     console.log('new room added');
-    //   })
-    //   .catch((err) => {
-    //     console.log(err.message);
-    //   });
   };
   return (
     <>

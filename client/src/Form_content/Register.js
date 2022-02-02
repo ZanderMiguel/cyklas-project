@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Link } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 import Input from './Input';
 import { InputOutlined } from '@mui/icons-material';
+import Drowpdown from './Drowpdown';
 
 const genders = [
   {
@@ -77,50 +78,43 @@ function Register({ open, close }) {
             <Grid container spacing={2}>
               <Input
                 name="firstname"
-                label="Firstname"
+                placeholder="Firstname"
                 handlChange={handleChange}
                 autoFocus
                 half
               />
               <Input
                 name="lastname"
-                label="Lastname"
+                placeholder="Lastname"
                 handlChange={handleChange}
                 half
               />
               <Input
                 name="email"
-                label="Email Address"
+                placeholder="Email Address"
                 type="email"
                 handlChange={handleChange}
                 half
               />
 
-              <Grid item xs={6}>
-                <Select
-                  select
-                  label="Gender"
-                  value={gender}
-                  onChange={handleChange}
-                  fullWidth
-                >
-                  {genders.map(({ value, label }) => (
-                    <MenuItem key={value} value={value}>
-                      {label}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </Grid>
+              <Drowpdown
+                label="Gender"
+                value={gender}
+                onChange={handleChange}
+                options={genders}
+                half
+              />
+
               <Input
                 name="password"
-                label="Password"
+                placeholder="Password"
                 type={showPassword ? 'text' : 'password'}
                 handleShowPassword={handleShowPassword}
                 handlChange={handleChange}
               />
               <Input
                 name="confirm password"
-                label="Confirm Password"
+                placeholder="Confirm Password"
                 type={showPassword ? 'text' : 'password'}
                 handleShowPassword={handleShowPassword}
                 handlChange={handleChange}
@@ -164,7 +158,10 @@ function Register({ open, close }) {
                 </Button>
 
                 <Typography>
-                  Already have an account? <Link to="/home"> Sign In</Link>
+                  Already have an account?
+                  <Link style={{ textDecoration: 'none' }} to="/home">
+                    Sign In
+                  </Link>
                 </Typography>
               </Grid>
             </Grid>
