@@ -4,3 +4,8 @@ body {
   box-sizing: border-box;
 
 }
+video{
+  width: 30%;
+  height: 30%;
+  object-fit: cover;
+}
