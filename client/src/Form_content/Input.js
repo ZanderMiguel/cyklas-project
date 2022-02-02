@@ -1,28 +1,40 @@
 import React from 'react';
-import { TextField, Grid, InputAdornment, IconButton } from '@mui/material';
+import {
+  TextField,
+  Grid,
+  InputAdornment,
+  IconButton,
+  Typography,
+} from '@mui/material';
 
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 const Input = ({
   name,
-  handleChange,
-  label,
+  value,
+  onChange,
+  placeholder,
   autoFocus,
   type,
   handleShowPassword,
   half,
   size,
+  inputLabel,
 }) => {
   return (
     <Grid item xs={12} sm={half ? 6 : 12}>
+      <Typography variant="body1" sx={{ ml: 1, mb: 1, fontWeight: 500 }}>
+        {inputLabel}
+      </Typography>
       <TextField
         name={name}
-        onChange={handleChange}
+        value={value}
+        onChange={onChange}
         variant="outlined"
         size={size}
         required
         fullWidth
-        label={label}
+        placeholder={placeholder}
         autoFocus={autoFocus}
         type={type}
         InputProps={

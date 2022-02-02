@@ -12,6 +12,7 @@ import Setting from './pages/Setting';
 
 import Container from '@mui/material/Container';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Room_inside from './Room-content-layout/Room_inside';
 
 const theme = createTheme({
   typography: {
@@ -44,19 +45,22 @@ function App_layout() {
           <Navbar />
           <Container maxWidth="lg">
             <Switch>
-              <Route path="/Dashboard">
+              <Route exact path="/Dashboard">
                 <Dashboard />
               </Route>
-              <Route path="/Rooms">
+              <Route exact path="/Rooms">
                 <Rooms />
               </Route>
-              <Route path="/Quizlit">
+              <Route path="/Rooms/:id">
+                <Room_inside />
+              </Route>
+              <Route exact path="/Quizlit">
                 <Quizlit />
               </Route>
-              <Route path="/Telecon">
+              <Route exact path="/Telecon">
                 <Telecon />
               </Route>
-              <Route path="/Records">
+              <Route exact path="/Records">
                 <Records />
               </Route>
               <Route path="/Setting">

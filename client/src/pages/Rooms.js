@@ -1,32 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, Paper, IconButton, Grid } from '@mui/material';
-import { MoreVert, AddCircle, Room } from '@mui/icons-material';
+import { Grid } from '@mui/material';
+import { AddCircle } from '@mui/icons-material';
 import { Buttons as Button, Boxs as Box } from './Component';
 import Room_layout from '../Room-content-layout/Room_layout';
 import useGet from '../customHooks/useGet';
-
 import CircularProgress from '@mui/material/CircularProgress';
+import Create_room from '../Form_content/Create_room';
 
 function Rooms() {
-  const [tiles, setRooms] = useState(null);
-  const [isPending, setIsPending] = useState(true);
-  const [error, setError] = useState(null);
+  const [opendialog, setOpenDialog] = useState(false);
+  const { data, isPending, error } = useGet('http://localhost:8000/rooms');
 
-  // useEffect(() => {
-  //   fetch('http://localhost:8000/rooms')
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((data) => {
-  //       setRooms(data);
-  //     });
-  // }, []);
+  const handleCreate = () => {
+    setOpenDialog(true);
+  };
 
-  const { data } = useGet(
-    'http://localhost:8000/rooms',
-    setIsPending,
-    setError
-  );
+  const handleCreateClose = () => {
+    setOpenDialog(false);
+  };
 
   return (
     <Grid container>
@@ -43,15 +34,28 @@ function Rooms() {
               position: 'fix',
               right: '0px',
             }}
+            onClick={handleCreate}
           >
             Create Room
           </Button>
         </Grid>
       </Grid>
+      {opendialog && (
+        <Create_room
+          open={opendialog}
+          close={handleCreateClose}
+          maxWidth="md"
+        />
+      )}
       <Grid item xs={12} sx={{ height: '75vh' }}>
         {error && <p>{error}</p>}
         {isPending && <CircularProgress />}
-        {data && <Room_layout data={data} />}
+
+        {data && data.length > 0 ? (
+          <Room_layout data={data} />
+        ) : (
+          <p>nothing to display</p>
+        )}
       </Grid>
     </Grid>
   );

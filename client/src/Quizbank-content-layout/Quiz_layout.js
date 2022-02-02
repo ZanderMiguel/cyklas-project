@@ -100,9 +100,9 @@ function Quiz_layout({ bank }) {
             marginTop="10px"
             display="flex"
             gap="20px"
+            key={idx}
           >
             <Box
-              key={idx}
               className="Tiles"
               display="flex"
               paddingRight="20px"

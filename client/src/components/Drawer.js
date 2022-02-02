@@ -77,7 +77,7 @@ function Drawer() {
           const { icon, text, path } = item;
           return (
             <Link
-              key={item}
+              key={index}
               style={{ textDecoration: 'none', color: 'blue' }}
               to={path}
             >

@@ -1,100 +1,157 @@
-import React from 'react';
-
-import Grid from '@mui/material/Grid';
+import React, { useState } from 'react';
 import Dialogform from '../components/Dialogform';
-import Textfield from './Textfield';
-import Select from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
-import Button from '@mui/material/Button';
+import Input from './Input';
+import Dropdown from './Drowpdown';
+import usePost from '../customHooks/usePost';
 
-const Terms = [
+import { Grid, Button } from '@mui/material';
+
+const classtimes = [
   {
-    value: 'Two terms',
-    label: 'Two terms',
+    value: '10:30',
+    label: '10:30',
   },
   {
-    value: 'Three terms',
-    label: 'Three terms',
+    value: '11:30',
+    label: '11:30',
   },
 ];
-const Grading = [
+const Term = [
+  {
+    value: '2 Term',
+    label: '2 Term',
+  },
+  {
+    value: '3 Term',
+    label: '3 Term',
+  },
+];
+
+const gradingsystems = [
   {
     value: 'Default',
     label: 'Default',
   },
   {
-    value: 'Grading System 1',
-    label: 'Grading System 1',
-  },
-  {
-    value: 'Create',
-    label: 'Create',
+    value: 'CreateSystem1',
+    label: 'CreateSystem1',
   },
 ];
 
-function Create_room() {
-  const [term, setTerm] = React.useState('Two terms');
-  const [grade, setGrade] = React.useState('Default');
+function Create_room({ open, close, maxWidth }) {
+  const [roomname, setRoomname] = useState('');
+  const [course, setCourse] = useState('');
+  const [classday, setClassDay] = useState('');
+  const [yearandsection, setYearandSection] = useState('');
+  const [classtime, setClassTime] = useState('10:30');
+  const [term, setTerm] = useState('2 Term');
+  const [gradingsystem, setGradingSystem] = useState('Default');
+
   const handleChangeTerm = (event) => {
     setTerm(event.target.value);
   };
-  const handleChangeGrade = (event) => {
-    setGrade(event.target.value);
+  const handleChangeClassTime = (event) => {
+    setClassTime(event.target.value);
+  };
+  const handleChangeGradingSystem = (event) => {
+    setGradingSystem(event.target.value);
   };
 
+  const { post } = usePost();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const room = {
+      title: roomname,
+      subtitle: course,
+      date: classday,
+      yearandsection,
+      time: classtime,
+      term,
+      gradingsystem,
+    };
+    post('http://localhost:8000/rooms', room);
+
+    // axios
+    //   .post('http://localhost:8000/rooms', room)
+    //   .then((res) => {
+    //     console.log(res);
+    //     console.log('new room added');
+    //   })
+    //   .catch((err) => {
+    //     console.log(err.message);
+    //   });
+  };
   return (
     <>
       <Dialogform
-        title="Create your Room"
-        btn={<Button variant="contained"> Create Room</Button>}
+        title="Create your Room!"
+        open={open}
+        close={close}
+        maxWidth={maxWidth}
+        btn={
+          <Button variant="contained" type="submit" form="form1">
+            Submit
+          </Button>
+        }
       >
-        <Grid container rowSpacing={{ xs: 2 }} columnSpacing={{ xs: 2 }}>
-          <Grid item sx={{ mt: 2 }} xs={6}>
-            <Textfield label="Room" variant="outlined" />
-          </Grid>
-          <Grid item sx={{ mt: 2 }} xs={6}>
-            <Textfield label="Course" variant="outlined" />
-          </Grid>
-          <Grid item xs={6}>
-            <Textfield label="Class Day(s)" variant="outlined" />
-          </Grid>
-          <Grid item xs={6}>
-            <Textfield label="Year and Section" variant="outlined" />
-          </Grid>
-          <Grid item xs={6}>
-            <Textfield label="Time" variant="outlined" />
-          </Grid>
-          <Grid item xs={6}>
-            <Select
-              select
-              label="Terms"
+        <form onSubmit={handleSubmit} id="form1">
+          <Grid container spacing={2} sx={{ padding: 2, overflow: 'auto' }}>
+            <Input
+              inputLabel="Room Name"
+              placeholder="Enter room name..."
+              value={roomname}
+              onChange={(e) => setRoomname(e.target.value)}
+              autoFocus
+              half
+            />
+            <Input
+              inputLabel="Course"
+              placeholder="Enter course..."
+              value={course}
+              onChange={(e) => setCourse(e.target.value)}
+              half
+            />
+            <Input
+              inputLabel="Class Day"
+              placeholder="Enter class day..."
+              value={classday}
+              onChange={(e) => setClassDay(e.target.value)}
+              half
+            />
+            <Input
+              inputLabel="Year and Section"
+              placeholder="Enter year and section..."
+              value={yearandsection}
+              onChange={(e) => setYearandSection(e.target.value)}
+              half
+            />
+            <Dropdown
+              inputLabel="Class Time"
+              value={classtime}
+              onChange={handleChangeClassTime}
+              options={classtimes}
+              half
+            />
+            <Dropdown
+              inputLabel="Terms"
               value={term}
               onChange={handleChangeTerm}
-              fullWidth
-            >
-              {Terms.map(({ value, label }) => (
-                <MenuItem key={value} value={value}>
-                  {label}
-                </MenuItem>
-              ))}
-            </Select>
+              options={Term}
+              half
+            />
+            <Dropdown
+              inputLabel="Grading System"
+              value={gradingsystem}
+              onChange={handleChangeGradingSystem}
+              options={gradingsystems}
+              half
+            />
+            <Grid container justifyContent="flex-end">
+              <Grid item></Grid>
+            </Grid>
           </Grid>
-          <Grid item xs={6}>
-            <Select
-              select
-              label="Terms"
-              value={grade}
-              onChange={handleChangeGrade}
-              fullWidth
-            >
-              {Grading.map(({ value, label }) => (
-                <MenuItem key={value} value={value}>
-                  {label}
-                </MenuItem>
-              ))}
-            </Select>
-          </Grid>
-        </Grid>
+        </form>
       </Dialogform>
     </>
   );

@@ -12,15 +12,20 @@ import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-function Dialogform({ children, title, btn, open, close }) {
+function Dialogform({ children, title, btn, open, close, maxWidth }) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <>
-      <Dialog fullScreen={fullScreen} open={open} onClose={close} maxWidth="sm">
+      <Dialog
+        fullScreen={fullScreen}
+        open={open}
+        onClose={close}
+        maxWidth={maxWidth}
+      >
         <Grid container justifyContent="flex-end">
-          <Grid item>
+          <Grid item sx={{ mt: 1, mr: 1 }}>
             <IconButton onClick={close}>
               <CloseIcon />
             </IconButton>
@@ -30,7 +35,7 @@ function Dialogform({ children, title, btn, open, close }) {
           <Divider textAlign="left">{title}</Divider>
         </DialogTitle>
         <DialogContent>{children}</DialogContent>
-        <DialogActions>{btn}</DialogActions>
+        <DialogActions sx={{ mb: 2, mr: 2 }}>{btn}</DialogActions>
       </Dialog>
     </>
   );
