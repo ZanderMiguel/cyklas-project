@@ -9,7 +9,7 @@ import ss from '../../assets/Images/ss.png'
 import breakout from '../../assets/Images/breakout.png'
 import quizlit from '../../assets/Images/quizlit.png'
 import endCall from '../../assets/Images/endCall.png'
-function Actions() {
+function Actions(props) {
     const actions = [{
         buttons: [<img src={info} alt=""/>,
         <img src={members} alt=""/>,
@@ -17,7 +17,7 @@ function Actions() {
         <img src={presentation} alt=""/>],
         style: {
             width: '70%',
-            backgroundColor: '#FFFFFF',
+            backgroundColor: 'transparent',
             borderRadius: '0',
             justifyContent: 'normal',
             padding: '5px',
@@ -32,7 +32,7 @@ function Actions() {
         <img src={endCall} alt=""/>],
         style: {
             width: '35%',
-            backgroundColor: '#F3F3F3',
+            backgroundColor: '#3C4043',
             borderRadius: '20px',
             justifyContent: 'space-evenly',
             padding: '5px 0 5px 0',
@@ -40,7 +40,7 @@ function Actions() {
             
         }
     }]
-  return (<div style={{marginTop: '1%',width: '100%',}}><div style={{width: '98%', display: 'flex'}}>
+  return (<div style={{marginTop: '1%',width: '100%',}}><div style={{width: '98%', display: 'flex', backgroundColor: 'transparent'}}>
       {actions.map((item,idx)=>{
           const {buttons,style} = item
           return(

@@ -32,7 +32,7 @@ function MemTile(props) {
         for (let i = 0; i < Math.sqrt(tile.length) % 1 === 0 ? Math.sqrt(tile.length) : parseInt(Math.sqrt(tile.length) + 1); i++) {
             tileRows += "auto "
         } */
-    //const myVideo = React.useRef(null)
+
     const vidContainer = React.useRef(null)
 
     const socket = io.connect('http://localhost:3001/')
@@ -51,7 +51,7 @@ function MemTile(props) {
     const myVideo = document.createElement('video')
     myVideo.muted = true
     //Displaying video stream
-    const addVideoStream = (video,stream) => {
+    const addVideoStream = (video, stream) => {
 
         video.srcObject = stream
         video.addEventListener('loadedmetadata', () => {
@@ -66,7 +66,7 @@ function MemTile(props) {
         const video = document.createElement('video')
         video.muted = true
         call.on('stream', userVideoStream => {
-            addVideoStream(video,userVideoStream)
+            addVideoStream(video, userVideoStream)
         })
         call.on('close', () => {
             video.remove()
@@ -79,13 +79,13 @@ function MemTile(props) {
         video: true,
         audio: true
     }).then(stream => {
-        addVideoStream(myVideo,stream)
+        addVideoStream(myVideo, stream)
         myPeer.on('call', call => {
             call.answer(stream)
             const video = document.createElement('video')
             video.muted = true
             call.on('stream', userVideoStream => {
-                addVideoStream(video,userVideoStream)
+                addVideoStream(video, userVideoStream)
             })
         })
         socket.on('user-connected', userId => { // When user is connected, 
@@ -93,21 +93,22 @@ function MemTile(props) {
         })
     })
     return (<div style={{
-        backgroundColor: '#202124',
+        backgroundColor: 'transparent',
         margin: '14px 0 0 1%',
-        width: '73%',
+        width: '100%',
         height: '86vh',
         display: 'flex',
         padding: '15px',
         justifyContent: 'center',
-        alignItems: 'center',
-        gridGap: '10px 10px',
+        flexWrap: 'wrap',
+        alignItems: 'center'
 
-    }}>
+    }}
+        ref={vidContainer}>
         {/* {videos.length >= 1 && props.vidPanel.Children.map((item, idx) => {
             const { avatar, mic, text } = item */}
         {/*  return ( */}
-        <div style={{
+        {/* <div style={{
             backgroundColor: '#3C4043',
             width: '100%',
             height: '100%',
@@ -116,8 +117,8 @@ function MemTile(props) {
             flexWrap: 'wrap',
             alignItems: 'center'
         }}
-            ref={vidContainer}>
-            {/*  <div >
+            >
+             <div >
                         {avatar}
                     </div>
                     <div style={{
@@ -130,13 +131,13 @@ function MemTile(props) {
                         alignSelf: 'flex-end'
                     }}>
                         {mic}<h6 style={{ color: 'white' }}>{text}</h6>
-                    </div> */}
+                    </div>
 
 
 
 
         </div>
-        {/*  )
+         )
         })} */}
     </div>);
 }
