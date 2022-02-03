@@ -1,4 +1,4 @@
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar_landingpage';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -34,4 +34,8 @@ function App() {
   );
 }
 
+
+
+
 export default App;
+

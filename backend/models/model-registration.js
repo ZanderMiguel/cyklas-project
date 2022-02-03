@@ -4,7 +4,7 @@ const RegistrationSchema = new mongoose.Schema({
     userType:{type: String, required: true},
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
-    image:{type:Buffer, required: false},
+    image:{type:Buffer, required: true},
     emailAddress: {type: String, required: true},
     gender: {type: String, required: true},
     mobileNo: {type: String, required: true},

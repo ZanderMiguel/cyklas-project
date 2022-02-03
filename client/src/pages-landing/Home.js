@@ -9,8 +9,25 @@ import { AddCircle } from '@mui/icons-material';
 import Flatimage from '../assets/Images/illustration.svg';
 import MaleLogo from '../assets/Images/avatar_male.png';
 import Google from '../assets/Rectangle 134.svg';
+import {GoogleLogin} from 'react-google-login';
+import axios from 'axios';
 
 const style = { fontFamily: 'Poppins', marginTop: 1 };
+
+const responseSuccessGoogle = (response) => {
+  console.log(response);
+  axios ({
+    method:"POST",
+    url:"http://localhost:5000/googlelogin",
+    data:{tokenId: response.tokenId}
+  }).then(response =>{
+    console.log("Google login success",response)
+  })
+}
+
+const responseErrorGoogle = (response) => {
+  console.log(response);
+}
 
 function Home() {
   return (
@@ -164,22 +181,33 @@ function Home() {
                 Sign up
               </Link>
             </Typography>
-            <Button
-              variant="text"
-              fullWidth
-              sx={{
-                backgroundColor: 'white',
-                textTransform: 'none',
-                ...style,
-                marginTop: '10px',
-                color: '#007FFF',
-                border: '1px solid #EB7E42',
-                borderColor: '#007FFF',
-              }}
-              startIcon={<img src={Google} alt="Google Icon" />}
-            >
-              Continue to google
-            </Button>
+           
+              
+      <GoogleLogin
+    clientId="90759507047-37dohu0dq74j6oui4b6hvb3tj4vpphkm.apps.googleusercontent.com"
+    render={renderProps => (
+      <Button
+      variant="text"
+      fullWidth
+      sx={{
+        backgroundColor: 'white',
+        textTransform: 'none',
+        ...style,
+        marginTop: '10px',
+        color: '#007FFF',
+        border: '1px solid #EB7E42',
+        borderColor: '#007FFF',
+      }}
+      startIcon={<img src={Google} alt="Google Icon" />}
+      onClick={renderProps.onClick} disabled={renderProps.disabled}
+    > Google Login</Button>
+    )}
+    
+    onSuccess={responseSuccessGoogle}
+    onFailure={responseErrorGoogle}
+    cookiePolicy={'single_host_origin'}
+  />
+            
           </Paper>
         </Box>
       </Box>

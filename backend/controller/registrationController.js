@@ -1,14 +1,17 @@
-const Registration = require('../models/model-registration')
+const Registration = require('../models/model-registration');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const { OAuth2Client } = require('google-auth-library');
+
+const client = new OAuth2Client("90759507047-37dohu0dq74j6oui4b6hvb3tj4vpphkm.apps.googleusercontent.com");
 
 const createRegistration = async (req, res) => {
-    
-    try{
 
-        const password = await bcrypt.hash(req.body.password,10)
+    try {
+
+        const password = await bcrypt.hash(req.body.password, 10)
         const addRegistration = new Registration({
-            userType:req.body.userType,
+            userType: req.body.userType,
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             image: req.body.image,
@@ -18,15 +21,15 @@ const createRegistration = async (req, res) => {
             username: req.body.username,
             password: password,
 
-        }); 
-        
+        });
+
         await addRegistration.save()
-            console.log("Done!")
-            return res.json({
-                status: 'success',
-                message: 'Registratin Success!'
-            })
-    } catch (error){
+        console.log("Done!")
+        return res.json({
+            status: 'success',
+            message: 'Registratin Success!'
+        })
+    } catch (error) {
         console.log("Something went wrong!" + error)
         return res.json({
             status: 'error',
@@ -34,22 +37,23 @@ const createRegistration = async (req, res) => {
         })
     }
 }
-const userLogIn = async (req,res) => {
-    const username = req.body.username
+
+const userLogIn = async (req, res) => {
+    const emailAddress = req.body.emailAddress
     const password = req.body.password
-    const user = await Registration.findOne({username})
+    const user = await Registration.findOne({ emailAddress })
     console.log(password)
-    if(!user){
+    if (!user) {
         return res.json({
             status: 'error',
             message: 'Invalid username or password!'
         })
     }
-    if(await bcrypt.compare(password, user.password)){
+    if (await bcrypt.compare(password, user.password)) {
         const token = jwt.sign({
             id: user._id,
-            userName : user.userName
-        }, process.env.ACCESS_TOKEN, {expiresIn: '1h'})
+            userName: user.userName
+        }, process.env.ACCESS_TOKEN, { expiresIn: '1h' })
         return res.json({
             status: 'succes',
             token: token
@@ -85,9 +89,12 @@ const deleteRegistration = async (req, res) => {
     }
 }
 
+
+
 module.exports = {
     createRegistrationController: createRegistration,
-    displayRegistrationController:displayRegistration,
-    deleteRegistrationController:deleteRegistration,
+    displayRegistrationController: displayRegistration,
+    deleteRegistrationController: deleteRegistration,
     userLogInController: userLogIn,
+    
 }
