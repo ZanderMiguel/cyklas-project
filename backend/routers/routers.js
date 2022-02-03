@@ -18,8 +18,9 @@ router.get('/register',displayRegistrationController)
 router.delete('/register/:id',deleteRegistrationController)
 router.post('/login', userLogInController)
 
-const{googlelogin} =  require('../controller/googleAuthController')
+const{googlelogin,googleAccountsController} =  require('../controller/googleAuthController')
 router.post('/googlelogin', googlelogin)
+router.get('/getUsers', googleAccountsController)
 
 const {createActivityController,displayActivityController,deleteActivityController,updateActivityController}=require('../controller/createActivityController')
 router.post('/rooms/feed',createActivityController)

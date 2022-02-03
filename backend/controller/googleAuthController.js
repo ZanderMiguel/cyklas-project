@@ -42,7 +42,18 @@ const googlelogin = async (req, res) => {
         return res.json({ status: 'Failed', message: err })
     }
 }
+const getUsers = async (req,res)=> {
+    try{
+        const response = await GoogleAuth.findOne().sort({createdAt: -1})
+        console.log("People displayed")
+        return res.json(response)
 
+    }catch(err){
+        console.log(err)
+        return res.json({status: 'Failed', message: err})
+    }
+}
 module.exports = {
-    googlelogin:googlelogin
+    googlelogin:googlelogin,
+    googleAccountsController: getUsers
 }
