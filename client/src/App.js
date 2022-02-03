@@ -1,5 +1,10 @@
-import Navbar from './components/Navbar';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import Landing from './pages-landing/Landing';
+import App_layout from './App_layout';
+
+import Dashboard from './pages/Dashboard';
 
 const theme = createTheme({
   typography: {
@@ -28,7 +33,16 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Navbar />
+        <Router>
+          <Switch>
+            <Route exact path="/Dashboard">
+              <App_layout />
+            </Route>
+            <Route exact path="/:page?">
+              <Landing />
+            </Route>
+          </Switch>
+        </Router>
       </ThemeProvider>
     </>
   );

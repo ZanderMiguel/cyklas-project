@@ -4,6 +4,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
+  Redirect,
 } from 'react-router-dom';
 import Telecon from '../Telecon/Telecon'
 //importing Mui
@@ -40,8 +41,12 @@ function Landing() {
     <ThemeProvider theme={theme}>
       <Router>
         <Switch>
+<<<<<<< HEAD
         <Route exact path={'/telecon'} component={TeleconLanding}/>
         <Route exact path={'/telecon/:teleRoom?'} component={Telecon}/>
+=======
+          <Redirect from="/Home" to="/" />
+>>>>>>> origin/Zander
           <Route exact path={'/:page?'}>
             <NavbarLandingpage />
           </Route>
