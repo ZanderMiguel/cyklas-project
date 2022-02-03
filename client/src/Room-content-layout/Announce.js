@@ -43,7 +43,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
 }));
 
 function Announce() {
-  const [upload, setUpload] = React.useState('true');
+  const [upload, setUpload] = React.useState(false);
   const [alignment, setAlignment] = React.useState('left');
   const [formats, setFormats] = React.useState(() => ['italic']);
 
@@ -56,7 +56,7 @@ function Announce() {
   };
 
   return (
-    <Grid container sx={{ marginTop: 2 }}>
+    <>
       <Grid item xs={12}>
         <Input
           variant="filled"
@@ -65,8 +65,6 @@ function Announce() {
           rows={6}
           label="Announce to your class..."
         />
-      </Grid>
-      <Grid item xs={12}>
         <Paper
           elevation={0}
           sx={{
@@ -126,6 +124,7 @@ function Announce() {
               sx={{
                 marginLeft: '10px',
               }}
+              onClick={() => setUpload(true)}
             >
               <PanoramaOutlined />
             </IconButton>
@@ -138,7 +137,7 @@ function Announce() {
           </Stack>
         </Paper>
       </Grid>
-    </Grid>
+    </>
   );
 }
 
