@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import './Landingpage.css';
 import Input from '../Form_content/Input';
 
@@ -18,11 +18,30 @@ import { AddCircle } from '@mui/icons-material';
 import Flatimage from '../assets/Images/illustration.svg';
 import MaleLogo from '../assets/Images/avatar_male.png';
 import Google from '../assets/Rectangle 134.svg';
-import Register from '../Form_content/Register';
+import {useHistory} from 'react-router-dom'
+import axios from 'axios';
+import Register from '../Form_content/Register'
 
 const style = { fontFamily: 'Poppins', marginTop: 1 };
 
+const responseSuccessGoogle = (response) => {
+  console.log(response);
+  axios ({
+    method:"POST",
+    url:"http://localhost:5000/googlelogin",
+    data:{tokenId: response.tokenId}
+  }).then(response =>{
+    console.log("Google login success",response)
+  })
+}
+
+const responseErrorGoogle = (response) => {
+  console.log(response);
+}
+
+
 function Home() {
+  const history = useHistory()
   const [opendialog, setOpenDialog] = useState(false);
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -34,8 +53,28 @@ function Home() {
   const handleClose = () => {
     setOpenDialog(false);
   };
+  const [myApi,setMyApi] =React.useState(new Map())
+  const handleChange = (e) => {
+    
+    setMyApi(myApi.set([e.target.name],e.target.value))
+    
+  };
 
-  const handleChange = () => {};
+const handleSubmit = (e) =>{
+  e.preventDefault()
+ 
+  
+  axios.post("http://localhost:5000/login", Object.fromEntries(myApi)).then(response =>{
+    response.data.token && localStorage.setItem('token', response.data.token)
+    console.log(response.data)
+    setMyApi(new Map())
+    history.push('/dashboard')
+    
+  }).catch(err => {console.log(err.message)
+    setMyApi(new Map())
+  })
+ 
+}
   return (
     <>
       <Box>
@@ -106,7 +145,7 @@ function Home() {
               }}
             />
           </Box>
-          <form>
+          
             <Paper
               sx={{
                 width: '20rem',
@@ -116,18 +155,21 @@ function Home() {
                 justifyContent: 'space-around',
                 padding: '30px',
               }}
+              type="submit"
+              form="loginForm"
             >
               <img
                 src={MaleLogo}
                 alt="avatar"
                 style={{ width: '6rem', maxWidth: '', height: 'auto' }}
               />
+              <form onSubmit={handleSubmit} id="loginForm">
               <Grid container spacing={2} sx={{ mt: 2 }}>
                 <Input
-                  name="email"
+                  name="emailAddress"
                   type="email"
                   placeholder="Enter email address"
-                  handlChange={handleChange}
+                  onChange={handleChange}
                   autoFocus
                   size="medium"
                 />
@@ -136,9 +178,10 @@ function Home() {
                   placeholder=" Enter password"
                   type={showPassword ? 'text' : 'password'}
                   handleShowPassword={handleShowPassword}
-                  handlChange={handleChange}
+                  onChange={handleChange}
                 />
               </Grid>
+              </form>
               <Typography
                 sx={{ ...style }}
                 gutterBottom
@@ -166,6 +209,8 @@ function Home() {
                   marginBottom: '10px',
                   borderRadius: '10px',
                 }}
+                type="submit"
+                form="loginForm"
               >
                 Log in
               </Button>
@@ -201,7 +246,7 @@ function Home() {
                 Continue to google
               </Button>
             </Paper>
-          </form>
+         
         </Box>
       </Box>
     </>

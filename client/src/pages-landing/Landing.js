@@ -43,7 +43,7 @@ function Landing() {
         <Switch>
           <Redirect from="/Home" to="/" />
           <Route exact path={'/:page?'}>
-            <NavbarLandingpage />
+            
           </Route>
           
         </Switch>

@@ -9,8 +9,8 @@ import Create_room from '../Form_content/Create_room';
 
 function Rooms() {
   const [opendialog, setOpenDialog] = useState(false);
-  const { data, isPending, error } = useGet('http://localhost:8000/rooms');
-
+  const { data, isPending, error } = useGet('http://localhost:5000/rooms');
+  console.log(data)
   const handleCreate = () => {
     setOpenDialog(true);
   };

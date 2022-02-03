@@ -1,12 +1,6 @@
 import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
-
-import Landing from './pages-landing/Landing';
-import App_layout from './App_layout';
-import Navbar from './components/Navbar_Inside';
-import Rooms from './pages/Rooms';
 import Records from './pages/Records';
 import Setting from './pages/Setting';
 import ProtectedRoutes from './pages/ProtectedRoutes';
@@ -14,6 +8,7 @@ import Dashboard from './pages/Dashboard';
 import Navbar_landingpage from './components/Navbar_landingpage';
 import Telecon from './Telecon/Telecon';
 import QuizLit from './pages/Quizlit';
+import Rooms from './pages/Rooms'
 const theme = createTheme({
   typography: {
     fontFamily: 'Poppins',
@@ -45,7 +40,7 @@ function App() {
       <ThemeProvider theme={theme}>
        
         <Router>
-        {localStorage.token && <Navbar/>}
+        
         
           <Switch>
             
@@ -56,7 +51,7 @@ function App() {
             <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
             <ProtectedRoutes exact path="/records" component={Records} />
             
-            <Route exact path="/:page?" component={Landing} />
+            <Route exact path="/:page?" component={Navbar_landingpage} />
           </Switch>
          
         </Router>
@@ -65,4 +60,8 @@ function App() {
   );
 }
 
+
+
+
 export default App;
+

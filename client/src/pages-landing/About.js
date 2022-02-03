@@ -23,7 +23,6 @@ function About() {
         align="center"
         mt={10}
       >
-        {' '}
         Our Team
       </Typography>
       <Typography

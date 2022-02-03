@@ -1,10 +1,14 @@
 import React from 'react';
 import Container from '@mui/material/Container';
 import { Route, Redirect } from 'react-router-dom';
+import Navbar from '../components/Navbar_Inside';
 function ProtectedRoutes({ component: Component, path, ...attrib }) {
-  localStorage.setItem('token',"ayukol")
+
   return (
+    <>
+    {localStorage.token && <Navbar/>}
     <Container maxWidth="md">
+      
       <Route
         {...attrib}
         render={() => {
@@ -12,6 +16,7 @@ function ProtectedRoutes({ component: Component, path, ...attrib }) {
         }}
       />
     </Container>
+    </>
   );
 }
 
