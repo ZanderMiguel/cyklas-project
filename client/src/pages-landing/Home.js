@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Landingpage.css';
 
 //importing Mui
@@ -11,6 +11,7 @@ import MaleLogo from '../assets/Images/avatar_male.png';
 import Google from '../assets/Rectangle 134.svg';
 import {GoogleLogin} from 'react-google-login';
 import axios from 'axios';
+
 
 const style = { fontFamily: 'Poppins', marginTop: 1 };
 
@@ -29,7 +30,28 @@ const responseErrorGoogle = (response) => {
   console.log(response);
 }
 
+
 function Home() {
+const [email, setEmail] = useState('');
+const [pass, setPass] = useState('');
+const handleSubmit = (e) =>{
+  e.preventDefault()
+  const login = {
+    emailAddress: email,
+    password: pass,
+  }
+  
+  axios.post("http://localhost:5000/login", login).then(response =>{
+    localStorage.setItem('token', response.data.token)
+    setEmail('')
+    setPass('')
+    // console.log(response.data.token);
+  }).catch(err => {console.log(err.message)
+    setEmail('')
+    setPass('')
+  })
+ 
+}
   return (
     <>
       <Box>
@@ -113,7 +135,7 @@ function Home() {
               alt="avatar"
               style={{ width: '6rem', maxWidth: '', height: 'auto' }}
             />
-
+            <form onSubmit={handleSubmit} id="loginForm">
             <TextField
               required
               id="standard-required"
@@ -123,6 +145,8 @@ function Home() {
               size="small"
               fullWidth
               margin="normal"
+              onChange={(e) => setEmail(e.target.value)}
+                  value={email}
             />
 
             <TextField
@@ -135,7 +159,10 @@ function Home() {
               size="small"
               margin="normal"
               fullWidth
+              onChange={(e) => setPass(e.target.value)}
+                  value={pass}
             />
+            </form>
             <Typography
               sx={{ ...style }}
               gutterBottom
@@ -163,6 +190,8 @@ function Home() {
                 marginBottom: '10px',
                 borderRadius: '10px',
               }}
+              type="submit"
+              form="loginForm"
             >
               Log in
             </Button>

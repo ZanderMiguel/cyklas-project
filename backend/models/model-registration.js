@@ -10,7 +10,7 @@ const RegistrationSchema = new mongoose.Schema({
     mobileNo: {type: String, required: true},
     username: {type: String, required: true},
     password: {type: String, required: true},
-    confirmPassword: {type: String, required: true},
+    
 
 },{timestamps:true})
 
