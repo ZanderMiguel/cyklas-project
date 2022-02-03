@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
-function useGet(url) {
+function usePost() {
   const [data, setData] = useState(null);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
+  const post = (url, obj, head) => {
     axios
-      .get(url)
+      .post(url, obj)
       .then((res) => {
         setData(res.data);
         setIsPending(false);
         setError(null);
+        console.log(res.data);
       })
       .catch((err) => {
         setIsPending(false);
         setError(err.message);
         setData(null);
       });
-  }, []);
-  return { data, isPending, error };
-
+  };
+  return { post, data, isPending, error };
 }
 
-export default useGet;
+export default usePost;
