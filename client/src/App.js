@@ -7,10 +7,12 @@ import Landing from './pages-landing/Landing';
 import App_layout from './App_layout';
 import Navbar from './components/Navbar_Inside';
 import Rooms from './pages/Rooms';
+import Records from './pages/Records';
+import Setting from './pages/Setting';
 import ProtectedRoutes from './pages/ProtectedRoutes';
 import Dashboard from './pages/Dashboard';
 import Navbar_landingpage from './components/Navbar_landingpage';
-
+import Telecon from './Telecon/Telecon';
 const theme = createTheme({
   typography: {
     fontFamily: 'Poppins',
@@ -35,14 +37,19 @@ const theme = createTheme({
 });
 
 function App() {
-  const [navbar, setNavbar] = React.useState(true);
+
 
   return (
     <>
       <ThemeProvider theme={theme}>
+       {localStorage.token && <Navbar/>}
         <Router>
           <Switch>
-            <ProtectedRoutes exact path="/Dashboard" component={App_layout} />
+            <ProtectedRoutes exact path="/dashboard" component={Dashboard} />
+            <ProtectedRoutes exact path="/telecon" component={Telecon} />
+            <ProtectedRoutes exact path="/rooms" component={Rooms} />
+            <ProtectedRoutes exact path="/settings" component={Setting} />
+            <ProtectedRoutes exact path="/records" component={Records} />
             <Route exact path="/:page?" component={Landing} />
           </Switch>
         </Router>
