@@ -1,7 +1,7 @@
 import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Container from '@mui/material/Container';
+
 
 import Landing from './pages-landing/Landing';
 import App_layout from './App_layout';
@@ -13,6 +13,7 @@ import ProtectedRoutes from './pages/ProtectedRoutes';
 import Dashboard from './pages/Dashboard';
 import Navbar_landingpage from './components/Navbar_landingpage';
 import Telecon from './Telecon/Telecon';
+import QuizLit from './pages/Quizlit';
 const theme = createTheme({
   typography: {
     fontFamily: 'Poppins',
@@ -42,16 +43,22 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-       {localStorage.token && <Navbar/>}
+       
         <Router>
+        {localStorage.token && <Navbar/>}
+        
           <Switch>
+            
             <ProtectedRoutes exact path="/dashboard" component={Dashboard} />
             <ProtectedRoutes exact path="/telecon" component={Telecon} />
             <ProtectedRoutes exact path="/rooms" component={Rooms} />
             <ProtectedRoutes exact path="/settings" component={Setting} />
+            <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
             <ProtectedRoutes exact path="/records" component={Records} />
+            
             <Route exact path="/:page?" component={Landing} />
           </Switch>
+         
         </Router>
       </ThemeProvider>
     </>

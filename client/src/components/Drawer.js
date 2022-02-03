@@ -36,32 +36,32 @@ function Drawer() {
     {
       icon: <RiDashboardLine size="25px" />,
       text: 'Dashboard',
-      path: '/Dashboard',
+      path: '/dashboard',
     },
     {
       icon: <BsDoorOpen size="25px" />,
       text: 'Rooms',
-      path: '/Rooms',
+      path: '/rooms',
     },
     {
       icon: <MdQuiz size="25px" />,
       text: 'Quizlit',
-      path: '/Quizlit',
+      path: '/quizlit',
     },
     {
       icon: <MdOutlineVideoCameraFront size="25px" />,
       text: 'Telecon',
-      path: '/Telecon',
+      path: '/telecon',
     },
     {
       icon: <VscFileSubmodule size="25px" />,
       text: 'Records',
-      path: '/Records',
+      path: '/records',
     },
     {
       icon: <MdOutlineSettings size="25px" />,
       text: 'Setting',
-      path: '/Setting',
+      path: '/settings',
     },
   ];
 
