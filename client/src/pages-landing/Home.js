@@ -185,8 +185,8 @@ function Home() {
               
       <GoogleLogin
     clientId="90759507047-37dohu0dq74j6oui4b6hvb3tj4vpphkm.apps.googleusercontent.com"
-    render={renderProps => (
-      <Button
+    render={renderProps => ( 
+    <Button
       variant="text"
       fullWidth
       sx={{
@@ -199,9 +199,9 @@ function Home() {
         borderColor: '#007FFF',
       }}
       startIcon={<img src={Google} alt="Google Icon" />}
-      onClick={renderProps.onClick} disabled={renderProps.disabled}
-    > Google Login</Button>
-    )}
+      onClick={renderProps.onClick} disabled={renderProps.disabled}>
+         Google Login
+         </Button>)}
     
     onSuccess={responseSuccessGoogle}
     onFailure={responseErrorGoogle}

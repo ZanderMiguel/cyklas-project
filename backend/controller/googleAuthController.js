@@ -23,7 +23,7 @@ const googlelogin = async (req, res) => {
             if (user) {
                 const token = tokenId
                 return res.json({
-                    status: 'succes',
+                    status: 'success',
                     token: token
                 })
             }else{
