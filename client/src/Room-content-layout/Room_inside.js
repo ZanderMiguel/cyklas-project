@@ -1,14 +1,17 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import Announce from './Announce';
+
+import Container from '@mui/material/Container';
 
 function Room_inside() {
   const { id } = useParams();
   console.log(id);
 
   return (
-    <>
-      <p>Loob ng room - {id}</p>
-    </>
+    <Container maxWidth="md">
+      <Announce />
+    </Container>
   );
 }
 

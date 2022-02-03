@@ -62,7 +62,7 @@ function Quizlit() {
   return (
     <>
       <Container maxWidth="lg">
-        <Grid container columnSpacing={5} sx={{ mt: 10 }}>
+        <Grid container columnSpacing={2} sx={{ mt: 10 }}>
           <Grid item xs={2}>
             <Tabs
               orientation="vertical"

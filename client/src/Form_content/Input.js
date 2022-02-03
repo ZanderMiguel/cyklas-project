@@ -11,6 +11,7 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 const Input = ({
   name,
+  label,
   value,
   onChange,
   placeholder,
@@ -19,7 +20,11 @@ const Input = ({
   handleShowPassword,
   half,
   size,
+  required,
   inputLabel,
+  rows,
+  multiline,
+  variant,
 }) => {
   return (
     <Grid item xs={12} sm={half ? 6 : 12}>
@@ -28,12 +33,15 @@ const Input = ({
       </Typography>
       <TextField
         name={name}
+        label={label}
         value={value}
         onChange={onChange}
-        variant="outlined"
+        variant={variant}
         size={size}
-        required
+        required={required}
         fullWidth
+        multiline={multiline}
+        rows={rows}
         placeholder={placeholder}
         autoFocus={autoFocus}
         type={type}

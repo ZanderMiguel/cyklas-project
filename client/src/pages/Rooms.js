@@ -20,8 +20,13 @@ function Rooms() {
   };
 
   return (
-    <Grid container>
-      <Grid container justifyContent="flex-end">
+    <>
+      <Grid
+        container
+        justifyContent="flex-end"
+        rowSpacing={1}
+        maxHeight="100vh"
+      >
         <Grid item>
           <Button
             variant="contained"
@@ -40,17 +45,17 @@ function Rooms() {
           </Button>
         </Grid>
       </Grid>
-      <Grid item>
-        {opendialog && (
-          <Create_room
-            open={opendialog}
-            close={handleCreateClose}
-            maxWidth="md"
-          />
-        )}
-      </Grid>
-      <Grid item xs={12} sx={{ height: '75vh' }}>
-        {error && <p>{error}</p>}
+      <Grid container maxHeight="80vh" overflow="auto">
+        <Grid item>
+          {opendialog && (
+            <Create_room
+              open={opendialog}
+              close={handleCreateClose}
+              maxWidth="md"
+            />
+          )}
+        </Grid>
+
         {isPending && <CircularProgress />}
         {data && data.length > 0 ? (
           <Room_layout data={data} />
@@ -58,7 +63,7 @@ function Rooms() {
           <p>Nothing to display</p>
         )}
       </Grid>
-    </Grid>
+    </>
   );
 }
 
