@@ -199,13 +199,7 @@ function SamplePost() {
                   id="filled-basic"
                   placeholder="Write a comment..."
                   variant="outlined"
-                  sx={{
-                    '& .MuiOutlinedInput-root': {
-                      '& fieldset': {
-                        borderRadius: `4px 0 0 4px`,
-                      },
-                    },
-                  }}
+                  sx={{}}
                   inputProps={{ style: { height: '12px', fontSize: '13px' } }} // font size of input text
                   InputLabelProps={{
                     style: {
