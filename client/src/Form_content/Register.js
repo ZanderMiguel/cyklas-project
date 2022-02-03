@@ -96,7 +96,6 @@ function Register({ open, close }) {
                 handlChange={handleChange}
                 half
               />
-
               <Drowpdown
                 label="Gender"
                 value={gender}
@@ -104,7 +103,6 @@ function Register({ open, close }) {
                 options={genders}
                 half
               />
-
               <Input
                 name="password"
                 placeholder="Password"

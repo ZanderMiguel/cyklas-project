@@ -1,10 +1,15 @@
+import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Container from '@mui/material/Container';
 
 import Landing from './pages-landing/Landing';
 import App_layout from './App_layout';
-
+import Navbar from './components/Navbar_Inside';
+import Rooms from './pages/Rooms';
+import ProtectedRoutes from './pages/ProtectedRoutes';
 import Dashboard from './pages/Dashboard';
+import Navbar_landingpage from './components/Navbar_landingpage';
 
 const theme = createTheme({
   typography: {
@@ -30,17 +35,15 @@ const theme = createTheme({
 });
 
 function App() {
+  const [navbar, setNavbar] = React.useState(true);
+
   return (
     <>
       <ThemeProvider theme={theme}>
         <Router>
           <Switch>
-            <Route exact path="/Dashboard">
-              <App_layout />
-            </Route>
-            <Route exact path="/:page?">
-              <Landing />
-            </Route>
+            <ProtectedRoutes exact path="/Dashboard" component={App_layout} />
+            <Route exact path="/:page?" component={Landing} />
           </Switch>
         </Router>
       </ThemeProvider>

@@ -13,45 +13,51 @@ function Room_layout({ data }) {
         .map((item, index) => {
           const { id, title, subtitle, date, time } = item;
           return (
-            <Paper
-              elevation={0}
-              key={id}
-              data-index={id}
-              sx={{
-                backgroundColor: '#FAFAFA',
-                width: '100%',
-                padding: '17px 17px 17px 35px',
-                borderRadius: '0.5em',
-                marginBottom: '10px',
-                '&:hover': {
-                  boxShadow:
-                    '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
-                },
-              }}
-            >
-              <Link style={{ textDecoration: 'none' }} to={`/Rooms/${id}`}>
+            <Grid item xs={12}>
+              <Paper
+                elevation={0}
+                key={id}
+                data-index={id}
+                sx={{
+                  backgroundColor: '#FAFAFA',
+                  width: '100%',
+                  padding: '17px 17px 17px 35px',
+                  borderRadius: '0.5em',
+                  marginBottom: '10px',
+                  '&:hover': {
+                    boxShadow:
+                      '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
+                  },
+                }}
+              >
                 <Box className="RoomSubject" display="flex">
                   <Box className="sub-RoomSubject" flexGrow={1}>
-                    <Typography
-                      variant="h5"
-                      sx={{
-                        fontWeight: 600,
-                        color: '#3F3D56',
-                        textTransform: 'Uppercase',
-                      }}
+                    <Link
+                      style={{ textDecoration: 'none' }}
+                      to={`/Rooms/${id}`}
                     >
-                      {title}
-                    </Typography>
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        fontWeight: 'bold',
-                        color: '#3F3D56',
-                        marginBottom: '15px',
-                      }}
-                    >
-                      {subtitle}
-                    </Typography>
+                      <Typography
+                        variant="h5"
+                        sx={{
+                          fontWeight: 600,
+                          color: '#3F3D56',
+                          textTransform: 'Uppercase',
+                        }}
+                      >
+                        {title}
+                      </Typography>
+
+                      <Typography
+                        variant="h6"
+                        sx={{
+                          fontWeight: 'bold',
+                          color: '#3F3D56',
+                          marginBottom: '15px',
+                        }}
+                      >
+                        {subtitle}
+                      </Typography>
+                    </Link>
                   </Box>
 
                   <Box className="RoomId" display="flex" marginLeft="17px">
@@ -87,6 +93,9 @@ function Room_layout({ data }) {
                         color: '#8E8E8E',
                         height: '35px',
                         width: '35px',
+                      }}
+                      onClick={() => {
+                        console.log('potangina mo');
                       }}
                     >
                       <MoreVert />
@@ -135,8 +144,8 @@ function Room_layout({ data }) {
                     {time}
                   </Typography>
                 </Box>
-              </Link>
-            </Paper>
+              </Paper>
+            </Grid>
           );
         })}
     </>
