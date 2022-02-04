@@ -93,7 +93,7 @@ function MemTile(props) {
         })
     })
     return (<div style={{
-        backgroundColor: '#202124',
+        
         margin: '14px 0 0 1%',
         width: '73%',
         height: '86vh',
@@ -108,7 +108,7 @@ function MemTile(props) {
             const { avatar, mic, text } = item */}
         {/*  return ( */}
         <div style={{
-            backgroundColor: '#3C4043',
+            
             width: '100%',
             height: '100%',
             display: 'flex',

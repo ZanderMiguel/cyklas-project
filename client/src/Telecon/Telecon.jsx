@@ -6,9 +6,9 @@ import VideoPanel from './components/VideoPanel';
 function Telecon() {
     
     
-    return (<div>
+    return (<div style={{backgroundColor: '#202124', width: '100%'}}>
         <Actions />
-        <div style={{ display: 'flex' }}><ActionPanel />
+        <div style={{ display: 'flex', }}><ActionPanel />
             <VideoPanel /></div>
 
     </div>);
