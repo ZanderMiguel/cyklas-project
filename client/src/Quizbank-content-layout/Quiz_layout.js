@@ -71,24 +71,6 @@ function Quiz_layout({ bank }) {
   };
   return (
     <>
-      {/*       <Box classname="Add-button" width="80%" height="auto" marginRight="20px">
-        <IconButton
-          aria-label="add"
-          sx={{
-            height: '40px',
-            width: '40px',
-            float: 'Right',
-          }}
-        >
-          <AddCircle
-            sx={{
-              color: '#49B854',
-              fontSize: '40px',
-            }}
-          />
-        </IconButton>
-      </Box> */}
-
       {bank.map((item, idx) => {
         const { title, name, date, time } = item;
         console.log(idx);

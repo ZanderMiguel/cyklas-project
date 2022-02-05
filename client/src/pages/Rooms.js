@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Grid } from '@mui/material';
 import { AddCircle } from '@mui/icons-material';
-import { Buttons as Button, Boxs as Box } from './Component';
+import { Boxs as Box } from './Component';
 import Room_layout from '../Room-content-layout/Room_layout';
 import useGet from '../customHooks/useGet';
 import CircularProgress from '@mui/material/CircularProgress';
 import Create_room from '../Form_content/Create_room';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+
+import Button from '../components/Button';
 
 function Rooms() {
   const [opendialog, setOpenDialog] = useState(false);
   const { data, isPending, error } = useGet('http://localhost:5000/rooms');
-  console.log(data)
+  console.log(data);
   const handleCreate = () => {
     setOpenDialog(true);
   };
@@ -26,9 +29,10 @@ function Rooms() {
         justifyContent="flex-end"
         rowSpacing={1}
         maxHeight="100vh"
+        mt={2}
       >
         <Grid item>
-          <Button
+          {/* <Button
             variant="contained"
             startIcon={<AddCircle />}
             sx={{
@@ -42,7 +46,15 @@ function Rooms() {
             onClick={handleCreate}
           >
             Create Room
-          </Button>
+          </Button> */}
+          <Button
+            variant="contained"
+            content="create room"
+            colour="#007FFF"
+            hoverColor="#0072e6"
+            startIcon={<AddCircleOutlineOutlinedIcon />}
+            onClick={handleCreate}
+          />
         </Grid>
       </Grid>
       <Grid container maxHeight="80vh" overflow="auto">

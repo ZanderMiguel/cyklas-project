@@ -62,7 +62,7 @@ function Quizlit() {
   return (
     <>
       <Container maxWidth="lg">
-        <Grid container columnSpacing={2} sx={{ mt: 10 }}>
+        <Grid container columnSpacing={1} sx={{ mt: 10 }}>
           <Grid item xs={2}>
             <Tabs
               orientation="vertical"
@@ -79,7 +79,7 @@ function Quizlit() {
                 disableRipple
                 label={<Typography variant="h6"> Quiz </Typography>}
                 component={Link}
-                to="/Quizlit/Quiz"
+                to="/Quizlit"
                 onClick={() => {
                   setComp(<Quiz_layout bank={bank[0]} />);
                 }}
@@ -88,7 +88,7 @@ function Quizlit() {
                 disableRipple
                 label={<Typography variant="h6"> Exam</Typography>}
                 component={Link}
-                to="/Quizlit/Exam"
+                to="/Quizlit"
                 onClick={() => {
                   setComp(<Exam_layout bank={bank[1]} />);
                 }}

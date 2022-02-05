@@ -51,7 +51,6 @@ function Navbar_landingpage() {
   };
   const [value, setValue] = useState(idx[page] === undefined ? 0 : idx[page]);
 
-  console.log(dropdown);
   const handleClickTab = (e, newValue) => {
     setValue(newValue);
   };
@@ -70,6 +69,7 @@ function Navbar_landingpage() {
               fontFamily="Poppins"
               color="#3F3D56"
               fontWeight="Bold"
+              noWrap
             >
               Cyklas
             </Typography>
@@ -131,8 +131,8 @@ function Navbar_landingpage() {
         {page === undefined && <Home />}
         {page === 'Service' && <Service />}
         {page === 'About' && <About />}
-        {page === 'Contact' && <Contact />}
       </Container>
+      {page === 'Contact' && <Contact />}
     </>
   );
 }

@@ -1,47 +1,40 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './Landingpage.css';
 import Input from '../Form_content/Input';
 
 //importing Mui
-import {
-  Typography,
-  Button,
-  Box,
-  Paper,
-  TextField,
-  Link,
-  Grid,
-} from '@mui/material';
+import { Typography, Box, Paper, TextField, Link, Grid } from '@mui/material';
 
 import { AddCircle } from '@mui/icons-material';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 //import image
 import Flatimage from '../assets/Images/illustration.svg';
 import MaleLogo from '../assets/Images/avatar_male.png';
 import Google from '../assets/Rectangle 134.svg';
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import Register from '../Form_content/Register'
+import Register from '../Form_content/Register';
+import Button from '../components/Button';
 
 const style = { fontFamily: 'Poppins', marginTop: 1 };
 
 const responseSuccessGoogle = (response) => {
   console.log(response);
-  axios ({
-    method:"POST",
-    url:"http://localhost:5000/googlelogin",
-    data:{tokenId: response.tokenId}
-  }).then(response =>{
-    console.log("Google login success",response)
-  })
-}
+  axios({
+    method: 'POST',
+    url: 'http://localhost:5000/googlelogin',
+    data: { tokenId: response.tokenId },
+  }).then((response) => {
+    console.log('Google login success', response);
+  });
+};
 
 const responseErrorGoogle = (response) => {
   console.log(response);
-}
-
+};
 
 function Home() {
-  const history = useHistory()
+  const history = useHistory();
   const [opendialog, setOpenDialog] = useState(false);
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -53,28 +46,28 @@ function Home() {
   const handleClose = () => {
     setOpenDialog(false);
   };
-  const [myApi,setMyApi] =React.useState(new Map())
+  const [myApi, setMyApi] = React.useState(new Map());
   const handleChange = (e) => {
-    
-    setMyApi(myApi.set([e.target.name],e.target.value))
-    
+    setMyApi(myApi.set([e.target.name], e.target.value));
   };
 
-const handleSubmit = (e) =>{
-  e.preventDefault()
- 
-  
-  axios.post("http://localhost:5000/login", Object.fromEntries(myApi)).then(response =>{
-    response.data.token && localStorage.setItem('token', response.data.token)
-    console.log(response.data)
-    setMyApi(new Map())
-    history.push('/dashboard')
-    
-  }).catch(err => {console.log(err.message)
-    setMyApi(new Map())
-  })
- 
-}
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post('http://localhost:5000/login', Object.fromEntries(myApi))
+      .then((response) => {
+        response.data.token &&
+          localStorage.setItem('token', response.data.token);
+        console.log(response.data);
+        setMyApi(new Map());
+        history.push('/dashboard');
+      })
+      .catch((err) => {
+        console.log(err.message);
+        setMyApi(new Map());
+      });
+  };
   return (
     <>
       <Box>
@@ -110,11 +103,12 @@ const handleSubmit = (e) =>{
                 justifyContent: 'center',
                 alignItems: 'center',
                 color: '#626170',
+                mb: 2,
               }}
             >
               The best Website for Virtual Class
             </Typography>
-            <Button
+            {/* <Button
               disableRipple
               variant="contained"
               sx={{
@@ -132,7 +126,16 @@ const handleSubmit = (e) =>{
               onClick={handleClickOpen}
             >
               Create your account now.
-            </Button>
+            </Button> */}
+            <Button
+              content="Create your account now"
+              colour="#007FFF"
+              hoverColor="#0072e6"
+              variant="contained"
+              borderRadius="10px"
+              startIcon={<AddCircleOutlineOutlinedIcon />}
+              onClick={handleClickOpen}
+            />
             {opendialog && <Register open={opendialog} close={handleClose} />}
             <img
               src={Flatimage}
@@ -145,25 +148,26 @@ const handleSubmit = (e) =>{
               }}
             />
           </Box>
-          
-            <Paper
-              sx={{
-                width: '20rem',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'space-around',
-                padding: '30px',
-              }}
-              type="submit"
-              form="loginForm"
-            >
-              <img
-                src={MaleLogo}
-                alt="avatar"
-                style={{ width: '6rem', maxWidth: '', height: 'auto' }}
-              />
-              <form onSubmit={handleSubmit} id="loginForm">
+
+          <Paper
+            elevation={3}
+            sx={{
+              width: '20rem',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'space-around',
+              padding: '30px',
+            }}
+            type="submit"
+            form="loginForm"
+          >
+            <img
+              src={MaleLogo}
+              alt="avatar"
+              style={{ width: '6rem', maxWidth: '', height: 'auto' }}
+            />
+            <form onSubmit={handleSubmit} id="loginForm">
               <Grid container spacing={2} sx={{ mt: 2 }}>
                 <Input
                   name="emailAddress"
@@ -181,72 +185,55 @@ const handleSubmit = (e) =>{
                   onChange={handleChange}
                 />
               </Grid>
-              </form>
-              <Typography
-                sx={{ ...style }}
-                gutterBottom
-                alignSelf="right"
-                component="div"
-                variant="subtitle2"
+            </form>
+            <Typography
+              sx={{ ...style }}
+              gutterBottom
+              alignSelf="right"
+              component="div"
+              variant="subtitle2"
+            >
+              <Link
+                href="#"
+                style={{ color: '#007FFF', textDecoration: 'none' }}
               >
-                <Link
-                  href="#"
-                  style={{ color: '#007FFF', textDecoration: 'none' }}
-                >
-                  Forgot password?
-                </Link>
-              </Typography>
-
-              <Button
-                variant="contained"
-                fullWidth
-                sx={{
-                  backgroundColor: '#007FFF',
-                  '&:hover': { backgroundColor: '#007FFF' },
-                  textTransform: 'none',
-                  ...style,
-                  marginTop: '10px',
-                  marginBottom: '10px',
-                  borderRadius: '10px',
-                }}
-                type="submit"
-                form="loginForm"
+                Forgot password?
+              </Link>
+            </Typography>
+            <Button
+              fullWidth
+              content="log in"
+              variant="contained"
+              colour="#007FFF"
+              hoverColor="#0072e6"
+              borderRadius="10px"
+              type="submit"
+              form="loginForm"
+            />
+            <Typography
+              sx={{ ...style, fontWeight: 'bold' }}
+              gutterBottom
+              align="center"
+              component="div"
+              variant="subtitle2"
+            >
+              Don't have an account?
+              <Link
+                href="#"
+                style={{ color: '#007FFF', textDecoration: 'none' }}
               >
-                Log in
-              </Button>
-              <Typography
-                sx={{ ...style, fontWeight: 'bold' }}
-                gutterBottom
-                align="center"
-                component="div"
-                variant="subtitle2"
-              >
-                Don't have an account?
-                <Link
-                  href="#"
-                  style={{ color: '#007FFF', textDecoration: 'none' }}
-                >
-                  Sign up
-                </Link>
-              </Typography>
-              <Button
-                variant="text"
-                fullWidth
-                sx={{
-                  backgroundColor: 'white',
-                  textTransform: 'none',
-                  ...style,
-                  marginTop: '10px',
-                  color: '#007FFF',
-                  border: '1px solid #EB7E42',
-                  borderColor: '#007FFF',
-                }}
-                startIcon={<img src={Google} alt="Google Icon" />}
-              >
-                Continue to google
-              </Button>
-            </Paper>
-         
+                Sign up
+              </Link>
+            </Typography>
+            <Button
+              content="continue with google"
+              startIcon={<img src={Google} alt="Google Icon" />}
+              variant="outlined"
+              color="#007FFF"
+              borderColor="#007FFF"
+              fullWidth
+            />
+          </Paper>
         </Box>
       </Box>
     </>
