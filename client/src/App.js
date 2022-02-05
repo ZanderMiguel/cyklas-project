@@ -6,7 +6,8 @@ import Setting from './pages/Setting';
 import ProtectedRoutes from './pages/ProtectedRoutes';
 import Dashboard from './pages/Dashboard';
 import Navbar_landingpage from './components/Navbar_landingpage';
-import TeleconLanding from './Telecon/Telecon';
+import TeleconLanding from './pages-landing/TeleconLanding';
+import Telecon from './Telecon/Telecon'
 import QuizLit from './pages/Quizlit';
 import Rooms from './pages/Rooms'
 const theme = createTheme({
@@ -45,12 +46,13 @@ function App() {
           <Switch>
             
             <ProtectedRoutes exact path="/dashboard" component={Dashboard} />
-            <ProtectedRoutes exact path="/telecon/:teleroom?" component={TeleconLanding} />
+            
+            <ProtectedRoutes exact path="/telecon" component={TeleconLanding} />
             <ProtectedRoutes exact path="/rooms" component={Rooms} />
             <ProtectedRoutes exact path="/settings" component={Setting} />
             <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
             <ProtectedRoutes exact path="/records" component={Records} />
-            
+            <ProtectedRoutes exact path="/telecon/:teleRoom?" component={Telecon} />
             <Route exact path="/:page?" component={Navbar_landingpage} />
           </Switch>
          

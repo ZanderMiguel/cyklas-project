@@ -1,15 +1,15 @@
-import React, { createRef } from 'react';
+import React from 'react';
 import avt from '../../assets/Images/avatar_male.png'
 import unmute from '../../assets/Images/unmute18.png'
 import mute from '../../assets/Images/mute18.png'
 import { useParams } from 'react-router-dom'
 import Peer from 'peerjs'
-import { io } from 'socket.io-client'
-function MemTile(props) {
+
+function MemTile({socket}) {
     
     const vidContainer = React.useRef(null)
 
-    const socket = io.connect('http://localhost:3001/')
+    
     const { teleRoom } = useParams()
     const myPeer = new Peer(undefined, {
         host: '/',

@@ -1,8 +1,8 @@
 import React from 'react';
 import Messages from './Messages';
-function ActionPanel() {
+function ActionPanel({socket}) {
   return <div style={{backgroundColor: '#FCFCFC', width: '30%', height: '85vh', marginTop: '14px'}}>
-    <Messages/>
+    <Messages socket={socket} />
   </div>;
 }
 
