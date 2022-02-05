@@ -6,33 +6,7 @@ import { useParams } from 'react-router-dom'
 import Peer from 'peerjs'
 import { io } from 'socket.io-client'
 function MemTile(props) {
-    /*     const [state, useState] = React.useState(1)
-        const tile = [{
-            avatar: <img src={avt} alt="" style={{ width: '100%', height: 'auto', maxWidth: '169px',  }} />,
-            mic: <img src={unmute} alt="" />,
-            text: "Javen Habalita"
-        }, {
-            avatar: <img src={avt} alt="" style={{ width: '100%', height: 'auto', maxWidth: '169px', margin: 'auto', display: 'block' }} />,
-            mic: <img src={mute} alt="" />,
-            text: "Zander Mirador"
-        }, {
-            avatar: <img src={avt} alt="" style={{ width: '100%', height: 'auto', maxWidth: '169px', margin: 'auto', display: 'block' }} />,
-            mic: <img src={mute} alt="" />,
-            text: "Mark Orense"
-        }, {
-            avatar: <img src={avt} alt="" style={{ width: '100%', height: 'auto', maxWidth: '169px', margin: 'auto', display: 'block' }} />,
-            mic: <img src={mute} alt="" />,
-            text: "Rey Paner"
-        }, {
-            avatar: <img src={avt} alt="" style={{ width: '100%', height: 'auto', maxWidth: '169px', margin: 'auto', display: 'block' }} />,
-            mic: <img src={mute} alt="" />,
-            text: "Ace Diendo"
-        },]
-        let tileRows = "auto "
-        for (let i = 0; i < Math.sqrt(tile.length) % 1 === 0 ? Math.sqrt(tile.length) : parseInt(Math.sqrt(tile.length) + 1); i++) {
-            tileRows += "auto "
-        } */
-    //const myVideo = React.useRef(null)
+    
     const vidContainer = React.useRef(null)
 
     const socket = io.connect('http://localhost:3001/')
