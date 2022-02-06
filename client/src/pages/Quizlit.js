@@ -78,8 +78,6 @@ function Quizlit() {
               <Tab
                 disableRipple
                 label={<Typography variant="h6"> Quiz </Typography>}
-                component={Link}
-                to="/Quizlit"
                 onClick={() => {
                   setComp(<Quiz_layout bank={bank[0]} />);
                 }}
@@ -87,8 +85,6 @@ function Quizlit() {
               <Tab
                 disableRipple
                 label={<Typography variant="h6"> Exam</Typography>}
-                component={Link}
-                to="/Quizlit"
                 onClick={() => {
                   setComp(<Exam_layout bank={bank[1]} />);
                 }}

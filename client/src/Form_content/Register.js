@@ -6,6 +6,7 @@ import { Grid, Button, Typography, Avatar } from '@mui/material';
 import Dialogform from '../components/Dialogform';
 import Google from '../assets/Rectangle 134.svg';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
+import CusButton from '../components/Button';
 
 import { GoogleLogin } from 'react-google-login';
 import Input from './Input';
@@ -138,23 +139,19 @@ function Register({ open, close }) {
                 />
               </Grid>
               <Grid item xs={6}>
-                <Button
-                  variant="contained"
+                <CusButton
+                  content="Create Account"
                   fullWidth
+                  variant="contained"
+                  borderRadius="10px"
                   sx={{
-                    mb: 2,
-                    '& .MuiButton-label': {
-                      textOverflow: 'ellipsis',
-                      whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                      textAlign: 'left',
-                      display: 'block',
+                    backgroundColor: '#007FFF',
+                    color: 'white',
+                    '&:hover': {
+                      backgroundColor: '#0072e6',
                     },
                   }}
-                >
-                  Create Account
-                </Button>
-
+                />
                 <Typography>
                   Already have an account?
                   <Link style={{ textDecoration: 'none' }} to="/home">

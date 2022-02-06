@@ -50,8 +50,13 @@ function Rooms() {
           <Button
             variant="contained"
             content="create room"
-            colour="#007FFF"
-            hoverColor="#0072e6"
+            sx={{
+              backgroundColor: '#007FFF',
+              color: 'white',
+              '&:hover': {
+                backgroundColor: '#0072e6',
+              },
+            }}
             startIcon={<AddCircleOutlineOutlinedIcon />}
             onClick={handleCreate}
           />

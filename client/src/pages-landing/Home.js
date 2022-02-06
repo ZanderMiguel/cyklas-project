@@ -108,31 +108,18 @@ function Home() {
             >
               The best Website for Virtual Class
             </Typography>
-            {/* <Button
-              disableRipple
-              variant="contained"
-              sx={{
-                backgroundColor: '#007FFF',
-                '&:hover': { backgroundColor: '#007FFF' },
-                textTransform: 'none',
-                ...style,
-                marginTop: 2,
-                fontSize: '0.9em',
-                fontWeight: '700',
-                padding: '10px 20px',
-                borderRadius: '10px',
-              }}
-              startIcon={<AddCircle sx={{ fontSize: 20 }} />}
-              onClick={handleClickOpen}
-            >
-              Create your account now.
-            </Button> */}
             <Button
               content="Create your account now"
-              colour="#007FFF"
-              hoverColor="#0072e6"
               variant="contained"
               borderRadius="10px"
+              sx={{
+                backgroundColor: '#007FFF',
+                color: 'white',
+                borderRadius: '10px',
+                '&:hover': {
+                  backgroundColor: '#0072e6',
+                },
+              }}
               startIcon={<AddCircleOutlineOutlinedIcon />}
               onClick={handleClickOpen}
             />
@@ -204,11 +191,17 @@ function Home() {
               fullWidth
               content="log in"
               variant="contained"
-              colour="#007FFF"
-              hoverColor="#0072e6"
               borderRadius="10px"
               type="submit"
               form="loginForm"
+              sx={{
+                backgroundColor: '#007FFF',
+                color: 'white',
+                borderRadius: '10px',
+                '&:hover': {
+                  backgroundColor: '#0072e6',
+                },
+              }}
             />
             <Typography
               sx={{ ...style, fontWeight: 'bold' }}

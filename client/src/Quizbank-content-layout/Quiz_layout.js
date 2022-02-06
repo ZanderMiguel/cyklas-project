@@ -73,7 +73,6 @@ function Quiz_layout({ bank }) {
     <>
       {bank.map((item, idx) => {
         const { title, name, date, time } = item;
-        console.log(idx);
         return (
           <Box
             className="Container-sub"

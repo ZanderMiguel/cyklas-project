@@ -5,9 +5,9 @@ function Button({
   content,
   variant,
   startIcon,
-  colour,
+  backgroundColor,
   color,
-  hoverColor,
+  hoverColour,
   onClick,
   fullWidth,
   borderRadius,
@@ -21,20 +21,10 @@ function Button({
         fullWidth={fullWidth}
         variant={variant}
         startIcon={startIcon}
-        sx={{
-          backgroundColor: { colour },
-          borderRadius: { borderRadius },
-          borderColor: { borderColor },
-          color: { color },
-          '&:hover': {
-            backgroundColor: { hoverColor },
-          },
-        }}
         onClick={onClick}
         {...rest}
-      >
-        {content}
-      </CusButton>
+        children={content}
+      ></CusButton>
     </>
   );
 }
