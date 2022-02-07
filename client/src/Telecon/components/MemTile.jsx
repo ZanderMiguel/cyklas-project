@@ -5,11 +5,11 @@ import mute from '../../assets/Images/mute18.png'
 import { useParams } from 'react-router-dom'
 import Peer from 'peerjs'
 
-function MemTile({socket}) {
-    
+function MemTile({ socket }) {
+
     const vidContainer = React.useRef(null)
 
-    
+
     const { teleRoom } = useParams()
     const myPeer = new Peer(undefined, {
         host: '/',
@@ -17,6 +17,9 @@ function MemTile({socket}) {
     })
 
     const peers = {}
+    socket.on('user-disconnected', (userId) => {
+        if (peers[userId]) peers[userId].close()
+    })
     myPeer.on('open', id => {
         socket.emit('join-room', teleRoom, id)
     })
@@ -25,7 +28,7 @@ function MemTile({socket}) {
     const myVideo = document.createElement('video')
     myVideo.muted = true
     //Displaying video stream
-    const addVideoStream = (video,stream) => {
+    const addVideoStream = (video, stream) => {
 
         video.srcObject = stream
         video.addEventListener('loadedmetadata', () => {
@@ -39,13 +42,15 @@ function MemTile({socket}) {
         const call = myPeer.call(userId, stream) // Calling a user and sending our stream
         const video = document.createElement('video')
         video.muted = true
+        console.log('tanginamo gumana ka naman')
         call.on('stream', userVideoStream => {
-            addVideoStream(video,userVideoStream)
+
+            addVideoStream(video, userVideoStream)
         })
         call.on('close', () => {
             video.remove()
         })
-
+        peers[userId] = call
     }
 
     //Getting your video and audio stream
@@ -53,13 +58,13 @@ function MemTile({socket}) {
         video: true,
         audio: true
     }).then(stream => {
-        addVideoStream(myVideo,stream)
+        addVideoStream(myVideo, stream)
         myPeer.on('call', call => {
             call.answer(stream)
             const video = document.createElement('video')
             video.muted = true
             call.on('stream', userVideoStream => {
-                addVideoStream(video,userVideoStream)
+                addVideoStream(video, userVideoStream)
             })
         })
         socket.on('user-connected', userId => { // When user is connected, 
@@ -67,7 +72,7 @@ function MemTile({socket}) {
         })
     })
     return (<div style={{
-        
+
         margin: '14px 0 0 1%',
         width: '73%',
         height: '86vh',
@@ -82,7 +87,7 @@ function MemTile({socket}) {
             const { avatar, mic, text } = item */}
         {/*  return ( */}
         <div style={{
-            
+
             width: '100%',
             height: '100%',
             display: 'flex',
