@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import Select from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
 import { Grid, Button, Typography, Avatar } from '@mui/material';
 
 import Dialogform from '../components/Dialogform';
@@ -10,7 +8,6 @@ import CusButton from '../components/Button';
 
 import { GoogleLogin } from 'react-google-login';
 import Input from './Input';
-import { InputOutlined } from '@mui/icons-material';
 import Drowpdown from './Drowpdown';
 
 const genders = [
@@ -36,7 +33,6 @@ function Register({ open, close }) {
   };
 
   const handleSubmit = () => {};
-  const handleTextvalue = () => {};
 
   const googleSuccess = async (res) => {
     console.log(res);

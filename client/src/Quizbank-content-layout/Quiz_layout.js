@@ -1,8 +1,7 @@
 import React from 'react';
-import Paper from '@mui/material/Paper';
 import { Buttons as Button, Boxs as Box } from '../pages/Component';
 import { Typography, IconButton } from '@mui/material';
-import { MoreVert, AddCircle } from '@mui/icons-material';
+import { MoreVert } from '@mui/icons-material';
 import QuizIcon from '../assets/ImageJaven/QuizIcon.png';
 function Quiz_layout({ bank }) {
   const styles = {
@@ -117,6 +116,7 @@ function Quiz_layout({ bank }) {
                   <Box className="Quiz-icon" margin="9px 0px 3px 20px">
                     <img
                       src={QuizIcon}
+                      alt="QuizIcon"
                       style={{
                         height: '35px',
                       }}

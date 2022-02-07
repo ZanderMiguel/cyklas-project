@@ -1,8 +1,4 @@
 import React from 'react';
-import { Container } from '@mui/material';
-import MainSettings from './MainSettings';
-import Settings from './Settings';
-import { Link } from 'react-router-dom';
 
 import { Grid, Paper, Typography } from '@mui/material';
 import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
@@ -11,25 +7,27 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import PersonalInformation from './PersonalInformation';
 import AccountInformation from './AccountInformation';
-import { RecentActors } from '@mui/icons-material';
 
 function SettingsCont() {
-  const [background, setBackground] = React.useState(null);
-
-  const handleMenu = () => {
-    setBackground('#DBDBDB');
-  };
+  const [view, setView] = React.useState(true);
+  const [style, setStyle] = React.useState({
+    backgroundColor: 'white',
+  });
 
   const menuItem = [
     {
       text: <Typography noWrap children="Profile" />,
       icon: <AccountBoxOutlinedIcon />,
-      path: '/setting',
+      onClick: (e) => {
+        setView(true);
+      },
     },
     {
       text: <Typography noWrap children="Account" />,
       icon: <LockOutlinedIcon />,
-      path: '/setting',
+      onClick: () => {
+        setView(false);
+      },
     },
   ];
 
@@ -47,7 +45,13 @@ function SettingsCont() {
           >
             <List>
               {menuItem.map((item, index) => (
-                <ListItem disableRipple button key={index}>
+                <ListItem
+                  disableRipple
+                  button
+                  key={index}
+                  onClick={item.onClick}
+                  sx={style}
+                >
                   <ListItemIcon>{item.icon}</ListItemIcon>
                   <ListItemText>{item.text}</ListItemText>
                 </ListItem>
@@ -56,7 +60,7 @@ function SettingsCont() {
           </Paper>
         </Grid>
         <Grid item container xs={10} spacing={2}>
-          <PersonalInformation />
+          {view ? <PersonalInformation /> : <AccountInformation />}
         </Grid>
       </Grid>
     </>

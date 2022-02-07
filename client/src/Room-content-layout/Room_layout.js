@@ -5,19 +5,20 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { Link } from 'react-router-dom';
 
 function Room_layout({ data }) {
+
+  console.log(data)
   return (
     <>
       <CssBaseline />
       {data
         .sort((a, b) => b.id - a.id)
         .map((item, index) => {
-          const { id, title, subtitle, date, time } = item;
+          const { _id: id, RoomName: title , Course: subtitle , ClassDays:date ,ClassTime: time  } = item
           return (
-            <Grid item xs={12}>
+            <Grid item xs={12} key={index}>
               <Paper
                 elevation={0}
-                key={id}
-                data-index={id}
+                
                 sx={{
                   backgroundColor: '#FAFAFA',
                   width: '100%',

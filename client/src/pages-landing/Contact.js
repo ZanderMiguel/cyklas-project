@@ -389,6 +389,7 @@ function Contact() {
                 >
                   <img
                     src={Facebook}
+                    alt="Facebook"
                     style={{
                       height: '30px',
                       width: '30px',
@@ -405,6 +406,7 @@ function Contact() {
                 >
                   <img
                     src={Instagram}
+                    alt="Instagram"
                     style={{
                       height: '30px',
                       width: '30px',
@@ -422,6 +424,7 @@ function Contact() {
                 >
                   <img
                     src={Twitter}
+                    alt="Twitter"
                     style={{
                       height: '30px',
                       width: '30px',
@@ -439,6 +442,7 @@ function Contact() {
                 >
                   <img
                     src={Youtube}
+                    alt="Youtube"
                     style={{
                       height: '30px',
                       width: '30px',

@@ -3,9 +3,8 @@ import './Landingpage.css';
 import Input from '../Form_content/Input';
 
 //importing Mui
-import { Typography, Box, Paper, TextField, Link, Grid } from '@mui/material';
+import { Typography, Box, Paper, Link, Grid } from '@mui/material';
 
-import { AddCircle } from '@mui/icons-material';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 //import image
 import Flatimage from '../assets/Images/illustration.svg';

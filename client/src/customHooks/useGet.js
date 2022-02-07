@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function useGet(url) {
@@ -21,7 +21,6 @@ function useGet(url) {
       });
   }, []);
   return { data, isPending, error };
-
 }
 
 export default useGet;

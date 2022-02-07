@@ -42,7 +42,7 @@ function Create_room({ open, close, maxWidth }) {
   const [roomname, setRoomname] = useState('');
   const [course, setCourse] = useState('');
   const [classday, setClassDay] = useState('');
-  const [yearandsection, setYearandSection] = useState('');
+  const [yearAndSection, setYearandsection] = useState('');
   const [classtime, setClassTime] = useState('10:30');
   const [term, setTerm] = useState('2 Term');
   const [gradingsystem, setGradingSystem] = useState('Default');
@@ -62,15 +62,15 @@ function Create_room({ open, close, maxWidth }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const room = {
-      title: roomname,
-      subtitle: course,
-      date: classday,
-      yearandsection,
-      time: classtime,
-      term,
-      gradingsystem,
+      RoomName: roomname,
+      Course: course,
+      ClassDays: classday,
+      yearAndSection,
+      ClassTime: classtime,
+      Terms: term,
+      GradingSystem: gradingsystem
     };
-    post('http://localhost:8000/rooms', room);
+    post('http://localhost:5000/rooms', room);
   };
   return (
     <>
@@ -112,8 +112,8 @@ function Create_room({ open, close, maxWidth }) {
             <Input
               inputLabel="Year and Section"
               placeholder="Enter year and section..."
-              value={yearandsection}
-              onChange={(e) => setYearandSection(e.target.value)}
+              value={yearAndSection}
+              onChange={(e) => setYearandsection(e.target.value)}
               half
             />
             <Dropdown
@@ -137,9 +137,6 @@ function Create_room({ open, close, maxWidth }) {
               options={gradingsystems}
               half
             />
-            <Grid container justifyContent="flex-end">
-              <Grid item></Grid>
-            </Grid>
           </Grid>
         </form>
       </Dialogform>

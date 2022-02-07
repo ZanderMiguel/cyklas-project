@@ -3,7 +3,6 @@ import logo from '../assets/Ellipse 3.svg';
 
 //MUI imports
 import { AppBar, Box, Toolbar, Typography, IconButton } from '@mui/material';
-import { Menu } from '@mui/icons-material';
 import { Badge } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Zander from '../assets/Images/zander.png';
@@ -12,19 +11,6 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Drawer from './Drawer';
 
 function Navbar() {
-  const [open, setOpen] = React.useState(false);
-
-  const toggleDrawer = (open) => (event) => {
-    if (
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
-    ) {
-      return;
-    }
-
-    setOpen(open);
-  };
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar

@@ -7,17 +7,17 @@ async function createRooms(req, res) {
             RoomName: req.body.RoomName,
             Course: req.body.Course,
             ClassDays: req.body.ClassDays,
-            YearsAndSection: req.body.YearsAndSection,
+            yearAndSection: req.body.yearAndSection,
             ClassTime: req.body.ClassTime,
             Terms: req.body.Terms,
             GradingSystem: req.body.GradingSystem,
         });
 
         await addRooms.save()
-            console.log("Done!")
+            console.log("Room Created")
             return res.json({
                 status: 'success',
-                message: 'Activity Posted!'
+                message: 'Room Created!'
             })
     } catch (error){
         console.log("Something went wrong!" + error)

@@ -2,7 +2,7 @@ import React from 'react';
 import { Buttons as Button, Boxs as Box } from '../pages/Component';
 import { Typography, IconButton } from '@mui/material';
 import ExamIcon from '../assets/ImageJaven/ExamIcon.png';
-import { MoreVert, AddCircle } from '@mui/icons-material';
+import { MoreVert } from '@mui/icons-material';
 const styles = {
   hover: {
     backgroundColor: '#E7E7E7',
@@ -110,6 +110,7 @@ function Exam_layout({ bank }) {
                   <Box className="Exam-icon" margin="9px 0px 3px 20px">
                     <img
                       src={ExamIcon}
+                      alt="ExamIcon"
                       style={{
                         height: '35px',
                       }}

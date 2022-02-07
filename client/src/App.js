@@ -9,6 +9,7 @@ import Navbar_landingpage from './components/Navbar_landingpage';
 import Telecon from './Telecon/Telecon';
 import QuizLit from './pages/Quizlit';
 import Rooms from './pages/Rooms';
+import Room_inside from './Room-content-layout/Room_inside';
 
 const theme = createTheme({
   typography: {
@@ -55,6 +56,12 @@ function App() {
               exact
               path="/rooms"
               component={Rooms}
+              maxWidth="md"
+            />
+            <ProtectedRoutes
+              exact
+              path="/rooms/:id"
+              component={Room_inside}
               maxWidth="md"
             />
             <ProtectedRoutes

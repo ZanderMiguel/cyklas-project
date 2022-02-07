@@ -2,14 +2,13 @@ import React from 'react';
 import {
   Grid,
   Typography,
-  Paper,
   Avatar,
   Stack,
   TextField,
+  Divider,
 } from '@mui/material';
 import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
 import { styled } from '@mui/material/styles';
-import Input from '../Form_content/Input';
 import Button from '../components/Button';
 import UploadImage from '@mui/material/Button';
 import { green } from '@mui/material/colors';
@@ -29,13 +28,15 @@ function PersonalInformation() {
 
   return (
     <>
-      <Grid item xs={10} md={10} lg={6}>
+      <Grid item xs={10} md={5} lg={5} sx={{ mb: 2 }}>
         <Stack spacing={1} justifyContent="center">
           <Typography
             variant="h5"
-            children="Personal Information"
-            sx={{ fontWeight: 600 }}
+            children="PERSONAL INFORMATION"
+            sx={{ fontWeight: 500 }}
+            gutterBottom
           />
+          <Divider />
           {textfield.map((item, index) => (
             <>
               <Typography sx={{ fontWeight: 400 }} children={item.label} />
@@ -73,9 +74,8 @@ function PersonalInformation() {
       <Grid
         item
         container
-        xs={10}
-        md={10}
-        lg={4}
+        xs={9}
+        md={5}
         alignItems="center"
         justifyContent="center"
       >
