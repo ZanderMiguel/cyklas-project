@@ -12,7 +12,7 @@ import Google from '../assets/Rectangle 134.svg';
 import {GoogleLogin} from 'react-google-login';
 import axios from 'axios';
 
-
+//
 const style = { fontFamily: 'Poppins', marginTop: 1 };
 
 const responseSuccessGoogle = (response) => {
