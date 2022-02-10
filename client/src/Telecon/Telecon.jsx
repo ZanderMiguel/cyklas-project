@@ -8,7 +8,7 @@ function Telecon() {
     
     return (<div style={{backgroundColor: '#202124', width: '100%'}}>
         <Actions />
-        <div style={{ display: 'flex', }}><ActionPanel socket={socket}/>
+        <div style={{ display: 'flex', }}>{null && <ActionPanel socket={socket}/>}
             <VideoPanel socket={socket}/></div>
 
     </div>);
