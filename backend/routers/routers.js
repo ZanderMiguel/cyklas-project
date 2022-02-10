@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-
-
 const {
   createRegistrationController,
   displayRegistrationController,
@@ -43,4 +41,6 @@ router.get('/rooms', displayRoomController);
 router.delete('/rooms/room-create/:id', deleteRoomController);
 router.put('/rooms/room-create/:id', updateRoomController);
 
+const { teleController } = require('../controller/teleconController');
+router.get('/telecon/create', teleController);
 module.exports = router;

@@ -16,81 +16,28 @@
 // export default Telecon;
 
 import React from 'react';
-import {
-  Radio,
-  RadioGroup,
-  FormControlLabel,
-  FormControl,
-  Typography,
-  Grid,
-  TextField,
-  Container,
-} from '@mui/material';
-
-function Radiobtn() {
-  const [selectcategory, setselectedCategory] = React.useState('automate');
-
-  const handleChange = (event) => {
-    setselectedCategory(event.target.value);
-  };
-
+import Actions from './components/Actions';
+import ActionPanel from './components/ActionPanel';
+import VideoPanel from './components/VideoPanel';
+import { io } from 'socket.io-client';
+function Telecon() {
+  const socket = io.connect('http://localhost:3001/');
+  const [muted, setMuted] = React.useState(true);
+  const [onCam, setOnCam] = React.useState(true);
   return (
-    <Container maxWidth="lg">
-      <div>
-        <FormControl sx={{ display: 'flex' }}>
-          <Typography variant="h5"> Make Groups!</Typography>
-          <RadioGroup
-            sx={{
-              m: 'auto 0 auto auto',
-              display: 'flex',
-              flexDirection: 'row',
-              justifySelf: 'flex-end',
-              alignItems: 'center',
-            }}
-            value={selectcategory}
-            onChange={handleChange}
-          >
-            <FormControlLabel
-              value="automate"
-              control={<Radio />}
-              label="Automate"
-            />
-            <FormControlLabel
-              value="manual"
-              control={<Radio />}
-              label="Manual"
-            />
-            <FormControlLabel
-              value="savedgroups"
-              control={<Radio />}
-              label="Saved Groups"
-            />
-          </RadioGroup>
-        </FormControl>
+    <div style={{ backgroundColor: '#202124', width: '100%' }}>
+      <Actions
+        muted={muted}
+        onCam={onCam}
+        setMuted={setMuted}
+        setOnCam={setOnCam}
+      />
+      <div style={{ display: 'flex' }}>
+        {null && <ActionPanel socket={socket} />}
+        <VideoPanel socket={socket} muted={muted} onCam={onCam} />
       </div>
-
-      <div
-        sx={{
-          display: 'flex',
-          justifyContent: ' center',
-          alignItems: 'center',
-        }}
-      >
-        <Typography> Allocate 5 students into</Typography>
-        <TextField
-          sx={{ width: ' 150px', fontWeight: 'bolder' }}
-          size="small"
-          id="outlined-number"
-          type="number"
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-
-        <Typography>Groups</Typography>
-      </div>
-    </Container>
+    </div>
   );
 }
 
-export default Radiobtn;
+export default Telecon;

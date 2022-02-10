@@ -6,6 +6,7 @@ import Setting from './Settings/SettingsCont';
 import ProtectedRoutes from './pages/ProtectedRoutes';
 import Dashboard from './pages/Dashboard';
 import Navbar_landingpage from './components/Navbar_landingpage';
+import TeleconLanding from './pages-landing/TeleconLanding';
 import Telecon from './Telecon/Telecon';
 import QuizLit from './pages/Quizlit';
 import Rooms from './pages/Rooms';
@@ -40,47 +41,17 @@ function App() {
       <ThemeProvider theme={theme}>
         <Router>
           <Switch>
+            <ProtectedRoutes exact path="/dashboard" component={Dashboard} />
+
+            <ProtectedRoutes exact path="/telecon" component={TeleconLanding} />
+            <ProtectedRoutes exact path="/rooms" component={Rooms} />
+            <ProtectedRoutes exact path="/settings" component={Setting} />
+            <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
+            <ProtectedRoutes exact path="/records" component={Records} />
             <ProtectedRoutes
               exact
-              path="/dashboard"
-              component={Dashboard}
-              maxWidth="md"
-            />
-            <ProtectedRoutes
-              exact
-              path="/telecon"
+              path="/telecon/:teleRoom?"
               component={Telecon}
-              maxWidth="xl"
-            />
-            <ProtectedRoutes
-              exact
-              path="/rooms"
-              component={Rooms}
-              maxWidth="md"
-            />
-            <ProtectedRoutes
-              exact
-              path="/rooms/:id"
-              component={Room_inside}
-              maxWidth="md"
-            />
-            <ProtectedRoutes
-              exact
-              path="/settings"
-              component={Setting}
-              maxWidth="xl"
-            />
-            <ProtectedRoutes
-              exact
-              path="/quizlit"
-              component={QuizLit}
-              maxWidth="xl"
-            />
-            <ProtectedRoutes
-              exact
-              path="/records"
-              component={Records}
-              maxWidth="md"
             />
             <Route exact path="/:page?" component={Navbar_landingpage} />
           </Switch>
