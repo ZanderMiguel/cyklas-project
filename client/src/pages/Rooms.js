@@ -38,6 +38,7 @@ function Rooms() {
               '&:hover': {
                 backgroundColor: '#0072e6',
               },
+              mb: 2,
             }}
             startIcon={<AddCircleOutlineOutlinedIcon />}
             onClick={handleCreate}

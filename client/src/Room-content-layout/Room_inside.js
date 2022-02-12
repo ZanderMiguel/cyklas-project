@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import Announce from './Announce';
 
-import Container from '@mui/material/Container';
+import { Container, Box } from '@mui/material';
 
 function Room_inside() {
   const { id } = useParams();
@@ -10,6 +10,7 @@ function Room_inside() {
 
   return (
     <Container maxWidth="md">
+      <Box sx={{ width: '100%', backgroundColor: 'red' }}>alskjdlaksjldjk</Box>
       <Announce />
     </Container>
   );
