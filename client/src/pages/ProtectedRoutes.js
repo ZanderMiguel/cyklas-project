@@ -6,18 +6,16 @@ function ProtectedRoutes({ component: Component, path, maxWidth, ...attrib }) {
   return (
     <>
       {localStorage.token && <Navbar />}
-      <Container maxWidth={maxWidth}>
-        <Route
-          {...attrib}
-          render={() => {
-            return localStorage.token !== undefined ? (
-              <Component />
-            ) : (
-              <Redirect to="/" />
-            );
-          }}
-        />
-      </Container>
+      <Route
+        {...attrib}
+        render={() => {
+          return localStorage.token !== undefined ? (
+            <Component />
+          ) : (
+            <Redirect to="/" />
+          );
+        }}
+      />
     </>
   );
 }

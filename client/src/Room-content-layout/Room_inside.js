@@ -5,156 +5,88 @@ import FeedIcon from '../assets/ImageJaven/FeedIcon.png';
 import ActivitiesIcon from '../assets/ImageJaven/ActivitiesIcon.png';
 import MembersIcon from '../assets/ImageJaven/MembersIcon.png';
 
-import { Container, Box, Typography, Button } from '@mui/material';
-
-const styles = {
-  hover: {
-    backgroundColor: '#007fff',
-    boxShadow: 'none',
-  },
-  hover2: {
-    backgroundColor: '#F5F5F5',
-    boxShadow: 'none',
-  },
-  sxStyle: {
-    color: '#3F3D56',
-    backgroundColor: '#FCFCFC',
-    borderRadius: '10em',
-    width: '25%',
-    textTransform: 'Capitalize',
-    fontWeight: 'bold',
-    boxShadow: 'none',
-    height: '6vh',
-    fontSize: '12px',
-    marginTop: '6px',
-    marginRight: '15px',
-  },
-  sxStyle1: {
-    backgroundColor: '#007FFF',
-    borderRadius: '10em',
-    width: '25%',
-    textTransform: 'Capitalize',
-    fontWeight: 'bold',
-    boxShadow: 'none',
-    height: '6vh',
-    fontSize: '12px',
-    marginTop: '6px',
-    marginLeft: '15px',
-    marginRight: '15px',
-  },
-  sxStyle3: {
-    width: '50%',
-    borderRadius: '0.5em',
-    backgroundColor: '#FFFFF',
-    marginTop: '20px',
-  },
-};
+import {
+  AppBar,
+  Toolbar,
+  Container,
+  Box,
+  Typography,
+  Button,
+} from '@mui/material';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import PhoneIcon from '@mui/icons-material/Phone';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import PersonPinIcon from '@mui/icons-material/PersonPin';
+import PhoneMissedIcon from '@mui/icons-material/PhoneMissed';
 
 function Room_inside() {
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   const { id } = useParams();
-  console.log(id);
 
   return (
-    <Container maxWidth="md">
-      <Box
-        className="Tab"
-        borderTop="1.5px solid #DBDBDB"
-        borderBottom="1.5px solid #DBDBDB"
-        backgroundColor="#FCFCFC"
-        width="100%"
-        height="10vh"
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        gap="269px"
+    <>
+      <AppBar
+        position="sticky"
+        elevation={1}
+        sx={{ backgroundColor: '#FCFCFC' }}
       >
-        <Box className="Room" width="40%" height="8vh">
-          <Typography
-            variant="h1"
-            component="h2"
-            sx={{
-              fontSize: '15px',
-              fontWeight: 'bold',
-              color: '#3F3D56',
-              textTransform: 'Uppercase',
-              marginBottom: '4px',
-              paddingTop: '9px',
-              paddingLeft: '80px',
-            }}
-          >
-            Embedded Programming
-          </Typography>
+        <Toolbar>
+          <Container maxWidth="xl">
+            <Box display="flex" flexWrap="wrap">
+              <Box>
+                <Typography
+                  sx={{
+                    fontSize: '1.5em',
+                    fontWeight: 650,
+                    color: '#3F3D56',
+                    textTransform: 'Uppercase',
+                  }}
+                >
+                  Embedded Programming
+                </Typography>
 
-          <Typography
-            variant="h1"
-            component="h2"
-            sx={{
-              fontSize: '12px',
-              fontWeight: 'medium',
-              color: '#3F3D56',
-              textTransform: 'Uppercase',
-              paddingLeft: '80px',
-            }}
-          >
-            BSCS 3A
-          </Typography>
-        </Box>
-
-        <Box className="Tab" width="40%" height="8vh">
-          <Button
-            variant="contained"
-            startIcon={
-              <img
-                src={FeedIcon}
-                style={{
-                  marginRight: '10px',
-                  height: '20px',
-                }}
-              />
-            }
-            sx={styles.sxStyle1}
-            hover={styles.hover}
-          >
-            Feed
-          </Button>
-
-          <Button
-            variant="contained"
-            startIcon={
-              <img
-                src={ActivitiesIcon}
-                style={{
-                  marginRight: '10px',
-                  height: '20px',
-                }}
-              />
-            }
-            sx={styles.sxStyle}
-            hover={styles.hover2}
-          >
-            Activities
-          </Button>
-
-          <Button
-            variant="contained"
-            startIcon={
-              <img
-                src={MembersIcon}
-                style={{
-                  marginRight: '10px',
-                  height: '20px',
-                }}
-              />
-            }
-            sx={styles.sxStyle}
-            hover={styles.hover2}
-          >
-            Members
-          </Button>
-        </Box>
-      </Box>
-      <Announce />
-    </Container>
+                <Typography
+                  sx={{
+                    fontSize: '1em',
+                    fontWeight: 500,
+                    color: '#3F3D56',
+                    textTransform: 'Uppercase',
+                    alignSelf: 'flex-start',
+                    display: 'block',
+                  }}
+                >
+                  BSCS 3A
+                </Typography>
+              </Box>
+              <Box flexGrow={1} />
+              <Tabs value={value} onChange={handleChange}>
+                <Tab
+                  className="Tab"
+                  label="Feed"
+                  icon={<PhoneMissedIcon />}
+                  disableRipple
+                />
+                <Tab
+                  icon={<PhoneMissedIcon />}
+                  label="Activities"
+                  disableRipple
+                />
+                <Tab icon={<FavoriteIcon />} label="People" disableRipple />
+              </Tabs>
+            </Box>
+          </Container>
+        </Toolbar>
+      </AppBar>
+      <Container maxWidth="md">
+        <Announce />
+      </Container>
+    </>
   );
 }
 

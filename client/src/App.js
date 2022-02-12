@@ -40,49 +40,14 @@ function App() {
       <ThemeProvider theme={theme}>
         <Router>
           <Switch>
-            <ProtectedRoutes
-              exact
-              path="/dashboard"
-              component={Dashboard}
-              maxWidth="md"
-            />
-            <ProtectedRoutes
-              exact
-              path="/telecon"
-              component={Telecon}
-              maxWidth="xl"
-            />
-            <ProtectedRoutes
-              exact
-              path="/rooms"
-              component={Rooms}
-              maxWidth="md"
-            />
-            <ProtectedRoutes
-              exact
-              path="/rooms/:id"
-              component={Room_inside}
-              maxWidth="md"
-            />
-            <ProtectedRoutes
-              exact
-              path="/settings"
-              component={Setting}
-              maxWidth="xl"
-            />
-            <ProtectedRoutes
-              exact
-              path="/quizlit"
-              component={QuizLit}
-              maxWidth="xl"
-            />
-            <ProtectedRoutes
-              exact
-              path="/records"
-              component={Records}
-              maxWidth="md"
-            />
-            <Route exact path="/:page?" component={Navbar_landingpage} />
+            <ProtectedRoutes exact path="/dashboard" component={Dashboard} />
+            <ProtectedRoutes exact path="/telecon" component={Telecon} />
+            <ProtectedRoutes exact path="/rooms" component={Rooms} />
+            <ProtectedRoutes exact path="/rooms/:id" component={Room_inside} />
+            <ProtectedRoutes exact path="/settings" component={Setting} />
+            <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
+            <ProtectedRoutes exact path="/records" component={Records} />
+            <Route path="/:page?" component={Navbar_landingpage} />
           </Switch>
         </Router>
       </ThemeProvider>
