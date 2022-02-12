@@ -15,10 +15,11 @@ import {
 } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import PhoneIcon from '@mui/icons-material/Phone';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import PersonPinIcon from '@mui/icons-material/PersonPin';
-import PhoneMissedIcon from '@mui/icons-material/PhoneMissed';
+import { IoNewspaperSharp } from 'react-icons/io5';
+import { HiUserGroup } from 'react-icons/hi';
+import { FaClipboardList } from 'react-icons/fa';
+import Activities from './Activities';
+import People from './People';
 
 function Room_inside() {
   const [value, setValue] = React.useState(0);
@@ -67,24 +68,27 @@ function Room_inside() {
               <Box flexGrow={1} />
               <Tabs value={value} onChange={handleChange}>
                 <Tab
-                  className="Tab"
+                  icon={<FaClipboardList size={25} />}
                   label="Feed"
-                  icon={<PhoneMissedIcon />}
                   disableRipple
                 />
                 <Tab
-                  icon={<PhoneMissedIcon />}
+                  icon={<IoNewspaperSharp size={25} />}
                   label="Activities"
                   disableRipple
                 />
-                <Tab icon={<FavoriteIcon />} label="People" disableRipple />
+                <Tab
+                  icon={<HiUserGroup size={25} />}
+                  label="People"
+                  disableRipple
+                />
               </Tabs>
             </Box>
           </Container>
         </Toolbar>
       </AppBar>
       <Container maxWidth="md">
-        <Announce />
+        {value === 0 ? <Announce /> : value === 1 ? <Activities /> : <People />}
       </Container>
     </>
   );
