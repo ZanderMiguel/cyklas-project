@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Box, Button } from '@mui/material';
-import Create_activity from '../Form_content/Create_activity';
+import Create_activity from '../../Form_content/Create_activity';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 function Activities() {

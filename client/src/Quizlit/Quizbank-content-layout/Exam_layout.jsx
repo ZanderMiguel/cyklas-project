@@ -1,7 +1,7 @@
 import React from 'react';
-import { Buttons as Button, Boxs as Box } from '../pages/Component';
+import { Buttons as Button, Boxs as Box } from '../../components/Component';
 import { Typography, IconButton } from '@mui/material';
-import ExamIcon from '../assets/ImageJaven/ExamIcon.png';
+import ExamIcon from '../../assets/ImageJaven/ExamIcon.png';
 import { MoreVert } from '@mui/icons-material';
 const styles = {
   hover: {

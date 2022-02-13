@@ -1,15 +1,15 @@
 import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Records from './pages/Records';
+import Records from './Records/Records';
 import Setting from './Settings/SettingsCont';
-import ProtectedRoutes from './pages/ProtectedRoutes';
-import Dashboard from './pages/Dashboard';
+import ProtectedRoutes from './components/ProtectedRoutes';
+import Dashboard from './Dashboard/Dashboard';
 import Navbar_landingpage from './components/Navbar_landingpage';
 import Telecon from './Telecon/Telecon';
-import QuizLit from './pages/Quizlit';
-import Rooms from './pages/Rooms';
-import Room_inside from './Room-content-layout/Room_inside';
+import QuizLit from './Quizlit/Quizlit';
+import Rooms from './Rooms/Rooms';
+import Room_inside from './Rooms/Room-content-layout/Room_inside';
 
 const theme = createTheme({
   typography: {

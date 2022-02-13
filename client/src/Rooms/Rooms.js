@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Container } from '@mui/material';
-import Room_layout from '../Room-content-layout/Room_layout';
+import Room_layout from './Room-content-layout/Room_layout';
 import useGet from '../customHooks/useGet';
 import CircularProgress from '@mui/material/CircularProgress';
 import Create_room from '../Form_content/Create_room';

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Dialogform from '../components/Dialogform';
-import Input from './Input';
-import Dropdown from './Drowpdown';
+import Input from '../components/Input';
+import Dropdown from '../components/Drowpdown';
 import usePost from '../customHooks/usePost';
 
 import { Grid, Button } from '@mui/material';
@@ -68,7 +68,7 @@ function Create_room({ open, close, maxWidth }) {
       yearAndSection,
       ClassTime: classtime,
       Terms: term,
-      GradingSystem: gradingsystem
+      GradingSystem: gradingsystem,
     };
     post('http://localhost:5000/rooms', room);
   };

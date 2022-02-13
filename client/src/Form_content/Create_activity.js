@@ -1,7 +1,7 @@
 import React from 'react';
 import Dialogform from '../components/Dialogform';
 import { Grid, Box, Button } from '@mui/material';
-import Input from './Input';
+import Input from '../components/Input';
 
 function Create_activity({ open, close }) {
   return (

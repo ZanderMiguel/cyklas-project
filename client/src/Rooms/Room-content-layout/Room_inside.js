@@ -1,9 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import Announce from './Announce';
-import FeedIcon from '../assets/ImageJaven/FeedIcon.png';
-import ActivitiesIcon from '../assets/ImageJaven/ActivitiesIcon.png';
-import MembersIcon from '../assets/ImageJaven/MembersIcon.png';
+import FeedIcon from '../../assets/ImageJaven/FeedIcon.png';
+import ActivitiesIcon from '../../assets/ImageJaven/ActivitiesIcon.png';
+import MembersIcon from '../../assets/ImageJaven/MembersIcon.png';
 
 import {
   AppBar,

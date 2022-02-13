@@ -1,5 +1,5 @@
 import React from 'react';
-import Input from '../Form_content/Input';
+import Input from '../../components/Input';
 
 import { Grid, TextField } from '@mui/material';
 import { styled } from '@mui/material/styles';

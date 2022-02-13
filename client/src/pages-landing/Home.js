@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Landingpage.css';
-import Input from '../Form_content/Input';
+import Input from '../components/Input';
 
 //importing Mui
 import { Typography, Box, Paper, Link, Grid } from '@mui/material';
