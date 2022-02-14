@@ -69,16 +69,19 @@ function Room_inside() {
               <Tabs value={value} onChange={handleChange}>
                 <Tab
                   icon={<FaClipboardList size={25} />}
+                  iconPosition="start"
                   label="Feed"
                   disableRipple
                 />
                 <Tab
                   icon={<IoNewspaperSharp size={25} />}
+                  iconPosition="start"
                   label="Activities"
                   disableRipple
                 />
                 <Tab
                   icon={<HiUserGroup size={25} />}
+                  iconPosition="start"
                   label="People"
                   disableRipple
                 />
