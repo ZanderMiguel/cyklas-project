@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import People_table from '../People_table';
+import People_table from './People_table';
 
 function People() {
   return (
