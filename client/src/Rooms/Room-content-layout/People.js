@@ -13,6 +13,7 @@ function People() {
             display: 'flex',
             justifyContent: 'center',
             mt: 3,
+            mb: 3,
           }}
         >
           <Box flexGrow={1} />
