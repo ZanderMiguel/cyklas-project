@@ -2,5 +2,10 @@ body {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  background-color: #f2f2f2;
+}
+
+video {
+  width: 30%;
+  height: 30%;
+  object-fit: cover;
 }

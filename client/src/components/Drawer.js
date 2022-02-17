@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { IconContext } from 'react-icons';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import SideNav from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -16,11 +14,12 @@ import {
 import { VscFileSubmodule } from 'react-icons/vsc';
 import { RiDashboardLine } from 'react-icons/ri';
 import { BsDoorOpen } from 'react-icons/bs';
-
-import Rooms from '../assets/Images/Rooms.png';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/icons-material/Menu';
+import { Link } from 'react-router-dom';
 
 function Drawer() {
-  const [drawer, setDrawer] = React.useState(false);
+  const [drawer, setDrawer] = useState(false);
   const toggleDrawer = (open) => (event) => {
     if (
       event.type === 'keydown' &&
@@ -36,57 +35,85 @@ function Drawer() {
     {
       icon: <RiDashboardLine size="25px" />,
       text: 'Dashboard',
+      path: '/dashboard',
     },
     {
       icon: <BsDoorOpen size="25px" />,
       text: 'Rooms',
+      path: '/rooms',
     },
     {
       icon: <MdQuiz size="25px" />,
       text: 'Quizlit',
+      path: '/quizlit',
     },
     {
       icon: <MdOutlineVideoCameraFront size="25px" />,
       text: 'Telecon',
+      path: '/telecon',
     },
     {
       icon: <VscFileSubmodule size="25px" />,
       text: 'Records',
+      path: '/records',
     },
     {
       icon: <MdOutlineSettings size="25px" />,
       text: 'Setting',
+      path: '/settings',
     },
   ];
 
   const list = () => (
     <Box
-      sx={{ width: 250 }}
+      sx={{ width: 280 }}
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
     >
       <List sx={{ marginTop: '50px' }}>
         {drawerlist.map((item, index) => {
-          const { icon, text } = item;
+          const { icon, text, path } = item;
           return (
-            <ListItem
-              button
-              key={text}
-              sx={{
-                '&:hover': { backgroundColor: '#71707B', color: 'white' },
-                marginBottom: '10px',
-              }}
+            <Link
+              key={index}
+              style={{ textDecoration: 'none', color: 'blue' }}
+              to={path}
             >
-              <ListItemIcon>{icon}</ListItemIcon>
-              <ListItemText
-                primary={
-                  <Typography variant="h6" sx={{ fontWeight: 500 }}>
-                    {text}
-                  </Typography>
-                }
-              />
-            </ListItem>
+              <ListItem
+                disableRipple
+                button
+                key={text}
+                sx={{
+                  '&:hover': {
+                    backgroundColor: '#71707B',
+                    '& .MuiListItemIcon-root': {
+                      color: 'white',
+                    },
+                  },
+                  marginBottom: '10px',
+                }}
+              >
+                <ListItemIcon>{icon}</ListItemIcon>
+
+                <ListItemText
+                  primary={
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        color: '#3F3D56',
+                        fontWeight: 500,
+                        '&:hover': {
+                          color: '#FFFFFF',
+                        },
+                      }}
+                    >
+                      {text}
+                    </Typography>
+                  }
+                />
+              </ListItem>
+            </Link>
           );
         })}
       </List>
@@ -95,7 +122,16 @@ function Drawer() {
 
   return (
     <>
-      <Button onClick={toggleDrawer(true)}>Click</Button>
+      <IconButton
+        sx={{ marginRight: 2 }}
+        size="medium"
+        edge="start"
+        aria-label="menu"
+        onClick={toggleDrawer(true)}
+      >
+        <Menu />
+      </IconButton>
+
       <SideNav anchor={'left'} open={drawer} onClose={toggleDrawer(false)}>
         {list()}
       </SideNav>

@@ -2,14 +2,16 @@ import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {
   BrowserRouter as Router,
-  Redirect,
   Route,
   Switch,
+  Redirect,
 } from 'react-router-dom';
+import Telecon from '../Telecon/Telecon'
 //importing Mui
 
 //importing components
 import NavbarLandingpage from '../components/Navbar_landingpage';
+import TeleconLanding from './TeleconLanding';
 
 const theme = createTheme({
   typography: {
@@ -39,9 +41,11 @@ function Landing() {
     <ThemeProvider theme={theme}>
       <Router>
         <Switch>
+          <Redirect from="/Home" to="/" />
           <Route exact path={'/:page?'}>
-            <NavbarLandingpage />
+            
           </Route>
+          
         </Switch>
       </Router>
     </ThemeProvider>
