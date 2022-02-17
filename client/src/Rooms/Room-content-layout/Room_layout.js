@@ -5,7 +5,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { Link } from 'react-router-dom';
 
 function Room_layout({ data }) {
-  console.log(data);
   return (
     <>
       <CssBaseline />

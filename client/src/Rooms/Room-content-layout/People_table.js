@@ -17,7 +17,7 @@ function People_table() {
   const { data } = useGet('http://localhost:5000/register');
   const user =
     data &&
-    data.map((items, index) => {
+    data.map((items) => {
       const { _id: id, ...rest } = items;
       return { id, ...rest };
     });
@@ -46,7 +46,7 @@ function People_table() {
     {
       width: 150,
       sortable: false,
-      renderCell: (user) => {
+      renderCell: () => {
         return (
           <IconButton>
             <DeleteIcon />
@@ -56,9 +56,6 @@ function People_table() {
       align: 'center',
     },
   ];
-
-  console.log(user);
-
   return (
     <>
       <Box backgroundColor="#F3F3F3">
@@ -102,28 +99,7 @@ function People_table() {
           <Button variant="contained">Add profesor</Button>
         </Box>
         <Divider variant="middle" />
-        <div style={{ height: 'auto', width: '100%' }}>
-          <DataGrid
-            columns={columns}
-            rows={user}
-            hideFooter
-            autoHeight
-            disableColumnMenu
-            disableVirtualization
-            sx={{
-              border: 'none',
-              '& .MuiDataGrid-columnSeparator': {
-                display: 'none',
-              },
-              '& .MuiDataGrid-columnHeadersInner': {
-                backgroundColor: '#F3F3F3',
-              },
-              '& .MuiDataGrid-virtualScrollerContent': {
-                backgroundColor: '#F3F3F3',
-              },
-            }}
-          />
-        </div>
+        <div style={{ height: 'auto', width: '100%' }}></div>
       </Box>
     </>
   );

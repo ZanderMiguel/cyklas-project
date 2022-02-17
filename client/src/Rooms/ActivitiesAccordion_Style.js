@@ -2,7 +2,6 @@ import { useTheme } from '@mui/material/styles';
 
 function useStyle() {
   const theme = useTheme();
-  console.log(theme);
   const designs = {
     Activity_Tiles: {},
     Lesson: {

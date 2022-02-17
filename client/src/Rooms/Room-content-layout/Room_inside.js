@@ -91,7 +91,13 @@ function Room_inside() {
         </Toolbar>
       </AppBar>
       <Container maxWidth="md">
-        {value === 0 ? <Announce /> : value === 1 ? <Activities /> : <People />}
+        {value === 0 ? (
+          <Announce />
+        ) : value === 1 ? (
+          <Activities params={id} />
+        ) : (
+          <People />
+        )}
       </Container>
     </>
   );

@@ -15,6 +15,7 @@ import ActivityIcon from '../../assets/ImageJaven/ActivityIcon.png';
 import Wordfile from '../../assets/ImageJaven/Wordfile.png';
 import useStyle from '../ActivitiesAccordion_Style';
 import Divider from '@mui/material/Divider';
+import { Link, Router } from 'react-router-dom';
 
 const data = [
   {
@@ -61,15 +62,13 @@ const data = [
   },
 ];
 
-function ActivitiesAccordion() {
+function ActivitiesAccordion({ params }) {
   const { designs } = useStyle();
-
   const [expanded, setExpanded] = React.useState(true);
 
   const handleChange = (panel) => (isExpanded) => {
     setExpanded(isExpanded ? panel : true);
   };
-  console.log(expanded);
 
   return (
     <>
@@ -260,7 +259,11 @@ function ActivitiesAccordion() {
 
                   <Divider sx={designs.Divider2} />
 
-                  <Button sx={designs.ViewHomework_Button_Style}>
+                  <Button
+                    sx={designs.ViewHomework_Button_Style}
+                    component={Link}
+                    to={`/Rooms/${params}/${items.Lesson}`}
+                  >
                     View Homework
                   </Button>
                 </AccordionDetails>
