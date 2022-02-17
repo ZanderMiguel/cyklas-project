@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './Landingpage.css';
+import Register from '../Form_content/Register'
 
 //importing Mui
 import { Typography, Button, Box, Paper, TextField, Link } from '@mui/material';
@@ -31,9 +32,19 @@ const responseErrorGoogle = (response) => {
 }
 
 
+
 function Home() {
 const [email, setEmail] = useState('');
 const [pass, setPass] = useState('');
+const [opendialog, setOpenDialog] = useState(false);
+
+const handleClickOpen = () => {
+  setOpenDialog(true);
+};
+const handleClose = () => {
+  setOpenDialog(false);
+};
+
 const handleSubmit = (e) =>{
   e.preventDefault()
   const login = {
@@ -105,9 +116,10 @@ const handleSubmit = (e) =>{
                 padding: '10px 20px',
                 borderRadius: '10px',
               }}
-              startIcon={<AddCircle sx={{ fontSize: 20 }} />}
+              startIcon={<AddCircleOutlineOutlinedIcon />}
+              onClick={handleClickOpen}
             >
-              Create your account now.
+              {opendialog && <Register open={opendialog} close={handleClose} />}
             </Button>
             <img
               src={Flatimage}
