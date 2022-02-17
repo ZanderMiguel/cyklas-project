@@ -5,7 +5,8 @@ import Register from '../Form_content/Register'
 //importing Mui
 import { Typography, Button, Box, Paper, TextField, Link } from '@mui/material';
 
-import { AddCircle } from '@mui/icons-material';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import Dialogform from '../components/Dialogform';
 //import image
 import Flatimage from '../assets/Images/illustration.svg';
 import MaleLogo from '../assets/Images/avatar_male.png';
