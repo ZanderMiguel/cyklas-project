@@ -7,8 +7,8 @@ import { BrowserRouter as Router, Link } from 'react-router-dom';
 import CusButton from '../components/Button';
 
 import { GoogleLogin } from 'react-google-login';
-import Input from './Input';
-import Drowpdown from './Drowpdown';
+import Input from '../components/Input';
+import Drowpdown from '../components/Drowpdown';
 import axios from 'axios';
 
 const genders = [
