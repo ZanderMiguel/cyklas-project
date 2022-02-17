@@ -10,6 +10,7 @@ import Telecon from './Telecon/Telecon';
 import QuizLit from './Quizlit/Quizlit';
 import Rooms from './Rooms/Rooms';
 import Room_inside from './Rooms/Room-content-layout/Room_inside';
+import Activities_inside from './Rooms/Room-content-layout/Activities_inside';
 
 const theme = createTheme({
   typography: {
@@ -44,6 +45,11 @@ function App() {
             <ProtectedRoutes exact path="/telecon" component={Telecon} />
             <ProtectedRoutes exact path="/rooms" component={Rooms} />
             <ProtectedRoutes exact path="/rooms/:id" component={Room_inside} />
+            <ProtectedRoutes
+              exact
+              path="/rooms/:id/:id"
+              component={Activities_inside}
+            />
             <ProtectedRoutes exact path="/settings" component={Setting} />
             <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
             <ProtectedRoutes exact path="/records" component={Records} />

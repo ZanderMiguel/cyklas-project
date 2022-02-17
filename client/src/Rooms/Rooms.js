@@ -10,7 +10,9 @@ import Button from '../components/Button';
 
 function Rooms() {
   const [opendialog, setOpenDialog] = useState(false);
+
   const { data, isPending, error } = useGet('http://localhost:5000/rooms');
+
   const handleCreate = () => {
     setOpenDialog(true);
   };
