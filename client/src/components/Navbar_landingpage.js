@@ -10,6 +10,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import Drawer from './Drawer_landingpage';
 
 //Import Mui
 import {
@@ -27,7 +28,7 @@ import Logo from '../assets/Images/Ellipse 2.png';
 function Navbar_landingpage() {
   const { page } = useParams();
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMatch = useMediaQuery(theme.breakpoints.down('md'));
 
   const [dropdown, setDropDown] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -74,20 +75,8 @@ function Navbar_landingpage() {
               Cyklas
             </Typography>
             <Box sx={{ flexGrow: 1 }} />
-            {fullScreen ? (
-              <IconButton
-                id="basic-button"
-                aria-controls={open ? 'basic-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-                onClick={handleChangeIcon}
-              >
-                {dropdown ? (
-                  <ArrowDropUpIcon sx={{ color: 'black' }} />
-                ) : (
-                  <ArrowDropDownIcon sx={{ color: 'black' }} />
-                )}
-              </IconButton>
+            {isMatch ? (
+              <Drawer />
             ) : (
               <Tabs
                 onChange={handleClickTab}

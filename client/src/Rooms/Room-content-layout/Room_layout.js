@@ -37,6 +37,7 @@ function Room_layout({ data }) {
                   <Link style={{ textDecoration: 'none' }} to={`/Rooms/${id}`}>
                     <Typography
                       variant="h5"
+                      noWrap
                       sx={{
                         fontWeight: 600,
                         color: '#3F3D56',

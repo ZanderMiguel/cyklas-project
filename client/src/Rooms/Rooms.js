@@ -48,7 +48,7 @@ function Rooms() {
             />
           </Grid>
         </Grid>
-        <Grid container maxHeight="80vh" overflow="auto">
+        <Grid container maxHeight="80vh">
           <Grid item>
             {opendialog && (
               <Create_room

@@ -34,6 +34,7 @@ const responseErrorGoogle = (response) => {
 
 function Home() {
   const history = useHistory();
+  const [isPending, setIsPending] = useState(false);
   const [opendialog, setOpenDialog] = useState(false);
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -52,7 +53,7 @@ function Home() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setIsPending(true);
     axios
       .post('http://localhost:5000/login', Object.fromEntries(myApi))
       .then((response) => {
@@ -60,6 +61,7 @@ function Home() {
           localStorage.setItem('token', response.data.token);
         console.log(response.data);
         setMyApi(new Map());
+        setIsPending(false);
         history.push('/dashboard');
       })
       .catch((err) => {
@@ -186,22 +188,44 @@ function Home() {
                 Forgot password?
               </Link>
             </Typography>
-            <Button
-              fullWidth
-              content="log in"
-              variant="contained"
-              borderRadius="10px"
-              type="submit"
-              form="loginForm"
-              sx={{
-                backgroundColor: '#007FFF',
-                color: 'white',
-                borderRadius: '10px',
-                '&:hover': {
-                  backgroundColor: '#0072e6',
-                },
-              }}
-            />
+            {!isPending && (
+              <Button
+                fullWidth
+                content="log in"
+                variant="contained"
+                borderRadius="10px"
+                type="submit"
+                form="loginForm"
+                sx={{
+                  backgroundColor: '#007FFF',
+                  color: 'white',
+                  borderRadius: '10px',
+                  '&:hover': {
+                    backgroundColor: '#0072e6',
+                  },
+                }}
+              />
+            )}
+            {isPending && (
+              <Button
+                disabled
+                fullWidth
+                content="log in"
+                variant="contained"
+                borderRadius="10px"
+                type="submit"
+                form="loginForm"
+                sx={{
+                  backgroundColor: '#007FFF',
+                  color: 'white',
+                  borderRadius: '10px',
+                  '&:hover': {
+                    backgroundColor: '#0072e6',
+                  },
+                }}
+              />
+            )}
+
             <Typography
               sx={{ ...style, fontWeight: 'bold' }}
               gutterBottom

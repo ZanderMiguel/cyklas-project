@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Button, Typography, Avatar } from '@mui/material';
+import { Grid, Button, Typography, Avatar, Box } from '@mui/material';
 
 import Dialogform from '../components/Dialogform';
 import Google from '../assets/Rectangle 134.svg';
@@ -22,17 +22,37 @@ const genders = [
 ];
 
 function Register({ open, close }) {
+  const [firstname, setFirstname] = useState('');
+  const [lastname, setLastname] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [gender, setGender] = useState('Male');
   const [showPassword, setShowPassword] = useState(false);
 
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
 
+  const handlechangeFirstname = (event) => {
+    setFirstname(event.target.value);
+  };
+  const handlechangeLastname = (event) => {
+    setLastname(event.target.value);
+  };
+  const handlechangeEmail = (event) => {
+    setEmail(event.target.value);
+  };
+  const handlechangePassword = (event) => {
+    setPassword(event.target.value);
+  };
+
   const handleChange = (event) => {
     setGender(event.target.value);
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const user = {};
+  };
 
   const googleSuccess = async (res) => {
     console.log(res);
@@ -71,26 +91,29 @@ function Register({ open, close }) {
               <Avatar sx={{ height: '60px', width: '60px' }} />
             </Grid>
           </Grid>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} autoComplete="off">
             <Grid container spacing={2}>
               <Input
                 name="firstname"
                 placeholder="Firstname"
-                handlChange={handleChange}
+                value={firstname}
+                onChange={handlechangeFirstname}
                 autoFocus
                 half
               />
               <Input
                 name="lastname"
                 placeholder="Lastname"
-                handlChange={handleChange}
+                value={lastname}
+                onChange={handlechangeLastname}
                 half
               />
               <Input
                 name="email"
                 placeholder="Email Address"
                 type="email"
-                handlChange={handleChange}
+                value={email}
+                onChange={handlechangeEmail}
                 half
               />
               <Drowpdown
@@ -103,6 +126,8 @@ function Register({ open, close }) {
               <Input
                 name="password"
                 placeholder="Password"
+                value={password}
+                onChange={handlechangePassword}
                 type={showPassword ? 'text' : 'password'}
                 handleShowPassword={handleShowPassword}
                 handlChange={handleChange}
