@@ -73,14 +73,12 @@ function Drawer_landingpage() {
                 sx={{
                   '&:hover': {
                     backgroundColor: '#71707B',
-                    '& .MuiListItemText-root': {
-                      color: 'white',
-                    },
                   },
                   marginBottom: '10px',
                 }}
               >
                 <ListItemText
+                  sx={{ '&:hover': { color: 'white' } }}
                   primary={
                     <Typography
                       sx={{
