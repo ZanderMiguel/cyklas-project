@@ -1,7 +1,7 @@
 import React from 'react';
 //importing Mui
 import contactillu from '../assets/Images/Contact_illustration.svg';
-import { Typography, Box, TextField, Button, IconButton } from '@mui/material';
+import { Typography, Box, TextField, Button, IconButton, Divider } from '@mui/material';
 import { LocationOn, Call, Email } from '@mui/icons-material';
 // import {makeStyles} from '@mui/styles'
 import { styled } from '@mui/material';
@@ -10,6 +10,8 @@ import Facebook from '../assets/ImageJaven/Facebook.png';
 import Instagram from '../assets/ImageJaven/Instagram.png';
 import Twitter from '../assets/ImageJaven/Twitter.png';
 import Youtube from '../assets/ImageJaven/Youtube.png';
+import "./Contacts.css";
+import useStyle from './Contacts_style';
 
 const style = {
   fontFamily: 'Poppins',
@@ -34,6 +36,7 @@ const CssTextField = styled(TextField)({
 
 function Contact() {
   // const classes = useStyles();
+  const {designs} = useStyle()
 
   return (
     <>
@@ -134,30 +137,30 @@ function Contact() {
           justifyContent="center"
           alignItems="center"
         >
-          <Box
-            className="Seperator"
-            height="2px"
-            width="85%"
-            backgroundColor="#ECECEC"
-          ></Box>
-
+          <Divider width = "100%" padding = "0px 20px"/>
+          
           <Box
             className="Content"
-            margin="60px 0px 60px 0px"
-            display="flex"
-            gap="20px"
             height="auto"
-            width="85%"
-          >
-            <Box className="Cyklas-logo" width="280px" height="auto">
-              <Box className="Cyklas-logo-image">
+            width="100%"
+          > 
+            <Box className = "Content-sub" 
+            margin = "25px 70px" 
+            display="flex"
+            flexWrap="wrap"
+            gap="40px"
+            height="auto"
+            width="auto">
+
+            <Box className="Cyklas-logo" sx = {designs.Cyklas_Logo_Style}>
+              <Box className="Cyklas-logo-image" width = "max-content" height = "100%">
                 <img
                   src={CyklasLogo}
                   style={{
-                    height: '70px',
+                    height: '70px'
                   }}
                 />
-              </Box>
+              
 
               <Typography
                 sx={{
@@ -165,8 +168,8 @@ function Contact() {
                   color: '#727184',
                   fontSize: '14px',
                   textTransform: 'Capitalize',
-                  width: '100%',
-                  height: 'max-content',
+                  width: 'max-content',
+                  height: 'max-content'
                 }}
               >
                 Bilibid Viejo Street, Quiapo Manila.
@@ -178,21 +181,25 @@ function Contact() {
                   color: '#727184',
                   fontSize: '14px',
                   textTransform: 'none',
-                  width: '100%',
-                  height: 'max-content',
+                  width: 'max-content',
+                  height: 'max-content'
                 }}
               >
                 cycrowd@gmail.com
               </Typography>
+              </Box>
             </Box>
 
+            {/* <Box sx = {designs.BoxFlexGrow_Style}/> */}
+            
+            <Box className = "Content2" sx = {designs.Content2_Style}>
             <Box
               className="Cyklas"
-              marginLeft="181px"
               display="flex"
               flexDirection="column"
-              width="200px"
-              height="auto"
+              width="190px"
+              height="160px"
+              padding="0px 20px"
             >
               <Typography
                 sx={{
@@ -201,7 +208,7 @@ function Contact() {
                   textTransform: 'Uppercase',
                   fontWeight: '600',
                   width: '100%',
-                  height: 'max-content',
+                  height: 'max-content'
                 }}
               >
                 CykLas
@@ -282,8 +289,9 @@ function Contact() {
               className="Services"
               display="flex"
               flexDirection="column"
-              width="auto"
-              height="auto"
+              width="190px"
+              height="160px"
+              padding="0px 20px"
             >
               <Typography
                 sx={{
@@ -355,9 +363,9 @@ function Contact() {
 
             <Box
               className="Socials"
-              marginLeft="50px"
-              width="230px"
-              height="auto"
+              width="190px"
+              height="160px"
+              padding="0px 20px"
             >
               <Typography
                 sx={{
@@ -366,7 +374,7 @@ function Contact() {
                   textTransform: 'Uppercase',
                   fontWeight: '600',
                   width: '100%',
-                  height: 'max-content',
+                  height: 'max-content'
                 }}
               >
                 Follow us
@@ -375,7 +383,7 @@ function Contact() {
               <Box
                 className="Social-buttons"
                 marginTop="13px"
-                width="100%"
+                width="auto"
                 height="auto"
                 display="flex"
                 gap="18px"
@@ -426,8 +434,8 @@ function Contact() {
                     src={Twitter}
                     alt="Twitter"
                     style={{
-                      height: '30px',
-                      width: '30px',
+                      height: '31px',
+                      width: '31px',
                     }}
                   />
                 </IconButton>
@@ -444,28 +452,33 @@ function Contact() {
                     src={Youtube}
                     alt="Youtube"
                     style={{
-                      height: '30px',
-                      width: '30px',
+                      height: '34px',
+                      width: '34px',
                     }}
                   />
                 </IconButton>
               </Box>
+              </Box>
+            </Box>
             </Box>
           </Box>
 
           <Box
             className="Content2"
             padding="20px 0px"
+            bottom="0"
+            left="0"
+            right="0"
+            position="relative"
             width="100%"
             height="auto"
-            display="flex"
-            gap="670px"
             backgroundColor="#007FFF"
           >
+            <Box className = "Content2-sub" display="flex" gap = "20px" flexWrap="wrap" margin = "0px 70px" height = "auto" width = "auto">
             <Box
               className="TC-PP"
-              marginLeft="70px"
               display="flex"
+              flexGrow = {1}
               height="auto"
               width="auto"
             >
@@ -535,18 +548,10 @@ function Contact() {
               </Box>
 
               <Typography
-                sx={{
-                  color: 'white',
-                  fontSize: '12px',
-                  textTransform: 'none',
-                  fontWeight: '500',
-                  width: 'relative',
-                  height: 'max-content',
-                  textAlign: 'Right',
-                }}
-              >
+                sx={designs.Cycrowd_Typography_Style}>
                 Website by CyCrowd
               </Typography>
+            </Box>
             </Box>
           </Box>
         </Box>

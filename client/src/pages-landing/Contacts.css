@@ -1,0 +1,21 @@
+.Footer .Content .Cyklas Button:hover {
+    background-color: transparent;
+    color: #3F3D56;
+}
+
+.Footer .Content .Services Button:hover {
+    background-color: transparent;
+    color: #3F3D56;
+}
+
+.Footer .Content .Socials .Social-buttons Button:hover {
+    transform: scale(1.1);
+}
+
+.Footer .Content .Socials .Social-buttons Button:hover {
+    transition: all 100ms;
+}
+
+.Footer .Content2 .TC-PP Button:hover {
+    color: white;
+}
