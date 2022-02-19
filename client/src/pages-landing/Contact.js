@@ -36,7 +36,8 @@ const CssTextField = styled(TextField)({
 
 function Contact() {
   // const classes = useStyles();
-  const {designs} = useStyle()
+  const {designs, theme} = useStyle()
+  console.log(theme)
 
   return (
     <>

@@ -1,6 +1,7 @@
 import {useTheme} from '@mui/material/styles'
 
 function useStyle() {
+
 const theme = useTheme()
 
 const designs = {
@@ -15,11 +16,11 @@ const designs = {
             justifyContent: "center",
             alignItems: "center"
         },
-        // [theme.breakpoints.between('xs', 'md')]: {
-        //     width: "100%",
-        //     justifyContent: "center",
-        //     alignItems: "center"
-        // }
+        [theme.breakpoints.between('xs', 'md')]: {
+            width: "100%",
+            justifyContent: "center",
+            alignItems: "center"
+        }
     },
     // BoxFlexGrow_Style: {
     //     flexGrow: 1,
@@ -57,7 +58,7 @@ const designs = {
 
 
 
-return {designs};
+return {designs, theme};
 }
 
 export default useStyle;
