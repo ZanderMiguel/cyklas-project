@@ -78,18 +78,14 @@ function Drawer_landingpage() {
                 }}
               >
                 <ListItemText
-                  sx={{ '&:hover': { color: 'white' } }}
-                  primary={
-                    <Typography
-                      sx={{
-                        color: '#3F3D56',
-                        fontWeight: 600,
-                      }}
-                    >
-                      {text}
-                    </Typography>
-                  }
-                />
+                  sx={{
+                    color: '#3F3D56',
+                    fontWeight: 600,
+                    '&:hover': { color: 'white' },
+                  }}
+                >
+                  {text}
+                </ListItemText>
               </ListItem>
             </Link>
           );

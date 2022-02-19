@@ -85,6 +85,7 @@ function Home() {
               variant="h4"
               sx={{
                 ...style,
+
                 fontWeight: 'bold',
                 display: 'flex',
                 justifyContent: 'center',

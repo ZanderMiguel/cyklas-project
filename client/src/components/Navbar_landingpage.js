@@ -28,7 +28,7 @@ import Logo from '../assets/Images/Ellipse 2.png';
 function Navbar_landingpage() {
   const { page } = useParams();
   const theme = useTheme();
-  const isMatch = useMediaQuery(theme.breakpoints.down('md'));
+  const isMatch = useMediaQuery(theme.breakpoints.down('sm'));
 
   const [dropdown, setDropDown] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);

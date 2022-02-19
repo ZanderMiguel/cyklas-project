@@ -12,30 +12,30 @@ import Rooms from './Rooms/Rooms';
 import Room_inside from './Rooms/Room-content-layout/Room_inside';
 import Activities_inside from './Rooms/Room-content-layout/Activities_inside';
 
-const theme = createTheme({
-  typography: {
-    fontFamily: 'Poppins',
-    color: '#3F3D56',
-  },
-  pallete: {
-    primary: {
-      main: '#3F3D56',
-    },
-  },
-  mixins: {
-    toolbar: {
-      minHeight: '56px',
-      '@media (min-width: 0px) and (orientation:landscape)': {
-        minHeight: '50px',
-      },
-      '@media (min-width: 600px)': {
-        minHeight: '64px',
-      },
-    },
-  },
-});
-
 function App() {
+  const theme = createTheme({
+    typography: {
+      fontFamily: 'Poppins',
+      color: '#3F3D56',
+    },
+    pallete: {
+      primary: {
+        main: '#3F3D56',
+      },
+    },
+    mixins: {
+      toolbar: {
+        minHeight: '56px',
+        '@media (min-width: 0px) and (orientation:landscape)': {
+          minHeight: '50px',
+        },
+        '@media (min-width: 600px)': {
+          minHeight: '64px',
+        },
+      },
+    },
+  });
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -53,7 +53,9 @@ function App() {
             <ProtectedRoutes exact path="/settings" component={Setting} />
             <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
             <ProtectedRoutes exact path="/records" component={Records} />
-            <Route path="/:page?" component={Navbar_landingpage} />
+            <Route path="/:page?">
+              <Navbar_landingpage />
+            </Route>
           </Switch>
         </Router>
       </ThemeProvider>
