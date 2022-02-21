@@ -8,7 +8,7 @@ const client = new OAuth2Client("90759507047-37dohu0dq74j6oui4b6hvb3tj4vpphkm.ap
 const createRegistration = async (req, res) => {
 
     try {
-
+        console.log(req.body)
         const password = await bcrypt.hash(req.body.password, 10)
         const addRegistration = new Registration({
             userType: req.body.userType,
@@ -22,7 +22,7 @@ const createRegistration = async (req, res) => {
             password: password,
 
         });
-
+        
         await addRegistration.save()
         console.log("Done!")
         return res.json({

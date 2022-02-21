@@ -1,9 +1,9 @@
-const Rooms = require('../models/model-createRoom')
-
+const {RoomsModel} = require('../models/model-createRoom')
+const User = require('../models/model-registration')
 async function createRooms(req, res) {
     try{
 
-        const addRooms = new Rooms({
+        const addRooms = new RoomsModel({
             RoomName: req.body.RoomName,
             Course: req.body.Course,
             ClassDays: req.body.ClassDays,
@@ -12,8 +12,10 @@ async function createRooms(req, res) {
             Terms: req.body.Terms,
             GradingSystem: req.body.GradingSystem,
         });
-
+        const getRoom = await User.findById(req.body.id)
+        
         await addRooms.save()
+        await User.findByIdAndUpdate(req.body.id,{room: [...getRoom.room,addRooms]})
             console.log("Room Created")
             return res.json({
                 status: 'success',
@@ -30,7 +32,7 @@ async function createRooms(req, res) {
 
 const displayRooms = async (req, res) => {
     try {
-        const room = await Rooms.find().sort({ createdAt: -1 })
+        const room = await RoomsModel.find().sort({ createdAt: -1 })
         console.log("room displayed!")
         return res.json(room)
     } catch (error) {
@@ -44,7 +46,7 @@ const displayRooms = async (req, res) => {
 
 const deleteRooms = async (req, res) => {
     try {
-        await Rooms.findByIdAndDelete(req.params.id)
+        await RoomsModel.findByIdAndDelete(req.params.id)
         console.log(req.params.id)
         return res.json({ redirect: '/' })
     } catch (error) {
@@ -58,7 +60,7 @@ const deleteRooms = async (req, res) => {
 
 const updateRooms = async (req, res) => {
     try {
-        await Rooms.findByIdAndUpdate(req.params.id, req.body)
+        await RoomsModel.findByIdAndUpdate(req.params.id, req.body)
         console.log('helicopter')
         return res.json({ redirect: '/' })
     } catch (error) {

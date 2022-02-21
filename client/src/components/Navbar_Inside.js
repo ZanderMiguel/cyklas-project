@@ -9,8 +9,11 @@ import Zander from '../assets/Images/zander.png';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Drawer from './Drawer';
-
+import useGet from '../customHooks/useGet'
 function Navbar() {
+  const {data} = useGet('http://localhost:5000/register')
+  console.log(data)
+  const getImage = data ? btoa(String.fromCharCode(...new Uint8Array(data[9].image.data))):Zander
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -38,7 +41,7 @@ function Navbar() {
               <NotificationsIcon sx={{ color: 'rgba(0, 0, 0, 0.54)' }} />
             </Badge>
           </IconButton>
-          <Avatar src={Zander} sx={{ ml: '20px' }} />
+         {data && <Avatar src={`data:image/jpg;base64,${getImage}`} sx={{ ml: '20px' }} />}
           <Box
             sx={{
               ml: '5px',

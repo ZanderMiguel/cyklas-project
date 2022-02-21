@@ -24,16 +24,27 @@ const genders = [
 function Register({ open, close }) {
   const [gender, setGender] = useState('Male');
   const [showPassword, setShowPassword] = useState(false);
-
+  const [imgSrc,setImgSrc] = useState(null)
+  const [registration,setRegistration] = useState(new Map())
+  registration.set('gender',gender)
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
 
   const handleChange = (event) => {
-    setGender(event.target.value);
+    setRegistration(registration.set([event.target.name],event.target.value))
   };
-
-  const handleSubmit = () => {};
-
+  const onChangeEvent = (e) => {
+    setGender(e.target.value)
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const {confirmpassword,...fields} = Object.fromEntries(registration)
+    console.log({...fields})
+  };
+  const handleClick = (text) => (event) => {
+    console.log(text)
+    setRegistration(registration.set([event.target.name],text))
+  }
   const googleSuccess = async (res) => {
     console.log(res);
   };
@@ -54,10 +65,14 @@ function Register({ open, close }) {
               justifyContent="space-around"
               alignItems="center"
             >
-              <Button sx={{ borderRadius: '20px' }} variant="outlined">
+              <Button sx={{ borderRadius: '20px' }} variant="outlined"
+              onClick={handleClick("Professor")} name="userType"
+              >
                 Professor
               </Button>
-              <Button sx={{ borderRadius: '50px' }} variant="outlined">
+              <Button sx={{ borderRadius: '50px' }} variant="outlined"
+              onClick={handleClick("Student")} name="userType"
+              >
                 Student
               </Button>
             </Grid>
@@ -68,35 +83,55 @@ function Register({ open, close }) {
               justifyContent="space-around"
               alignItems="center"
             >
-              <Avatar sx={{ height: '60px', width: '60px' }} />
+              <Avatar sx={{ height: '60px', width: '60px' }} onClick={()=>{
+                const openFile = document.querySelector('#slcImg')
+                openFile.click()
+                
+              }}
+              src={imgSrc}
+              />
+              <input type="file" id='slcImg' style={{display: 'none'}}
+              onChange={(e)=>{
+                const input = e.target
+                const reader = new FileReader()
+                reader.onload = () => {
+                  setImgSrc(reader.result)
+                  console.log(reader.result)
+                }
+                
+               
+                reader.readAsDataURL(input.file[0])
+              }}
+              accept="image/*"
+              />
             </Grid>
           </Grid>
           <form onSubmit={handleSubmit}>
             <Grid container spacing={2}>
               <Input
-                name="firstname"
+                name="firstName"
                 placeholder="Firstname"
-                handlChange={handleChange}
+                onChange={handleChange}
                 autoFocus
                 half
               />
               <Input
-                name="lastname"
+                name="lastName"
                 placeholder="Lastname"
-                handlChange={handleChange}
+                onChange={handleChange}
                 half
               />
               <Input
-                name="email"
+                name="emailAddress" 
                 placeholder="Email Address"
                 type="email"
-                handlChange={handleChange}
+                onChange={handleChange}
                 half
               />
               <Drowpdown
                 label="Gender"
                 value={gender}
-                onChange={handleChange}
+                onChange={onChangeEvent}
                 options={genders}
                 half
               />
@@ -105,14 +140,14 @@ function Register({ open, close }) {
                 placeholder="Password"
                 type={showPassword ? 'text' : 'password'}
                 handleShowPassword={handleShowPassword}
-                handlChange={handleChange}
+                onChange={handleChange}
               />
               <Input
-                name="confirm password"
+                name="confirmpassword"
                 placeholder="Confirm Password"
                 type={showPassword ? 'text' : 'password'}
                 handleShowPassword={handleShowPassword}
-                handlChange={handleChange}
+                onChange={handleChange}
               />
 
               <Grid item xs={6}>
@@ -140,6 +175,7 @@ function Register({ open, close }) {
                   fullWidth
                   variant="contained"
                   borderRadius="10px"
+                  type="submit"
                   sx={{
                     backgroundColor: '#007FFF',
                     color: 'white',
