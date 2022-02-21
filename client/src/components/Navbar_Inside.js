@@ -62,7 +62,7 @@ function Navbar() {
             size="small"
             onClick={handleClickNotif}
           >
-            <Badge badgeContent={2} color="primary">
+            <Badge badgeContent={3} color="primary">
               <NotificationsIcon sx={{ color: 'rgba(0, 0, 0, 0.54)' }} />
             </Badge>
           </IconButton>

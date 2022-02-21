@@ -19,7 +19,7 @@ function Room_layout({ data }) {
         return (
           <Grid item xs={12} key={index}>
             <Paper
-              elevation={0}
+              elevation={1}
               sx={{
                 backgroundColor: '#FAFAFA',
                 width: '100%',
@@ -28,7 +28,7 @@ function Room_layout({ data }) {
                 marginBottom: '10px',
                 '&:hover': {
                   boxShadow:
-                    '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
+                    '0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)',
                 },
               }}
             >

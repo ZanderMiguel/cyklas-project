@@ -1,7 +1,7 @@
 import React from 'react';
 import Input from '../../components/Input';
 
-import { Grid, TextField } from '@mui/material';
+import { Grid, TextField, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
 import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
@@ -43,7 +43,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
 }));
 
 function Announce() {
-  const [upload, setUpload] = React.useState('true');
+  const [upload, setUpload] = React.useState(true);
   const [alignment, setAlignment] = React.useState('left');
   const [formats, setFormats] = React.useState(() => ['italic']);
 
@@ -110,15 +110,13 @@ function Announce() {
           </StyledToggleButtonGroup>
         </Paper>
 
-        <Paper
-          elevation={0}
+        <Box
           sx={{
             backgroundColor: 'rgba(0, 0, 0, 0.06)',
             borderRadius: '0px 0px 4px 4px',
           }}
         >
           {upload && <Typography>Optangina</Typography>}
-          <Divider />
           <Stack direction="row" spacing={2}>
             <IconButton
               aria-label="image"
@@ -136,7 +134,7 @@ function Announce() {
               <InsertLinkOutlined />
             </IconButton>
           </Stack>
-        </Paper>
+        </Box>
       </Grid>
     </Grid>
   );
