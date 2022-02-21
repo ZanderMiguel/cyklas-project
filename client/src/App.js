@@ -12,6 +12,7 @@ import Rooms from './Rooms/Rooms';
 import Room_inside from './Rooms/Room-content-layout/Room_inside';
 import View_activity from './Rooms/Room-content-layout/View_activity';
 import Forgot_password from './pages-landing/Forgot_password';
+import Datetime from './components/Datetime';
 
 function App() {
   const theme = createTheme({
@@ -57,6 +58,7 @@ function App() {
             <Route path="/forgotpassword">
               <Forgot_password />
             </Route>
+            <Route path="/date" component={Datetime} />
             <Route path="/:page?" component={Navbar_landingpage} />
           </Switch>
         </Router>

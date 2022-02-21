@@ -3,8 +3,9 @@ import Dialogform from '../components/Dialogform';
 import Input from '../components/Input';
 import Dropdown from '../components/Drowpdown';
 import usePost from '../customHooks/usePost';
+import Datetime from '../components/Datetime';
 
-import { Grid, Button } from '@mui/material';
+import { Grid, Button, Select } from '@mui/material';
 
 const classtimes = [
   {
@@ -116,13 +117,16 @@ function Create_room({ open, close, maxWidth }) {
               onChange={(e) => setYearandsection(e.target.value)}
               half
             />
-            <Dropdown
+            {/* <Dropdown
               inputLabel="Class Time"
               value={classtime}
               onChange={handleChangeClassTime}
               options={classtimes}
               half
-            />
+            /> */}
+            <Grid item xs={6}>
+              <Datetime />
+            </Grid>
             <Dropdown
               inputLabel="Terms"
               value={term}
