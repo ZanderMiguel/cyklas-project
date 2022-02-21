@@ -10,11 +10,13 @@
     "google-auth-library": "^7.11.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.8",
+    "nodemon": "^2.0.15",
     "socket.io": "^4.4.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {},
   "scripts": {
+    "start": "nodemon app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

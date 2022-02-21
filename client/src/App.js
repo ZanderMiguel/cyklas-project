@@ -11,6 +11,7 @@ import QuizLit from './Quizlit/Quizlit';
 import Rooms from './Rooms/Rooms';
 import Room_inside from './Rooms/Room-content-layout/Room_inside';
 import Activities_inside from './Rooms/Room-content-layout/Activities_inside';
+import View_activity from './Rooms/Room-content-layout/View_activity';
 
 function App() {
   const theme = createTheme({
@@ -53,9 +54,12 @@ function App() {
             <ProtectedRoutes exact path="/settings" component={Setting} />
             <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
             <ProtectedRoutes exact path="/records" component={Records} />
-            <Route path="/:page?">
-              <Navbar_landingpage />
-            </Route>
+            <ProtectedRoutes
+              exact
+              path="/rooms/:id/:id"
+              component={View_activity}
+            />
+            <Route path="/:page?" component={Navbar_landingpage} />
           </Switch>
         </Router>
       </ThemeProvider>
