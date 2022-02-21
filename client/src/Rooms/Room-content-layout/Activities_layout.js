@@ -64,10 +64,10 @@ const data = [
 
 function ActivitiesAccordion({ params }) {
   const { designs } = useStyle();
-  const [expanded, setExpanded] = React.useState(true);
+  const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (panel) => (isExpanded) => {
-    setExpanded(isExpanded ? panel : true);
+    setExpanded(isExpanded ? panel : false);
   };
 
   return (
@@ -76,19 +76,14 @@ function ActivitiesAccordion({ params }) {
         return (
           <Grid key={index} item xs={12}>
             <Box className="Activity_Tiles" sx={designs.Activity_Tiles}>
-              <Box className="Lesson" sx={designs.Lesson}>
-                <Typography noWrap sx={designs.Lesson_Typography}>
-                  {items.Lesson}
-                </Typography>
-              </Box>
               <Accordion
-                expanded={expanded === `${items.Lesson}`}
-                onChange={handleChange(`${items.Lesson}`)}
+                expanded={expanded === `${items.Activity}`}
+                onChange={handleChange(`${items.Activity}`)}
                 sx={designs.Accordion_Style}
               >
                 <AccordionSummary
-                  aria-controls="panel1bh-content"
-                  id="panel1bh-header"
+                  aria-controls={items.Activity}
+                  id={items.Activity}
                   sx={designs.AccordionSummary_Style}
                 >
                   <Box

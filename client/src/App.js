@@ -10,8 +10,8 @@ import Telecon from './Telecon/Telecon';
 import QuizLit from './Quizlit/Quizlit';
 import Rooms from './Rooms/Rooms';
 import Room_inside from './Rooms/Room-content-layout/Room_inside';
-import Activities_inside from './Rooms/Room-content-layout/Activities_inside';
 import View_activity from './Rooms/Room-content-layout/View_activity';
+import Forgot_password from './pages-landing/Forgot_password';
 
 function App() {
   const theme = createTheme({
@@ -49,16 +49,14 @@ function App() {
             <ProtectedRoutes
               exact
               path="/rooms/:id/:id"
-              component={Activities_inside}
+              component={View_activity}
             />
             <ProtectedRoutes exact path="/settings" component={Setting} />
             <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
             <ProtectedRoutes exact path="/records" component={Records} />
-            <ProtectedRoutes
-              exact
-              path="/rooms/:id/:id"
-              component={View_activity}
-            />
+            <Route path="/forgotpassword">
+              <Forgot_password />
+            </Route>
             <Route path="/:page?" component={Navbar_landingpage} />
           </Switch>
         </Router>
