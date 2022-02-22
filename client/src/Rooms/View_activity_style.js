@@ -61,8 +61,16 @@ const designs = {
     Student_Avatar_Style: {
         margin: "0px 10px 0px 0px"
     },
-    // Di gumagana dito
-    // StudentName_Typography_Style: ,
+    StudentName_Typography_Style: {
+        height: "max-content",
+        width: "40%",
+        textTransform: "Capitalize",
+        textAlign: "Left",
+        fontSize: "13px",
+        fontWeight: "500",
+        color: "#3F3D56",
+        margin: "10px 0px 10px 0px"
+    },
     StudentScore_Typography_Style: {
         height: "max-content",
         width: "17%",
@@ -70,7 +78,7 @@ const designs = {
         fontSize: "13px",
         fontWeight: "500",
         color: "#3F3D56",
-        margin: "10px 0px 10px 0px",
+        margin: "10px 0px 10px 0px"
     },
     Activity_Style: {
         margin: "20px 0px",
@@ -81,7 +89,6 @@ const designs = {
         gap: "5px"
     },
     ActivityInfo_Style: {
-        paddingBottom: "20px",
         height: "50%",
         backgroundColor: "#FCFCFC",
         border: "1px solid #DBDBDB"
@@ -129,7 +136,22 @@ const designs = {
         color: "#3F3D56",
         marginTop: "2px"
     },
-    // AttachFile_Style: ,
+    Attach_File_Style: {
+        margin: "10px 0px",
+        width: "50%",
+        padding: "8px 15px",
+        display: "flex", 
+        gap: "15px",
+        border: "1px solid #D4D4D4",
+        borderRadius: "0.3em",
+        "&: hover": {
+            cursor: "pointer",
+            boxShadow: "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px"
+        },
+        [theme.breakpoints.down('sm')]: {
+            width: "80%"
+           }
+    },
     ActivityFileName_Style: {
         width: "85%",
         marginTop: "1px"
@@ -233,7 +255,7 @@ const designs = {
         height: "90%",
         width: "100%",
     },
-    StudentName_Typography_Style: {
+    StudentName_Typography_Style2: {
         color: "#3F3D56",
         fontSize: "13px",
         fontWeight: "500",
@@ -241,7 +263,7 @@ const designs = {
         height: "max-content",
         marginBottom: "5px"
     },
-    AttachFile_Style: {
+    Attach_File_Style2: {
         backgroundColor: "#FCFCFC",
         width: "relative",
         padding: "8px 15px",

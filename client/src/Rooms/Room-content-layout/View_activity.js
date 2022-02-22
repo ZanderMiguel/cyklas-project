@@ -41,6 +41,18 @@ const data = [
   {
       studentName: "Robert Downey Jr.",
       score: "100/100"  
+  },
+  {
+      studentName: "Karen Gillan",
+      score: "100/100"  
+  },
+  {
+      studentName: "Paul Bettany",
+      score: "100/100"  
+  },
+  {
+      studentName: "Elizabeth Olsen",
+      score: "100/100"  
   }
 ]
 
@@ -93,16 +105,7 @@ function View_activity() {
                                             <Avatar alt="Remy Sharp" src={AvatarIcon} 
                                             sx = {designs.Student_Avatar_Style}/>
                                             <Typography noWrap
-                                                sx = {{
-                                                    height: "max-content",
-                                                    width: "47%",
-                                                    textTransform: "Capitalize",
-                                                    textAlign: "Left",
-                                                    fontSize: "13px",
-                                                    fontWeight: "500",
-                                                    color: "#3F3D56",
-                                                    margin: "10px 0px 10px 0px"
-                                                }}>
+                                                sx = {designs.StudentName_Typography_Style}>
                                                 {items.studentName}
                                             </Typography>
                                             <Box flexGrow = {1} height = "relative" width = "relative"/>
@@ -146,19 +149,7 @@ function View_activity() {
                                         </Typography>
 
                                         <Box className = "Attach-file" 
-                                            sx = {{
-                                                margin: "10px 0px",
-                                                width: "50%",
-                                                padding: "8px 15px",
-                                                display: "flex", 
-                                                gap: "15px",
-                                                border: "1px solid #D4D4D4",
-                                                borderRadius: "0.3em",
-                                                "&: hover": {
-                                                    cursor: "pointer",
-                                                    boxShadow: "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px"
-                                                }
-                                            }}>
+                                            sx = {designs.Attach_File_Style}>
                                                 <img src = {Wordfile}
                                                 style = {{
                                                     height: "40px"
@@ -233,17 +224,17 @@ function View_activity() {
 
                                         {data.map(function(items, index) {
                                             return (
-                                                <Grid item md = {4} sm = {6} key = {index}>
+                                                <Grid item lg = {4} md = {6} sm = {6} xs = {12} key = {index}>
                                                     <Box className = "Student-uploaded-file-container"
                                                         sx = {designs.StudentUploadedFileContainer_Style}>
 
                                                             <Typography noWrap
-                                                                sx = {designs.StudentName_Typography_Style}>
+                                                                sx = {designs.StudentName_Typography_Style2}>
                                                                 {items.studentName}
                                                             </Typography>
 
                                                             <Box className = "Attach-file" 
-                                                                sx = {designs.AttachFile_Style}>
+                                                                sx = {designs.Attach_File_Style2}>
                                                                     <img src = {Wordfile}
                                                                     style = {{
                                                                         height: "40px"
