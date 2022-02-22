@@ -62,7 +62,7 @@ const data = [
   },
 ];
 
-function ActivitiesAccordion({ params }) {
+function ActivitiesAccordion({ roomID }) {
   const { designs } = useStyle();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -257,7 +257,7 @@ function ActivitiesAccordion({ params }) {
                   <Button
                     sx={designs.ViewHomework_Button_Style}
                     component={Link}
-                    to={`/Rooms/${params}/${items.Lesson}`}
+                    to={`/Rooms/${roomID}/${items.Lesson}`}
                   >
                     View Homework
                   </Button>

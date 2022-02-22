@@ -4,7 +4,7 @@ import Create_activity from '../../Form_content/Create_activity';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Activities_layout from './Activities_layout';
 
-function Activities({ params }) {
+function Activities({ roomID }) {
   const [opendialog, setOpenDialog] = useState(false);
   const handleClickOpen = () => {
     setOpenDialog(true);
@@ -36,7 +36,7 @@ function Activities({ params }) {
       </Box>
       {opendialog && <Create_activity open={opendialog} close={handleClose} />}
       <Grid container rowSpacing={1}>
-        <Activities_layout params={params} />
+        <Activities_layout roomID={roomID} />
       </Grid>
     </Container>
   );

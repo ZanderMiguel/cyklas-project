@@ -27,21 +27,19 @@ import Logo from '../assets/Images/Ellipse 2.png';
 
 function Navbar_landingpage() {
   const { page } = useParams();
+
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const [dropdown, setDropDown] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
   const handleClose = () => {
     setAnchorEl(null);
-    setDropDown((prevDropdown) => !prevDropdown);
   };
 
   const handleChangeIcon = (event) => {
     setAnchorEl(event.currentTarget);
-    setDropDown((prevDropdown) => !prevDropdown);
   };
 
   const idx = {

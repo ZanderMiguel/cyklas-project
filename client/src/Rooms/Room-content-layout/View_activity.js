@@ -20,8 +20,6 @@ import Wordfile from '../../assets/ImageJaven/Wordfile.png';
 import { KeyboardArrowDown, Send } from '@mui/icons-material';
 import useStyle from '../View_activity_style';
 import '../View_activity_style.css';
-import Announce from './Announce';
-import { Link } from 'react-router-dom';
 
 const sortOptions = [
   {
@@ -65,7 +63,7 @@ function View_activity() {
   const [view, setView] = React.useState(false);
   console.log(view);
   const { designs } = useStyle();
-  const { id, ab } = useParams();
+  const { roomID, activityID } = useParams();
 
   return (
     <Container maxWidth="lg">

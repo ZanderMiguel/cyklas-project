@@ -6,7 +6,7 @@ import Setting from './Settings/SettingsCont';
 import ProtectedRoutes from './components/ProtectedRoutes';
 import Dashboard from './Dashboard/Dashboard';
 import Navbar_landingpage from './components/Navbar_landingpage';
-import Telecon from './Telecon/Telecon';
+import TeleconStart from './Telecon/TeleconStart';
 import QuizLit from './Quizlit/Quizlit';
 import Rooms from './Rooms/Rooms';
 import Room_inside from './Rooms/Room-content-layout/Room_inside';
@@ -45,12 +45,16 @@ function App() {
         <Router>
           <Switch>
             <ProtectedRoutes exact path="/dashboard" component={Dashboard} />
-            <ProtectedRoutes exact path="/telecon" component={Telecon} />
+            <ProtectedRoutes exact path="/telecon" component={TeleconStart} />
             <ProtectedRoutes exact path="/rooms" component={Rooms} />
-            <ProtectedRoutes exact path="/rooms/:as" component={Room_inside} />
             <ProtectedRoutes
               exact
-              path="/rooms/:id/:ab"
+              path="/rooms/:roomID"
+              component={Room_inside}
+            />
+            <ProtectedRoutes
+              exact
+              path="/rooms/:roomID/:activityID"
               component={View_activity}
             />
             {/* Sample 2 id's */}
@@ -68,7 +72,7 @@ function App() {
             </Route>
             {/* Javen Routes */}
 
-            <Route path="/:page?" component={Navbar_landingpage} />
+            <Route exact path="/:page?" component={Navbar_landingpage} />
           </Switch>
         </Router>
       </ThemeProvider>

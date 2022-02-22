@@ -1,9 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import Announce from './Announce';
-import FeedIcon from '../../assets/ImageJaven/FeedIcon.png';
-import ActivitiesIcon from '../../assets/ImageJaven/ActivitiesIcon.png';
-import MembersIcon from '../../assets/ImageJaven/MembersIcon.png';
+import Activities from './Activities';
+import People from './People';
 
 import {
   AppBar,
@@ -11,15 +10,12 @@ import {
   Container,
   Box,
   Typography,
-  Button,
+  Tabs,
+  Tab,
 } from '@mui/material';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
 import { IoNewspaperSharp } from 'react-icons/io5';
 import { HiUserGroup } from 'react-icons/hi';
 import { FaClipboardList } from 'react-icons/fa';
-import Activities from './Activities';
-import People from './People';
 
 function Room_inside() {
   const [value, setValue] = React.useState(0);
@@ -28,7 +24,7 @@ function Room_inside() {
     setValue(newValue);
   };
 
-  const { as } = useParams();
+  const { roomID } = useParams();
 
   return (
     <>
@@ -94,7 +90,7 @@ function Room_inside() {
         {value === 0 ? (
           <Announce />
         ) : value === 1 ? (
-          <Activities params={as} />
+          <Activities roomID={roomID} />
         ) : (
           <People />
         )}

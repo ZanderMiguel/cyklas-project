@@ -1,5 +1,7 @@
 import React from 'react';
 import logo from '../assets/Ellipse 3.svg';
+import Notificationpopover from './PopoverContent/Notificationpopover';
+import Accountpopover from './PopoverContent/Accountpopover';
 
 //MUI imports
 import { AppBar, Box, Toolbar, Typography, IconButton } from '@mui/material';
@@ -30,11 +32,9 @@ function Navbar() {
   const handleCloseArrow = () => {
     setAnchorEl1(null);
   };
-  const open = Boolean(anchorEl);
-  const id = open ? 'notif' : undefined;
+  const notif = Boolean(anchorEl);
 
-  const open1 = Boolean(anchorEl1);
-  const id1 = open1 ? 'arrow' : undefined;
+  const account = Boolean(anchorEl1);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -46,6 +46,7 @@ function Navbar() {
         <Toolbar>
           <Drawer />
           <img src={logo} alt="cyklasLogo" />
+
           <Typography
             sx={{
               flexGrow: 1,
@@ -57,58 +58,55 @@ function Navbar() {
           >
             Dashboard
           </Typography>
-          <IconButton
-            aria-describedby={id}
-            size="small"
-            onClick={handleClickNotif}
-          >
+          <IconButton size="small" onClick={handleClickNotif}>
             <Badge badgeContent={3} color="primary">
               <NotificationsIcon sx={{ color: 'rgba(0, 0, 0, 0.54)' }} />
             </Badge>
           </IconButton>
           <CusPopover
-            id={id}
-            open={open}
+            open={notif}
             anchorEl={anchorEl}
             onClose={handleCloseNotif}
           >
-            <Box p={2}>
-              <Typography variant="h4">aslkdjalksjd</Typography>
-            </Box>
+            <Notificationpopover />
           </CusPopover>
-          <Avatar src={Zander} sx={{ ml: '20px' }} />
           <Box
+            display="flex"
+            alignItems="center"
+            onClick={handleClickArrow}
             sx={{
-              ml: '5px',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              width: '6rem',
+              ml: '20px',
+              '&:hover': {
+                cursor: 'pointer',
+                backgroundColor: '',
+              },
             }}
           >
-            <Typography
-              noWrap
-              variant="body1"
-              sx={{ fontWeight: 500, color: '#3F3D56' }}
+            <Avatar src={Zander} />
+            <Box
+              sx={{
+                ml: '5px',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                maxWidth: '7rem',
+              }}
             >
-              Zander Miguel
-            </Typography>
+              <Typography
+                noWrap
+                variant="body1"
+                sx={{ fontWeight: 500, color: '#3F3D56' }}
+              >
+                Zander
+              </Typography>
+            </Box>
+            <ArrowDropDownIcon sx={{ color: 'rgba(0, 0, 0, 0.54)', ml: 1 }} />
           </Box>
-          <IconButton
-            aria-describedby={id1}
-            size="small"
-            onClick={handleClickArrow}
-          >
-            <ArrowDropDownIcon sx={{ color: 'rgba(0, 0, 0, 0.54)' }} />
-          </IconButton>
           <CusPopover
-            id={id1}
-            open={open1}
+            open={account}
             anchorEl={anchorEl1}
             onClose={handleCloseArrow}
           >
-            <Box p={2}>
-              <Typography variant="h4">aslkdjalksjd</Typography>
-            </Box>
+            <Accountpopover />
           </CusPopover>
         </Toolbar>
       </AppBar>
