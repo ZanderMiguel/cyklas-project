@@ -264,6 +264,7 @@ const designs = {
         marginBottom: "5px"
     },
     Attach_File_Style2: {
+        textDecoration: "none",
         backgroundColor: "#FCFCFC",
         width: "relative",
         padding: "8px 15px",

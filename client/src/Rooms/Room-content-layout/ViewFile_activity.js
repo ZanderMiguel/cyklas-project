@@ -5,7 +5,6 @@ import Wordfile from "../../assets/ImageJaven/Wordfile.png";
 import {KeyboardArrowDown, Send} from '@mui/icons-material';
 import useStyle from '../View_activity_style';
 import "../View_activity_style.css";
-import { Link } from 'react-router-dom';
 
 const sortOptions = [
   { 
@@ -42,22 +41,10 @@ const data = [
   {
       studentName: "Robert Downey Jr.",
       score: "100/100"  
-  },
-  {
-      studentName: "Karen Gillan",
-      score: "100/100"  
-  },
-  {
-      studentName: "Paul Bettany",
-      score: "100/100"  
-  },
-  {
-      studentName: "Elizabeth Olsen",
-      score: "100/100"  
   }
 ]
 
-function View_activity() {
+function ViewFile_activity() {
   const {designs} = useStyle()
 
   return (
@@ -234,9 +221,7 @@ function View_activity() {
                                                                 {items.studentName}
                                                             </Typography>
 
-                                                            <Box className = "Attach-file"
-                                                            component={Link}
-                                                            to="/waw"
+                                                            <Box className = "Attach-file" 
                                                                 sx = {designs.Attach_File_Style2}>
                                                                     <img src = {Wordfile}
                                                                     style = {{
@@ -274,4 +259,4 @@ function View_activity() {
   )
 }
 
-export default View_activity;
+export default ViewFile_activity;
