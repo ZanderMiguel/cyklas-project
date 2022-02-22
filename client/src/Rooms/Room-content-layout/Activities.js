@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container, Box, Button, Grid } from '@mui/material';
 import Create_activity from '../../Form_content/Create_activity';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import ActivitiesAccordion from './Activities_layout';
+import Activities_layout from './Activities_layout';
 
 function Activities({ params }) {
   const [opendialog, setOpenDialog] = useState(false);
@@ -36,7 +36,7 @@ function Activities({ params }) {
       </Box>
       {opendialog && <Create_activity open={opendialog} close={handleClose} />}
       <Grid container rowSpacing={1}>
-        <ActivitiesAccordion params={params} />
+        <Activities_layout params={params} />
       </Grid>
     </Container>
   );

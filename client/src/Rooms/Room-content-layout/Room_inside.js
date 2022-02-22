@@ -28,7 +28,7 @@ function Room_inside() {
     setValue(newValue);
   };
 
-  const { id } = useParams();
+  const { as } = useParams();
 
   return (
     <>
@@ -94,7 +94,7 @@ function Room_inside() {
         {value === 0 ? (
           <Announce />
         ) : value === 1 ? (
-          <Activities params={id} />
+          <Activities params={as} />
         ) : (
           <People />
         )}

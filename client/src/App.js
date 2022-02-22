@@ -13,6 +13,7 @@ import Room_inside from './Rooms/Room-content-layout/Room_inside';
 import View_activity from './Rooms/Room-content-layout/View_activity';
 import Forgot_password from './pages-landing/Forgot_password';
 import Datetime from './components/Datetime';
+import { ListItemSecondaryAction } from '@mui/material';
 
 function App() {
   const theme = createTheme({
@@ -46,19 +47,27 @@ function App() {
             <ProtectedRoutes exact path="/dashboard" component={Dashboard} />
             <ProtectedRoutes exact path="/telecon" component={Telecon} />
             <ProtectedRoutes exact path="/rooms" component={Rooms} />
-            <ProtectedRoutes exact path="/rooms/:id" component={Room_inside} />
+            <ProtectedRoutes exact path="/rooms/:as" component={Room_inside} />
             <ProtectedRoutes
               exact
-              path="/rooms/:id/:id"
+              path="/rooms/:id/:ab"
               component={View_activity}
             />
+            {/* Sample 2 id's */}
+            <ProtectedRoutes
+              exact
+              path="/rooms/:id/:ab/:w"
+              component={Dashboard}
+            />
+
             <ProtectedRoutes exact path="/settings" component={Setting} />
             <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
             <ProtectedRoutes exact path="/records" component={Records} />
             <Route path="/forgotpassword">
               <Forgot_password />
             </Route>
-            <Route path="/date" component={Datetime} />
+            {/* Javen Routes */}
+
             <Route path="/:page?" component={Navbar_landingpage} />
           </Switch>
         </Router>

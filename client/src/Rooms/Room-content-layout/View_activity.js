@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import {
   Box,
   Typography,
@@ -19,6 +20,8 @@ import Wordfile from '../../assets/ImageJaven/Wordfile.png';
 import { KeyboardArrowDown, Send } from '@mui/icons-material';
 import useStyle from '../View_activity_style';
 import '../View_activity_style.css';
+import Announce from './Announce';
+import { Link } from 'react-router-dom';
 
 const sortOptions = [
   {
@@ -59,7 +62,10 @@ const data = [
 ];
 
 function View_activity() {
+  const [view, setView] = React.useState(false);
+  console.log(view);
   const { designs } = useStyle();
+  const { id, ab } = useParams();
 
   return (
     <Container maxWidth="lg">
@@ -111,13 +117,7 @@ function View_activity() {
             >
               {data.map(function (items, index) {
                 return (
-                  <Box
-                    onClick={() => {
-                      alert('clicked');
-                    }}
-                    key={index}
-                    sx={designs.Student_Box_Style}
-                  >
+                  <Box key={index} sx={designs.Student_Box_Style}>
                     <Checkbox sx={designs.Student_Checkbox_Style} />
                     <Avatar
                       alt="Remy Sharp"
