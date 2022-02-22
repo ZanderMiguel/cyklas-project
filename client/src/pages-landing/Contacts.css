@@ -19,3 +19,8 @@
 .Footer .Content2 .TC-PP Button:hover {
     color: white;
 }
+
+.Footer .Content2 .TC-PP Button {
+    background-color: red;
+    text-align: left;
+}

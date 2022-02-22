@@ -134,147 +134,148 @@ function Contact() {
           <Box className="Content" sx = {designs.Content_Style}> 
             <Box className = "Content-sub" sx = {designs.Content_Sub_Style}>
 
-            <Box className="Cyklas-logo" sx = {designs.Cyklas_Logo_Style}>
-              <Box className="Cyklas-logo-image" sx = {designs.Cyklas_Logo_Image_Style}>
-                <img
-                  src={CyklasLogo}
-                  style={{
-                    height: '70px'
-                  }}
-                />
-              
+            <Box className = "CyklasLogo-Cyklas" sx = {designs.CyklasLogo_Cyklas_Style}>
+              <Box className="Cyklas-logo" sx = {designs.Cyklas_Logo_Style}>
+                <Box className="Cyklas-logo-image" sx = {designs.Cyklas_Logo_Image_Style}>
+                  <img
+                    src={CyklasLogo}
+                    style={{
+                      height: '70px'
+                    }}
+                  />
+                
 
-              <Typography sx = {designs.CompanyAddress_Typography_Style}>
-                Bilibid Viejo Street, Quiapo Manila.
-              </Typography>
+                <Typography sx = {designs.CompanyAddress_Typography_Style}>
+                  Bilibid Viejo Street, Quiapo Manila.
+                </Typography>
 
-              <Typography sx = {designs.CompanyEmailAddress_Typography_Style}>
-                cycrowd@gmail.com
-              </Typography>
+                <Typography sx = {designs.CompanyEmailAddress_Typography_Style}>
+                  cycrowd@gmail.com
+                </Typography>
+                </Box>
+              </Box>
+
+              <Box className="Cyklas" sx = {designs.Cyklas_Style}>
+                <Typography sx = {designs.Cyklas_Typography_Style}>
+                  CykLas
+                </Typography>
+
+                <Button variant="text"sx = {designs.Home_TextButton_Style}>
+                  Home
+                </Button>
+
+                <Button variant="text" sx = {designs.Services_TextButton_Style}>
+                  Services
+                </Button>
+
+                <Button variant="text" sx = {designs.About_TextButton_Style}>
+                  About
+                </Button>
+
+                <Button variant="text" sx = {designs.Contacts_TextButton_Style}>
+                  Contacts
+                </Button>
               </Box>
             </Box>
-            
-            <Box className = "Content-sub2" sx = {designs.Content_Sub2_Style}>
-            <Box className="Cyklas" sx = {designs.Cyklas_Style}>
-              <Typography sx = {designs.Cyklas_Typography_Style}>
-                CykLas
-              </Typography>
 
-              <Button variant="text"sx = {designs.Home_TextButton_Style}>
-                Home
-              </Button>
+            <Box className = "Services-Socials" sx = {designs.Services_Socials_Style}>
+              <Box className="Services" sx = {designs.Services_Style}>
+                <Typography sx = {designs.Services_Typography_Style}>
+                  Services
+                </Typography>
 
-              <Button variant="text" sx = {designs.Services_TextButton_Style}>
-                Services
-              </Button>
+                <Button variant="text" sx = {designs.Classroom_TextButton_Style}>
+                  CyClassroom
+                </Button>
 
-              <Button variant="text" sx = {designs.About_TextButton_Style}>
-                About
-              </Button>
+                <Button variant="text" sx = {designs.Quizlit_TextButton_Style}>
+                  QuizLit
+                </Button>
 
-              <Button variant="text" sx = {designs.Contacts_TextButton_Style}>
-                Contacts
-              </Button>
-            </Box>
-
-            <Box className="Services" sx = {designs.Services_Style}>
-              <Typography sx = {designs.Services_Typography_Style}>
-                Services
-              </Typography>
-
-              <Button variant="text" sx = {designs.Classroom_TextButton_Style}>
-                CyClassroom
-              </Button>
-
-              <Button variant="text" sx = {designs.Quizlit_TextButton_Style}>
-                QuizLit
-              </Button>
-
-              <Button variant="text" sx = {designs.Telecon_TextButton_Style}>
-                Telecon (Video Conference)
-              </Button>
-            </Box>
-
-            <Box className="Socials" sx = {designs.Socials_Style}>
-              <Typography sx = {designs.FollowUs_Typography_Style}>
-                Follow us
-              </Typography>
-
-              <Box className="Social-buttons" sx = {designs.SocialButtons_Style}>
-                <IconButton
-                  aria-label="facebook"
-                  sx = {designs.Facebook_IconButton_Style}>
-                  <img
-                    src={Facebook}
-                    alt="Facebook"
-                    style={{
-                      height: '30px',
-                      width: '30px',
-                    }}
-                  />
-                </IconButton>
-
-                <IconButton
-                  aria-label="instagram"
-                  sx = {designs.Instagram_IconButton_Style}>
-                  <img
-                    src={Instagram}
-                    alt="Instagram"
-                    style={{
-                      height: '30px',
-                      width: '30px',
-                    }}
-                  />
-                </IconButton>
-
-                <IconButton
-                  aria-label="twitter"
-                  sx = {designs.Twitter_IconButton_Style}>
-                  <img
-                    src={Twitter}
-                    alt="Twitter"
-                    style={{
-                      height: '31px',
-                      width: '31px',
-                    }}
-                  />
-                </IconButton>
-
-                <IconButton
-                  aria-label="youtube"
-                  sx = {designs.Youtube_IconButton_Style}>
-                  <img
-                    src={Youtube}
-                    alt="Youtube"
-                    style={{
-                      height: '34px',
-                      width: '34px',
-                    }}
-                  />
-                </IconButton>
+                <Button variant="text" sx = {designs.Telecon_TextButton_Style}>
+                  Telecon (Video Conference)
+                </Button>
               </Box>
+
+              <Box className="Socials" sx = {designs.Socials_Style}>
+                <Typography sx = {designs.FollowUs_Typography_Style}>
+                  Follow us on
+                </Typography>
+
+                <Box className="Social-buttons" sx = {designs.SocialButtons_Style}>
+                  <IconButton
+                    aria-label="facebook"
+                    sx = {designs.Facebook_IconButton_Style}>
+                    <img
+                      src={Facebook}
+                      alt="Facebook"
+                      style={{
+                        height: '30px',
+                        width: '30px',
+                      }}
+                    />
+                  </IconButton>
+
+                  <IconButton
+                    aria-label="instagram"
+                    sx = {designs.Instagram_IconButton_Style}>
+                    <img
+                      src={Instagram}
+                      alt="Instagram"
+                      style={{
+                        height: '30px',
+                        width: '30px',
+                      }}
+                    />
+                  </IconButton>
+
+                  <IconButton
+                    aria-label="twitter"
+                    sx = {designs.Twitter_IconButton_Style}>
+                    <img
+                      src={Twitter}
+                      alt="Twitter"
+                      style={{
+                        height: '31px',
+                        width: '31px',
+                      }}
+                    />
+                  </IconButton>
+
+                  <IconButton
+                    aria-label="youtube"
+                    sx = {designs.Youtube_IconButton_Style}>
+                    <img
+                      src={Youtube}
+                      alt="Youtube"
+                      style={{
+                        height: '34px',
+                        width: '34px',
+                      }}
+                    />
+                  </IconButton>
+                </Box>
+                </Box>
               </Box>
-            </Box>
             </Box>
           </Box>
 
           <Box className="Content2" sx = {designs.Content2_Style}>
             <Box className = "Content2-sub" sx = {designs.Content2_Sub_Style}>
             <Box className="TC-PP" sx = {designs.TC_PP_Style}>
-              <Button variant="text" sx = {designs.TermsCondition_TextButton_Style}>
+
+              <Typography onClick = {() => { alert('clicked');}}
+              sx = {designs.TermsCondition_Typography_Style}>
                 Terms & Conditions
-              </Button>
+              </Typography>
 
-              <Box className="Seperator-v"
-                margin="5px 0px 16px 0px"
-                height="relative"
-                width="1px"
-                backgroundColor="#E1E1E1"
-              ></Box>
+              <Divider orientation = "vertical" flexItem sx = {designs.DividerV_Style}/>
 
-              <Button variant="text" sx = {designs.PrivacyPolicy_TextButton_Style}>
+              <Typography onClick = {() => { alert('clicked');}}
+              sx = {designs.PrivacyPolicy_Typography_Style}>
                 Privacy Policy
-              </Button>
+              </Typography>
+
             </Box>
 
             <Box className="All-rights-reserved" sx = {designs.All_Rights_Reserved_Style}>
