@@ -1,4 +1,10 @@
 const mongoose = require('mongoose')
+const Room = require('../models/model-createRoom');
+
+const newRoom = new Room ({
+    RoomName: { type: String },
+    ClassTime: { type: mongoose.Schema.Types.ObjectId }
+});
 
 const RegistrationSchema = new mongoose.Schema({
     userType:{type: String, required: true},
@@ -10,6 +16,7 @@ const RegistrationSchema = new mongoose.Schema({
     mobileNo: {type: String, required: false},
     username: {type: String, required: false},
     password: {type: String, required: true},
+    rooms: [newRoom]
     
 
 },{timestamps:true})
