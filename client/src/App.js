@@ -8,6 +8,7 @@ import Dashboard from './Dashboard/Dashboard';
 import Navbar_landingpage from './components/Navbar_landingpage';
 import TeleconStart from './Telecon/TeleconStart';
 import QuizLit from './Quizlit/Quizlit';
+import Quizform from './Quizlit/Quizbank-content-layout/Quizform';
 import Rooms from './Rooms/Rooms';
 import Room_inside from './Rooms/Room-content-layout/Room_inside';
 import View_activity from './Rooms/Room-content-layout/View_activity';
@@ -67,7 +68,13 @@ function App() {
 
             <ProtectedRoutes exact path="/settings" component={Setting} />
             <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
+            <ProtectedRoutes
+              exact
+              path="/quizlit/createquiz"
+              component={Quizform}
+            />
             <ProtectedRoutes exact path="/records" component={Records} />
+
             <Route path="/forgotpassword">
               <Forgot_password />
             </Route>
