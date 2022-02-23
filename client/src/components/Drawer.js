@@ -55,7 +55,7 @@ function Drawer() {
     {
       icon: <VscFileSubmodule size="25px" />,
       text: 'Records',
-      path: '/records',
+      path: '/Records',
     },
     {
       icon: <MdOutlineSettings size="25px" />,

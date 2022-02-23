@@ -13,7 +13,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Drawer from './Drawer';
 import CusPopover from './Popover';
 
-function Navbar() {
+function Navbar({ title }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorEl1, setAnchorEl1] = React.useState(null);
 

@@ -124,7 +124,7 @@ function Create_room({ open, close, maxWidth }) {
               options={classtimes}
               half
             /> */}
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={6}>
               <Datetime />
             </Grid>
             <Dropdown

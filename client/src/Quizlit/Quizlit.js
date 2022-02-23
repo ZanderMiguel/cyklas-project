@@ -11,7 +11,7 @@ import Exam_layout from './Quizbank-content-layout/Exam_layout';
 function Quizlit() {
   return (
     <>
-      <Container maxWidth="lg"></Container>
+      <Container maxWidth="lg">QUIZ</Container>
     </>
   );
 }

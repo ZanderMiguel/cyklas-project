@@ -10,12 +10,14 @@ export default function BasicTimePicker() {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <TimePicker
-        label="Basic example"
         value={value}
+        fullWidth
         onChange={(newValue) => {
           setValue(newValue);
         }}
-        renderInput={(params) => <TextField {...params} />}
+        renderInput={(params) => (
+          <TextField {...params} fullWidth placeholder="Time" />
+        )}
       />
     </LocalizationProvider>
   );

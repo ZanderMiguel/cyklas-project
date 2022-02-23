@@ -8,7 +8,7 @@ function Popovercomp({ children, anchorEl, onClose, id, open }) {
       anchorEl={anchorEl}
       open={open}
       onClose={onClose}
-      PaperProps={{ elevation: 2 }}
+      PaperProps={{ elevation: 2, overflow: 'auto' }}
       anchorOrigin={{
         vertical: 'bottom',
         horizontal: 'right',

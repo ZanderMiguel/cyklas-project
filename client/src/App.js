@@ -14,6 +14,7 @@ import View_activity from './Rooms/Room-content-layout/View_activity';
 import Forgot_password from './pages-landing/Forgot_password';
 import Datetime from './components/Datetime';
 import { ListItemSecondaryAction } from '@mui/material';
+import Notfound from './Notfound';
 
 function App() {
   const theme = createTheme({
@@ -72,7 +73,8 @@ function App() {
             </Route>
             {/* Javen Routes */}
 
-            <Route exact path="/:page?" component={Navbar_landingpage} />
+            <Route path="/:page?" component={Navbar_landingpage} />
+            <Route exact component={Notfound} />
           </Switch>
         </Router>
       </ThemeProvider>
