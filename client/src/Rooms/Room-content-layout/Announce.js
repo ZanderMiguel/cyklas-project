@@ -15,6 +15,7 @@ import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
 import FormatColorFillIcon from '@mui/icons-material/FormatColorFill';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
+import ActivityIcon from '../../assets/ImageJaven/ActivityIcon.png';
 import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -45,6 +46,43 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   },
 }));
 
+const data = [
+  {
+  // Lesson: "Lesson 3", 
+  Activity: "Activity 5", 
+  Professor: "Mark Andrei (You)", 
+  date: "posted on " + Date.now() 
+  }, 
+
+  {
+  // Lesson: "Lesson 2", 
+  Activity: "Activity 4", 
+  Professor: "Mark Andrei (You)", 
+  date: "posted on " + Date.now()
+  },
+
+  {
+  // Lesson: "Lesson 2", 
+  Activity: "Activity 3", 
+  Professor: "Mark Andrei (You)", 
+  date: "posted on " + Date.now()
+  },
+
+  {
+  // Lesson: "Lesson 1", 
+  Activity: "Activity 2", 
+  Professor: "Mark Andrei (You)", 
+  date: "posted on " + Date.now()
+  },
+
+  {
+  // Lesson: "Lesson 1", 
+  Activity: "Activity 1", 
+  Professor: "Mark Andrei (You)", 
+  date: "posted on " + Date.now()
+  }
+]
+
 function Announce() {
   const {designs} = useStyle()
   
@@ -61,7 +99,7 @@ function Announce() {
   };
 
   return (
-    <Grid container sx={{ marginTop: 2 }}>
+    <Grid container sx={{ marginTop: 2, marginBottom: 2 }}>
       <Grid item xs={12}>
         <Input
           variant="filled"
@@ -212,8 +250,8 @@ function Announce() {
 
                     <TextField id="filled-basic" label="Write a comment..." variant="filled" 
                         sx = {designs.Comment_TextField_Style}
-                        inputProps={{style: {height: "0px", fontSize: "13px", paddingBottom: "20px"}}} // font size of input text
-                        InputLabelProps={{style: {fontSize: "13px", color: "#8E8E8E", marginBottom: "5px"}}} // font size of input label
+                        inputProps={{style: {height: "0em", fontSize: "0.8em", paddingBottom: "1.8em"}}} // font size of input text
+                        InputLabelProps={{style: {fontSize: "0.8em", color: "#8E8E8E", marginBottom: "1em"}}} // font size of input label
                         InputProps={{
                         disableUnderline: true, // pantanggal ng bottom outline
                             endAdornment: (
@@ -229,6 +267,55 @@ function Announce() {
                 </Box>
             </Box>
       </Grid>
+
+      {data.map(function(item, index){
+      return (
+        <Grid item xs={12} key = {index}>
+
+        <Box sx = {designs.BoxTileContainer}>
+            <Box sx = {designs.ActivityContainer}>
+                    <img src = {ActivityIcon} 
+                        style = {{
+                          height: "2.2em",
+                          margin: "0.5em 0.8em 0em 1.4em"
+                        }}/>
+
+                <Box sx = {designs.ActivityName_User_Date}>
+                    <Box sx = {designs.ActivityName}>
+                        {/* <Typography
+                        sx = {designs.Lesson}>
+                        {item.Lesson}
+                        </Typography> */}
+
+                        <Typography noWrap
+                        sx = {designs.Activity}>
+                        {item.Activity}
+                        </Typography>
+                    </Box>
+
+                    <Box sx = {designs.User_Date}>
+                        <Typography noWrap
+                        sx = {designs.Professor}>
+                        {item.Professor}
+                        </Typography>
+
+                        <Typography noWrap
+                        sx = {designs.Date}>
+                        {item.date}
+                        </Typography>
+                    </Box>
+                </Box>
+
+                <Box sx = {designs.BoxOptions}>
+                <IconButton sx = {designs.IconButtonOptions}>
+                        <MoreVert sx = {designs.MoreVertIcon}/>
+                </IconButton>
+            </Box>
+            </Box>
+        </Box>
+      </Grid>
+      )})}
+
     </Grid>
   );
 }
