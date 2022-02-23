@@ -13,48 +13,7 @@ import {
   Button,
 } from '@mui/material';
 
-const request = [
-  { avatar: <Avatar />, student: 'zander' },
-  { avatar: <Avatar />, student: 'rey' },
-  { avatar: <Avatar />, student: 'lester' },
-  { avatar: <Avatar />, student: 'charles' },
-  { avatar: <Avatar />, student: 'charles' },
-  { avatar: <Avatar />, student: 'charles' },
-  { avatar: <Avatar />, student: 'charles' },
-  { avatar: <Avatar />, student: 'charles' },
-  { avatar: <Avatar />, student: 'charles' },
-  { avatar: <Avatar />, student: 'charles' },
-  { avatar: <Avatar />, student: 'charles' },
-  { avatar: <Avatar />, student: 'charles' },
-  { avatar: <Avatar />, student: 'charles' },
-  { avatar: <Avatar />, student: 'charles' },
-  { avatar: <Avatar />, student: 'charles' },
-  { avatar: <Avatar />, student: 'rules' },
-];
-const general = [
-  {
-    avatar: <Avatar />,
-    action: 'Mark Andrei added you to his class',
-    roomname: 'Embedded Programming',
-  },
-  {
-    avatar: <Avatar />,
-    action: 'Mark Andrei added you to his class',
-    roomname: 'Embedded Programming',
-  },
-  {
-    avatar: <Avatar />,
-    action: 'Mark Andrei added you to his class',
-    roomname: 'Embedded Programming',
-  },
-  {
-    avatar: <Avatar />,
-    action: 'Mark Andrei added you to his class',
-    roomname: 'Embedded Programming',
-  },
-];
-
-function Notificationpopover() {
+function Notificationpopover({ general, request }) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -68,45 +27,76 @@ function Notificationpopover() {
       </Tabs>
       <Divider />
       {value === 1 && (
-        <Box padding="0.5em 1em">
-          <div
-            style={{
-              boxSizing: 'border-box',
-              maxHeight: 500,
-              maxWidth: 400,
-              overflow: 'auto',
-              display: 'flex',
-              flexDirection: 'column-reverse',
-            }}
-          >
-            {request.map((items, index) => (
-              <Box key={index} width={400} display="flex" alignItems="center">
-                <Box display="flex" flexGrow={1}>
-                  <Box mr={2}>{items.avatar}</Box>
-                  <Typography>{items.student}</Typography>
+        <Box width="30rem" padding="0.5em 1em">
+          {request.length > 0 ? (
+            request.map((items, index) => (
+              <>
+                <Box
+                  key={index}
+                  width="100%"
+                  display="flex"
+                  alignItems="center"
+                >
+                  <Box display="flex" flexGrow={1} alignItems="center">
+                    <Box mr={2}>{items.avatar}</Box>
+                    <Typography>{items.student}</Typography>
+                  </Box>
+                  <Button
+                    variant="contained"
+                    sx={{ borderRadius: '0.9em', textTransform: 'none' }}
+                  >
+                    Accept
+                  </Button>
+                  <Button
+                    variant="text"
+                    sx={{ textTransform: 'none', ml: '0.5em', mr: '0.7em' }}
+                  >
+                    Decline
+                  </Button>
                 </Box>
-                <Button variant="contained"> accept</Button>
-                <Button variant="text"> decline</Button>
-              </Box>
-            ))}
-          </div>
+                <Divider sx={{ mb: '0.5em', mt: '0.5em' }} />
+              </>
+            ))
+          ) : (
+            <Box
+              width="100%"
+              height="20rem"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Typography children="have nothing to show" />
+            </Box>
+          )}
         </Box>
       )}
 
       {value === 0 && (
-        <Box width={400} padding="0.5em 1em">
-          {general.map((items, index) => (
-            <div key={index}>
-              <Box width="100%" display="flex" alignItems="center">
-                <Box mr={2}>{items.avatar}</Box>
-                <Box>
-                  <Typography>{items.action} </Typography>
-                  <Typography>{items.roomname}</Typography>
+        <Box width="30rem" padding="0.5em 1em">
+          {general.length > 0 ? (
+            general.map((items, index) => (
+              <div key={index}>
+                <Box width="100%" display="flex" alignItems="center">
+                  <Box mr={2}>{items.avatar}</Box>
+                  <Box>
+                    <Typography>{items.action} </Typography>
+                    <Typography>{items.roomname}</Typography>
+                  </Box>
                 </Box>
-              </Box>
-              <Divider />
-            </div>
-          ))}
+                <Divider sx={{ mb: '0.5em', mt: '0.5em' }} />
+              </div>
+            ))
+          ) : (
+            <Box
+              width="100%"
+              height="20rem"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Typography children="have nothing to show" />
+            </Box>
+          )}
         </Box>
       )}
     </>

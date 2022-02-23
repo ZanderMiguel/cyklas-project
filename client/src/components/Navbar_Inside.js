@@ -12,8 +12,52 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Drawer from './Drawer';
 import CusPopover from './Popover';
+import { useTheme } from '@mui/material/styles';
 
-function Navbar({ title }) {
+const request = [
+  // { avatar: <Avatar />, student: 'zander' },
+  // { avatar: <Avatar />, student: 'rey' },
+  // { avatar: <Avatar />, student: 'lester' },
+  // { avatar: <Avatar />, student: 'charles' },
+  // { avatar: <Avatar />, student: 'charles' },
+  // { avatar: <Avatar />, student: 'charles' },
+  // { avatar: <Avatar />, student: 'charles' },
+  // { avatar: <Avatar />, student: 'charles' },
+  // { avatar: <Avatar />, student: 'charles' },
+  // { avatar: <Avatar />, student: 'charles' },
+  // { avatar: <Avatar />, student: 'charles' },
+  // { avatar: <Avatar />, student: 'charles' },
+  // { avatar: <Avatar />, student: 'charles' },
+  // { avatar: <Avatar />, student: 'charles' },
+  // { avatar: <Avatar />, student: 'charles' },
+  // { avatar: <Avatar />, student: 'rules' },
+];
+const general = [
+  {
+    avatar: <Avatar />,
+    action: 'Mark Andrei added you to his class',
+    roomname: 'Embedded Programming',
+  },
+  {
+    avatar: <Avatar />,
+    action: 'Mark Andrei added you to his class',
+    roomname: 'Embedded Programming',
+  },
+  {
+    avatar: <Avatar />,
+    action: 'Mark Andrei added you to his class',
+    roomname: 'Embedded Programming',
+  },
+  {
+    avatar: <Avatar />,
+    action: 'Mark Andrei added you to his class',
+    roomname: 'Embedded Programming',
+  },
+];
+
+function Navbar() {
+  const [badge, setBadge] = React.useState();
+  const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorEl1, setAnchorEl1] = React.useState(null);
 
@@ -35,6 +79,7 @@ function Navbar({ title }) {
   const notif = Boolean(anchorEl);
 
   const account = Boolean(anchorEl1);
+  const badgeDot = React.useRef(null);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -59,7 +104,11 @@ function Navbar({ title }) {
             Dashboard
           </Typography>
           <IconButton size="small" onClick={handleClickNotif}>
-            <Badge badgeContent={3} color="primary">
+            <Badge
+              variant={general.length > 0 || request.length > 0 ? 'dot' : null}
+              color="primary"
+              overlap="circular"
+            >
               <NotificationsIcon sx={{ color: 'rgba(0, 0, 0, 0.54)' }} />
             </Badge>
           </IconButton>
@@ -68,7 +117,7 @@ function Navbar({ title }) {
             anchorEl={anchorEl}
             onClose={handleCloseNotif}
           >
-            <Notificationpopover />
+            <Notificationpopover general={general} request={request} />
           </CusPopover>
           <Box
             display="flex"
@@ -82,24 +131,33 @@ function Navbar({ title }) {
               },
             }}
           >
-            <Avatar src={Zander} />
+            <Avatar src={Zander} alt="profileImg" />
             <Box
               sx={{
-                ml: '5px',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                maxWidth: '7rem',
+                display: 'flex',
+                [theme.breakpoints.down('md')]: {
+                  display: 'none',
+                },
               }}
             >
-              <Typography
-                noWrap
-                variant="body1"
-                sx={{ fontWeight: 500, color: '#3F3D56' }}
+              <Box
+                sx={{
+                  ml: '5px',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  maxWidth: '7rem',
+                }}
               >
-                Zander
-              </Typography>
+                <Typography
+                  noWrap
+                  variant="body1"
+                  sx={{ fontWeight: 500, color: '#3F3D56' }}
+                >
+                  Zander
+                </Typography>
+              </Box>
+              <ArrowDropDownIcon sx={{ color: 'rgba(0, 0, 0, 0.54)', ml: 1 }} />
             </Box>
-            <ArrowDropDownIcon sx={{ color: 'rgba(0, 0, 0, 0.54)', ml: 1 }} />
           </Box>
           <CusPopover
             open={account}
