@@ -13,4 +13,4 @@ const createActivitySchema = new mongoose.Schema({
 }, {timestamps:true})
 
 const createActivityModel = mongoose.model("Create Activity",createActivitySchema)
-module.exports = createActivityModel
+module.exports = {createActivityModel, createActivitySchema }

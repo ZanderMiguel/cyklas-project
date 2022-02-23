@@ -1,4 +1,7 @@
 const mongoose = require('mongoose')
+const {GroupSchema} = require('../models/model-group');
+const {createActivitySchema} = require('../models/model-createActivity');
+const {FeedSchema} = require('../models/model-feed');
 
 const RoomsSchema = new mongoose.Schema({
     RoomName:{type: String, required: true},
@@ -8,6 +11,9 @@ const RoomsSchema = new mongoose.Schema({
     ClassTime: {type: String, required: true},
     Terms: {type: String, required: true},
     GradingSystem: {type: String, required: true},
+    group: [GroupSchema],
+    activity: [createActivitySchema],
+    feed: [FeedSchema]
 
 },{timestamps:true})
 

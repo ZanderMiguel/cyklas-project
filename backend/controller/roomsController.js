@@ -1,4 +1,6 @@
 const {RoomsModel: Rooms } = require('../models/model-createRoom')
+const User = require('../models/model-registration')
+
 
 async function createRooms(req, res) {
     try{
@@ -13,7 +15,10 @@ async function createRooms(req, res) {
             GradingSystem: req.body.GradingSystem,
         });
 
+        const getRoom = await User.findById(req.body.id)
+        console.log()
         await addRooms.save()
+        await User.findByIdAndUpdate(req.body.id,{room: getRoom.room !== null ? [...getRoom.room,addRooms] : [addRooms]})
             console.log("Done!")
             return res.json({
                 status: 'success',
@@ -44,9 +49,17 @@ const displayRooms = async (req, res) => {
 
 const deleteRooms = async (req, res) => {
     try {
+        const getRoom = await User.findById(req.body.id)
         await Rooms.findByIdAndDelete(req.params.id)
-        console.log(req.params.id)
+        //console.log(getRoom.room)
+        const deleted = getRoom.room.filter((item,index,array)=>{
+            
+            return req.params.id !== item._id.toString()
+        })
+        console.log(deleted)
+        await User.findByIdAndUpdate(req.body.id,{room: deleted.length > 0 ? [...deleted]: null})
         return res.json({ redirect: '/' })
+        
     } catch (error) {
         console.log("Something went wrong!")
         return res.json({

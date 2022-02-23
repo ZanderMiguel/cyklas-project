@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const {RoomsSchema} = require('../models/model-createRoom');
+const {GroupSchema} = require('../models/model-group');
 
 const RegistrationSchema = new mongoose.Schema({
     userType:{type: String, required: true},
@@ -11,9 +12,10 @@ const RegistrationSchema = new mongoose.Schema({
     mobileNo: {type: String, required: false},
     username: {type: String, required: false},
     password: {type: String, required: true},
-    rooms: [RoomsSchema]
-    
+    room: [RoomsSchema],
+    group: [GroupSchema],
 
+    
 },{timestamps:true})
 
 const RegistrationModel = mongoose.model("Registration",RegistrationSchema)

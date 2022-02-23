@@ -38,6 +38,7 @@ const createRegistration = async (req, res) => {
     }
 }
 
+
 const userLogIn = async (req, res) => {
     const emailAddress = req.body.emailAddress
     const password = req.body.password
@@ -64,10 +65,10 @@ const userLogIn = async (req, res) => {
 const displayRegistration = async (req, res) => {
     try {
         const registration = await Registration.find().sort({ createdAt: -1 })
-        console.log("registration data displayed!")
+        console.log("registration data displayed!",registration)
         return res.json(registration)
     } catch (error) {
-        console.log("Something went wrong!")
+        console.log("Something went wrong!",error)
         return res.json({
             status: 'error',
             message: error,
