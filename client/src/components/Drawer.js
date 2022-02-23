@@ -63,7 +63,7 @@ function Drawer() {
       path: '/settings',
     },
   ];
-
+const divs = React.useRef(null)
   const list = () => (
     <Box
       sx={{ width: 280 }}
@@ -76,11 +76,19 @@ function Drawer() {
           const { icon, text, path } = item;
           return (
             <Link
-              key={index}
+
+              key={text}
               style={{ textDecoration: 'none', color: 'blue' }}
               to={path}
             >
               <ListItem
+                ref={divs}
+                onClick={(e) => {
+                  console.log(e)
+                  
+                  
+                }}
+                name={text}
                 disableRipple
                 button
                 key={text}

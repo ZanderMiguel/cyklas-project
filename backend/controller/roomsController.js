@@ -1,6 +1,7 @@
 const {RoomsModel} = require('../models/model-createRoom')
 const User = require('../models/model-registration')
 async function createRooms(req, res) {
+    console.log(req.body)
     try{
 
         const addRooms = new RoomsModel({

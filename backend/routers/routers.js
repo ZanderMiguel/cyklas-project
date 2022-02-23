@@ -38,7 +38,7 @@ const {
 } = require('../controller/roomsController');
 router.post('/rooms', createRoomController);
 router.get('/rooms', displayRoomController);
-router.delete('/rooms/room-create/:id', deleteRoomController);
+router.delete('/rooms/:id', deleteRoomController);
 router.put('/rooms/room-create/:id', updateRoomController);
 
 const { teleController } = require('../controller/teleconController');

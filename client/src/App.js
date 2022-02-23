@@ -47,7 +47,7 @@ function App() {
             <ProtectedRoutes exact path="/rooms" component={Rooms} />
             <ProtectedRoutes exact path="/settings" component={Setting} />
             <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
-            <ProtectedRoutes exact path="/records" component={Records} />
+            <ProtectedRoutes exact path="/:records" component={Records} />
             <ProtectedRoutes
               exact
               path="/telecon/:teleRoom?"
