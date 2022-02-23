@@ -1,19 +1,18 @@
-const {RoomsModel: Rooms } = require('../models/model-createRoom')
+const Feed = require('../models/model-feed')
 
-async function createRooms(req, res) {
+async function createFeed(req, res) {
     try{
 
-        const addRooms = new Rooms({
-            RoomName: req.body.RoomName,
-            Course: req.body.Course,
-            ClassDays: req.body.ClassDays,
-            YearsAndSection: req.body.YearsAndSection,
-            ClassTime: req.body.ClassTime,
-            Terms: req.body.Terms,
-            GradingSystem: req.body.GradingSystem,
+        const addFeed = new Feed({
+            postID:req.body.postID,
+            content:req.body.content,
+            author: req.body.author,
+            time: req.body.time,
+            title:req.body.title,
+            commentID:req.body.commentID,
         });
 
-        await addRooms.save()
+        await addFeed.save()
             console.log("Done!")
             return res.json({
                 status: 'success',
@@ -28,13 +27,13 @@ async function createRooms(req, res) {
     } 
 }
 
-const displayRooms = async (req, res) => {
+const displayFeed = async (req, res) => {
     try {
-        const room = await Rooms.find().sort({ createdAt: -1 })
+        const feed = await Feed.find().sort({ createdAt: -1 })
         console.log("activity posted!")
-        return res.json(room)
+        return res.json(feed)
     } catch (error) {
-        console.log("Something went wrong!" , error)
+        console.log("Something went wrong!")
         return res.json({
             status: 'error',
             message: error,
@@ -42,9 +41,9 @@ const displayRooms = async (req, res) => {
     }
 }
 
-const deleteRooms = async (req, res) => {
+const deleteFeed = async (req, res) => {
     try {
-        await Rooms.findByIdAndDelete(req.params.id)
+        await Feed.findByIdAndDelete(req.params.id)
         console.log(req.params.id)
         return res.json({ redirect: '/' })
     } catch (error) {
@@ -56,9 +55,9 @@ const deleteRooms = async (req, res) => {
     }
 }
 
-const updateRooms = async (req, res) => {
+const updateFeed = async (req, res) => {
     try {
-        await Rooms.findByIdAndUpdate(req.params.id, req.body)
+        await Feed.findByIdAndUpdate(req.params.id, req.body)
         console.log('helicopter')
         return res.json({ redirect: '/' })
     } catch (error) {
@@ -71,8 +70,8 @@ const updateRooms = async (req, res) => {
 }
 
 module.exports = {
-    createRoomController : createRooms,
-    displayRoomController: displayRooms,
-    deleteRoomController: deleteRooms,
-    updateRoomController: updateRooms,
+    createFeedController : createFeed,
+    displayFeedController: displayFeed,
+    deleteFeedController: deleteFeed,
+    updateFeedController: updateFeed,
 }

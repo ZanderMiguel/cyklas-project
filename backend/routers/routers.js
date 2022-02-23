@@ -31,6 +31,15 @@ const {createRoomController,displayRoomController,deleteRoomController, updateRo
 router.post('/rooms/room-create',createRoomController)
 router.get('/rooms/room-create',displayRoomController)
 router.delete('/rooms/room-create/:id',deleteRoomController)
-router.put('/rooms/room-create/:id', updateRoomController)
+router.put('/rooms/room-create/:id', updateRoomController)   
+
+const {createFeedController,
+    displayFeedController,
+    updateFeedController,
+    deleteFeedController} = require('../controller/feedController')
+router.post('/rooms/feeds',createFeedController)
+router.get('/rooms/feeds',displayFeedController)
+router.delete('/rooms/feeds/:id',deleteFeedController)
+router.put('/rooms/feeds/:id', updateFeedController)
 
 module.exports = router

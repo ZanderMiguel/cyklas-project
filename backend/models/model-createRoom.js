@@ -12,4 +12,4 @@ const RoomsSchema = new mongoose.Schema({
 },{timestamps:true})
 
 const RoomsModel = mongoose.model("Rooms",RoomsSchema)
-module.exports = RoomsModel
+module.exports = {RoomsModel, RoomsSchema }
