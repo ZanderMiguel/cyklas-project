@@ -251,7 +251,7 @@ function Announce() {
                     <TextField id="filled-basic" label="Write a comment..." variant="filled" 
                         sx = {designs.Comment_TextField_Style}
                         inputProps={{style: {height: "0em", fontSize: "0.8em", paddingBottom: "1.8em"}}} // font size of input text
-                        InputLabelProps={{style: {fontSize: "0.8em", color: "#8E8E8E", marginBottom: "1em"}}} // font size of input label
+                        InputLabelProps={{style: {fontSize: "0.8em", color: "#8E8E8E"}}} // font size of input label
                         InputProps={{
                         disableUnderline: true, // pantanggal ng bottom outline
                             endAdornment: (

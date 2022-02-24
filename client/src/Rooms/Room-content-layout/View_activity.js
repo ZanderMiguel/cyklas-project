@@ -87,7 +87,7 @@ function View_activity() {
                                                         style: {color: "#3F3D56"}}} 
                                                         label="Sort by" 
                                                         variant="standard"
-                                            InputLabelProps = {{style:{fontSize: "15px", color: "#3F3D56"}}} />
+                                            InputLabelProps = {{style:{fontSize: "0.9em", color: "#3F3D56"}}} />
                                             }/>
                             </Box>
 
@@ -129,10 +129,10 @@ function View_activity() {
                                 <Box className = "Activity-info" sx = {designs.ActivityInfo_Style}>
                                     <Box className = "Activity-title"
                                         sx = {designs.ActivityTitle_Style}>
-                                        <Typography
+                                        {/* <Typography
                                         sx = {designs.Lesson_Typography_Style}>
                                         Lesson 2 -
-                                        </Typography>
+                                        </Typography> */}
                                         <Typography noWrap
                                         sx = {designs.Activity_Typography_Style}>
                                         Activity 4
@@ -153,7 +153,7 @@ function View_activity() {
                                             sx = {designs.Attach_File_Style}>
                                                 <img src = {Wordfile}
                                                 style = {{
-                                                    height: "40px"
+                                                    height: "2.5em"
                                                 }}/>
                                             
                                         
@@ -192,8 +192,8 @@ function View_activity() {
                                         
                                         <TextField id="filled-basic" label="Write a comment..." variant="filled" 
                                         sx = {designs.Comment_TextField_Style}
-                                        inputProps={{style: {height: "0px", fontSize: "13px", paddingBottom: "20px"}}} // font size of input text
-                                        InputLabelProps={{style: {fontSize: "13px", color: "#8E8E8E"}}} // font size of input label
+                                        inputProps={{style: {height: "0em", fontSize: "0.8em", paddingBottom: "1.8em"}}} // font size of input text
+                                        InputLabelProps={{style: {fontSize: "0.8em", color: "#8E8E8E"}}} // font size of input label
                                         InputProps={{
                                             disableUnderline: true, // pantanggal ng bottom outline
                                             endAdornment: (
@@ -240,7 +240,7 @@ function View_activity() {
                                                                 sx = {designs.Attach_File_Style2}>
                                                                     <img src = {Wordfile}
                                                                     style = {{
-                                                                        height: "40px"
+                                                                        height: "2.5em"
                                                                     }}/>
                                                                         
                                                                     <Box className = "Activity-filename"
