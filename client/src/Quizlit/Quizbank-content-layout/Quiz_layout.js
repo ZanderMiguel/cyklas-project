@@ -6,52 +6,51 @@ import QuizIcon from '../../assets/ImageJaven/QuizIcon.png';
 import useStyle from '../Quiz_style';
 
 function Quiz_layout({ bank }) {
-
-  const {designs} = useStyle()
+  const { designs } = useStyle();
 
   return (
     <>
       {bank.map((item, idx) => {
-      const { title, name, date, time } = item;
-      return (
-        <Box sx = {designs.BoxTileContainer} key = {idx}>
-            <Box sx = {designs.QuizContainer}>
-                    <img src = {QuizIcon} alt="QuizIcon"
-                        style = {{
-                          height: "2.2em",
-                          margin: "0.5em 0.8em 0em 1.4em"
-                        }}/>
+        const { title, name, date, time } = item;
+        return (
+          <Box sx={designs.BoxTileContainer} key={idx}>
+            <Box sx={designs.QuizContainer}>
+              <img
+                src={QuizIcon}
+                alt="QuizIcon"
+                style={{
+                  height: '2.2em',
+                  margin: '0.5em 0.8em 0em 1.4em',
+                }}
+              />
 
-                <Box sx = {designs.QuizName_User_Date}>
-                    <Box sx = {designs.QuizName}>
-                        <Typography noWrap
-                        sx = {designs.Quiz}>
-                        {title}
-                        </Typography>
-                    </Box>
-
-                    <Box sx = {designs.User_Date}>
-                        <Typography noWrap
-                        sx = {designs.Professor}>
-                        {name} (You)
-                        </Typography>
-
-                        <Typography noWrap
-                        sx = {designs.Date}>
-                        {date} at {time}
-                        </Typography>
-                    </Box>
+              <Box sx={designs.QuizName_User_Date}>
+                <Box sx={designs.QuizName}>
+                  <Typography noWrap sx={designs.Quiz}>
+                    {title}
+                  </Typography>
                 </Box>
 
-                <Box sx = {designs.BoxOptions}>
-                <IconButton sx = {designs.IconButtonOptions}>
-                        <MoreVert sx = {designs.MoreVertIcon}/>
-                </IconButton>
-            </Box>
-            </Box>
-        </Box>
-        )})}
+                <Box sx={designs.User_Date}>
+                  <Typography noWrap sx={designs.Professor}>
+                    {name} (You)
+                  </Typography>
 
+                  <Typography noWrap sx={designs.Date}>
+                    {date} at {time}
+                  </Typography>
+                </Box>
+              </Box>
+
+              <Box sx={designs.BoxOptions}>
+                <IconButton sx={designs.IconButtonOptions}>
+                  <MoreVert sx={designs.MoreVertIcon} />
+                </IconButton>
+              </Box>
+            </Box>
+          </Box>
+        );
+      })}
     </>
   );
 }

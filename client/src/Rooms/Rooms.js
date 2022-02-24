@@ -55,10 +55,11 @@ function Rooms() {
                 open={opendialog}
                 close={handleCreateClose}
                 maxWidth="md"
+                state={setOpenDialog}
               />
             )}
           </Grid>
-
+          {error && console.log(error)}
           {isPending && <CircularProgress />}
           {data && data.length > 0 ? (
             <Room_layout data={data} />

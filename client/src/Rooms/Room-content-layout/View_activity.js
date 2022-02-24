@@ -63,6 +63,7 @@ function View_activity() {
   const [view, setView] = React.useState(false);
   console.log(view);
   const { designs } = useStyle();
+
   const { roomID, activityID } = useParams();
 
   return (
