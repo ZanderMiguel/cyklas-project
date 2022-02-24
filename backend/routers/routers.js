@@ -8,7 +8,7 @@ const {
   userLogInController,
 } = require('../controller/registrationController');
 router.post('/register/new-user', createRegistrationController);
-router.get('/register', displayRegistrationController);
+router.get('/register/list', displayRegistrationController);
 router.delete('/register/:id', deleteRegistrationController);
 router.post('/login', userLogInController);
 

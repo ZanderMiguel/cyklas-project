@@ -3,7 +3,8 @@ import Container from '@mui/material/Container';
 import { Route, Redirect } from 'react-router-dom';
 import Navbar from '../components/Navbar_Inside';
 
-function ProtectedRoutes({ component: Component, path, maxWidth, ...attrib }) {
+function ProtectedRoutes({ component: Component, path, maxWidth,socket, ...attrib }) {
+  
   return (
     <>
       {localStorage.token && <Navbar />}
@@ -12,7 +13,7 @@ function ProtectedRoutes({ component: Component, path, maxWidth, ...attrib }) {
           {...attrib}
           render={() => {
             return localStorage.token !== undefined ? (
-              <Component />
+              <Component socket={socket}/>
             ) : (
               <Redirect to="/" />
             );

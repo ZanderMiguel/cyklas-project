@@ -1,32 +1,23 @@
 import React from 'react';
-import avt from '../../assets/Images/avatar_male.png';
-import unmute from '../../assets/Images/unmute18.png';
-import mute from '../../assets/Images/mute18.png';
-import { useParams } from 'react-router-dom';
-import Peer from 'peerjs';
 
-function MemTile({ socket, muted, onCam }) {
+
+import OffCamTile from './OffCamTile';
+function MemTile({ socket, muted, onCam, myPeer }) {
   const vidContainer = React.useRef(null);
+  const [offTiles, setOffTiles] = React.useState([<OffCamTile />])
 
-  /*     const [size,setSize] = React.useState(1)
-        const [rows,setRows] = React.useState(1)
-        const [columns,setColumns] = React.useState(1) */
 
   const myVidRatio = document.createElement('div');
   document.documentElement.style.setProperty('background-color', '#202124');
-  const { teleRoom } = useParams();
-  const myPeer = new Peer(undefined, {
-    host: '/',
-    port: '3002',
-  });
+
+
 
   const peers = {};
   socket.on('user-disconnected', (userId) => {
     if (peers[userId]) peers[userId].close();
+    child()
   });
-  myPeer.on('open', (id) => {
-    socket.emit('join-room', teleRoom, id);
-  });
+
 
   const myVideo = document.createElement('video');
   const myVid = React.useRef(myVideo);
@@ -38,8 +29,9 @@ function MemTile({ socket, muted, onCam }) {
         item.style.setProperty('height', `100%`);
         item.style.setProperty('width', `100%`);
       } else {
-        item.style.setProperty('width', `45%`);
-        item.style.setProperty('height', `56.25%`);
+        item.style.setProperty('width', `calc(94%/${vidContainer.current.childNodes.length >= 36 ? 7 : vidContainer.current.childNodes.length >= 25 ? 6 : vidContainer.current.childNodes.length >= 16 ? 5 : vidContainer.current.childNodes.length >= 9 ? 4 : vidContainer.current.childNodes.length >= 4 ? 3 : 2})`)
+        item.style.setProperty('height', `calc(94%/${vidContainer.current.childNodes.length >= 36 ? 7 : vidContainer.current.childNodes.length >= 25 ? 6 : vidContainer.current.childNodes.length >= 16 ? 5 : vidContainer.current.childNodes.length >= 9 ? 4 : vidContainer.current.childNodes.length >= 4 ? 3 : 2})`)
+        item.style.setProperty('margin', `1%)`)
       }
     });
   };
@@ -83,7 +75,9 @@ function MemTile({ socket, muted, onCam }) {
           // When user is connected,
           connectToNewUser(userId, stream); // we will automatically call them
           console.log(userId);
-          //setSize(newSize=>newSize++)
+          /* setOffTiles([...offTiles,<OffCamTile />])
+          child() */
+
         });
       });
   }, [Object.keys(peers).length]);
@@ -99,11 +93,13 @@ function MemTile({ socket, muted, onCam }) {
 
     video.srcObject = stream;
     video.addEventListener('loadedmetadata', () => {
-      video.play();
+      video.play().then(() => {
+        child && child();
+        vidRatio.append(video);
+        vidContainer.current.append(vidRatio);
+      }).catch((err)=>console.log(err));
     });
-    child && child();
-    vidRatio.append(video);
-    vidContainer.current.append(vidRatio);
+
   }
   //Other user's video stream
   function connectToNewUser(userId, stream) {
@@ -112,7 +108,7 @@ function MemTile({ socket, muted, onCam }) {
     const vidRatio = document.createElement('div');
     video.muted = true;
     call.on('stream', (userVideoStream) => {
-      //participants(size)
+
       console.log('suckcess');
       addVideoStream(video, userVideoStream, vidRatio, child);
     });
@@ -122,36 +118,23 @@ function MemTile({ socket, muted, onCam }) {
       child();
     });
     peers[userId] = call;
+    child()
   }
   return (
+
     <div
       style={{
         display: 'flex',
         justifyContent: 'center',
+        alignItems: 'center',
+        flexWrap: 'wrap',
         borderRadius: '10px',
-        gap: '20px',
         height: '100%',
         width: '100%',
-        alignContent: 'center',
-        alignItems: 'center',
       }}
-    >
-      <div
-        style={{
-          display: 'flex',
-          alignContent: 'center',
-          flexWrap: 'wrap',
-          alignItems: 'center',
-          justifyContent: 'center',
-          verticalAlign: 'middle',
+      ref={vidContainer}
+    >{/* {offTiles} */}</div>
 
-          borderRadius: '10px',
-          height: '100%',
-          width: '100%',
-        }}
-        ref={vidContainer}
-      ></div>
-    </div>
   );
 }
 

@@ -64,7 +64,7 @@ const userLogIn = async (req, res) => {
 const displayRegistration = async (req, res) => {
     try {
         const registration = await Registration.find().sort({ createdAt: -1 })
-        console.log("registration data displayed!")
+        console.log("Tanginmo!")
         return res.json(registration)
     } catch (error) {
         console.log("Something went wrong!")

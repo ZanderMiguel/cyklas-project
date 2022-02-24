@@ -11,7 +11,7 @@ import Telecon from './Telecon/Telecon';
 import QuizLit from './pages/Quizlit';
 import Rooms from './pages/Rooms';
 import Room_inside from './Room-content-layout/Room_inside';
-
+import { io } from 'socket.io-client';
 const theme = createTheme({
   typography: {
     fontFamily: 'Poppins',
@@ -36,24 +36,26 @@ const theme = createTheme({
 });
 
 function App() {
+  const socket = io.connect('http://localhost:3001/');
   return (
     <>
       <ThemeProvider theme={theme}>
         <Router>
           <Switch>
-            <ProtectedRoutes exact path="/dashboard" component={Dashboard} />
+            <ProtectedRoutes exact path="/dashboard" component={Dashboard} socket={socket}/>
 
-            <ProtectedRoutes exact path="/telecon" component={TeleconLanding} />
-            <ProtectedRoutes exact path="/rooms" component={Rooms} />
-            <ProtectedRoutes exact path="/settings" component={Setting} />
-            <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
-            <ProtectedRoutes exact path="/:records" component={Records} />
+            <ProtectedRoutes exact path="/telecon" component={TeleconLanding} socket={socket}/>
+            <ProtectedRoutes exact path="/rooms" component={Rooms}socket={socket}/>
+            <ProtectedRoutes exact path="/settings" component={Setting} socket={socket}/>
+            <ProtectedRoutes exact path="/quizlit" component={QuizLit} socket={socket}/>
+            <ProtectedRoutes exact path="/:records" component={Records} socket={socket}/>
             <ProtectedRoutes
               exact
               path="/telecon/:teleRoom?"
               component={Telecon}
+              socket={socket}
             />
-            <Route exact path="/:page?" component={Navbar_landingpage} />
+            <Route exact path="/:page?" component={Navbar_landingpage} socket={socket}/>
           </Switch>
         </Router>
       </ThemeProvider>
