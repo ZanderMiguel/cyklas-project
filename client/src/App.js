@@ -12,6 +12,7 @@ import Rooms from './Rooms/Rooms';
 import Room_inside from './Rooms/Room-content-layout/Room_inside';
 import View_activity from './Rooms/Room-content-layout/View_activity'
 import ViewFile_activity from './Rooms/Room-content-layout/ViewFile_activity'
+import Quiz_multiplechoice from './Quizlit/Quizbank-content-layout/Quiz_multiplechoice'
 
 const theme = createTheme({
   typography: {
@@ -53,6 +54,7 @@ function App() {
             
             {/* Javen Routes */}
             <ProtectedRoutes exact path="/waw" component={ViewFile_activity} />
+            <ProtectedRoutes exact path="/quiz_multiplechoice" component={Quiz_multiplechoice} />
             <Route path="/:page?" component={Navbar_landingpage} />
             
           </Switch>

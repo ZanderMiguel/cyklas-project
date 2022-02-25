@@ -12,6 +12,7 @@ import Twitter from '../assets/ImageJaven/Twitter.png';
 import Youtube from '../assets/ImageJaven/Youtube.png';
 import "./Contacts.css";
 import useStyle from './Contacts_style';
+import { Link } from 'react-router-dom';
 
 const style = {
   fontFamily: 'Poppins',
@@ -88,7 +89,7 @@ function Contact() {
             sx={{ mt: 3 }}
           />
 
-          <Button
+          <Button component = { Link } to = "/quiz_multiplechoice"
             sx={{
               textTransform: 'none',
               fontFamily: 'Poppins',

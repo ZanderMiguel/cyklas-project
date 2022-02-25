@@ -4,6 +4,7 @@ import { Typography, IconButton } from '@mui/material';
 import { MoreVert } from '@mui/icons-material';
 import QuizIcon from '../../assets/ImageJaven/QuizIcon.png';
 import useStyle from '../Quiz_style';
+import { Link } from 'react-router-dom';
 
 function Quiz_layout({ bank }) {
 
@@ -14,7 +15,9 @@ function Quiz_layout({ bank }) {
       {bank.map((item, idx) => {
       const { title, name, date, time } = item;
       return (
-        <Box sx = {designs.BoxTileContainer} key = {idx}>
+        <Box sx = {designs.BoxTileContainer} key = {idx}
+        component = { Link }
+        to = "/quiz_multiplechoice">
             <Box sx = {designs.QuizContainer}>
                     <img src = {QuizIcon} alt="QuizIcon"
                         style = {{
