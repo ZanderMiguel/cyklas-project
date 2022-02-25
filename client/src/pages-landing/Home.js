@@ -1,18 +1,72 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Landingpage.css';
+import Input from '../Form_content/Input';
 
 //importing Mui
-import { Typography, Button, Box, Paper, TextField, Link } from '@mui/material';
+import { Typography, Box, Paper, Link, Grid } from '@mui/material';
 
-import { AddCircle } from '@mui/icons-material';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 //import image
 import Flatimage from '../assets/Images/illustration.svg';
 import MaleLogo from '../assets/Images/avatar_male.png';
 import Google from '../assets/Rectangle 134.svg';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+import Register from '../Form_content/Register';
+import Button from '../components/Button';
 
 const style = { fontFamily: 'Poppins', marginTop: 1 };
 
+const responseSuccessGoogle = (response) => {
+  console.log(response);
+  axios({
+    method: 'POST',
+    url: 'http://localhost:5000/googlelogin',
+    data: { tokenId: response.tokenId },
+  }).then((response) => {
+    console.log('Google login success', response);
+  });
+};
+
+const responseErrorGoogle = (response) => {
+  console.log(response);
+};
+
 function Home() {
+  const history = useHistory();
+  const [opendialog, setOpenDialog] = useState(false);
+  const [showPassword, setShowPassword] = React.useState(false);
+
+  const handleShowPassword = () =>
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  const handleClickOpen = () => {
+    setOpenDialog(true);
+  };
+  const handleClose = () => {
+    setOpenDialog(false);
+  };
+  const [myApi, setMyApi] = React.useState(new Map());
+  const handleChange = (e) => {
+    setMyApi(myApi.set([e.target.name], e.target.value));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post('http://localhost:5000/login', Object.fromEntries(myApi))
+      .then((response) => {
+        response.data.token &&
+          localStorage.setItem('token', response.data.token);
+        console.log(response.data);
+        setMyApi(new Map());
+        history.push('/dashboard');
+      })
+      .catch((err) => {
+        console.log(err.message);
+        setMyApi(new Map());
+      });
+  };
   return (
     <>
       <Box>
@@ -48,28 +102,27 @@ function Home() {
                 justifyContent: 'center',
                 alignItems: 'center',
                 color: '#626170',
+                mb: 2,
               }}
             >
               The best Website for Virtual Class
             </Typography>
             <Button
-              disableRipple
+              content="Create your account now"
               variant="contained"
+              borderRadius="10px"
               sx={{
                 backgroundColor: '#007FFF',
-                '&:hover': { backgroundColor: '#007FFF' },
-                textTransform: 'none',
-                ...style,
-                marginTop: 2,
-                fontSize: '0.9em',
-                fontWeight: '700',
-                padding: '10px 20px',
+                color: 'white',
                 borderRadius: '10px',
+                '&:hover': {
+                  backgroundColor: '#0072e6',
+                },
               }}
-              startIcon={<AddCircle sx={{ fontSize: 20 }} />}
-            >
-              Create your account now.
-            </Button>
+              startIcon={<AddCircleOutlineOutlinedIcon />}
+              onClick={handleClickOpen}
+            />
+            {opendialog && <Register open={opendialog} close={handleClose} />}
             <img
               src={Flatimage}
               alt="flat"
@@ -81,7 +134,9 @@ function Home() {
               }}
             />
           </Box>
+
           <Paper
+            elevation={3}
             sx={{
               width: '20rem',
               display: 'flex',
@@ -90,35 +145,33 @@ function Home() {
               justifyContent: 'space-around',
               padding: '30px',
             }}
+            type="submit"
+            form="loginForm"
           >
             <img
               src={MaleLogo}
               alt="avatar"
               style={{ width: '6rem', maxWidth: '', height: 'auto' }}
             />
-
-            <TextField
-              required
-              id="standard-required"
-              placeholder="Enter your email address"
-              type="email"
-              variant="filled"
-              size="small"
-              fullWidth
-              margin="normal"
-            />
-
-            <TextField
-              required
-              id="standard-password-input"
-              placeholder="Enter your password"
-              type="password"
-              autoComplete="current-password"
-              variant="filled"
-              size="small"
-              margin="normal"
-              fullWidth
-            />
+            <form onSubmit={handleSubmit} id="loginForm">
+              <Grid container spacing={2} sx={{ mt: 2 }}>
+                <Input
+                  name="emailAddress"
+                  type="email"
+                  placeholder="Enter email address"
+                  onChange={handleChange}
+                  autoFocus
+                  size="medium"
+                />
+                <Input
+                  name="password"
+                  placeholder=" Enter password"
+                  type={showPassword ? 'text' : 'password'}
+                  handleShowPassword={handleShowPassword}
+                  onChange={handleChange}
+                />
+              </Grid>
+            </form>
             <Typography
               sx={{ ...style }}
               gutterBottom
@@ -133,22 +186,22 @@ function Home() {
                 Forgot password?
               </Link>
             </Typography>
-
             <Button
-              variant="contained"
               fullWidth
+              content="log in"
+              variant="contained"
+              borderRadius="10px"
+              type="submit"
+              form="loginForm"
               sx={{
                 backgroundColor: '#007FFF',
-                '&:hover': { backgroundColor: '#007FFF' },
-                textTransform: 'none',
-                ...style,
-                marginTop: '10px',
-                marginBottom: '10px',
+                color: 'white',
                 borderRadius: '10px',
+                '&:hover': {
+                  backgroundColor: '#0072e6',
+                },
               }}
-            >
-              Log in
-            </Button>
+            />
             <Typography
               sx={{ ...style, fontWeight: 'bold' }}
               gutterBottom
@@ -165,21 +218,13 @@ function Home() {
               </Link>
             </Typography>
             <Button
-              variant="text"
-              fullWidth
-              sx={{
-                backgroundColor: 'white',
-                textTransform: 'none',
-                ...style,
-                marginTop: '10px',
-                color: '#007FFF',
-                border: '1px solid #EB7E42',
-                borderColor: '#007FFF',
-              }}
+              content="continue with google"
               startIcon={<img src={Google} alt="Google Icon" />}
-            >
-              Continue to google
-            </Button>
+              variant="outlined"
+              color="#007FFF"
+              borderColor="#007FFF"
+              fullWidth
+            />
           </Paper>
         </Box>
       </Box>

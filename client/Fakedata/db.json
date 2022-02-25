@@ -1,0 +1,115 @@
+{
+  "rooms": [
+    {
+      "id": 1,
+      "title": "Embedded Programming",
+      "subtitle": "BSCS3A",
+      "date": "Monday",
+      "time": "10:25"
+    },
+    {
+      "id": 2,
+      "title": "Computational Science",
+      "subtitle": "BSCS3A",
+      "date": "Tuesday",
+      "time": "10:30"
+    },
+    {
+      "id": 3,
+      "title": "Practicum",
+      "subtitle": "BSCS3A",
+      "date": "Tuesday",
+      "time": "10:30"
+    },
+    {
+      "title": "zxczxc",
+      "subtitle": "sdwqeqwe",
+      "date": "ascqwewq",
+      "yearandsection": "cxacqscq",
+      "time": "10:30",
+      "term": "2 Term",
+      "gradingsystem": "Default",
+      "id": 5
+    },
+    {
+      "title": "alskdjlsakdjlakjdqowidj",
+      "subtitle": "asdsadjklajahsd",
+      "date": "asdlajshdkajshd",
+      "yearandsection": "asdjklhasdjkahsd",
+      "time": "11:30",
+      "term": "3 Term",
+      "gradingsystem": "CreateSystem1",
+      "id": 6
+    },
+    {
+      "title": "potanfaoinsdas",
+      "subtitle": "flsjfhlajksfsadf",
+      "date": "asdfasdfcv",
+      "yearandsection": "asvawefef",
+      "time": "11:30",
+      "term": "2 Term",
+      "gradingsystem": "CreateSystem1",
+      "id": 7
+    },
+    {
+      "title": "aldhlwqud",
+      "subtitle": "qwdasdwq",
+      "date": "qwdqwdq",
+      "yearandsection": "qwdasdqc",
+      "time": "10:30",
+      "term": "2 Term",
+      "gradingsystem": "Default",
+      "id": 8
+    },
+    {
+      "title": "kasjhdwqiuodqhwd",
+      "subtitle": "asdawdasda",
+      "date": "wdqwdacacasdc",
+      "yearandsection": "qwe2ecasdcwd2csadc",
+      "time": "11:30",
+      "term": "3 Term",
+      "gradingsystem": "Default",
+      "id": 9
+    },
+    {
+      "title": "sadsad",
+      "subtitle": "sadqcdqwd",
+      "date": "dacsdcqd",
+      "yearandsection": "cwdqwcdwqd",
+      "time": "10:30",
+      "term": "2 Term",
+      "gradingsystem": "Default",
+      "id": 10
+    },
+    {
+      "title": "Charles",
+      "subtitle": "Rellama",
+      "date": "123817264",
+      "yearandsection": "123876128376",
+      "time": "11:30",
+      "term": "3 Term",
+      "gradingsystem": "CreateSystem1",
+      "id": 11
+    },
+    {
+      "title": "sadlkajskldjasd",
+      "subtitle": "asldkjsaklhjdwd",
+      "date": "asdlkwqjd",
+      "yearandsection": "asdklahjowqh",
+      "time": "10:30",
+      "term": "2 Term",
+      "gradingsystem": "Default",
+      "id": 12
+    },
+    {
+      "title": "asd",
+      "subtitle": "sad",
+      "date": "asd",
+      "yearandsection": "asd",
+      "time": "10:30",
+      "term": "2 Term",
+      "gradingsystem": "Default",
+      "id": 13
+    }
+  ]
+}

@@ -2,14 +2,12 @@ import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {
   BrowserRouter as Router,
-  Redirect,
   Route,
   Switch,
+  Redirect,
 } from 'react-router-dom';
-//importing Mui
 
-//importing components
-import NavbarLandingpage from '../components/Navbar_landingpage';
+
 
 const theme = createTheme({
   typography: {
@@ -39,9 +37,11 @@ function Landing() {
     <ThemeProvider theme={theme}>
       <Router>
         <Switch>
+          <Redirect from="/Home" to="/" />
           <Route exact path={'/:page?'}>
-            <NavbarLandingpage />
+            
           </Route>
+          
         </Switch>
       </Router>
     </ThemeProvider>

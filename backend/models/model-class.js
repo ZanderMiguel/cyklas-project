@@ -1,4 +1,3 @@
-const {json} = require('express')
 const mongoose = require('mongoose')
 
 const ClassSchema = new mongoose.Schema({
@@ -10,6 +9,7 @@ const ClassSchema = new mongoose.Schema({
             classTime: {type: String, required: true},
             classDay: {type: String, required: true},
             classTerm: {type: String, required: true},
+           
             
 },{timestamps: true})
 

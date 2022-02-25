@@ -1,5 +1,16 @@
+import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Drawer from './components/Drawer';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Records from './pages/Records';
+import Setting from './Settings/SettingsCont';
+import ProtectedRoutes from './pages/ProtectedRoutes';
+import Dashboard from './pages/Dashboard';
+import Navbar_landingpage from './components/Navbar_landingpage';
+import TeleconLanding from './pages-landing/TeleconLanding';
+import Telecon from './Telecon/Telecon'
+import QuizLit from './pages/Quizlit';
+import Rooms from './pages/Rooms';
+import Room_inside from './Room-content-layout/Room_inside';
 
 const theme = createTheme({
   typography: {
@@ -28,7 +39,60 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Drawer />
+        <Router>
+          <Switch>
+{/*             <ProtectedRoutes exact path="/dashboard" component={Dashboard} />
+            
+            <ProtectedRoutes exact path="/telecon" component={TeleconLanding} />
+            <ProtectedRoutes exact path="/rooms" component={Rooms} />
+            <ProtectedRoutes exact path="/settings" component={Setting} />
+            <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
+            <ProtectedRoutes exact path="/records" component={Records} />
+            <ProtectedRoutes exact path="/telecon/:teleRoom?" component={Telecon} /> */}
+            <ProtectedRoutes
+              path="/dashboard"
+              component={Dashboard}
+              maxWidth="md"
+            />
+            <ProtectedRoutes
+              exact
+              path="/telecon"
+              component={Telecon}
+              maxWidth="xl"
+            />
+            <ProtectedRoutes
+              exact
+              path="/rooms"
+              component={Rooms}
+              maxWidth="md"
+            />
+            <ProtectedRoutes
+              exact
+              path="/rooms/:id"
+              component={Room_inside}
+              maxWidth="md"
+            />
+            <ProtectedRoutes
+              exact
+              path="/settings"
+              component={Setting}
+              maxWidth="xl"
+            />
+            <ProtectedRoutes
+              exact
+              path="/quizlit"
+              component={QuizLit}
+              maxWidth="xl"
+            />
+            <ProtectedRoutes
+              exact
+              path="/records"
+              component={Records}
+              maxWidth="md"
+            />
+            <Route exact path="/:page?" component={Navbar_landingpage} />
+          </Switch>
+          </Router>
       </ThemeProvider>
     </>
   );
