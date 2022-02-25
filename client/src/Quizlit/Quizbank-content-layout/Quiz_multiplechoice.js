@@ -4,6 +4,7 @@ import Image from "../../assets/ImageJaven/Image.png";
 import {AddCircle, Check, MoreVert} from '@mui/icons-material';
 import useStyle from '../Quiz_multiplechoice_style';
 import "../Quiz_multiplechoice_stylesheet.css";
+import { Link } from 'react-router-dom';
 
 const sortOptions = [
     { label: 'Multiple Choice'},
@@ -98,7 +99,10 @@ function Quiz_multiplechoice() {
                                 </Box>
                             </Box>
 
-                            <Box className = "Quiz-options" sx = {designs.Quiz_Options_Style}>
+                            <Box className = "Quiz-options" 
+                            component = { Link }
+                            to = "/imagemultiplechoice"
+                            sx = {designs.Quiz_Options_Style}>
 
                                 {/* <Box className = "Asynchronous-button" display = "flex" justifyContent = "center" alignItems = "center" marginBottom = "5px">
                                     <Checkbox sx = {{

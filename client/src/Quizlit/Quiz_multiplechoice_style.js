@@ -95,6 +95,7 @@ const designs = {
         height: "auto",
         marginBottom: "1em",
         color: "#8E8E8E",
+        textAlign: "center",
         textTransform: "none",
         fontSize: "0.8em",
         backgroundColor: "White",
@@ -135,6 +136,7 @@ const designs = {
         borderBottom: "1px solid #DBDBDB"
     },
     Quiz_Answers_Style: {
+        textDecoration: "none",
         padding: "1em 2.5em",
         width: "relative",
         height: "auto",
