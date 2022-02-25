@@ -14,50 +14,11 @@ import {
   Select,
   MenuItem,
 } from '@mui/material';
-import { green } from '@mui/material/colors';
 import CusButton from '../../components/Button';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-//import { Buttons as Button, Boxs as Box } from '../components/Component';
-//import QuizIconButton from '../../assets/ImageJaven/QuizIconButton.png';
+import useStyle from './Quiz_multiplechoice_style';
 import Image from '../../assets/ImageJaven/Image.png';
-import { AddCircle, Check } from '@mui/icons-material';
-
-const styles = {
-  hover: {
-    backgroundColor: '#49B854',
-  },
-  hover2: {
-    backgroundColor: 'Black',
-  },
-  hover3: {
-    backgroundColor: 'White',
-    boxShadow: 'none',
-  },
-
-  sxStyle: {
-    fontSize: '13px',
-    backgroundColor: '#49B854',
-    textTransform: 'Capitalize',
-    fontWeight: 'bold',
-    width: 'max-content',
-    padding: '9px 30px',
-    borderRadius: '0.4em',
-    float: 'Right',
-  },
-  sxStyle2: {
-    fontSize: '14px',
-    fontWeight: '600',
-    color: 'White',
-    textTransform: 'Uppercase',
-    padding: '11px 0px 11px 35px',
-  },
-  sxStyle3: {
-    fontSize: '12px',
-    fontWeight: '600',
-    color: '#3F3D56',
-    padding: '11px 0px 11px 35px',
-  },
-};
+import { AddCircle, Check, MoreVert } from '@mui/icons-material';
 
 const sortOptions = [
   { label: 'Multiple Choice' },
@@ -105,10 +66,28 @@ const answertypeoptions = [
 ];
 
 function Quizform() {
-  const [image, setImage] = React.useState(true);
-  const [answertype, setAnswertype] = React.useState('Multiple Choice');
+  const [questions, setQuestions] = React.useState([
+    {
+      question: '',
+      answers: [
+        { text: '', correct: 'true' },
+        { text: '', correct: 'false' },
+        { text: '', correct: 'false' },
+        { text: '', correct: 'false' },
+      ],
+    },
+  ]);
+  const { designs } = useStyle();
 
-  const handleChange = () => {};
+  const handleChange = (index, event) => {
+    const values = [...questions];
+    values[index][event.target.name] = event.target.value;
+    setQuestions(values);
+  };
+
+  const handleSubmit = (event) => {
+    console.log(event.target);
+  };
 
   return (
     <Container maxWidth="lg">
@@ -207,342 +186,428 @@ function Quizform() {
           </Box>
         </Grid>
         <Grid item xs={12}>
-          <Box
-            className="Quiz-container"
-            height="auto"
-            width="100%"
-            gap="20px"
-            border="2px solid #DBDBDB"
-            boxSizing="border-box"
-          >
-            <Box
-              className="Quiz-container-sub"
-              display="flex"
-              width="100%"
-              height="15.625rem"
-            >
-              <Box
-                className="Quiz-question"
-                width="80%"
-                height="250px"
-                backgroundColor="White"
-                boxSizing="border-box"
-              >
+          {questions.map((items, index) => (
+            <form key={items} onSubmit={handleSubmit}>
+              <Grid container rowSpacing={1}>
                 <Box
-                  className="Quiz-question-sub"
-                  width="100%"
-                  height="auto"
-                  backgroundColor="#007FFF"
+                  className="Quiz-options-responsive"
+                  sx={designs.Quiz_Options_Responsive_Style}
                 >
-                  <TextField
-                    id="filled-basic"
-                    placeholder="Enter quiz question here..."
-                    variant="filled"
-                    sx={{
-                      width: '100%',
-                      height: 'auto',
-                      backgroundColor: 'transparent',
-                      borderRadius: '0em',
-                    }}
-                    hover={styles.hover2}
-                    inputProps={{
-                      style: {
-                        height: '0em',
-                        fontSize: '0.8em',
-                        paddingLeft: '2px',
-                        paddingRight: '0px',
-                        marginBottom: '16px',
-                        marginRight: '50px',
-                        color: 'white',
-                      },
-                    }}
-                    InputProps={{
-                      disableUnderline: true,
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <Box
-                            className="Quiz-item"
-                            height="30px"
-                            width="30px"
-                            margin="0rem 0.313rem 1rem 1.875rem"
-                            backgroundColor="White"
-                            borderRadius="3em"
-                          >
-                            <Typography
-                              sx={{
-                                fontSize: '1rem',
-                                color: '#007FFF',
-                                fontWeight: 600,
-                                margin: '0.313rem 0.313rem 0.313rem 0.688rem',
-                              }}
-                            >
-                              1.
-                            </Typography>
-                          </Box>
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
-                </Box>
-                <Box
-                  className="Quiz-question-image"
-                  width="100%"
-                  height="auto"
-                  borderRight="2px solid #DBDBDB"
-                  borderBottom="2px solid #DBDBDB"
-                  boxSizing="border-box"
-                >
-                  <Box
-                    className="Quiz-question-image-sub"
-                    height="auto"
-                    padding="0.2rem"
-                    display="flex"
-                    flexDirection="column"
-                    gap="10px"
-                    justifyContent="center"
-                    alignItems="center"
+                  <IconButton
+                    aria-label="options"
+                    sx={designs.Quiz_Options_IconButton_Style}
                   >
-                    {image ? (
-                      <Box width="100%" height="250px" backgroundColor="red">
-                        No container
-                      </Box>
-                    ) : (
-                      <>
-                        <img
-                          src={Image}
-                          height="80px"
-                          style={{
-                            marginLeft: '15px',
-                          }}
-                        />
-
-                        <Button
-                          variant="contained"
-                          startIcon={
-                            <AddCircle
+                    <MoreVert sx={designs.MoreVertIcon_Style} />
+                  </IconButton>
+                </Box>
+                <Grid item xs={12}>
+                  <Box
+                    className="Quiz-container"
+                    sx={designs.Quiz_Container_Style}
+                  >
+                    <Box
+                      className="Quiz-container-sub"
+                      sx={designs.Quiz_Container_Sub_Style}
+                    >
+                      <Box
+                        className="Quiz-question"
+                        sx={designs.Quiz_Question_Style}
+                      >
+                        <Box
+                          className="Quiz-question-sub"
+                          sx={designs.Quiz_Question_Sub_Style}
+                        >
+                          <TextField
+                            id="filled-basic"
+                            placeholder="Enter quiz question here..."
+                            variant="filled"
+                            sx={designs.Quiz_Question_TextField_Style}
+                            inputProps={{
+                              style: {
+                                height: '0em',
+                                fontSize: '0.8em',
+                                paddingLeft: '0.2em',
+                                paddingRight: '0em',
+                                marginBottom: '1.2em',
+                                marginRight: '3.5em',
+                                color: 'white',
+                              },
+                            }}
+                            InputProps={{
+                              disableUnderline: true,
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <Box
+                                    className="Quiz-item"
+                                    sx={designs.Quiz_Item_Style}
+                                  >
+                                    <Typography
+                                      sx={designs.Quiz_Item_Typography_Style}
+                                    >
+                                      1.
+                                    </Typography>
+                                  </Box>
+                                </InputAdornment>
+                              ),
+                            }}
+                            name="question"
+                            value={items.question}
+                            onChange={(event) => handleChange(index, event)}
+                          />
+                        </Box>
+                        <Box
+                          className="Quiz-question-image"
+                          sx={designs.Quiz_Question_Image_Style}
+                        >
+                          <Box
+                            className="Quiz-question-image-sub"
+                            sx={designs.Quiz_Question_Image_Sub_Style}
+                          >
+                            <img
+                              src={Image}
+                              height="80em"
                               style={{
-                                marginRight: '5px',
-                                fontSize: '30px',
-                                color: '#716F87',
+                                margin: '0.7em 0em 0em 1em',
                               }}
                             />
-                          }
-                          sx={{
-                            width: '200px',
-                            color: '#8E8E8E',
-                            textTransform: 'none',
-                            fontSize: '13px',
-                            backgroundColor: 'White',
-                            border: '2px solid #8E8E8E',
-                            borderRadius: '0.7em',
-                            boxShadow: 'none',
-                          }}
-                          hover={styles.hover3}
+
+                            <Button
+                              variant="contained"
+                              startIcon={
+                                <AddCircle
+                                  style={{
+                                    marginRight: '0.2em',
+                                    fontSize: '2em',
+                                    color: '#716F87',
+                                  }}
+                                />
+                              }
+                              sx={designs.Insert_Image_Button_Style}
+                            >
+                              Insert an image or GIF associated to this
+                              question.
+                            </Button>
+                          </Box>
+                        </Box>
+                      </Box>
+
+                      <Box
+                        className="Quiz-options"
+                        sx={designs.Quiz_Options_Style}
+                      >
+                        <Box
+                          className="Other-buttons"
+                          sx={designs.Other_Buttons_Style}
                         >
-                          Insert an image or GIF associated to this question.
-                        </Button>
-                      </>
-                    )}
+                          <Autocomplete
+                            clearOnEscape
+                            id="clear-on-escape"
+                            options={sortOptions}
+                            sx={designs.Answer_Type_Autocomplete_Style}
+                            renderInput={(params) => (
+                              <TextField
+                                {...params}
+                                InputProps={{
+                                  ...params.InputProps,
+                                  disableUnderline: true,
+                                }}
+                                InputLabelProps={{
+                                  style: {
+                                    fontSize: '0.9em',
+                                    fontWeight: '600',
+                                    color: '#737373',
+                                  },
+                                }}
+                                label="Answer type"
+                                variant="standard"
+                              />
+                            )}
+                          />
+
+                          <Autocomplete
+                            clearOnEscape
+                            id="clear-on-escape"
+                            options={sortOptions2}
+                            sx={designs.Time_Limit_Autocomplete_Style}
+                            renderInput={(params) => (
+                              <TextField
+                                {...params}
+                                InputProps={{
+                                  ...params.InputProps,
+                                  disableUnderline: true,
+                                }}
+                                InputLabelProps={{
+                                  style: {
+                                    fontSize: '0.9em',
+                                    fontWeight: '600',
+                                    color: '#737373',
+                                  },
+                                }}
+                                label="Time Limit"
+                                variant="standard"
+                              />
+                            )}
+                          />
+
+                          <Autocomplete
+                            clearOnEscape
+                            id="clear-on-escape"
+                            options={sortOptions3}
+                            sx={designs.Points_Autocomplete_Style}
+                            renderInput={(params) => (
+                              <TextField
+                                {...params}
+                                InputProps={{
+                                  ...params.InputProps,
+                                  disableUnderline: true,
+                                }}
+                                InputLabelProps={{
+                                  style: {
+                                    fontSize: '0.9em',
+                                    fontWeight: '600',
+                                    color: '#737373',
+                                  },
+                                }}
+                                label="Points"
+                                variant="standard"
+                              />
+                            )}
+                          />
+                        </Box>
+                      </Box>
+                    </Box>
+
+                    <Box
+                      className="Quiz-answers"
+                      sx={designs.Quiz_Answers_Style}
+                    >
+                      <Grid container columnSpacing={2} rowSpacing={1}>
+                        <Grid item xs={12} sm={6}>
+                          <TextField
+                            id="filled-basic"
+                            placeholder="Enter Answer A..."
+                            variant="filled"
+                            autoComplete="off"
+                            value={items.answers[0].text}
+                            onChange={(event) => handleChange(index, event)}
+                            sx={designs.Answer_A_TextField_Style}
+                            inputProps={{
+                              style: {
+                                height: '0em',
+                                fontSize: '0.8em',
+                                paddingLeft: '0.1em',
+                                paddingRight: '0em',
+                                marginBottom: '1em',
+                                marginRight: '0.5em',
+                                color: 'white',
+                              },
+                            }}
+                            InputProps={{
+                              disableUnderline: true,
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <Box
+                                    className="Quiz-item"
+                                    sx={designs.Quiz_Item_Style2}
+                                  >
+                                    <Typography
+                                      sx={designs.Answer_A_Typography_Style}
+                                    >
+                                      A.
+                                    </Typography>
+                                  </Box>
+                                </InputAdornment>
+                              ),
+                              endAdornment: (
+                                <InputAdornment position="end">
+                                  <IconButton
+                                    aria-label="correct-answer"
+                                    sx={designs.Correct_Answer_IconButton_Style}
+                                  >
+                                    <Check sx={designs.CheckIcon_Style} />
+                                  </IconButton>
+                                </InputAdornment>
+                              ),
+                            }}
+                          />
+                        </Grid>
+
+                        <Grid item xs={12} sm={6}>
+                          <TextField
+                            id="filled-basic"
+                            placeholder="Enter Answer B..."
+                            variant="filled"
+                            autoComplete="off"
+                            value={items.answers[1].text}
+                            onChange={(event) => handleChange(index, event)}
+                            sx={designs.Answer_B_TextField_Style}
+                            inputProps={{
+                              style: {
+                                height: '0em',
+                                fontSize: '0.8em',
+                                paddingLeft: '0.1em',
+                                paddingRight: '0em',
+                                marginBottom: '1em',
+                                marginRight: '0.5em',
+                                color: 'white',
+                              },
+                            }}
+                            InputProps={{
+                              disableUnderline: true,
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <Box
+                                    className="Quiz-item"
+                                    sx={designs.Quiz_Item_Style2}
+                                  >
+                                    <Typography
+                                      sx={designs.Answer_B_Typography_Style}
+                                    >
+                                      B.
+                                    </Typography>
+                                  </Box>
+                                </InputAdornment>
+                              ),
+                              endAdornment: (
+                                <InputAdornment position="end">
+                                  <IconButton
+                                    aria-label="correct-answer"
+                                    sx={designs.Correct_Answer_IconButton_Style}
+                                  >
+                                    <Check sx={designs.CheckIcon_Style} />
+                                  </IconButton>
+                                </InputAdornment>
+                              ),
+                            }}
+                          />
+                        </Grid>
+                      </Grid>
+
+                      <Grid container columnSpacing={2} rowSpacing={1}>
+                        <Grid item xs={12} sm={6}>
+                          <TextField
+                            id="filled-basic"
+                            placeholder="Enter Answer C..."
+                            variant="filled"
+                            autoComplete="off"
+                            value={items.answers[2].text}
+                            onChange={(event) => handleChange(index, event)}
+                            sx={designs.Answer_C_TextField_Style}
+                            inputProps={{
+                              style: {
+                                height: '0em',
+                                fontSize: '0.8em',
+                                paddingLeft: '0.1em',
+                                paddingRight: '0em',
+                                marginBottom: '1em',
+                                marginRight: '0.5em',
+                                color: 'white',
+                              },
+                            }}
+                            InputProps={{
+                              disableUnderline: true,
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <Box
+                                    className="Quiz-item"
+                                    sx={designs.Quiz_Item_Style2}
+                                  >
+                                    <Typography
+                                      sx={designs.Answer_C_Typography_Style}
+                                    >
+                                      C.
+                                    </Typography>
+                                  </Box>
+                                </InputAdornment>
+                              ),
+                              endAdornment: (
+                                <InputAdornment position="end">
+                                  <IconButton
+                                    aria-label="correct-answer"
+                                    sx={designs.Correct_Answer_IconButton_Style}
+                                  >
+                                    <Check sx={designs.CheckIcon_Style} />
+                                  </IconButton>
+                                </InputAdornment>
+                              ),
+                            }}
+                          />
+                        </Grid>
+
+                        <Grid item xs={12} sm={6}>
+                          <TextField
+                            id="filled-basic"
+                            placeholder="Enter Answer D..."
+                            variant="filled"
+                            autoComplete="off"
+                            value={items.answers[3].text}
+                            onChange={(event) => handleChange(index, event)}
+                            sx={designs.Answer_D_TextField_Style}
+                            inputProps={{
+                              style: {
+                                height: '0em',
+                                fontSize: '0.8em',
+                                paddingLeft: '0.1em',
+                                paddingRight: '0em',
+                                marginBottom: '1em',
+                                marginRight: '0.5em',
+                                color: 'white',
+                              },
+                            }}
+                            InputProps={{
+                              disableUnderline: true,
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <Box
+                                    className="Quiz-item"
+                                    sx={designs.Quiz_Item_Style2}
+                                  >
+                                    <Typography
+                                      sx={designs.Answer_D_Typography_Style}
+                                    >
+                                      D.
+                                    </Typography>
+                                  </Box>
+                                </InputAdornment>
+                              ),
+                              endAdornment: (
+                                <InputAdornment position="end">
+                                  <IconButton
+                                    aria-label="correct-answer"
+                                    sx={designs.Correct_Answer_IconButton_Style}
+                                  >
+                                    <Check sx={designs.CheckIcon_Style} />
+                                  </IconButton>
+                                </InputAdornment>
+                              ),
+                            }}
+                          />
+                        </Grid>
+                      </Grid>
+                    </Box>
                   </Box>
-                </Box>
-              </Box>
+                </Grid>
 
-              <Box
-                className="Quiz-options"
-                width="50%"
-                height="15.625rem"
-                backgroundColor="White"
-              >
-                <Box
-                  className="Other-buttons"
-                  display="flex"
-                  flexDirection="column"
-                  gap="1.3rem"
-                  marginTop="35px"
-                  justifyContent="center"
-                  alignItems="center"
-                >
-                  {/* <Autocomplete
-                    clearOnEscape
-                    id="clear-on-escape"
-                    options={sortOptions}
-                    sx={{
-                      width: '80%',
-                      borderBottom: '2px solid #DBDBDB',
-                    }}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        InputProps={{
-                          ...params.InputProps,
-                          disableUnderline: true,
+                <Grid item xs={12} sx={{ marginBottom: '2em' }}>
+                  <Button
+                    variant="contained"
+                    startIcon={
+                      <AddCircle
+                        style={{
+                          marginRight: '5px',
                         }}
-                        // InputProps={{style: {fontSize: "14px", color: "#3F3D56"}}}
-                        InputLabelProps={{
-                          style: {
-                            fontSize: '14px',
-                            fontWeight: '600',
-                            color: '#737373',
-                          },
-                        }}
-                        label="Answer type"
-                        variant="standard"
                       />
-                    )}
-                  /> */}
-                  <Typography
-                    variant="body1"
-                    sx={{ ml: 1, mb: 1, fontWeight: 500 }}
+                    }
+                    sx={designs.Add_Question_Button_Style}
+                    type="submit"
+                    onClick={handleSubmit}
                   >
-                    Answer type:
-                  </Typography>
-                  <Select value={answertype} onChange={handleChange}>
-                    {answertypeoptions.map(({ value, label }) => (
-                      <MenuItem key={value} value={value}>
-                        {label}
-                      </MenuItem>
-                    ))}
-                  </Select>
-
-                  <Autocomplete
-                    clearOnEscape
-                    id="clear-on-escape"
-                    options={sortOptions2}
-                    sx={{
-                      width: '80%',
-                      borderBottom: '2px solid #DBDBDB',
-                    }}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        InputProps={{
-                          ...params.InputProps,
-                          disableUnderline: true,
-                        }}
-                        // InputProps={{style: {fontSize: "14px", color: "#3F3D56"}}}
-                        InputLabelProps={{
-                          style: {
-                            fontSize: '14px',
-                            fontWeight: '600',
-                            color: '#737373',
-                          },
-                        }}
-                        label="Time Limit"
-                        variant="standard"
-                      />
-                    )}
-                  />
-
-                  <Autocomplete
-                    clearOnEscape
-                    id="clear-on-escape"
-                    options={sortOptions3}
-                    sx={{
-                      width: '80%',
-                      borderBottom: '2px solid #DBDBDB',
-                    }}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        InputProps={{
-                          ...params.InputProps,
-                          disableUnderline: true,
-                        }}
-                        InputLabelProps={{
-                          style: {
-                            fontSize: '14px',
-                            fontWeight: '600',
-                            color: '#737373',
-                          },
-                        }}
-                        label="Points"
-                        variant="standard"
-                      />
-                    )}
-                  />
-                </Box>
-              </Box>
-            </Box>
-
-            <Box
-              className="Quiz-answers"
-              padding="10px 35px"
-              width="100%"
-              height="auto"
-              display="flex"
-              flexDirection="column"
-              gap="5px"
-            >
-              <TextField
-                id="standard-read-only-input"
-                InputProps={{
-                  readOnly: true,
-                  disableUnderline: true,
-                }}
-                variant="standard"
-                sx={{
-                  width: '100%',
-                  borderBottom: '2px solid #D4D4D4',
-                }}
-              />
-
-              <TextField
-                id="standard-read-only-input"
-                InputProps={{
-                  readOnly: true,
-                  disableUnderline: true,
-                }}
-                variant="standard"
-                sx={{
-                  width: '100%',
-                  borderBottom: '2px solid #D4D4D4',
-                }}
-              />
-
-              <TextField
-                id="standard-read-only-input"
-                InputProps={{
-                  readOnly: true,
-                  disableUnderline: true,
-                }}
-                variant="standard"
-                sx={{
-                  width: '100%',
-                  borderBottom: '2px solid #D4D4D4',
-                }}
-              />
-            </Box>
-          </Box>
-
-          <Box
-            className="Add-question-button"
-            height="50px"
-            width="70%"
-            paddingBottom="30px"
-          >
-            <Button
-              variant="contained"
-              startIcon={
-                <AddCircle
-                  style={{
-                    marginRight: '5px',
-                  }}
-                />
-              }
-              sx={{
-                float: 'Left',
-                backgroundColor: '#0069D3',
-                textTransform: 'Capitalize',
-                fontWeight: 'bold',
-                width: 'max-content',
-                padding: '5px 30px',
-                marginTop: '5px',
-                borderRadius: '0.4em',
-              }}
-            >
-              Add Question
-            </Button>
-          </Box>
+                    Add Question
+                  </Button>
+                </Grid>
+              </Grid>
+            </form>
+          ))}
         </Grid>
       </Grid>
     </Container>
