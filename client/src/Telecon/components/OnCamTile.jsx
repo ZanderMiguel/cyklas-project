@@ -1,6 +1,7 @@
 import React from 'react';
-
-
+import offCamAvatar from '../../assets/Images/avatar_male.png'
+import mute18 from '../../assets/Images/mute18.png'
+import ReactDOMServer from 'react-dom/server';
 import OffCamTile from './OffCamTile';
 function MemTile({ socket, muted, onCam, myPeer }) {
   const vidContainer = React.useRef(null);
@@ -9,7 +10,7 @@ function MemTile({ socket, muted, onCam, myPeer }) {
 
   const myVidRatio = document.createElement('div');
   document.documentElement.style.setProperty('background-color', '#202124');
-
+  const myVidContainer = React.useRef(myVidRatio)
 
 
   const peers = {};
@@ -38,11 +39,13 @@ function MemTile({ socket, muted, onCam, myPeer }) {
 
   const handleCam = (stream, myVid) => {
     if (onCam) {
-      myVid.current.play();
-      myVid.current.srcObject = stream;
+      myVidContainer.current.remove()
+      myVideo.muted = true
+      addVideoStream(myVideo, stream, myVidRatio);
     } else {
       myVid.current.pause();
       myVid.current.srcObject = null;
+      myVidContainer.current.replaceChild(document.createRange().createContextualFragment(`${ReactDOMServer.renderToStaticMarkup(<OffCamTile />)}`),...myVidContainer.current.childNodes)
     }
   };
   React.useMemo(() => {

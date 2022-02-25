@@ -25,7 +25,7 @@ function Actions({ muted, onCam, setOnCam, setMuted }) {
   );
   const [cam, setCam] = React.useState(
     !onCam ? (
-      <VideocamOffIcon style={{ color: 'white', fontSize: '30px' }} />
+      <VideocamOffIcon style={{ color: 'white', fontSize: '30px',  }} />
     ) : (
       <VideocamIcon style={{ color: 'white', fontSize: '30px' }} />
     )
@@ -72,15 +72,16 @@ function Actions({ muted, onCam, setOnCam, setMuted }) {
           {mic}
         </IconButton>,
         <IconButton
+        
           style={{
-            backgroundColor: `${!onCam ? 'blue' : '#F74747'}`,
+            backgroundColor: `${onCam ? 'blue' : '#F74747'}`,
             width: '38px',
             height: '38px',
           }}
           onClick={() => {
             setOnCam((prevOnCam) => !prevOnCam);
             setCam(
-              !onCam ? (
+              onCam ? (
                 <VideocamOffIcon style={{ color: 'white', fontSize: '30px' }} />
               ) : (
                 <VideocamIcon style={{ color: 'white', fontSize: '30px' }} />
