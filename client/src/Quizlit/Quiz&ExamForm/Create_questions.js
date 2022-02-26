@@ -50,17 +50,6 @@ const sortOptions3 = [
 ];
 
 function Create_questions() {
-  const [questions, setQuestions] = React.useState([
-    {
-      question: 'Who is your crush?',
-      answers: [
-        { text: 'Angela May', correct: 'true' },
-        { text: 'Christine', correct: 'false' },
-        { text: 'Lesley', correct: 'false' },
-        { text: 'Melissa', correct: 'false' },
-      ],
-    },
-  ]);
   const { designs } = useStyle();
 
   return (

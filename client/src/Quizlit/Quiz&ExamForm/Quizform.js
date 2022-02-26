@@ -66,35 +66,51 @@ const answertypeoptions = [
 ];
 
 function Quizform() {
-  const [questions, setQuestions] = React.useState([
-    {
-      question: '',
-      answers: [
-        { text: '', correct: 'true' },
-        { text: '', correct: 'false' },
-        { text: '', correct: 'false' },
-        { text: '', correct: 'false' },
-      ],
-    },
-    {
-      question: '',
-      answers: [
-        { text: '', correct: 'true' },
-        { text: '', correct: 'false' },
-        { text: '', correct: 'false' },
-        { text: '', correct: 'false' },
-      ],
-    },
-  ]);
+  const [questions, setQuestions] = React.useState(new Map());
   const { designs } = useStyle();
 
-  const handleChange = (index, event) => {
-    const values = [...questions];
-    values[index][event.target.name] = event.target.value;
-    setQuestions(values);
-    console.log(values);
-  };
+  const questionKey = React.useRef();
 
+  questions.set('kahitano', {
+    question: '',
+    answer1: '',
+    answer2: '',
+    answer3: '',
+    answer4: '',
+  });
+  const handleChange = (index, event) => {
+    const value = [...questions];
+    if (event.target.tag === 'question') {
+      questionKey.current = event.target.name;
+      setQuestions(
+        questions.set([questionKey], {
+          question: event.target.value,
+          ...questions[questionKey.current],
+        })
+      );
+    } else {
+      setQuestions(
+        questions.set([questionKey], {
+          ...questions[questionKey.current],
+          [event.target.name]: [event.target.value],
+        })
+      );
+    }
+    console.log(questions);
+    console.log(event.target.tag);
+  };
+  const handleQuestionAdd = () => {
+    setQuestions([
+      ...questions,
+      {
+        question: '',
+        answer1: '',
+        answer2: '',
+        answer3: '',
+        answer4: '',
+      },
+    ]);
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
   };
@@ -107,6 +123,9 @@ function Quizform() {
             <CusButton
               variant="contained"
               content="Create Quiz"
+              type="submit"
+              id="quizform"
+              onClick={handleSubmit}
               sx={{
                 backgroundColor: '#4caf50',
                 color: 'white',
@@ -196,9 +215,9 @@ function Quizform() {
           </Box>
         </Grid>
         <Grid item xs={12}>
-          {questions.map((items, index) => {
+          {Array.from(questions).map((items, index) => {
             return (
-              <form key={index} onSubmit={handleSubmit}>
+              <form key={index} onSubmit={handleSubmit} id="quizform">
                 <Grid container rowSpacing={1}>
                   <Box
                     className="Quiz-options-responsive"
@@ -262,8 +281,8 @@ function Quizform() {
                                   </InputAdornment>
                                 ),
                               }}
-                              name="question"
-                              value={items.question}
+                              name={`questions${index}`}
+                              tag="question"
                               onChange={(event) => handleChange(index, event)}
                             />
                           </Box>
@@ -400,8 +419,7 @@ function Quizform() {
                               placeholder="Enter Answer A..."
                               variant="filled"
                               autoComplete="off"
-                              name={`answers${index}`}
-                              value={[`${questions.answers}${index}`]}
+                              name="answer1"
                               onChange={(event) => handleChange(index, event)}
                               sx={designs.Answer_A_TextField_Style}
                               inputProps={{
@@ -453,8 +471,7 @@ function Quizform() {
                               placeholder="Enter Answer B..."
                               variant="filled"
                               autoComplete="off"
-                              name={`answers${index}`}
-                              value={[`${questions.answers}${index}`]}
+                              name="answer2"
                               onChange={(event) => handleChange(index, event)}
                               sx={designs.Answer_B_TextField_Style}
                               inputProps={{
@@ -508,8 +525,7 @@ function Quizform() {
                               placeholder="Enter Answer C..."
                               variant="filled"
                               autoComplete="off"
-                              name={`answers${index}`}
-                              value={[`${questions.answers}${index}`]}
+                              name="answer3"
                               onChange={(event) => handleChange(index, event)}
                               sx={designs.Answer_C_TextField_Style}
                               inputProps={{
@@ -561,8 +577,7 @@ function Quizform() {
                               placeholder="Enter Answer D..."
                               variant="filled"
                               autoComplete="off"
-                              name={`answers${index}`}
-                              value={[`${questions.answers}${index}`]}
+                              name="answer4"
                               onChange={(event) => handleChange(index, event)}
                               sx={designs.Answer_D_TextField_Style}
                               inputProps={{
@@ -612,23 +627,25 @@ function Quizform() {
                     </Box>
                   </Grid>
 
-                  <Grid item xs={12} sx={{ marginBottom: '2em' }}>
-                    <Button
-                      variant="contained"
-                      startIcon={
-                        <AddCircle
-                          style={{
-                            marginRight: '5px',
-                          }}
-                        />
-                      }
-                      sx={designs.Add_Question_Button_Style}
-                      type="submit"
-                      onClick={handleSubmit}
-                    >
-                      Add Question
-                    </Button>
-                  </Grid>
+                  {questions.length - 1 === index && (
+                    <Grid item xs={12} sx={{ marginBottom: '2em' }}>
+                      <Button
+                        variant="contained"
+                        startIcon={
+                          <AddCircle
+                            style={{
+                              marginRight: '5px',
+                            }}
+                          />
+                        }
+                        sx={designs.Add_Question_Button_Style}
+                        type="submit"
+                        onClick={handleQuestionAdd}
+                      >
+                        Add Question
+                      </Button>
+                    </Grid>
+                  )}
                 </Grid>
               </form>
             );

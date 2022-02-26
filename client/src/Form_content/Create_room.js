@@ -59,7 +59,7 @@ function Create_room({ open, close, maxWidth, state }) {
     setGradingSystem(event.target.value);
   };
 
-  const { post, data } = usePost();
+  const { post } = usePost();
 
   const handleSubmit = (e) => {
     e.preventDefault();
