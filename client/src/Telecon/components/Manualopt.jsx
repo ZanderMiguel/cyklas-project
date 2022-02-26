@@ -6,7 +6,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 
-function Manualopt() {
+function Manualopt({setSelectedRadio}) {
 
 
 

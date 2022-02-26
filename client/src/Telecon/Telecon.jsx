@@ -66,12 +66,18 @@ function Radiobtn() {
 
           <FormControlLabel
             value="automate"
-            control={<Radio />}
+            control={<Radio 
+              onClick={() => {
+                setSelectedRadio(<Automateopt/>)
+            }}/>}
             label="Automate"
           />
           <FormControlLabel
             value="manual"
-            control={<Radio />}
+            control={<Radio 
+              onClick={() => {
+                setSelectedRadio(<Manualopt/>)
+            }}/>}
             label="Manual"
           />
           <FormControlLabel
@@ -104,7 +110,7 @@ function Radiobtn() {
 
         <Typography sx={{ fontWeight: ' bold' }}>Groups</Typography>
       </Box>
-
+          {setRadio}
       
 
 
