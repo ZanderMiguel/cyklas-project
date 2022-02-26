@@ -7,18 +7,10 @@ import {
   TextField,
   Container,
   Box,
-  Divider,
   styled,
-  Table,
-  TableBody,
-  TableCell,
-  tableCellClasses,
-  TableContainer,
-  TableRow,
   IconButton,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import AccAva from '../assets/Images/avatar_male.png';
 
 
 
