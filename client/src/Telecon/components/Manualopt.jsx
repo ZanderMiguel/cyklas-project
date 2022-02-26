@@ -106,22 +106,22 @@ function Manualopt({setSelectedRadio}) {
           <TableBody>
             {rows.map((row) => (
               <TableRow key={row.grpname} style={{ width: '100' }} sx={{ mt: '10px' }}>
-                <TableCell padding='none' align="left">{row.grpname}</TableCell>
-                <TableCell padding='none' align="right">{row.drpdwnbtn}</TableCell>
-                <TableCell padding='none' align="right">{row.edit}</TableCell>
-                <TableCell padding='none' align="left">{row.del}</TableCell>
-                <TableCell padding='none' align="right">{row.add}</TableCell>
+                <TableCell align="left">{row.grpname}</TableCell>
+                <TableCell align="right">{row.drpdwnbtn}</TableCell>
+                <TableCell align="right">{row.edit}</TableCell>
+                <TableCell align="left">{row.del}</TableCell>
+                <TableCell align="right">{row.add}</TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
 
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex', mt:'10px'}}>
         <IconButton size='small'><AddCircleIcon /></IconButton>
         <Typography style={{fontWeight:'bold'}}sx={{mt:'5px'}}>Add Group</Typography>
       </Box>
-      <Divider variant='fullWidth' />
+      <Divider sx={{mt: '10px'}}variant='fullWidth' />
 
 
     </Container>
