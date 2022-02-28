@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import {
   List,
   ListItem,
-  ListItemText,
   Divider,
   Box,
   Typography,
@@ -16,11 +14,11 @@ import Zander from '../../assets/Images/zander.png';
 
 function Accountpopover() {
   const theme = useTheme();
-  const isMatch = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
     <Box width={400} maxWidth={400} maxHeight={300}>
       <List component="nav" sx={{ width: '100%' }}>
-        <ListItem button>
+        <ListItem>
           <Box display="flex" overflow="auto">
             <Avatar src={Zander} alt="profileImg" sx={{ mr: 2 }} />
             <Box>
@@ -30,7 +28,7 @@ function Accountpopover() {
           </Box>
         </ListItem>
         <Divider />
-        <ListItem button component={Link} to="/Settings">
+        <ListItem button component={Link} to="/settings">
           <Box display="flex">
             <Settings sx={{ mr: '0.5em' }} />
             <Typography>Setting</Typography>

@@ -1,13 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Box,
-  List,
-  ListItem,
-  Avatar,
-  Typography,
-  Divider,
-} from '@mui/material';
+import { Box, List, ListItem, Typography, Divider } from '@mui/material';
 import { BsPencilSquare } from 'react-icons/bs';
 import { HiPuzzle } from 'react-icons/hi';
 

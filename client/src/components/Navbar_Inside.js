@@ -15,22 +15,22 @@ import CusPopover from './Popover';
 import { useTheme } from '@mui/material/styles';
 
 const request = [
-  // { avatar: <Avatar />, student: 'zander' },
-  // { avatar: <Avatar />, student: 'rey' },
-  // { avatar: <Avatar />, student: 'lester' },
-  // { avatar: <Avatar />, student: 'charles' },
-  // { avatar: <Avatar />, student: 'charles' },
-  // { avatar: <Avatar />, student: 'charles' },
-  // { avatar: <Avatar />, student: 'charles' },
-  // { avatar: <Avatar />, student: 'charles' },
-  // { avatar: <Avatar />, student: 'charles' },
-  // { avatar: <Avatar />, student: 'charles' },
-  // { avatar: <Avatar />, student: 'charles' },
-  // { avatar: <Avatar />, student: 'charles' },
-  // { avatar: <Avatar />, student: 'charles' },
-  // { avatar: <Avatar />, student: 'charles' },
-  // { avatar: <Avatar />, student: 'charles' },
-  // { avatar: <Avatar />, student: 'rules' },
+  { avatar: <Avatar />, student: 'zander' },
+  { avatar: <Avatar />, student: 'rey' },
+  { avatar: <Avatar />, student: 'lester' },
+  { avatar: <Avatar />, student: 'charles' },
+  { avatar: <Avatar />, student: 'charles' },
+  { avatar: <Avatar />, student: 'charles' },
+  { avatar: <Avatar />, student: 'charles' },
+  { avatar: <Avatar />, student: 'charles' },
+  { avatar: <Avatar />, student: 'charles' },
+  { avatar: <Avatar />, student: 'charles' },
+  { avatar: <Avatar />, student: 'charles' },
+  { avatar: <Avatar />, student: 'charles' },
+  { avatar: <Avatar />, student: 'charles' },
+  { avatar: <Avatar />, student: 'charles' },
+  { avatar: <Avatar />, student: 'charles' },
+  { avatar: <Avatar />, student: 'rules' },
 ];
 const general = [
   {

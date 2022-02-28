@@ -62,7 +62,12 @@ function Room_inside() {
                 </Typography>
               </Box>
               <Box flexGrow={1} />
-              <Tabs value={value} onChange={handleChange}>
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                variant="scrollable"
+                scrollButtons="auto"
+              >
                 <Tab
                   icon={<FaClipboardList size={25} />}
                   iconPosition="start"

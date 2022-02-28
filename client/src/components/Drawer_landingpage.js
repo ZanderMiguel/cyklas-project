@@ -34,19 +34,19 @@ function Drawer_landingpage() {
   const drawerlist = [
     {
       text: 'HOME',
-      path: '/',
+      path: '/home/login',
     },
     {
       text: 'SERVICE',
-      path: '/Service',
+      path: '/home/servce',
     },
     {
       text: 'ABOUT',
-      path: '/About',
+      path: '/home/about',
     },
     {
       text: 'CONTACT',
-      path: '/Contact',
+      path: '/home/contact',
     },
   ];
 

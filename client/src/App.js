@@ -1,6 +1,11 @@
 import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
 import Records from './Records/Records';
 import Setting from './Settings/SettingsCont';
 import ProtectedRoutes from './components/ProtectedRoutes';
@@ -13,8 +18,6 @@ import Rooms from './Rooms/Rooms';
 import Room_inside from './Rooms/Room-content-layout/Room_inside';
 import View_activity from './Rooms/Room-content-layout/View_activity';
 import Forgot_password from './pages-landing/Forgot_password';
-import Datetime from './components/Datetime';
-import { ListItemSecondaryAction } from '@mui/material';
 import Notfound from './Notfound';
 
 function App() {
@@ -46,6 +49,9 @@ function App() {
       <ThemeProvider theme={theme}>
         <Router>
           <Switch>
+            <Redirect exact from="/" to="/home/login" />
+            <Redirect exact from="/home" to="/home/login" />
+            <Route exact path="/home/:page?" component={Navbar_landingpage} />
             <ProtectedRoutes exact path="/dashboard" component={Dashboard} />
             <ProtectedRoutes exact path="/telecon" component={TeleconStart} />
             <ProtectedRoutes exact path="/rooms" component={Rooms} />
@@ -65,7 +71,6 @@ function App() {
               path="/rooms/:id/:ab/:w"
               component={Dashboard}
             />
-
             <ProtectedRoutes exact path="/settings" component={Setting} />
             <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
             <ProtectedRoutes
@@ -74,14 +79,10 @@ function App() {
               component={Quizform}
             />
             <ProtectedRoutes exact path="/records" component={Records} />
-
             <Route path="/forgotpassword">
               <Forgot_password />
             </Route>
-            {/* Javen Routes */}
-
-            <Route path="/:page?" component={Navbar_landingpage} />
-            <Route exact component={Notfound} />
+            <Route component={Notfound} />
           </Switch>
         </Router>
       </ThemeProvider>

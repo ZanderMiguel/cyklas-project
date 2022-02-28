@@ -19,7 +19,7 @@ function useGet(url) {
         setError(err.message);
         setData(null);
       });
-  }, []);
+  });
   return { data, isPending, error };
 }
 

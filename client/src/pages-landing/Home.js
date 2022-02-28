@@ -21,22 +21,15 @@ import { useTheme } from '@mui/material/styles';
 
 const style = { fontFamily: 'Poppins', marginTop: 1 };
 
-const responseSuccessGoogle = (response) => {
-  console.log(response);
+const googleSuccess = async (res) => {
+  console.log(res);
   axios({
     method: 'POST',
     url: 'http://localhost:5000/googlelogin',
-    data: { tokenId: response.tokenId },
-  }).then((response) => {
-    console.log('Google login success', response);
+    data: { tokenId: res.tokenId },
+  }).then((res) => {
+    console.log('Google login success', res);
   });
-};
-
-const responseErrorGoogle = (response) => {
-  console.log(response);
-};
-const googleSuccess = async (res) => {
-  console.log(res);
 };
 const googleFailure = (error) => {
   console.log(error);

@@ -25,9 +25,11 @@ function Notificationpopover({ general, request }) {
         <Tab label="General" disableRipple />
         <Tab label="Requests" disableRipple />
       </Tabs>
+
       <Divider />
+
       {value === 1 && (
-        <Box width="30rem" padding="0.5em 1em">
+        <Box width="30rem" maxHeight="20rem" padding="0.5em 1em">
           {request.length > 0 ? (
             request.map((items, index) => (
               <>
@@ -72,7 +74,7 @@ function Notificationpopover({ general, request }) {
       )}
 
       {value === 0 && (
-        <Box width="30rem" padding="0.5em 1em">
+        <Box width="30rem" maxHeight="20rem" padding="0.5em 1em">
           {general.length > 0 ? (
             general.map((items, index) => (
               <div key={index}>
