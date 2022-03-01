@@ -32,13 +32,8 @@ function Notificationpopover({ general, request }) {
         <Box width="30rem" maxHeight="20rem" padding="0.5em 1em">
           {request.length > 0 ? (
             request.map((items, index) => (
-              <>
-                <Box
-                  key={index}
-                  width="100%"
-                  display="flex"
-                  alignItems="center"
-                >
+              <div key={index}>
+                <Box width="100%" display="flex" alignItems="center">
                   <Box display="flex" flexGrow={1} alignItems="center">
                     <Box mr={2}>{items.avatar}</Box>
                     <Typography>{items.student}</Typography>
@@ -57,7 +52,7 @@ function Notificationpopover({ general, request }) {
                   </Button>
                 </Box>
                 <Divider sx={{ mb: '0.5em', mt: '0.5em' }} />
-              </>
+              </div>
             ))
           ) : (
             <Box

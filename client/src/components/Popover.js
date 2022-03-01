@@ -1,7 +1,7 @@
 import React from 'react';
 import Popover from '@mui/material/Popover';
 
-function Popovercomp({ children, anchorEl, onClose, id, open }) {
+function Popovercomp({ children, anchorEl, onClose, id, open, ...rest }) {
   return (
     <Popover
       id={id}
@@ -17,6 +17,7 @@ function Popovercomp({ children, anchorEl, onClose, id, open }) {
         vertical: 'top',
         horizontal: 'right',
       }}
+      {...rest}
     >
       {children}
     </Popover>

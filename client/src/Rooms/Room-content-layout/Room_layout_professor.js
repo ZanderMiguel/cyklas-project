@@ -1,10 +1,24 @@
 import React from 'react';
 import { Typography, Paper, IconButton, Box, Grid } from '@mui/material';
 import { MoreVert } from '@mui/icons-material';
+import CusPopover from '../../components/Popover';
+import RoomsOptionpopover from '../../components/PopoverContent/RoomsOptionpopover';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Link } from 'react-router-dom';
+import '../View_activity_style.css';
+import CssBasedLine from '@mui/material/CssBaseline';
 
 function Room_layout({ data }) {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClickOption = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseOption = () => {
+    setAnchorEl(null);
+  };
+  const account = Boolean(anchorEl);
+
   return (
     <>
       <CssBaseline />
@@ -19,7 +33,7 @@ function Room_layout({ data }) {
         return (
           <Grid item xs={12} key={index}>
             <Paper
-              elevation={1}
+              elevation={2}
               sx={{
                 backgroundColor: '#FAFAFA',
                 width: '100%',
@@ -34,7 +48,7 @@ function Room_layout({ data }) {
             >
               <Box className="RoomSubject" display="flex">
                 <Box className="sub-RoomSubject" flexGrow={1}>
-                  <Link style={{ textDecoration: 'none' }} to={`/Rooms/${id}`}>
+                  <Link style={{ textDecoration: 'none' }} to={`/rooms/${id}`}>
                     <Typography
                       variant="h5"
                       noWrap
@@ -50,9 +64,9 @@ function Room_layout({ data }) {
                     <Typography
                       variant="h6"
                       sx={{
-                        fontWeight: 'bold',
+                        fontWeight: 500,
                         color: '#3F3D56',
-                        marginBottom: '15px',
+                        marginBottom: '1rem',
                       }}
                     >
                       {subtitle}
@@ -94,14 +108,21 @@ function Room_layout({ data }) {
                       height: '35px',
                       width: '35px',
                     }}
-                    onClick={() => {
-                      console.log('potangina mo');
-                    }}
+                    onClick={handleClickOption}
                   >
                     <MoreVert />
                   </IconButton>
                 </Box>
               </Box>
+
+              <CusPopover
+                PaperProps={{ elevation: 0 }}
+                open={account}
+                anchorEl={anchorEl}
+                onClose={handleCloseOption}
+              >
+                <RoomsOptionpopover />
+              </CusPopover>
 
               <Box
                 className="Schedule"
