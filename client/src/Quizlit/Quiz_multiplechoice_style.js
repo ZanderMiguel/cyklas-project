@@ -84,16 +84,16 @@ const designs = {
     },
     Quiz_Question_Image_Sub_Style: {
         height: "auto",
+        marginTop: "0.5em",
         display: "flex",
         flexDirection: "column",
-        gap: "0.5em",
+        gap: "1em",
         justifyContent: "center",
         alignItems: "center"
     },
     Insert_Image_Button_Style: {
         width: "15em",
         height: "auto",
-        marginBottom: "1em",
         color: "#8E8E8E",
         textAlign: "center",
         textTransform: "none",
@@ -116,13 +116,40 @@ const designs = {
         }
     },
     Other_Buttons_Style: {
+        padding: "0.5em 0em 1.5em 0em",
         display: "flex",
         flexDirection: "column",
-        gap: "1.1em",
-        marginTop: "2em",
+        gap: "1em",
         justifyContent: "center",
         alignItems: "center"
     },
+    Delete_Question_Style: {
+        width: "100%",
+        height: "auto"
+    },
+    Delete_IconButton_Style: {
+        float: "right",
+        marginRight: "1.5em",
+        height: "1.5em",
+        width: "1.5em"
+    },
+    DeleteIcon_Style: {
+        color: "#716F87",
+        fontSize: "1em"
+    },
+    FormControl_Style: { 
+        width: "80%" 
+    },
+    InputLabel_Style: {
+        fontSize: "0.9em",
+        fontWeight: "600",
+        color: "#737373"
+    },
+    Select_Style: { 
+        width: "100%",
+        borderBottom: "1px solid #DBDBDB"
+    },
+
     Answer_Type_Autocomplete_Style: {
         width: "80%",
         borderBottom: "1px solid #DBDBDB"

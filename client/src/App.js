@@ -14,6 +14,8 @@ import View_activity from './Rooms/Room-content-layout/View_activity'
 import ViewFile_activity from './Rooms/Room-content-layout/ViewFile_activity'
 import Quiz_multiplechoice from './Quizlit/Quizbank-content-layout/Quiz_multiplechoice'
 import Imagemultiplechoice from './Quizlit/Quizbank-content-layout/Imagemultiplechoice'
+import Trueorfalse from './Quizlit/Quizbank-content-layout/Trueorfalse'
+import Essay from './Quizlit/Quizbank-content-layout/Essay'
 
 const theme = createTheme({
   typography: {
@@ -57,6 +59,8 @@ function App() {
             <ProtectedRoutes exact path="/waw" component={ViewFile_activity} />
             <ProtectedRoutes exact path="/quiz_multiplechoice" component={Quiz_multiplechoice} />
             <ProtectedRoutes exact path="/imagemultiplechoice" component={Imagemultiplechoice} />
+            <ProtectedRoutes exact path="/trueorfalse" component={Trueorfalse} />
+            <ProtectedRoutes exact path="/essay" component={Essay} />
             <Route path="/:page?" component={Navbar_landingpage} />
             
           </Switch>

@@ -15,8 +15,8 @@ function Imagemultiplechoice() {
             <Grid item xs = {12}>
                 <Box className = "Quiz-container" sx = {designs.Quiz_Container_Style}>
                     <Box className = "Quiz-answers" 
-                    component = { Link }
-                    to = "/Quiz_multiplechoice"
+                    // component = { Link }
+                    // to = "/Quiz_multiplechoice"
                     sx = {designs.Quiz_Answers_Style}>
                             
                             <Grid container columnSpacing = {2} rowSpacing = {1}>
