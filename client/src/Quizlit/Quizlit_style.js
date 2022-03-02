@@ -15,6 +15,13 @@ const designs = {
             display: "initial"
         }
     },
+    Add_IconButton_Style: { 
+        float: "right",
+        marginTop: "1.2em",
+        [theme.breakpoints.down('md')]: {
+            marginTop: "0.5em",
+        },
+    },
     Tabs_Main_Style2: {
         borderRight: 1,
         marginTop: "0.8em",

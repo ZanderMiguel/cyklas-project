@@ -49,8 +49,123 @@ const sortOptions3 = [
   { label: '10 points' },
 ];
 
+const dataAnswerType = [
+  {
+      value: 'Multiple Choice',
+      label: 'Multiple Choice'
+  },
+  {
+      value: 'Image Multiple Choice',
+      label: 'Image Multiple Choice'
+  },
+  {
+      value: 'True or False',
+      label: 'True or False'
+  },
+  {
+      value: 'Essay',
+      label: 'Essay'
+  }
+];
+
+const dataTimeLimit = [
+  {
+      value: '5 seconds',
+      label: '5 seconds'
+  },
+  {
+      value: '10 seconds',
+      label: '10 seconds'
+  },
+  {
+      value: '15 seconds',
+      label: '15 seconds'
+  },
+  {
+      value: '20 seconds',
+      label: '20 seconds'
+  },
+  {
+      value: '25 seconds',
+      label: '25 seconds'
+  },
+  {
+      value: '30 seconds',
+      label: '30 seconds'
+  },
+  {
+      value: '40 seconds',
+      label: '40 seconds'
+  },
+  {
+      value: '1 minute',
+      label: '1 minute'
+  },
+  {
+      value: '2 minutes',
+      label: '2 minutes'
+  }
+];
+
+const dataPoints = [
+  {
+      value: '0 point',
+      label: '0 point'
+  },
+  {
+      value: '1 point',
+      label: '1 point'
+  },
+  {
+      value: '2 points',
+      label: '2 points'
+  },
+  {
+      value: '3 points',
+      label: '3 points'
+  },
+  {
+      value: '4 points',
+      label: '4 points'
+  },
+  {
+      value: '5 points',
+      label: '5 points'
+  },
+  {
+      value: '6 points',
+      label: '6 points'
+  },
+  {
+      value: '7 points',
+      label: '7 points'
+  },
+  {
+      value: '8 points',
+      label: '8 points'
+  },
+  {
+      value: '9 points',
+      label: '9 points'
+  }
+];
+
 function Create_questions() {
   const { designs } = useStyle();
+
+  const [selectAnswerType, setAnswerType] = React.useState('Multiple Choice');
+  const [selectTimeLimit, setTimeLimit] = React.useState('');
+  const [selectPoints, setPoints] = React.useState('');
+  
+  const handleChange1 = (event) => {
+  setAnswerType(event.target.value);
+  };
+  const handleChange2 = (event) => {
+  setTimeLimit(event.target.value);
+  };
+  const handleChange3 = (event) => {
+  setPoints(event.target.value);
+  };
 
   return (
     <Container maxWidth="lg">
@@ -147,7 +262,77 @@ function Create_questions() {
 
               <Box className="Quiz-options" sx={designs.Quiz_Options_Style}>
                 <Box className="Other-buttons" sx={designs.Other_Buttons_Style}>
-                  <Autocomplete
+                    <Box className = "Delete-question" sx = {designs.Delete_Question_Style}>
+                        <IconButton aria-label="delete" sx = {designs.Delete_IconButton_Style}>
+                            <Delete
+                                sx= {designs.DeleteIcon_Style}/>
+                        </IconButton>
+                    </Box>
+
+                    <FormControl variant="standard" sx = {designs.FormControl_Style}>
+                    <InputLabel id="demo-simple-select-standard-label"
+                    sx = {designs.InputLabel_Style}>
+                    Answer Type
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-standard-label"
+                      id="demo-simple-select-standard"
+                      value={age}
+                      onChange={handleChange}
+                      label="Age"
+                      disableUnderline 
+                      sx = {designs.Select_Style}>
+                                        
+                      {dataAnswerType.map(({ value, label }) => (
+                          <MenuItem key = {value} value = {value}> {label} </MenuItem>
+                      ))}
+                                       
+                    </Select>
+                    </FormControl>
+
+                    <FormControl variant="standard" sx = {designs.FormControl_Style}>
+                    <InputLabel id="demo-simple-select-standard-label"
+                    sx = {designs.InputLabel_Style}>
+                    Time Limit
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-standard-label"
+                      id="demo-simple-select-standard"
+                      value={age}
+                      onChange={handleChange}
+                      label="Age"
+                      disableUnderline 
+                      sx = {designs.Select_Style}>
+                                        
+                      {dataTimeLimit.map(({ value, label }) => (
+                          <MenuItem key = {value} value = {value}> {label} </MenuItem>
+                      ))}
+                                       
+                    </Select>
+                    </FormControl>
+
+                    <FormControl variant="standard" sx = {designs.FormControl_Style}>
+                    <InputLabel id="demo-simple-select-standard-label"
+                    sx = {designs.InputLabel_Style}>
+                    Points
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-standard-label"
+                      id="demo-simple-select-standard"
+                      value={age}
+                      onChange={handleChange}
+                      label="Age"
+                      disableUnderline 
+                      sx = {designs.Select_Style}>
+                                        
+                      {dataPoints.map(({ value, label }) => (
+                          <MenuItem key = {value} value = {value}> {label} </MenuItem>
+                      ))}
+                                       
+                    </Select>
+                    </FormControl>
+
+                  {/* <Autocomplete
                     clearOnEscape
                     id="clear-on-escape"
                     options={sortOptions}
@@ -220,7 +405,7 @@ function Create_questions() {
                         variant="standard"
                       />
                     )}
-                  />
+                  /> */}
                 </Box>
               </Box>
             </Box>
