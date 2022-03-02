@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Container, Typography } from '@mui/material';
+import { Grid, Container, Typography, Paper } from '@mui/material';
 import Room_layout from './Room-content-layout/Room_layout_professor';
 import useGet from '../customHooks/useGet';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -23,12 +23,13 @@ function Rooms() {
     setOpenDialog(false);
   };
 
-  const User = Boolean(false);
+  const Professor = Boolean(false);
+  const Student = Boolean(true);
 
   return (
     <>
       <Container maxWidth="md">
-        {User ? (
+        {Professor && (
           <>
             <Grid
               container
@@ -36,6 +37,7 @@ function Rooms() {
               rowSpacing={1}
               maxHeight="100vh"
               mt={2}
+              sx={{ mt: '5rem' }}
             >
               <Grid item>
                 <Button
@@ -74,29 +76,41 @@ function Rooms() {
               )}
             </Grid>
           </>
-        ) : (
-          <Grid
-            container
-            justifyContent="flex-end"
-            rowSpacing={1}
-            maxHeight="100vh"
-            mt={2}
-          >
-            <Grid item>
-              <Button
-                variant="contained"
-                content="Join room"
-                sx={{
-                  backgroundColor: '#007FFF',
-                  color: 'white',
-                  '&:hover': {
-                    backgroundColor: '#0072e6',
-                  },
-                  mb: 2,
-                }}
-                startIcon={<AddCircleOutlineOutlinedIcon />}
-                onClick={handleCreate}
-              />
+        )}
+
+        {Student && (
+          <>
+            <Grid
+              container
+              justifyContent="flex-end"
+              rowSpacing={1}
+              maxHeight="100vh"
+              mt={2}
+              sx={{ mt: '5rem' }}
+            >
+              <Grid item>
+                <Button
+                  variant="contained"
+                  content="Join room"
+                  sx={{
+                    backgroundColor: '#007FFF',
+                    color: 'white',
+                    '&:hover': {
+                      backgroundColor: '#0072e6',
+                    },
+                    mb: 2,
+                  }}
+                  startIcon={<AddCircleOutlineOutlinedIcon />}
+                  onClick={handleCreate}
+                />
+              </Grid>
+            </Grid>
+            <Grid container>
+              {data && data.length > 0 ? (
+                <Room_layout_student data={data} />
+              ) : (
+                <Typography> Nothing room to show</Typography>
+              )}
             </Grid>
             {opendialog && (
               <Join_room
@@ -106,12 +120,7 @@ function Rooms() {
                 state={setOpenDialog}
               />
             )}
-          </Grid>
-        )}
-        {data && data.length > 0 ? (
-          <Room_layout_student data={data} />
-        ) : (
-          <Typography children="nothing to display" />
+          </>
         )}
       </Container>
     </>

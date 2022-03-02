@@ -82,93 +82,87 @@ function Navbar() {
   const badgeDot = React.useRef(null);
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        style={{ backgroundColor: '#EBEBEB', overflow: 'auto' }}
-        position="sticky"
-        elevation={1}
-      >
-        <Toolbar>
-          <Drawer />
-          <img src={logo} alt="cyklasLogo" />
+    <AppBar
+      style={{ backgroundColor: '#EBEBEB', overflow: 'auto' }}
+      position="fixed"
+      elevation={1}
+    >
+      <Toolbar>
+        <Drawer />
+        <img src={logo} alt="cyklasLogo" />
 
-          <Typography
-            sx={{
-              flexGrow: 1,
-              color: '#3F3D56',
-              fontWeight: '600',
-              marginLeft: '10px',
-            }}
-            variant="h6"
+        <Typography
+          sx={{
+            flexGrow: 1,
+            color: '#3F3D56',
+            fontWeight: '600',
+            marginLeft: '10px',
+          }}
+          variant="h6"
+        >
+          Dashboard
+        </Typography>
+        <IconButton size="small" onClick={handleClickNotif}>
+          <Badge
+            variant={general.length > 0 || request.length > 0 ? 'dot' : null}
+            color="primary"
+            overlap="circular"
           >
-            Dashboard
-          </Typography>
-          <IconButton size="small" onClick={handleClickNotif}>
-            <Badge
-              variant={general.length > 0 || request.length > 0 ? 'dot' : null}
-              color="primary"
-              overlap="circular"
-            >
-              <NotificationsIcon sx={{ color: 'rgba(0, 0, 0, 0.54)' }} />
-            </Badge>
-          </IconButton>
-          <CusPopover
-            open={notif}
-            anchorEl={anchorEl}
-            onClose={handleCloseNotif}
-          >
-            <Notificationpopover general={general} request={request} />
-          </CusPopover>
+            <NotificationsIcon sx={{ color: 'rgba(0, 0, 0, 0.54)' }} />
+          </Badge>
+        </IconButton>
+        <CusPopover open={notif} anchorEl={anchorEl} onClose={handleCloseNotif}>
+          <Notificationpopover general={general} request={request} />
+        </CusPopover>
+        <Box
+          display="flex"
+          alignItems="center"
+          onClick={handleClickArrow}
+          sx={{
+            ml: '20px',
+            '&:hover': {
+              cursor: 'pointer',
+              backgroundColor: '',
+            },
+          }}
+        >
+          <Avatar src={Zander} alt="profileImg" />
           <Box
-            display="flex"
-            alignItems="center"
-            onClick={handleClickArrow}
             sx={{
-              ml: '20px',
-              '&:hover': {
-                cursor: 'pointer',
-                backgroundColor: '',
+              display: 'flex',
+              [theme.breakpoints.down('md')]: {
+                display: 'none',
               },
             }}
           >
-            <Avatar src={Zander} alt="profileImg" />
             <Box
               sx={{
-                display: 'flex',
-                [theme.breakpoints.down('md')]: {
-                  display: 'none',
-                },
+                ml: '5px',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                maxWidth: '7rem',
               }}
             >
-              <Box
-                sx={{
-                  ml: '5px',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  maxWidth: '7rem',
-                }}
+              <Typography
+                noWrap
+                variant="body1"
+                sx={{ fontWeight: 500, color: '#3F3D56' }}
               >
-                <Typography
-                  noWrap
-                  variant="body1"
-                  sx={{ fontWeight: 500, color: '#3F3D56' }}
-                >
-                  Zander
-                </Typography>
-              </Box>
-              <ArrowDropDownIcon sx={{ color: 'rgba(0, 0, 0, 0.54)', ml: 1 }} />
+                Zander
+              </Typography>
             </Box>
+            <ArrowDropDownIcon sx={{ color: 'rgba(0, 0, 0, 0.54)', ml: 1 }} />
           </Box>
-          <CusPopover
-            open={account}
-            anchorEl={anchorEl1}
-            onClose={handleCloseArrow}
-          >
-            <Accountpopover />
-          </CusPopover>
-        </Toolbar>
-      </AppBar>
-    </Box>
+        </Box>
+        <CusPopover
+          open={account}
+          anchorEl={anchorEl1}
+          onClose={handleCloseArrow}
+        >
+          <Accountpopover />
+        </CusPopover>
+      </Toolbar>
+    </AppBar>
   );
 }
 

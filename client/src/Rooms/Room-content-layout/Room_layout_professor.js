@@ -47,7 +47,14 @@ function Room_layout({ data }) {
               }}
             >
               <Box className="RoomSubject" display="flex">
-                <Box className="sub-RoomSubject" flexGrow={1}>
+                <Box
+                  className="sub-RoomSubject"
+                  sx={{
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    maxWidth: '15rem',
+                  }}
+                >
                   <Link style={{ textDecoration: 'none' }} to={`/rooms/${id}`}>
                     <Typography
                       variant="h5"
@@ -63,6 +70,7 @@ function Room_layout({ data }) {
 
                     <Typography
                       variant="h6"
+                      noWrap
                       sx={{
                         fontWeight: 500,
                         color: '#3F3D56',
@@ -73,7 +81,7 @@ function Room_layout({ data }) {
                     </Typography>
                   </Link>
                 </Box>
-
+                <Box flexGrow={1} />
                 <Box className="RoomId" display="flex" marginLeft="17px">
                   <Typography
                     variant="body1"
