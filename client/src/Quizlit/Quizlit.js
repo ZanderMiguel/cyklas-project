@@ -77,11 +77,11 @@ function Quizlit() {
   return (
     <>
       <Container maxWidth="md">
-        <Box width="100%" display="flex" justifyContent="flex-end" mt="2em">
+        {/* <Box width="100%" display="flex" justifyContent="flex-end" mt="2em">
           <IconButton size="small" onClick={handleClickAddQuiz}>
             <AddCircleIcon sx={{ color: 'green', fontSize: '2rem' }} />
           </IconButton>
-        </Box>
+        </Box> */}
         <CusPopover open={open} anchorEl={anchorEl} onClose={handleClickClose}>
           <QuizlitAddpopover />
         </CusPopover>
@@ -90,7 +90,7 @@ function Quizlit() {
         <Grid container columnSpacing={3}>
           <Grid item xs={2}></Grid>
 
-          <Grid item md={9} xs={12}>
+          <Grid item md={8} xs={11}>
             <Tabs
               orientation="horizontal"
               variant="scrollable"
@@ -122,6 +122,12 @@ function Quizlit() {
                 }}
               />
             </Tabs>
+          </Grid>
+
+          <Grid item xs = {1}>
+            <IconButton size="small" onClick={handleClickAddQuiz} sx = {designs.Add_IconButton_Style}>
+              <AddCircleIcon sx={{ color: 'green', fontSize: '2rem' }} />
+            </IconButton>
           </Grid>
 
           <Grid item xs={2}>

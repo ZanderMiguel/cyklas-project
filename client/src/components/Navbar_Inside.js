@@ -84,7 +84,7 @@ function Navbar() {
   return (
     <AppBar
       style={{ backgroundColor: '#EBEBEB', overflow: 'auto' }}
-      position="fixed"
+      position="sticky"
       elevation={1}
     >
       <Toolbar>

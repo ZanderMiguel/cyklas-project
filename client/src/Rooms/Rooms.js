@@ -23,8 +23,8 @@ function Rooms() {
     setOpenDialog(false);
   };
 
-  const Professor = Boolean(false);
-  const Student = Boolean(true);
+  const Professor = Boolean(true);
+  const Student = Boolean(false);
 
   return (
     <>
