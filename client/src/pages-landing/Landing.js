@@ -6,12 +6,8 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom';
-import Telecon from '../Telecon/Telecon'
-//importing Mui
 
-//importing components
-import NavbarLandingpage from '../components/Navbar_landingpage';
-import TeleconLanding from './TeleconLanding';
+
 
 const theme = createTheme({
   typography: {

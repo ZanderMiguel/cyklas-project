@@ -1,9 +1,27 @@
-const Rooms = require('../models/model-createRoom')
+const {RoomsModel} = require('../models/model-createRoom')
+const User = require('../models/model-users')
+const mongoose = require ('mongoose')
+
+const updateUserId = async (id,roomId) => {
+    
+    try {
+      const roomIds = await RoomsModel.findById(roomId)
+        console.log(roomIds)
+        await RoomsModel.findByIdAndUpdate(roomId, {userID: [...roomIds.userID,id]})
+        console.log('uwuuwu')
+    }
+    catch(error) {
+        console.log("Something went wrong!", error)
+    }
+}
 
 async function createRooms(req, res) {
+    
     try{
 
-        const addRooms = new Rooms({
+        const id = mongoose.Types.ObjectId()
+
+        const addRooms = new RoomsModel({
             RoomName: req.body.RoomName,
             Course: req.body.Course,
             ClassDays: req.body.ClassDays,
@@ -11,9 +29,15 @@ async function createRooms(req, res) {
             ClassTime: req.body.ClassTime,
             Terms: req.body.Terms,
             GradingSystem: req.body.GradingSystem,
+            _id:id
         });
-
+        const getRoom = await User.findById(req.body.userID)
+        
         await addRooms.save()
+
+        await updateUserId(req.body.userID,id)
+
+        await User.findByIdAndUpdate(req.body.userID,{room: [...getRoom.room,id]})
             console.log("Room Created")
             return res.json({
                 status: 'success',
@@ -30,7 +54,7 @@ async function createRooms(req, res) {
 
 const displayRooms = async (req, res) => {
     try {
-        const room = await Rooms.find().sort({ createdAt: -1 })
+        const room = await RoomsModel.find().sort({ createdAt: -1 })
         console.log("room displayed!")
         return res.json(room)
     } catch (error) {
@@ -44,7 +68,7 @@ const displayRooms = async (req, res) => {
 
 const deleteRooms = async (req, res) => {
     try {
-        await Rooms.findByIdAndDelete(req.params.id)
+        await RoomsModel.findByIdAndDelete(req.params.id)
         console.log(req.params.id)
         return res.json({ redirect: '/' })
     } catch (error) {
@@ -58,7 +82,7 @@ const deleteRooms = async (req, res) => {
 
 const updateRooms = async (req, res) => {
     try {
-        await Rooms.findByIdAndUpdate(req.params.id, req.body)
+        await RoomsModel.findByIdAndUpdate(req.params.id, req.body)
         console.log('helicopter')
         return res.json({ redirect: '/' })
     } catch (error) {
@@ -69,6 +93,8 @@ const updateRooms = async (req, res) => {
         })
     }
 }
+
+
 
 module.exports = {
     createRoomController : createRooms,

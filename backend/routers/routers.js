@@ -1,16 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
-
-
 const {
   createRegistrationController,
   displayRegistrationController,
   deleteRegistrationController,
   userLogInController,
 } = require('../controller/registrationController');
-router.post('/register/new-user', createRegistrationController);
-router.get('/register', displayRegistrationController);
+router.post('/register', createRegistrationController);
+router.get('/register/list', displayRegistrationController);
 router.delete('/register/:id', deleteRegistrationController);
 router.post('/login', userLogInController);
 
@@ -27,10 +25,10 @@ const {
   deleteActivityController,
   updateActivityController,
 } = require('../controller/createActivityController');
-router.post('/rooms/feed', createActivityController);
-router.get('/rooms/feed', displayActivityController);
-router.delete('/rooms/feed/:id', deleteActivityController);
-router.put('/rooms/feed/:id', updateActivityController);
+router.post('/activity/create', createActivityController);
+router.get('/activity', displayActivityController);
+router.delete('/actiity/delete/:id', deleteActivityController);
+router.put('/activity/update/:id', updateActivityController);
 
 const {
   createRoomController,
@@ -38,9 +36,23 @@ const {
   deleteRoomController,
   updateRoomController,
 } = require('../controller/roomsController');
-router.post('/rooms', createRoomController);
+router.post('/rooms/create', createRoomController);
 router.get('/rooms', displayRoomController);
-router.delete('/rooms/room-create/:id', deleteRoomController);
-router.put('/rooms/room-create/:id', updateRoomController);
+router.delete('/rooms/delete/:id', deleteRoomController);
+router.put('/rooms/update/:id', updateRoomController);
 
+
+const {
+  createFeedController,
+  displayFeedController,
+  deleteFeedController,
+  updateFeedController,
+} = require('../controller/feedController');
+router.post('/feed/create',createFeedController);
+router.get('/feed',displayFeedController);
+router.delete('/feed/delete/:id',deleteFeedController);
+router.put('/feed/update/:id', updateFeedController);
+
+const { teleController } = require('../controller/teleconController');
+router.get('/telecon/create', teleController);
 module.exports = router;
