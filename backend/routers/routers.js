@@ -8,7 +8,7 @@ const {
   userLogInController,
 } = require('../controller/registrationController');
 router.post('/register', createRegistrationController);
-//router.get('/register/list', displayRegistrationController);
+router.get('/register/list', displayRegistrationController);
 router.delete('/register/:id', deleteRegistrationController);
 router.post('/login', userLogInController);
 
@@ -40,6 +40,18 @@ router.post('/rooms/create', createRoomController);
 router.get('/rooms', displayRoomController);
 router.delete('/rooms/delete/:id', deleteRoomController);
 router.put('/rooms/update/:id', updateRoomController);
+
+
+const {
+  createFeedController,
+  displayFeedController,
+  deleteFeedController,
+  updateFeedController,
+} = require('../controller/feedController');
+router.post('/feed/create',createFeedController);
+router.get('/feed',displayFeedController);
+router.delete('/feed/delete/:id',deleteFeedController);
+router.put('/feed/update/:id', updateFeedController);
 
 const { teleController } = require('../controller/teleconController');
 router.get('/telecon/create', teleController);

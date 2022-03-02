@@ -56,6 +56,7 @@ const userLogIn = async (req, res) => {
     return res.json({
       status: 'error',
       message: 'Invalid username or password!',
+      data:{user}
     });
   }
   if (await bcrypt.compare(password, userPass.password)) {
