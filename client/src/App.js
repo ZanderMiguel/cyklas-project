@@ -16,6 +16,8 @@ import Quiz_multiplechoice from './Quizlit/Quizbank-content-layout/Quiz_multiple
 import Imagemultiplechoice from './Quizlit/Quizbank-content-layout/Imagemultiplechoice'
 import Trueorfalse from './Quizlit/Quizbank-content-layout/Trueorfalse'
 import Essay from './Quizlit/Quizbank-content-layout/Essay'
+import Livequiz_multiplechoice from './Quizlit/Quizbank-content-layout/Livequiz_multiplechoice'
+import StudentLiveQuiz_multiplechoice from './Quizlit/Quizbank-content-layout/StudentLiveQuiz_multiplechoice'
 
 const theme = createTheme({
   typography: {
@@ -61,6 +63,8 @@ function App() {
             <ProtectedRoutes exact path="/imagemultiplechoice" component={Imagemultiplechoice} />
             <ProtectedRoutes exact path="/trueorfalse" component={Trueorfalse} />
             <ProtectedRoutes exact path="/essay" component={Essay} />
+            <ProtectedRoutes exact path="/livequiz_multiplechoice" component={Livequiz_multiplechoice} />
+            <ProtectedRoutes exact path="/studentlivequiz_multiplechoice" component={StudentLiveQuiz_multiplechoice} />
             <Route path="/:page?" component={Navbar_landingpage} />
             
           </Switch>
