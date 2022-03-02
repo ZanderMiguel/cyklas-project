@@ -16,7 +16,7 @@ import useStyles from '../Announce_style';
 
 function Post_layout({ data }) {
   const { designs } = useStyles();
-  data && console.log(data.author);
+
   return (
     <Grid item xs={12}>
       {data &&

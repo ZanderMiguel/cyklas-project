@@ -48,7 +48,7 @@ function App() {
       },
     },
   });
-
+  const data = React.useRef('');
 
   const socket = io.connect('http://localhost:3001/');
   return (
@@ -58,14 +58,32 @@ function App() {
           <Switch>
             <Redirect exact from="/" to="/home/login" />
             <Redirect exact from="/home" to="/home/login" />
-            <Route exact path="/home/:page?" component={Navbar_landingpage} />
-            <ProtectedRoutes exact path="/dashboard" component={Dashboard} />
-            <ProtectedRoutes exact path="/telecon" component={TeleconStart} />
-            <ProtectedRoutes exact path="/rooms" component={Rooms} />
+            <Route exact path="/home/:page?">
+              <Navbar_landingpage data={data} />
+            </Route>
+            <ProtectedRoutes
+              exact
+              path="/dashboard"
+              component={Dashboard}
+              data={data}
+            />
+            <ProtectedRoutes
+              exact
+              path="/telecon"
+              component={TeleconStart}
+              data={data}
+            />
+            <ProtectedRoutes
+              exact
+              path="/rooms"
+              component={Rooms}
+              data={data}
+            />
             <ProtectedRoutes
               exact
               path="/rooms/:roomID"
               component={Room_inside}
+              data={data}
             />
             <ProtectedRoutes
               exact
@@ -77,15 +95,31 @@ function App() {
               exact
               path="/rooms/:id/:ab/:w"
               component={Dashboard}
+              data={data}
             />
-            <ProtectedRoutes exact path="/settings" component={Setting} />
-            <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
+            <ProtectedRoutes
+              exact
+              path="/settings"
+              component={Setting}
+              data={data}
+            />
+            <ProtectedRoutes
+              exact
+              path="/quizlit"
+              component={QuizLit}
+              data={data}
+            />
             <ProtectedRoutes
               exact
               path="/quizlit/createquiz"
               component={Quizform}
             />
-            <ProtectedRoutes exact path="/records" component={Records} />
+            <ProtectedRoutes
+              exact
+              path="/records"
+              component={Records}
+              data={data}
+            />
             <Route path="/forgotpassword">
               <Forgot_password />
             </Route>

@@ -36,7 +36,7 @@ const googleFailure = (error) => {
   console.log('Google Sign In was unsucessful. Try again later');
 };
 
-function Home() {
+function Home({ data }) {
   const history = useHistory();
   const [isPending, setIsPending] = useState(false);
   const [opendialog, setOpenDialog] = useState(false);
@@ -63,6 +63,7 @@ function Home() {
       .then((response) => {
         response.data.token &&
           localStorage.setItem('token', response.data.token);
+        data.current = response.data;
         console.log(response.data);
         setMyApi(new Map());
         setIsPending(false);

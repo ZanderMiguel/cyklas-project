@@ -37,10 +37,9 @@ const {
   updateRoomController,
 } = require('../controller/roomsController');
 router.post('/rooms/create', createRoomController);
-router.get('/rooms', displayRoomController);
+router.post('/rooms', displayRoomController);
 router.delete('/rooms/delete/:id', deleteRoomController);
 router.put('/rooms/update/:id', updateRoomController);
-
 
 const {
   createFeedController,
@@ -48,9 +47,9 @@ const {
   deleteFeedController,
   updateFeedController,
 } = require('../controller/feedController');
-router.post('/feed/create',createFeedController);
-router.get('/feed',displayFeedController);
-router.delete('/feed/delete/:id',deleteFeedController);
+router.post('/feed/create', createFeedController);
+router.get('/feed', displayFeedController);
+router.delete('/feed/delete/:id', deleteFeedController);
 router.put('/feed/update/:id', updateFeedController);
 
 const { teleController } = require('../controller/teleconController');

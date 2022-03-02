@@ -49,7 +49,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   },
 }));
 
-function Announce() {
+function Announce({ data: userData }) {
   const { post } = usePost();
   const { designs } = useStyle();
   const myPost = React.useRef('');
@@ -59,7 +59,7 @@ function Announce() {
   const [alignment, setAlignment] = React.useState('left');
   const [formats, setFormats] = React.useState(() => ['italic']);
   const [postData, setPostData] = React.useState(new Map());
-  const { data } = useGet('http://192.168.1.10:5000/feed');
+  const { data } = useGet('http://localhost:5000/feed');
 
   const handleFormat = (event, newFormats) => {
     setFormats(newFormats);
@@ -68,7 +68,7 @@ function Announce() {
   const handleAlignment = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
-
+  console.log(userData.current.data.user.RegID);
   return (
     <Grid container sx={{ marginTop: 2 }}>
       <Grid item xs={12}>
@@ -191,7 +191,7 @@ function Announce() {
       <input
         type="button"
         onClick={() => {
-          post('http://192.168.1.10:5000/feed/create', {
+          post('http://localhost:5000/feed/create', {
             content: Object.fromEntries(postData),
             author: {
               name: 'Mirador Zander',
@@ -203,7 +203,7 @@ function Announce() {
         }}
         value="POSt"
       />
-      <Post_layout data={data} />
+      <Post_layout data={data} userData={userData} />
     </Grid>
   );
 }

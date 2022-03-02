@@ -22,7 +22,7 @@ import {
 } from '@mui/material';
 import Logo from '../assets/Images/Ellipse 2.png';
 
-function Navbar_landingpage() {
+function Navbar_landingpage({ data }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const { page } = useParams();
   const history = useHistory();
@@ -109,7 +109,7 @@ function Navbar_landingpage() {
         </Container>
       </AppBar>
       <Container maxWidth="xl">
-        {value === 0 && <Home />}
+        {value === 0 && <Home data={data} />}
         {value === 1 && <Service />}
         {value === 2 && <About />}
       </Container>

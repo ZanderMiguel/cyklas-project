@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Container, Typography, Paper } from '@mui/material';
 import Room_layout from './Room-content-layout/Room_layout_professor';
-import useGet from '../customHooks/useGet';
+
 import CircularProgress from '@mui/material/CircularProgress';
 import Create_room from '../Form_content/Create_room';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import Join_room from '../Form_content/Join_room';
-
+import usePost from '../customHooks/usePost';
 import Button from '../components/Button';
 import Room_layout_student from './Room-content-layout/Room_layout_student';
 
-function Rooms() {
+function Rooms({ data: userData }) {
   const [opendialog, setOpenDialog] = useState(false);
-
-  const { data, isPending, error } = useGet('http://localhost:5000/rooms');
+  console.log(userData.current.data.user.RegID);
+  const { post, data, error, isPending } = usePost();
 
   const handleCreate = () => {
     setOpenDialog(true);
@@ -25,7 +25,9 @@ function Rooms() {
 
   const Professor = Boolean(true);
   const Student = Boolean(false);
-
+  post('http://localhost:5000/rooms', {
+    room: userData.current.data.user.rooms,
+  });
   return (
     <>
       <Container maxWidth="md">

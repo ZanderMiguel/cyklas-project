@@ -17,9 +17,9 @@ import { IoNewspaperSharp } from 'react-icons/io5';
 import { HiUserGroup } from 'react-icons/hi';
 import { FaClipboardList } from 'react-icons/fa';
 
-function Room_inside() {
+function Room_inside({ data }) {
   const [value, setValue] = React.useState(0);
-
+  console.log(data.current.data.user.RegID);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -93,7 +93,7 @@ function Room_inside() {
       </AppBar>
       <Container maxWidth="md">
         {value === 0 ? (
-          <Announce />
+          <Announce data={data} />
         ) : value === 1 ? (
           <Activities roomID={roomID} />
         ) : (
