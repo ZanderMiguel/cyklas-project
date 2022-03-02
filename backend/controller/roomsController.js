@@ -1,8 +1,25 @@
 const {RoomsModel} = require('../models/model-createRoom')
-const User = require('../models/model-registration')
+const User = require('../models/model-users')
+const mongoose = require ('mongoose')
+
+const updateUserId = async (id,roomId) => {
+    
+    try {
+      const roomIds = await RoomsModel.findById(roomId)
+        console.log(roomIds)
+        await RoomsModel.findByIdAndUpdate(roomId, {userID: [...roomIds.userID,id]})
+        console.log('uwuuwu')
+    }
+    catch(error) {
+        console.log("Something went wrong!", error)
+    }
+}
+
 async function createRooms(req, res) {
-    console.log(req.body)
+    
     try{
+
+        const id = mongoose.Types.ObjectId()
 
         const addRooms = new RoomsModel({
             RoomName: req.body.RoomName,
@@ -12,11 +29,15 @@ async function createRooms(req, res) {
             ClassTime: req.body.ClassTime,
             Terms: req.body.Terms,
             GradingSystem: req.body.GradingSystem,
+            _id:id
         });
-        const getRoom = await User.findById(req.body.id)
+        const getRoom = await User.findById(req.body.userID)
         
         await addRooms.save()
-        await User.findByIdAndUpdate(req.body.id,{room: [...getRoom.room,addRooms]})
+
+        await updateUserId(req.body.userID,id)
+
+        await User.findByIdAndUpdate(req.body.userID,{room: [...getRoom.room,id]})
             console.log("Room Created")
             return res.json({
                 status: 'success',
@@ -72,6 +93,8 @@ const updateRooms = async (req, res) => {
         })
     }
 }
+
+
 
 module.exports = {
     createRoomController : createRooms,

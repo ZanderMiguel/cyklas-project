@@ -1,5 +1,7 @@
 import React from 'react';
 import logo from '../assets/Ellipse 3.svg';
+import Notificationpopover from './PopoverContent/Notificationpopover';
+import Accountpopover from './PopoverContent/Accountpopover';
 
 //MUI imports
 import { AppBar, Box, Toolbar, Typography, IconButton } from '@mui/material';
@@ -9,62 +11,158 @@ import Zander from '../assets/Images/zander.png';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Drawer from './Drawer';
-import useGet from '../customHooks/useGet'
-function Navbar() {
-  const {data} = useGet('http://localhost:5000/register')
-  console.log(data)
-  const [title,setTitle] = React.useState('Dashboard')
-  
-  return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        style={{ backgroundColor: '#EBEBEB', overflow: 'auto' }}
-        position="sticky"
-        elevation={1}
-      >
-        <Toolbar>
-          <Drawer setTitle={setTitle} />
-          <img src={logo} alt="cyklasLogo" />
-          <Typography
-            sx={{
-              flexGrow: 1,
-              color: '#3F3D56',
-              fontWeight: '600',
-              marginLeft: '10px',
-            }}
-            variant="h6"
-          >
-            Dashboard
-          </Typography>
+import CusPopover from './Popover';
+import { useTheme } from '@mui/material/styles';
 
-          <IconButton size="small">
-            <Badge badgeContent={2} color="primary">
-              <NotificationsIcon sx={{ color: 'rgba(0, 0, 0, 0.54)' }} />
-            </Badge>
-          </IconButton>
-         {data && <Avatar src={`data:image/jpg;base64,${null}`} sx={{ ml: '20px' }} />}
+const request = [
+  { avatar: <Avatar />, student: 'zander' },
+  { avatar: <Avatar />, student: 'rey' },
+  { avatar: <Avatar />, student: 'lester' },
+  { avatar: <Avatar />, student: 'charles' },
+  { avatar: <Avatar />, student: 'charles' },
+  { avatar: <Avatar />, student: 'charles' },
+  { avatar: <Avatar />, student: 'charles' },
+  { avatar: <Avatar />, student: 'charles' },
+  { avatar: <Avatar />, student: 'charles' },
+  { avatar: <Avatar />, student: 'charles' },
+  { avatar: <Avatar />, student: 'charles' },
+  { avatar: <Avatar />, student: 'charles' },
+  { avatar: <Avatar />, student: 'charles' },
+  { avatar: <Avatar />, student: 'charles' },
+  { avatar: <Avatar />, student: 'charles' },
+  { avatar: <Avatar />, student: 'rules' },
+];
+const general = [
+  {
+    avatar: <Avatar />,
+    action: 'Mark Andrei added you to his class',
+    roomname: 'Embedded Programming',
+  },
+  {
+    avatar: <Avatar />,
+    action: 'Mark Andrei added you to his class',
+    roomname: 'Embedded Programming',
+  },
+  {
+    avatar: <Avatar />,
+    action: 'Mark Andrei added you to his class',
+    roomname: 'Embedded Programming',
+  },
+  {
+    avatar: <Avatar />,
+    action: 'Mark Andrei added you to his class',
+    roomname: 'Embedded Programming',
+  },
+];
+
+function Navbar() {
+  const [badge, setBadge] = React.useState();
+  const theme = useTheme();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl1, setAnchorEl1] = React.useState(null);
+
+  const handleClickNotif = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseNotif = () => {
+    setAnchorEl(null);
+  };
+
+  const handleClickArrow = (event) => {
+    setAnchorEl1(event.currentTarget);
+  };
+
+  const handleCloseArrow = () => {
+    setAnchorEl1(null);
+  };
+  const notif = Boolean(anchorEl);
+
+  const account = Boolean(anchorEl1);
+  const badgeDot = React.useRef(null);
+
+  return (
+    <AppBar
+      style={{ backgroundColor: '#EBEBEB', overflow: 'auto' }}
+      position="fixed"
+      elevation={1}
+    >
+      <Toolbar>
+        <Drawer />
+        <img src={logo} alt="cyklasLogo" />
+
+        <Typography
+          sx={{
+            flexGrow: 1,
+            color: '#3F3D56',
+            fontWeight: '600',
+            marginLeft: '10px',
+          }}
+          variant="h6"
+        >
+          Dashboard
+        </Typography>
+        <IconButton size="small" onClick={handleClickNotif}>
+          <Badge
+            variant={general.length > 0 || request.length > 0 ? 'dot' : null}
+            color="primary"
+            overlap="circular"
+          >
+            <NotificationsIcon sx={{ color: 'rgba(0, 0, 0, 0.54)' }} />
+          </Badge>
+        </IconButton>
+        <CusPopover open={notif} anchorEl={anchorEl} onClose={handleCloseNotif}>
+          <Notificationpopover general={general} request={request} />
+        </CusPopover>
+        <Box
+          display="flex"
+          alignItems="center"
+          onClick={handleClickArrow}
+          sx={{
+            ml: '20px',
+            '&:hover': {
+              cursor: 'pointer',
+              backgroundColor: '',
+            },
+          }}
+        >
+          <Avatar src={Zander} alt="profileImg" />
           <Box
             sx={{
-              ml: '5px',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              width: '6rem',
+              display: 'flex',
+              [theme.breakpoints.down('md')]: {
+                display: 'none',
+              },
             }}
           >
-            <Typography
-              noWrap
-              variant="body1"
-              sx={{ fontWeight: 500, color: '#3F3D56' }}
+            <Box
+              sx={{
+                ml: '5px',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                maxWidth: '7rem',
+              }}
             >
-              Zander Miguel
-            </Typography>
+              <Typography
+                noWrap
+                variant="body1"
+                sx={{ fontWeight: 500, color: '#3F3D56' }}
+              >
+                Zander
+              </Typography>
+            </Box>
+            <ArrowDropDownIcon sx={{ color: 'rgba(0, 0, 0, 0.54)', ml: 1 }} />
           </Box>
-          <IconButton size="small">
-            <ArrowDropDownIcon sx={{ color: 'rgba(0, 0, 0, 0.54)' }} />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-    </Box>
+        </Box>
+        <CusPopover
+          open={account}
+          anchorEl={anchorEl1}
+          onClose={handleCloseArrow}
+        >
+          <Accountpopover />
+        </CusPopover>
+      </Toolbar>
+    </AppBar>
   );
 }
 

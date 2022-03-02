@@ -22,8 +22,8 @@ function Button({
         variant={variant}
         startIcon={startIcon}
         onClick={onClick}
-        {...rest}
         children={content}
+        {...rest}
       ></CusButton>
     </>
   );

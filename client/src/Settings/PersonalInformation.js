@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactFragment } from 'react';
 import {
   Grid,
   Typography,
@@ -38,17 +38,17 @@ function PersonalInformation() {
           />
           <Divider />
           {textfield.map((item, index) => (
-            <>
+            <Stack key={index}>
               <Typography sx={{ fontWeight: 400 }} children={item.label} />
               <TextField variant="outlined" placeholder={item.holder} />
-            </>
+            </Stack>
           ))}
         </Stack>
         <Grid
           item
           container
           justifyContent="flex-end"
-          alignItem="flex-end"
+          alignItems="flex-end"
           spacing={1}
           sx={{ mt: 2 }}
         >

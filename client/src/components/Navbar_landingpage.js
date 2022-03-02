@@ -3,11 +3,9 @@ import About from '../pages-landing/About';
 import Home from '../pages-landing/Home';
 import Service from '../pages-landing/Service';
 import Contact from '../pages-landing/Contact';
-import { Link, useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
@@ -25,35 +23,39 @@ import {
 import Logo from '../assets/Images/Ellipse 2.png';
 
 function Navbar_landingpage() {
-  const { page } = useParams();
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-
-  const [dropdown, setDropDown] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const { page } = useParams();
+  const history = useHistory();
+  const theme = useTheme();
+  const isMatch = useMediaQuery(theme.breakpoints.down('sm'));
   const open = Boolean(anchorEl);
 
+  const tabNameToIndex = {
+    0: 'login',
+    1: 'service',
+    2: 'about',
+    3: 'contact',
+  };
+  const indexToTabName = {
+    login: 0,
+    service: 1,
+    about: 2,
+    contact: 3,
+  };
+  const [value, setValue] = useState(indexToTabName[page]);
+
+  //Event_Handler
   const handleClose = () => {
     setAnchorEl(null);
-    setDropDown((prevDropdown) => !prevDropdown);
   };
-
   const handleChangeIcon = (event) => {
     setAnchorEl(event.currentTarget);
-    setDropDown((prevDropdown) => !prevDropdown);
   };
-
-  const idx = {
-    Home: 0,
-    Service: 1,
-    About: 2,
-    Contact: 3,
-  };
-  const [value, setValue] = useState(idx[page] === undefined ? 0 : idx[page]);
-
   const handleClickTab = (e, newValue) => {
+    history.push(`/home/${tabNameToIndex[newValue]}`);
     setValue(newValue);
   };
+
   React.useEffect(() => {
     setValue(value);
   }, [value]);
@@ -62,55 +64,34 @@ function Navbar_landingpage() {
     <>
       <AppBar position="sticky" sx={{ background: 'white' }} elevation={0}>
         <Container maxWidth="xl">
-          <Toolbar>
-            <img src={Logo} alt="cyklas logo" />
-            <Typography
-              variant="h6"
-              fontFamily="Poppins"
-              color="#3F3D56"
-              fontWeight="Bold"
-              noWrap
-            >
-              Cyklas
-            </Typography>
+          <Box display="flex" alignItems="center" flexWrap="wrap">
+            <Box display="flex" alignItems="center">
+              <img src={Logo} alt="cyklas logo" />
+              <Typography
+                variant="h6"
+                fontFamily="Poppins"
+                color="#3F3D56"
+                fontWeight="Bold"
+                noWrap
+              >
+                Cyklas
+              </Typography>
+            </Box>
             <Box sx={{ flexGrow: 1 }} />
-            {fullScreen ? (
-              <IconButton
-                id="basic-button"
-                aria-controls={open ? 'basic-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-                onClick={handleChangeIcon}
-              >
-                {dropdown ? (
-                  <ArrowDropUpIcon sx={{ color: 'black' }} />
-                ) : (
-                  <ArrowDropDownIcon sx={{ color: 'black' }} />
-                )}
-              </IconButton>
-            ) : (
-              <Tabs
-                onChange={handleClickTab}
-                value={value}
-                indicatorColor="primary"
-                style={{ textDecoration: 'none' }}
-              >
-                <Tab disableRipple label="Home" component={Link} to="/" />
-                <Tab
-                  disableRipple
-                  label="Service"
-                  component={Link}
-                  to="/Service"
-                />
-                <Tab disableRipple label="About" component={Link} to="/About" />
-                <Tab
-                  disableRipple
-                  label="Contact"
-                  component={Link}
-                  to="/Contact"
-                />
-              </Tabs>
-            )}
+            <Tabs
+              onChange={handleClickTab}
+              value={value}
+              indicatorColor="primary"
+              variant="scrollable"
+              scrollButtons="auto"
+              style={{ textDecoration: 'none' }}
+            >
+              <Tab disableRipple label="Home" />
+              <Tab disableRipple label="Service" />
+              <Tab disableRipple label="About" />
+              <Tab disableRipple label="Contact" />
+            </Tabs>
+
             <Menu
               id="basic-menu"
               anchorEl={anchorEl}
@@ -124,15 +105,15 @@ function Navbar_landingpage() {
               <MenuItem onClick={handleClose}>My account</MenuItem>
               <MenuItem onClick={handleClose}>Logout</MenuItem>
             </Menu>
-          </Toolbar>
+          </Box>
         </Container>
       </AppBar>
       <Container maxWidth="xl">
-        {page === undefined && <Home />}
-        {page === 'Service' && <Service />}
-        {page === 'About' && <About />}
+        {value === 0 && <Home />}
+        {value === 1 && <Service />}
+        {value === 2 && <About />}
       </Container>
-      {page === 'Contact' && <Contact />}
+      {value === 3 && <Contact />}
     </>
   );
 }

@@ -1,7 +1,14 @@
 import React from 'react';
 //importing Mui
 import contactillu from '../assets/Images/Contact_illustration.svg';
-import { Typography, Box, TextField, Button, IconButton } from '@mui/material';
+import {
+  Typography,
+  Box,
+  TextField,
+  Button,
+  IconButton,
+  Divider,
+} from '@mui/material';
 import { LocationOn, Call, Email } from '@mui/icons-material';
 // import {makeStyles} from '@mui/styles'
 import { styled } from '@mui/material';
@@ -10,6 +17,8 @@ import Facebook from '../assets/ImageJaven/Facebook.png';
 import Instagram from '../assets/ImageJaven/Instagram.png';
 import Twitter from '../assets/ImageJaven/Twitter.png';
 import Youtube from '../assets/ImageJaven/Youtube.png';
+import './Contacts.css';
+import useStyle from './Contacts_style';
 
 const style = {
   fontFamily: 'Poppins',
@@ -34,6 +43,7 @@ const CssTextField = styled(TextField)({
 
 function Contact() {
   // const classes = useStyles();
+  const { designs } = useStyle();
 
   return (
     <>
@@ -124,429 +134,191 @@ function Contact() {
             </Typography>
           </Box>
         </Box>
-        <Box
-          className="Footer"
-          marginTop="40px"
-          width="100%"
-          height="auto"
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Box
-            className="Seperator"
-            height="2px"
-            width="85%"
-            backgroundColor="#ECECEC"
-          ></Box>
+        <Box className="Footer" sx={designs.Footer_Style}>
+          <Divider sx={designs.Divider_Style} />
 
-          <Box
-            className="Content"
-            margin="60px 0px 60px 0px"
-            display="flex"
-            gap="20px"
-            height="auto"
-            width="85%"
-          >
-            <Box className="Cyklas-logo" width="280px" height="auto">
-              <Box className="Cyklas-logo-image">
-                <img
-                  src={CyklasLogo}
-                  style={{
-                    height: '70px',
-                  }}
-                />
+          <Box className="Content" sx={designs.Content_Style}>
+            <Box className="Content-sub" sx={designs.Content_Sub_Style}>
+              <Box className="Cyklas-logo" sx={designs.Cyklas_Logo_Style}>
+                <Box
+                  className="Cyklas-logo-image"
+                  sx={designs.Cyklas_Logo_Image_Style}
+                >
+                  <img
+                    src={CyklasLogo}
+                    alt="CyklasLogo"
+                    style={{
+                      height: '70px',
+                    }}
+                  />
+
+                  <Typography sx={designs.CompanyAddress_Typography_Style}>
+                    Bilibid Viejo Street, Quiapo Manila.
+                  </Typography>
+
+                  <Typography sx={designs.CompanyEmailAddress_Typography_Style}>
+                    cycrowd@gmail.com
+                  </Typography>
+                </Box>
               </Box>
 
-              <Typography
-                sx={{
-                  marginTop: '15px',
-                  color: '#727184',
-                  fontSize: '14px',
-                  textTransform: 'Capitalize',
-                  width: '100%',
-                  height: 'max-content',
-                }}
-              >
-                Bilibid Viejo Street, Quiapo Manila.
-              </Typography>
+              <Box className="Content-sub2" sx={designs.Content_Sub2_Style}>
+                <Box className="Cyklas" sx={designs.Cyklas_Style}>
+                  <Typography sx={designs.Cyklas_Typography_Style}>
+                    CykLas
+                  </Typography>
 
-              <Typography
-                sx={{
-                  marginTop: '15px',
-                  color: '#727184',
-                  fontSize: '14px',
-                  textTransform: 'none',
-                  width: '100%',
-                  height: 'max-content',
-                }}
-              >
-                cycrowd@gmail.com
-              </Typography>
-            </Box>
+                  <Button variant="text" sx={designs.Home_TextButton_Style}>
+                    Home
+                  </Button>
 
-            <Box
-              className="Cyklas"
-              marginLeft="181px"
-              display="flex"
-              flexDirection="column"
-              width="200px"
-              height="auto"
-            >
-              <Typography
-                sx={{
-                  color: '#3F3D56',
-                  fontSize: '17px',
-                  textTransform: 'Uppercase',
-                  fontWeight: '600',
-                  width: '100%',
-                  height: 'max-content',
-                }}
-              >
-                CykLas
-              </Typography>
+                  <Button variant="text" sx={designs.Services_TextButton_Style}>
+                    Services
+                  </Button>
 
-              <Button
-                variant="text"
-                sx={{
-                  margin: '17px 0px 5px 0px',
-                  borderRadius: '0em',
-                  width: 'max-content',
-                  height: 'max-content',
-                  color: '#93929E',
-                  textTransform: 'none',
-                  fontSize: '14px',
-                  height: '25px',
-                  paddingLeft: '0px',
-                  paddingRight: '20px',
-                }}
-              >
-                Home
-              </Button>
+                  <Button variant="text" sx={designs.About_TextButton_Style}>
+                    About
+                  </Button>
 
-              <Button
-                variant="text"
-                sx={{
-                  marginBottom: '5px',
-                  borderRadius: '0em',
-                  width: 'max-content',
-                  height: 'max-content',
-                  color: '#93929E',
-                  textTransform: 'none',
-                  fontSize: '14px',
-                  height: '25px',
-                  paddingLeft: '0px',
-                }}
-              >
-                Services
-              </Button>
+                  <Button variant="text" sx={designs.Contacts_TextButton_Style}>
+                    Contacts
+                  </Button>
+                </Box>
 
-              <Button
-                variant="text"
-                sx={{
-                  marginBottom: '5px',
-                  borderRadius: '0em',
-                  width: 'max-content',
-                  height: 'max-content',
-                  color: '#93929E',
-                  textTransform: 'none',
-                  fontSize: '14px',
-                  height: '25px',
-                  paddingLeft: '0px',
-                  paddingRight: '20px',
-                }}
-              >
-                About
-              </Button>
+                <Box className="Services" sx={designs.Services_Style}>
+                  <Typography sx={designs.Services_Typography_Style}>
+                    Services
+                  </Typography>
 
-              <Button
-                variant="text"
-                sx={{
-                  marginBottom: '5px',
-                  borderRadius: '0em',
-                  width: 'max-content',
-                  height: 'max-content',
-                  color: '#93929E',
-                  textTransform: 'none',
-                  fontSize: '14px',
-                  height: '25px',
-                  paddingLeft: '0px',
-                }}
-              >
-                Contacts
-              </Button>
-            </Box>
+                  <Button
+                    variant="text"
+                    sx={designs.Classroom_TextButton_Style}
+                  >
+                    CyClassroom
+                  </Button>
 
-            <Box
-              className="Services"
-              display="flex"
-              flexDirection="column"
-              width="auto"
-              height="auto"
-            >
-              <Typography
-                sx={{
-                  color: '#3F3D56',
-                  fontSize: '17px',
-                  textTransform: 'Uppercase',
-                  fontWeight: '600',
-                  width: '100%',
-                  height: 'max-content',
-                }}
-              >
-                Services
-              </Typography>
+                  <Button variant="text" sx={designs.Quizlit_TextButton_Style}>
+                    QuizLit
+                  </Button>
 
-              <Button
-                variant="text"
-                sx={{
-                  margin: '17px 0px 5px 0px',
-                  borderRadius: '0em',
-                  width: 'max-content',
-                  height: 'max-content',
-                  color: '#93929E',
-                  textTransform: 'none',
-                  fontSize: '14px',
-                  height: '25px',
-                  paddingLeft: '0px',
-                  paddingRight: '20px',
-                }}
-              >
-                CyClassroom
-              </Button>
+                  <Button variant="text" sx={designs.Telecon_TextButton_Style}>
+                    Telecon (Video Conference)
+                  </Button>
+                </Box>
 
-              <Button
-                variant="text"
-                sx={{
-                  marginBottom: '5px',
-                  borderRadius: '0em',
-                  width: 'max-content',
-                  height: 'max-content',
-                  color: '#93929E',
-                  textTransform: 'none',
-                  fontSize: '14px',
-                  height: '25px',
-                  paddingLeft: '0px',
-                  paddingRight: '20px',
-                }}
-              >
-                QuizLit
-              </Button>
+                <Box className="Socials" sx={designs.Socials_Style}>
+                  <Typography sx={designs.FollowUs_Typography_Style}>
+                    Follow us
+                  </Typography>
 
-              <Button
-                variant="text"
-                sx={{
-                  marginBottom: '5px',
-                  borderRadius: '0em',
-                  width: 'max-content',
-                  height: 'max-content',
-                  color: '#93929E',
-                  textTransform: 'none',
-                  fontSize: '14px',
-                  height: '25px',
-                  paddingLeft: '0px',
-                  paddingRight: '20px',
-                }}
-              >
-                Telecon (Video Conference)
-              </Button>
-            </Box>
+                  <Box
+                    className="Social-buttons"
+                    sx={designs.SocialButtons_Style}
+                  >
+                    <IconButton
+                      aria-label="facebook"
+                      sx={designs.Facebook_IconButton_Style}
+                    >
+                      <img
+                        src={Facebook}
+                        alt="Facebook"
+                        style={{
+                          height: '30px',
+                          width: '30px',
+                        }}
+                      />
+                    </IconButton>
 
-            <Box
-              className="Socials"
-              marginLeft="50px"
-              width="230px"
-              height="auto"
-            >
-              <Typography
-                sx={{
-                  color: '#3F3D56',
-                  fontSize: '17px',
-                  textTransform: 'Uppercase',
-                  fontWeight: '600',
-                  width: '100%',
-                  height: 'max-content',
-                }}
-              >
-                Follow us
-              </Typography>
+                    <IconButton
+                      aria-label="instagram"
+                      sx={designs.Instagram_IconButton_Style}
+                    >
+                      <img
+                        src={Instagram}
+                        alt="Instagram"
+                        style={{
+                          height: '30px',
+                          width: '30px',
+                        }}
+                      />
+                    </IconButton>
 
-              <Box
-                className="Social-buttons"
-                marginTop="13px"
-                width="100%"
-                height="auto"
-                display="flex"
-                gap="18px"
-              >
-                <IconButton
-                  aria-label="cancel"
-                  sx={{
-                    height: '30px',
-                    width: '30px',
-                  }}
-                >
-                  <img
-                    src={Facebook}
-                    alt="Facebook"
-                    style={{
-                      height: '30px',
-                      width: '30px',
-                    }}
-                  />
-                </IconButton>
+                    <IconButton
+                      aria-label="twitter"
+                      sx={designs.Twitter_IconButton_Style}
+                    >
+                      <img
+                        src={Twitter}
+                        alt="Twitter"
+                        style={{
+                          height: '31px',
+                          width: '31px',
+                        }}
+                      />
+                    </IconButton>
 
-                <IconButton
-                  aria-label="cancel"
-                  sx={{
-                    height: '30px',
-                    width: '30px',
-                  }}
-                >
-                  <img
-                    src={Instagram}
-                    alt="Instagram"
-                    style={{
-                      height: '30px',
-                      width: '30px',
-                    }}
-                  />
-                </IconButton>
-
-                <IconButton
-                  aria-label="cancel"
-                  sx={{
-                    height: '20px',
-                    width: '20px',
-                    margin: '5px 0px 0px 5px',
-                  }}
-                >
-                  <img
-                    src={Twitter}
-                    alt="Twitter"
-                    style={{
-                      height: '30px',
-                      width: '30px',
-                    }}
-                  />
-                </IconButton>
-
-                <IconButton
-                  aria-label="cancel"
-                  sx={{
-                    height: '20px',
-                    width: '20px',
-                    margin: '5px 0px 0px 9px',
-                  }}
-                >
-                  <img
-                    src={Youtube}
-                    alt="Youtube"
-                    style={{
-                      height: '30px',
-                      width: '30px',
-                    }}
-                  />
-                </IconButton>
+                    <IconButton
+                      aria-label="youtube"
+                      sx={designs.Youtube_IconButton_Style}
+                    >
+                      <img
+                        src={Youtube}
+                        alt="Youtube"
+                        style={{
+                          height: '34px',
+                          width: '34px',
+                        }}
+                      />
+                    </IconButton>
+                  </Box>
+                </Box>
               </Box>
             </Box>
           </Box>
 
-          <Box
-            className="Content2"
-            padding="20px 0px"
-            width="100%"
-            height="auto"
-            display="flex"
-            gap="670px"
-            backgroundColor="#007FFF"
-          >
-            <Box
-              className="TC-PP"
-              marginLeft="70px"
-              display="flex"
-              height="auto"
-              width="auto"
-            >
-              <Button
-                variant="text"
-                sx={{
-                  marginRight: '20px',
-                  borderRadius: '0em',
-                  width: 'max-content',
-                  height: 'max-content',
-                  color: '#E1E1E1',
-                  textTransform: 'Uppercase',
-                  fontSize: '13px',
-                  fontWeight: '500',
-                  height: '25px',
-                }}
-              >
-                Terms & Conditions
-              </Button>
-
-              <Box
-                className="Seperator-v"
-                margin="5px 0px 16px 0px"
-                height="relative"
-                width="1px"
-                backgroundColor="#E1E1E1"
-              ></Box>
-
-              <Button
-                variant="text"
-                sx={{
-                  marginLeft: '20px',
-                  borderRadius: '0em',
-                  width: 'max-content',
-                  height: 'max-content',
-                  color: '#E1E1E1',
-                  textTransform: 'Uppercase',
-                  fontSize: '13px',
-                  fontWeight: '500',
-                  height: '25px',
-                }}
-              >
-                Privacy Policy
-              </Button>
-            </Box>
-
-            <Box className="All-rights-reserved" width="auto" height="auto">
-              <Box
-                className="All-rights-reserved-sub"
-                width="auto"
-                height="auto"
-                display="flex"
-                gap="8px"
-              >
-                <Typography
-                  sx={{
-                    color: 'white',
-                    fontSize: '12px',
-                    textTransform: 'none',
-                    fontWeight: '500',
-                    width: 'max-content',
-                    height: 'max-content',
-                  }}
+          <Box className="Content2" sx={designs.Content2_Style}>
+            <Box className="Content2-sub" sx={designs.Content2_Sub_Style}>
+              <Box className="TC-PP" sx={designs.TC_PP_Style}>
+                <Button
+                  variant="text"
+                  sx={designs.TermsCondition_TextButton_Style}
                 >
-                  &copy; 2022 CyKlas. All rights reserved.
-                </Typography>
+                  Terms & Conditions
+                </Button>
+
+                <Box
+                  className="Seperator-v"
+                  margin="5px 0px 16px 0px"
+                  height="relative"
+                  width="1px"
+                  backgroundColor="#E1E1E1"
+                ></Box>
+
+                <Button
+                  variant="text"
+                  sx={designs.PrivacyPolicy_TextButton_Style}
+                >
+                  Privacy Policy
+                </Button>
               </Box>
 
-              <Typography
-                sx={{
-                  color: 'white',
-                  fontSize: '12px',
-                  textTransform: 'none',
-                  fontWeight: '500',
-                  width: 'relative',
-                  height: 'max-content',
-                  textAlign: 'Right',
-                }}
+              <Box
+                className="All-rights-reserved"
+                sx={designs.All_Rights_Reserved_Style}
               >
-                Website by CyCrowd
-              </Typography>
+                <Box
+                  className="All-rights-reserved-sub"
+                  sx={designs.All_Rights_Reserved_Sub_Style}
+                >
+                  <Typography sx={designs.All_Rights_Reserved_Typography_Style}>
+                    &copy; 2022 CyKlas. All rights reserved.
+                  </Typography>
+                </Box>
+
+                <Typography sx={designs.Cycrowd_Typography_Style}>
+                  Website by CyCrowd
+                </Typography>
+              </Box>
             </Box>
           </Box>
         </Box>

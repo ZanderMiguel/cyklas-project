@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { Grid, Button, Typography, IconButton, Avatar } from '@mui/material';
+import { Grid, Button, Typography, Avatar, Box } from '@mui/material';
 
 import Dialogform from '../components/Dialogform';
 import Google from '../assets/Rectangle 134.svg';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import CusButton from '../components/Button';
-
+import usePost from '../customHooks/usePost';
 import { GoogleLogin } from 'react-google-login';
-import Input from './Input';
-import Drowpdown from './Drowpdown';
+import Input from '../components/Input';
+import Drowpdown from '../components/Drowpdown';
 
 const genders = [
   {
@@ -28,18 +28,17 @@ function Register({ open, close }) {
   const [imgSrc, setImgSrc] = useState(null)
   const [registration, setRegistration] = useState(new Map())
   registration.set('gender', gender)
+  const{post} = usePost()
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
-
   const handleChange = (event) => {
     setRegistration(registration.set([event.target.name], event.target.value))
   };
-  const onChangeEvent = (e) => {
-    setGender(e.target.value)
-  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     const { confirmpassword, ...fields } = Object.fromEntries(registration)
+    post('http://localhost:5000/register',{...fields})
     console.log({ ...fields })
   };
   const handleClick = (text) => (event) => {
@@ -88,9 +87,9 @@ function Register({ open, close }) {
                 <label htmlFor="getFile">
                   <Avatar src={imgSrc} style={{width: '64px', height: '64px'}}/>
                 </label>
-                <input type="file" id="getFile" style={{display: 'none'}} onChange={(event)=>{
+                <input type="file" name="image" id="getFile" style={{display: 'none'}} onChange={(event)=>{
                   console.log(URL.createObjectURL(event.target.files[0]))
-
+                  setRegistration(registration.set([event.target.name],URL.createObjectURL(event.target.files[0])))
                   setImgSrc(URL.createObjectURL(event.target.files[0]))
                   //setImgSrc(event.target.files[0])
                 }}/>
@@ -98,7 +97,7 @@ function Register({ open, close }) {
 
             </Grid>
           </Grid>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} autoComplete="off">
             <Grid container spacing={2}>
               <Input
                 name="firstName"
@@ -122,14 +121,17 @@ function Register({ open, close }) {
               />
               <Drowpdown
                 label="Gender"
+                name="gender"
                 value={gender}
-                onChange={onChangeEvent}
+                onChange={(e) => setGender(e.target.value)}
                 options={genders}
                 half
               />
               <Input
                 name="password"
                 placeholder="Password"
+                
+                
                 type={showPassword ? 'text' : 'password'}
                 handleShowPassword={handleShowPassword}
                 onChange={handleChange}

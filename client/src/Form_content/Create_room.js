@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Dialogform from '../components/Dialogform';
-import Input from './Input';
-import Dropdown from './Drowpdown';
+import Input from '../components/Input';
+import Dropdown from '../components/Drowpdown';
 import usePost from '../customHooks/usePost';
+import Datetime from '../components/Datetime';
 
-import { Grid, Button } from '@mui/material';
+import { Grid, Button, Select } from '@mui/material';
+import { ConstructionTwoTone } from '@mui/icons-material';
 
 const classtimes = [
   {
@@ -38,7 +40,7 @@ const gradingsystems = [
   },
 ];
 
-function Create_room({ open, close, maxWidth }) {
+function Create_room({ open, close, maxWidth, state }) {
   const [roomname, setRoomname] = useState('');
   const [course, setCourse] = useState('');
   const [classday, setClassDay] = useState('');
@@ -68,10 +70,15 @@ function Create_room({ open, close, maxWidth }) {
       yearAndSection,
       ClassTime: classtime,
       Terms: term,
-      GradingSystem: gradingsystem
+      GradingSystem: gradingsystem,
     };
     post('http://localhost:5000/rooms', room);
+    state(false);
+    // if (post.data.message === 'Room Created') {
+    //   console.log('tangina naman');
+    // }
   };
+
   return (
     <>
       <Dialogform
@@ -123,6 +130,9 @@ function Create_room({ open, close, maxWidth }) {
               options={classtimes}
               half
             />
+            <Grid item xs={12} sm={6}>
+              <Datetime />
+            </Grid>
             <Dropdown
               inputLabel="Terms"
               value={term}

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import './Landingpage.css';
-import Input from '../Form_content/Input';
+import Input from '../components/Input';
 
 //importing Mui
-import { Typography, Box, Paper, Link, Grid } from '@mui/material';
+import { Typography, Box, Paper, Link, Grid, Container } from '@mui/material';
+import { GoogleLogin } from 'react-google-login';
+import Divider from '@mui/material/Divider';
 
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 //import image
@@ -14,26 +16,29 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Register from '../Form_content/Register';
 import Button from '../components/Button';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 const style = { fontFamily: 'Poppins', marginTop: 1 };
 
-const responseSuccessGoogle = (response) => {
-  console.log(response);
+const googleSuccess = async (res) => {
+  console.log(res);
   axios({
     method: 'POST',
     url: 'http://localhost:5000/googlelogin',
-    data: { tokenId: response.tokenId },
-  }).then((response) => {
-    console.log('Google login success', response);
+    data: { tokenId: res.tokenId },
+  }).then((res) => {
+    console.log('Google login success', res);
   });
 };
-
-const responseErrorGoogle = (response) => {
-  console.log(response);
+const googleFailure = (error) => {
+  console.log(error);
+  console.log('Google Sign In was unsucessful. Try again later');
 };
 
 function Home() {
   const history = useHistory();
+  const [isPending, setIsPending] = useState(false);
   const [opendialog, setOpenDialog] = useState(false);
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -52,7 +57,7 @@ function Home() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setIsPending(true);
     axios
       .post('http://localhost:5000/login', Object.fromEntries(myApi))
       .then((response) => {
@@ -60,6 +65,7 @@ function Home() {
           localStorage.setItem('token', response.data.token);
         console.log(response.data);
         setMyApi(new Map());
+        setIsPending(false);
         history.push('/dashboard');
       })
       .catch((err) => {
@@ -67,22 +73,26 @@ function Home() {
         setMyApi(new Map());
       });
   };
+  const theme = useTheme();
+  const isMatch = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
     <>
-      <Box>
+      <Container maxWidth="lg">
         <Box
           display="flex"
           justifyContent="center"
           alignItems="center"
           flexWrap="wrap"
+          gap="5em"
           height="90vh"
-          gap="6rem"
         >
           <Box className="left">
             <Typography
               variant="h4"
               sx={{
                 ...style,
+
                 fontWeight: 'bold',
                 display: 'flex',
                 justifyContent: 'center',
@@ -107,48 +117,165 @@ function Home() {
             >
               The best Website for Virtual Class
             </Typography>
-            <Button
-              content="Create your account now"
-              variant="contained"
-              borderRadius="10px"
-              sx={{
-                backgroundColor: '#007FFF',
-                color: 'white',
-                borderRadius: '10px',
-                '&:hover': {
-                  backgroundColor: '#0072e6',
-                },
-              }}
-              startIcon={<AddCircleOutlineOutlinedIcon />}
-              onClick={handleClickOpen}
-            />
-            {opendialog && <Register open={opendialog} close={handleClose} />}
-            <img
-              src={Flatimage}
-              alt="flat"
-              style={{
-                wheight: '300px',
-                width: '100%',
-                maxWidth: '600px',
-                marginTop: '16px',
-              }}
-            />
+            {isMatch ? null : (
+              <Button
+                content="Create your account now"
+                variant="contained"
+                borderRadius="10px"
+                sx={{
+                  backgroundColor: '#007FFF',
+                  color: 'white',
+                  borderRadius: '10px',
+                  '&:hover': {
+                    backgroundColor: '#0072e6',
+                  },
+                }}
+                startIcon={<AddCircleOutlineOutlinedIcon />}
+                onClick={handleClickOpen}
+              />
+            )}
+            {isMatch ? null : (
+              <img
+                src={Flatimage}
+                alt="flat"
+                style={{
+                  wheight: '300px',
+                  width: '100%',
+                  maxWidth: '600px',
+                  marginTop: '16px',
+                }}
+              />
+            )}
           </Box>
-
+          {opendialog && <Register open={opendialog} close={handleClose} />}
           <Paper
             elevation={3}
             sx={{
               width: '20rem',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'space-around',
               padding: '30px',
             }}
             type="submit"
             form="loginForm"
           >
-            <img
+            <form onSubmit={handleSubmit} id="loginForm">
+              <Grid container spacing={2} justifyContent="center">
+                <Grid item>
+                  <img
+                    src={MaleLogo}
+                    alt="avatar"
+                    style={{ width: '6rem', height: 'auto' }}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Input
+                    name="emailAddress"
+                    type="email"
+                    placeholder="Enter email address"
+                    onChange={handleChange}
+                    autoFocus
+                    size="medium"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Input
+                    name="password"
+                    placeholder=" Enter password"
+                    type={showPassword ? 'text' : 'password'}
+                    handleShowPassword={handleShowPassword}
+                    onChange={handleChange}
+                  />
+                </Grid>
+                <Grid item xs={12} ali>
+                  <Typography variant="subtitle2">
+                    <Link
+                      href="#"
+                      style={{ color: '#007FFF', textDecoration: 'none' }}
+                    >
+                      Forgot password?
+                    </Link>
+                  </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  {!isPending && (
+                    <Button
+                      fullWidth
+                      content="log in"
+                      variant="contained"
+                      borderRadius="10px"
+                      type="submit"
+                      sx={{
+                        backgroundColor: '#007FFF',
+                        color: 'white',
+                        borderRadius: '10px',
+                        '&:hover': {
+                          backgroundColor: '#0072e6',
+                        },
+                      }}
+                    />
+                  )}
+                  {isPending && (
+                    <Button
+                      disabled
+                      fullWidth
+                      content="log in"
+                      variant="contained"
+                      borderRadius="10px"
+                      type="submit"
+                      sx={{
+                        backgroundColor: '#007FFF',
+                        color: 'white',
+                        borderRadius: '10px',
+                        marginBottom: '0em',
+                        '&:hover': {
+                          backgroundColor: '#0072e6',
+                        },
+                      }}
+                    />
+                  )}
+                </Grid>
+                <Grid item xs={12}>
+                  {isMatch ? (
+                    <Typography
+                      sx={{ ...style, fontWeight: 'bold' }}
+                      gutterBottom
+                      align="center"
+                      component="div"
+                      variant="subtitle2"
+                    >
+                      Don't have an account?
+                      <Link
+                        href="#"
+                        style={{ color: '#007FFF', textDecoration: 'none' }}
+                      >
+                        Sign up
+                      </Link>
+                    </Typography>
+                  ) : (
+                    <Divider>or</Divider>
+                  )}
+                </Grid>
+                <Grid item xs={12}>
+                  <GoogleLogin
+                    clientId="579265708499-7ii87q3j1lhihqbuu20224o4mofhstme.apps.googleusercontent.com"
+                    render={(renderProps) => (
+                      <Button
+                        variant="outlined"
+                        content="continue with google"
+                        startIcon={<img src={Google} alt="Google Icon" />}
+                        color="#007FFF"
+                        borderColor="#007FFF"
+                        fullWidth
+                        onClick={renderProps.onClick}
+                        disabled={renderProps.disabled}
+                      />
+                    )}
+                    onSuccess={googleSuccess}
+                    onFailure={googleFailure}
+                    cookiePolicy="single_host_origin"
+                  />
+                </Grid>
+              </Grid>
+              {/* <img
               src={MaleLogo}
               alt="avatar"
               style={{ width: '6rem', maxWidth: '', height: 'auto' }}
@@ -186,37 +313,64 @@ function Home() {
                 Forgot password?
               </Link>
             </Typography>
-            <Button
-              fullWidth
-              content="log in"
-              variant="contained"
-              borderRadius="10px"
-              type="submit"
-              form="loginForm"
-              sx={{
-                backgroundColor: '#007FFF',
-                color: 'white',
-                borderRadius: '10px',
-                '&:hover': {
-                  backgroundColor: '#0072e6',
-                },
-              }}
-            />
-            <Typography
-              sx={{ ...style, fontWeight: 'bold' }}
-              gutterBottom
-              align="center"
-              component="div"
-              variant="subtitle2"
-            >
-              Don't have an account?
-              <Link
-                href="#"
-                style={{ color: '#007FFF', textDecoration: 'none' }}
+            {!isPending && (
+              <Button
+                fullWidth
+                content="log in"
+                variant="contained"
+                borderRadius="10px"
+                type="submit"
+                form="loginForm"
+                sx={{
+                  backgroundColor: '#007FFF',
+                  color: 'white',
+                  borderRadius: '10px',
+                  marginBottom: '3em',
+                  '&:hover': {
+                    backgroundColor: '#0072e6',
+                  },
+                }}
+              />
+            )}
+
+            {isPending && (
+              <Button
+                disabled
+                fullWidth
+                content="log in"
+                variant="contained"
+                borderRadius="10px"
+                type="submit"
+                form="loginForm"
+                sx={{
+                  backgroundColor: '#007FFF',
+                  color: 'white',
+                  borderRadius: '10px',
+                  '&:hover': {
+                    backgroundColor: '#0072e6',
+                  },
+                }}
+              />
+            )}
+
+            {isMatch ? (
+              <Typography
+                sx={{ ...style, fontWeight: 'bold' }}
+                gutterBottom
+                align="center"
+                component="div"
+                variant="subtitle2"
               >
-                Sign up
-              </Link>
-            </Typography>
+                Don't have an account?
+                <Link
+                  href="#"
+                  style={{ color: '#007FFF', textDecoration: 'none' }}
+                >
+                  Sign up
+                </Link>
+              </Typography>
+            ) : null}
+
             <Button
               content="continue with google"
               startIcon={<img src={Google} alt="Google Icon" />}
@@ -224,10 +378,11 @@ function Home() {
               color="#007FFF"
               borderColor="#007FFF"
               fullWidth
-            />
+            /> */}
+            </form>
           </Paper>
         </Box>
-      </Box>
+      </Container>
     </>
   );
 }
