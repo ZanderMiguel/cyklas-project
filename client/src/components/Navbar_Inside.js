@@ -13,7 +13,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Drawer from './Drawer';
 import CusPopover from './Popover';
 import { useTheme } from '@mui/material/styles';
-
+import useGet from '../customHooks/useGet';
 const request = [
   { avatar: <Avatar />, student: 'zander' },
   { avatar: <Avatar />, student: 'rey' },
@@ -55,7 +55,7 @@ const general = [
   },
 ];
 
-function Navbar() {
+function Navbar({ data }) {
   const [badge, setBadge] = React.useState();
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -84,7 +84,7 @@ function Navbar() {
   return (
     <AppBar
       style={{ backgroundColor: '#EBEBEB', overflow: 'auto' }}
-      position="fixed"
+      position="sticky"
       elevation={1}
     >
       <Toolbar>
@@ -148,7 +148,7 @@ function Navbar() {
                 variant="body1"
                 sx={{ fontWeight: 500, color: '#3F3D56' }}
               >
-                Zander
+                {data && data.user.firstName}
               </Typography>
             </Box>
             <ArrowDropDownIcon sx={{ color: 'rgba(0, 0, 0, 0.54)', ml: 1 }} />

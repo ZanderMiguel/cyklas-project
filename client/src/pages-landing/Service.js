@@ -1,15 +1,20 @@
 import React from 'react';
-import CyClassroom from './Service_CyClassroom';
-import Quiz from './QuizLit';
+import { Grid } from '@mui/material';
+import Service_CyClassroom from './Service_CyClassroom';
+import QuizLit from './QuizLit';
+import TeleCon from './TeleCon';
 
 function Service() {
   return (
     <>
       <section>
-        <CyClassroom />
+        <Service_CyClassroom />
       </section>
       <section>
-        <Quiz />
+        <QuizLit />
+      </section>
+      <section>
+        <TeleCon />
       </section>
     </>
   );

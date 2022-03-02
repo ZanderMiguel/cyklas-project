@@ -33,7 +33,7 @@ function People_table() {
           <Grid container alignItems="center" spacing={2}>
             <Grid item>
               <Avatar alt="avatar" src="">
-                {user.row.firstName[0]}
+                {user.row.firstName}
               </Avatar>
             </Grid>
             <Grid item>

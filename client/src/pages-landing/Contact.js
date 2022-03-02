@@ -52,7 +52,7 @@ function Contact() {
         flexWrap="wrap"
         justifyContent="center"
         alignItems="center"
-        height="70vh"
+        height="97vh"
         width="100%"
         gap="30px"
       >
@@ -168,21 +168,21 @@ function Contact() {
                     CykLas
                   </Typography>
 
-                  <Button variant="text" sx={designs.Home_TextButton_Style}>
+                  <Typography sx={designs.Home_TextButton_Style}>
                     Home
-                  </Button>
+                  </Typography>
 
-                  <Button variant="text" sx={designs.Services_TextButton_Style}>
+                  <Typography sx={designs.Services_TextButton_Style}>
                     Services
-                  </Button>
+                  </Typography>
 
-                  <Button variant="text" sx={designs.About_TextButton_Style}>
+                  <Typography sx={designs.About_TextButton_Style}>
                     About
-                  </Button>
+                  </Typography>
 
-                  <Button variant="text" sx={designs.Contacts_TextButton_Style}>
+                  <Typography sx={designs.Contacts_TextButton_Style}>
                     Contacts
-                  </Button>
+                  </Typography>
                 </Box>
 
                 <Box className="Services" sx={designs.Services_Style}>
@@ -190,20 +190,17 @@ function Contact() {
                     Services
                   </Typography>
 
-                  <Button
-                    variant="text"
-                    sx={designs.Classroom_TextButton_Style}
-                  >
+                  <Typography sx={designs.Classroom_TextButton_Style}>
                     CyClassroom
-                  </Button>
+                  </Typography>
 
-                  <Button variant="text" sx={designs.Quizlit_TextButton_Style}>
+                  <Typography sx={designs.Quizlit_TextButton_Style}>
                     QuizLit
-                  </Button>
+                  </Typography>
 
-                  <Button variant="text" sx={designs.Telecon_TextButton_Style}>
+                  <Typography sx={designs.Telecon_TextButton_Style}>
                     Telecon (Video Conference)
-                  </Button>
+                  </Typography>
                 </Box>
 
                 <Box className="Socials" sx={designs.Socials_Style}>

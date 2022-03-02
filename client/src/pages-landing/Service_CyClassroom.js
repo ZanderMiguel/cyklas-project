@@ -19,8 +19,8 @@ function Service_CyClassroom() {
         justifyContent="center"
         alignItems="center"
         flexWrap="wrap"
-        height="90vh"
         gap="6rem"
+        marginTop="10rem"
       >
         <Box classname="Left-Content">
           <Box classname="Text">
@@ -53,6 +53,7 @@ function Service_CyClassroom() {
                   setColor2('#626170');
                   setFontWeight2('550');
                 }}
+                disableRipple
                 variant="text"
                 sx={{
                   color: `${color}`,
@@ -73,6 +74,7 @@ function Service_CyClassroom() {
                   setFontWeight('550');
                 }}
                 variant="text"
+                disableRipple
                 sx={{
                   color: `${color2}`,
                   fontWeight: `${fontWeight2}`,
@@ -84,7 +86,7 @@ function Service_CyClassroom() {
                   },
                 }}
               >
-                Student{' '}
+                Student
               </Button>
             </Box>
           </Box>

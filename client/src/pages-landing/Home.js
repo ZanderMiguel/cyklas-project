@@ -84,7 +84,7 @@ function Home() {
           justifyContent="center"
           alignItems="center"
           flexWrap="wrap"
-          gap="5em"
+          gap="2em"
           height="90vh"
         >
           <Box className="left">

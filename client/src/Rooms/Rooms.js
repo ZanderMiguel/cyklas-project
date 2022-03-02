@@ -23,8 +23,8 @@ function Rooms() {
     setOpenDialog(false);
   };
 
-  const Professor = Boolean(false);
-  const Student = Boolean(true);
+  const Professor = Boolean(true);
+  const Student = Boolean(false);
 
   return (
     <>
@@ -37,7 +37,6 @@ function Rooms() {
               rowSpacing={1}
               maxHeight="100vh"
               mt={2}
-              sx={{ mt: '5rem' }}
             >
               <Grid item>
                 <Button
@@ -86,7 +85,6 @@ function Rooms() {
               rowSpacing={1}
               maxHeight="100vh"
               mt={2}
-              sx={{ mt: '5rem' }}
             >
               <Grid item>
                 <Button
