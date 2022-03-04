@@ -6,7 +6,7 @@ const theme = useTheme()
 
 const designs = {
     Footer_Style: {
-        marginTop: "40px",
+        marginTop: "2.5em",
         width: "100%",
         height: "auto",
         display: "flex",
@@ -22,29 +22,32 @@ const designs = {
         width: "100%"
     },
     Content_Sub_Style: {
-        margin: "25px 70px", 
+        margin: "1.3em 1em", 
         display: "flex",
+        gap: "1.5em",
+        justifyContent: "center",
+        alignItems: "center",
         flexWrap: "wrap",
-        gap: "40px",
         height: "auto",
+        width: "auto",
+        [theme.breakpoints.down('sm')]: {
+            margin: "1.3em 0.7em" 
+        }
+    },
+    CyklasLogo_Cyklas_Style: { 
+        display: "flex", 
+        flexWrap: "wrap", 
+        gap: "1.5em", 
+        height: "auto", 
         width: "auto"
     },
     Cyklas_Logo_Style: {
-        width: "auto",
+        width: "243px",
         height: "auto",
         display: "flex",
-        flexDirection: "column",
         flexGrow: 1,
-        [theme.breakpoints.between('md', 'lg')]: {
-            width: "100%",
-            justifyContent: "center",
-            alignItems: "center"
-        },
-        [theme.breakpoints.between('xs', 'md')]: {
-            width: "100%",
-            justifyContent: "center",
-            alignItems: "center"
-        }
+        padding: "0px 20px 5px 20px",
+        flexDirection: "column"
     },
     Cyklas_Logo_Image_Style: {
         width: "max-content",
@@ -66,22 +69,11 @@ const designs = {
         width: 'max-content',
         height: 'max-content'
     },
-    Content_Sub2_Style: {
-        height: "relative",
-        width: "auto",
-        display: "flex",
-        flexWrap: "wrap",
-        gap: "20px",
-        [theme.breakpoints.between('md', 'lg')]: {
-            width: "100%",
-            justifyContent: "center",
-            alignItems: "center"
-        }
-    },
     Cyklas_Style: {
         display: "flex",
+        flexGrow: 1,
         flexDirection: "column",
-        width: "190px",
+        width: "243px",
         height: "160px",
         padding: "0px 20px"
     },
@@ -139,10 +131,18 @@ const designs = {
         height: '25px',
         paddingLeft: '0px',
     },
+    Services_Socials_Style: { 
+        display: "flex", 
+        flexWrap: "wrap", 
+        gap: "20px", 
+        height: "auto", 
+        width: "auto"
+    },
     Services_Style: {
         display: "flex",
+        flexGrow: 1,
         flexDirection: "column",
-        width: "190px",
+        width: "243px",
         height: "160px",
         padding: "0px 20px"
     },
@@ -191,7 +191,8 @@ const designs = {
         paddingRight: '20px',
     },
     Socials_Style: {
-        width: "190px",
+        width: "243px",
+        flexGrow: 1,
         height: "160px",
         padding: "0px 20px"
     },
@@ -204,7 +205,7 @@ const designs = {
         height: 'max-content'
     },
     SocialButtons_Style: {
-        marginTop: "13px",
+        marginTop: "20px",
         width: "auto",
         height: "auto",
         display: "flex",
@@ -240,39 +241,66 @@ const designs = {
     },
     Content2_Sub_Style: {
         display:"flex",
-        gap: "10px",
+        gap: "20px",
         flexWrap:"wrap",
         margin: "0px 70px",
         height: "auto",
-        width: "auto"
+        width: "auto",
+        [theme.breakpoints.down('sm')]: {
+            margin: "0px 40px"
+        },
+        [theme.breakpoints.between('sm', 'md')]: {
+            margin: "0px 50px"
+        }
     },
     TC_PP_Style: {
         display:"flex",
+        flexWrap: "wrap",
         flexGrow: 1,
-        height:"auto",
+        height:"max-content",
         width:"auto"
     },
-    TermsCondition_TextButton_Style: {
-        marginRight: '20px',
-        borderRadius: '0em',
+    TermsCondition_Typography_Style: {
         width: 'max-content',
-        height: 'max-content',
-        color: '#E1E1E1',
+        height: 'auto',
+        padding: "1px 7px",
+        color: '#F0F0F0',
         textTransform: 'Uppercase',
         fontSize: '13px',
+        textAlign: "center",
         fontWeight: '500',
-        height: '25px'
+        "&: hover": {
+            cursor: "pointer",
+            color: "white",
+            transition: "all 0.3s ease-out"
+        },
+        [theme.breakpoints.down('sm')]: {
+            textAlign: "left",
+            padding: "1px 7px 1px 0px"
+        }
     },
-    PrivacyPolicy_TextButton_Style: {
-        marginLeft: '20px',
-        borderRadius: '0em',
+    DividerV_Style: { 
+        backgroundColor: "#E1E1E1",
+        margin: "7px 20px"
+    },
+    PrivacyPolicy_Typography_Style: {
         width: 'max-content',
-        height: 'max-content',
-        color: '#E1E1E1',
+        height: 'auto',
+        padding: "1px 7px",
+        color: '#F0F0F0',
         textTransform: 'Uppercase',
         fontSize: '13px',
+        textAlign: "center",
         fontWeight: '500',
-        height: '25px'
+        "&: hover": {
+            cursor: "pointer",
+            color: "white",
+            transition: "all 0.3s ease-out"
+        },
+        [theme.breakpoints.down('sm')]: {
+            textAlign: "left",
+            padding: "1px 7px 1px 0px"
+        }
     },
     All_Rights_Reserved_Style: {
         width: "auto",

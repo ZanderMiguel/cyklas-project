@@ -28,6 +28,7 @@ import {
   InsertLinkOutlined,
 } from '@mui/icons-material';
 import Post_layout from './Post_layout';
+import Schoolworktiles_layout from './Schoolworktiles_layout';
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   '& .MuiToggleButtonGroup-grouped': {
@@ -62,7 +63,7 @@ function Announce() {
   };
 
   return (
-    <Grid container sx={{ marginTop: 2 }}>
+    <Grid container sx={{ margin: "1em 0em" }}>
       <Grid item xs={12}>
         <Input
           variant="filled"
@@ -143,6 +144,7 @@ function Announce() {
         </Box>
       </Grid>
       <Post_layout />
+      <Schoolworktiles_layout />
     </Grid>
   );
 }

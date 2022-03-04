@@ -19,6 +19,9 @@ import Room_inside from './Rooms/Room-content-layout/Room_inside';
 import View_activity from './Rooms/Room-content-layout/View_activity';
 import Forgot_password from './pages-landing/Forgot_password';
 import Notfound from './Notfound';
+import Livequiz_multiplechoice from './Quizlit/LiveQuiz/Livequiz_multiplechoice';
+import StudentLiveQuiz_multiplechoice from './Quizlit/LiveQuiz/StudentLiveQuiz_multiplechoice';
+import Student_rankings from './Quizlit/LiveQuiz/Student_rankings';
 
 function App() {
   const theme = createTheme({
@@ -78,6 +81,10 @@ function App() {
               path="/quizlit/createquiz"
               component={Quizform}
             />
+            {/* Javen Routes */}
+            <ProtectedRoutes exact path="/Livequiz_multiplechoice" component={Livequiz_multiplechoice} />
+            <ProtectedRoutes exact path="/StudentLiveQuiz_multiplechoice" component={StudentLiveQuiz_multiplechoice} />
+            <ProtectedRoutes exact path="/Student_rankings" component={Student_rankings} />
             <ProtectedRoutes exact path="/records" component={Records} />
             <Route path="/forgotpassword">
               <Forgot_password />

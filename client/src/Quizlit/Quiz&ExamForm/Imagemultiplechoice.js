@@ -2,7 +2,7 @@ import React from 'react';
 import {Box, IconButton, Container, Grid} from "@mui/material";
 import Image from "../../assets/ImageJaven/Image.png";
 import {Check} from '@mui/icons-material';
-import useStyle from '../Imagemultiplechoice_style';
+import useStyle from './Imagemultiplechoice_style';
 import { Link } from 'react-router-dom';
 
 function Imagemultiplechoice() {

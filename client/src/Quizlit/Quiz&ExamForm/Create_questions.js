@@ -9,45 +9,48 @@ import {
   InputAdornment,
   Container,
   Grid,
-} from '@mui/material';
+  Select, 
+  MenuItem, 
+  FormControl, 
+  InputLabel } from '@mui/material';
 import Image from '../../assets/ImageJaven/Image.png';
-import { AddCircle, Check, MoreVert } from '@mui/icons-material';
+import { AddCircle, Check, MoreVert, Delete } from '@mui/icons-material';
 import useStyle from './Quiz_multiplechoice_style';
 import './Quiz_multiplechoice_stylesheet.css';
 
-const sortOptions = [
-  { label: 'Multiple Choice' },
-  { label: 'Image Multiple Choice' },
-  { label: 'True or False' },
-  { label: 'Essay' },
-];
+// const sortOptions = [
+//   { label: 'Multiple Choice' },
+//   { label: 'Image Multiple Choice' },
+//   { label: 'True or False' },
+//   { label: 'Essay' },
+// ];
 
-const sortOptions2 = [
-  { label: '5 seconds' },
-  { label: '10 seconds' },
-  { label: '15 seconds' },
-  { label: '20 seconds' },
-  { label: '25 seconds' },
-  { label: '30 seconds' },
-  { label: '35 seconds' },
-  { label: '40 seconds' },
-  { label: '1 minute' },
-  { label: '2 minutes' },
-];
+// const sortOptions2 = [
+//   { label: '5 seconds' },
+//   { label: '10 seconds' },
+//   { label: '15 seconds' },
+//   { label: '20 seconds' },
+//   { label: '25 seconds' },
+//   { label: '30 seconds' },
+//   { label: '35 seconds' },
+//   { label: '40 seconds' },
+//   { label: '1 minute' },
+//   { label: '2 minutes' },
+// ];
 
-const sortOptions3 = [
-  { label: '0 point' },
-  { label: '1 point' },
-  { label: '2 points' },
-  { label: '3 points' },
-  { label: '4 points' },
-  { label: '5 points' },
-  { label: '6 points' },
-  { label: '7 points' },
-  { label: '8 points' },
-  { label: '9 points' },
-  { label: '10 points' },
-];
+// const sortOptions3 = [
+//   { label: '0 point' },
+//   { label: '1 point' },
+//   { label: '2 points' },
+//   { label: '3 points' },
+//   { label: '4 points' },
+//   { label: '5 points' },
+//   { label: '6 points' },
+//   { label: '7 points' },
+//   { label: '8 points' },
+//   { label: '9 points' },
+//   { label: '10 points' },
+// ];
 
 const dataAnswerType = [
   {
@@ -268,69 +271,69 @@ function Create_questions() {
                                 sx= {designs.DeleteIcon_Style}/>
                         </IconButton>
                     </Box>
-
-                    <FormControl variant="standard" sx = {designs.FormControl_Style}>
-                    <InputLabel id="demo-simple-select-standard-label"
-                    sx = {designs.InputLabel_Style}>
-                    Answer Type
-                    </InputLabel>
-                    <Select
-                      labelId="demo-simple-select-standard-label"
-                      id="demo-simple-select-standard"
-                      value={age}
-                      onChange={handleChange}
-                      label="Age"
-                      disableUnderline 
-                      sx = {designs.Select_Style}>
+                    
+                      <FormControl variant="standard" sx = {designs.FormControl_Style}>
+                      <InputLabel id="demo-simple-select-standard-label"
+                      sx = {designs.InputLabel_Style}>
+                      Answer Type
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-standard-label"
+                        id="demo-simple-select-standard"
+                        value={selectAnswerType}
+                        onChange={handleChange1}
+                        label="SelectAnswerType"
+                        disableUnderline 
+                        sx = {designs.Select_Style}>
+                                          
+                        {dataAnswerType.map(({ value, label }) => (
+                            <MenuItem key = {value} value = {value}> {label} </MenuItem>
+                        ))}
                                         
-                      {dataAnswerType.map(({ value, label }) => (
-                          <MenuItem key = {value} value = {value}> {label} </MenuItem>
-                      ))}
-                                       
-                    </Select>
-                    </FormControl>
+                      </Select>
+                      </FormControl>
 
-                    <FormControl variant="standard" sx = {designs.FormControl_Style}>
-                    <InputLabel id="demo-simple-select-standard-label"
-                    sx = {designs.InputLabel_Style}>
-                    Time Limit
-                    </InputLabel>
-                    <Select
-                      labelId="demo-simple-select-standard-label"
-                      id="demo-simple-select-standard"
-                      value={age}
-                      onChange={handleChange}
-                      label="Age"
-                      disableUnderline 
-                      sx = {designs.Select_Style}>
+                      <FormControl variant="standard" sx = {designs.FormControl_Style}>
+                      <InputLabel id="demo-simple-select-standard-label"
+                      sx = {designs.InputLabel_Style}>
+                      Time Limit
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-standard-label"
+                        id="demo-simple-select-standard"
+                        value={selectTimeLimit}
+                        onChange={handleChange2}
+                        label="SelectTimeLimit"
+                        disableUnderline 
+                        sx = {designs.Select_Style}>
+                                          
+                        {dataTimeLimit.map(({ value, label }) => (
+                            <MenuItem key = {value} value = {value}> {label} </MenuItem>
+                        ))}
                                         
-                      {dataTimeLimit.map(({ value, label }) => (
-                          <MenuItem key = {value} value = {value}> {label} </MenuItem>
-                      ))}
-                                       
-                    </Select>
-                    </FormControl>
+                      </Select>
+                      </FormControl>
 
-                    <FormControl variant="standard" sx = {designs.FormControl_Style}>
-                    <InputLabel id="demo-simple-select-standard-label"
-                    sx = {designs.InputLabel_Style}>
-                    Points
-                    </InputLabel>
-                    <Select
-                      labelId="demo-simple-select-standard-label"
-                      id="demo-simple-select-standard"
-                      value={age}
-                      onChange={handleChange}
-                      label="Age"
-                      disableUnderline 
-                      sx = {designs.Select_Style}>
+                      <FormControl variant="standard" sx = {designs.FormControl_Style}>
+                      <InputLabel id="demo-simple-select-standard-label"
+                      sx = {designs.InputLabel_Style}>
+                      Points
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-standard-label"
+                        id="demo-simple-select-standard"
+                        value={selectPoints}
+                        onChange={handleChange3}
+                        label="SelectPoints"
+                        disableUnderline 
+                        sx = {designs.Select_Style}>
+                                          
+                        {dataPoints.map(({ value, label }) => (
+                            <MenuItem key = {value} value = {value}> {label} </MenuItem>
+                        ))}
                                         
-                      {dataPoints.map(({ value, label }) => (
-                          <MenuItem key = {value} value = {value}> {label} </MenuItem>
-                      ))}
-                                       
-                    </Select>
-                    </FormControl>
+                      </Select>
+                      </FormControl>
 
                   {/* <Autocomplete
                     clearOnEscape
