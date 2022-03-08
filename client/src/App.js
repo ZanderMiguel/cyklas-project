@@ -12,8 +12,6 @@ import Setting from './Settings/SettingsCont';
 import ProtectedRoutes from './components/ProtectedRoutes';
 import Dashboard from './Dashboard/Dashboard';
 import Navbar_landingpage from './components/Navbar_landingpage';
-import TeleconLanding from './pages-landing/TeleconLanding';
-import Telecon from './Telecon/Telecon';
 
 import { io } from 'socket.io-client';
 
@@ -107,12 +105,7 @@ function App() {
               component={Setting}
               data={data}
             />
-            <ProtectedRoutes
-              exact
-              path="/quizlit"
-              component={QuizLit}
-              data={data}
-            />
+            <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
             <ProtectedRoutes
               exact
               path="/quizlit/createquiz"
