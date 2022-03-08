@@ -4,6 +4,8 @@ import virtualmeeting from '../assets/ImageJaven/Virtual Meeting 2.png';
 import Button from '../components/Button';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import VideocamIcon from '@mui/icons-material/Videocam';
+import { Link } from "react-router-dom";
+
 
 function TeleconStart() {
   return (
@@ -87,11 +89,13 @@ function TeleconStart() {
               MAKE CONFERENCE
             </Typography>
             <Button
+              component = {Link}
+              to = "/Conference_details"
               variant="outlined"
               content="Start a conference!"
               startIcon={<VideocamIcon />}
               size="large"
-              sx={{ borderRadius: 10, ml: 5 }}
+              sx={{ textDecoration: "none", borderRadius: 10, ml: 5 }}
             />
           </Box>
         </Box>

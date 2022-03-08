@@ -26,6 +26,10 @@ import Notfound from './Notfound';
 import Livequiz_multiplechoice from './Quizlit/LiveQuiz/Livequiz_multiplechoice';
 import StudentLiveQuiz_multiplechoice from './Quizlit/LiveQuiz/StudentLiveQuiz_multiplechoice';
 import Student_rankings from './Quizlit/LiveQuiz/Student_rankings';
+import Conference_details from './Telecon/Telecon_Components/Conference_details';
+import Members from './Telecon/Telecon_Components/Members';
+import Message_area from './Telecon/Telecon_Components/Message_area';
+import Presentation from './Telecon/Telecon_Components/Presentation';
 
 function App() {
   const theme = createTheme({
@@ -115,6 +119,10 @@ function App() {
             <ProtectedRoutes exact path="/Livequiz_multiplechoice" component={Livequiz_multiplechoice} />
             <ProtectedRoutes exact path="/StudentLiveQuiz_multiplechoice" component={StudentLiveQuiz_multiplechoice} />
             <ProtectedRoutes exact path="/Student_rankings" component={Student_rankings} />
+            <ProtectedRoutes exact path="/Conference_details" component={Conference_details} />
+            <ProtectedRoutes exact path="/Members" component={Members} />
+            <ProtectedRoutes exact path="/Message_area" component={Message_area} />
+            <ProtectedRoutes exact path="/Presentation" component={Presentation} />
             <ProtectedRoutes exact path="/records" component={Records} />
             <Route path="/forgotpassword">
               <Forgot_password />
