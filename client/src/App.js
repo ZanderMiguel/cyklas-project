@@ -1,5 +1,6 @@
 import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import './index.css';
 import {
   BrowserRouter as Router,
   Route,
@@ -11,6 +12,11 @@ import Setting from './Settings/SettingsCont';
 import ProtectedRoutes from './components/ProtectedRoutes';
 import Dashboard from './Dashboard/Dashboard';
 import Navbar_landingpage from './components/Navbar_landingpage';
+import TeleconLanding from './pages-landing/TeleconLanding';
+import Telecon from './Telecon/Telecon';
+
+import { io } from 'socket.io-client';
+
 import TeleconStart from './Telecon/TeleconStart';
 import QuizLit from './Quizlit/Quizlit';
 import Quizform from './Quizlit/Quiz&ExamForm/Quizform';
@@ -46,7 +52,9 @@ function App() {
       },
     },
   });
+  const data = React.useRef('');
 
+  const socket = io.connect('http://localhost:3001/');
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -54,14 +62,32 @@ function App() {
           <Switch>
             <Redirect exact from="/" to="/home/login" />
             <Redirect exact from="/home" to="/home/login" />
-            <Route exact path="/home/:page?" component={Navbar_landingpage} />
-            <ProtectedRoutes exact path="/dashboard" component={Dashboard} />
-            <ProtectedRoutes exact path="/telecon" component={TeleconStart} />
-            <ProtectedRoutes exact path="/rooms" component={Rooms} />
+            <Route exact path="/home/:page?">
+              <Navbar_landingpage data={data} />
+            </Route>
+            <ProtectedRoutes
+              exact
+              path="/dashboard"
+              component={Dashboard}
+              data={data}
+            />
+            <ProtectedRoutes
+              exact
+              path="/telecon"
+              component={TeleconStart}
+              data={data}
+            />
+            <ProtectedRoutes
+              exact
+              path="/rooms"
+              component={Rooms}
+              data={data}
+            />
             <ProtectedRoutes
               exact
               path="/rooms/:roomID"
               component={Room_inside}
+              data={data}
             />
             <ProtectedRoutes
               exact
@@ -73,9 +99,20 @@ function App() {
               exact
               path="/rooms/:id/:ab/:w"
               component={Dashboard}
+              data={data}
             />
-            <ProtectedRoutes exact path="/settings" component={Setting} />
-            <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
+            <ProtectedRoutes
+              exact
+              path="/settings"
+              component={Setting}
+              data={data}
+            />
+            <ProtectedRoutes
+              exact
+              path="/quizlit"
+              component={QuizLit}
+              data={data}
+            />
             <ProtectedRoutes
               exact
               path="/quizlit/createquiz"

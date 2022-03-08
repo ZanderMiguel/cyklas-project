@@ -5,7 +5,7 @@ import Dialogform from '../components/Dialogform';
 import Google from '../assets/Rectangle 134.svg';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import CusButton from '../components/Button';
-
+import usePost from '../customHooks/usePost';
 import { GoogleLogin } from 'react-google-login';
 import Input from '../components/Input';
 import Drowpdown from '../components/Drowpdown';
@@ -22,38 +22,29 @@ const genders = [
 ];
 
 function Register({ open, close }) {
-  const [firstname, setFirstname] = useState('');
-  const [lastname, setLastname] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+
   const [gender, setGender] = useState('Male');
   const [showPassword, setShowPassword] = useState(false);
-
+  const [imgSrc, setImgSrc] = useState(null)
+  const [registration, setRegistration] = useState(new Map())
+  registration.set('gender', gender)
+  const{post} = usePost()
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
-
-  const handlechangeFirstname = (event) => {
-    setFirstname(event.target.value);
-  };
-  const handlechangeLastname = (event) => {
-    setLastname(event.target.value);
-  };
-  const handlechangeEmail = (event) => {
-    setEmail(event.target.value);
-  };
-  const handlechangePassword = (event) => {
-    setPassword(event.target.value);
-  };
-
   const handleChange = (event) => {
-    setGender(event.target.value);
+    setRegistration(registration.set([event.target.name], event.target.value))
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const user = {};
+    e.preventDefault()
+    const { confirmpassword, ...fields } = Object.fromEntries(registration)
+    post('http://localhost:5000/register',{...fields})
+    console.log({ ...fields })
   };
-
+  const handleClick = (text) => (event) => {
+    console.log(text)
+    setRegistration(registration.set([event.target.name], text))
+  }
   const googleSuccess = async (res) => {
     console.log(res);
   };
@@ -61,7 +52,7 @@ function Register({ open, close }) {
     console.log(error);
     console.log('Google Sign In was unsucessful. Try again later');
   };
-
+  
   return (
     <>
       <Router>
@@ -74,10 +65,14 @@ function Register({ open, close }) {
               justifyContent="space-around"
               alignItems="center"
             >
-              <Button sx={{ borderRadius: '20px' }} variant="outlined">
+              <Button sx={{ borderRadius: '20px' }} variant="outlined"
+                onClick={handleClick("Professor")} name="userType"
+              >
                 Professor
               </Button>
-              <Button sx={{ borderRadius: '50px' }} variant="outlined">
+              <Button sx={{ borderRadius: '50px' }} variant="outlined"
+                onClick={handleClick("Student")} name="userType"
+              >
                 Student
               </Button>
             </Grid>
@@ -88,56 +83,65 @@ function Register({ open, close }) {
               justifyContent="space-around"
               alignItems="center"
             >
-              <Avatar sx={{ height: '60px', width: '60px' }} />
+              <div>
+                <label htmlFor="getFile">
+                  <Avatar src={imgSrc} style={{width: '64px', height: '64px'}}/>
+                </label>
+                <input type="file" name="image" id="getFile" style={{display: 'none'}} onChange={(event)=>{
+                  console.log(URL.createObjectURL(event.target.files[0]))
+                  setRegistration(registration.set([event.target.name],URL.createObjectURL(event.target.files[0])))
+                  setImgSrc(URL.createObjectURL(event.target.files[0]))
+                  //setImgSrc(event.target.files[0])
+                }}/>
+              </div>
+
             </Grid>
           </Grid>
           <form onSubmit={handleSubmit} autoComplete="off">
             <Grid container spacing={2}>
               <Input
-                name="firstname"
+                name="firstName"
                 placeholder="Firstname"
-                value={firstname}
-                onChange={handlechangeFirstname}
+                onChange={handleChange}
                 autoFocus
                 half
               />
               <Input
-                name="lastname"
+                name="lastName"
                 placeholder="Lastname"
-                value={lastname}
-                onChange={handlechangeLastname}
+                onChange={handleChange}
                 half
               />
               <Input
-                name="email"
+                name="emailAddress"
                 placeholder="Email Address"
                 type="email"
-                value={email}
-                onChange={handlechangeEmail}
+                onChange={handleChange}
                 half
               />
               <Drowpdown
                 label="Gender"
+                name="gender"
                 value={gender}
-                onChange={handleChange}
+                onChange={(e) => setGender(e.target.value)}
                 options={genders}
                 half
               />
               <Input
                 name="password"
                 placeholder="Password"
-                value={password}
-                onChange={handlechangePassword}
+                
+                
                 type={showPassword ? 'text' : 'password'}
                 handleShowPassword={handleShowPassword}
-                handlChange={handleChange}
+                onChange={handleChange}
               />
               <Input
-                name="confirm password"
+                name="confirmpassword"
                 placeholder="Confirm Password"
                 type={showPassword ? 'text' : 'password'}
                 handleShowPassword={handleShowPassword}
-                handlChange={handleChange}
+                onChange={handleChange}
               />
 
               <Grid item xs={6}>
@@ -165,6 +169,7 @@ function Register({ open, close }) {
                   fullWidth
                   variant="contained"
                   borderRadius="10px"
+                  type="submit"
                   sx={{
                     backgroundColor: '#007FFF',
                     color: 'white',

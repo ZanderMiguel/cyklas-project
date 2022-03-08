@@ -9,9 +9,9 @@ function QuizLit() {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      height="100vh"
       gap="50px"
       flexWrap="wrap"
+      marginTop="10rem"
     >
       <Box className="Left-Content">
         <img src={PhotoQuiz} alt="Imagehere" height="auto" width="100%" />
@@ -47,7 +47,7 @@ function QuizLit() {
               marginTop: '40px',
             }}
           >
-            Asynchronous and Live Quiz (Game-Based)
+            Live Quiz (Game-Based)
           </Typography>
         </Box>
         <Box className="Content" width="80%">
@@ -68,10 +68,16 @@ function QuizLit() {
             <Typography
               variant="h1"
               component="h2"
-              sx={{ color: '#626170', fontSize: '15px', fontWeight: '400' }}
+              sx={{
+                color: '#626170',
+                fontSize: '15px',
+                fontWeight: '400',
+                mb: '1rem',
+              }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Making quizzes and using it multiple times can be done by storing
+              those in this bank. Reuse or editing of the quizzes created is the
+              sole purpose for this feature.
             </Typography>
           </Box>
           <Box className="List">
@@ -90,10 +96,17 @@ function QuizLit() {
             <Typography
               variant="h1"
               component="h2"
-              sx={{ color: '#626170', fontSize: '15px', fontWeight: '400' }}
+              sx={{
+                color: '#626170',
+                fontSize: '15px',
+                fontWeight: '400',
+                mb: '1rem',
+              }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Multiple choice, image multiple choice, true or false, and essay
+              are the options for types of quizzes to be created. Time limit and
+              points for the quiz can also be set base on professor's preference
+              as well as inserting image or gifs.
             </Typography>
           </Box>
           <Box className="List">
@@ -114,8 +127,9 @@ function QuizLit() {
               component="h2"
               sx={{ color: '#626170', fontSize: '15px', fontWeight: '400' }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Results of the quiz are automatically generated right after the
+              end of the live quiz. Scores of those students who participated
+              are listed.
             </Typography>
           </Box>
         </Box>

@@ -1,5 +1,12 @@
 import React from 'react';
-import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material';
+import {
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Avatar,
+} from '@mui/material';
 import Zander from '../assets/Images/zander.png';
 import Paner from '../assets/Images/paner.png';
 import Habalita from '../assets/Images/habalita.png';
@@ -12,6 +19,121 @@ import Warren from '../assets/Images/warren.png';
 const cards = {
   marginBottom: '20px',
 };
+
+const Cycrowd = [
+  {
+    avatar: (
+      <Avatar
+        src={Zander}
+        alt="ZanderMiguel"
+        sx={{ width: '7rem', height: '7rem', mt: '2rem' }}
+      />
+    ),
+    name: 'Zander Miguel Mirador',
+    position: 'CHIEF EXECUTIVE OFFICER / UX TEAM LEADER',
+    description: `He graduated on STI Novaliches with the Track of STEM, he wants to
+    further explore and gain more knowledge, thats when he joined the
+    Cycrowd he joined Cycrowd in 2020 and now he is a leader and also
+    the CEO, he always bringing his team to the limits. He had the
+    skills and attitude to lead also capable of dabbling front-end and
+    back-end development.`,
+  },
+  {
+    avatar: (
+      <Avatar
+        src={Paner}
+        alt="Reypaner"
+        sx={{ width: '7rem', height: '7rem', mt: '2rem' }}
+      />
+    ),
+    name: 'Rey Paner',
+    position: 'BACK END LEADER/ UX RESEARCHER',
+    description: `A leader of the Back-end development and the UX researcher, he focues on server administration and 
+    usability testing and also capable of doing front-end development. He joined
+    Cycrowd in order to gain more experience and knowledge when it comes
+    to client side and server side developlment.
+    `,
+  },
+  {
+    avatar: (
+      <Avatar
+        src={Habalita}
+        alt="Javenhabalita"
+        sx={{ width: '7rem', height: '7rem', mt: '2rem' }}
+      />
+    ),
+    name: 'Javen Habalita',
+    position: 'UX DESIGNER / QUALITY ASSURANCE LEADER',
+    description: `A User experience designer (UX) and Quality assurance leader, he has a wide range of knowledge when it comes to
+    UX , he always focuses on client's side experience by creating a user friedly interfaces that will help users to easily operate our product.
+    by joining Cycrowd he wants to hone skills and expand his knowledge when it comes to user interface designing.
+    
+    `,
+  },
+  {
+    avatar: (
+      <Avatar
+        src={Hiquiana}
+        alt="AlCedrichiquiana"
+        sx={{ width: '7rem', height: '7rem', mt: '2rem' }}
+      />
+    ),
+    name: 'Al Cedric Hiquiana',
+    position: 'FRONT-END DEVELOPER',
+    description: `An experienced User interface (UI) designer he always thinks what brand aethetics and tone
+    he brings a wide range of knowledge when it comes to web designing
+    He joined cycrowd to challenge himself to further improve his web designing and to 
+    achieve the core value of Cycrowd which is delighting our clients.
+    
+    `,
+  },
+  {
+    avatar: (
+      <Avatar
+        src={Rellama}
+        alt="Charlesjohnrellama"
+        sx={{ width: '7rem', height: '7rem', mt: '2rem' }}
+      />
+    ),
+    name: 'Charles John Rellama',
+    position: 'BACKEND DEVELOPER',
+    description: `He also currently focuses on back-end development, 
+    charles joined cycrowd because he wants to expand his knowledge when it comes to client side development
+    and constantly strives to achieve the cycrowd core value. 
+    `,
+  },
+  {
+    avatar: (
+      <Avatar
+        src={Rabago}
+        alt="Lesterrabago"
+        sx={{ width: '7rem', height: '7rem', mt: '2rem' }}
+      />
+    ),
+    name: 'Lester Rabago',
+    position: 'QUALITY ASSURANCE ANALYST',
+    description: `A Quality Assurance analyst, He joined Cycrowd because He wants to improve his skills when it comes to identifying and resolving bugs, defects and other
+    potential issues, he mostly expend his time doing test and making recommendations for repairing defects, also in creating, reviewing and refine user
+    experience documents.
+     
+    `,
+  },
+  {
+    avatar: (
+      <Avatar
+        src={Orense}
+        alt="Markandreiorense"
+        sx={{ width: '7rem', height: '7rem', mt: '2rem' }}
+      />
+    ),
+    name: 'Mark Andrei Orense',
+    position: 'TESTER',
+    description: `A software tester, Currently employed at Cycrowd and responsible for designing test scenarios for software usability by running some test and 
+    preparing reports on the effectiveness and defects to the production team.
+     
+    `,
+  },
+];
 
 function About() {
   return (
@@ -32,7 +154,6 @@ function About() {
         align="center"
         mt={1}
       >
-        {' '}
         We are the CyCrowd Co.
       </Typography>
 
@@ -45,315 +166,42 @@ function About() {
             mr: 'auto',
             mt: 3,
             width: 320,
-            height: 460,
+            height: 'auto',
           },
-          gap: '20px',
+          gap: '2em',
         }}
       >
-        <Card elevation={1} sx={{ maxWidth: 320, ...cards }}>
-          <CardMedia
-            style={{
-              height: '170px',
-              width: '120px',
-              marginTop: '20px',
-              marginLeft: '100px',
-            }}
-            component="img"
-            height="140"
-            alt="Zander"
-            src={Zander}
-          />
-          <CardContent>
-            <Typography align="center" variant="h6" component="div">
-              Zander Miguel Mirador
-            </Typography>
-            <Typography
-              sx={{ mt: 1, fontWeight: 'bold' }}
-              style={{ color: '#8A8994' }}
-              align="center"
-              variant="subtitle2"
-              component="div"
+        {Cycrowd.map((items, index) => (
+          <Card elevation={1} sx={{ maxWidth: 320, ...cards }} key={index}>
+            <Box
+              width="100%"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
             >
-              CHIEF EXECUTIVE OFFICER / UX TEAM LEADER
-            </Typography>
-            <Typography
-              sx={{ mt: 6, fontWeight: 'bold' }}
-              style={{ color: '#8A8994' }}
-              align="center"
-              variant="paragraph"
-              component="div"
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </Typography>
-          </CardContent>
-        </Card>
-        <Card elevation={1} sx={{ maxWidth: 320, ...cards }}>
-          <CardMedia
-            style={{
-              height: '170px',
-              width: '120px',
-              marginTop: '20px',
-              marginLeft: '100px',
-            }}
-            component="img"
-            height="140"
-            alt="Paner"
-            src={Paner}
-          />
-          <CardContent>
-            <Typography align="center" variant="h6" component="div">
-              Rey Paner
-            </Typography>
-            <Typography
-              sx={{ mt: 1, fontWeight: 'bold' }}
-              style={{ color: '#8A8994' }}
-              align="center"
-              variant="subtitle2"
-              component="div"
-            >
-              BACK END LEADER/ UX RESEARCHER
-            </Typography>
-            <Typography
-              sx={{ mt: 6, fontWeight: 'bold' }}
-              style={{ color: '#8A8994' }}
-              align="center"
-              variant="paragraph"
-              component="div"
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </Typography>
-          </CardContent>
-        </Card>
-        <Card elevation={1} sx={{ maxWidth: 320, ...cards }}>
-          <CardMedia
-            style={{
-              height: '170px',
-              width: '120px',
-              marginTop: '20px',
-              marginLeft: '100px',
-            }}
-            component="img"
-            height="140"
-            alt="Habalita"
-            src={Habalita}
-          />
-          <CardContent>
-            <Typography align="center" variant="h6" component="div">
-              Javen Habalita
-            </Typography>
-            <Typography
-              sx={{ mt: 1, fontWeight: 'bold' }}
-              style={{ color: '#8A8994' }}
-              align="center"
-              variant="subtitle2"
-              component="div"
-            >
-              UX DESIGNER / QUALITY ASSURANCE LEADER
-            </Typography>
-            <Typography
-              sx={{ mt: 6, fontWeight: 'bold' }}
-              style={{ color: '#8A8994' }}
-              align="center"
-              variant="paragraph"
-              component="div"
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </Typography>
-          </CardContent>
-        </Card>
-        <Card elevation={1} sx={{ maxWidth: 320, ...cards }}>
-          <CardMedia
-            style={{
-              height: '170px',
-              width: '120px',
-              marginTop: '20px',
-              marginLeft: '100px',
-            }}
-            component="img"
-            height="140"
-            alt="Hiquiana"
-            src={Hiquiana}
-          />
-          <CardContent>
-            <Typography align="center" variant="h6" component="div">
-              Al Cedric Hiquiana
-            </Typography>
-            <Typography
-              sx={{ mt: 1, fontWeight: 'bold' }}
-              style={{ color: '#8A8994' }}
-              align="center"
-              variant="subtitle2"
-              component="div"
-            >
-              FRONT-END DEVELOPER
-            </Typography>
-            <Typography
-              sx={{ mt: 6, fontWeight: 'bold' }}
-              style={{ color: '#8A8994' }}
-              align="center"
-              variant="paragraph"
-              component="div"
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </Typography>
-          </CardContent>
-        </Card>
-        <Card elevation={1} sx={{ maxWidth: 320, ...cards }}>
-          <CardMedia
-            style={{
-              height: '170px',
-              width: '120px',
-              marginTop: '20px',
-              marginLeft: '100px',
-            }}
-            component="img"
-            height="140"
-            alt="Rellama"
-            src={Rellama}
-          />
-          <CardContent>
-            <Typography align="center" variant="h6" component="div">
-              Charles John Rellama
-            </Typography>
-            <Typography
-              sx={{ mt: 1, fontWeight: 'bold' }}
-              style={{ color: '#8A8994' }}
-              align="center"
-              variant="subtitle2"
-              component="div"
-            >
-              BACKEND DEVELOPER
-            </Typography>
-            <Typography
-              sx={{ mt: 6, fontWeight: 'bold' }}
-              style={{ color: '#8A8994' }}
-              align="center"
-              variant="paragraph"
-              component="div"
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </Typography>
-          </CardContent>
-        </Card>
-        <Card elevation={1} sx={{ maxWidth: 320, ...cards }}>
-          <CardMedia
-            style={{
-              height: '170px',
-              width: '120px',
-              marginTop: '20px',
-              marginLeft: '100px',
-            }}
-            component="img"
-            height="140"
-            alt="Rabago"
-            src={Rabago}
-          />
-          <CardContent>
-            <Typography align="center" variant="h6" component="div">
-              Lester Rabago
-            </Typography>
-            <Typography
-              sx={{ mt: 1, fontWeight: 'bold' }}
-              style={{ color: '#8A8994' }}
-              align="center"
-              variant="subtitle2"
-              component="div"
-            >
-              QUALITY ASSURANCE ANALYST
-            </Typography>
-            <Typography
-              sx={{ mt: 6, fontWeight: 'bold' }}
-              style={{ color: '#8A8994' }}
-              align="center"
-              variant="paragraph"
-              component="div"
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </Typography>
-          </CardContent>
-        </Card>
-        <Card elevation={1} sx={{ maxWidth: 320, ...cards }}>
-          <CardMedia
-            style={{
-              height: '170px',
-              width: '120px',
-              marginTop: '20px',
-              marginLeft: '100px',
-            }}
-            component="img"
-            height="140"
-            alt="Orense"
-            src={Orense}
-          />
-          <CardContent>
-            <Typography align="center" variant="h6" component="div">
-              Mark Andrei Orense
-            </Typography>
-            <Typography
-              sx={{ mt: 1, fontWeight: 'bold' }}
-              style={{ color: '#8A8994' }}
-              align="center"
-              variant="subtitle2"
-              component="div"
-            >
-              TESTER
-            </Typography>
-            <Typography
-              sx={{ mt: 6, fontWeight: 'bold' }}
-              style={{ color: '#8A8994' }}
-              align="center"
-              variant="paragraph"
-              component="div"
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </Typography>
-          </CardContent>
-        </Card>
-        <Card elevation={1} sx={{ maxWidth: 320, ...cards }}>
-          <CardMedia
-            style={{
-              height: '170px',
-              width: '120px',
-              marginTop: '20px',
-              marginLeft: '100px',
-            }}
-            component="img"
-            height="140"
-            alt="Warren"
-            src={Warren}
-          />
-          <CardContent>
-            <Typography align="center" variant="h6" component="div">
-              Jame Warren Nario
-            </Typography>
-            <Typography
-              sx={{ mt: 1, fontWeight: 'bold' }}
-              style={{ color: '#8A8994' }}
-              align="center"
-              variant="subtitle2"
-              component="div"
-            >
-              TESTER
-            </Typography>
-            <Typography
-              sx={{ mt: 6, fontWeight: 'bold' }}
-              style={{ color: '#8A8994' }}
-              align="center"
-              variant="paragraph"
-              component="div"
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </Typography>
-          </CardContent>
-        </Card>
+              {items.avatar}
+            </Box>
+            <CardContent>
+              <Typography align="center" variant="h6" sx={{ fontWeight: 700 }}>
+                {items.name}
+              </Typography>
+              <Typography
+                sx={{ color: '#8A8994', mt: 1, fontWeight: 600 }}
+                align="center"
+                variant="subtitle2"
+              >
+                {items.position}
+              </Typography>
+              <Typography
+                sx={{ color: '#8A8994', mt: 3, fontWeight: 400 }}
+                align="center"
+                variant="body1"
+              >
+                {items.description}
+              </Typography>
+            </CardContent>
+          </Card>
+        ))}
       </Box>
     </div>
   );

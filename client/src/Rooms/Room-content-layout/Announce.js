@@ -29,6 +29,9 @@ import {
 } from '@mui/icons-material';
 import Post_layout from './Post_layout';
 import Schoolworktiles_layout from './Schoolworktiles_layout';
+import ContentEditable from 'react-contenteditable';
+import usePost from '../../customHooks/usePost';
+import useGet from '../../customHooks/useGet';
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   '& .MuiToggleButtonGroup-grouped': {
@@ -47,12 +50,17 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   },
 }));
 
-function Announce() {
+function Announce({ data: userData }) {
+  const { post } = usePost();
   const { designs } = useStyle();
-
+  const myPost = React.useRef('');
+  const bold = React.useRef(false);
+  const boldText = React.useRef(new Map());
   const [upload, setUpload] = React.useState('true');
   const [alignment, setAlignment] = React.useState('left');
   const [formats, setFormats] = React.useState(() => ['italic']);
+  const [postData, setPostData] = React.useState(new Map());
+  const { data } = useGet('http://localhost:5000/feed');
 
   const handleFormat = (event, newFormats) => {
     setFormats(newFormats);
@@ -61,16 +69,48 @@ function Announce() {
   const handleAlignment = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
-
+  console.log(userData.current.data.user.RegID);
   return (
     <Grid container sx={{ margin: "1em 0em" }}>
       <Grid item xs={12}>
-        <Input
+        {/* <Input
           variant="filled"
           multiline
           fullWidth
           rows={6}
           label="Announce to your class..."
+          value={myPost}
+          onChange={(e) => {
+            if (bold.current === true) {
+              boldText.current += `<b>${e.target.value.charAt(
+                e.target.value.length - 1
+              )}</b>`;    
+              e.target.innerHTML = e.target.value + boldText.current;
+            } else {
+              setMyPost(e.target.value);
+            }
+          }}
+        /> */}
+        <ContentEditable
+          style={{ border: '1px solid blue', height: '10rem' }}
+          onChange={(e) => {
+            /* if (bold.current === true) {
+              boldText.current.set('bold', `<b>${e.target.value}</b>`);
+
+              myPost.current += boldText.current.get('bold');
+              console.log(boldText.current.get('bold'));
+            } else {
+              myPost.current += e.target.value;
+            } */
+
+            myPost.current = e.target.value;
+            setPostData(
+              postData.set([e.currentTarget.className], e.target.value)
+            );
+            console.log(e.currentTarget.className, e.target.value, postData);
+          }}
+          html={`${myPost.current}`}
+          className="content"
         />
       </Grid>
       <Grid item xs={12}>
@@ -90,7 +130,13 @@ function Announce() {
             onChange={handleFormat}
             aria-label="text formatting"
           >
-            <ToggleButton value="bold" aria-label="bold">
+            <ToggleButton
+              value="bold"
+              aria-label="bold"
+              onClick={() => {
+                bold.current = bold.current === false ? true : false;
+              }}
+            >
               <FormatBoldIcon />
             </ToggleButton>
             <ToggleButton value="italic" aria-label="italic">
@@ -143,7 +189,23 @@ function Announce() {
           </Stack>
         </Box>
       </Grid>
-      <Post_layout />
+      
+      <input
+        type="button"
+        onClick={() => {
+          post('http://localhost:5000/feed/create', {
+            content: Object.fromEntries(postData),
+            author: {
+              name: 'Mirador Zander',
+              avatar: <AttachFileOutlined />,
+              id: 'kahit ano muna',
+            },
+            title: 'obob',
+          });
+        }}
+        value="POSt"
+      />
+      <Post_layout data={data} userData={userData} />
       <Schoolworktiles_layout />
     </Grid>
   );

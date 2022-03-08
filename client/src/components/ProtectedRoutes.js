@@ -1,16 +1,22 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import Navbar from './Navbar_Inside';
-
-function ProtectedRoutes({ component: Component, path, maxWidth, ...attrib }) {
+import useGet from '../customHooks/useGet';
+function ProtectedRoutes({
+  component: Component,
+  path,
+  maxWidth,
+  data,
+  ...attrib
+}) {
   return (
     <>
-      {localStorage.token && <Navbar />}
+      {localStorage.token && <Navbar data={data} />}
       <Route
         {...attrib}
         render={() => {
           return localStorage.token !== undefined ? (
-            <Component />
+            <Component data={data} />
           ) : (
             <Redirect to="/" />
           );
