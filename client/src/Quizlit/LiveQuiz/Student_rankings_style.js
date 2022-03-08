@@ -273,7 +273,7 @@ const designs = {
         height: "24em",
         display: "flex",
         flexDirection: "column",
-        overflowY: "scroll"
+        overflowY: "auto"
     },
     Buttons_GridItem_Style: { 
         paddingTop: "1em",
