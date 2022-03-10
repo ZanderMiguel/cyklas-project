@@ -9,10 +9,10 @@ import Join_room from '../Form_content/Join_room';
 import usePost from '../customHooks/usePost';
 import Button from '../components/Button';
 import Room_layout_student from './Room-content-layout/Room_layout_student';
-
+import axios from 'axios'
 function Rooms({ data: userData }) {
   const [opendialog, setOpenDialog] = useState(false);
-  console.log(userData.current.data.user.RegID);
+  
   const { post, data, error, isPending } = usePost();
 
   const handleCreate = () => {
@@ -24,10 +24,19 @@ function Rooms({ data: userData }) {
   };
 
   const Professor = Boolean(true);
-  const Student = Boolean(false);
-  post('http://localhost:5000/rooms', {
-    room: userData.current.data.user.rooms,
-  });
+  const Student = Boolean(false); 
+  
+  React.useMemo(()=>{post('http://localhost:5000/rooms', {
+    room: userData.user.room,
+  })
+  axios.post('http://localhost:5000/getUser',{userID:userData.user._id})
+  .then((res)=>{
+    userData = res.data
+    console.log(res.data)
+  })
+  .catch((err)=>console.log(err))
+},[opendialog]);
+  console.log(data)
   return (
     <>
       <Container maxWidth="md">
@@ -65,6 +74,7 @@ function Rooms({ data: userData }) {
                     close={handleCreateClose}
                     maxWidth="md"
                     state={setOpenDialog}
+                    userData={userData}
                   />
                 )}
               </Grid>

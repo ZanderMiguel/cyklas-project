@@ -9,6 +9,7 @@ const useStyles = makeStyles({
 })
 function Dashboard(props) {
   const classes = useStyles(props)
+  console.log(props.data)
   return (<div>
     <Button
     

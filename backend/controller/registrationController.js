@@ -79,11 +79,11 @@ const userLogIn = async (req, res) => {
 
 const displayRegistration = async (req, res) => {
   try {
-    const registration = await UserModel.find().sort({ createdAt: -1 });
-    console.log('Users Displayed');
-    return res.json(registration);
+    const user = await UserModel.findById(req.body.userID);
+    console.log('User Displayed');
+    return res.json(user);
   } catch (error) {
-    console.log('Something went wrong!');
+    console.log('Something went wrong!',error);
     return res.json({
       status: 'error',
       message: error,
