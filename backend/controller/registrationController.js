@@ -13,20 +13,18 @@ const createRegistration = async (req, res) => {
     const id = mongoose.Types.ObjectId();
     console.log(id);
     const password = await bcrypt.hash(req.body.password, 10);
+    if(password){
     const addRegistration = new RegistrationModel({
       _id: id,
       password: password,
     });
+    
+  }
     const addUser = await new UserModel({
       RegID: id,
-      userType: req.body.userType,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      image: req.body.image,
-      emailAddress: req.body.emailAddress,
-      gender: req.body.gender,
+      ...req.body
     });
-    await addRegistration.save();
+    
     await addUser.save();
     console.log('Done!');
     return res.json({
@@ -80,7 +78,6 @@ const userLogIn = async (req, res) => {
 const displayRegistration = async (req, res) => {
   try {
     const user = await UserModel.findById(req.body.userID);
-    console.log('User Displayed',user);
     return res.json(user);
   } catch (error) {
     console.log('Something went wrong!',error);

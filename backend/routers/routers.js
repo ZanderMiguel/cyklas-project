@@ -69,4 +69,10 @@ router.delete('/comment', deleteComment);
 
 const { teleController } = require('../controller/teleconController');
 router.get('/telecon/create', teleController);
+
+const {createQuizlitController,updateQuizlitController,deleteQuizlitController,findQuizlitController} = require('../controller/quizlitController')
+router.post('/quizlit/create',createQuizlitController)
+router.put('/quizlit/update',updateQuizlitController)
+router.delete('/quizlit/delete',deleteQuizlitController)
+router.post('/quizlit',findQuizlitController)
 module.exports = router;

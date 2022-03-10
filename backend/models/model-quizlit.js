@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const QuizlitSchema = new mongoose.Schema({
+    _id: mongoose.Schema.Types.ObjectId,
     author: {type: Object, required: true},
     title: {type: String,required: true},
     questions: [{type: mongoose.Schema.Types.ObjectId}],
