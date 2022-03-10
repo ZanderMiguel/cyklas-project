@@ -40,7 +40,7 @@ const gradingsystems = [
   },
 ];
 
-function Create_room({ open, close, maxWidth, state,userData }) {
+function Create_room({ open, close, maxWidth, state,userData,socket }) {
   const [roomname, setRoomname] = useState('');
   const [course, setCourse] = useState('');
   const [classday, setClassDay] = useState('');
@@ -72,7 +72,9 @@ function Create_room({ open, close, maxWidth, state,userData }) {
       Terms: term,
       GradingSystem: gradingsystem,
     };
-    post('http://localhost:5000/rooms/create', {userID: userData.user._id,...room});
+    
+    post('http://localhost:5000/rooms/create', {userID: userData.data.user._id,...room});
+    
     state(false);
     // if (post.data.message === 'Room Created') {
     //   console.log('tangina naman');

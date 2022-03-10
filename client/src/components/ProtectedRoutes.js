@@ -7,6 +7,7 @@ function ProtectedRoutes({
   path,
   maxWidth,
   data,
+  socket,
   ...attrib
 }) {
   return (
@@ -16,7 +17,7 @@ function ProtectedRoutes({
         {...attrib}
         render={() => {
           return localStorage.token !== undefined ? (
-            <Component data={data.current.data} />
+            socket?<Component data={data.current} socket={socket}/> : data ? <Component data={data.current} />: <Component />
           ) : (
             <Redirect to="/" />
           );

@@ -7,7 +7,7 @@ const updateUserId = async (id, roomId) => {
     const roomIds = await RoomsModel.findById(roomId);
     console.log(roomIds);
     await RoomsModel.findByIdAndUpdate(roomId, {
-      userID: [...roomIds.userID, id],
+      members: [...roomIds.userID, id],
     });
     console.log('uwuuwu');
   } catch (error) {

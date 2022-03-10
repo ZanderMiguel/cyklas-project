@@ -12,9 +12,9 @@ import Room_layout_student from './Room-content-layout/Room_layout_student';
 import axios from 'axios'
 function Rooms({ data: userData }) {
   const [opendialog, setOpenDialog] = useState(false);
-  
-  const { post, data, error, isPending } = usePost();
 
+  const { post, data, error, isPending } = usePost();
+  const [myRoom,setMyRoom] = useState(null)
   const handleCreate = () => {
     setOpenDialog(true);
   };
@@ -24,19 +24,22 @@ function Rooms({ data: userData }) {
   };
 
   const Professor = Boolean(true);
-  const Student = Boolean(false); 
-  
-  React.useMemo(()=>{post('http://localhost:5000/rooms', {
-    room: userData.user.room,
-  })
-  axios.post('http://localhost:5000/getUser',{userID:userData.user._id})
-  .then((res)=>{
-    userData = res.data
-    console.log(res.data)
-  })
-  .catch((err)=>console.log(err))
-},[opendialog]);
-  console.log(data)
+  const Student = Boolean(false);
+
+  React.useMemo(() => {
+    post('http://localhost:5000/rooms', {
+      room: myRoom ?myRoom.room : userData.data.user.room,
+    })
+    console.log('badtrip',myRoom)
+    axios.post('http://localhost:5000/getUser', { userID: userData.data.user._id })
+      .then((res) => {
+        //userData = userData.data.user  
+        setMyRoom(res.data)
+        console.log('awit', userData, myRoom)
+      })
+      .catch((err) => console.log(err))
+  }, [opendialog]);
+
   return (
     <>
       <Container maxWidth="md">

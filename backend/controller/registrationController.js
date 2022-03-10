@@ -80,7 +80,7 @@ const userLogIn = async (req, res) => {
 const displayRegistration = async (req, res) => {
   try {
     const user = await UserModel.findById(req.body.userID);
-    console.log('User Displayed');
+    console.log('User Displayed',user);
     return res.json(user);
   } catch (error) {
     console.log('Something went wrong!',error);

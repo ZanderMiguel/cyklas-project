@@ -9,7 +9,8 @@ const UserSchema = new mongoose.Schema({
     emailAddress: {type: String, required: true},
     gender: {type: String, required: true},
     room: [{type: mongoose.Schema.Types.ObjectId}],
-    RegID: {type: mongoose.Schema.Types.ObjectId, unique: true}
+    RegID: {type: mongoose.Schema.Types.ObjectId, unique: true},
+    quizlit: [{type: mongoose.Schema.Types.ObjectId}]
 
 },{timestamps:true})
 

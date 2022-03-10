@@ -55,7 +55,7 @@ function App() {
     },
   });
   const data = React.useRef('');
-
+  
   const socket = io.connect('http://localhost:3001/');
   return (
     <>
@@ -84,6 +84,7 @@ function App() {
               path="/rooms"
               component={Rooms}
               data={data}
+              socket={socket}
             />
             <ProtectedRoutes
               exact
