@@ -52,6 +52,21 @@ router.get('/feed', displayFeedController);
 router.delete('/feed/delete/:id', deleteFeedController);
 router.put('/feed/update/:id', updateFeedController);
 
+const{
+  createAnnounce, displayAnnounce, deleteAnnounce, updateAnnounce
+} = require("../controller/announcementController")
+router.post('/announce', createAnnounce);
+router.get('/announce', displayAnnounce);
+router.delete('/announce', deleteAnnounce);
+router.put('/announce', updateAnnounce);
+
+const{
+  createComment, displayComment, deleteComment
+} = require("../controller/commentController")
+router.post('/comment', createComment);
+router.get('/comment', displayComment);
+router.delete('/comment', deleteComment);
+
 const { teleController } = require('../controller/teleconController');
 router.get('/telecon/create', teleController);
 module.exports = router;
