@@ -140,6 +140,7 @@ const answertypeoptions = [
 function Quizform() {
   const [questions, setQuestions] = useState(new Map());
   const [opendialog, setOpenDialog] = useState(false);
+  const [image, setImage] = useState('');
   const { designs } = useStyle();
 
   const [selectAnswerType, setAnswerType] = useState('Multiple Choice');
@@ -382,31 +383,58 @@ function Quizform() {
                               className="Quiz-question-image-sub"
                               sx={designs.Quiz_Question_Image_Sub_Style}
                             >
-                              <img
-                                src={Image}
-                                height="80em"
-                                style={{
-                                  margin: '0.7em 0em 0em 1em',
-                                }}
-                              />
-
-                              <Button
-                                variant="contained"
-                                startIcon={
-                                  <AddCircle
-                                    style={{
-                                      marginRight: '0.2em',
-                                      fontSize: '2em',
-                                      color: '#716F87',
-                                    }}
-                                  />
-                                }
-                                sx={designs.Insert_Image_Button_Style}
-                                onClick={() => setOpenDialog(true)}
-                              >
-                                Insert an image or GIF associated to this
-                                question.
-                              </Button>
+                              {image != '' ? (
+                                <>
+                                  <Box
+                                    width="80%"
+                                    display="flex"
+                                    justifyContent="center"
+                                    alignItems="center"
+                                  >
+                                    <img
+                                      src={image}
+                                      width="100%"
+                                      height="300px"
+                                      style={{
+                                        padding: '0.7em 0em 0em 1em',
+                                        objectFit: 'contain',
+                                      }}
+                                    />
+                                  </Box>
+                                  <Button
+                                    variant="contained"
+                                    onClick={() => setImage('')}
+                                  >
+                                    remove
+                                  </Button>
+                                </>
+                              ) : (
+                                <Box
+                                  width="80%"
+                                  height="300px"
+                                  display="flex"
+                                  justifyContent="center"
+                                  alignItems="center"
+                                >
+                                  <Button
+                                    variant="contained"
+                                    startIcon={
+                                      <AddCircle
+                                        style={{
+                                          marginRight: '0.2em',
+                                          fontSize: '2em',
+                                          color: '#716F87',
+                                        }}
+                                      />
+                                    }
+                                    sx={designs.Insert_Image_Button_Style}
+                                    onClick={() => setOpenDialog(true)}
+                                  >
+                                    Insert an image or GIF associated to this
+                                    question.
+                                  </Button>
+                                </Box>
+                              )}
                             </Box>
                           </Box>
                         </Box>
@@ -415,6 +443,7 @@ function Quizform() {
                             open={opendialog}
                             close={() => setOpenDialog(false)}
                             maxWidth="lg"
+                            setImage={setImage}
                           />
                         )}
                         <Box

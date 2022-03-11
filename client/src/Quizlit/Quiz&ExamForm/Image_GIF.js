@@ -9,9 +9,8 @@ import { Box, TextField, Typography, Button, Divider } from '@mui/material';
 import UploadIcon from '@mui/icons-material/Upload';
 import Masonry from '@mui/lab/Masonry';
 
-function Image_GIF({ open, close, maxWidth }) {
+function Image_GIF({ open, close, maxWidth, setImage }) {
   const [gifs, setGifs] = React.useState([]);
-  console.log(gifs.length);
   const [isLoading, setIsLoading] = React.useState(false);
   const [search, setSearch] = React.useState('');
 
@@ -151,12 +150,18 @@ function Image_GIF({ open, close, maxWidth }) {
             <div>Loading...</div>
           ) : (
             <Masonry columns={4} spacing={1}>
-              {gifs &&
-                gifs.map((item) => {
-                  return (
-                    <img key={item.id} src={item.images.fixed_width.url} />
-                  );
-                })}
+              {gifs.map((item) => {
+                return (
+                  <img
+                    key={item.id}
+                    src={item.images.fixed_width.url}
+                    onClick={(item) => {
+                      console.log(item.target.src);
+                      setImage(item.target.src);
+                    }}
+                  />
+                );
+              })}
             </Masonry>
           )}
         </Box>
