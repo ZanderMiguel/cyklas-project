@@ -9,7 +9,7 @@ import { Box, IconButton } from '@mui/material';
 import Quiz_layout from './Quizbank-content-layout/Quiz_layout';
 import Exam_layout from './Quizbank-content-layout/Exam_layout';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import useStyle from './Quizlit_style';
+import useStyle from './Styles/Quizlit_style';
 import CusPopover from '../components/Popover';
 import QuizlitAddpopover from '../components/PopoverContent/QuizlitAddpopover';
 
@@ -124,8 +124,12 @@ function Quizlit() {
             </Tabs>
           </Grid>
 
-          <Grid item xs = {1}>
-            <IconButton size="small" onClick={handleClickAddQuiz} sx = {designs.Add_IconButton_Style}>
+          <Grid item xs={1}>
+            <IconButton
+              size="small"
+              onClick={handleClickAddQuiz}
+              sx={designs.Add_IconButton_Style}
+            >
               <AddCircleIcon sx={{ color: 'green', fontSize: '2rem' }} />
             </IconButton>
           </Grid>

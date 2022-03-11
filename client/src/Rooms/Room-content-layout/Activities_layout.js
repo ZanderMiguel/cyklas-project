@@ -13,7 +13,7 @@ import {
 import { Edit, Delete } from '@mui/icons-material';
 import ActivityIcon from '../../assets/ImageJaven/ActivityIcon.png';
 import Wordfile from '../../assets/ImageJaven/Wordfile.png';
-import useStyle from '../ActivitiesAccordion_Style';
+import useStyle from '../Styles/ActivitiesAccordion_Style';
 import Divider from '@mui/material/Divider';
 import { Link, Router } from 'react-router-dom';
 

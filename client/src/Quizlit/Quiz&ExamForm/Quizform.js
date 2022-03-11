@@ -17,7 +17,7 @@ import {
 } from '@mui/material';
 import CusButton from '../../components/Button';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import useStyle from './Quiz_multiplechoice_style';
+import useStyle from '../Styles/Quiz_multiplechoice_style';
 import Image from '../../assets/ImageJaven/Image.png';
 import { AddCircle, Check, MoreVert, Delete } from '@mui/icons-material';
 import Imagemultiplechoice from './Imagemultiplechoice';

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Landingpage.css';
+import './Styles/Landingpage.css';
 import Input from '../components/Input';
 
 //importing Mui

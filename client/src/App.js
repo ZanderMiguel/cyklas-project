@@ -1,6 +1,5 @@
 import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import './index.css';
 import {
   BrowserRouter as Router,
   Route,
@@ -55,7 +54,7 @@ function App() {
     },
   });
   const data = React.useRef('');
-  
+
   const socket = io.connect('http://localhost:3001/');
   return (
     <>
@@ -117,13 +116,37 @@ function App() {
               component={Quizform}
             />
             {/* Javen Routes */}
-            <ProtectedRoutes exact path="/Livequiz_multiplechoice" component={Livequiz_multiplechoice} />
-            <ProtectedRoutes exact path="/StudentLiveQuiz_multiplechoice" component={StudentLiveQuiz_multiplechoice} />
-            <ProtectedRoutes exact path="/Student_rankings" component={Student_rankings} />
-            <ProtectedRoutes exact path="/Conference_details" component={Conference_details} />
+            <ProtectedRoutes
+              exact
+              path="/Livequiz_multiplechoice"
+              component={Livequiz_multiplechoice}
+            />
+            <ProtectedRoutes
+              exact
+              path="/StudentLiveQuiz_multiplechoice"
+              component={StudentLiveQuiz_multiplechoice}
+            />
+            <ProtectedRoutes
+              exact
+              path="/Student_rankings"
+              component={Student_rankings}
+            />
+            <ProtectedRoutes
+              exact
+              path="/Conference_details"
+              component={Conference_details}
+            />
             <ProtectedRoutes exact path="/Members" component={Members} />
-            <ProtectedRoutes exact path="/Message_area" component={Message_area} />
-            <ProtectedRoutes exact path="/Presentation" component={Presentation} />
+            <ProtectedRoutes
+              exact
+              path="/Message_area"
+              component={Message_area}
+            />
+            <ProtectedRoutes
+              exact
+              path="/Presentation"
+              component={Presentation}
+            />
             <ProtectedRoutes exact path="/records" component={Records} />
             <Route path="/forgotpassword">
               <Forgot_password />

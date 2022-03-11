@@ -1,6 +1,6 @@
 import React from 'react';
 import Input from '../../components/Input';
-import useStyle from '../Announce_style';
+import useStyle from '../Styles/Announce_style';
 
 import { Box, Grid, TextField, Avatar, InputAdornment } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -71,7 +71,7 @@ function Announce({ data: userData }) {
   };
   console.log(userData.current.data.user.RegID);
   return (
-    <Grid container sx={{ margin: "1em 0em" }}>
+    <Grid container sx={{ margin: '1em 0em' }}>
       <Grid item xs={12}>
         {/* <Input
           variant="filled"
@@ -189,7 +189,7 @@ function Announce({ data: userData }) {
           </Stack>
         </Box>
       </Grid>
-      
+
       <input
         type="button"
         onClick={() => {
