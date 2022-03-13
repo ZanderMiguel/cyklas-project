@@ -12,7 +12,7 @@ import ProtectedRoutes from './components/ProtectedRoutes';
 import Dashboard from './Dashboard/Dashboard';
 import Navbar_landingpage from './components/Navbar_landingpage';
 
-import { io } from 'socket.io-client';
+// import { io } from 'socket.io-client';
 
 import TeleconStart from './Telecon/TeleconStart';
 import QuizLit from './Quizlit/Quizlit';
@@ -29,6 +29,8 @@ import Conference_details from './Telecon/Telecon_Components/Conference_details'
 import Members from './Telecon/Telecon_Components/Members';
 import Message_area from './Telecon/Telecon_Components/Message_area';
 import Presentation from './Telecon/Telecon_Components/Presentation';
+
+import ChatApp from './ChatApp';
 
 function App() {
   const theme = createTheme({
@@ -55,7 +57,7 @@ function App() {
   });
   const data = React.useRef('');
 
-  const socket = io.connect('http://localhost:3001/');
+  // const socket = io.connect('http://localhost:3001');
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -83,7 +85,7 @@ function App() {
               path="/rooms"
               component={Rooms}
               data={data}
-              socket={socket}
+              // socket={socket}
             />
             <ProtectedRoutes
               exact
@@ -148,6 +150,9 @@ function App() {
               component={Presentation}
             />
             <ProtectedRoutes exact path="/records" component={Records} />
+            {/* Learning socket io #Zander */}
+            <Route path="/ChatApp" component={ChatApp} />
+
             <Route path="/forgotpassword">
               <Forgot_password />
             </Route>

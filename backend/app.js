@@ -39,21 +39,38 @@ app.use(express.static('public'));
 
 app.use(router);
 
-//socket.io events
 io.on('connection', (socket) => {
-  socket.on('join-room', (roomId, userId) => {
-    console.log(roomId, userId);
-    socket.join(roomId);
-    socket.to(roomId).emit('user-connected', userId);
-    socket.on('disconnect', () => {
-      socket.to(roomId).emit('user-disconnected', userId);
-    });
-    socket.on('send-message', (message) => {
-      console.log(message);
-      socket.to(roomId).emit('receive-message', message);
-    });
+  console.log(socket.id);
+
+  socket.on('joinroom', (roomID) => {
+    socket.join(roomID);
+    console.log(`User with ID: ${socket.id} joined room: ${roomID}`);
+  });
+
+  socket.on('sendMessage', (data) => {
+    socket.to(data.room).emit('receive_message', data);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('User Disconnected', socket.id);
   });
 });
+
+//socket.io events
+// io.on('connection', (socket) => {
+//   socket.on('join-room', (roomId, userId) => {
+//     console.log(roomId, userId);
+//     socket.join(roomId);
+//     socket.to(roomId).emit('user-connected', userId);
+//     socket.on('disconnect', () => {
+//       socket.to(roomId).emit('user-disconnected', userId);
+//     });
+//     socket.on('send-message', (message) => {
+//       console.log(message);
+//       socket.to(roomId).emit('receive-message', message);
+//     });
+//   });
+// });
 
 //start server
 
