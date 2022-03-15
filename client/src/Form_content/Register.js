@@ -22,29 +22,78 @@ const genders = [
 ];
 
 function Register({ open, close }) {
-
+  const [toggleprof, setToggleProf] = useState('outlined');
+  const [togglestud, setToggleStud] = useState('outlined');
+  const [imgSrc, setImgSrc] = useState(null);
+  const [usertype, setUserType] = useState('');
+  const [firstname, setFirstName] = useState('');
+  const [lastname, setLastName] = useState('');
+  const [emailaddress, setEmailAddress] = useState('');
   const [gender, setGender] = useState('Male');
+  const [password, setPassword] = useState('');
+  const [confirmpassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [imgSrc, setImgSrc] = useState(null)
-  const [registration, setRegistration] = useState(new Map())
-  registration.set('gender', gender)
-  const{post} = usePost()
+
+  //error States
+  const [usertypeError, setUserTypeError] = useState(false);
+  const [firstnameError, setFirstNameError] = useState(false);
+  const [lastnameError, setLastNameError] = useState(false);
+  const [emailaddressError, setEmailAddressError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [confirmpasswordError, setConfirmPasswordError] = useState(false);
+
+  const { post } = usePost();
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
-  const handleChange = (event) => {
-    setRegistration(registration.set([event.target.name], event.target.value))
-  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    const { confirmpassword, ...fields } = Object.fromEntries(registration)
-    post('http://localhost:5000/register',{...fields})
-    console.log({ ...fields })
+    e.preventDefault(false);
+    setFirstNameError(false);
+    setLastNameError(false);
+    setEmailAddressError(false);
+    setPasswordError(false);
+    setConfirmPasswordError(false);
+
+    if (usertype == '') {
+    }
+
+    if (firstname == '') {
+      setFirstNameError(true);
+    }
+    if (lastname == '') {
+      setLastNameError(true);
+    }
+    if (emailaddress == '') {
+      setEmailAddressError(true);
+    }
+    if (password == '') {
+      setPasswordError(true);
+    }
+    if (confirmpassword == '') {
+      setConfirmPasswordError(true);
+    }
+
+    if (
+      usertype &&
+      firstname &&
+      lastname &&
+      emailaddress &&
+      password &&
+      confirmpassword
+    ) {
+      console.log('create');
+    }
   };
-  const handleClick = (text) => (event) => {
-    console.log(text)
-    setRegistration(registration.set([event.target.name], text))
-  }
+  const handleClickProf = (text) => (event) => {
+    setToggleProf('contained');
+    setToggleStud('outlined');
+    setUserType(text);
+  };
+  const handleClickStud = (text) => (event) => {
+    setToggleStud('contained');
+    setToggleProf('outlined');
+    setUserType(text);
+  };
   const googleSuccess = async (res) => {
     console.log(res);
   };
@@ -52,7 +101,7 @@ function Register({ open, close }) {
     console.log(error);
     console.log('Google Sign In was unsucessful. Try again later');
   };
-  
+
   return (
     <>
       <Router>
@@ -65,13 +114,21 @@ function Register({ open, close }) {
               justifyContent="space-around"
               alignItems="center"
             >
-              <Button sx={{ borderRadius: '20px' }} variant="outlined"
-                onClick={handleClick("Professor")} name="userType"
+              <Button
+                sx={{ borderRadius: '20px' }}
+                variant={toggleprof}
+                disableRipple
+                onClick={handleClickProf('Professor')}
+                name="userType"
               >
                 Professor
               </Button>
-              <Button sx={{ borderRadius: '50px' }} variant="outlined"
-                onClick={handleClick("Student")} name="userType"
+              <Button
+                sx={{ borderRadius: '50px' }}
+                variant={togglestud}
+                disableRipple
+                onClick={handleClickStud('Student')}
+                name="userType"
               >
                 Student
               </Button>
@@ -85,42 +142,78 @@ function Register({ open, close }) {
             >
               <div>
                 <label htmlFor="getFile">
-                  <Avatar src={imgSrc} style={{width: '64px', height: '64px'}}/>
+                  <Avatar
+                    src={imgSrc}
+                    style={{ width: '64px', height: '64px' }}
+                  />
                 </label>
-                <input type="file" name="image" id="getFile" style={{display: 'none'}} onChange={(event)=>{
-                  console.log(URL.createObjectURL(event.target.files[0]))
-                  setRegistration(registration.set([event.target.name],URL.createObjectURL(event.target.files[0])))
-                  setImgSrc(URL.createObjectURL(event.target.files[0]))
-                  //setImgSrc(event.target.files[0])
-                }}/>
-              </div>
+                <input
+                  type="file"
+                  name="image"
+                  id="getFile"
+                  style={{ display: 'none' }}
+                  onChange={(event) => {
+                    console.log(URL.createObjectURL(event.target.files[0]));
 
+                    setImgSrc(URL.createObjectURL(event.target.files[0]));
+                    //setImgSrc(event.target.files[0])
+                  }}
+                />
+              </div>
             </Grid>
+            {usertype && (
+              <Grid item xs={12}>
+                <Box
+                  sx={{
+                    padding: 1,
+                    marginTop: '1em',
+                    borderRadius: '5px',
+                    backgroundColor: '#ef5350',
+                    color: 'white',
+                  }}
+                >
+                  <Typography sx={{ fontSize: '0.8em', fontWeight: 600 }}>
+                    Please select "PROFESSOR" or "STUDENT"
+                  </Typography>
+                </Box>
+              </Grid>
+            )}
           </Grid>
-          <form onSubmit={handleSubmit} autoComplete="off">
+          <form onSubmit={handleSubmit} noValidate autoComplete="off">
             <Grid container spacing={2}>
               <Input
                 name="firstName"
-                placeholder="Firstname"
-                onChange={handleChange}
+                inputLabel="First Name"
+                placeholder="First name*"
+                required
+                autoComplete="off"
+                error={firstnameError}
+                onChange={(event) => setFirstName(event.target.value)}
                 autoFocus
                 half
               />
               <Input
                 name="lastName"
-                placeholder="Lastname"
-                onChange={handleChange}
+                inputLabel="Last Name"
+                placeholder="Last name*"
+                autoComplete="off"
+                error={lastnameError}
+                onChange={(event) => setLastName(event.target.value)}
                 half
               />
               <Input
                 name="emailAddress"
-                placeholder="Email Address"
+                inputLabel="Email Address"
+                placeholder="Email address*"
                 type="email"
-                onChange={handleChange}
+                autoComplete="off"
+                error={emailaddressError}
+                onChange={(event) => setEmailAddress(event.target.value)}
                 half
               />
               <Drowpdown
                 label="Gender"
+                inputLabel="Gender"
                 name="gender"
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
@@ -129,19 +222,22 @@ function Register({ open, close }) {
               />
               <Input
                 name="password"
-                placeholder="Password"
-                
-                
+                placeholder="Password*"
+                inputLabel="Password"
+                autoComplete="off"
+                error={passwordError}
                 type={showPassword ? 'text' : 'password'}
                 handleShowPassword={handleShowPassword}
-                onChange={handleChange}
+                onChange={(event) => setPassword(event.target.value)}
               />
               <Input
                 name="confirmpassword"
-                placeholder="Confirm Password"
+                inputLabel="Confirm Password"
+                placeholder="Confirm password*"
                 type={showPassword ? 'text' : 'password'}
                 handleShowPassword={handleShowPassword}
-                onChange={handleChange}
+                error={confirmpasswordError}
+                onChange={(event) => setConfirmPassword(event.target.value)}
               />
 
               <Grid item xs={6}>

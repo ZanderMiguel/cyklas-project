@@ -27,9 +27,8 @@ import StudentLiveQuiz_multiplechoice from './Quizlit/LiveQuiz/StudentLiveQuiz_m
 import Student_rankings from './Quizlit/LiveQuiz/Student_rankings';
 import Conference_details from './Telecon/Telecon_Components/Conference_details';
 import Members from './Telecon/Telecon_Components/Members';
-import Message_area from './Telecon/Telecon_Components/Message_area';
+import Message_area from './Telecon/components/Messages';
 import Presentation from './Telecon/Telecon_Components/Presentation';
-
 import ChatApp from './ChatApp';
 
 function App() {
@@ -141,17 +140,13 @@ function App() {
             <ProtectedRoutes exact path="/Members" component={Members} />
             <ProtectedRoutes
               exact
-              path="/Message_area"
-              component={Message_area}
-            />
-            <ProtectedRoutes
-              exact
               path="/Presentation"
               component={Presentation}
             />
             <ProtectedRoutes exact path="/records" component={Records} />
             {/* Learning socket io #Zander */}
             <Route path="/ChatApp" component={ChatApp} />
+            <Route path="/message" component={Message_area} />
 
             <Route path="/forgotpassword">
               <Forgot_password />

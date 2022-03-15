@@ -4,7 +4,14 @@ import Notificationpopover from './PopoverContent/Notificationpopover';
 import Accountpopover from './PopoverContent/Accountpopover';
 
 //MUI imports
-import { AppBar, Box, Toolbar, Typography, IconButton } from '@mui/material';
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  Typography,
+  IconButton,
+  CssBaseline,
+} from '@mui/material';
 import { Badge } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Zander from '../assets/Images/zander.png';
@@ -82,87 +89,94 @@ function Navbar({ data }) {
   const badgeDot = React.useRef(null);
 
   return (
-    <AppBar
-      style={{ backgroundColor: '#EBEBEB', overflow: 'auto' }}
-      position="sticky"
-      elevation={1}
-    >
-      <Toolbar>
-        <Drawer />
-        <img src={logo} alt="cyklasLogo" />
+    <>
+      <CssBaseline />
+      <AppBar
+        style={{ backgroundColor: '#EBEBEB', overflow: 'auto' }}
+        position="sticky"
+        elevation={1}
+      >
+        <Toolbar>
+          <Drawer />
+          <img src={logo} alt="cyklasLogo" />
 
-        <Typography
-          sx={{
-            flexGrow: 1,
-            color: '#3F3D56',
-            fontWeight: '600',
-            marginLeft: '10px',
-          }}
-          variant="h6"
-        >
-          Dashboard
-        </Typography>
-        <IconButton size="small" onClick={handleClickNotif}>
-          <Badge
-            variant={general.length > 0 || request.length > 0 ? 'dot' : null}
-            color="primary"
-            overlap="circular"
-          >
-            <NotificationsIcon sx={{ color: 'rgba(0, 0, 0, 0.54)' }} />
-          </Badge>
-        </IconButton>
-        <CusPopover open={notif} anchorEl={anchorEl} onClose={handleCloseNotif}>
-          <Notificationpopover general={general} request={request} />
-        </CusPopover>
-        <Box
-          display="flex"
-          alignItems="center"
-          onClick={handleClickArrow}
-          sx={{
-            ml: '20px',
-            '&:hover': {
-              cursor: 'pointer',
-              backgroundColor: '',
-            },
-          }}
-        >
-          <Avatar src={Zander} alt="profileImg" />
-          <Box
+          <Typography
             sx={{
-              display: 'flex',
-              [theme.breakpoints.down('md')]: {
-                display: 'none',
+              flexGrow: 1,
+              color: '#3F3D56',
+              fontWeight: '600',
+              marginLeft: '10px',
+            }}
+            variant="h6"
+          >
+            Dashboard
+          </Typography>
+          <IconButton size="small" onClick={handleClickNotif}>
+            <Badge
+              variant={general.length > 0 || request.length > 0 ? 'dot' : null}
+              color="primary"
+              overlap="circular"
+            >
+              <NotificationsIcon sx={{ color: 'rgba(0, 0, 0, 0.54)' }} />
+            </Badge>
+          </IconButton>
+          <CusPopover
+            open={notif}
+            anchorEl={anchorEl}
+            onClose={handleCloseNotif}
+          >
+            <Notificationpopover general={general} request={request} />
+          </CusPopover>
+          <Box
+            display="flex"
+            alignItems="center"
+            onClick={handleClickArrow}
+            sx={{
+              ml: '20px',
+              '&:hover': {
+                cursor: 'pointer',
+                backgroundColor: '',
               },
             }}
           >
+            <Avatar src={Zander} alt="profileImg" />
             <Box
               sx={{
-                ml: '5px',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                maxWidth: '7rem',
+                display: 'flex',
+                [theme.breakpoints.down('md')]: {
+                  display: 'none',
+                },
               }}
             >
-              <Typography
-                noWrap
-                variant="body1"
-                sx={{ fontWeight: 500, color: '#3F3D56' }}
+              <Box
+                sx={{
+                  ml: '5px',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  maxWidth: '7rem',
+                }}
               >
-                {data && data.current.data.user.firstName}
-              </Typography>
+                <Typography
+                  noWrap
+                  variant="body1"
+                  sx={{ fontWeight: 500, color: '#3F3D56' }}
+                >
+                  {data && data.current.data.user.firstName}
+                </Typography>
+              </Box>
+              <ArrowDropDownIcon sx={{ color: 'rgba(0, 0, 0, 0.54)', ml: 1 }} />
             </Box>
-            <ArrowDropDownIcon sx={{ color: 'rgba(0, 0, 0, 0.54)', ml: 1 }} />
           </Box>
-        </Box>
-        <CusPopover
-          open={account}
-          anchorEl={anchorEl1}
-          onClose={handleCloseArrow}
-        >
-          <Accountpopover />
-        </CusPopover>
-      </Toolbar>
-    </AppBar>
+          <CusPopover
+            open={account}
+            anchorEl={anchorEl1}
+            onClose={handleCloseArrow}
+          >
+            <Accountpopover />
+          </CusPopover>
+        </Toolbar>
+      </AppBar>
+    </>
   );
 }
 
