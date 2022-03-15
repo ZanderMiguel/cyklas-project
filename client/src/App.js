@@ -30,6 +30,7 @@ import Members from './Telecon/Telecon_Components/Members';
 import Message_area from './Telecon/components/Messages';
 import Presentation from './Telecon/Telecon_Components/Presentation';
 import ChatApp from './ChatApp';
+import TeleCon from './pages-landing/TeleCon';
 
 function App() {
   const theme = createTheme({
@@ -54,7 +55,6 @@ function App() {
       },
     },
   });
-  const data = React.useRef('');
 
   // const socket = io.connect('http://localhost:3001');
   return (
@@ -65,32 +65,21 @@ function App() {
             <Redirect exact from="/" to="/home/login" />
             <Redirect exact from="/home" to="/home/login" />
             <Route exact path="/home/:page?">
-              <Navbar_landingpage data={data} />
+              <Navbar_landingpage />
             </Route>
-            <ProtectedRoutes
-              exact
-              path="/dashboard"
-              component={Dashboard}
-              data={data}
-            />
-            <ProtectedRoutes
-              exact
-              path="/telecon"
-              component={TeleconStart}
-              data={data}
-            />
+            <ProtectedRoutes exact path="/dashboard" component={Dashboard} />
+            <ProtectedRoutes exact path="/telecon" component={TeleconStart} />
             <ProtectedRoutes
               exact
               path="/rooms"
               component={Rooms}
-              data={data}
+
               // socket={socket}
             />
             <ProtectedRoutes
               exact
               path="/rooms/:roomID"
               component={Room_inside}
-              data={data}
             />
             <ProtectedRoutes
               exact
@@ -102,14 +91,8 @@ function App() {
               exact
               path="/rooms/:id/:ab/:w"
               component={Dashboard}
-              data={data}
             />
-            <ProtectedRoutes
-              exact
-              path="/settings"
-              component={Setting}
-              data={data}
-            />
+            <ProtectedRoutes exact path="/settings" component={Setting} />
             <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
             <ProtectedRoutes
               exact
@@ -151,6 +134,7 @@ function App() {
             <Route path="/forgotpassword">
               <Forgot_password />
             </Route>
+            <Route path="/telecon" component={TeleCon} />
             <Route component={Notfound} />
           </Switch>
         </Router>

@@ -77,11 +77,6 @@ function Quizlit() {
   return (
     <>
       <Container maxWidth="md">
-        {/* <Box width="100%" display="flex" justifyContent="flex-end" mt="2em">
-          <IconButton size="small" onClick={handleClickAddQuiz}>
-            <AddCircleIcon sx={{ color: 'green', fontSize: '2rem' }} />
-          </IconButton>
-        </Box> */}
         <CusPopover open={open} anchorEl={anchorEl} onClose={handleClickClose}>
           <QuizlitAddpopover />
         </CusPopover>

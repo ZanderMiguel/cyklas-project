@@ -86,7 +86,7 @@ function Register({ open, close }) {
       lastname &&
       emailaddress &&
       password &&
-      confirmpassword
+      confirmpassword == password
     ) {
       const userRegister = {
         userType: usertype,

@@ -9,12 +9,12 @@ import Join_room from '../Form_content/Join_room';
 import usePost from '../customHooks/usePost';
 import Button from '../components/Button';
 import Room_layout_student from './Room-content-layout/Room_layout_student';
-import axios from 'axios'
-function Rooms({ data: userData }) {
+import axios from 'axios';
+function Rooms() {
   const [opendialog, setOpenDialog] = useState(false);
 
   const { post, data, error, isPending } = usePost();
-  const [myRoom,setMyRoom] = useState(null)
+  const [myRoom, setMyRoom] = useState(null);
   const handleCreate = () => {
     setOpenDialog(true);
   };
@@ -28,16 +28,20 @@ function Rooms({ data: userData }) {
 
   React.useMemo(() => {
     post('http://localhost:5000/rooms', {
-      room: myRoom ?myRoom.room : userData.data.user.room,
-    })
-    console.log('badtrip',myRoom)
-    axios.post('http://localhost:5000/getUser', { userID: userData.data.user._id })
-      .then((res) => {
-        //userData = userData.data.user  
-        setMyRoom(res.data)
-        console.log('awit', userData, myRoom)
+      room: myRoom
+        ? myRoom.room
+        : JSON.parse(localStorage.userData).data.user.room,
+    });
+    console.log('badtrip', myRoom);
+    axios
+      .post('http://localhost:5000/getUser', {
+        userID: JSON.parse(localStorage.userData).data.user._id,
       })
-      .catch((err) => console.log(err))
+      .then((res) => {
+        //userData = userData.data.user
+        setMyRoom(res.data);
+      })
+      .catch((err) => console.log(err));
   }, [opendialog]);
 
   return (
@@ -77,7 +81,7 @@ function Rooms({ data: userData }) {
                     close={handleCreateClose}
                     maxWidth="md"
                     state={setOpenDialog}
-                    userData={userData}
+                    userData={JSON.parse(localStorage.userData)}
                   />
                 )}
               </Grid>

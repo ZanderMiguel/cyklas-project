@@ -12,12 +12,16 @@ function ProtectedRoutes({
 }) {
   return (
     <>
-      {localStorage.token && <Navbar data={data} />}
+      {localStorage.token && <Navbar />}
       <Route
         {...attrib}
         render={() => {
           return localStorage.token !== undefined ? (
-            socket?<Component data={data.current} socket={socket}/> : data ? <Component data={data.current} />: <Component />
+            socket ? (
+              <Component socket={socket} />
+            ) : (
+              <Component />
+            )
           ) : (
             <Redirect to="/" />
           );

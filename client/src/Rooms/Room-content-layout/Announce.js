@@ -50,7 +50,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   },
 }));
 
-function Announce({ data: userData }) {
+function Announce() {
   const { post } = usePost();
   const { designs } = useStyle();
   const myPost = React.useRef('');
@@ -69,7 +69,7 @@ function Announce({ data: userData }) {
   const handleAlignment = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
-  console.log(userData.current.data.user.RegID);
+
   return (
     <Grid container sx={{ margin: '1em 0em' }}>
       <Grid item xs={12}>
@@ -205,7 +205,7 @@ function Announce({ data: userData }) {
         }}
         value="POSt"
       />
-      <Post_layout data={data} userData={userData} />
+      <Post_layout data={data} />
       <Schoolworktiles_layout />
     </Grid>
   );

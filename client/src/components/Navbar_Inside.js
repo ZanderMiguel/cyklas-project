@@ -20,7 +20,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Drawer from './Drawer';
 import CusPopover from './Popover';
 import { useTheme } from '@mui/material/styles';
-import useGet from '../customHooks/useGet';
+
 const request = [
   { avatar: <Avatar />, student: 'zander' },
   { avatar: <Avatar />, student: 'rey' },
@@ -62,7 +62,7 @@ const general = [
   },
 ];
 
-function Navbar({ data }) {
+function Navbar() {
   const [badge, setBadge] = React.useState();
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -87,7 +87,7 @@ function Navbar({ data }) {
 
   const account = Boolean(anchorEl1);
   const badgeDot = React.useRef(null);
-
+  localStorage.userData && console.log(localStorage.userData);
   return (
     <>
       <CssBaseline />
@@ -161,7 +161,7 @@ function Navbar({ data }) {
                   variant="body1"
                   sx={{ fontWeight: 500, color: '#3F3D56' }}
                 >
-                  {data && data.current.data.user.firstName}
+                  {JSON.parse(localStorage.userData).data.user.firstName}
                 </Typography>
               </Box>
               <ArrowDropDownIcon sx={{ color: 'rgba(0, 0, 0, 0.54)', ml: 1 }} />
