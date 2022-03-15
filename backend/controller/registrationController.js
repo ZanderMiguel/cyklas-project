@@ -18,8 +18,9 @@ const createRegistration = async (req, res) => {
       _id: id,
       password: password,
     });
-    
+    await addRegistration.save()
   }
+    
     const addUser = await new UserModel({
       RegID: id,
       ...req.body

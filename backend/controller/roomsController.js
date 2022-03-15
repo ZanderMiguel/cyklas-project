@@ -85,7 +85,7 @@ const deleteRooms = async (req, res) => {
 const updateRooms = async (req, res) => {
   try {
     await RoomsModel.findByIdAndUpdate(req.params.id, req.body);
-    console.log('helicopter');
+    
     return res.json({ redirect: '/' });
   } catch (error) {
     console.log('Something went wrong!');

@@ -5,14 +5,11 @@ const mongoose = require('mongoose')
 
 const updateUserAndRoom = async (userID,quizlit,roomID) => {
     try{
-    const userQuiz = await UserModel.findById(userID)
-    await UserModel.findByIdAndUpdate(userID,{quizlit:[...userQuiz.quizlit,quizlit]})
-    roomID.forEach(async(element) => {
-        const roomQuiz = await RoomsModel.findById(element)
-        await RoomsModel.findByIdAndUpdate(element,{quizlit: [...roomQuiz.quizlit,quizlit]})
-    });
+    
+    await UserModel.updateMany({_id: userID},{$push : {quizlit: quizlit}})
+    await RoomsModel.updateMany({_id: {$in: roomID}},{$push: {quizlit: quizlit}},{multi: true})
     }catch(error){
-        console.log(error)
+        console.log(error)  
     }
 }
 
@@ -45,20 +42,12 @@ const updateQuizlit =  async (req, res) => {
     }
 }
 
-const deleteQuizFromUserAndRoom = async(userID,quizID,roomID) => {
+const deleteQuizFromUserAndRoom = async(userID,quizID) => {
     try{
-    const userQuiz = await UserModel.findById(userID)
-    
-    const quizDeletedFromUser = userQuiz.quizlit.filter((item)=>{
-        console.log(!item.toString().includes(quizID))
-        return !item.toString().includes(quizID)})
-        
-    await UserModel.findByIdAndUpdate(userID,{quizlit: quizDeletedFromUser})
-    roomID.forEach(async(element)=>{
-        const roomQuiz = await RoomsModel.findById(element)
-        
-        await RoomsModel.updateMany({quizlit: mongoose.Types.ObjectId(element)},{quizlit: roomQuiz.quizlit.splice(roomQuiz.quizlit.indexOf(mongoose.Types.ObjectId(element)),1)})
-    })
+   
+    await UserModel.updateMany({},{$pull: {quizlit: {$in: quizID}}},{multi: true})
+    await RoomsModel.updateMany({},{$pull:{quizlit: {$in : quizID}}},{multi: true})
+
     }catch(error){
         console.log(error)
     }
@@ -66,7 +55,7 @@ const deleteQuizFromUserAndRoom = async(userID,quizID,roomID) => {
 const deleteQuizlit =  async (req, res) => {
     try{
         await QuizlitModel.findByIdAndDelete(req.body.quizID)
-        deleteQuizFromUserAndRoom(req.body.userID,req.body.quizID,req.body.roomID)
+        deleteQuizFromUserAndRoom(req.body.userID,req.body.quizID)
         return res.json({status: 'success'})
     }catch(err){
         console.log(err)
@@ -90,6 +79,7 @@ const findQuizlit =  async (req, res) => {
         })
     }
 }
+
 module.exports = {
     createQuizlitController: createQuizlit,
     updateQuizlitController: updateQuizlit,
