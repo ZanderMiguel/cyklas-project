@@ -48,6 +48,7 @@ function Register({ open, close }) {
 
   const handleSubmit = (e) => {
     e.preventDefault(false);
+    setUserTypeError(false);
     setFirstNameError(false);
     setLastNameError(false);
     setEmailAddressError(false);
@@ -55,6 +56,7 @@ function Register({ open, close }) {
     setConfirmPasswordError(false);
 
     if (usertype == '') {
+      setUserTypeError(true);
     }
 
     if (firstname == '') {
@@ -72,6 +74,11 @@ function Register({ open, close }) {
     if (confirmpassword == '') {
       setConfirmPasswordError(true);
     }
+    if (password === confirmpassword) {
+      setConfirmPasswordError(false);
+    } else {
+      setConfirmPasswordError(true);
+    }
 
     if (
       usertype &&
@@ -81,17 +88,29 @@ function Register({ open, close }) {
       password &&
       confirmpassword
     ) {
-      console.log('create');
+      const userRegister = {
+        userType: usertype,
+        firstName: firstname,
+        gender,
+        lastName: lastname,
+        emailAddress: emailaddress,
+        password,
+        image: imgSrc,
+      };
+
+      post('http://localhost:5000/register', userRegister);
     }
   };
   const handleClickProf = (text) => (event) => {
     setToggleProf('contained');
     setToggleStud('outlined');
+    setUserTypeError(false);
     setUserType(text);
   };
   const handleClickStud = (text) => (event) => {
     setToggleStud('contained');
     setToggleProf('outlined');
+    setUserTypeError(false);
     setUserType(text);
   };
   const googleSuccess = async (res) => {
@@ -161,7 +180,7 @@ function Register({ open, close }) {
                 />
               </div>
             </Grid>
-            {usertype && (
+            {usertypeError && (
               <Grid item xs={12}>
                 <Box
                   sx={{
@@ -188,6 +207,9 @@ function Register({ open, close }) {
                 required
                 autoComplete="off"
                 error={firstnameError}
+                helperText={
+                  firstnameError ? 'Please enter your first name' : false
+                }
                 onChange={(event) => setFirstName(event.target.value)}
                 autoFocus
                 half
@@ -198,6 +220,9 @@ function Register({ open, close }) {
                 placeholder="Last name*"
                 autoComplete="off"
                 error={lastnameError}
+                helperText={
+                  lastnameError ? 'Please enter your last name' : false
+                }
                 onChange={(event) => setLastName(event.target.value)}
                 half
               />
@@ -208,6 +233,9 @@ function Register({ open, close }) {
                 type="email"
                 autoComplete="off"
                 error={emailaddressError}
+                helperText={
+                  emailaddressError ? 'Please enter your email address' : false
+                }
                 onChange={(event) => setEmailAddress(event.target.value)}
                 half
               />
@@ -226,6 +254,9 @@ function Register({ open, close }) {
                 inputLabel="Password"
                 autoComplete="off"
                 error={passwordError}
+                helperText={
+                  passwordError ? 'Please enter your password' : false
+                }
                 type={showPassword ? 'text' : 'password'}
                 handleShowPassword={handleShowPassword}
                 onChange={(event) => setPassword(event.target.value)}
@@ -237,6 +268,11 @@ function Register({ open, close }) {
                 type={showPassword ? 'text' : 'password'}
                 handleShowPassword={handleShowPassword}
                 error={confirmpasswordError}
+                helperText={
+                  confirmpasswordError
+                    ? 'Confirm password is empty or it is not the same as your entered password'
+                    : false
+                }
                 onChange={(event) => setConfirmPassword(event.target.value)}
               />
 

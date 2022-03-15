@@ -189,7 +189,7 @@ function Home({ data }) {
                 <Grid item xs={12} ali>
                   <Typography variant="subtitle2">
                     <Link
-                      href="#"
+                      href="/forgotpassword"
                       style={{ color: '#007FFF', textDecoration: 'none' }}
                     >
                       Forgot password?
