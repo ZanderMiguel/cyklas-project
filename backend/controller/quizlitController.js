@@ -1,18 +1,27 @@
-const {QuizlitModel} = require('../models/model-quizlit')
-const { findById } = require('../models/model-users')
+const {QuizlitModel} = require('../models/model-quizlit')   
 const UserModel = require('../models/model-users')
+const {RoomsModel} = require('../models/model-createRoom')
 const mongoose = require('mongoose')
 
-const updateUser = async (userID,quizlit) => {
+const updateUserAndRoom = async (userID,quizlit,roomID) => {
+    try{
     const userQuiz = await UserModel.findById(userID)
     await UserModel.findByIdAndUpdate(userID,{quizlit:[...userQuiz.quizlit,quizlit]})
+    roomID.forEach(async(element) => {
+        const roomQuiz = await RoomsModel.findById(element)
+        await RoomsModel.findByIdAndUpdate(element,{quizlit: [...roomQuiz.quizlit,quizlit]})
+    });
+    }catch(error){
+        console.log(error)
+    }
 }
+
 const createQuizlit =  async (req, res) => {
     try{
         const quizID = mongoose.Types.ObjectId();
         const newQuizlit = new QuizlitModel({_id:quizID,...req.body})
         await newQuizlit.save()
-        updateUser(req.body.userID,quizID)
+        updateUserAndRoom(req.body.userID,quizID,req.body.rooms)
         return res.json({status: 'success', data: newQuizlit})
     }catch(err){
         console.log(err)
@@ -35,10 +44,29 @@ const updateQuizlit =  async (req, res) => {
         })
     }
 }
+
+const deleteQuizFromUserAndRoom = async(userID,quizID,roomID) => {
+    try{
+    const userQuiz = await UserModel.findById(userID)
+    
+    const quizDeletedFromUser = userQuiz.quizlit.filter((item)=>{
+        console.log(!item.toString().includes(quizID))
+        return !item.toString().includes(quizID)})
+        
+    await UserModel.findByIdAndUpdate(userID,{quizlit: quizDeletedFromUser})
+    roomID.forEach(async(element)=>{
+        const roomQuiz = await RoomsModel.findById(element)
+        
+        await RoomsModel.updateMany({quizlit: mongoose.Types.ObjectId(element)},{quizlit: roomQuiz.quizlit.splice(roomQuiz.quizlit.indexOf(mongoose.Types.ObjectId(element)),1)})
+    })
+    }catch(error){
+        console.log(error)
+    }
+}
 const deleteQuizlit =  async (req, res) => {
     try{
         await QuizlitModel.findByIdAndDelete(req.body.quizID)
-        
+        deleteQuizFromUserAndRoom(req.body.userID,req.body.quizID,req.body.roomID)
         return res.json({status: 'success'})
     }catch(err){
         console.log(err)
