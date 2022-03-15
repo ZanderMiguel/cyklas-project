@@ -13,7 +13,8 @@ const RoomsSchema = new mongoose.Schema(
     Post: [mongoose.Schema.Types.ObjectId],
     activities: [mongoose.Schema.Types.ObjectId],
     members: [mongoose.Schema.Types.ObjectId],
-    group: [mongoose.Schema.Types.ObjectId]
+    group: [mongoose.Schema.Types.ObjectId],
+    quizlit: [mongoose.Schema.Types.ObjectId]
   },
   { timestamps: true }
 );

@@ -75,4 +75,10 @@ router.post('/quizlit/create',createQuizlitController)
 router.put('/quizlit/update',updateQuizlitController)
 router.delete('/quizlit/delete',deleteQuizlitController)
 router.post('/quizlit',findQuizlitController)
+
+const {createQuestionController,updateQuestionController,deleteQuestionController,findQuestionController} = require('../controller/questionsController')
+router.post('/question/create',createQuestionController)
+router.put('/question/update',updateQuestionController)
+router.delete('/question/delete',deleteQuestionController)
+router.post('/question',findQuestionController)
 module.exports = router;
