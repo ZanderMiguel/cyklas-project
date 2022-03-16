@@ -8,7 +8,6 @@ const RoomsSchema = new mongoose.Schema(
     ClassDays: { type: String, required: true },
     yearAndSection: { type: String, required: true },
     ClassTime: { type: String, required: true },
-    Terms: { type: String, required: true },
     GradingSystem: { type: String, required: true },
     Post: [mongoose.Schema.Types.ObjectId],
     activities: [mongoose.Schema.Types.ObjectId],
