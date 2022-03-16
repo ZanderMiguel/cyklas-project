@@ -87,7 +87,6 @@ function Navbar() {
 
   const account = Boolean(anchorEl1);
   const badgeDot = React.useRef(null);
-  localStorage.userData && console.log(localStorage.userData);
   return (
     <>
       <CssBaseline />
