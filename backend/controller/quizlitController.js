@@ -79,10 +79,29 @@ const findQuizlit =  async (req, res) => {
         })
     }
 }
+const displayQuizlitOnQuizlit = async (req,res) => {
+    try{
+        const quizList = await QuizlitModel.find({userID: req.body.userID}).sort({createdAt: -1})
+        return res.json(quizList)
+    }catch(error){
+        console.log(error)
+        return res.json(error)
+    }
+}
+const displayQuizlitOnRoom = async (req,res) => {
+    try{
+        const quizList = await QuizlitModel.find({rooms: req.body.rooms}).sort({createdAt: -1})
+        return res.json(quizList)
+    }catch(error){
+        console.log(error)
+        return(error)
 
+    }
+}
 module.exports = {
     createQuizlitController: createQuizlit,
     updateQuizlitController: updateQuizlit,
     deleteQuizlitController: deleteQuizlit,
-    findQuizlitController: findQuizlit
+    findQuizlitController: findQuizlit,
+    displayQuizlitOnQuizlit,displayQuizlitOnRoom
 }
