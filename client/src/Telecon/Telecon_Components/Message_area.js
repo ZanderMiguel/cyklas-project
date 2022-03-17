@@ -1,323 +1,128 @@
-import React from 'react'
-import { Container, Grid, Typography, Box, Divider, TextField, InputAdornment, IconButton, Avatar } from "@mui/material";
-import { Send, InfoOutlined, Chat } from "@mui/icons-material";
-import AvatarIcon from "../../assets/ImageJaven/Avatar.png";
-import MembersIconButton from "../../assets/ImageJaven/MembersIconButton.png";
-import PresentationIconButton from "../../assets/ImageJaven/PresentationIconButton.png";
-import useStyle from "../Telecon_Components_Styles/Message_area_style";
-import { Link } from "react-router-dom";
+import React from 'react';
+import {
+  Container,
+  Grid,
+  Typography,
+  Box,
+  Divider,
+  TextField,
+  InputAdornment,
+  IconButton,
+  Avatar,
+  Paper,
+} from '@mui/material';
+import { Send } from '@mui/icons-material';
+import ScrollToBottom from 'react-scroll-to-bottom';
 
-const data = [
-    {
-        memberName: "Paul Rudd",
-        messageTime: "11:52 pm",
-        Message: "Unang letra P"
-    },
-    {
-        memberName: "Tom Holland",
-        messageTime: "11:53 pm",
-        Message: "Hahahaha"
-    },
-    {
-        memberName: "Tom Hiddleston",
-        messageTime: "11:55 pm",
-        Message: "susunod A"
-    },
-    {
-        memberName: "Robert Downey Jr.",
-        messageTime: "11:55 pm",
-        Message: "susunod N"
-    },
-    {
-        memberName: "Sebastian Stan",
-        messageTime: "11:57 pm",
-        Message: "susunod D"
-    },
-    {
-        memberName: "Paul Rudd",
-        messageTime: "11:57 pm",
-        Message: "Ano ang susunod? Five seconds Go!"
-    },
-    {
-        memberName: "Tom Holland",
-        messageTime: "11:58 pm",
-        Message: "PanDhezsal"
-    },
-    {
-        memberName: "Tom Hiddleston",
-        messageTime: "11:59 pm",
-        Message: "*nagtawanan sila kuya wil"
-    },
-    {
-        memberName: "Robert Downey Jr.",
-        messageTime: "11:59 pm",
-        Message: "PanDhelemoun"
-    },
-    {
-        memberName: "Sebastian Stan",
-        messageTime: "11:59 pm",
-        Message: "*nagtawanan ulit sila kuya wil"
+function Message_area({ socket, room, username }) {
+  const [currentMessage, setCurrentMessage] = React.useState('');
+  const [messagelist, setMessageList] = React.useState([]);
+
+  const sendMessage = async () => {
+    if (currentMessage !== '') {
+      const messageData = {
+        room: room,
+        author: username,
+        message: currentMessage,
+        time:
+          new Date(Date.now()).getHours() +
+          ':' +
+          new Date(Date.now()).getMinutes(),
+      };
+
+      await socket.emit('sendMessage', messageData);
+      setMessageList((list) => [...list, messageData]);
     }
-];
-function Message_area() {
+  };
 
-    const {designs} = useStyle()
+  React.useEffect(() => {
+    socket.on('receive_message', (data) => {
+      setMessageList((list) => [...list, data]);
+    });
+  }, [socket]);
 
-    const [value, setValue] = React.useState(0);
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
-    
   return (
-    <Container maxWidth = "lg">
-        <Grid container rowSpacing = {1}>
-            <Grid item xs = {3} sx = {{ marginTop: "0.7em" }}>
-                {/* <Tabs orientation="horizontal"
-                value={value}
-                onChange={handleChange}
-                aria-label="Horizontal tabs example"
-                sx = {{
-                    borderRight: 1,
-                    width: "relative"
-                }}>
-                <Tab disableRipple sx = {{
-                    border: "1px solid black",
-                    width: "max-content"
-                }}
-                    label={
-                        <IconButton id = "meeting-information" aria-label="meeting-information" sx = {{
-                            height: "1.6em",
-                            width: "1.6em",
-                            "&: hover": {
-                                background: "transparent"
-                            }
-                            }}>
-                              <InfoOutlined
-                              sx = {{
-                                  color: "#007FFF",
-                                  fontSize: "1.8em",
-                                  "&: hover": {
-                                      color: "#0771DB"
-                                  }
-                                  
-                              }}/>
-                          </IconButton>
-                    }
-                    onClick={() => {
-                    // setComp(<PresentationCriteria/>);
-                    }}/>
-                <Tab disableRipple sx = {{
-                    border: "1px solid black",
-                    width: "max-content"
-                }}
-                    label={
-                        <IconButton id = "members" aria-label="members" sx = {{
-                            height: "1.5em",
-                            width: "1.5em",
-                            backgroundColor: "#007FFF",
-                            "&: hover": {
-                                background: "#0771DB"
-                            }
-                            }}>
-                              <img src = {MembersIconButton}
-                              style = {{
-                                  height: "0.8em"
-                                  
-                              }}/>
-                        </IconButton>
-                    }
-                    onClick={() => {
-                    // setComp(<PresentationMembers/>);
-                    }}/>
-                
-                <Tab disableRipple sx = {{
-                    border: "1px solid black",
-                    width: "max-content"
-                }}
-                    label={
-                        <IconButton id = "message-box" aria-label="message-box" sx = {{
-                            height: "1.5em",
-                            width: "1.5em",
-                            backgroundColor: "#007FFF",
-                            "&: hover": {
-                                background: "#0771DB"
-                            }
-                            }}>
-                              <Chat
-                              sx = {{
-                                  color: "white",
-                                  fontSize: "0.9em"
-                              }}/>
-                          </IconButton>
-                    }
-                    onClick={() => {
-                    // setComp(<PresentationMembers/>);
-                    }}/>
+    <>
+      <Box width="100%" display="flex" justifyContent="center" padding={2}>
+        <Typography variant="h6">Message Area</Typography>
+      </Box>
+      <Divider variant="middle" />
+      <Box height="29em" overflow="auto">
+        <ScrollToBottom
+          style={{
+            with: '100%',
+            height: '100%',
+            overflowY: 'scroll',
+            overflowX: 'hidden',
+          }}
+        >
+          {messagelist.map((messageContent, index) => {
+            return (
+              <Box key={index} display="flex" justifyContent="flex-start">
+                <Paper
+                  elevation={0}
+                  sx={{
+                    width: 'auto',
+                    maxWidth: '15em',
+                    marginBottom: '0.8em',
+                    marginLeft: '0.8em',
 
-                <Tab disableRipple sx = {{
-                    border: "1px solid black",
-                    width: "max-content"
-                }}
-                    label={
-                        <IconButton id = "presentation" aria-label="presentation" sx = {{
-                            height: "1.5em",
-                            width: "1.5em",
-                            backgroundColor: "#007FFF",
-                            "&: hover": {
-                                background: "#0771DB"
-                            }
-                            }}>
-                              <img src = {PresentationIconButton}
-                              style = {{
-                                  height: "0.8em"
-                              }}/>
-                          </IconButton>
-                    }
-                    onClick={() => {
-                    // setComp(<PresentationMembers/>);
-                    }}/>
-                </Tabs> */}
-            <Box className = "Top-left-buttons" width = "100%" height = "relative" display = "flex" gap = "2em" justifyContent = "center" alignItems = "center">
-              <IconButton id = "meeting-information" aria-label="meeting-information" 
-              component = {Link}
-              to = "/Conference_details" 
-              sx = {{
-                height: "1.6em",
-                width: "1.6em",
-                "&: hover": {
-                    background: "transparent"
-                }
-                }}>
-                  <InfoOutlined
-                  sx = {{
-                      color: "#007FFF",
-                      fontSize: "1.8em",
-                      "&: hover": {
-                          color: "#0771DB"
-                      }
-                      
-                  }}/>
-              </IconButton>
-              
-              <IconButton id = "members" aria-label="members" 
-              component = {Link}
-              to = "/Members" 
-              sx = {{
-                height: "1.5em",
-                width: "1.5em",
-                backgroundColor: "#007FFF",
-                "&: hover": {
-                    background: "#0771DB"
-                }
-                }}>
-                  <img src = {MembersIconButton}
-                  style = {{
-                      height: "0.8em"
-                      
-                  }}/>
-              </IconButton>
-
-              <IconButton id = "message-box" aria-label="message-box" 
-              component = {Link}
-              to = "/Message_area" 
-              sx = {{
-                height: "1.5em",
-                width: "1.5em",
-                backgroundColor: "#007FFF",
-                "&: hover": {
-                    background: "#0771DB"
-                }
-                }}>
-                  <Chat
-                  sx = {{
-                      color: "white",
-                      fontSize: "0.9em"
-                  }}/>
-              </IconButton>
-
-              <IconButton id = "presentation" aria-label="presentation" 
-              component = {Link}
-              to = "/Presentation" 
-              sx = {{
-                height: "1.5em",
-                width: "1.5em",
-                backgroundColor: "#007FFF",
-                "&: hover": {
-                    background: "#0771DB"
-                }
-                }}>
-                  <img src = {PresentationIconButton}
-                  style = {{
-                      height: "0.8em"
-                  }}/>
-              </IconButton>
-            </Box>
-            </Grid>
-
-            <Grid item xs = {9}>
-            </Grid>
-
-            <Grid item xs = {3} sx = {{ marginBottom: "0.5em" }}>
-                <Box className = "Left-container" sx = {designs.Left_Container_Style}>
-                <Typography
-                sx = {designs.MessageArea_Typography_Style}>
-                MessageArea
-                </Typography>
-
-                <Divider sx = {designs.Divider_Style}/>
-
-                <Box className = "Message-box" sx = {designs.Message_Box_Style}>
-
-                {data.map(function(items, index) {
-                    return (
-                        <>
-                        <Box key = {index} className = "Members-comment" sx = {designs.Members_Comment_Style}>
-                            <Avatar alt="Remy Sharp" src={AvatarIcon} 
-                                sx = {designs.AvatarIcon_Avatar_Style}/>
-                            <Box className = "Member-time" sx = {designs.Member_Time_Style}>
-                            <Typography sx = {designs.MemberName_Typography_Style}>
-                                {items.memberName}
-                            </Typography>
-        
-                            <Typography sx = {designs.MessageTime_Typography_Style}>
-                                {items.messageTime}
-                            </Typography>
-                            </Box>
-                            
-                        </Box>
-        
-                        <Typography sx = {designs.Message_Typography_Style}>
-                            {items.Message}
-                        </Typography>
-                        </>
-                    )
-                })}
-                
-                </Box>
-                
-
-                <Box className = "Write-comment" sx = {designs.Write_Comment_Style}>
-                    <Avatar alt="Remy Sharp" src={AvatarIcon} 
-                    sx = {designs.AvatarIcon_Avatar_Style2}/>
-
-                    <TextField id="filled-basic" placeholder="Send a message" variant="filled" 
-                    sx = {designs.Message_TextField_Style}
-                    inputProps={{style: {height: "0em", fontSize: "0.8em", fontWeight: "500", paddingBottom: "1.8em", color: "#3F3D56"}}}
-                    InputProps={{disableUnderline: true,
-                    endAdornment: (
-                        <InputAdornment position="end">
-                            <IconButton aria-label="send" sx = {designs.Send_IconButton_Style}>
-                                <Send
-                                sx = {designs.SendIcon_Style}/>
-                            </IconButton>
-                        </InputAdornment>
-                    ),}}/>
-                </Box>
-                </Box>
-            </Grid>
-        </Grid>
-    </Container>
-  )
+                    wordBreak: 'break-word',
+                  }}
+                >
+                  <Box display="flex" alignItems="center">
+                    <Typography
+                      sx={{ fontSize: '1em', fontWeight: 600, mr: '5px' }}
+                    >
+                      {messageContent.author}
+                    </Typography>
+                    <Typography sx={{ fontSize: '0.8em', color: 'gray' }}>
+                      {messageContent.time}
+                    </Typography>
+                  </Box>
+                  <Typography sx={{ flexWrap: 'wrap', fontSize: '0.8em' }}>
+                    {messageContent.message}
+                  </Typography>
+                </Paper>
+              </Box>
+            );
+          })}
+        </ScrollToBottom>
+      </Box>
+      <Divider variant="middle" sx={{ mb: 1 }} />
+      <Box display="flex" justifycontent="center" alignItems="center">
+        <TextField
+          fullWidth
+          autoComplete="off"
+          variant="filled"
+          placeholder="Send a message..."
+          InputProps={{
+            style: {
+              height: '3em',
+              fontSize: '0.8em',
+              fontWeight: '500',
+              paddingBottom: '1.5em',
+              color: '#3F3D56',
+              borderRadius: '50px',
+            },
+            disableUnderline: true,
+          }}
+          onChange={(e) => {
+            setCurrentMessage(e.target.value);
+          }}
+          onKeyPress={(event) => {
+            event.key === 'Enter' && sendMessage();
+          }}
+        />
+        <IconButton
+          sx={{ height: '1.5em', width: '1.5em' }}
+          onClick={sendMessage}
+        >
+          <Send sx={{ height: '1em', width: '1em' }} />
+        </IconButton>
+      </Box>
+    </>
+  );
 }
 
-export default Message_area
+export default Message_area;

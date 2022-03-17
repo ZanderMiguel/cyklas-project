@@ -25,12 +25,8 @@ import Notfound from './Notfound';
 import Livequiz_multiplechoice from './Quizlit/LiveQuiz/Livequiz_multiplechoice';
 import StudentLiveQuiz_multiplechoice from './Quizlit/LiveQuiz/StudentLiveQuiz_multiplechoice';
 import Student_rankings from './Quizlit/LiveQuiz/Student_rankings';
-import Conference_details from './Telecon/Telecon_Components/Conference_details';
-import Members from './Telecon/Telecon_Components/Members';
-import Message_area from './Telecon/components/Messages';
-import Presentation from './Telecon/Telecon_Components/Presentation';
 import ChatApp from './ChatApp';
-import TeleCon from './pages-landing/TeleCon';
+import Telecon_room from './Telecon/Telecon_room';
 
 function App() {
   const theme = createTheme({
@@ -115,26 +111,16 @@ function App() {
               path="/Student_rankings"
               component={Student_rankings}
             />
-            <ProtectedRoutes
-              exact
-              path="/Conference_details"
-              component={Conference_details}
-            />
-            <ProtectedRoutes exact path="/Members" component={Members} />
-            <ProtectedRoutes
-              exact
-              path="/Presentation"
-              component={Presentation}
-            />
+
             <ProtectedRoutes exact path="/records" component={Records} />
+
             {/* Learning socket io #Zander */}
-            <Route path="/ChatApp" component={ChatApp} />
-            <Route path="/message" component={Message_area} />
+            {/* <Route path="/ChatApp" component={ChatApp} /> */}
 
             <Route path="/forgotpassword">
               <Forgot_password />
             </Route>
-            <Route path="/telecon" component={TeleCon} />
+            <Route path="/telecon/room" component={Telecon_room} />
             <Route component={Notfound} />
           </Switch>
         </Router>

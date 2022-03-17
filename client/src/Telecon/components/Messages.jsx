@@ -2,18 +2,18 @@ import React from 'react';
 import { Divider, IconButton } from '@mui/material';
 import send from '../../assets/Images/send.png';
 import paner from '../../assets/Images/paner.png';
-import { io } from 'socket.io-client';
+// import { io } from 'socket.io-client';
 
-const socket = io.connect('http://localhost:3001');
+// const socket = io.connect('http://localhost:3001');
 
 function Messages() {
   const msgOutput = React.useRef(null);
   const msgContainer = React.useRef(null);
   const [displayMsg, setDisplayMsg] = React.useState([]);
 
-  socket.on('receive-message', (message) => {
-    setDisplayMsg([...displayMsg, message]);
-  });
+  // socket.on('receive-message', (message) => {
+  //   setDisplayMsg([...displayMsg, message]);
+  // });
   return (
     <div style={{ width: '100%', height: '100%', backgroundColor: '#fff' }}>
       <div style={{ width: '100%', textAlign: 'center' }}>
@@ -52,7 +52,7 @@ function Messages() {
           onSubmit={(e) => {
             e.preventDefault();
 
-            socket.emit('send-message', msgOutput.current.value);
+            // socket.emit('send-message', msgOutput.current.value);
             setDisplayMsg([...displayMsg, msgOutput.current.value]);
             msgOutput.current.value = '';
             msgOutput.current.focus();

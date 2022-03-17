@@ -32,11 +32,11 @@ function Chat({ socket, username, room }) {
     }
   };
 
-  React.useEffect(() => {
-    socket.on('receive_message', (data) => {
-      setMessageList((list) => [...list, data]);
-    });
-  }, [socket]);
+  // React.useEffect(() => {
+  //   socket.on('receive_message', (data) => {
+  //     setMessageList((list) => [...list, data]);
+  //   });
+  // }, [socket]);
 
   return (
     <Paper sx={{ padding: '1em' }} elevation={5}>

@@ -40,11 +40,11 @@ app.use(express.static('public'));
 app.use(router);
 
 io.on('connection', (socket) => {
-  console.log(socket.id);
-
-  socket.on('joinroom', (roomID) => {
+  socket.on('joinroom', (roomID, username) => {
     socket.join(roomID);
-    console.log(`User with ID: ${socket.id} joined room: ${roomID}`);
+    console.log(
+      `User with ID: ${socket.id} joined room: ${roomID} username: ${username}`
+    );
   });
 
   socket.on('sendMessage', (data) => {

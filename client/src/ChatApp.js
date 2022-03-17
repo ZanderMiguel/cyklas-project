@@ -7,10 +7,10 @@ import {
   Container,
   Button,
 } from '@mui/material';
-import { io } from 'socket.io-client';
+// import { io } from 'socket.io-client';
 import Chat from './Chat';
 
-const socket = io.connect('http://localhost:3001');
+// const socket = io.connect('http://localhost:3001');
 
 function ChatApp() {
   const [username, setUserName] = useState('');
@@ -19,7 +19,7 @@ function ChatApp() {
 
   const joinRoom = () => {
     if (username !== '' && roomid !== '') {
-      socket.emit('joinroom', roomid);
+      // socket.emit('joinroom', roomid);
       setShowChat(true);
     }
   };
@@ -63,7 +63,7 @@ function ChatApp() {
             </>
           ) : (
             <Grid item xs={12}>
-              <Chat socket={socket} username={username} room={roomid} />
+              <Chat username={username} room={roomid} />
             </Grid>
           )}
         </Grid>

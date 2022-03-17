@@ -90,7 +90,7 @@ function TeleconStart() {
             </Typography>
             <Button
               component={Link}
-              to="/Conference_details"
+              to="/telecon/room"
               target="_blank"
               variant="outlined"
               content="Start a conference!"
