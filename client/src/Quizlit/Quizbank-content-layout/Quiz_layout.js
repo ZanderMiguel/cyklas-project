@@ -3,7 +3,7 @@ import { Buttons as Button, Boxs as Box } from '../../components/Component';
 import { Typography, IconButton } from '@mui/material';
 import { MoreVert } from '@mui/icons-material';
 import QuizIcon from '../../assets/ImageJaven/QuizIcon.png';
-import useStyle from '../Quiz_style';
+import useStyle from '../Styles/Quiz_style';
 
 function Quiz_layout({ bank }) {
   const { designs } = useStyle();

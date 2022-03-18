@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import { MoreVert, Send, KeyboardArrowDown } from '@mui/icons-material';
 import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
-import useStyles from '../Announce_style';
+import useStyles from '../Styles/Announce_style';
 
 function Post_layout({ data }) {
   const { designs } = useStyles();

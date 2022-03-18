@@ -18,8 +18,8 @@ import {
 import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
 import Wordfile from '../../assets/ImageJaven/Wordfile.png';
 import { KeyboardArrowDown, Send } from '@mui/icons-material';
-import useStyle from '../View_activity_style';
-import '../View_activity_style.css';
+import useStyle from '../Styles/View_activity_style';
+import '../Styles/View_activity_style.css';
 
 const sortOptions = [
   {

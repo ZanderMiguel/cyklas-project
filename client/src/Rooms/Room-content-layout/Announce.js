@@ -1,6 +1,6 @@
 import React from 'react';
 import Input from '../../components/Input';
-import useStyle from '../Announce_style';
+import useStyle from '../Styles/Announce_style';
 
 import { Box, Grid, TextField, Avatar, InputAdornment } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -50,7 +50,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   },
 }));
 
-function Announce({ data: userData }) {
+function Announce() {
   const { post } = usePost();
   const { designs } = useStyle();
   const myPost = React.useRef('');
@@ -69,9 +69,9 @@ function Announce({ data: userData }) {
   const handleAlignment = (event, newAlignment) => {
     setAlignment(newAlignment);
   };
-  console.log(userData.current.data.user.RegID);
+
   return (
-    <Grid container sx={{ margin: "1em 0em" }}>
+    <Grid container sx={{ margin: '1em 0em' }}>
       <Grid item xs={12}>
         {/* <Input
           variant="filled"
@@ -189,7 +189,7 @@ function Announce({ data: userData }) {
           </Stack>
         </Box>
       </Grid>
-      
+
       <input
         type="button"
         onClick={() => {
@@ -205,7 +205,7 @@ function Announce({ data: userData }) {
         }}
         value="POSt"
       />
-      <Post_layout data={data} userData={userData} />
+      <Post_layout data={data} />
       <Schoolworktiles_layout />
     </Grid>
   );

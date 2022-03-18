@@ -6,7 +6,6 @@ const feedSchema = new mongoose.Schema({
     content:{ type: Object, required: true },
     author:{ type: Object, required: true },
     title:{ type: String, required: true }
-
 }, {timestamps:true})
 
 const feedModel = mongoose.model("Feed",feedSchema)

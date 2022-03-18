@@ -5,7 +5,7 @@ import CusPopover from '../../components/Popover';
 import RoomsOptionpopover from '../../components/PopoverContent/RoomsOptionpopover';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Link } from 'react-router-dom';
-import '../View_activity_style.css';
+import '../Styles/View_activity_style.css';
 import CssBasedLine from '@mui/material/CssBaseline';
 
 function Room_layout({ data }) {

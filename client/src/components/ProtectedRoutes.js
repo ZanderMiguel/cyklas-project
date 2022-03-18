@@ -7,16 +7,22 @@ function ProtectedRoutes({
   path,
   maxWidth,
   data,
+  socket,
   ...attrib
 }) {
   return (
     <>
-      {localStorage.token && <Navbar data={data} />}
+      {localStorage.token && <Navbar />}
       <Route
         {...attrib}
         render={() => {
           return localStorage.token !== undefined ? (
-           data ?  <Component data={data.current.data} /> : <Component/>
+          //  {data ?  <Component data={data.current.data} /> : <Component/>}
+            socket ? (
+              <Component socket={socket} />
+            ) : (
+              <Component />
+            )
           ) : (
             <Redirect to="/" />
           );

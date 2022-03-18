@@ -18,7 +18,7 @@ function Dialogform({ children, title, btn, open, close, maxWidth }) {
   return (
     <>
       <Dialog
-        fullScreen={fullScreen}
+        fullScreen={fullScreen && false}
         open={open}
         onClose={close}
         maxWidth={maxWidth}

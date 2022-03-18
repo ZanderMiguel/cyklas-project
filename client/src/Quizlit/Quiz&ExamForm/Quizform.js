@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   Typography,
@@ -6,7 +6,6 @@ import {
   TextField,
   IconButton,
   InputAdornment,
-  Checkbox,
   Box,
   Button,
   Container,
@@ -14,150 +13,117 @@ import {
   Select,
   MenuItem,
   FormControl,
-  InputLabel } from '@mui/material';
+  InputLabel,
+} from '@mui/material';
 import CusButton from '../../components/Button';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import useStyle from './Quiz_multiplechoice_style';
+import useStyle from '../Styles/Quiz_multiplechoice_style';
 import Image from '../../assets/ImageJaven/Image.png';
 import { AddCircle, Check, MoreVert, Delete } from '@mui/icons-material';
-import Imagemultiplechoice from "./Imagemultiplechoice";
-import Trueorfalse from "./Trueorfalse";
-import Essay from "./Essay";
-import { Link } from "react-router-dom";
-
-// const sortOptions = [
-//   { label: 'Multiple Choice' },
-//   { label: 'Image Multiple Choice' },
-//   { label: 'True or False' },
-//   { label: 'Essay' },
-// ];
-
-// const sortOptions2 = [
-//   { label: '5 seconds' },
-//   { label: '10 seconds' },
-//   { label: '15 seconds' },
-//   { label: '20 seconds' },
-//   { label: '25 seconds' },
-//   { label: '30 seconds' },
-//   { label: '35 seconds' },
-//   { label: '40 seconds' },
-//   { label: '1 minute' },
-//   { label: '2 minutes' },
-// ];
-
-// const sortOptions3 = [
-//   { label: '0 point' },
-//   { label: '1 point' },
-//   { label: '2 points' },
-//   { label: '3 points' },
-//   { label: '4 points' },
-//   { label: '5 points' },
-//   { label: '6 points' },
-//   { label: '7 points' },
-//   { label: '8 points' },
-//   { label: '9 points' },
-//   { label: '10 points' },
-// ];
+import Imagemultiplechoice from './Imagemultiplechoice';
+import Trueorfalse from './Trueorfalse';
+import Essay from './Essay';
+import Image_GIF from './Image_GIF';
 
 const dataAnswerType = [
   {
-      value: 'Multiple Choice',
-      label: 'Multiple Choice'
+    value: 'Multiple Choice',
+    label: 'Multiple Choice',
   },
   {
-      value: 'Image Multiple Choice',
-      label: 'Image Multiple Choice'
+    value: 'Image Multiple Choice',
+    label: 'Image Multiple Choice',
   },
   {
-      value: 'True or False',
-      label: 'True or False'
+    value: 'True or False',
+    label: 'True or False',
   },
   {
-      value: 'Essay',
-      label: 'Essay'
-  }
+    value: 'Essay',
+    label: 'Essay',
+  },
 ];
 
 const dataTimeLimit = [
   {
-      value: '5 seconds',
-      label: '5 seconds'
+    value: '5 seconds',
+    label: '5 seconds',
   },
   {
-      value: '10 seconds',
-      label: '10 seconds'
+    value: '10 seconds',
+    label: '10 seconds',
   },
   {
-      value: '15 seconds',
-      label: '15 seconds'
+    value: '15 seconds',
+    label: '15 seconds',
   },
   {
-      value: '20 seconds',
-      label: '20 seconds'
+    value: '20 seconds',
+    label: '20 seconds',
   },
   {
-      value: '25 seconds',
-      label: '25 seconds'
+    value: '25 seconds',
+    label: '25 seconds',
   },
   {
-      value: '30 seconds',
-      label: '30 seconds'
+    value: '30 seconds',
+    label: '30 seconds',
   },
   {
-      value: '40 seconds',
-      label: '40 seconds'
+    value: '40 seconds',
+    label: '40 seconds',
   },
   {
-      value: '1 minute',
-      label: '1 minute'
+    value: '1 minute',
+    label: '1 minute',
   },
   {
-      value: '2 minutes',
-      label: '2 minutes'
-  }
+    value: '2 minutes',
+    label: '2 minutes',
+  },
 ];
 
 const dataPoints = [
   {
-      value: '0 point',
-      label: '0 point'
+    value: '0 point',
+    label: '0 point',
   },
   {
-      value: '1 point',
-      label: '1 point'
+    value: '1 point',
+    label: '1 point',
   },
   {
-      value: '2 points',
-      label: '2 points'
+    value: '2 points',
+    label: '2 points',
   },
   {
-      value: '3 points',
-      label: '3 points'
+    value: '3 points',
+    label: '3 points',
   },
   {
-      value: '4 points',
-      label: '4 points'
+    value: '4 points',
+    label: '4 points',
   },
   {
-      value: '5 points',
-      label: '5 points'
+    value: '5 points',
+    label: '5 points',
   },
   {
-      value: '6 points',
-      label: '6 points'
+    value: '6 points',
+    label: '6 points',
   },
   {
-      value: '7 points',
-      label: '7 points'
+    value: '7 points',
+    label: '7 points',
   },
   {
-      value: '8 points',
-      label: '8 points'
+    value: '8 points',
+    label: '8 points',
   },
   {
-      value: '9 points',
-      label: '9 points'
-  }
+    value: '9 points',
+    label: '9 points',
+  },
 ];
 
 const answertypeoptions = [
@@ -172,21 +138,23 @@ const answertypeoptions = [
 ];
 
 function Quizform() {
-  const [questions, setQuestions] = React.useState(new Map());
+  const [questions, setQuestions] = useState(new Map());
+  const [opendialog, setOpenDialog] = useState(false);
+  const [image, setImage] = useState('');
   const { designs } = useStyle();
 
-  const [selectAnswerType, setAnswerType] = React.useState('Multiple Choice');
-  const [selectTimeLimit, setTimeLimit] = React.useState('');
-  const [selectPoints, setPoints] = React.useState('');
-  
+  const [selectAnswerType, setAnswerType] = useState('Multiple Choice');
+  const [selectTimeLimit, setTimeLimit] = useState('');
+  const [selectPoints, setPoints] = useState('');
+
   const handleChange1 = (event) => {
-  setAnswerType(event.target.value);
+    setAnswerType(event.target.value);
   };
   const handleChange2 = (event) => {
-  setTimeLimit(event.target.value);
+    setTimeLimit(event.target.value);
   };
   const handleChange3 = (event) => {
-  setPoints(event.target.value);
+    setPoints(event.target.value);
   };
 
   const questionKey = React.useRef();
@@ -247,7 +215,7 @@ function Quizform() {
               id="quizform"
               onClick={handleSubmit}
               sx={{
-                textDecoration: "none",
+                textDecoration: 'none',
                 backgroundColor: '#4caf50',
                 color: 'white',
                 '&:hover': {
@@ -415,34 +383,69 @@ function Quizform() {
                               className="Quiz-question-image-sub"
                               sx={designs.Quiz_Question_Image_Sub_Style}
                             >
-                              <img
-                                src={Image}
-                                height="80em"
-                                style={{
-                                  margin: '0.7em 0em 0em 1em',
-                                }}
-                              />
-
-                              <Button
-                                variant="contained"
-                                startIcon={
-                                  <AddCircle
-                                    style={{
-                                      marginRight: '0.2em',
-                                      fontSize: '2em',
-                                      color: '#716F87',
-                                    }}
-                                  />
-                                }
-                                sx={designs.Insert_Image_Button_Style}
-                              >
-                                Insert an image or GIF associated to this
-                                question.
-                              </Button>
+                              {image != '' ? (
+                                <>
+                                  <Box
+                                    width="80%"
+                                    display="flex"
+                                    justifyContent="center"
+                                    alignItems="center"
+                                  >
+                                    <img
+                                      src={image}
+                                      width="100%"
+                                      height="300px"
+                                      style={{
+                                        padding: '0.7em 0em 0em 1em',
+                                        objectFit: 'contain',
+                                      }}
+                                    />
+                                  </Box>
+                                  <Button
+                                    variant="contained"
+                                    onClick={() => setImage('')}
+                                  >
+                                    remove
+                                  </Button>
+                                </>
+                              ) : (
+                                <Box
+                                  width="80%"
+                                  height="300px"
+                                  display="flex"
+                                  justifyContent="center"
+                                  alignItems="center"
+                                >
+                                  <Button
+                                    variant="contained"
+                                    startIcon={
+                                      <AddCircle
+                                        style={{
+                                          marginRight: '0.2em',
+                                          fontSize: '2em',
+                                          color: '#716F87',
+                                        }}
+                                      />
+                                    }
+                                    sx={designs.Insert_Image_Button_Style}
+                                    onClick={() => setOpenDialog(true)}
+                                  >
+                                    Insert an image or GIF associated to this
+                                    question.
+                                  </Button>
+                                </Box>
+                              )}
                             </Box>
                           </Box>
                         </Box>
-
+                        {opendialog && (
+                          <Image_GIF
+                            open={opendialog}
+                            close={() => setOpenDialog(false)}
+                            maxWidth="lg"
+                            setImage={setImage}
+                          />
+                        )}
                         <Box
                           className="Quiz-options"
                           sx={designs.Quiz_Options_Style}
@@ -451,17 +454,27 @@ function Quizform() {
                             className="Other-buttons"
                             sx={designs.Other_Buttons_Style}
                           >
-                              <Box className = "Delete-question" sx = {designs.Delete_Question_Style}>
-                                <IconButton aria-label="delete" sx = {designs.Delete_IconButton_Style}>
-                                    <Delete
-                                        sx= {designs.DeleteIcon_Style}/>
-                                </IconButton>
-                              </Box>
-                              
-                              <FormControl variant="standard" sx = {designs.FormControl_Style}>
-                              <InputLabel id="demo-simple-select-standard-label"
-                              sx = {designs.InputLabel_Style}>
-                              Answer Type
+                            <Box
+                              className="Delete-question"
+                              sx={designs.Delete_Question_Style}
+                            >
+                              <IconButton
+                                aria-label="delete"
+                                sx={designs.Delete_IconButton_Style}
+                              >
+                                <Delete sx={designs.DeleteIcon_Style} />
+                              </IconButton>
+                            </Box>
+
+                            <FormControl
+                              variant="standard"
+                              sx={designs.FormControl_Style}
+                            >
+                              <InputLabel
+                                id="demo-simple-select-standard-label"
+                                sx={designs.InputLabel_Style}
+                              >
+                                Answer Type
                               </InputLabel>
                               <Select
                                 labelId="demo-simple-select-standard-label"
@@ -469,20 +482,27 @@ function Quizform() {
                                 value={selectAnswerType}
                                 onChange={handleChange1}
                                 label="SelectAnswerType"
-                                disableUnderline 
-                                sx = {designs.Select_Style}>
-                                                  
+                                disableUnderline
+                                sx={designs.Select_Style}
+                              >
                                 {dataAnswerType.map(({ value, label }) => (
-                                    <MenuItem key = {value} value = {value}> {label} </MenuItem>
+                                  <MenuItem key={value} value={value}>
+                                    {' '}
+                                    {label}{' '}
+                                  </MenuItem>
                                 ))}
-                                                
                               </Select>
-                              </FormControl>
+                            </FormControl>
 
-                              <FormControl variant="standard" sx = {designs.FormControl_Style}>
-                              <InputLabel id="demo-simple-select-standard-label"
-                              sx = {designs.InputLabel_Style}>
-                              Time Limit
+                            <FormControl
+                              variant="standard"
+                              sx={designs.FormControl_Style}
+                            >
+                              <InputLabel
+                                id="demo-simple-select-standard-label"
+                                sx={designs.InputLabel_Style}
+                              >
+                                Time Limit
                               </InputLabel>
                               <Select
                                 labelId="demo-simple-select-standard-label"
@@ -490,20 +510,27 @@ function Quizform() {
                                 value={selectTimeLimit}
                                 onChange={handleChange2}
                                 label="SelectTimeLimit"
-                                disableUnderline 
-                                sx = {designs.Select_Style}>
-                                                  
+                                disableUnderline
+                                sx={designs.Select_Style}
+                              >
                                 {dataTimeLimit.map(({ value, label }) => (
-                                    <MenuItem key = {value} value = {value}> {label} </MenuItem>
+                                  <MenuItem key={value} value={value}>
+                                    {' '}
+                                    {label}{' '}
+                                  </MenuItem>
                                 ))}
-                                                
                               </Select>
-                              </FormControl>
+                            </FormControl>
 
-                              <FormControl variant="standard" sx = {designs.FormControl_Style}>
-                              <InputLabel id="demo-simple-select-standard-label"
-                              sx = {designs.InputLabel_Style}>
-                              Points
+                            <FormControl
+                              variant="standard"
+                              sx={designs.FormControl_Style}
+                            >
+                              <InputLabel
+                                id="demo-simple-select-standard-label"
+                                sx={designs.InputLabel_Style}
+                              >
+                                Points
                               </InputLabel>
                               <Select
                                 labelId="demo-simple-select-standard-label"
@@ -511,15 +538,17 @@ function Quizform() {
                                 value={selectPoints}
                                 onChange={handleChange3}
                                 label="SelectPoints"
-                                disableUnderline 
-                                sx = {designs.Select_Style}>
-                                                  
+                                disableUnderline
+                                sx={designs.Select_Style}
+                              >
                                 {dataPoints.map(({ value, label }) => (
-                                    <MenuItem key = {value} value = {value}> {label} </MenuItem>
+                                  <MenuItem key={value} value={value}>
+                                    {' '}
+                                    {label}{' '}
+                                  </MenuItem>
                                 ))}
-                                                
                               </Select>
-                              </FormControl>
+                            </FormControl>
 
                             {/* <Autocomplete
                               clearOnEscape
@@ -603,9 +632,9 @@ function Quizform() {
                         className="Quiz-answers"
                         sx={designs.Quiz_Answers_Style}
                       >
-                        {selectAnswerType === "Multiple Choice" && (
+                        {selectAnswerType === 'Multiple Choice' && (
                           <>
-                              <Grid container columnSpacing={2} rowSpacing={1}>
+                            <Grid container columnSpacing={2} rowSpacing={1}>
                               <Grid item xs={12} sm={6}>
                                 <TextField
                                   id="filled-basic"
@@ -613,7 +642,9 @@ function Quizform() {
                                   variant="filled"
                                   autoComplete="off"
                                   name="answer1"
-                                  onChange={(event) => handleChange(index, event)}
+                                  onChange={(event) =>
+                                    handleChange(index, event)
+                                  }
                                   sx={designs.Answer_A_TextField_Style}
                                   inputProps={{
                                     style: {
@@ -635,7 +666,9 @@ function Quizform() {
                                           sx={designs.Quiz_Item_Style2}
                                         >
                                           <Typography
-                                            sx={designs.Answer_A_Typography_Style}
+                                            sx={
+                                              designs.Answer_A_Typography_Style
+                                            }
                                           >
                                             A.
                                           </Typography>
@@ -665,7 +698,9 @@ function Quizform() {
                                   variant="filled"
                                   autoComplete="off"
                                   name="answer2"
-                                  onChange={(event) => handleChange(index, event)}
+                                  onChange={(event) =>
+                                    handleChange(index, event)
+                                  }
                                   sx={designs.Answer_B_TextField_Style}
                                   inputProps={{
                                     style: {
@@ -687,7 +722,9 @@ function Quizform() {
                                           sx={designs.Quiz_Item_Style2}
                                         >
                                           <Typography
-                                            sx={designs.Answer_B_Typography_Style}
+                                            sx={
+                                              designs.Answer_B_Typography_Style
+                                            }
                                           >
                                             B.
                                           </Typography>
@@ -719,7 +756,9 @@ function Quizform() {
                                   variant="filled"
                                   autoComplete="off"
                                   name="answer3"
-                                  onChange={(event) => handleChange(index, event)}
+                                  onChange={(event) =>
+                                    handleChange(index, event)
+                                  }
                                   sx={designs.Answer_C_TextField_Style}
                                   inputProps={{
                                     style: {
@@ -741,7 +780,9 @@ function Quizform() {
                                           sx={designs.Quiz_Item_Style2}
                                         >
                                           <Typography
-                                            sx={designs.Answer_C_Typography_Style}
+                                            sx={
+                                              designs.Answer_C_Typography_Style
+                                            }
                                           >
                                             C.
                                           </Typography>
@@ -771,7 +812,9 @@ function Quizform() {
                                   variant="filled"
                                   autoComplete="off"
                                   name="answer4"
-                                  onChange={(event) => handleChange(index, event)}
+                                  onChange={(event) =>
+                                    handleChange(index, event)
+                                  }
                                   sx={designs.Answer_D_TextField_Style}
                                   inputProps={{
                                     style: {
@@ -793,7 +836,9 @@ function Quizform() {
                                           sx={designs.Quiz_Item_Style2}
                                         >
                                           <Typography
-                                            sx={designs.Answer_D_Typography_Style}
+                                            sx={
+                                              designs.Answer_D_Typography_Style
+                                            }
                                           >
                                             D.
                                           </Typography>
@@ -819,10 +864,13 @@ function Quizform() {
                           </>
                         )}
 
-                        {selectAnswerType === "Image Multiple Choice" && (<Imagemultiplechoice/>)}
-                        {selectAnswerType === "True or False" && (<Trueorfalse/>)}
-                        {selectAnswerType === "Essay" && (<Essay/>)}
-                        
+                        {selectAnswerType === 'Image Multiple Choice' && (
+                          <Imagemultiplechoice />
+                        )}
+                        {selectAnswerType === 'True or False' && (
+                          <Trueorfalse />
+                        )}
+                        {selectAnswerType === 'Essay' && <Essay />}
                       </Box>
                     </Box>
                   </Grid>

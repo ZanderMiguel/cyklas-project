@@ -7,10 +7,10 @@ function useStyle() {
     Quiz_Options_Responsive_Style: {
       height: 'auto',
       width: '100%',
-      border: "1px solid black",
+      border: '1px solid black',
       [theme.breakpoints.up('sm')]: {
         display: 'none',
-        marginTop: '0em'
+        marginTop: '0em',
       },
       [theme.breakpoints.down('sm')]: {
         display: 'initial',
@@ -83,6 +83,7 @@ function useStyle() {
     Quiz_Question_Image_Style: {
       width: 'relative',
       height: 'auto',
+      paddingBottom: 2,
     },
     Quiz_Question_Image_Sub_Style: {
       height: 'auto',
@@ -118,38 +119,38 @@ function useStyle() {
       },
     },
     Other_Buttons_Style: {
-      padding: "0.5em 0em 1.5em 0em",
-      display: "flex",
-      flexDirection: "column",
-      gap: "1em",
-      justifyContent: "center",
-      alignItems: "center"
+      padding: '0.5em 0em 1.5em 0em',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '1em',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     Delete_Question_Style: {
-      width: "100%",
-      height: "auto"
+      width: '100%',
+      height: 'auto',
     },
     Delete_IconButton_Style: {
-        float: "right",
-        marginRight: "1.5em",
-        height: "1.5em",
-        width: "1.5em"
+      float: 'right',
+      marginRight: '1.5em',
+      height: '1.5em',
+      width: '1.5em',
     },
     DeleteIcon_Style: {
-        color: "#716F87",
-        fontSize: "1em"
+      color: '#716F87',
+      fontSize: '1em',
     },
-    FormControl_Style: { 
-        width: "80%" 
+    FormControl_Style: {
+      width: '80%',
     },
     InputLabel_Style: {
-        fontSize: "0.9em",
-        fontWeight: "600",
-        color: "#737373"
+      fontSize: '0.9em',
+      fontWeight: '600',
+      color: '#737373',
     },
-    Select_Style: { 
-        width: "100%",
-        borderBottom: "1px solid #DBDBDB"
+    Select_Style: {
+      width: '100%',
+      borderBottom: '1px solid #DBDBDB',
     },
     Answer_Type_Autocomplete_Style: {
       width: '80%',

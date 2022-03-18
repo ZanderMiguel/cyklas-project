@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Landingpage.css';
+import './Styles/Landingpage.css';
 import Input from '../components/Input';
 
 //importing Mui
@@ -38,7 +38,7 @@ const googleFailure = (error) => {
 
 function Home({ data }) {
   const history = useHistory();
-  const [isPending, setIsPending] = useState(false);
+  const [isPending, setIsPending] = useState(true);
   const [opendialog, setOpenDialog] = useState(false);
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -58,13 +58,15 @@ function Home({ data }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsPending(true);
+
     axios
       .post('http://localhost:5000/login', Object.fromEntries(myApi))
       .then((response) => {
         response.data.token &&
           localStorage.setItem('token', response.data.token);
-        data.current = response.data;
-        console.log(response.data);
+
+        localStorage.setItem('userData', JSON.stringify(response.data));
+
         setMyApi(new Map());
         setIsPending(false);
         history.push('/dashboard');
@@ -72,6 +74,7 @@ function Home({ data }) {
       .catch((err) => {
         console.log(err.message);
         setMyApi(new Map());
+        setIsPending(true);
       });
   };
   const theme = useTheme();
@@ -186,10 +189,10 @@ function Home({ data }) {
                     onChange={handleChange}
                   />
                 </Grid>
-                <Grid item xs={12} ali>
+                <Grid item xs={12}>
                   <Typography variant="subtitle2">
                     <Link
-                      href="#"
+                      href="/forgotpassword"
                       style={{ color: '#007FFF', textDecoration: 'none' }}
                     >
                       Forgot password?
@@ -197,42 +200,23 @@ function Home({ data }) {
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  {!isPending && (
-                    <Button
-                      fullWidth
-                      content="log in"
-                      variant="contained"
-                      borderRadius="10px"
-                      type="submit"
-                      sx={{
-                        backgroundColor: '#007FFF',
-                        color: 'white',
-                        borderRadius: '10px',
-                        '&:hover': {
-                          backgroundColor: '#0072e6',
-                        },
-                      }}
-                    />
-                  )}
-                  {isPending && (
-                    <Button
-                      disabled
-                      fullWidth
-                      content="log in"
-                      variant="contained"
-                      borderRadius="10px"
-                      type="submit"
-                      sx={{
-                        backgroundColor: '#007FFF',
-                        color: 'white',
-                        borderRadius: '10px',
-                        marginBottom: '0em',
-                        '&:hover': {
-                          backgroundColor: '#0072e6',
-                        },
-                      }}
-                    />
-                  )}
+                  <Button
+                    disabled={isPending ? false : true}
+                    fullWidth
+                    content="log in"
+                    variant="contained"
+                    borderRadius="10px"
+                    type="submit"
+                    sx={{
+                      backgroundColor: '#007FFF',
+                      color: 'white',
+                      borderRadius: '10px',
+                      marginBottom: '0em',
+                      '&:hover': {
+                        backgroundColor: '#0072e6',
+                      },
+                    }}
+                  />
                 </Grid>
                 <Grid item xs={12}>
                   {isMatch ? (

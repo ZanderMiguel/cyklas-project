@@ -25,6 +25,7 @@ const Input = ({
   rows,
   multiline,
   variant,
+  ...rest
 }) => {
   return (
     <Grid item xs={12} sm={half ? 6 : 12}>
@@ -58,6 +59,7 @@ const Input = ({
               }
             : null
         }
+        {...rest}
       />
     </Grid>
   );

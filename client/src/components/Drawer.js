@@ -30,7 +30,32 @@ function Drawer() {
 
     setDrawer(open);
   };
-
+  const userType =
+    'Professor' === 'Professor'
+      ? [
+          {
+            icon: <MdQuiz size="25px" />,
+            text: 'Quizlit',
+            path: '/quizlit',
+          },
+          {
+            icon: <MdOutlineVideoCameraFront size="25px" />,
+            text: 'Telecon',
+            path: '/telecon',
+          },
+          {
+            icon: <VscFileSubmodule size="25px" />,
+            text: 'Records',
+            path: '/Records',
+          },
+        ]
+      : [
+          {
+            icon: <VscFileSubmodule size="25px" />,
+            text: 'ClassCard',
+            path: '/Records',
+          },
+        ];
   const drawerlist = [
     {
       icon: <RiDashboardLine size="25px" />,
@@ -42,28 +67,15 @@ function Drawer() {
       text: 'Rooms',
       path: '/rooms',
     },
-    {
-      icon: <MdQuiz size="25px" />,
-      text: 'Quizlit',
-      path: '/quizlit',
-    },
-    {
-      icon: <MdOutlineVideoCameraFront size="25px" />,
-      text: 'Telecon',
-      path: '/telecon',
-    },
-    {
-      icon: <VscFileSubmodule size="25px" />,
-      text: 'Records',
-      path: '/Records',
-    },
+
+    ...userType,
     {
       icon: <MdOutlineSettings size="25px" />,
       text: 'Setting',
       path: '/settings',
     },
   ];
-const divs = React.useRef(null)
+  const divs = React.useRef(null);
   const list = () => (
     <Box
       sx={{ width: 280 }}
@@ -76,18 +88,12 @@ const divs = React.useRef(null)
           const { icon, text, path } = item;
           return (
             <Link
-
               key={text}
               style={{ textDecoration: 'none', color: 'blue' }}
               to={path}
             >
               <ListItem
                 ref={divs}
-                onClick={(e) => {
-                  console.log(e)
-                  
-                  
-                }}
                 name={text}
                 disableRipple
                 button

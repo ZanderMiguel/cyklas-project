@@ -1,6 +1,5 @@
 import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import './index.css';
 import {
   BrowserRouter as Router,
   Route,
@@ -13,7 +12,7 @@ import ProtectedRoutes from './components/ProtectedRoutes';
 import Dashboard from './Dashboard/Dashboard';
 import Navbar_landingpage from './components/Navbar_landingpage';
 
-import { io } from 'socket.io-client';
+// import { io } from 'socket.io-client';
 
 import TeleconStart from './Telecon/TeleconStart';
 import QuizLit from './Quizlit/Quizlit';
@@ -28,10 +27,12 @@ import StudentLiveQuiz_multiplechoice from './Quizlit/LiveQuiz/StudentLiveQuiz_m
 import Student_rankings from './Quizlit/LiveQuiz/Student_rankings';
 import Conference_details from './Telecon/Telecon_Components/Conference_details';
 import Members from './Telecon/Telecon_Components/Members';
-import Message_area from './Telecon/Telecon_Components/Message_area';
+import Message_area from './Telecon/components/Messages';
 import Presentation from './Telecon/Telecon_Components/Presentation';
 import Student_activities from './Dashboard/Student_activities';
 import Student_viewactivity from './Dashboard/Student_viewactivity';
+import ChatApp from './ChatApp';
+import TeleCon from './pages-landing/TeleCon';
 
 function App() {
   const theme = createTheme({
@@ -56,9 +57,8 @@ function App() {
       },
     },
   });
-  const data = React.useRef('');
 
-  const socket = io.connect('http://localhost:3001/');
+  // const socket = io.connect('http://localhost:3001');
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -67,31 +67,21 @@ function App() {
             <Redirect exact from="/" to="/home/login" />
             <Redirect exact from="/home" to="/home/login" />
             <Route exact path="/home/:page?">
-              <Navbar_landingpage data={data} />
+              <Navbar_landingpage />
             </Route>
-            <ProtectedRoutes
-              exact
-              path="/dashboard"
-              component={Dashboard}
-              data={data}
-            />
-            <ProtectedRoutes
-              exact
-              path="/telecon"
-              component={TeleconStart}
-              data={data}
-            />
+            <ProtectedRoutes exact path="/dashboard" component={Dashboard} />
+            <ProtectedRoutes exact path="/telecon" component={TeleconStart} />
             <ProtectedRoutes
               exact
               path="/rooms"
               component={Rooms}
-              data={data}
+
+              // socket={socket}
             />
             <ProtectedRoutes
               exact
               path="/rooms/:roomID"
               component={Room_inside}
-              data={data}
             />
             <ProtectedRoutes
               exact
@@ -104,14 +94,8 @@ function App() {
               exact
               path="/rooms/:id/:ab/:w"
               component={Dashboard}
-              data={data}
             />
-            <ProtectedRoutes
-              exact
-              path="/settings"
-              component={Setting}
-              data={data}
-            />
+            <ProtectedRoutes exact path="/settings" component={Setting} />
             <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
 
             <ProtectedRoutes
@@ -120,19 +104,41 @@ function App() {
               component={Quizform}
             />
             {/* Javen Routes */}
-            <ProtectedRoutes exact path="/quizlit/Livequiz_multiplechoice" component={Livequiz_multiplechoice} />
-            <ProtectedRoutes exact path="/quizlit/StudentLiveQuiz_multiplechoice" component={StudentLiveQuiz_multiplechoice} />
-            <ProtectedRoutes exact path="/quizlit/Student_rankings" component={Student_rankings} />
-            <ProtectedRoutes exact path="/Conference_details" component={Conference_details} />
+            <ProtectedRoutes
+              exact
+              path="/Livequiz_multiplechoice"
+              component={Livequiz_multiplechoice}
+            />
+            <ProtectedRoutes
+              exact
+              path="/StudentLiveQuiz_multiplechoice"
+              component={StudentLiveQuiz_multiplechoice}
+            />
+            <ProtectedRoutes
+              exact
+              path="/Student_rankings"
+              component={Student_rankings}
+            />
+            <ProtectedRoutes
+              exact
+              path="/Conference_details"
+              component={Conference_details}
+            />
             <ProtectedRoutes exact path="/Members" component={Members} />
-            <ProtectedRoutes exact path="/Message_area" component={Message_area} />
-            <ProtectedRoutes exact path="/Presentation" component={Presentation} />
-            <ProtectedRoutes exact path="/dashboard/Student_activities" component={Student_activities} />
-            <ProtectedRoutes exact path="/dashboard/Student_viewactivity" component={Student_viewactivity} />
+            <ProtectedRoutes
+              exact
+              path="/Presentation"
+              component={Presentation}
+            />
             <ProtectedRoutes exact path="/records" component={Records} />
+            {/* Learning socket io #Zander */}
+            <Route path="/ChatApp" component={ChatApp} />
+            <Route path="/message" component={Message_area} />
+
             <Route path="/forgotpassword">
               <Forgot_password />
             </Route>
+            <Route path="/telecon" component={TeleCon} />
             <Route component={Notfound} />
           </Switch>
         </Router>

@@ -5,354 +5,354 @@ function useStyle() {
 
   const designs = {
     Footer_Style: {
-        marginTop: "2.5em",
-        width: "100%",
-        height: "auto",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center"
+      marginTop: '2.5em',
+      width: '100%',
+      height: 'auto',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     Divider_Style: {
       width: '90%',
     },
     Content_Style: {
-      height: "auto",
-      width: "100%"
+      height: 'auto',
+      width: '100%',
     },
     Content_Sub_Style: {
-        margin: "25px 70px", 
-        display: "flex",
-        gap: "20px",
-        justifyContent: "center",
-        alignItems: "center",
-        flexWrap: "wrap",
-        height: "auto",
-        width: "auto",
-        [theme.breakpoints.down('sm')]: {
-            margin: "25px 33px"
-        }
+      margin: '25px 70px',
+      display: 'flex',
+      gap: '20px',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexWrap: 'wrap',
+      height: 'auto',
+      width: 'auto',
+      [theme.breakpoints.down('sm')]: {
+        margin: '25px 33px',
+      },
     },
-    CyklasLogo_Cyklas_Style: { 
-        display: "flex", 
-        flexWrap: "wrap", 
-        gap: "20px", 
-        height: "auto", 
-        width: "auto"
+    CyklasLogo_Cyklas_Style: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: '20px',
+      height: 'auto',
+      width: 'auto',
     },
     Cyklas_Logo_Style: {
-        width: "243px",
-        height: "auto",
-        display: "flex",
-        flexGrow: 1,
-        padding: "0px 20px 5px 20px",
-        flexDirection: "column"
+      width: '243px',
+      height: 'auto',
+      display: 'flex',
+      flexGrow: 1,
+      padding: '0px 20px 5px 20px',
+      flexDirection: 'column',
     },
     Cyklas_Logo_Image_Style: {
-        width: "max-content",
-        height: "100%"
+      width: 'max-content',
+      height: '100%',
     },
     CompanyAddress_Typography_Style: {
-        marginTop: '15px',
-        color: '#727184',
-        fontSize: '14px',
-        textTransform: 'Capitalize',
-        width: 'max-content',
-        height: 'max-content'
+      marginTop: '15px',
+      color: '#727184',
+      fontSize: '14px',
+      textTransform: 'Capitalize',
+      width: 'max-content',
+      height: 'max-content',
     },
     CompanyEmailAddress_Typography_Style: {
-        marginTop: '15px',
-        color: '#727184',
-        fontSize: '14px',
-        textTransform: 'none',
-        width: 'max-content',
-        height: 'max-content'
+      marginTop: '15px',
+      color: '#727184',
+      fontSize: '14px',
+      textTransform: 'none',
+      width: 'max-content',
+      height: 'max-content',
     },
     Cyklas_Style: {
-        display: "flex",
-        flexGrow: 1,
-        flexDirection: "column",
-        width: "243px",
-        height: "160px",
-        padding: "0px 20px"
+      display: 'flex',
+      flexGrow: 1,
+      flexDirection: 'column',
+      width: '243px',
+      height: '160px',
+      padding: '0px 20px',
     },
     Cyklas_Typography_Style: {
-        color: '#3F3D56',
-        fontSize: '16px',
-        textTransform: 'Uppercase',
-        fontWeight: '600',
-        width: '100%',
-        height: 'max-content'
+      color: '#3F3D56',
+      fontSize: '16px',
+      textTransform: 'Uppercase',
+      fontWeight: '600',
+      width: '100%',
+      height: 'max-content',
     },
     Home_TypographyButton_Style: {
-        margin: '17px 0px 8px 0px',
-        width: 'max-content',
-        height: 'max-content',
-        color: '#93929E',
-        textTransform: 'none',
-        fontSize: '13px',
-        fontWeight: "500",
-        "&: hover": {
-          cursor: "pointer",
-          color: "#3F3D56",
-          transition: "all 500ms"
-        }
+      margin: '17px 0px 8px 0px',
+      width: 'max-content',
+      height: 'max-content',
+      color: '#93929E',
+      textTransform: 'none',
+      fontSize: '13px',
+      fontWeight: '500',
+      '&: hover': {
+        cursor: 'pointer',
+        color: '#3F3D56',
+        transition: 'all 500ms',
+      },
     },
     Services_TypographyButton_Style: {
-        marginBottom: '8px',
-        width: 'max-content',
-        height: 'max-content',
-        color: '#93929E',
-        textTransform: 'none',
-        fontSize: '13px',
-        fontWeight: "500",
-        "&: hover": {
-          cursor: "pointer",
-          color: "#3F3D56",
-          transition: "all 500ms"
-        }
+      marginBottom: '8px',
+      width: 'max-content',
+      height: 'max-content',
+      color: '#93929E',
+      textTransform: 'none',
+      fontSize: '13px',
+      fontWeight: '500',
+      '&: hover': {
+        cursor: 'pointer',
+        color: '#3F3D56',
+        transition: 'all 500ms',
+      },
     },
     About_TypographyButton_Style: {
-        marginBottom: '8px',
-        width: 'max-content',
-        height: 'max-content',
-        color: '#93929E',
-        textTransform: 'none',
-        fontSize: '13px',
-        fontWeight: "500",
-        "&: hover": {
-          cursor: "pointer",
-          color: "#3F3D56",
-          transition: "all 500ms"
-        }
+      marginBottom: '8px',
+      width: 'max-content',
+      height: 'max-content',
+      color: '#93929E',
+      textTransform: 'none',
+      fontSize: '13px',
+      fontWeight: '500',
+      '&: hover': {
+        cursor: 'pointer',
+        color: '#3F3D56',
+        transition: 'all 500ms',
+      },
     },
     Contacts_TypographyButton_Style: {
-        marginBottom: '8px',
-        width: 'max-content',
-        height: 'max-content',
-        color: '#93929E',
-        textTransform: 'none',
-        fontSize: '13px',
-        fontWeight: "500",
-        "&: hover": {
-          cursor: "pointer",
-          color: "#3F3D56",
-          transition: "all 500ms"
-        }
+      marginBottom: '8px',
+      width: 'max-content',
+      height: 'max-content',
+      color: '#93929E',
+      textTransform: 'none',
+      fontSize: '13px',
+      fontWeight: '500',
+      '&: hover': {
+        cursor: 'pointer',
+        color: '#3F3D56',
+        transition: 'all 500ms',
+      },
     },
-    Services_Socials_Style: { 
-        display: "flex", 
-        flexWrap: "wrap", 
-        gap: "20px", 
-        height: "auto", 
-        width: "auto"
+    Services_Socials_Style: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: '20px',
+      height: 'auto',
+      width: 'auto',
     },
     Services_Style: {
-        display: "flex",
-        flexGrow: 1,
-        flexDirection: "column",
-        width: "243px",
-        height: "160px",
-        padding: "0px 20px"
+      display: 'flex',
+      flexGrow: 1,
+      flexDirection: 'column',
+      width: '243px',
+      height: '160px',
+      padding: '0px 20px',
     },
     Services_Typography_Style: {
-        color: '#3F3D56',
-        fontSize: '16px',
-        textTransform: 'Uppercase',
-        fontWeight: '600',
-        width: '100%',
-        height: 'max-content',
+      color: '#3F3D56',
+      fontSize: '16px',
+      textTransform: 'Uppercase',
+      fontWeight: '600',
+      width: '100%',
+      height: 'max-content',
     },
     Classroom_TypographyButton_Style: {
-        margin: '17px 0px 8px 0px',
-        width: 'max-content',
-        height: 'max-content',
-        color: '#93929E',
-        textTransform: 'none',
-        fontSize: '13px',
-        fontWeight: "500",
-        "&: hover": {
-          cursor: "pointer",
-          color: "#3F3D56",
-          transition: "all 500ms"
-        }
+      margin: '17px 0px 8px 0px',
+      width: 'max-content',
+      height: 'max-content',
+      color: '#93929E',
+      textTransform: 'none',
+      fontSize: '13px',
+      fontWeight: '500',
+      '&: hover': {
+        cursor: 'pointer',
+        color: '#3F3D56',
+        transition: 'all 500ms',
+      },
     },
     Quizlit_TypographyButton_Style: {
-        marginBottom: '8px',
-        width: 'max-content',
-        height: 'max-content',
-        color: '#93929E',
-        textTransform: 'none',
-        fontSize: '13px',
-        fontWeight: "500",
-        "&: hover": {
-          cursor: "pointer",
-          color: "#3F3D56",
-          transition: "all 500ms"
-        }
+      marginBottom: '8px',
+      width: 'max-content',
+      height: 'max-content',
+      color: '#93929E',
+      textTransform: 'none',
+      fontSize: '13px',
+      fontWeight: '500',
+      '&: hover': {
+        cursor: 'pointer',
+        color: '#3F3D56',
+        transition: 'all 500ms',
+      },
     },
     Telecon_TypographyButton_Style: {
-        marginBottom: '8px',
-        width: 'max-content',
-        height: 'max-content',
-        color: '#93929E',
-        textTransform: 'none',
-        fontSize: '13px',
-        fontWeight: "500",
-        "&: hover": {
-          cursor: "pointer",
-          color: "#3F3D56",
-          transition: "all 500ms"
-        }
+      marginBottom: '8px',
+      width: 'max-content',
+      height: 'max-content',
+      color: '#93929E',
+      textTransform: 'none',
+      fontSize: '13px',
+      fontWeight: '500',
+      '&: hover': {
+        cursor: 'pointer',
+        color: '#3F3D56',
+        transition: 'all 500ms',
+      },
     },
     Socials_Style: {
-        width: "243px",
-        flexGrow: 1,
-        height: "160px",
-        padding: "0px 20px"
+      width: '243px',
+      flexGrow: 1,
+      height: '160px',
+      padding: '0px 20px',
     },
     FollowUs_Typography_Style: {
-        color: '#3F3D56',
-        fontSize: '16px',
-        textTransform: 'Uppercase',
-        fontWeight: '600',
-        width: '100%',
-        height: 'max-content'
+      color: '#3F3D56',
+      fontSize: '16px',
+      textTransform: 'Uppercase',
+      fontWeight: '600',
+      width: '100%',
+      height: 'max-content',
     },
     SocialButtons_Style: {
-        marginTop: "20px",
-        width: "auto",
-        height: "auto",
-        display: "flex",
-        gap: "18px"
+      marginTop: '20px',
+      width: 'auto',
+      height: 'auto',
+      display: 'flex',
+      gap: '18px',
     },
     Facebook_IconButton_Style: {
-        height: '30px',
-        width: '30px'
+      height: '30px',
+      width: '30px',
     },
     Instagram_IconButton_Style: {
-        height: '30px',
-        width: '30px'
+      height: '30px',
+      width: '30px',
     },
     Twitter_IconButton_Style: {
-        height: '20px',
-        width: '20px',
-        margin: '5px 0px 0px 5px'
+      height: '20px',
+      width: '20px',
+      margin: '5px 0px 0px 5px',
     },
     Youtube_IconButton_Style: {
-        height: '20px',
-        width: '20px',
-        margin: '5px 0px 0px 9px'
+      height: '20px',
+      width: '20px',
+      margin: '5px 0px 0px 9px',
     },
     Content2_Style: {
-        padding: "15px 0px",
-        bottom: "0",
-        left: "0",
-        right: "0",
-        position: "relative",
-        width: "100%",
-        height: "auto",
-        backgroundColor: "#007FFF"
+      padding: '15px 0px',
+      bottom: '0',
+      left: '0',
+      right: '0',
+      position: 'relative',
+      width: '100%',
+      height: 'auto',
+      backgroundColor: '#007FFF',
     },
     Content2_Sub_Style: {
-        display:"flex",
-        gap: "20px",
-        flexWrap:"wrap",
-        margin: "0px 70px",
-        height: "auto",
-        width: "auto",
-        [theme.breakpoints.down('sm')]: {
-            margin: "0px 40px"
-        },
-        [theme.breakpoints.between('sm', 'md')]: {
-            margin: "0px 50px"
-        }
+      display: 'flex',
+      gap: '20px',
+      flexWrap: 'wrap',
+      margin: '0px 70px',
+      height: 'auto',
+      width: 'auto',
+      [theme.breakpoints.down('sm')]: {
+        margin: '0px 40px',
+      },
+      [theme.breakpoints.between('sm', 'md')]: {
+        margin: '0px 50px',
+      },
     },
     TC_PP_Style: {
-        display:"flex",
-        flexWrap: "wrap",
-        flexGrow: 1,
-        height:"max-content",
-        width:"auto"
+      display: 'flex',
+      flexWrap: 'wrap',
+      flexGrow: 1,
+      height: 'max-content',
+      width: 'auto',
     },
     TermsCondition_Typography_Style: {
-        width: 'max-content',
-        height: 'auto',
-        padding: "1px 7px",
-        color: '#F0F0F0',
-        textTransform: 'Uppercase',
-        fontSize: '13px',
-        textAlign: "center",
-        fontWeight: '500',
-        "&: hover": {
-            cursor: "pointer",
-            color: "white",
-            transition: "all 0.3s ease-out"
-        },
-        [theme.breakpoints.down('sm')]: {
-            textAlign: "left",
-            padding: "1px 7px 1px 0px"
-        }
+      width: 'max-content',
+      height: 'auto',
+      padding: '1px 7px',
+      color: '#F0F0F0',
+      textTransform: 'Uppercase',
+      fontSize: '13px',
+      textAlign: 'center',
+      fontWeight: '500',
+      '&: hover': {
+        cursor: 'pointer',
+        color: 'white',
+        transition: 'all 0.3s ease-out',
+      },
+      [theme.breakpoints.down('sm')]: {
+        textAlign: 'left',
+        padding: '1px 7px 1px 0px',
+      },
     },
-    DividerV_Style: { 
-        backgroundColor: "#E1E1E1",
-        margin: "7px 20px"
+    DividerV_Style: {
+      backgroundColor: '#E1E1E1',
+      margin: '7px 20px',
     },
     PrivacyPolicy_Typography_Style: {
-        width: 'max-content',
-        height: 'auto',
-        padding: "1px 7px",
-        color: '#F0F0F0',
-        textTransform: 'Uppercase',
-        fontSize: '13px',
-        textAlign: "center",
-        fontWeight: '500',
-        "&: hover": {
-            cursor: "pointer",
-            color: "white",
-            transition: "all 0.3s ease-out"
-        },
-        [theme.breakpoints.down('sm')]: {
-            textAlign: "left",
-            padding: "1px 7px 1px 0px"
-        }
+      width: 'max-content',
+      height: 'auto',
+      padding: '1px 7px',
+      color: '#F0F0F0',
+      textTransform: 'Uppercase',
+      fontSize: '13px',
+      textAlign: 'center',
+      fontWeight: '500',
+      '&: hover': {
+        cursor: 'pointer',
+        color: 'white',
+        transition: 'all 0.3s ease-out',
+      },
+      [theme.breakpoints.down('sm')]: {
+        textAlign: 'left',
+        padding: '1px 7px 1px 0px',
+      },
     },
     All_Rights_Reserved_Style: {
-        width: "auto",
-        height: "auto"
+      width: 'auto',
+      height: 'auto',
     },
     All_Rights_Reserved_Sub_Style: {
-        width: "auto",
-        height: "auto",
-        display: "flex",
-        gap: "8px"
+      width: 'auto',
+      height: 'auto',
+      display: 'flex',
+      gap: '8px',
     },
     All_Rights_Reserved_Typography_Style: {
-        color: 'white',
-        fontSize: '12px',
-        textTransform: 'none',
-        fontWeight: '500',
-        width: 'max-content',
-        height: 'max-content',
+      color: 'white',
+      fontSize: '12px',
+      textTransform: 'none',
+      fontWeight: '500',
+      width: 'max-content',
+      height: 'max-content',
     },
     Cycrowd_Typography_Style: {
-        color: 'white',
-        fontSize: '12px',
-        textTransform: 'none',
-        fontWeight: '500',
-        width: 'relative',
-        height: 'max-content',
-        textAlign: 'Right',
-        [theme.breakpoints.down('md')]: {
-            textAlign: 'Left',
-        }
-    }
+      color: 'white',
+      fontSize: '12px',
+      textTransform: 'none',
+      fontWeight: '500',
+      width: 'relative',
+      height: 'max-content',
+      textAlign: 'Right',
+      [theme.breakpoints.down('md')]: {
+        textAlign: 'Left',
+      },
+    },
     // Content_Style: {
     //   height: 'auto',
     //   width: '100%',
     // },
     // Content_Sub_Style: {
-    //     margin: "1.3em 1em", 
+    //     margin: "1.3em 1em",
     //     display: "flex",
     //     gap: "1.5em",
     //     justifyContent: "center",
@@ -361,14 +361,14 @@ function useStyle() {
     //     height: "auto",
     //     width: "auto",
     //     [theme.breakpoints.down('sm')]: {
-    //         margin: "1.3em 0.7em" 
+    //         margin: "1.3em 0.7em"
     //     }
     // },
-    // CyklasLogo_Cyklas_Style: { 
-    //     display: "flex", 
-    //     flexWrap: "wrap", 
-    //     gap: "1.5em", 
-    //     height: "auto", 
+    // CyklasLogo_Cyklas_Style: {
+    //     display: "flex",
+    //     flexWrap: "wrap",
+    //     gap: "1.5em",
+    //     height: "auto",
     //     width: "auto"
     // },
     // Cyklas_Logo_Style: {
@@ -472,11 +472,11 @@ function useStyle() {
     //   height: '25px',
     //   paddingLeft: '0px',
     // },
-    // Services_Socials_Style: { 
-    //     display: "flex", 
-    //     flexWrap: "wrap", 
-    //     gap: "20px", 
-    //     height: "auto", 
+    // Services_Socials_Style: {
+    //     display: "flex",
+    //     flexWrap: "wrap",
+    //     gap: "20px",
+    //     height: "auto",
     //     width: "auto"
     // },
     // Services_Style: {
