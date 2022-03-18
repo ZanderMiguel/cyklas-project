@@ -25,6 +25,12 @@ import Notfound from './Notfound';
 import Livequiz_multiplechoice from './Quizlit/LiveQuiz/Livequiz_multiplechoice';
 import StudentLiveQuiz_multiplechoice from './Quizlit/LiveQuiz/StudentLiveQuiz_multiplechoice';
 import Student_rankings from './Quizlit/LiveQuiz/Student_rankings';
+import Conference_details from './Telecon/Telecon_Components/Conference_details';
+import Members from './Telecon/Telecon_Components/Members';
+import Message_area from './Telecon/components/Messages';
+import Presentation from './Telecon/Telecon_Components/Presentation';
+import Student_activities from './Dashboard/Student_activities';
+import Student_viewactivity from './Dashboard/Student_viewactivity';
 import ChatApp from './ChatApp';
 import Telecon_room from './Telecon/Telecon_room';
 
@@ -81,6 +87,7 @@ function App() {
               exact
               path="/rooms/:roomID/:activityID"
               component={View_activity}
+              data={data}
             />
             {/* Sample 2 id's */}
             <ProtectedRoutes
@@ -90,6 +97,7 @@ function App() {
             />
             <ProtectedRoutes exact path="/settings" component={Setting} />
             <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
+
             <ProtectedRoutes
               exact
               path="/quizlit/createquiz"
