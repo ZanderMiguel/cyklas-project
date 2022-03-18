@@ -16,7 +16,7 @@ function ProtectedRoutes({
         {...attrib}
         render={() => {
           return localStorage.token !== undefined ? (
-            <Component data={data.current.data} />
+           data ?  <Component data={data.current.data} /> : <Component/>
           ) : (
             <Redirect to="/" />
           );

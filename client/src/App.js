@@ -30,6 +30,8 @@ import Conference_details from './Telecon/Telecon_Components/Conference_details'
 import Members from './Telecon/Telecon_Components/Members';
 import Message_area from './Telecon/Telecon_Components/Message_area';
 import Presentation from './Telecon/Telecon_Components/Presentation';
+import Student_activities from './Dashboard/Student_activities';
+import Student_viewactivity from './Dashboard/Student_viewactivity';
 
 function App() {
   const theme = createTheme({
@@ -95,6 +97,7 @@ function App() {
               exact
               path="/rooms/:roomID/:activityID"
               component={View_activity}
+              data = {data}
             />
             {/* Sample 2 id's */}
             <ProtectedRoutes
@@ -110,19 +113,22 @@ function App() {
               data={data}
             />
             <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
+
             <ProtectedRoutes
               exact
               path="/quizlit/createquiz"
               component={Quizform}
             />
             {/* Javen Routes */}
-            <ProtectedRoutes exact path="/Livequiz_multiplechoice" component={Livequiz_multiplechoice} />
-            <ProtectedRoutes exact path="/StudentLiveQuiz_multiplechoice" component={StudentLiveQuiz_multiplechoice} />
-            <ProtectedRoutes exact path="/Student_rankings" component={Student_rankings} />
+            <ProtectedRoutes exact path="/quizlit/Livequiz_multiplechoice" component={Livequiz_multiplechoice} />
+            <ProtectedRoutes exact path="/quizlit/StudentLiveQuiz_multiplechoice" component={StudentLiveQuiz_multiplechoice} />
+            <ProtectedRoutes exact path="/quizlit/Student_rankings" component={Student_rankings} />
             <ProtectedRoutes exact path="/Conference_details" component={Conference_details} />
             <ProtectedRoutes exact path="/Members" component={Members} />
             <ProtectedRoutes exact path="/Message_area" component={Message_area} />
             <ProtectedRoutes exact path="/Presentation" component={Presentation} />
+            <ProtectedRoutes exact path="/dashboard/Student_activities" component={Student_activities} />
+            <ProtectedRoutes exact path="/dashboard/Student_viewactivity" component={Student_viewactivity} />
             <ProtectedRoutes exact path="/records" component={Records} />
             <Route path="/forgotpassword">
               <Forgot_password />
