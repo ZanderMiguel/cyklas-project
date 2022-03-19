@@ -2,7 +2,8 @@ import React from 'react';
 import { Box, Typography, IconButton, Divider } from '@mui/material';
 import { MoreVert } from '@mui/icons-material';
 import ExamIcon from '../assets/ImageJaven/ExamIcon.png';
-import useStyle from './Student_activities_style';
+import useStyle from './Styles/Student_activities_style';
+import { Link } from "react-router-dom";
 
 const data = [
       {
@@ -10,24 +11,24 @@ const data = [
         name: 'Mark Orense',
         date: Date.now().toLocaleString(),
         time: Date.now().toLocaleString(),
-        points: '4 points',
-        score: '2 / 2'
+        points: '6 points',
+        score: '6 / 6'
       },
       {
         title: 'Conditional Statements',
         name: 'Mark Orense',
         date: Date.now().toLocaleString(),
         time: Date.now().toLocaleString(),
-        points: '4 points',
-        score: '2 / 2'
+        points: '6 points',
+        score: '6 / 6'
       },
       {
         title: 'Arrays',
         name: 'Mark Orense',
         date: Date.now().toLocaleString(),
         time: Date.now().toLocaleString(),
-        points: '4 points',
-        score: '2 / 2'
+        points: '6 points',
+        score: '6 / 6'
       },
 ];
 
@@ -38,7 +39,9 @@ function Studentexams_layout() {
     <>
       {data.map((items, index) => {
         return (
-          <Box sx={designs.BoxTileContainer} key={index}>
+          <Box sx={designs.BoxTileContainer} key={index}
+          component = {Link}
+          to = "/Student_viewexam">
               <img
                 src={ExamIcon}
                 alt="ExamIcon"

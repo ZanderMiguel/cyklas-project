@@ -2,7 +2,8 @@ import React from 'react';
 import { Box, Typography, IconButton, Divider } from '@mui/material';
 import { MoreVert } from '@mui/icons-material';
 import QuizIcon from '../assets/ImageJaven/QuizIcon.png';
-import useStyle from './Student_activities_style';
+import useStyle from './Styles/Student_activities_style';
+import { Link } from "react-router-dom";
 
 const data = [
       {
@@ -38,7 +39,9 @@ function Studentquizzes_layout() {
     <>
       {data.map((items, index) => {
         return (
-          <Box sx={designs.BoxTileContainer} key={index}>
+          <Box sx={designs.BoxTileContainer} key={index}
+          component = {Link}
+          to = "/Student_viewquiz">
             {/* <Box sx={designs.QuizContainer}> */}
               <img
                 src={QuizIcon}

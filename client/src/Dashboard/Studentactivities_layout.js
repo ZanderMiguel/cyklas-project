@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import ActivityIcon from '../assets/ImageJaven/ActivityIcon.png';
 import Wordfile from '../assets/ImageJaven/Wordfile.png';
-import useStyle from './Student_activities_style';
+import useStyle from './Styles/Student_activities_style';
 import Divider from '@mui/material/Divider';
 import { Link, Router } from 'react-router-dom';
 

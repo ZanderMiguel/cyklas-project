@@ -31,6 +31,8 @@ import Message_area from './Telecon/components/Messages';
 import Presentation from './Telecon/Telecon_Components/Presentation';
 import Student_activities from './Dashboard/Student_activities';
 import Student_viewactivity from './Dashboard/Student_viewactivity';
+import Student_viewexam from './Dashboard/Student_viewexam';
+import Student_viewquiz from './Dashboard/Student_viewquiz';
 import ChatApp from './ChatApp';
 import Telecon_room from './Telecon/Telecon_room';
 
@@ -87,7 +89,7 @@ function App() {
               exact
               path="/rooms/:roomID/:activityID"
               component={View_activity}
-              data={data}
+              // data={data}
             />
             {/* Sample 2 id's */}
             <ProtectedRoutes
@@ -103,6 +105,7 @@ function App() {
               path="/quizlit/createquiz"
               component={Quizform}
             />
+
             {/* Javen Routes */}
             <ProtectedRoutes
               exact
@@ -118,6 +121,30 @@ function App() {
               exact
               path="/Student_rankings"
               component={Student_rankings}
+            />
+
+            <Route
+              exact
+              path="/Student_activities"
+              component={Student_activities}
+            />
+
+            <Route
+              exact
+              path="/Student_viewactivity"
+              component={Student_viewactivity}
+            />
+
+            <Route
+              exact
+              path="/Student_viewexam"
+              component={Student_viewexam}
+            />
+
+            <Route
+              exact
+              path="/Student_viewquiz"
+              component={Student_viewquiz}
             />
 
             <ProtectedRoutes exact path="/records" component={Records} />

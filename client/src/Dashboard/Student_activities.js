@@ -6,7 +6,7 @@ import {
   Tabs,
   Tab
 } from '@mui/material';
-import useStyle from './Student_activities_style';
+import useStyle from './Styles/Student_activities_style';
 import Studentactivities_layout from "./Studentactivities_layout";
 import Studentquizzes_layout from "./Studentquizzes_layout";
 import Studentexams_layout from "./Studentexams_layout";
