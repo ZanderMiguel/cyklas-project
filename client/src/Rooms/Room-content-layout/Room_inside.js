@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import Announce from './Announce';
 import Activities from './Activities';
-import People from './People';
+import Member from './Member';
 
 import {
   AppBar,
@@ -97,7 +97,7 @@ function Room_inside() {
         ) : value === 1 ? (
           <Activities roomID={roomID} />
         ) : (
-          <People />
+          <Member />
         )}
       </Container>
     </>
