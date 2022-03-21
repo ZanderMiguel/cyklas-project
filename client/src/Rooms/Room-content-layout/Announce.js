@@ -1,20 +1,13 @@
 import React from 'react';
-import Input from '../../components/Input';
 import useStyle from '../Styles/Announce_style';
-
-import { Box, Grid, TextField, Avatar, InputAdornment } from '@mui/material';
+import { useParams } from 'react-router-dom';
+import { Box, Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { MoreVert, Send, KeyboardArrowDown } from '@mui/icons-material';
 import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
 import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
-import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
-import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
 import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
-import FormatColorFillIcon from '@mui/icons-material/FormatColorFill';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
 import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -31,7 +24,7 @@ import Post_layout from './Post_layout';
 import Schoolworktiles_layout from './Schoolworktiles_layout';
 import ContentEditable from 'react-contenteditable';
 import usePost from '../../customHooks/usePost';
-import useGet from '../../customHooks/useGet';
+import axios from 'axios';
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   '& .MuiToggleButtonGroup-grouped': {
@@ -51,7 +44,8 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
 }));
 
 function Announce() {
-  const { post } = usePost();
+  const { roomID } = useParams();
+
   const { designs } = useStyle();
   const myPost = React.useRef('');
   const bold = React.useRef(false);
@@ -60,7 +54,20 @@ function Announce() {
   const [alignment, setAlignment] = React.useState('left');
   const [formats, setFormats] = React.useState(() => ['italic']);
   const [postData, setPostData] = React.useState(new Map());
-  const { data } = useGet('http://localhost:5000/feed');
+  /*  React.useMemo(() => {
+    post('http://localhost:5000/announce', { rooms: id });
+    console.log(data);
+  }, []); */
+  const [data, setData] = React.useState(null);
+  React.useMemo(() => {
+    axios
+      .post('http://localhost:5000/announce', { rooms: roomID })
+      .then((res) => {
+        setData(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const handleFormat = (event, newFormats) => {
     setFormats(newFormats);
@@ -189,11 +196,10 @@ function Announce() {
           </Stack>
         </Box>
       </Grid>
-
       <input
         type="button"
         onClick={() => {
-          post('http://localhost:5000/feed/create', {
+          /* post('http://localhost:5000/feed/create', {
             content: Object.fromEntries(postData),
             author: {
               name: 'Mirador Zander',
@@ -201,11 +207,11 @@ function Announce() {
               id: 'kahit ano muna',
             },
             title: 'obob',
-          });
+          }); */
         }}
         value="POSt"
       />
-      <Post_layout data={data} />
+      {data && <Post_layout data={data} />}
       <Schoolworktiles_layout />
     </Grid>
   );

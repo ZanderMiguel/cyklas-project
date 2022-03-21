@@ -54,6 +54,9 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('User Disconnected', socket.id);
   });
+  socket.on('create-room', (created) => {
+    socket.emit('room-created', created);
+  });
 });
 
 //socket.io events

@@ -12,7 +12,7 @@ import ProtectedRoutes from './components/ProtectedRoutes';
 import Dashboard from './Dashboard/Dashboard';
 import Navbar_landingpage from './components/Navbar_landingpage';
 
-// import { io } from 'socket.io-client';
+import { io } from 'socket.io-client';
 
 import TeleconStart from './Telecon/TeleconStart';
 import QuizLit from './Quizlit/Quizlit';
@@ -60,7 +60,7 @@ function App() {
     },
   });
 
-  // const socket = io.connect('http://localhost:3001');
+  const socket = io.connect('http://localhost:3001');
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -77,8 +77,7 @@ function App() {
               exact
               path="/rooms"
               component={Rooms}
-
-              // socket={socket}
+              socket={socket}
             />
             <ProtectedRoutes
               exact

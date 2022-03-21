@@ -57,7 +57,15 @@ const updateRooms = async (req, res) => {
     return res.json(error);
   }
 };
-
+const addMembers = async(req,res) => {
+  try{
+    await RoomsModel.updateMany({_id: req.body.roomID},{$push: {members: req.body.memberID}})
+    return res.json({status: 'success', message:'Member added'})
+  }catch(error){
+    console.log(error)
+    return res.json(error)
+  }
+}
 module.exports = {
   createRoomController: createRooms,
   displayRoomController: displayRooms,
