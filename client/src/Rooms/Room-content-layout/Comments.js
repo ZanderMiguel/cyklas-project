@@ -1,14 +1,25 @@
 import React from 'react'
 import moment from 'moment';
-import {Box,Typography,Avatar} from '@mui/material'
+import {Box,Typography,Avatar, IconButton} from '@mui/material'
 import useStyles from '../Styles/Announce_style';
 import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
 
-function Comments() {
+
+function Comments({commentContent}) {
     const { designs } = useStyles();
   return (
-    <Box className='comments-wrapper'>
-        <Box className="User" sx={designs.User_Style}>
+    <>
+    <Box className="View-comments" sx={designs.View_Comments_Style}>
+                <Typography noWrap sx={designs.View_Comments_Typography_Style}>
+                2
+                </Typography>
+                <Typography noWrap sx={designs.View_Comments_Typography_Style}>
+                Comments
+                </Typography>
+                
+              </Box>
+      <Box className='comments-wrapper'>
+       <Box className="User" sx={designs.User_Style}>
                 <Avatar
                   alt="Remy Sharp"
                   src={AvatarIcon}
@@ -33,6 +44,7 @@ function Comments() {
             </Box>
         </Box>
     </Box>
+    </>
   )
 }
 
