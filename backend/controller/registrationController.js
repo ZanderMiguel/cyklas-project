@@ -11,7 +11,6 @@ const client = new OAuth2Client(
 const createRegistration = async (req, res) => {
   try {
     const id = mongoose.Types.ObjectId();
-    console.log(id);
     const password = await bcrypt.hash(req.body.password, 10);
     if (password) {
       const addRegistration = new RegistrationModel({

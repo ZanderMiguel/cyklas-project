@@ -53,40 +53,81 @@ router.delete('/feed/delete/:id', deleteFeedController);
 router.put('/feed/update/:id', updateFeedController);
 
 const {
-  createAnnounce, displayAnnounce, deleteAnnounce, updateAnnounce
-} = require("../controller/announcementController")
+  createAnnounce,
+  displayAnnounce,
+  deleteAnnounce,
+  updateAnnounce,
+} = require('../controller/announcementController');
 router.post('/announce/create', createAnnounce);
 router.post('/announce', displayAnnounce);
 router.delete('/announce/delete', deleteAnnounce);
 router.put('/announce/update', updateAnnounce);
 
 const {
-  createComment, displayComment, deleteComment, updateComment
-} = require("../controller/commentController")
+  createComment,
+  displayComment,
+  deleteComment,
+  updateComment,
+} = require('../controller/commentController');
 router.post('/comment/create', createComment);
 router.post('/comment', displayComment);
 router.delete('/comment/delete', deleteComment);
-router.put('/comment/update', updateComment)
+router.put('/comment/update', updateComment);
 const { teleController } = require('../controller/teleconController');
 router.get('/telecon/create', teleController);
 
-const { createQuizlitController, updateQuizlitController, deleteQuizlitController, findQuizlitController,displayQuizlitOnQuizlit,displayQuizlitOnRoom } = require('../controller/quizlitController')
-router.post('/quizlit/create', createQuizlitController)
-router.put('/quizlit/update', updateQuizlitController)
-router.delete('/quizlit/delete', deleteQuizlitController)
-router.post('/quizlit', findQuizlitController)
-router.post('/myQuizlit',displayQuizlitOnQuizlit)
-router.post('/roomQuizlit',displayQuizlitOnRoom)
+const {
+  createQuizlitController,
+  updateQuizlitController,
+  deleteQuizlitController,
+  findQuizlitController,
+  displayQuizlitOnQuizlit,
+  displayQuizlitOnRoom,
+} = require('../controller/quizlitController');
+router.post('/quizlit/create', createQuizlitController);
+router.put('/quizlit/update', updateQuizlitController);
+router.delete('/quizlit/delete', deleteQuizlitController);
+router.post('/quizlit', findQuizlitController);
+router.post('/myQuizlit', displayQuizlitOnQuizlit);
+router.post('/roomQuizlit', displayQuizlitOnRoom);
 
-const { createQuestionController, updateQuestionController, deleteQuestionController, findQuestionController } = require('../controller/questionsController')
-router.post('/question/create', createQuestionController)
-router.put('/question/update', updateQuestionController)
-router.delete('/question/delete', deleteQuestionController)
-router.post('/question', findQuestionController)
+const {
+  createQuestionController,
+  updateQuestionController,
+  deleteQuestionController,
+  findQuestionController,
+} = require('../controller/questionsController');
+router.post('/question/create', createQuestionController);
+router.put('/question/update', updateQuestionController);
+router.delete('/question/delete', deleteQuestionController);
+router.post('/question', findQuestionController);
 
-const {addMembers,acceptRequest,declineRequest,displayRequests} = require('../controller/roomRequestController')
-router.post('/requests/to-join',addMembers)
-router.post('/requests/accept',acceptRequest)
-router.delete('/requests/decline',declineRequest)
-router.post('/requests',displayRequests)
+const {
+  addMembers,
+  acceptRequest,
+  declineRequest,
+  displayRequests,
+} = require('../controller/roomRequestController');
+router.post('/requests/to-join', addMembers);
+router.post('/requests/accept', acceptRequest);
+router.delete('/requests/decline', declineRequest);
+router.post('/requests', displayRequests);
+
+const {
+  createGroup,
+  displayGroups,
+  deleteGroup,
+} = require('../controller/groupsController');
+router.post('/groups/create', createGroup);
+router.post('/groups', displayGroups);
+router.delete('/groups/delete', deleteGroup);
+
+const {
+  createAnswer,
+  displayAnswer,
+  updateScore,
+} = require('../controller/answersController');
+router.post('/answers/create', createAnswer);
+router.post('/answers', displayAnswer);
+router.put('/answers/update', updateScore);
 module.exports = router;

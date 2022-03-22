@@ -6,7 +6,6 @@ const AnnouncementSchema = new mongoose.Schema(
     author: { type: Object, required: true },
     content: { type: String, required: true },
     media: { type: Buffer },
-    comments: [{ type: mongoose.Schema.Types.ObjectId }],
     rooms: { type: mongoose.Schema.Types.ObjectId },
   },
   { timestamps: true }
