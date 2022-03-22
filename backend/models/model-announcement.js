@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const AnnouncementSchema = new mongoose.Schema(
   {
     _id: mongoose.Schema.Types.ObjectId,
-    title: { type: String, required: true },
     author: { type: Object, required: true },
     content: { type: String, required: true },
     media: { type: Buffer },

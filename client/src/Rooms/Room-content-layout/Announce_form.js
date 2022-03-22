@@ -11,6 +11,7 @@ import {
   IconButton,
   Button,
 } from '@mui/material';
+import {useParams} from 'react-router-dom'
 import { styled } from '@mui/material/styles';
 import usePost from '../../customHooks/usePost'
 import {
@@ -34,9 +35,12 @@ function Announce_form() {
   const bold = React.useRef(false);
 
   const {post} = usePost()
+  const {roomID} = useParams()
+  
 
   const handleAnnounce = () => {
-
+    post('http://localhost:5000/announce/create', {author: {useID: JSON.parse(localStorage.userData).data.user._id,
+      name: `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName} ` }, rooms: [roomID], content: postData.current.textContent })
   }
 
   

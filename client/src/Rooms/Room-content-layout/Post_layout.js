@@ -16,6 +16,10 @@ import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
 import useStyles from '../Styles/Announce_style';
 
 function Post_layout({ data }) {
+  const commentContent = React.useRef(null)
+
+
+
   const { designs } = useStyles();
   console.log('ano to', data);
   return (
@@ -61,19 +65,7 @@ function Post_layout({ data }) {
               </Box>
 
               <Divider sx={designs.Divider_Style} />
-
-              <Box className="View-comments" sx={designs.View_Comments_Style}>
-                <Typography noWrap sx={designs.View_Comments_Typography_Style}>
-                  View comments
-                </Typography>
-                <IconButton
-                  aria-label="dropdown"
-                  sx={designs.Dropdown_IconButton_Style}
-                >
-                  <KeyboardArrowDown sx={designs.KeyboardArrowDownIcon_Style} />
-                </IconButton>
-              </Box>
-              <Comments/>
+              <Comments commentContent={commentContent}/>
             <Divider sx={{mb: 2}}/>
               <Box className="write-comment" sx={designs.Write_Comment_Style}>
                 <Avatar
@@ -86,6 +78,7 @@ function Post_layout({ data }) {
                   id="filled-basic"
                   placeholder="Write a comment..."
                   variant="filled"
+                  ref={commentContent}
                   sx={designs.Comment_TextField_Style}
                   inputProps={{
                     style: {
