@@ -33,6 +33,8 @@ import Student_activities from './Dashboard/Student_activities';
 import Student_viewactivity from './Dashboard/Student_viewactivity';
 import Student_viewexam from './Dashboard/Student_viewexam';
 import Student_viewquiz from './Dashboard/Student_viewquiz';
+import Exam_take from './Dashboard/Exam_take';
+import Exam_start from './Dashboard/Exam_start';
 import ChatApp from './ChatApp';
 import Telecon_room from './Telecon/Telecon_room';
 
@@ -145,6 +147,18 @@ function App() {
               exact
               path="/Student_viewquiz"
               component={Student_viewquiz}
+            />
+
+            <Route
+              exact
+              path="/Exam_take"
+              component={Exam_take}
+            />
+
+            <Route
+              exact
+              path="/Exam_start"
+              component={Exam_start}
             />
 
             <ProtectedRoutes exact path="/records" component={Records} />

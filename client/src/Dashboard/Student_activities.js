@@ -38,11 +38,11 @@ function Student_activities({ roomID }) {
               <Tab
                 disableRipple
                 label={
-                  <Typography variant="h6" sx={{ fontSize: "1.1em", fontWeight: '600' }}>
+                  <Typography variant="h6" sx={{ fontSize: "1em", fontWeight: '600' }}>
                     Activities
                   </Typography>
                 }
-                sx = {{ marginBottom: "0.3em" }}
+                sx = {{ padding: "0em", margin: "0em" }}
                 onClick={() => {
                     setComp(<Studentactivities_layout/>);
                 }}
@@ -50,11 +50,11 @@ function Student_activities({ roomID }) {
               <Tab
                 disableRipple
                 label={
-                  <Typography variant="h6" sx={{ fontSize: "1.1em", fontWeight: '600' }}>
+                  <Typography variant="h6" sx={{ fontSize: "1em", fontWeight: '600' }}>
                     Quizzes
                   </Typography>
                 }
-                sx = {{ marginBottom: "0.3em" }}
+                sx = {{ padding: "0em", margin: "0em" }}
                 onClick={() => {
                     setComp(<Studentquizzes_layout/>);
                 }}
@@ -62,11 +62,11 @@ function Student_activities({ roomID }) {
               <Tab
                 disableRipple
                 label={
-                  <Typography variant="h6" sx={{ fontSize: "1.1em", fontWeight: '600' }}>
+                  <Typography variant="h6" sx={{ fontSize: "1em", fontWeight: '600' }}>
                     Exams
                   </Typography>
                 }
-                sx = {{ marginBottom: "0.3em" }}
+                sx = {{ padding: "0em", margin: "0em" }}
                 onClick={() => {
                     setComp(<Studentexams_layout/>);
                 }}
@@ -86,11 +86,11 @@ function Student_activities({ roomID }) {
               <Tab
                 disableRipple
                 label={
-                  <Typography variant="h6" sx={{ fontSize: "1.1em", fontWeight: '600' }}>
+                  <Typography variant="h6" sx={{ fontSize: "1em", fontWeight: '600' }}>
                     Activities
                   </Typography>
                 }
-                sx = {{ marginBottom: "0.3em" }}
+                sx = {{ padding: "0em", margin: "0em" }}
                 onClick={() => {
                     setComp(<Studentactivities_layout/>);
                 }}
@@ -98,11 +98,11 @@ function Student_activities({ roomID }) {
               <Tab
                 disableRipple
                 label={
-                  <Typography variant="h6" sx={{ fontSize: "1.1em", fontWeight: '600' }}>
+                  <Typography variant="h6" sx={{ fontSize: "1em", fontWeight: '600' }}>
                     Quizzes
                   </Typography>
                 }
-                sx = {{ marginBottom: "0.3em" }}
+                sx = {{ padding: "0em", margin: "0em" }}
                 onClick={() => {
                     setComp(<Studentquizzes_layout/>);
                 }}
@@ -110,11 +110,11 @@ function Student_activities({ roomID }) {
               <Tab
                 disableRipple
                 label={
-                  <Typography variant="h6" sx={{ fontSize: "1.1em", fontWeight: '600' }}>
+                  <Typography variant="h6" sx={{ fontSize: "1em", fontWeight: '600' }}>
                     Exams
                   </Typography>
                 }
-                sx = {{ marginBottom: "0.3em" }}
+                sx = {{ padding: "0em", margin: "0em" }}
                 onClick={() => {
                     setComp(<Studentexams_layout/>);
                 }}
