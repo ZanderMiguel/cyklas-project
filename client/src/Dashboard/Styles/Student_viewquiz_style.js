@@ -6,6 +6,8 @@ const theme = useTheme()
 const designs = {
     Right_Container_GridItem_Style: { 
         margin: "0.5em 0em",
+        backgroundColor: "#FDFDFD",
+        boxShadow: "rgba(0, 0, 0, 0.1) 0px 1px 2px 0px",
         [theme.breakpoints.between('sm', 'md')]: {
             margin: "0.5em 0em 0em 0em",
         }
@@ -247,7 +249,7 @@ const designs = {
         }
     },
     Choices_Style: {
-        padding: "0.2em 1em 0.2em 2.5em",
+        padding: "0.5em 1em 0.2em 2.5em",
         display: "flex",
         flexDirection: "column",
         gap: "0.3em",
@@ -400,7 +402,8 @@ const designs = {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#F9F9F9",
+        backgroundColor: "transparent",
+        border: "2px solid #49B854",
         color: "#49B854",
         fontSize: "0.9em",
         fontWeight: "600",

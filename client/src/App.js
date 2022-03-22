@@ -35,6 +35,8 @@ import Student_viewexam from './Dashboard/Student_viewexam';
 import Student_viewquiz from './Dashboard/Student_viewquiz';
 import Exam_take from './Dashboard/Exam_take';
 import Exam_start from './Dashboard/Exam_start';
+import View_quiz from './Quizlit/Quizbank-content-layout/Quizbank-view/View_quiz';
+import View_exam from './Quizlit/Quizbank-content-layout/Quizbank-view/View_exam';
 import ChatApp from './ChatApp';
 import Telecon_room from './Telecon/Telecon_room';
 
@@ -158,6 +160,18 @@ function App() {
               exact
               path="/Exam_start"
               component={Exam_start}
+            />
+
+            <Route
+              exact
+              path="/View_quiz"
+              component={View_quiz}
+            />
+
+            <Route
+              exact
+              path="/View_exam"
+              component={View_exam}
             />
 
             <ProtectedRoutes exact path="/records" component={Records} />

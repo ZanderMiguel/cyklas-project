@@ -13,7 +13,7 @@ function Exam_take() {
             <Grid item xs = {12} sx = {designs.ExamTake_GridItem_Style}>
                 
                 <Typography sx = {designs.ExamName_Typography_Style}>
-                    Variables
+                    Preliminary Exam
                 </Typography>
 
                 <Box className = "container" sx = {designs.Container_Style}>

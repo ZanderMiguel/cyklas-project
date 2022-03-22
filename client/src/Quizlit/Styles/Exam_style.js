@@ -13,6 +13,7 @@ function useStyle() {
       display: 'flex',
       border: ' 2px solid #DBDBDB',
       borderRadius: '0.8em',
+      textDecoration: "none",
       '&: hover': {
         cursor: 'pointer',
         boxShadow:

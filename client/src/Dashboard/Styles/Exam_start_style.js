@@ -200,18 +200,27 @@ function useStyle(){
         },
         Question_Container_Style: {
             width: "60%",
-            height: "auto"
+            height: "auto",
+            [theme.breakpoints.down('sm')]: {
+                width: "100%"
+            }
         },
         Question_Style: {
             width: "relative",
             height: "auto",
             display: "flex",
             gap: "0.8em",
-            padding: "0.3em 1.4em"
+            padding: "0.3em 1.4em",
+            [theme.breakpoints.down('sm')]: {
+                padding: "0.3em 1em",
+            }
         },
         Divider_Style: {
             width: "relative",
-            margin: "0em 1.8em 0em 1.4em"
+            margin: "0em 1.8em 0em 1.4em",
+            [theme.breakpoints.down('sm')]: {
+                margin: "0em 1em 0em 1em",
+            }
         },
         Item_Typography_Style: {
             width: "auto",
@@ -234,7 +243,10 @@ function useStyle(){
             display: "flex",
             flexDirection: "column",
             gap: "0.3em",
-            padding: "0.5em 1.8em 1em 1.8em"
+            padding: "0.5em 1.8em 1em 1.8em",
+            [theme.breakpoints.down('sm')]: {
+                padding: "0.5em 1em 1em 1em",
+            }
         },
 
         Answer_A_Style: {
@@ -493,11 +505,25 @@ function useStyle(){
             height: "relative",
             display: "flex",
             justifyContent: "center",
-            alignItems: "center"
+            alignItems: "center",
+            [theme.breakpoints.down('sm')]: {
+               display: "none"
+            }
+        },
+        Image_Container_Responsive_Style: {
+            width: "relative",
+            padding: "0em 1em",
+            margin: "0.8em 0em",
+            height: "auto",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            [theme.breakpoints.up('sm')]: {
+               display: "none"
+            }
         },
         ShortAnswer_Input_Style: {
             backgroundColor: "transparent",
-            borderBottom: "1px solid #DBDBDB" ,
             fontSize: "0.8em",
             fontWeight: "500",
             color: "#3F3D56"
@@ -511,7 +537,7 @@ function useStyle(){
                 color: grey[50],
             },
         },
-        Answer_Option_Style: {
+        Answer_Option_Typography_Style: {
             width: "90%",
             height: "auto",
             wordWrap: 'break-word',

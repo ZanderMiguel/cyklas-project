@@ -16,6 +16,9 @@ function Exam_start() {
     const [answerButtonToggleC, setAnswerButtonToggleC] = useState(true);
     const [answerButtonToggleD, setAnswerButtonToggleD] = useState(true);
 
+    const [answerButtonToggleTrue, setAnswerButtonToggleTrue] = useState(true);
+    const [answerButtonToggleFalse, setAnswerButtonToggleFalse] = useState(true);
+
     const handleClickA = () => {
         setAnswerButtonToggleA((prev) => !prev);
         setAnswerButtonToggleB(true);
@@ -39,6 +42,15 @@ function Exam_start() {
         setAnswerButtonToggleA(true);
         setAnswerButtonToggleB(true);
         setAnswerButtonToggleC(true);
+    };
+
+    const handleClickTrue = () => {
+        setAnswerButtonToggleTrue((prev) => !prev);
+        setAnswerButtonToggleFalse(true);
+    };
+    const handleClickFalse = () => {
+        setAnswerButtonToggleFalse((prev) => !prev);
+        setAnswerButtonToggleTrue(true);
     };
 
   return (
@@ -66,7 +78,7 @@ function Exam_start() {
                             marginTop: "0.2em"
                             }}/>
                         <Typography sx = {designs.Exam_Typography_Style}>
-                            Variables
+                        Preliminary Exam
                         </Typography>
                     </Box>
                    
@@ -129,6 +141,15 @@ function Exam_start() {
                         </Box>
 
                         <Divider sx = {designs.Divider_Style}/>
+                        
+                        <Box className = "Image-container" sx = {designs.Image_Container_Responsive_Style}>
+                            <img
+                            src={Image}
+                            alt="Image"
+                            style={{
+                            height: '5.5em'
+                            }}/>
+                        </Box>
 
                         <Box className = "Choices" sx = {designs.Choices_Style}>
                             <Box className = "Answer-a"
@@ -313,14 +334,22 @@ function Exam_start() {
 
                         <Divider sx = {designs.Divider_Style}/>
 
+                        <Box className = "Image-container" sx = {designs.Image_Container_Responsive_Style}>
+                            <img
+                            src={Image}
+                            alt="Image"
+                            style={{
+                            height: '5.5em'
+                            }}/>
+                        </Box>
+
                         <Box className = "Choices" sx = {designs.Choices_Style}>
                             <Input
                             variant="standard"
                             multiline
                             fullWidth
                             rows={6}
-                            label="Type your answer here..."
-                            disableUnderline
+                            placeholder="Type your answer here..."
                             sx={designs.ShortAnswer_Input_Style}/>  
                         </Box>
                     </Box>
@@ -363,12 +392,21 @@ function Exam_start() {
 
                         <Divider sx = {designs.Divider_Style}/>
 
+                        <Box className = "Image-container" sx = {designs.Image_Container_Responsive_Style}>
+                            <img
+                            src={Image}
+                            alt="Image"
+                            style={{
+                            height: '5.5em'
+                            }}/>
+                        </Box>
+
                         <Box className = "Choices" sx = {designs.Choices_Style}>
                             <Box className = "Option1"
                             sx={designs.Answer_A_Style}>
                                 <Checkbox sx = {designs.Checkbox_Style}/>
 
-                                <Typography noWrap sx={designs.Answer_Option_Style}>
+                                <Typography noWrap sx={designs.Answer_Option_Typography_Style}>
                                 Blank Answer
                                 </Typography>
                             </Box>
@@ -377,7 +415,7 @@ function Exam_start() {
                             sx={designs.Answer_B_Style}>
                                 <Checkbox sx = {designs.Checkbox_Style}/>
 
-                                <Typography noWrap sx={designs.Answer_Option_Style}>
+                                <Typography noWrap sx={designs.Answer_Option_Typography_Style}>
                                 Blank Answer
                                 </Typography>
                             </Box>
@@ -386,7 +424,7 @@ function Exam_start() {
                             sx={designs.Answer_C_Style}>
                                 <Checkbox sx = {designs.Checkbox_Style}/>
 
-                                <Typography noWrap sx={designs.Answer_Option_Style}>
+                                <Typography noWrap sx={designs.Answer_Option_Typography_Style}>
                                 Blank Answer
                                 </Typography>
                             </Box>
@@ -395,7 +433,7 @@ function Exam_start() {
                             sx={designs.Answer_D_Style}>
                                 <Checkbox sx = {designs.Checkbox_Style}/>
 
-                                <Typography noWrap sx={designs.Answer_Option_Style}>
+                                <Typography noWrap sx={designs.Answer_Option_Typography_Style}>
                                 Blank Answer
                                 </Typography>
                             </Box>
@@ -440,11 +478,38 @@ function Exam_start() {
 
                         <Divider sx = {designs.Divider_Style}/>
 
+                        <Box className = "Image-container" sx = {designs.Image_Container_Responsive_Style}>
+                            <img
+                            src={Image}
+                            alt="Image"
+                            style={{
+                            height: '5.5em'
+                            }}/>
+                        </Box>
+
                         <Box className = "Choices" sx = {designs.Choices_Style}>
                             <Box className = "Answer-a"
-                            onClick={() => {}}
-                            sx={designs.Answer_A_Style}>
-                                <Box className = "Quiz-item" sx = {designs.Exam_Item_Style}>
+                            onClick={handleClickTrue}
+                            // sx={designs.Answer_A_Style}
+                            >
+                            {!answerButtonToggleTrue ? (
+                                <Box className = "Answer-a" sx={designs.Answer_AT_Style}>
+                                    <Box className = "Quiz-item" sx = {designs.Exam_Item_Style}>
+                                        <Typography sx={designs.AnswerA_Typography_Style}>
+                                            A.
+                                        </Typography>
+                                    </Box>
+
+                                    <Typography noWrap sx={designs.Answer_Typography2_Style}>
+                                    True
+                                    </Typography>
+                                </Box>
+                            ) : (
+                                <Typography sx={designs.AnswerAF_Typography_Style}>
+                                    A. &nbsp;&nbsp; &nbsp; True
+                                </Typography>
+                            )} 
+                                {/* <Box className = "Quiz-item" sx = {designs.Exam_Item_Style}>
                                     <Typography sx={designs.AnswerA_Typography_Style}>
                                         A.
                                     </Typography>
@@ -452,13 +517,31 @@ function Exam_start() {
 
                                 <Typography noWrap sx={designs.Answer_Typography2_Style}>
                                 True
-                                </Typography>
+                                </Typography> */}
                             </Box>
 
                             <Box className = "Answer-b"
-                            onClick={() => {}}
-                            sx={designs.Answer_B_Style}>
-                                <Box className = "Quiz-item" sx = {designs.Exam_Item_Style}>
+                            onClick={handleClickFalse}
+                            // sx={designs.Answer_B_Style}
+                            >
+                            {!answerButtonToggleFalse ? (
+                                <Box className = "Answer-b" sx={designs.Answer_BT_Style}>
+                                    <Box className = "Quiz-item" sx = {designs.Exam_Item_Style}>
+                                        <Typography sx={designs.AnswerB_Typography_Style}>
+                                            B.
+                                        </Typography>
+                                    </Box>
+
+                                    <Typography noWrap sx={designs.Answer_Typography2_Style}>
+                                    False
+                                    </Typography>
+                                </Box>
+                            ) : (
+                                <Typography sx={designs.AnswerBF_Typography_Style}>
+                                    B. &nbsp;&nbsp; &nbsp; False
+                                </Typography>
+                            )} 
+                                {/* <Box className = "Quiz-item" sx = {designs.Exam_Item_Style}>
                                     <Typography sx={designs.AnswerB_Typography_Style}>
                                         B.
                                     </Typography>
@@ -466,7 +549,7 @@ function Exam_start() {
 
                                 <Typography noWrap sx={designs.Answer_Typography2_Style}>
                                 False
-                                </Typography>
+                                </Typography> */}
                             </Box>
                         </Box>
                     </Box>
@@ -513,29 +596,25 @@ function Exam_start() {
                             <Input
                             variant="standard"
                             fullWidth
-                            label="Type your answer here..."
-                            disableUnderline
+                            placeholder="Type your answer here..."
                             sx={designs.ShortAnswer_Input_Style}/>  
 
                             <Input
                             variant="standard"
                             fullWidth
-                            label="Type your answer here..."
-                            disableUnderline
+                            placeholder="Type your answer here..."
                             sx={designs.ShortAnswer_Input_Style}/> 
 
                             <Input
                             variant="standard"
                             fullWidth
-                            label="Type your answer here..."
-                            disableUnderline
+                            placeholder="Type your answer here..."
                             sx={designs.ShortAnswer_Input_Style}/> 
 
                             <Input
                             variant="standard"
                             fullWidth
-                            label="Type your answer here..."
-                            disableUnderline
+                            placeholder="Type your answer here..."
                             sx={designs.ShortAnswer_Input_Style}/> 
                         </Box>
                     </Box>

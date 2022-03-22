@@ -3,6 +3,7 @@ import { Buttons as Button, Boxs as Box } from '../../components/Component';
 import { Typography, IconButton } from '@mui/material';
 import ExamIcon from '../../assets/ImageJaven/ExamIcon.png';
 import { MoreVert } from '@mui/icons-material';
+import { Link } from "react-router-dom";
 import useStyle from '../Styles/Exam_style';
 
 function Exam_layout({ bank }) {
@@ -13,7 +14,9 @@ function Exam_layout({ bank }) {
       {bank.map((item, idx) => {
         const { title, name, date, time } = item;
         return (
-          <Box sx={designs.BoxTileContainer} key={idx}>
+          <Box sx={designs.BoxTileContainer} key={idx}
+          component = {Link}
+          to = "/View_exam">
             <Box sx={designs.ExamContainer}>
               <img
                 src={ExamIcon}
