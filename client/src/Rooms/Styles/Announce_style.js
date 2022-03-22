@@ -82,7 +82,7 @@ function useStyle() {
       textAlign: 'justify',
       fontSize: '14px',
       color: '#3F3D56',
-      fontWeight: '600',
+      fontWeight: '500',
     },
     Divider_Style: {
       width: 'relative',
@@ -92,7 +92,7 @@ function useStyle() {
       height: 'auto',
       width: 'relative',
       paddingLeft: '20px',
-      marginBottom: '10px',
+      marginBottom: '5px',
       display: 'flex',
       gap: '8px',
     },

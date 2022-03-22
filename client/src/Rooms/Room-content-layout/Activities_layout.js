@@ -66,7 +66,7 @@ function ActivitiesAccordion({ roomID }) {
   const { designs } = useStyle();
   const [expanded, setExpanded] = React.useState(false);
 
-  const handleChange = (panel) => (isExpanded) => {
+  const handleChange = (panel) => (event,isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
