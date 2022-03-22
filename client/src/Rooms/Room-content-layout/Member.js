@@ -3,7 +3,7 @@ import { Box, Button } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import People_table from './People_table';
 
-function People() {
+function Member() {
   return (
     <>
       <Box>
@@ -38,4 +38,4 @@ function People() {
   );
 }
 
-export default People;
+export default Member;
