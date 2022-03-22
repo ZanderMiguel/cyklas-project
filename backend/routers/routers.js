@@ -130,4 +130,34 @@ const {
 router.post('/answers/create', createAnswer);
 router.post('/answers', displayAnswer);
 router.put('/answers/update', updateScore);
+
+const {
+  createGradingSystem,
+  updateGradingSystem,
+  deleteGradingSystem,
+  displayGradingSystem,
+} = require('../controller/gradingSystemController');
+router.post('/gradingSystem/create', createGradingSystem);
+router.post('/gradingSystem', displayGradingSystem);
+router.put('/gradingSystem/update', updateGradingSystem);
+router.delete('gradingSystem/delete', deleteGradingSystem);
+
+const {
+  createClassRecord,
+  deleteClassRecord,
+  updateClassRecord,
+  displayClassRecord,
+} = require('../controller/classRecordController');
+router.post('/records/create', createClassRecord);
+router.post('/records', displayClassRecord);
+router.put('/records/update', updateClassRecord);
+router.delete('/records/delete', deleteClassRecord);
+
+const {
+  createClassCard,
+  displayClassCard,
+} = require('../controller/classCardController');
+router.post('/cards/create', createClassCard);
+router.post('/cards', displayClassCard);
+
 module.exports = router;
