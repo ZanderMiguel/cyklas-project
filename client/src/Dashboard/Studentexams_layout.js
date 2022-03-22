@@ -12,7 +12,7 @@ const data = [
         date: Date.now().toLocaleString(),
         time: Date.now().toLocaleString(),
         points: '6 points',
-        score: '6 / 6'
+        score: '3 / 3'
       },
       {
         title: 'Conditional Statements',
@@ -20,7 +20,7 @@ const data = [
         date: Date.now().toLocaleString(),
         time: Date.now().toLocaleString(),
         points: '6 points',
-        score: '6 / 6'
+        score: '3 / 3'
       },
       {
         title: 'Arrays',
@@ -28,7 +28,7 @@ const data = [
         date: Date.now().toLocaleString(),
         time: Date.now().toLocaleString(),
         points: '6 points',
-        score: '6 / 6'
+        score: '3 / 3'
       },
 ];
 

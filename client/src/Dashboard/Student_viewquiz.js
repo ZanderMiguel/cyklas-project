@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Grid, Box, Typography, Divider, Input, Checkbox } from "@mui/material";
 import QuizIcon from "../assets/ImageJaven/QuizIcon.png";
+import Image from "../assets/ImageJaven/Image.png";
 import useStyle from "./Styles/Student_viewquiz_style";
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -55,7 +56,7 @@ function Student_viewquiz() {
                             </Typography>
 
                             <Typography sx = {designs.Score_Responsive_Typography_Style}>
-                                6 / 6
+                                4 / 4
                             </Typography>
                             
                             <Typography sx = {designs.Instructions_Typography_Style}>
@@ -69,7 +70,7 @@ function Student_viewquiz() {
                             </Typography>
 
                             <Typography sx = {designs.Score_Typography_Style}>
-                                6 / 6
+                                4 / 4
                             </Typography>
                         </Box>
                         
@@ -146,12 +147,81 @@ function Student_viewquiz() {
                             </Typography>
                             
                         </Box>
-                        
+
                         <Box className = "Item-2" sx = {designs.Item_Style}>
 
                             <Box className = "Question" sx = {designs.Question_Style}>
                                 <Typography sx = {designs.Item_Typography_Style}>
                                 2.
+                                </Typography>
+
+                                <Typography sx = {designs.Item_Question_Typography_Style}>
+                                Which of the following animals is Amphibian?
+                                </Typography>
+
+                                <Box flexGrow = {1} sx = {designs.BoxFlexGrow_Style}/>
+
+                                <Typography
+                                sx = {designs.Points_Typography_Style}>
+                                2
+                                </Typography>
+
+                                <Typography
+                                sx = {designs.PointsText_Typography_Style}>
+                                points
+                                </Typography>
+                            </Box>
+                            
+                            <Box className = "Choices" sx = {designs.ChoicesImageA_Style}>
+                                <Box className = "Choice-a" sx = {designs.ChoiceImage1_Style}>
+                                    <img
+                                    src={Image}
+                                    alt="Image"
+                                    style={{
+                                    height: '3em'
+                                    }}/>
+                                </Box>
+
+                                <Box className = "Choice-b" sx = {designs.ChoiceImage2_Style}>
+                                    <img
+                                    src={Image}
+                                    alt="Image"
+                                    style={{
+                                    height: '3em'
+                                    }}/>
+                                </Box>
+                            </Box>
+
+                            <Box className = "Choices" sx = {designs.ChoicesImageB_Style}>
+                                <Box className = "Choice-c" sx = {designs.ChoiceImage3_Style}>
+                                    <img
+                                    src={Image}
+                                    alt="Image"
+                                    style={{
+                                    height: '3em'
+                                    }}/>
+                                </Box>
+
+                                <Box className = "Choice-d" sx = {designs.ChoiceImage4_Style}>
+                                    <img
+                                    src={Image}
+                                    alt="Image"
+                                    style={{
+                                    height: '3em'
+                                    }}/>
+                                </Box>
+                            </Box> 
+
+                            <Typography sx = {designs.CorrectAnswer_Typography_Style}>
+                                Correct Answer: Image #4
+                            </Typography>
+                        </Box>
+                        
+                        <Box className = "Item-2" sx = {designs.Item_Style}>
+
+                            <Box className = "Question" sx = {designs.Question_Style}>
+                                <Typography sx = {designs.Item_Typography_Style}>
+                                3.
                                 </Typography>
 
                                 <Typography sx = {designs.Item_Question_Typography_Style}>
@@ -188,11 +258,11 @@ function Student_viewquiz() {
 
                             <Box className = "Question" sx = {designs.Question_Style}>
                                 <Typography sx = {designs.Item_Typography_Style}>
-                                3.
+                                4.
                                 </Typography>
 
                                 <Typography sx = {designs.Item_Question_Typography_Style}>
-                                What is my favorite food?
+                                Pizza is better with Pineapple.
                                 </Typography>
 
                                 <Box flexGrow = {1} sx = {designs.BoxFlexGrow_Style}/>
@@ -209,45 +279,29 @@ function Student_viewquiz() {
                             </Box>
                             
                             <Box className = "Choices" sx = {designs.Choices_Style}>
-                                <Box className = "Choice-1" sx = {designs.Choice1_Style}>
-                                    <Checkbox {...label} disabled checked 
-                                    sx = {designs.Checkbox_Style}/>
+                                <Box className = "Choice-a" sx = {designs.ChoiceTrue_Style}>
+                                    <Typography sx = {designs.Choice_Typography_Style}>
+                                    A.
+                                    </Typography>
 
                                     <Typography sx = {designs.Choice_Typography_Style}>
-                                    Blank Answer
+                                    True
                                     </Typography>
                                 </Box>
 
-                                <Box className = "Choice-2" sx = {designs.Choice2_Style}>
-                                <Checkbox {...label} disabled 
-                                   sx = {designs.Checkbox_Style}/>
-
+                                <Box className = "Choice-b" sx = {designs.ChoiceFalse_Style}>
                                     <Typography sx = {designs.Choice_Typography_Style}>
-                                    Blank Answer
+                                    B.
                                     </Typography>
-                                </Box>
-
-                                <Box className = "Choice-3" sx = {designs.Choice3_Style}>
-                                <Checkbox {...label} disabled checked 
-                                    sx = {designs.Checkbox_Style}/>
 
                                     <Typography sx = {designs.Choice_Typography_Style}>
-                                    Blank Answer
-                                    </Typography>
-                                </Box>
-
-                                <Box className = "Choice-4" sx = {designs.Choice4_Style}>
-                                <Checkbox {...label} disabled checked 
-                                    sx = {designs.Checkbox_Style}/>
-
-                                    <Typography sx = {designs.Choice_Typography_Style}>
-                                    Blank Answer
+                                    False
                                     </Typography>
                                 </Box>
                             </Box>
 
                             <Typography sx = {designs.CorrectAnswer_Typography_Style}>
-                                Correct Answer: Option1, Option3, Option4
+                                Correct Answer: True
                             </Typography>
                             
                         </Box>

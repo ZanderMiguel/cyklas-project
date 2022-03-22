@@ -23,13 +23,18 @@ const designs = {
         display: "flex",
         [theme.breakpoints.down('sm')]: {
             padding: "0.5em",
+            flexWrap: "wrap"
         },
     },
     Icon_Exam_Style: {
         height: "relative",
         width: "auto",
         display: "flex",
-        gap: "0.8em"
+        gap: "0.8em",
+        [theme.breakpoints.down('sm')]: {
+            width: "100%",
+            marginBottom: "0.5em"
+        },
     },
     Exam_Typography_Style: {
         paddingTop: "0.6em",
@@ -40,11 +45,14 @@ const designs = {
         width: "25em",
         height: "auto",
         [theme.breakpoints.down('sm')]: {
-            width: "13em",
+            width: "100%",
         },
     },
     BoxFlexGrowHeader_Style: {
-        height: "relative"
+        height: "relative",
+        [theme.breakpoints.down('sm')]: {
+            display: "none"
+        },
     },
     BoxFlexGrow_Style: {
         height: "relative",
@@ -54,7 +62,10 @@ const designs = {
     },
     Professor_Date_Style: {
         width: "auto",
-        height: "max-content"
+        height: "max-content",
+        [theme.breakpoints.down('sm')]: {
+            width: "100%"
+        }
     },
     Professor_Typography_Style: {
         marginBottom: "0.1em",
@@ -95,7 +106,7 @@ const designs = {
     Instructions_Typography_Style: {
         width: "50em",
         height: "auto",
-        color: "#8E8E8E",
+        color: "#3F3D56",
         fontSize: "0.8em",
         textTransform: "none",
         [theme.breakpoints.between('sm', 'md')]: {
@@ -182,7 +193,7 @@ const designs = {
         padding: "0.5em 0em",
         width: "relative",
         height: "auto",
-        boxShadow: "rgba(50, 50, 93, 0.25) 0px 0px 1px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        boxShadow: "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
         [theme.breakpoints.down('sm')]: {
             margin: "0em 0.5em 0.8em 0.5em",
         }

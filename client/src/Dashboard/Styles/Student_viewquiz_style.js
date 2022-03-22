@@ -23,13 +23,18 @@ const designs = {
         display: "flex",
         [theme.breakpoints.down('sm')]: {
             padding: "0.5em",
+            flexWrap: "wrap"
         },
     },
     Icon_Quiz_Style: {
         height: "relative",
         width: "auto",
         display: "flex",
-        gap: "0.8em"
+        gap: "0.8em",
+        [theme.breakpoints.down('sm')]: {
+            width: "100%",
+            marginBottom: "0.5em"
+        },
     },
     Quiz_Typography_Style: {
         paddingTop: "0.6em",
@@ -40,11 +45,14 @@ const designs = {
         width: "25em",
         height: "auto",
         [theme.breakpoints.down('sm')]: {
-            width: "13em",
+            width: "100%",
         },
     },
     BoxFlexGrowHeader_Style: {
-        height: "relative"
+        height: "relative",
+        [theme.breakpoints.down('sm')]: {
+            display: "none"
+        },
     },
     BoxFlexGrow_Style: {
         height: "relative",
@@ -54,7 +62,10 @@ const designs = {
     },
     Professor_Date_Style: {
         width: "auto",
-        height: "max-content"
+        height: "max-content",
+        [theme.breakpoints.down('sm')]: {
+            width: "100%"
+        }
     },
     Professor_Typography_Style: {
         marginBottom: "0.1em",
@@ -182,7 +193,7 @@ const designs = {
         padding: "0.5em 0em",
         width: "relative",
         height: "auto",
-        boxShadow: "rgba(50, 50, 93, 0.25) 0px 0px 1px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        boxShadow: "rgba(0, 0, 0, 0.05) 0px 1px 2px 0px",
         [theme.breakpoints.down('sm')]: {
             margin: "0em 0.5em 0.8em 0.5em",
         }
@@ -291,6 +302,77 @@ const designs = {
         fontWeight: "600",
         textTransform: "none"
     },
+    ChoicesImageA_Style: {
+        padding: "0.2em 1em 0.2em 2.5em",
+        display: "flex",
+        gap: "0.3em",
+        width: "relative",
+        height: "auto",
+        [theme.breakpoints.down('sm')]: {
+            flexWrap: "wrap"
+        }
+    },
+    ChoiceImage1_Style: {
+        padding: "0.3em 1em",
+        borderRadius: "0.3em",
+        width: "50%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#975DF5",
+        opacity: "0.2",
+        [theme.breakpoints.down('sm')]: {
+            width: "100%",
+        }
+    },
+    ChoiceImage2_Style: {
+        padding: "0.3em 1em",
+        borderRadius: "0.3em",
+        width: "50%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#F55D5D",
+        opacity: "0.2",
+        [theme.breakpoints.down('sm')]: {
+            width: "100%",
+        }
+    },
+    ChoicesImageB_Style: {
+        padding: "0.2em 1em 0.2em 2.5em",
+        display: "flex",
+        gap: "0.3em",
+        width: "relative",
+        height: "auto",
+        [theme.breakpoints.down('sm')]: {
+            flexWrap: "wrap"
+        }
+    },
+    ChoiceImage3_Style: {
+        padding: "0.3em 1em",
+        borderRadius: "0.3em",
+        width: "50%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#6CCF53",
+        opacity: "0.2",
+        [theme.breakpoints.down('sm')]: {
+            width: "100%",
+        }
+    },
+    ChoiceImage4_Style: {
+        padding: "0.3em 1em",
+        borderRadius: "0.3em",
+        width: "50%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#F1B04E",
+        [theme.breakpoints.down('sm')]: {
+            width: "100%",
+        }
+    },
     Essay_Input_Style: {
         backgroundColor: "transparent",
         borderBottom: "1px solid #DBDBDB" ,
@@ -299,38 +381,20 @@ const designs = {
         color: "#3F3D56",
         padding: "0.4em 0em"
     },
-    Choice1_Style: {
+    ChoiceTrue_Style: {
         padding: "0.3em 1em",
         borderRadius: "0.3em",
         display: "flex",
         gap: "0.5em",
         backgroundColor: "#975DF5"
     },
-    Checkbox_Style: {
-        height: "1.3em",
-        width: "1.3em"
-    },
-    Choice2_Style: {
+    ChoiceFalse_Style: {
         padding: "0.3em 1em",
         borderRadius: "0.3em",
         display: "flex",
         gap: "0.5em",
         backgroundColor: "#F55D5D",
         opacity: "0.2"
-    },
-    Choice3_Style: {
-        padding: "0.3em 1em",
-        borderRadius: "0.3em",
-        display: "flex",
-        gap: "0.5em",
-        backgroundColor: "#6CCF53"
-    },
-    Choice4_Style: {
-        padding: "0.3em 1em",
-        borderRadius: "0.3em",
-        display: "flex",
-        gap: "0.5em",
-        backgroundColor: "#F1B04E"
     },
     Graded_Typography_Style: {
         display: "flex",

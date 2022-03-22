@@ -55,7 +55,7 @@ function Student_viewexam() {
                             </Typography>
 
                             <Typography sx = {designs.Score_Responsive_Typography_Style}>
-                                6 / 6
+                                3 / 3
                             </Typography>
                             
                             <Typography sx = {designs.Instructions_Typography_Style}>
@@ -69,7 +69,7 @@ function Student_viewexam() {
                             </Typography>
 
                             <Typography sx = {designs.Score_Typography_Style}>
-                                6 / 6
+                                3 / 3
                             </Typography>
                         </Box>
                         
