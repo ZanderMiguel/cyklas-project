@@ -16,12 +16,13 @@ import useStyles from '../Styles/Announce_style';
 
 function Post_layout({ data }) {
   const { designs } = useStyles();
-
+  console.log('ano to', data);
   return (
     <Grid item xs={12}>
       {data &&
         data.map((item, index) => {
           const { author, createdAt, content } = item;
+
           return (
             <Box className="Post" sx={designs.Post_Style} key={index}>
               <Box className="User" sx={designs.User_Style}>
@@ -37,7 +38,7 @@ function Post_layout({ data }) {
 
                   <Box className="date" sx={designs.Date_Style}>
                     <Typography sx={designs.Date_Typography_Style}>
-                      {moment(createdAt).format('MMMM Do YYYY / h:mm a')}
+                      {moment(createdAt).format('MMMM DD YYYY / h:mm a')}
                     </Typography>
 
                     <Typography sx={designs.Time_Typography_Style}></Typography>
@@ -56,7 +57,7 @@ function Post_layout({ data }) {
 
               <Box className="post-content" sx={designs.Post_Content_Style}>
                 <Typography sx={designs.Post_Typography_Style}>
-                  {content.content}
+                  {content}
                 </Typography>
               </Box>
 

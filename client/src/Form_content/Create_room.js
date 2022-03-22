@@ -69,19 +69,20 @@ function Create_room({ open, close, maxWidth, state, socket }) {
       ClassDays: classday,
       yearAndSection,
       ClassTime: classtime,
-      Terms: term,
       GradingSystem: gradingsystem,
     };
 
     post('http://localhost:5000/rooms/create', {
-      userID: localStorage.userData.data.user._id,
+      userID: JSON.parse(localStorage.userData).data.user._id,
       ...room,
+      members: [JSON.parse(localStorage.userData).data.user._id],
     });
 
     state(false);
     // if (post.data.message === 'Room Created') {
     //   console.log('tangina naman');
     // }
+    socket.emit('create-room', Math.random());
   };
 
   return (

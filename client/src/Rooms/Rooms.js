@@ -10,11 +10,11 @@ import usePost from '../customHooks/usePost';
 import Button from '../components/Button';
 import Room_layout_student from './Room-content-layout/Room_layout_student';
 import axios from 'axios';
-function Rooms() {
+function Rooms({ socket }) {
   const [opendialog, setOpenDialog] = useState(false);
 
   const { post, data, error, isPending } = usePost();
-  const [myRoom, setMyRoom] = useState(null);
+
   const handleCreate = () => {
     setOpenDialog(true);
   };
@@ -25,25 +25,16 @@ function Rooms() {
 
   const Professor = Boolean(true);
   const Student = Boolean(false);
-
+  const [newRoom, setNewRoom] = React.useState(null);
+  socket.on('room-created', (created) => {
+    setNewRoom(created);
+  });
   React.useMemo(() => {
     post('http://localhost:5000/rooms', {
-      room: myRoom
-        ? myRoom.room
-        : JSON.parse(localStorage.userData).data.user.room,
+      userID: JSON.parse(localStorage.userData).data.user._id,
     });
-    console.log('badtrip', myRoom);
-    axios
-      .post('http://localhost:5000/getUser', {
-        userID: JSON.parse(localStorage.userData).data.user._id,
-      })
-      .then((res) => {
-        //userData = userData.data.user
-        setMyRoom(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, [opendialog]);
-
+  }, [newRoom]);
+  console.log(newRoom);
   return (
     <>
       <Container maxWidth="md">
@@ -82,6 +73,7 @@ function Rooms() {
                     maxWidth="md"
                     state={setOpenDialog}
                     userData={JSON.parse(localStorage.userData)}
+                    socket={socket}
                   />
                 )}
               </Grid>

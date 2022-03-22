@@ -83,4 +83,10 @@ router.post('/question/create', createQuestionController)
 router.put('/question/update', updateQuestionController)
 router.delete('/question/delete', deleteQuestionController)
 router.post('/question', findQuestionController)
+
+const {addMembers,acceptRequest,declineRequest,displayRequests} = require('../controller/roomRequestController')
+router.post('/requests/to-join',addMembers)
+router.post('/requests/accept',acceptRequest)
+router.delete('/requests/decline',declineRequest)
+router.post('/requests',displayRequests)
 module.exports = router;
