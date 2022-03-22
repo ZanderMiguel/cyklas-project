@@ -12,6 +12,7 @@ import {
   Button,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import usePost from '../../customHooks/usePost'
 import {
   FormatAlignLeft,
   FormatAlignCenter,
@@ -25,13 +26,23 @@ import {
 } from '@mui/icons-material';
 
 function Announce_form() {
+
+  const [announcecontent, setAccountContent] = React.useState('')
   const [upload, setUpload] = React.useState('true');
   const [alignment, setAlignment] = React.useState('left');
   const [formats, setFormats] = React.useState(() => ['italic']);
   const bold = React.useRef(false);
 
-  const [textcontent, setTextContent] = React.useState('');
+  const {post} = usePost()
+
+  const handleAnnounce = () => {
+
+  }
+
+  
   const postData = React.useRef(null);
+ 
+   
   const handleFormat = (event, newFormats) => {
     setFormats(newFormats);
   };
@@ -67,9 +78,6 @@ function Announce_form() {
             overflowY: 'auto',
             padding: '2rem',
             outline: '0px solid transparent',
-          }}
-          onKeyDown={() => {
-            document.execCommand('bold', true, '23');
           }}
           ref={postData}
         />
@@ -152,7 +160,7 @@ function Announce_form() {
         justifyContent="flex-end"
         marginTop="1rem"
       >
-        <Button variant="contained">post</Button>
+        <Button variant="contained" onClick={handleAnnounce}>post</Button>
       </Box>
     </Paper>
   );

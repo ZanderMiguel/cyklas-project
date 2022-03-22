@@ -11,6 +11,7 @@ import {
   InputAdornment,
 } from '@mui/material';
 import { MoreVert, Send, KeyboardArrowDown } from '@mui/icons-material';
+import Comments from './Comments'
 import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
 import useStyles from '../Styles/Announce_style';
 
@@ -40,8 +41,6 @@ function Post_layout({ data }) {
                     <Typography sx={designs.Date_Typography_Style}>
                       {moment(createdAt).format('MMMM DD YYYY / h:mm a')}
                     </Typography>
-
-                    <Typography sx={designs.Time_Typography_Style}></Typography>
                   </Box>
                 </Box>
 
@@ -74,7 +73,8 @@ function Post_layout({ data }) {
                   <KeyboardArrowDown sx={designs.KeyboardArrowDownIcon_Style} />
                 </IconButton>
               </Box>
-
+              <Comments/>
+            <Divider sx={{mb: 2}}/>
               <Box className="write-comment" sx={designs.Write_Comment_Style}>
                 <Avatar
                   alt="Remy Sharp"
