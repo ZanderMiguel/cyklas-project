@@ -87,7 +87,7 @@ function Student_viewexam() {
                                 </Typography>
 
                                 <Typography sx = {designs.Item_Question_Typography_Style}>
-                                What is my favorite food?
+                                1 + 1 is equal to?
                                 </Typography>
 
                                 <Box flexGrow = {1} sx = {designs.BoxFlexGrow_Style}/>
@@ -110,7 +110,7 @@ function Student_viewexam() {
                                     </Typography>
 
                                     <Typography sx = {designs.Choice_Typography_Style}>
-                                    Blank Answer
+                                    6
                                     </Typography>
                                 </Box>
 
@@ -120,7 +120,7 @@ function Student_viewexam() {
                                     </Typography>
 
                                     <Typography sx = {designs.Choice_Typography_Style}>
-                                    Blank Answer
+                                    1
                                     </Typography>
                                 </Box>
 
@@ -130,7 +130,7 @@ function Student_viewexam() {
                                     </Typography>
 
                                     <Typography sx = {designs.Choice_Typography_Style}>
-                                    Blank Answer
+                                    2
                                     </Typography>
                                 </Box>
 
@@ -140,7 +140,7 @@ function Student_viewexam() {
                                     </Typography>
 
                                     <Typography sx = {designs.Choice_Typography_Style}>
-                                    Blank Answer
+                                    3
                                     </Typography>
                                 </Box>
                             </Box>
@@ -202,7 +202,7 @@ function Student_viewexam() {
                                 </Typography>
 
                                 <Typography sx = {designs.Item_Question_Typography_Style}>
-                                What is my favorite food?
+                                Which of these animals are reptiles?
                                 </Typography>
 
                                 <Box flexGrow = {1} sx = {designs.BoxFlexGrow_Style}/>
@@ -224,7 +224,7 @@ function Student_viewexam() {
                                     sx = {designs.Checkbox_Style}/>
 
                                     <Typography sx = {designs.Choice_Typography_Style}>
-                                    Blank Answer
+                                    Snake
                                     </Typography>
                                 </Box>
 
@@ -233,7 +233,7 @@ function Student_viewexam() {
                                    sx = {designs.Checkbox_Style}/>
 
                                     <Typography sx = {designs.Choice_Typography_Style}>
-                                    Blank Answer
+                                    Monkey
                                     </Typography>
                                 </Box>
 
@@ -242,7 +242,7 @@ function Student_viewexam() {
                                     sx = {designs.Checkbox_Style}/>
 
                                     <Typography sx = {designs.Choice_Typography_Style}>
-                                    Blank Answer
+                                    Turtle
                                     </Typography>
                                 </Box>
 
@@ -251,7 +251,7 @@ function Student_viewexam() {
                                     sx = {designs.Checkbox_Style}/>
 
                                     <Typography sx = {designs.Choice_Typography_Style}>
-                                    Blank Answer
+                                    Lizard
                                     </Typography>
                                 </Box>
                             </Box>

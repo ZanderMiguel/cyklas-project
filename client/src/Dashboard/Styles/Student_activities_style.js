@@ -33,7 +33,7 @@ function useStyle() {
         borderColor: 'transparent',
     },
     Activity_Tiles: {
-        marginBottom: "0.2em"
+        marginBottom: "0.4em"
     },
     // Lesson: {
     //   backgroundColor: '#F3F3F3',
@@ -385,7 +385,7 @@ function useStyle() {
       className: "Tiles1", 
       width: "relative", 
       height: "auto", 
-      marginBottom: "0.2em",
+      marginBottom: "0.4em",
       padding: "0.2em 1.5em",
       display: "flex",
       border: " 2px solid #DBDBDB", 
@@ -521,7 +521,7 @@ function useStyle() {
     className: "Tiles1", 
     width: "relative", 
     height: "auto", 
-    marginBottom: "0.2em",
+    marginBottom: "0.4em",
     padding: "0.2em 1.5em",
     display: "flex",
     border: " 2px solid #DBDBDB", 

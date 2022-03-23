@@ -1,115 +1,98 @@
 import React, { ReactFragment } from 'react';
-import {
-  Grid,
-  Typography,
-  Avatar,
-  Stack,
-  TextField,
-  Divider,
-} from '@mui/material';
-import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
+import { Grid, Typography, Avatar, Stack, TextField, Box } from '@mui/material';
+import { CameraAltOutlined } from '@mui/icons-material';
+import UploadImage from "@mui/material/Button"
 import { styled } from '@mui/material/styles';
 import Button from '../components/Button';
-import UploadImage from '@mui/material/Button';
-import { green } from '@mui/material/colors';
+import useStyle from "./Styles/Personal_info_style";
 
 function PersonalInformation() {
+  const {designs} = useStyle();
+
   const InsertImage = styled('input')({
     display: 'none',
   });
 
   const textfield = [
-    { label: 'First Name', value: 'firstname', holder: 'Enter first name...' },
-    { label: 'Last Name', value: 'lastname', holder: 'Enter last name...' },
-    { label: 'Gender', value: 'gender', holder: 'Enter first name...' },
-    { label: 'First Name', value: 'firstname', holder: 'Enter first name...' },
-    { label: 'First Name', value: 'firstname', holder: 'Enter first name...' },
+    { 
+      label: 'First Name', 
+      value: 'firstname', 
+      holder: 'Enter first name...' 
+    },
+    { 
+      label: 'Last Name', 
+      value: 'lastname', 
+      holder: 'Enter last name...' 
+    },
+    { 
+      label: 'Gender', 
+      value: 'gender', 
+      holder: 'Enter first name...' 
+    },
+    { 
+      label: 'First Name', 
+      value: 'firstname', 
+      holder: 'Enter first name...' 
+    },
+    { 
+      label: 'First Name', 
+      value: 'firstname', 
+      holder: 'Enter first name...' 
+    },
   ];
 
   return (
     <>
-      <Grid item xs={10} md={5} lg={5} sx={{ mb: 2 }}>
-        <Stack spacing={1} justifyContent="center">
-          <Typography
-            variant="h5"
-            children="PERSONAL INFORMATION"
-            sx={{ fontWeight: 500 }}
-            gutterBottom
-          />
-          <Divider />
+      <Grid item md = {6} xs = {12}>
+        <Stack>
+          <Typography children = "PERSONAL INFORMATION" sx = {designs.PersonalInformation_Typography_Style}/>
+            
           {textfield.map((item, index) => (
-            <Stack key={index}>
-              <Typography sx={{ fontWeight: 400 }} children={item.label} />
-              <TextField variant="outlined" placeholder={item.holder} />
+            <Stack key={index} sx = {designs.Stack_Style}>
+              <Typography sx = {designs.TextFieldLabel_Style} children={item.label} />
+              <TextField variant="outlined" sx = {designs.TextField_Style} placeholder={item.holder} />
             </Stack>
           ))}
         </Stack>
-        <Grid
-          item
-          container
-          justifyContent="flex-end"
-          alignItems="flex-end"
-          spacing={1}
-          sx={{ mt: 2 }}
-        >
-          <Grid item>
-            <Button content="clear" variant="text" />
-          </Grid>
-          <Grid item>
-            <Button
+        
+        <Box className = "Clear-save" sx = {designs.Clear_Save_Style}>
+          
+          <Box flexGrow = {1} sx = {designs.BoxFlexGrow_Style}/>
+          
+          <Button content="clear" variant="text" sx = {designs.Clear_Button_Style}/>
+          
+          <Button
               content="save"
               variant="contained"
-              sx={{
-                backgroundColor: green[700],
-                color: 'white',
-                borderRadius: '10px',
-                '&:hover': {
-                  backgroundColor: green[800],
-                },
-              }}
-            />
-          </Grid>
-        </Grid>
+              sx = {designs.Save_Button_Style}/>
+        </Box>
+
       </Grid>
-      <Grid
-        item
-        container
-        xs={9}
-        md={5}
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Grid item>
-          <Stack
-            direction="column"
-            alignItems="center"
-            justifyContent="center"
-            spacing={3}
-          >
-            <Typography children="Account Profile" />
-            <Avatar
-              alt="Remy Sharp"
-              sx={{ width: 150, height: 150, marginRighT: '0px' }}
-              children="N"
-            />
+      
+      <Grid item md = {6} xs = {12}>
+          <Box className = "AccountPicture" sx = {designs.AccountPicture_Style}>
+            <Typography children="Account Picture" sx = {designs.AccountPicture_Typography_Style}/>
+            
+            <Avatar alt="Remy Sharp" children="N" sx = {designs.Avatar_Style}/>
+
             <label htmlFor="contained-button-file">
               <InsertImage
                 accept="image/*"
                 id="contained-button-file"
                 multiple
-                type="file"
-              />
+                type="file"/>
               <UploadImage
                 disableRipple
-                startIcon={<CameraAltOutlinedIcon />}
+                startIcon={<CameraAltOutlined/>}
                 variant="contained"
                 component="span"
+                sx = {designs.UploadImage_Button_Style}
               >
-                Change Profile Image
+                Change Profile Picture
               </UploadImage>
             </label>
-          </Stack>
-        </Grid>
+          </Box>
+
       </Grid>
     </>
   );

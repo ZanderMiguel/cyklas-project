@@ -84,7 +84,7 @@ function Student_viewquiz() {
                                 </Typography>
 
                                 <Typography sx = {designs.Item_Question_Typography_Style}>
-                                What is my favorite food?
+                                1 + 1 is equal to?
                                 </Typography>
 
                                 <Box flexGrow = {1} sx = {designs.BoxFlexGrow_Style}/>
@@ -107,7 +107,7 @@ function Student_viewquiz() {
                                     </Typography>
 
                                     <Typography sx = {designs.Choice_Typography_Style}>
-                                    Blank Answer
+                                    6
                                     </Typography>
                                 </Box>
 
@@ -117,7 +117,7 @@ function Student_viewquiz() {
                                     </Typography>
 
                                     <Typography sx = {designs.Choice_Typography_Style}>
-                                    Blank Answer
+                                    1
                                     </Typography>
                                 </Box>
 
@@ -127,7 +127,7 @@ function Student_viewquiz() {
                                     </Typography>
 
                                     <Typography sx = {designs.Choice_Typography_Style}>
-                                    Blank Answer
+                                    2
                                     </Typography>
                                 </Box>
 
@@ -137,7 +137,7 @@ function Student_viewquiz() {
                                     </Typography>
 
                                     <Typography sx = {designs.Choice_Typography_Style}>
-                                    Blank Answer
+                                    3
                                     </Typography>
                                 </Box>
                             </Box>

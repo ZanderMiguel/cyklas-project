@@ -8,7 +8,7 @@ function useStyle() {
       className: 'Tiles1',
       width: '100%',
       height: 'auto',
-      marginBottom: '0.1em',
+      marginBottom: '0.4em',
       padding: '0.2em 0em',
       display: 'flex',
       border: ' 2px solid #DBDBDB',

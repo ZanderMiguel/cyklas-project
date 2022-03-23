@@ -213,12 +213,7 @@ function View_exam() {
           <Box className="Student-list" sx={designs.Student_List_Style}>
             <Box className="Sort-container" sx={designs.Sort_Container_Style}>
               <FormControlLabel
-                control={
-                  <Checkbox
-                    defaultChecked
-                    sx={designs.AllStudent_Checkbox_Style}
-                  />
-                }
+                control={ <Checkbox sx={designs.AllStudent_Checkbox_Style}/> }
                 label="All Students"
                 sx={designs.AllStudentLabel_Checkbox_Style}
               />
@@ -388,7 +383,7 @@ function View_exam() {
                                 </Typography>
 
                                 <Typography sx = {designs.Item_Question_Typography_Style}>
-                                What is my favorite food?
+                                1 + 1 is equal to?
                                 </Typography>
 
                                 <Box flexGrow = {1} sx = {designs.BoxFlexGrow_Style}/>
@@ -411,7 +406,7 @@ function View_exam() {
                                     </Typography>
 
                                     <Typography sx = {designs.Choice_Typography_Style}>
-                                    Blank Answer
+                                    6
                                     </Typography>
                                 </Box>
 
@@ -421,7 +416,7 @@ function View_exam() {
                                     </Typography>
 
                                     <Typography sx = {designs.Choice_Typography_Style}>
-                                    Blank Answer
+                                    1
                                     </Typography>
                                 </Box>
 
@@ -431,7 +426,7 @@ function View_exam() {
                                     </Typography>
 
                                     <Typography sx = {designs.Choice_Typography_Style}>
-                                    Blank Answer
+                                    2
                                     </Typography>
                                 </Box>
 
@@ -441,7 +436,7 @@ function View_exam() {
                                     </Typography>
 
                                     <Typography sx = {designs.Choice_Typography_Style}>
-                                    Blank Answer
+                                    3
                                     </Typography>
                                 </Box>
                             </Box>
@@ -505,7 +500,7 @@ function View_exam() {
                                 </Typography>
 
                                 <Typography sx = {designs.Item_Question_Typography_Style}>
-                                What is my favorite food?
+                                Which of these animals are reptiles?
                                 </Typography>
 
                                 <Box flexGrow = {1} sx = {designs.BoxFlexGrow_Style}/>
@@ -527,7 +522,7 @@ function View_exam() {
                                     sx = {designs.Checkbox_Style}/>
 
                                     <Typography sx = {designs.Choice_Typography_Style}>
-                                    Blank Answer
+                                    Snake
                                     </Typography>
                                 </Box>
 
@@ -536,7 +531,7 @@ function View_exam() {
                                    sx = {designs.Checkbox_Style}/>
 
                                     <Typography sx = {designs.Choice_Typography_Style}>
-                                    Blank Answer
+                                    Monkey
                                     </Typography>
                                 </Box>
 
@@ -545,7 +540,7 @@ function View_exam() {
                                     sx = {designs.Checkbox_Style}/>
 
                                     <Typography sx = {designs.Choice_Typography_Style}>
-                                    Blank Answer
+                                    Turtle
                                     </Typography>
                                 </Box>
 
@@ -554,7 +549,7 @@ function View_exam() {
                                     sx = {designs.Checkbox_Style}/>
 
                                     <Typography sx = {designs.Choice_Typography_Style}>
-                                    Blank Answer
+                                    Lizard
                                     </Typography>
                                 </Box>
                             </Box>

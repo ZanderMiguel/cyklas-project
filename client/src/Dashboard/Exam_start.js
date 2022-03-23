@@ -136,7 +136,7 @@ function Exam_start() {
                             </Typography>
 
                             <Typography sx = {designs.Question_Typography_Style}>
-                                Blank Question
+                                1 + 1 is equal to?
                             </Typography>
                         </Box>
 
@@ -166,12 +166,12 @@ function Exam_start() {
                                 </Box>
 
                                 <Typography noWrap sx={designs.Answer_Typography2_Style}>
-                                Blank Answer
+                                6
                                 </Typography>
                                 </Box>
                             ) : (
                                 <Typography sx={designs.AnswerAF_Typography_Style}>
-                                    A. &nbsp;&nbsp; &nbsp; Blank Answer
+                                    A. &nbsp;&nbsp; &nbsp; 6
                                 </Typography>
 
                                 // <Box className = "Answer-a" sx={designs.Answer_AF_Style}>
@@ -209,12 +209,12 @@ function Exam_start() {
                                 </Box>
 
                                 <Typography noWrap sx={designs.Answer_Typography2_Style}>
-                                Blank Answer
+                                1
                                 </Typography>
                                 </Box>
                             ) : (
                                 <Typography sx={designs.AnswerBF_Typography_Style}>
-                                    B. &nbsp;&nbsp; &nbsp; Blank Answer
+                                    B. &nbsp;&nbsp; &nbsp; 1
                                 </Typography>
                             )} 
 
@@ -242,12 +242,12 @@ function Exam_start() {
                                 </Box>
 
                                 <Typography noWrap sx={designs.Answer_Typography2_Style}>
-                                Blank Answer
+                                2
                                 </Typography>
                                 </Box>
                             ) : (
                                 <Typography sx={designs.AnswerCF_Typography_Style}>
-                                    C. &nbsp;&nbsp; &nbsp; Blank Answer
+                                    C. &nbsp;&nbsp; &nbsp; 2
                                 </Typography>
                             )} 
 
@@ -275,12 +275,12 @@ function Exam_start() {
                                 </Box>
 
                                 <Typography noWrap sx={designs.Answer_Typography2_Style}>
-                                Blank Answer
+                                3
                                 </Typography>
                                 </Box>
                             ) : (
                                 <Typography sx={designs.AnswerDF_Typography_Style}>
-                                    D. &nbsp;&nbsp; &nbsp; Blank Answer
+                                    D. &nbsp;&nbsp; &nbsp; 3
                                 </Typography>
                             )} 
                                 {/* <Box className = "Quiz-item" sx = {designs.Exam_Item_Style}>
@@ -328,7 +328,7 @@ function Exam_start() {
                             </Typography>
 
                             <Typography sx = {designs.Question_Typography_Style}>
-                                Blank Question
+                                What is your wish for Christmas?
                             </Typography>
                         </Box>
 
@@ -386,7 +386,7 @@ function Exam_start() {
                             </Typography>
 
                             <Typography sx = {designs.Question_Typography_Style}>
-                                Blank Question
+                                Which of these animals are reptiles?
                             </Typography>
                         </Box>
 
@@ -407,7 +407,7 @@ function Exam_start() {
                                 <Checkbox sx = {designs.Checkbox_Style}/>
 
                                 <Typography noWrap sx={designs.Answer_Option_Typography_Style}>
-                                Blank Answer
+                                Snake
                                 </Typography>
                             </Box>
 
@@ -416,7 +416,7 @@ function Exam_start() {
                                 <Checkbox sx = {designs.Checkbox_Style}/>
 
                                 <Typography noWrap sx={designs.Answer_Option_Typography_Style}>
-                                Blank Answer
+                                Monkey
                                 </Typography>
                             </Box>
 
@@ -425,7 +425,7 @@ function Exam_start() {
                                 <Checkbox sx = {designs.Checkbox_Style}/>
 
                                 <Typography noWrap sx={designs.Answer_Option_Typography_Style}>
-                                Blank Answer
+                                Turtle
                                 </Typography>
                             </Box>
 
@@ -434,7 +434,7 @@ function Exam_start() {
                                 <Checkbox sx = {designs.Checkbox_Style}/>
 
                                 <Typography noWrap sx={designs.Answer_Option_Typography_Style}>
-                                Blank Answer
+                                Lizard
                                 </Typography>
                             </Box>
                         </Box>
@@ -472,7 +472,7 @@ function Exam_start() {
                             </Typography>
 
                             <Typography sx = {designs.Question_Typography_Style}>
-                                Blank Question
+                                Pizza is better with Pineapple.
                             </Typography>
                         </Box>
 
@@ -586,7 +586,7 @@ function Exam_start() {
                             </Typography>
 
                             <Typography sx = {designs.Question_Typography_Style}>
-                                Blank Question
+                                What are the 4 cardinal directions?
                             </Typography>
                         </Box>
 
