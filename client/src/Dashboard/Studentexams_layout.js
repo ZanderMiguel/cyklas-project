@@ -11,24 +11,24 @@ const data = [
         name: 'Mark Orense',
         date: Date.now().toLocaleString(),
         time: Date.now().toLocaleString(),
-        points: '6 points',
-        score: '3 / 3'
+        points: '8 points',
+        score: '5 / 5'
       },
       {
         title: 'Conditional Statements',
         name: 'Mark Orense',
         date: Date.now().toLocaleString(),
         time: Date.now().toLocaleString(),
-        points: '6 points',
-        score: '3 / 3'
+        points: '8 points',
+        score: '5 / 5'
       },
       {
         title: 'Arrays',
         name: 'Mark Orense',
         date: Date.now().toLocaleString(),
         time: Date.now().toLocaleString(),
-        points: '6 points',
-        score: '3 / 3'
+        points: '8 points',
+        score: '5 / 5'
       },
 ];
 

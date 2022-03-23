@@ -38,7 +38,7 @@ function Student_activities({ roomID }) {
               <Tab
                 disableRipple
                 label={
-                  <Typography variant="h6" sx={{ fontSize: "1em", fontWeight: '600' }}>
+                  <Typography variant="h6" sx={{ fontSize: "1.2em", fontWeight: '600' }}>
                     Activities
                   </Typography>
                 }
@@ -50,7 +50,7 @@ function Student_activities({ roomID }) {
               <Tab
                 disableRipple
                 label={
-                  <Typography variant="h6" sx={{ fontSize: "1em", fontWeight: '600' }}>
+                  <Typography variant="h6" sx={{ fontSize: "1.2em", fontWeight: '600' }}>
                     Quizzes
                   </Typography>
                 }
@@ -62,7 +62,7 @@ function Student_activities({ roomID }) {
               <Tab
                 disableRipple
                 label={
-                  <Typography variant="h6" sx={{ fontSize: "1em", fontWeight: '600' }}>
+                  <Typography variant="h6" sx={{ fontSize: "1.2em", fontWeight: '600' }}>
                     Exams
                   </Typography>
                 }
@@ -86,7 +86,7 @@ function Student_activities({ roomID }) {
               <Tab
                 disableRipple
                 label={
-                  <Typography variant="h6" sx={{ fontSize: "1em", fontWeight: '600' }}>
+                  <Typography variant="h6" sx={{ fontSize: "1.1em", fontWeight: '600' }}>
                     Activities
                   </Typography>
                 }
@@ -98,7 +98,7 @@ function Student_activities({ roomID }) {
               <Tab
                 disableRipple
                 label={
-                  <Typography variant="h6" sx={{ fontSize: "1em", fontWeight: '600' }}>
+                  <Typography variant="h6" sx={{ fontSize: "1.1em", fontWeight: '600' }}>
                     Quizzes
                   </Typography>
                 }
@@ -110,7 +110,7 @@ function Student_activities({ roomID }) {
               <Tab
                 disableRipple
                 label={
-                  <Typography variant="h6" sx={{ fontSize: "1em", fontWeight: '600' }}>
+                  <Typography variant="h6" sx={{ fontSize: "1.1em", fontWeight: '600' }}>
                     Exams
                   </Typography>
                 }

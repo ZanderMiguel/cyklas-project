@@ -312,7 +312,7 @@ const designs = {
         fontWeight: "600",
         textTransform: "none"
     },
-    Essay_Input_Style: {
+    ShortAnswer_Input_Style: {
         backgroundColor: "transparent",
         borderBottom: "1px solid #DBDBDB" ,
         fontSize: "0.8em",
@@ -355,6 +355,27 @@ const designs = {
         display: "flex",
         gap: "0.5em",
         backgroundColor: "#F1B04E"
+    },
+    ChoiceTrue_Style: {
+        padding: "0.3em 1em",
+        borderRadius: "0.3em",
+        display: "flex",
+        gap: "0.5em",
+        backgroundColor: "#975DF5"
+    },
+    ChoiceFalse_Style: {
+        padding: "0.3em 1em",
+        borderRadius: "0.3em",
+        display: "flex",
+        gap: "0.5em",
+        backgroundColor: "#EAEAEA"
+    },
+    Enumeration_Input_Style: {
+        backgroundColor: "transparent",
+        borderBottom: "1px solid #DBDBDB" ,
+        fontSize: "0.8em",
+        fontWeight: "500",
+        color: "#3F3D56"
     },
     Graded_Typography_Style: {
         display: "flex",

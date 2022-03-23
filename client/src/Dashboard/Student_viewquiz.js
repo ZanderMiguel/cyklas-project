@@ -56,7 +56,7 @@ function Student_viewquiz() {
                             </Typography>
 
                             <Typography sx = {designs.Score_Responsive_Typography_Style}>
-                                4 / 4
+                                8 / 8
                             </Typography>
                             
                             <Typography sx = {designs.Instructions_Typography_Style}>
@@ -70,7 +70,7 @@ function Student_viewquiz() {
                             </Typography>
 
                             <Typography sx = {designs.Score_Typography_Style}>
-                                4 / 4
+                                8 / 8
                             </Typography>
                         </Box>
                         

@@ -355,7 +355,7 @@ function View_exam() {
                             </Typography>
 
                             <Typography sx = {designs.Score_Responsive_Typography_Style}>
-                                3 / 3
+                                10 / 10
                             </Typography>
                             
                             <Typography sx = {designs.Instructions_Typography_Style}>
@@ -369,7 +369,7 @@ function View_exam() {
                             </Typography>
 
                             <Typography sx = {designs.Score_Typography_Style}>
-                                3 / 3
+                                10 / 10
                             </Typography>
                         </Box>
                         
@@ -490,7 +490,7 @@ function View_exam() {
                                     value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in"
                                     disableUnderline
                                     readOnly
-                                    sx={designs.Essay_Input_Style}/>  
+                                    sx={designs.ShortAnswer_Input_Style}/>  
                             </Box> 
                         </Box>
                         
@@ -564,6 +564,132 @@ function View_exam() {
                             </Typography>
                             
                         </Box>
+
+                        <Typography sx = {designs.Type_Typography_Style}>
+                            True or False
+                        </Typography>
+
+                        <Box className = "Item-4" sx = {designs.Item_Style}>
+
+                            <Box className = "Question" sx = {designs.Question_Style}>
+                                <Typography sx = {designs.Item_Typography_Style}>
+                                4.
+                                </Typography>
+
+                                <Typography sx = {designs.Item_Question_Typography_Style}>
+                                Pizza is better with Pineapple.
+                                </Typography>
+
+                                <Box flexGrow = {1} sx = {designs.BoxFlexGrow_Style}/>
+
+                                <Typography
+                                sx = {designs.Points_Typography_Style}>
+                                2
+                                </Typography>
+
+                                <Typography
+                                sx = {designs.PointsText_Typography_Style}>
+                                points
+                                </Typography>
+                            </Box>
+                            
+                            <Box className = "Choices" sx = {designs.Choices_Style}>
+                                <Box className = "Choice-a" sx = {designs.ChoiceTrue_Style}>
+                                    <Typography sx = {designs.Choice_Typography_Style}>
+                                    A.
+                                    </Typography>
+
+                                    <Typography sx = {designs.Choice_Typography_Style}>
+                                    True
+                                    </Typography>
+                                </Box>
+
+                                <Box className = "Choice-b" sx = {designs.ChoiceFalse_Style}>
+                                    <Typography sx = {designs.Choice_Typography_Style}>
+                                    B.
+                                    </Typography>
+
+                                    <Typography sx = {designs.Choice_Typography_Style}>
+                                    False
+                                    </Typography>
+                                </Box>
+                            </Box>
+
+                            <Typography sx = {designs.CorrectAnswer_Typography_Style}>
+                                Correct Answer: True
+                            </Typography>
+                            
+                        </Box>
+
+                        <Typography sx = {designs.Type_Typography_Style}>
+                            Enumeration
+                        </Typography>
+
+                        <Box className = "Item-5" sx = {designs.Item_Style}>
+
+                            <Box className = "Question" sx = {designs.Question_Style}>
+                                <Typography sx = {designs.Item_Typography_Style}>
+                                5.
+                                </Typography>
+
+                                <Typography sx = {designs.Item_Question_Typography_Style}>
+                                What are the 4 cardinal directions?
+                                </Typography>
+
+                                <Box flexGrow = {1} sx = {designs.BoxFlexGrow_Style}/>
+
+                                <Typography
+                                sx = {designs.Points_Typography_Style}>
+                                2
+                                </Typography>
+
+                                <Typography
+                                sx = {designs.PointsText_Typography_Style}>
+                                points
+                                </Typography>
+                            </Box>
+                            
+                            <Box className = "Choices" sx = {designs.Choices_Style}>
+                              <Input
+                              variant="standard"
+                              fullWidth
+                              value="North"
+                              readOnly
+                              disableUnderline
+                              sx={designs.Enumeration_Input_Style}/>  
+
+                              <Input
+                              variant="standard"
+                              fullWidth
+                              value="South"
+                              readOnly
+                              disableUnderline
+                              sx={designs.Enumeration_Input_Style}/> 
+
+                              <Input
+                              variant="standard"
+                              fullWidth
+                              value="East"
+                              readOnly
+                              disableUnderline
+                              sx={designs.Enumeration_Input_Style}/> 
+
+                              <Input
+                              variant="standard"
+                              fullWidth
+                              value="West"
+                              readOnly
+                              disableUnderline
+                              sx={designs.Enumeration_Input_Style}/>
+                            </Box>
+
+                            <Typography sx = {designs.CorrectAnswer_Typography_Style}>
+                                Correct Answer: North, South, West, East
+                            </Typography>
+                            
+                        </Box>
+
+                            
 
                     </Box>
                     </Box>

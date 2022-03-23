@@ -97,7 +97,7 @@ function Quizlit() {
               <Tab
                 disableRipple
                 label={
-                  <Typography variant="h6" sx={{ fontWeight: '600' }}>
+                  <Typography variant="h6" sx={{ fontSize: "1.2em", fontWeight: '600' }}>
                     Quiz
                   </Typography>
                 }
@@ -108,7 +108,7 @@ function Quizlit() {
               <Tab
                 disableRipple
                 label={
-                  <Typography variant="h6" sx={{ fontWeight: '600' }}>
+                  <Typography variant="h6" sx={{ fontSize: "1.2em", fontWeight: '600' }}>
                     Exam
                   </Typography>
                 }
@@ -141,7 +141,7 @@ function Quizlit() {
               <Tab
                 disableRipple
                 label={
-                  <Typography variant="h6" sx={{ fontWeight: '600' }}>
+                  <Typography variant="h6" sx={{ fontSize: "1.2em", fontWeight: '600' }}>
                     Quiz
                   </Typography>
                 }
@@ -152,7 +152,7 @@ function Quizlit() {
               <Tab
                 disableRipple
                 label={
-                  <Typography variant="h6" sx={{ fontWeight: '600' }}>
+                  <Typography variant="h6" sx={{ fontSize: "1.2em", fontWeight: '600' }}>
                     Exam
                   </Typography>
                 }

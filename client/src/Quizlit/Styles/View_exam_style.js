@@ -272,7 +272,7 @@ function useStyle() {
         }
     },
     Score_Typography_Style: {
-        width: "auto",
+        width: "5em",
         height: "max-content",
         color: "#007FFF",
         fontSize: "0.9em",
@@ -463,13 +463,20 @@ function useStyle() {
         fontWeight: "600",
         textTransform: "none"
     },
-    Essay_Input_Style: {
+    ShortAnswer_Input_Style: {
         backgroundColor: "transparent",
         borderBottom: "1px solid #DBDBDB" ,
         fontSize: "0.8em",
         fontWeight: "500",
         color: "#3F3D56",
         padding: "0.4em 0em"
+    },
+    Enumeration_Input_Style: {
+        backgroundColor: "transparent",
+        borderBottom: "1px solid #DBDBDB" ,
+        fontSize: "0.8em",
+        fontWeight: "500",
+        color: "#3F3D56"
     },
     Choice1_Style: {
         padding: "0.3em 1em",
@@ -507,78 +514,7 @@ function useStyle() {
         gap: "0.5em",
         backgroundColor: "#F1B04E"
     },
-    ChoicesImageA_Style: {
-        padding: "0.2em 1em 0.2em 2.5em",
-        display: "flex",
-        gap: "0.3em",
-        width: "relative",
-        height: "auto",
-        [theme.breakpoints.down('sm')]: {
-            flexWrap: "wrap"
-        }
-    },
-    ChoiceImage1_Style: {
-        padding: "0.3em 1em",
-        borderRadius: "0.3em",
-        width: "50%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#975DF5",
-        opacity: "0.2",
-        [theme.breakpoints.down('sm')]: {
-            width: "100%",
-        }
-    },
-    ChoiceImage2_Style: {
-        padding: "0.3em 1em",
-        borderRadius: "0.3em",
-        width: "50%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#F55D5D",
-        opacity: "0.2",
-        [theme.breakpoints.down('sm')]: {
-            width: "100%",
-        }
-    },
-    ChoicesImageB_Style: {
-        padding: "0.2em 1em 0.2em 2.5em",
-        display: "flex",
-        gap: "0.3em",
-        width: "relative",
-        height: "auto",
-        [theme.breakpoints.down('sm')]: {
-            flexWrap: "wrap"
-        }
-    },
-    ChoiceImage3_Style: {
-        padding: "0.3em 1em",
-        borderRadius: "0.3em",
-        width: "50%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#6CCF53",
-        opacity: "0.2",
-        [theme.breakpoints.down('sm')]: {
-            width: "100%",
-        }
-    },
-    ChoiceImage4_Style: {
-        padding: "0.3em 1em",
-        borderRadius: "0.3em",
-        width: "50%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#F1B04E",
-        [theme.breakpoints.down('sm')]: {
-            width: "100%",
-        }
-    },
-    Essay_Input_Style: {
+    ShortAnswer_Input_Style: {
         backgroundColor: "transparent",
         borderBottom: "1px solid #DBDBDB" ,
         fontSize: "0.8em",
@@ -598,8 +534,7 @@ function useStyle() {
         borderRadius: "0.3em",
         display: "flex",
         gap: "0.5em",
-        backgroundColor: "#F55D5D",
-        opacity: "0.2"
+        backgroundColor: "#EAEAEA"
     },
     Points_TextField_Style: {
         width: "2.5em",

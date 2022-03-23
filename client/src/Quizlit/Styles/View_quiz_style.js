@@ -271,7 +271,7 @@ function useStyle() {
         }
     },
     Score_Typography_Style: {
-        width: "auto",
+        width: "5em",
         height: "max-content",
         color: "#007FFF",
         fontSize: "0.9em",
