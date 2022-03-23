@@ -8,15 +8,10 @@ const RoomsSchema = new mongoose.Schema(
     ClassDays: { type: String, required: true },
     yearAndSection: { type: String, required: true },
     ClassTime: { type: String, required: true },
-    GradingSystem: { type: String, required: true },
-    Post: [mongoose.Schema.Types.ObjectId],
-    activities: [mongoose.Schema.Types.ObjectId],
     members: [mongoose.Schema.Types.ObjectId],
-    group: [mongoose.Schema.Types.ObjectId],
-    quizlit: [mongoose.Schema.Types.ObjectId]
   },
   { timestamps: true }
 );
 
 const RoomsModel = mongoose.model('Rooms', RoomsSchema);
-module.exports = {RoomsModel,RoomsSchema};
+module.exports = { RoomsModel, RoomsSchema };

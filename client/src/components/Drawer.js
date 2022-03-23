@@ -104,6 +104,9 @@ function Drawer() {
                     '& .MuiListItemIcon-root': {
                       color: 'white',
                     },
+                    '& .MuiTypography-root': {
+                      color: 'white',
+                    },
                   },
                   marginBottom: '10px',
                 }}
@@ -117,9 +120,6 @@ function Drawer() {
                       sx={{
                         color: '#3F3D56',
                         fontWeight: 500,
-                        '&:hover': {
-                          color: '#FFFFFF',
-                        },
                       }}
                     >
                       {text}

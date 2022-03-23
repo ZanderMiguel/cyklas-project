@@ -12,7 +12,7 @@ function ProtectedRoutes({
 }) {
   return (
     <>
-      {localStorage.token && <Navbar />}
+      {localStorage.token && <Navbar  />}
       <Route
         {...attrib}
         render={() => {
