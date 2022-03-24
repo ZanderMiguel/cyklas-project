@@ -1,5 +1,4 @@
 import React from 'react';
-import useStyle from '../Styles/Announce_style';
 import { CssBaseline, Grid } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -10,12 +9,6 @@ import Schoolworktiles_layout from './Schoolworktiles_layout';
 
 function Announce() {
   const { roomID } = useParams();
-
-  const { designs } = useStyle();
-  const myPost = React.useRef('');
-
-  const boldText = React.useRef(new Map());
-
   const [postData, setPostData] = React.useState(new Map());
 
   const [data, setData] = React.useState(null);
@@ -24,10 +17,9 @@ function Announce() {
       .post('http://localhost:5000/announce', { rooms: roomID })
       .then((res) => {
         setData(res.data);
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [roomID]);
 
   return (
     <>

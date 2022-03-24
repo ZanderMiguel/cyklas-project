@@ -25,10 +25,10 @@ import Notfound from './Notfound';
 import Livequiz_multiplechoice from './Quizlit/LiveQuiz/Livequiz_multiplechoice';
 import StudentLiveQuiz_multiplechoice from './Quizlit/LiveQuiz/StudentLiveQuiz_multiplechoice';
 import Student_rankings from './Quizlit/LiveQuiz/Student_rankings';
-import Conference_details from './Telecon/Telecon_Components/Conference_details';
-import Members from './Telecon/Telecon_Components/Members';
-import Message_area from './Telecon/components/Messages';
-import Presentation from './Telecon/Telecon_Components/Presentation';
+// import Conference_details from './Telecon/Telecon_Components/Conference_details';
+// import Members from './Telecon/Telecon_Components/Members';
+// import Message_area from './Telecon/components/Messages';
+// import Presentation from './Telecon/Telecon_Components/Presentation';
 import Student_activities from './Dashboard/Student_activities';
 import Student_viewactivity from './Dashboard/Student_viewactivity';
 import Student_viewexam from './Dashboard/Student_viewexam';
@@ -37,7 +37,6 @@ import Exam_take from './Dashboard/Exam_take';
 import Exam_start from './Dashboard/Exam_start';
 import View_quiz from './Quizlit/Quizbank-content-layout/Quizbank-view/View_quiz';
 import View_exam from './Quizlit/Quizbank-content-layout/Quizbank-view/View_exam';
-import ChatApp from './ChatApp';
 import Telecon_room from './Telecon/Telecon_room';
 
 function App() {
@@ -72,9 +71,7 @@ function App() {
           <Switch>
             <Redirect exact from="/" to="/home/login" />
             <Redirect exact from="/home" to="/home/login" />
-            <Route exact path="/home/:page?">
-              <Navbar_landingpage />
-            </Route>
+            <Route exact path="/home/:page?" component={Navbar_landingpage} />
             <ProtectedRoutes exact path="/dashboard" component={Dashboard} />
             <ProtectedRoutes exact path="/telecon" component={TeleconStart} />
             <ProtectedRoutes
@@ -150,35 +147,15 @@ function App() {
               component={Student_viewquiz}
             />
 
-            <Route
-              exact
-              path="/Exam_take"
-              component={Exam_take}
-            />
+            <Route exact path="/Exam_take" component={Exam_take} />
 
-            <Route
-              exact
-              path="/Exam_start"
-              component={Exam_start}
-            />
+            <Route exact path="/Exam_start" component={Exam_start} />
 
-            <Route
-              exact
-              path="/View_quiz"
-              component={View_quiz}
-            />
+            <Route exact path="/View_quiz" component={View_quiz} />
 
-            <Route
-              exact
-              path="/View_exam"
-              component={View_exam}
-            />
+            <Route exact path="/View_exam" component={View_exam} />
 
             <ProtectedRoutes exact path="/records" component={Records} />
-
-            {/* Learning socket io #Zander */}
-            {/* <Route path="/ChatApp" component={ChatApp} /> */}
-
             <Route path="/forgotpassword">
               <Forgot_password />
             </Route>

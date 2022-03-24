@@ -82,7 +82,7 @@ function TeleconStart() {
             <Typography variant="h6" sx={{ mb: 2, fontWeight: 700 }}>
               ROOM
             </Typography>
-            <Input placeholder="Room name" />
+            <Input placeholder="Room name" size="small" />
           </Box>
           <Box mb={2}>
             <Typography variant="h6" sx={{ mb: 2, fontWeight: 700 }}>

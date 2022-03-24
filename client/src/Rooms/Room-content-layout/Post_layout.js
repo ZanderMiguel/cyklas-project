@@ -10,18 +10,15 @@ import {
   TextField,
   InputAdornment,
 } from '@mui/material';
-import { MoreVert, Send, KeyboardArrowDown } from '@mui/icons-material';
-import Comments from './Comments'
+import { MoreVert, Send } from '@mui/icons-material';
+import Comments from './Comments';
 import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
 import useStyles from '../Styles/Announce_style';
 
 function Post_layout({ data }) {
-  const commentContent = React.useRef(null)
-
-
-
+  const commentContent = React.useRef(null);
   const { designs } = useStyles();
-  console.log('ano to', data);
+
   return (
     <Grid item xs={12}>
       {data &&
@@ -65,8 +62,8 @@ function Post_layout({ data }) {
               </Box>
 
               <Divider sx={designs.Divider_Style} />
-              <Comments commentContent={commentContent}/>
-            <Divider sx={{mb: 2}}/>
+              <Comments commentContent={commentContent} />
+              <Divider sx={{ mb: 2 }} />
               <Box className="write-comment" sx={designs.Write_Comment_Style}>
                 <Avatar
                   alt="Remy Sharp"

@@ -13,16 +13,12 @@ function usePost() {
         setData(res.data);
         setIsPending(false);
         setError(null);
-        
-        console.log('posted',res.data)
-        
       })
       .catch((err) => {
         setIsPending(false);
         setError(err.message);
         setData(null);
       });
-      
   };
   return { post, data, isPending, error };
 }
