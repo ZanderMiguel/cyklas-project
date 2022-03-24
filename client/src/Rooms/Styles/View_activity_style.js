@@ -5,9 +5,9 @@ function useStyle() {
 
   const designs = {
     Student_List_Style: {
-      margin: '20px 0px',
+      margin: '0px 0px 0px 0px',
       width: '100%',
-      height: '93vh',
+      height: '90vh',
       [theme.breakpoints.down('md')]: {
         display: 'none',
       },
@@ -18,12 +18,45 @@ function useStyle() {
     },
     AllStudent_Checkbox_Style: {
       color: '#BABABA',
+      marginTop: "0.6em"
     },
     AllStudentLabel_Checkbox_Style: {
-      color: '#3F3D56',
+      color: '#3F3D56'
     },
     FlexGrow_Box_Style: {
       flexGrow: 1,
+    },
+    FormControl_Style: {
+      width: '35%',
+      paddingTop: "0em"
+    },
+    InputLabel_Style: {
+      fontSize: '0.9em',
+      fontWeight: '400',
+      color: '#3F3D56'
+    },
+    Select_Style: {
+      width: '100%',
+      fontSize: '0.9em',
+      fontWeight: '400',
+      color: '#3F3D56'
+    },
+    Return_Button_Style: {
+      margin: "0.7em 0em 0.5em 2em",
+      padding: "0.4em 2em",
+      fontSize: "0.8em",
+      fontWeight: "600",
+      textTransform: "Capitalize",
+      color: "white",
+      backgroundColor: "#0069D3",
+      "&: hover": {
+          backgroundColor: "#005DC3"
+      },
+      // [theme.breakpoints.down('sm')]: {
+      //     padding: "0.4em 0em",
+      //     marginRight: "0em",
+      //     width: "100%"
+      // },
     },
     SortBy_Autocomplete_Style: {
       width: 120,
@@ -73,7 +106,7 @@ function useStyle() {
       margin: '10px 0px 10px 0px',
     },
     Activity_Style: {
-      margin: '20px 0px',
+      margin: '0px 0px 0px 0px',
       width: '100%',
       height: '90vh',
       display: 'flex',

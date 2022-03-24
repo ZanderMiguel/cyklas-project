@@ -32,7 +32,7 @@ function Announce() {
   return (
     <>
       <CssBaseline />
-      <Grid container rowSpacing={2} sx={{ margin: '1em 0em' }}>
+      <Grid container sx={{ margin: '1em 0em' }}>
         <Grid item xs={12}>
           <Announce_form />
         </Grid>

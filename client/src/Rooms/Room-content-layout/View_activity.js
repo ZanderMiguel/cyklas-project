@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   Box,
@@ -14,6 +14,10 @@ import {
   Button,
   InputAdornment,
   Divider,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem
 } from '@mui/material';
 import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
 import Wordfile from '../../assets/ImageJaven/Wordfile.png';
@@ -34,6 +38,25 @@ const sortOptions = [
   {
     label: 'Missing',
   },
+];
+
+const dataSort = [
+  {
+    value: 'First Name',
+    label: 'First Name',
+  },
+  {
+    value: 'Last Name',
+    label: 'Last Name',
+  },
+  {
+    value: 'Submitted',
+    label: 'Submitted',
+  },
+  {
+    value: 'Graded',
+    label: 'Graded',
+  }
 ];
 
 const data = [
@@ -66,45 +89,57 @@ function View_activity() {
 
   const { roomID, activityID } = useParams();
 
+  const [selectSort, setSort] = useState('');
+
+  const handleChangeSort = (event) => {
+    setSort(event.target.value);
+  };
+
   return (
     <Container maxWidth="lg">
       <Grid container columnSpacing={1}>
+        <Grid item xs = {4}>
+            <Button sx={designs.Return_Button_Style}>
+                Return
+            </Button>
+        </Grid>
+
+        <Grid item xs = {8}/>
+
         <Grid item xs={4}>
           <Box className="Student-list" sx={designs.Student_List_Style}>
             <Box className="Sort-container" sx={designs.Sort_Container_Style}>
               <FormControlLabel
-                control={
-                  <Checkbox
-                    sx={designs.AllStudent_Checkbox_Style}
-                  />
-                }
+                control={ <Checkbox sx={designs.AllStudent_Checkbox_Style}/> }
                 label="All Students"
                 sx={designs.AllStudentLabel_Checkbox_Style}
               />
 
               <Box sx={designs.FlexGrow_Box_Style} />
 
-              <Autocomplete
-                disableClearable
-                id="disable-clearable"
-                options={sortOptions}
-                sx={designs.SortBy_Autocomplete_Style}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    InputProps={{
-                      ...params.InputProps,
-                      disableUnderline: true,
-                      style: { color: '#3F3D56' },
-                    }}
-                    label="Sort by"
-                    variant="standard"
-                    InputLabelProps={{
-                      style: { fontSize: '15px', color: '#3F3D56' },
-                    }}
-                  />
-                )}
-              />
+              <FormControl variant="standard" sx={designs.FormControl_Style}>
+                    <InputLabel id="demo-simple-select-standard-label"
+                     sx={designs.InputLabel_Style}>
+                     Sort by
+                    </InputLabel>
+                              
+                    <Select labelId="demo-simple-select-standard-label"
+                      id="demo-simple-select-standard"
+                      value={selectSort}
+                      onChange={handleChangeSort}
+                      label="SelectSort"
+                      disableUnderline
+                      sx={designs.Select_Style}>
+
+                    {dataSort.map(({ value, label }) => (
+                      <MenuItem key={value} value={value}>
+                        {' '}
+                        {label}{' '}
+                      </MenuItem>
+                    ))}
+                    </Select>
+              </FormControl>
+
             </Box>
 
             <Divider sx={designs.Divider_Style} />

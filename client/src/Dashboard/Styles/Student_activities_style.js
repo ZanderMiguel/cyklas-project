@@ -384,7 +384,7 @@ function useStyle() {
       width: "relative", 
       height: "auto", 
       marginBottom: "0.4em",
-      padding: "0.2em 1.5em",
+      padding: "0.5em 1.5em",
       display: "flex",
       border: " 2px solid #DBDBDB", 
       borderRadius: "0.8em",
@@ -400,7 +400,7 @@ function useStyle() {
   QuizName_User_Date: {
       className: "Activity-name-User-date",
       height: "max-content", 
-      margin: "0.4em 0em 0.3em 0em",
+      margin: "0.3em 0em 0.3em 0em",
       [theme.breakpoints.down('sm')]: {
         display: "flex",
         flexGrow: 1,
@@ -520,7 +520,7 @@ function useStyle() {
     width: "relative", 
     height: "auto", 
     marginBottom: "0.4em",
-    padding: "0.2em 1.5em",
+    padding: "0.5em 1.5em",
     display: "flex",
     border: " 2px solid #DBDBDB", 
     borderRadius: "0.8em",
@@ -536,7 +536,7 @@ function useStyle() {
   ExamName_User_Date: {
       className: "Activity-name-User-date",
       height: "max-content", 
-      margin: "0.4em 0em 0.3em 0em",
+      margin: "0.3em 0em 0.3em 0em",
       [theme.breakpoints.down('sm')]: {
         display: "flex",
         flexGrow: 1,

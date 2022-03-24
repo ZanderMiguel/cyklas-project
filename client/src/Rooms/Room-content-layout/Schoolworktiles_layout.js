@@ -71,16 +71,17 @@ function Schoolworktiles_layout() {
 
   return (
     <>
+    
+    <Grid item xs={12} sx = {{ marginTop: "2em" }}>
       {data.map(function (item, index) {
         return (
-          <Grid item xs={12} key={index}>
-            <Box sx={designs.BoxTileContainer}>
+            <Box key={index} sx={designs.BoxTileContainer}>
               <Box sx={designs.ActivityContainer}>
                 <img
                   src={ActivityIcon}
                   style={{
                     height: '2.2em',
-                    margin: '0.5em 0.8em 0em 1.4em',
+                    margin: '0.4em 0.8em 0em 1.4em',
                   }}
                 />
 
@@ -114,9 +115,9 @@ function Schoolworktiles_layout() {
                 </Box>
               </Box>
             </Box>
-          </Grid>
         );
       })}
+      </Grid>
     </>
   );
 }

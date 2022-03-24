@@ -135,12 +135,14 @@ function useStyle() {
       color: '#3F3D56',
       fontSize: '20px',
     },
+
+    // Schoolworktiles_layout
     BoxTileContainer: {
       className: 'Tiles1',
       width: '100%',
       height: 'auto',
-      marginBottom: '0.1em',
-      padding: '0.2em 0em',
+      marginBottom: '0.5em',
+      padding: '0.5em 0em',
       display: 'flex',
       border: ' 2px solid #DBDBDB',
       borderRadius: '0.8em',
@@ -158,7 +160,7 @@ function useStyle() {
     ActivityName_User_Date: {
       className: 'Activity-name-User-date',
       height: 'max-content',
-      margin: '0.4em 0em 0.3em 0em',
+      margin: '0.3em 0em 0.3em 0em',
       flexGrow: 1,
     },
     ActivityName: {
