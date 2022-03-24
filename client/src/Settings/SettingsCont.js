@@ -15,18 +15,74 @@ function SettingsCont() {
         <Grid container sx = {designs.SettingsContainer_GridContainer_Style}>
           <Grid item xs = {12} sx = {designs.List_Responsive_Style}>
           <Button onClick={() => setView(true)} 
-          variant="contained" sx = {{ boxShadow: "rgba(0, 0, 0, 0.1) 0px 1px 2px 0px", marginRight: "0.5em", backgroundColor: "#FEFEFE", fontSize: "0.9em", 
-          fontWeight: "500", 
-          color: "#3F3D56", padding: "0.2em 2em", width: "relative", textTransform: "Capitalize", borderRadius: "0em" }}
-          startIcon={<LockOutlined sx = {{ marginRight: "0.5em", width: "max-content", fontSize: "1.4em" }}/>}>
+          variant="contained" sx = 
+          { view ? { 
+            boxShadow: "none",
+            backgroundColor: "#F6F6F6", 
+            fontSize: "0.9em", 
+            fontWeight: "500", 
+            color: "#3F3D56", 
+            padding: "0.2em 2.7em", 
+            width: "relative", 
+            textTransform: "Capitalize", 
+            borderRadius: "0em",
+             "&: hover": { backgroundColor: "#EDEDED", boxShadow: "none", } 
+          }
+          :
+          { 
+            boxShadow: "none",
+            backgroundColor: "#FEFEFE", 
+            fontSize: "0.9em", 
+            fontWeight: "500", 
+            color: "#3F3D56", 
+            padding: "0.2em 2.7em", 
+            width: "relative", 
+            textTransform: "Capitalize", 
+            borderRadius: "0em",
+             "&: hover": { backgroundColor: "#EDEDED", boxShadow: "none", } 
+          }
+          }
+          startIcon={<LockOutlined sx = {{ 
+            marginRight: "0.5em", 
+            width: "max-content", 
+            fontSize: "1.4em" 
+            }}/>}>
             Profile
           </Button>
 
           <Button onClick={() => setView(false)} 
-          variant="contained" sx = {{ boxShadow: "rgba(0, 0, 0, 0.1) 0px 1px 2px 0px", backgroundColor: "#FEFEFE", fontSize: "0.9em", 
-          fontWeight: "500", 
-          color: "#3F3D56", padding: "0.2em 2em", width: "relative", textTransform: "Capitalize", borderRadius: "0em" }}
-          startIcon={<AccountBoxOutlined sx = {{ marginRight: "0.5em", width: "max-content", fontSize: "1.4em" }}/>}>
+          variant="contained" sx = 
+          { view ? { 
+            boxShadow: "none",
+            backgroundColor: "#FEFEFE", 
+            fontSize: "0.9em", 
+            fontWeight: "500", 
+            color: "#3F3D56", 
+            padding: "0.2em 2.7em", 
+            width: "relative", 
+            textTransform: "Capitalize", 
+            borderRadius: "0em",
+             "&: hover": { backgroundColor: "#EDEDED", boxShadow: "none", } 
+          }
+          :
+          { 
+            boxShadow: "none",
+            backgroundColor: "#F6F6F6", 
+            fontSize: "0.9em", 
+            fontWeight: "500", 
+            color: "#3F3D56", 
+            padding: "0.2em 2.7em", 
+            width: "relative", 
+            textTransform: "Capitalize", 
+            borderRadius: "0em",
+             "&: hover": { backgroundColor: "#EDEDED", boxShadow: "none", } 
+          }
+          }
+          startIcon={<AccountBoxOutlined sx = {{ 
+            marginRight: "0.5em", 
+            width: "max-content", 
+            fontSize: "1.4em" 
+            }}/>}>
             Account
           </Button>
           </Grid>

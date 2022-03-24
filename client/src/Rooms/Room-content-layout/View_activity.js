@@ -75,7 +75,6 @@ function View_activity() {
               <FormControlLabel
                 control={
                   <Checkbox
-                    defaultChecked
                     sx={designs.AllStudent_Checkbox_Style}
                   />
                 }

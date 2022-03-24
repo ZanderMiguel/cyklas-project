@@ -12,6 +12,12 @@ function Student_viewquiz() {
   return (
     <Container maxWidth = "md">
         <Grid container>
+            <Grid item xs = {12}>
+                <Typography sx = {designs.Graded_Typography_Style}>
+                    Graded
+                </Typography>
+            </Grid>
+            
             <Grid item xs = {12} sx = {designs.Right_Container_GridItem_Style}>
                     <Box className = "Right-container" sx = {designs.Right_Container_Style}>
                         <Box className = "Header" sx = {designs.Header_Style}>
@@ -307,13 +313,6 @@ function Student_viewquiz() {
                         </Box>
 
                     </Box>
-
-                    <Divider sx = {designs.DividerRight_Style}/>
-
-                    <Typography sx = {designs.Graded_Typography_Style}>
-                        Graded
-                    </Typography>
-
                     </Box>
             </Grid>
         </Grid>

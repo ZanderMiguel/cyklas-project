@@ -4,6 +4,19 @@ function useStyle(){
 const theme = useTheme()
 
 const designs = {
+    Graded_Typography_Style: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#49B854",
+        color: "white",
+        fontSize: "0.9em",
+        fontWeight: "600",
+        textTransform: "uppercase",
+        width: "auto",
+        height: "max-content",
+        padding: "0.2em 0em"
+    },
     Right_Container_GridItem_Style: { 
         margin: "0.5em 0em",
         backgroundColor: "#FDFDFD",
@@ -397,24 +410,6 @@ const designs = {
         gap: "0.5em",
         backgroundColor: "#F55D5D",
         opacity: "0.2"
-    },
-    Graded_Typography_Style: {
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "transparent",
-        border: "2px solid #49B854",
-        color: "#49B854",
-        fontSize: "0.9em",
-        fontWeight: "600",
-        textTransform: "uppercase",
-        width: "auto",
-        height: "max-content",
-        margin: "0.5em 1.6em",
-        padding: "0.2em 0em",
-        [theme.breakpoints.down('sm')]: {
-            margin: "0.5em 0.5em",
-        }
     }
 };
 

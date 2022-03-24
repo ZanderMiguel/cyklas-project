@@ -11,49 +11,88 @@ function useStyle() {
         color: "#3F3D56" 
     },
     RightContainer1_GridItem_Style: {
-        height: "26em",
+        height: "max-content",
+        width: "relative",
         [theme.breakpoints.down('md')]: {
             display: "none"
         } 
     },
-    RightContainer2_GridItem_Style: { 
-        height: "26em",
+    Subtitle1_Style: {
+        marginLeft: "1.9em", 
+        width: "relative",
+        fontWeight: "600", 
+        fontSize: "0.9em", 
+        textTransform: "uppercase", 
+        color: "#007FFF" 
+    },
+    Body1_Style: { 
+        margin: "0em 0em 1.8em 2.1em",
+        width: "relative",
+        fontWeight: "500", 
+        fontSize: "0.8em", 
+        fontStyle: "italic", 
+        color: "#8E8E8E" 
+    },
+    RightContainer2_GridItem_Style: {
+        height: "max-content",
+        marginBottom: "8em",
         [theme.breakpoints.down('sm')]: {
             height: "max-content",
         } 
     },
-    Subtitle1_Style: { 
-        margin: "0em 0em 0em 0em", 
-        fontWeight: "600", 
-        fontSize: "1em", 
-        color: "#3F3D56",
+    Subtitle1_Responsive_Style: {
+        margin: "0em 0em 0em 2.3em",
+        fontWeight: "600",
+        fontSize: "0.9em", 
+        color: "#007FFF",
+        textTransform: "uppercase",
+        [theme.breakpoints.up('md')]: {
+            display: "none"
+        },
         [theme.breakpoints.between('sm', 'md')]: {
-            marginLeft: "1.7em",
-            display: "inline-block",
             display: "initial"
         },
-        [theme.breakpoints.up('sm')]: {
-            display: "none"
+        [theme.breakpoints.down('sm')]: {
+            margin: "0em 0em 0em 0em",
+            width: "100%",
+            display: "initial"
         }
     },
-    Body1_Style: { 
-        margin: "0em 0em 0.8em 0em", 
+    Body1_Responsive_Style: { 
+        margin: "0em 0em 0.8em 2.5em",
         fontWeight: "500", 
+        fontStyle: "italic",
         fontSize: "0.8em", 
-        color: "#696779",
-        [theme.breakpoints.between('sm', 'md')]: {
-            marginLeft: "2.1em",
-            display: "initial"
-        }, 
-        [theme.breakpoints.up('sm')]: {
+        color: "#8E8E8E",
+        [theme.breakpoints.up('md')]: {
             display: "none"
+        },
+        [theme.breakpoints.between('sm', 'md')]: {
+            display: "initial"
+        },
+        [theme.breakpoints.down('sm')]: {
+            margin: "0em 0em 0.8em 0em",
+            width: "100%",
+            display: "initial"
         } 
     },
     Stack_Style: { 
-        margin: "0em 0em 0.8em 2em",
+        margin: "0em 0em 0.8em 2.5em",
+        [theme.breakpoints.between('sm', 'md')]: {
+            margin: "0.5em 0em 0.8em 2.5em",
+        },
+        [theme.breakpoints.down('sm')]: {
+            margin: "0.5em 0em 0.8em 0em",
+        }   
+    },
+    Stack2_Style: { 
+        margin: "0em 0em 0.8em 2.5em",
+        [theme.breakpoints.between('sm', 'md')]: {
+            margin: "0em 0em 0.8em 2.5em",
+        },
         [theme.breakpoints.down('sm')]: {
             margin: "0em 0em 0.8em 0em",
-        }  
+        }   
     },
     TextFieldLabel_Style: { 
         fontWeight: "500", 
@@ -79,6 +118,12 @@ function useStyle() {
             display: "none"
         } 
     },
+    BoxFlexGrow2_Style: { 
+        height: "relative",
+        [theme.breakpoints.up('md')]: {
+            display: "none"
+        } 
+    },
     Save_Button_Style: {
         textTransform: "Capitalize",
         padding: "0.1em 2.5em",
@@ -93,7 +138,8 @@ function useStyle() {
           boxShadow: "none"
         },
         [theme.breakpoints.down('sm')]: {
-            width: "100%"
+            width: "100%",
+            padding: "0.3em 2.5em",
         }
     }
   };

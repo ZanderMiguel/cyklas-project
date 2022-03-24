@@ -10,11 +10,12 @@ import {
   Box,
   Button
 } from '@mui/material';
+import { Circle } from "@mui/icons-material";
 import ActivityIcon from '../assets/ImageJaven/ActivityIcon.png';
 import Wordfile from '../assets/ImageJaven/Wordfile.png';
 import useStyle from './Styles/Student_activities_style';
 import Divider from '@mui/material/Divider';
-import { Link, Router } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const data = [
   {
@@ -130,7 +131,9 @@ function Studentactivities_layout({ roomID }) {
                         {items.Status}
                       </Typography>
                       
-                      <Box className = "StatusIcon" sx = {designs.StatusIcon_Style}/>
+                      <Circle sx = {designs.StatusIcon_Style} />
+                      
+                      {/* <Box className = "StatusIcon" sx = {designs.StatusIcon_Style}/> */}
                     </Box>
                   </Box>
 
@@ -251,8 +254,8 @@ function Studentactivities_layout({ roomID }) {
 
                   <Button
                     sx={designs.ViewHomework_Button_Style}
-                    // component={Link}
-                    // to={`/Rooms/${roomID}/${items.Lesson}`}
+                    component={Link}
+                    to="/Student_viewactivity"
                   >
                     View Homework
                   </Button>

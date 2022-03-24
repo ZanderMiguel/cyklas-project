@@ -38,38 +38,40 @@ function AccountInformation() {
       <Typography children = "ACCOUNT INFORMATION" sx = {designs.AccountInformation_Typography_Style}/>
       <Grid container>
         
-        <Grid item xs = {3} sx = {designs.RightContainer1_GridItem_Style}>
+        <Grid item xs = {4} sx = {designs.RightContainer1_GridItem_Style}>
           <Typography
-            variant="subtitle1"
-            children="Email Address"
-            sx={{ marginLeft: "1.7em", fontWeight: "600", fontSize: "1em", color: "#3F3D56" }}/>
-
-          <Typography
-            variant="body1"
-            children="The email address you use to access Cyklas"
-            sx={{ marginLeft: "2.1em", fontWeight: "500", fontSize: "0.8em", color: "#696779" }}/>
-
-          <Typography
-            variant="subtitle1"
-            children="Password"
-            sx={{ marginLeft: "1.7em", marginTop: "1.4em", fontWeight: "600", fontSize: "1em", color: "#3F3D56" }}/>
-
-          <Typography
-            variant="body1"
-            children="The current password you use to access Cyklas"
-            sx={{ marginLeft: "2.1em", fontWeight: "500", fontSize: "0.8em", color: "#696779" }}/>
-        </Grid>
-        
-        <Grid item md = {9} xs = {12} sx = {designs.RightContainer2_GridItem_Style}>
-            <Typography
             variant="subtitle1"
             children="Email Address"
             sx={designs.Subtitle1_Style}/>
 
-            <Typography
+          <Typography
             variant="body1"
             children="The email address you use to access Cyklas"
             sx={designs.Body1_Style}/>
+
+          <Typography
+            variant="subtitle1"
+            children="Password"
+            sx={designs.Subtitle1_Style}/>
+
+          <Typography
+            variant="body1"
+            children="The current password you use to access Cyklas"
+            sx={designs.Body1_Style}/>
+        </Grid>
+        
+        <Grid item md = {8} xs = {12} sx = {designs.RightContainer2_GridItem_Style}>
+            <Typography
+            variant="subtitle1"
+            children="Email Address"
+            sx={designs.Subtitle1_Responsive_Style}/>
+
+            <Box flexGrow = {1} sx = {designs.BoxFlexGrow2_Style}/>
+
+            <Typography
+            variant="body1"
+            children="The email address you use to access Cyklas"
+            sx={designs.Body1_Responsive_Style}/>
 
             <Stack sx = {designs.Stack_Style}>
               <Typography sx = {designs.TextFieldLabel_Style} children="Email Address" />
@@ -79,15 +81,17 @@ function AccountInformation() {
             <Typography
             variant="subtitle1"
             children="Password"
-            sx={designs.Subtitle1_Style}/>
+            sx={designs.Subtitle1_Responsive_Style}/>
+
+            <Box flexGrow = {1} sx = {designs.BoxFlexGrow2_Style}/>
 
             <Typography
             variant="body1"
             children="The current password you use to access Cyklas"
-            sx={designs.Body1_Style}/>
+            sx={designs.Body1_Responsive_Style}/>
 
           {textfield.map((item, index) => (
-            <Stack key={index} sx = {designs.Stack_Style}>
+            <Stack key={index} sx = {designs.Stack2_Style}>
               <Typography sx = {designs.TextFieldLabel_Style} children={item.label} />
               <Input
                     name="password"

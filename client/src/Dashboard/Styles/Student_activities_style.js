@@ -150,11 +150,9 @@ function useStyle() {
         },
     },
     StatusIcon_Style: {
-        height: "0.7em",
-        width: "0.7em",
-        borderRadius: "2em",
-        backgroundColor: "#007FFF",
-        margin: "0.6em 0em 0em 1em",
+        fontSize: "0.7em",
+        color: "#007FFF",
+        margin: "1em 0em 0em 1em",
         [theme.breakpoints.up('sm')]: {
             display: "none"
         },
@@ -371,7 +369,7 @@ function useStyle() {
       color: '#0069D3',
       fontWeight: 'bold',
       textTransform: 'Capitalize',
-      marginLeft: '45px',
+      marginLeft: '20px',
       '&: hover': {
         backgroundColor: '#EAEAEA',
       },

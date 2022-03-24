@@ -46,7 +46,8 @@ function useStyle() {
         boxShadow: "none",
         "&: hover": { boxShadow: "none" },
         [theme.breakpoints.down('sm')]: {
-            width: "50%"
+            width: "50%",
+            padding: "0.3em 2.5em",
         }
     },
     Save_Button_Style: {
@@ -63,7 +64,8 @@ function useStyle() {
           boxShadow: "none"
         },
         [theme.breakpoints.down('sm')]: {
-            width: "50%"
+            width: "50%",
+            padding: "0.3em 2.5em",
         }
     },
     AccountPicture_Style: {

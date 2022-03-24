@@ -4,7 +4,7 @@ import { Send, FileUploadOutlined } from "@mui/icons-material";
 import AvatarIcon from "../assets/ImageJaven/Avatar.png";
 import Wordfile from "../assets/ImageJaven/Wordfile.png";
 import useStyle from "./Styles/Student_viewactivity_style";
-import { Link } from "react-router-dom";
+
 
 const data = [
     {
