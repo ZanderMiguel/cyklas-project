@@ -1,8 +1,8 @@
 import React from 'react';
 import { Input } from '@mui/material';
-import useStyle from '../Styles/Essay_style';
+import useStyle from './Styles/Quiz_shortanswer_style';
 
-function Essay() {
+function Quiz_shortanswer() {
   const { designs } = useStyle();
 
   const handleRows = (event) => {
@@ -25,4 +25,4 @@ function Essay() {
   );
 }
 
-export default Essay;
+export default Quiz_shortanswer;

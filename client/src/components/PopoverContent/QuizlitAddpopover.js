@@ -15,7 +15,7 @@ function QuizlitAddpopover() {
           </Box>
         </ListItem>
         <Divider />
-        <ListItem button component={Link} to="/Exam_take">
+        <ListItem button component={Link} to="/quizlit/createexam">
           <Box display="flex">
             <BsPencilSquare color="#007fff" size={20} />
             <Typography sx={{ ml: '1em', fontWeight: 600 }}>Exam</Typography>

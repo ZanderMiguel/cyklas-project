@@ -388,7 +388,7 @@ const designs = {
             width: "100%",
         }
     },
-    Essay_Input_Style: {
+    ShortAnswer_Input_Style: {
         backgroundColor: "transparent",
         borderBottom: "1px solid #DBDBDB" ,
         fontSize: "0.8em",

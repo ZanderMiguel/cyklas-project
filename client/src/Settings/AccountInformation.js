@@ -1,17 +1,35 @@
 import React, { useState } from 'react';
-import { Grid, Typography, Stack, TextField, Input, Box, Button } from '@mui/material';
+import { Grid, Typography, Stack, TextField, Box, Button, InputAdornment, IconButton } from '@mui/material';
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import Input from '../components/Input';
 import useStyle from "./Styles/Account_info_style";
 
 function AccountInformation() {
   const {designs} = useStyle();
 
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [showPasswordCurrent, setShowPasswordCurrent] = React.useState(false);
+  const [showPasswordNew, setShowPasswordNew] = React.useState(false);
+  const [showPasswordConfirm, setShowPasswordConfirm] = React.useState(false);
 
-  const handleShowPassword = () =>
-    setShowPassword((prevShowPassword) => !prevShowPassword);
+  const handleShowPasswordCurrent = () =>
+    setShowPasswordCurrent((prevShowPasswordCurrent) => !prevShowPasswordCurrent);
+  
+  const handleShowPasswordNew = () =>
+    setShowPasswordNew((prevShowPasswordNew) => !prevShowPasswordNew);
+    
+  const handleShowPasswordConfirm = () =>
+    setShowPasswordConfirm((prevShowPasswordConfirm) => !prevShowPasswordConfirm);
 
   const [myApi, setMyApi] = React.useState(new Map());
-  const handleChange = (e) => {
+  const handleChangeCurrent = (e) => {
+    setMyApi(myApi.set([e.target.name], e.target.value));
+  };
+
+  const handleChangeNew = (e) => {
+    setMyApi(myApi.set([e.target.name], e.target.value));
+  };
+
+  const handleChangeConfirm = (e) => {
     setMyApi(myApi.set([e.target.name], e.target.value));
   };
 
@@ -32,7 +50,7 @@ function AccountInformation() {
       holder: 'Confirm your new password'
     }
   ];
-
+  
   return (
     <>
       <Typography children = "ACCOUNT INFORMATION" sx = {designs.AccountInformation_Typography_Style}/>
@@ -90,18 +108,36 @@ function AccountInformation() {
             children="The current password you use to access Cyklas"
             sx={designs.Body1_Responsive_Style}/>
 
-          {textfield.map((item, index) => (
-            <Stack key={index} sx = {designs.Stack2_Style}>
-              <Typography sx = {designs.TextFieldLabel_Style} children={item.label} />
-              <Input
+          {/* {textfield.map((item, index) => ( */}
+            <Stack sx = {designs.Stack2_Style}>
+              <Typography sx = {designs.TextFieldLabel2_Style} children="Current Password" />
+                    <Input
                     name="password"
-                    placeholder = {item.holder}
-                    type={showPassword ? 'text' : 'password'}
-                    handleShowPassword={handleShowPassword}
-                    onChange={handleChange}
-                  />
+                    placeholder=" Enter your current password"
+                    type={showPasswordCurrent ? 'text' : 'password'}
+                    handleShowPassword={handleShowPasswordCurrent}
+                    onChange={handleChangeCurrent}
+                    sx = {designs.TextField2_Style}/>
+              
+              <Typography sx = {designs.TextFieldLabel2_Style} children="New Password" />
+                    <Input
+                    name="password"
+                    placeholder=" Enter your new password"
+                    type={showPasswordNew ? 'text' : 'password'}
+                    handleShowPassword={handleShowPasswordNew}
+                    onChange={handleChangeNew}
+                    sx = {designs.TextField2_Style}/>
+
+              <Typography sx = {designs.TextFieldLabel2_Style} children="Confirm New Password" />
+                    <Input
+                    name="password"
+                    placeholder=" Confirm your new password"
+                    type={showPasswordConfirm ? 'text' : 'password'}
+                    handleShowPassword={handleShowPasswordConfirm}
+                    onChange={handleChangeConfirm}
+                    sx = {designs.TextField2_Style}/>
             </Stack>
-          ))}
+          {/* ))} */}
           
         </Grid>
         

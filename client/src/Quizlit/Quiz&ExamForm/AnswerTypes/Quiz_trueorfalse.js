@@ -1,10 +1,10 @@
 import React from 'react';
 import { Box, Typography, IconButton, Container, Grid } from '@mui/material';
 import { Check } from '@mui/icons-material';
-import useStyle from '../Styles/Trueorfalse_style';
+import useStyle from './Styles/Quiz_trueorfalse_style';
 import { Link } from 'react-router-dom';
 
-function Trueorfalse() {
+function Quiz_trueorfalse() {
   const { designs } = useStyle();
 
   return (
@@ -67,4 +67,5 @@ function Trueorfalse() {
   );
 }
 
-export default Trueorfalse;
+export default Quiz_trueorfalse;
+
