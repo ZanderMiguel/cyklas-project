@@ -17,7 +17,7 @@ import {
   FormControl,
   InputLabel,
   Select,
-  MenuItem
+  MenuItem,
 } from '@mui/material';
 import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
 import Wordfile from '../../assets/ImageJaven/Wordfile.png';
@@ -56,7 +56,7 @@ const dataSort = [
   {
     value: 'Graded',
     label: 'Graded',
-  }
+  },
 ];
 
 const data = [
@@ -84,13 +84,9 @@ const data = [
 
 function View_activity() {
   const [view, setView] = React.useState(false);
-  console.log(view);
   const { designs } = useStyle();
-
   const { roomID, activityID } = useParams();
-
   const [selectSort, setSort] = useState('');
-
   const handleChangeSort = (event) => {
     setSort(event.target.value);
   };
@@ -98,19 +94,17 @@ function View_activity() {
   return (
     <Container maxWidth="lg">
       <Grid container columnSpacing={1}>
-        <Grid item xs = {4}>
-            <Button sx={designs.Return_Button_Style}>
-                Return
-            </Button>
+        <Grid item xs={4}>
+          <Button sx={designs.Return_Button_Style}>Return</Button>
         </Grid>
 
-        <Grid item xs = {8}/>
+        <Grid item xs={8} />
 
         <Grid item xs={4}>
           <Box className="Student-list" sx={designs.Student_List_Style}>
             <Box className="Sort-container" sx={designs.Sort_Container_Style}>
               <FormControlLabel
-                control={ <Checkbox sx={designs.AllStudent_Checkbox_Style}/> }
+                control={<Checkbox sx={designs.AllStudent_Checkbox_Style} />}
                 label="All Students"
                 sx={designs.AllStudentLabel_Checkbox_Style}
               />
@@ -118,28 +112,30 @@ function View_activity() {
               <Box sx={designs.FlexGrow_Box_Style} />
 
               <FormControl variant="standard" sx={designs.FormControl_Style}>
-                    <InputLabel id="demo-simple-select-standard-label"
-                     sx={designs.InputLabel_Style}>
-                     Sort by
-                    </InputLabel>
-                              
-                    <Select labelId="demo-simple-select-standard-label"
-                      id="demo-simple-select-standard"
-                      value={selectSort}
-                      onChange={handleChangeSort}
-                      label="SelectSort"
-                      disableUnderline
-                      sx={designs.Select_Style}>
+                <InputLabel
+                  id="demo-simple-select-standard-label"
+                  sx={designs.InputLabel_Style}
+                >
+                  Sort by
+                </InputLabel>
 
-                    {dataSort.map(({ value, label }) => (
-                      <MenuItem key={value} value={value}>
-                        {' '}
-                        {label}{' '}
-                      </MenuItem>
-                    ))}
-                    </Select>
+                <Select
+                  labelId="demo-simple-select-standard-label"
+                  id="demo-simple-select-standard"
+                  value={selectSort}
+                  onChange={handleChangeSort}
+                  label="SelectSort"
+                  disableUnderline
+                  sx={designs.Select_Style}
+                >
+                  {dataSort.map(({ value, label }) => (
+                    <MenuItem key={value} value={value}>
+                      {' '}
+                      {label}{' '}
+                    </MenuItem>
+                  ))}
+                </Select>
               </FormControl>
-
             </Box>
 
             <Divider sx={designs.Divider_Style} />

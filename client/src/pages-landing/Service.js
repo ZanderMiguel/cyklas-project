@@ -3,6 +3,7 @@ import { Grid } from '@mui/material';
 import Service_CyClassroom from './Service_CyClassroom';
 import QuizLit from './QuizLit';
 import TeleCon from './TeleCon';
+import Footer from './Footer';
 
 function Service() {
   return (
@@ -16,6 +17,7 @@ function Service() {
       <section>
         <TeleCon />
       </section>
+      <Footer />
     </>
   );
 }

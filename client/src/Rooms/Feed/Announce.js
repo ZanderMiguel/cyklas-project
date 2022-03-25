@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import Post_layout from './Post_layout';
 import Announce_form from './Announce_form';
-import Schoolworktiles_layout from './Schoolworktiles_layout';
+import Schoolworktiles_layout from '../Room-content-layout/Schoolworktiles_layout';
 
 function Announce() {
   const { roomID } = useParams();
