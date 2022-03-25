@@ -1,11 +1,10 @@
 import React from 'react';
-import { Box, IconButton, Container, Grid } from '@mui/material';
-import Image from '../../assets/ImageJaven/Image.png';
+import { Box, Button, IconButton, Grid } from '@mui/material';
 import { Check } from '@mui/icons-material';
-import useStyle from '../Styles/Imagemultiplechoice_style';
+import useStyle from './Styles/Exam_multiplechoice_style';
 import { Link } from 'react-router-dom';
 
-function Imagemultiplechoice() {
+function Exam_multiplechoice() {
   const { designs } = useStyle();
 
   return (
@@ -127,4 +126,4 @@ function Imagemultiplechoice() {
   );
 }
 
-export default Imagemultiplechoice;
+export default Exam_multiplechoice;

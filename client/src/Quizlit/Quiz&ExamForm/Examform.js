@@ -13,17 +13,24 @@ import {
   Select,
   MenuItem,
   FormControl,
+  FormControlLabel,
   InputLabel,
+  Checkbox,
+  Input
 } from '@mui/material';
 import CusButton from '../../components/Button';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import useStyle from '../Styles/Quiz_multiplechoice_style';
+import useStyle from '../Styles/Examform_style';
+import "../Styles/Examform_stylesheet.css";
 import Image from '../../assets/ImageJaven/Image.png';
-import { AddCircle, Check, MoreVert, Delete } from '@mui/icons-material';
-import Quiz_imagemultiplechoice from "./AnswerTypes/Quiz_imagemultiplechoice";
-import Quiz_trueorfalse from "./AnswerTypes/Quiz_trueorfalse";
-import Quiz_shortanswer from "./AnswerTypes/Quiz_shortanswer";
+import { AddCircle, Check, MoreVert, Delete, PhotoSizeSelectActualOutlined, ContentCopyOutlined } from '@mui/icons-material';
+import Exam_multiplechoice from '././AnswerTypes/Exam_multiplechoice';
+import Exam_trueorfalse from '././AnswerTypes/Exam_trueorfalse';
+import Exam_checkboxes from '././AnswerTypes/Exam_checkboxes';
+import Exam_enumeration from '././AnswerTypes/Exam_enumeration';
+import Exam_shortanswer from '././AnswerTypes/Exam_shortanswer';
 import Image_GIF from './Image_GIF';
+import { Link } from "react-router-dom";
 
 const dataAnswerType = [
   {
@@ -31,56 +38,21 @@ const dataAnswerType = [
     label: 'Multiple Choice',
   },
   {
-    value: 'Image Multiple Choice',
-    label: 'Image Multiple Choice',
-  },
-  {
     value: 'True or False',
     label: 'True or False',
   },
   {
+    value: 'Checkboxes',
+    label: 'Checkboxes',
+  },
+  {
+    value: 'Enumeration',
+    label: 'Enumeration',
+  },
+  {
     value: 'Short Answer',
     label: 'Short Answer',
-  },
-];
-
-const dataTimeLimit = [
-  {
-    value: '5 seconds',
-    label: '5 seconds',
-  },
-  {
-    value: '10 seconds',
-    label: '10 seconds',
-  },
-  {
-    value: '15 seconds',
-    label: '15 seconds',
-  },
-  {
-    value: '20 seconds',
-    label: '20 seconds',
-  },
-  {
-    value: '25 seconds',
-    label: '25 seconds',
-  },
-  {
-    value: '30 seconds',
-    label: '30 seconds',
-  },
-  {
-    value: '40 seconds',
-    label: '40 seconds',
-  },
-  {
-    value: '1 minute',
-    label: '1 minute',
-  },
-  {
-    value: '2 minutes',
-    label: '2 minutes',
-  },
+  }
 ];
 
 const dataPoints = [
@@ -137,23 +109,19 @@ const answertypeoptions = [
   },
 ];
 
-function Quizform() {
+function Examform() {
   const [questions, setQuestions] = useState(new Map());
   const [opendialog, setOpenDialog] = useState(false);
   const [image, setImage] = useState('');
   const { designs } = useStyle();
 
   const [selectAnswerType, setAnswerType] = useState('Multiple Choice');
-  const [selectTimeLimit, setTimeLimit] = useState('');
   const [selectPoints, setPoints] = useState('');
 
   const handleChange1 = (event) => {
     setAnswerType(event.target.value);
   };
   const handleChange2 = (event) => {
-    setTimeLimit(event.target.value);
-  };
-  const handleChange3 = (event) => {
     setPoints(event.target.value);
   };
 
@@ -205,12 +173,14 @@ function Quizform() {
 
   return (
     <Container maxWidth="lg">
-      <Grid container justifyContent="center" spacing={1}>
+      <Grid container justifyContent="center" rowSpacing = {1} sx = {{ margin: "0.5em 0em 2em 0em" }}>
         <Grid item container justifyContent="flex-end">
           <Grid item>
             <CusButton
+            component = {Link}
+            to = "/Exam_take"
               variant="contained"
-              content="Create Quiz"
+              content="Create Exam"
               type="submit"
               id="quizform"
               onClick={handleSubmit}
@@ -220,8 +190,7 @@ function Quizform() {
                 color: 'white',
                 '&:hover': {
                   backgroundColor: '#43a047',
-                },
-                mb: 2,
+                }
               }}
               startIcon={
                 <AddCircleIcon sx={{ color: 'white', fontSize: '2rem' }} />
@@ -231,7 +200,7 @@ function Quizform() {
         </Grid>
         <Grid item xs={12}>
           <Box
-            className="Quiz-title"
+            className="Exam-title"
             height="auto"
             width="100%"
             borderRadius="0.7em 0.7em 0em 0em"
@@ -246,7 +215,7 @@ function Quizform() {
             >
               <TextField
                 id="filled-basic"
-                placeholder="Untitled Quiz"
+                placeholder="Untitled Exam"
                 variant="filled"
                 sx={{
                   borderRadius: '0.7em 0.7em 0em 0em',
@@ -272,15 +241,21 @@ function Quizform() {
               className="Instructions"
               width="relative"
               height="auto"
-              backgroundColor="#FCFCFC"
-              borderLeft="2px solid #DBDBDB"
-              borderRight="2px solid #DBDBDB"
-              borderBottom="2px solid #DBDBDB"
+              padding = "0.5em 2em"
+              backgroundColor="#FDFDFD"
             >
-              <TextField
+            <Input variant="standard"
+            multiline
+            fullWidth
+            rows={6}
+            disableUnderline
+            placeholder="Write exam instructions here..."
+            sx={designs.Instruction_Input_Style}/>
+
+              {/* <TextField
                 multiline
                 rows={1}
-                placeholder="Write quiz instructions here..."
+                placeholder="Write exam instructions here..."
                 variant="filled"
                 sx={{
                   width: '100%',
@@ -299,7 +274,7 @@ function Quizform() {
                 }}
                 InputProps={{ disableUnderline: true }}
                 autoComplete="off"
-              />
+              /> */}
             </Box>
           </Box>
         </Grid>
@@ -309,47 +284,46 @@ function Quizform() {
               <form key={index} onSubmit={handleSubmit} id="quizform">
                 <Grid container rowSpacing={1}>
                   <Box
-                    className="Quiz-options-responsive"
-                    sx={designs.Quiz_Options_Responsive_Style}
+                    className="Exam-options-responsive"
+                    sx={designs.Exam_Options_Responsive_Style}
                   >
                     <IconButton
                       aria-label="options"
-                      sx={designs.Quiz_Options_IconButton_Style}
+                      sx={designs.Exam_Options_IconButton_Style}
                     >
                       <MoreVert sx={designs.MoreVertIcon_Style} />
                     </IconButton>
                   </Box>
                   <Grid item xs={12}>
                     <Box
-                      className="Quiz-container"
-                      sx={designs.Quiz_Container_Style}
+                      className="Exam-container"
+                      sx={designs.Exam_Container_Style}
                     >
                       <Box
-                        className="Quiz-container-sub"
-                        sx={designs.Quiz_Container_Sub_Style}
+                        className="Exam-container-sub"
+                        sx={designs.Exam_Container_Sub_Style}
                       >
                         <Box
-                          className="Quiz-question"
-                          sx={designs.Quiz_Question_Style}
+                          className="Exam-question"
+                          sx={designs.Exam_Question_Style}
                         >
                           <Box
-                            className="Quiz-question-sub"
-                            sx={designs.Quiz_Question_Sub_Style}
+                            className="Exam-question-sub"
+                            sx={designs.Exam_Question_Sub_Style}
                           >
                             <TextField
                               id="filled-basic"
-                              placeholder="Enter quiz question here..."
+                              placeholder="Enter exam question here..."
                               variant="filled"
                               autoComplete="off"
-                              sx={designs.Quiz_Question_TextField_Style}
+                              sx={designs.Exam_Question_TextField_Style}
                               inputProps={{
                                 style: {
                                   height: '0em',
                                   fontSize: '0.8em',
                                   paddingLeft: '0.2em',
-                                  paddingRight: '0em',
+                                  paddingRight: '0.4em',
                                   marginBottom: '1.2em',
-                                  marginRight: '3.5em',
                                   color: 'white',
                                 },
                               }}
@@ -358,16 +332,35 @@ function Quizform() {
                                 startAdornment: (
                                   <InputAdornment position="start">
                                     <Box
-                                      className="Quiz-item"
-                                      sx={designs.Quiz_Item_Style}
+                                      className="Exam-item"
+                                      sx={designs.Exam_Item_Style}
                                     >
                                       <Typography
-                                        sx={designs.Quiz_Item_Typography_Style}
+                                        sx={designs.Exam_Item_Typography_Style}
                                       >
                                         1.
                                       </Typography>
                                     </Box>
                                   </InputAdornment>
+                                ),
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                       <IconButton aria-label="attach-image" 
+                                       onClick={() => setOpenDialog(true)}
+                                            sx = {{
+                                            height: "2em",
+                                            width: "2em",
+                                            marginRight: "0.5em",
+                                            borderRadius: "0em",
+                                            }}>
+                                            <PhotoSizeSelectActualOutlined
+                                            sx= {{
+                                            color: "White",
+                                            fontSize: "30px"
+                                        
+                                            }}/>
+                                         </IconButton>
+                                    </InputAdornment>
                                 ),
                               }}
                               name={`questions${index}`}
@@ -376,12 +369,12 @@ function Quizform() {
                             />
                           </Box>
                           <Box
-                            className="Quiz-question-image"
-                            sx={designs.Quiz_Question_Image_Style}
+                            className="Exam-question-image"
+                            sx={designs.Exam_Question_Image_Style}
                           >
                             <Box
-                              className="Quiz-question-image-sub"
-                              sx={designs.Quiz_Question_Image_Sub_Style}
+                              className="Exam-question-image-sub"
+                              sx={designs.Exam_Question_Image_Sub_Style}
                             >
                               {image != '' ? (
                                 <>
@@ -412,9 +405,9 @@ function Quizform() {
                                 <Box
                                   width="80%"
                                   height="300px"
-                                  display="flex"
                                   justifyContent="center"
                                   alignItems="center"
+                                  display = "none"
                                 >
                                   <Button
                                     variant="contained"
@@ -437,6 +430,269 @@ function Quizform() {
                               )}
                             </Box>
                           </Box>
+
+                          {selectAnswerType === 'Multiple Choice' && (
+                            <>
+                            <Grid container rowSpacing={1} sx = {{ padding: "0em 2em 1.5em 2em" }}>
+                              <Grid item xs={12} >
+                                <TextField
+                                  id="filled-basic"
+                                  placeholder="Enter Answer A..."
+                                  variant="filled"
+                                  autoComplete="off"
+                                  name="answer1"
+                                  onChange={(event) =>
+                                    handleChange(index, event)
+                                  }
+                                  sx={designs.Answer_A_TextField_Style}
+                                  inputProps={{
+                                    style: {
+                                      height: '0em',
+                                      fontSize: '0.8em',
+                                      paddingLeft: '0.1em',
+                                      paddingRight: '0em',
+                                      marginBottom: '1em',
+                                      marginRight: '0.5em',
+                                      color: 'white',
+                                    },
+                                  }}
+                                  InputProps={{
+                                    disableUnderline: true,
+                                    startAdornment: (
+                                      <InputAdornment position="start">
+                                        <Box
+                                          className="Exam-item"
+                                          sx={designs.Exam_Item_Style2}
+                                        >
+                                          <Typography
+                                            sx={
+                                              designs.Answer_A_Typography_Style
+                                            }
+                                          >
+                                            A.
+                                          </Typography>
+                                        </Box>
+                                      </InputAdornment>
+                                    ),
+                                    endAdornment: (
+                                      <InputAdornment position="end">
+                                        <IconButton
+                                          aria-label="correct-answer"
+                                          sx={
+                                            designs.Correct_Answer_IconButton_Style
+                                          }
+                                        >
+                                          <Check sx={designs.CheckIcon_Style} />
+                                        </IconButton>
+                                      </InputAdornment>
+                                    ),
+                                  }}
+                                />
+                              </Grid>
+
+                              <Grid item xs={12}>
+                                <TextField
+                                  id="filled-basic"
+                                  placeholder="Enter Answer B..."
+                                  variant="filled"
+                                  autoComplete="off"
+                                  name="answer2"
+                                  onChange={(event) =>
+                                    handleChange(index, event)
+                                  }
+                                  sx={designs.Answer_B_TextField_Style}
+                                  inputProps={{
+                                    style: {
+                                      height: '0em',
+                                      fontSize: '0.8em',
+                                      paddingLeft: '0.1em',
+                                      paddingRight: '0em',
+                                      marginBottom: '1em',
+                                      marginRight: '0.5em',
+                                      color: 'white',
+                                    },
+                                  }}
+                                  InputProps={{
+                                    disableUnderline: true,
+                                    startAdornment: (
+                                      <InputAdornment position="start">
+                                        <Box
+                                          className="Exam-item"
+                                          sx={designs.Exam_Item_Style2}
+                                        >
+                                          <Typography
+                                            sx={
+                                              designs.Answer_B_Typography_Style
+                                            }
+                                          >
+                                            B.
+                                          </Typography>
+                                        </Box>
+                                      </InputAdornment>
+                                    ),
+                                    endAdornment: (
+                                      <InputAdornment position="end">
+                                        <IconButton
+                                          aria-label="correct-answer"
+                                          sx={
+                                            designs.Correct_Answer_IconButton_Style
+                                          }
+                                        >
+                                          <Check sx={designs.CheckIcon_Style} />
+                                        </IconButton>
+                                      </InputAdornment>
+                                    ),
+                                  }}
+                                />
+                              </Grid>
+
+                              <Grid item xs={12}>
+                                <TextField
+                                  id="filled-basic"
+                                  placeholder="Enter Answer C..."
+                                  variant="filled"
+                                  autoComplete="off"
+                                  name="answer3"
+                                  onChange={(event) =>
+                                    handleChange(index, event)
+                                  }
+                                  sx={designs.Answer_C_TextField_Style}
+                                  inputProps={{
+                                    style: {
+                                      height: '0em',
+                                      fontSize: '0.8em',
+                                      paddingLeft: '0.1em',
+                                      paddingRight: '0em',
+                                      marginBottom: '1em',
+                                      marginRight: '0.5em',
+                                      color: 'white',
+                                    },
+                                  }}
+                                  InputProps={{
+                                    disableUnderline: true,
+                                    startAdornment: (
+                                      <InputAdornment position="start">
+                                        <Box
+                                          className="Exam-item"
+                                          sx={designs.Exam_Item_Style2}
+                                        >
+                                          <Typography
+                                            sx={
+                                              designs.Answer_C_Typography_Style
+                                            }
+                                          >
+                                            C.
+                                          </Typography>
+                                        </Box>
+                                      </InputAdornment>
+                                    ),
+                                    endAdornment: (
+                                      <InputAdornment position="end">
+                                        <IconButton
+                                          aria-label="correct-answer"
+                                          sx={
+                                            designs.Correct_Answer_IconButton_Style
+                                          }
+                                        >
+                                          <Check sx={designs.CheckIcon_Style} />
+                                        </IconButton>
+                                      </InputAdornment>
+                                    ),
+                                  }}
+                                />
+                              </Grid>
+
+                              <Grid item xs={12}>
+                                <TextField
+                                  id="filled-basic"
+                                  placeholder="Enter Answer D..."
+                                  variant="filled"
+                                  autoComplete="off"
+                                  name="answer4"
+                                  onChange={(event) =>
+                                    handleChange(index, event)
+                                  }
+                                  sx={designs.Answer_D_TextField_Style}
+                                  inputProps={{
+                                    style: {
+                                      height: '0em',
+                                      fontSize: '0.8em',
+                                      paddingLeft: '0.1em',
+                                      paddingRight: '0em',
+                                      marginBottom: '1em',
+                                      marginRight: '0.5em',
+                                      color: 'white',
+                                    },
+                                  }}
+                                  InputProps={{
+                                    disableUnderline: true,
+                                    startAdornment: (
+                                      <InputAdornment position="start">
+                                        <Box
+                                          className="Exam-item"
+                                          sx={designs.Exam_Item_Style2}
+                                        >
+                                          <Typography
+                                            sx={
+                                              designs.Answer_D_Typography_Style
+                                            }
+                                          >
+                                            D.
+                                          </Typography>
+                                        </Box>
+                                      </InputAdornment>
+                                    ),
+                                    endAdornment: (
+                                      <InputAdornment position="end">
+                                        <IconButton
+                                          aria-label="correct-answer"
+                                          sx={
+                                            designs.Correct_Answer_IconButton_Style
+                                          }
+                                        >
+                                          <Check sx={designs.CheckIcon_Style} />
+                                        </IconButton>
+                                      </InputAdornment>
+                                    ),
+                                  }}
+                                />
+                              </Grid>
+
+                              <Grid item xs = {12}>
+                                  <Button variant = "contained" startIcon = {<AddCircle/>}
+                                  sx = {{ 
+                                        height: "relative", 
+                                        width: "100%", 
+                                        padding: "0.3em 0em",
+                                        fontSize: "0.8em",
+                                        fontWeight: "600",
+                                        textTransform: "capitalize",
+                                        color: "white",
+                                        boxShadow: "none",
+                                        borderRadius: "0.5em",
+                                        "&: hover": {
+                                            boxShadow: "none"
+                                        }
+                                        }}>
+                                        Add another choice
+                                  </Button>
+                              </Grid>
+                            </Grid>
+                            </>
+                        )}
+                        {selectAnswerType === 'True or False' && (
+                          <Exam_trueorfalse />
+                        )}
+                        {selectAnswerType === 'Checkboxes' && (
+                          <Exam_checkboxes />
+                        )}
+                        {selectAnswerType === 'Enumeration' && (
+                          <Exam_enumeration />
+                        )}
+                        {selectAnswerType === 'Short Answer' && (
+                          <Exam_shortanswer />
+                        )}
+
                         </Box>
                         {opendialog && (
                           <Image_GIF
@@ -447,17 +703,30 @@ function Quizform() {
                           />
                         )}
                         <Box
-                          className="Quiz-options"
-                          sx={designs.Quiz_Options_Style}
+                          className="Exam-options"
+                          sx={designs.Exam_Options_Style}
                         >
                           <Box
                             className="Other-buttons"
                             sx={designs.Other_Buttons_Style}
                           >
                             <Box
-                              className="Delete-question"
-                              sx={designs.Delete_Question_Style}
-                            >
+                              className="Button-container"
+                              sx={designs.Button_Container_Style}
+                            >  
+                                <Box className = "Required-button" sx = {designs.Required_Button_Style}>
+                                    <Checkbox sx={designs.Required_Checkbox_Style}/>
+                                    <Typography sx = {designs.Required_Typography_Style}>
+                                        Required
+                                    </Typography>
+                                </Box>
+
+                                <Box flexGrow = {1} sx = {{ height: "relative" }}/>
+
+                                <IconButton aria-label="duplicate" sx={designs.Duplicate_IconButton_Style}>
+                                    <ContentCopyOutlined sx={designs.DuplicateIcon_Style}/>
+                                </IconButton>
+
                               <IconButton
                                 aria-label="delete"
                                 sx={designs.Delete_IconButton_Style}
@@ -502,41 +771,13 @@ function Quizform() {
                                 id="demo-simple-select-standard-label"
                                 sx={designs.InputLabel_Style}
                               >
-                                Time Limit
-                              </InputLabel>
-                              <Select
-                                labelId="demo-simple-select-standard-label"
-                                id="demo-simple-select-standard"
-                                value={selectTimeLimit}
-                                onChange={handleChange2}
-                                label="SelectTimeLimit"
-                                disableUnderline
-                                sx={designs.Select_Style}
-                              >
-                                {dataTimeLimit.map(({ value, label }) => (
-                                  <MenuItem key={value} value={value}>
-                                    {' '}
-                                    {label}{' '}
-                                  </MenuItem>
-                                ))}
-                              </Select>
-                            </FormControl>
-
-                            <FormControl
-                              variant="standard"
-                              sx={designs.FormControl_Style}
-                            >
-                              <InputLabel
-                                id="demo-simple-select-standard-label"
-                                sx={designs.InputLabel_Style}
-                              >
                                 Points
                               </InputLabel>
                               <Select
                                 labelId="demo-simple-select-standard-label"
                                 id="demo-simple-select-standard"
                                 value={selectPoints}
-                                onChange={handleChange3}
+                                onChange={handleChange2}
                                 label="SelectPoints"
                                 disableUnderline
                                 sx={designs.Select_Style}
@@ -574,6 +815,7 @@ function Quizform() {
                                 />
                               )}
                             />
+
                             <Autocomplete
                               clearOnEscape
                               id="clear-on-escape"
@@ -598,6 +840,7 @@ function Quizform() {
                                 />
                               )}
                             />
+
                             <Autocomplete
                               clearOnEscape
                               id="clear-on-escape"
@@ -624,251 +867,6 @@ function Quizform() {
                             /> */}
                           </Box>
                         </Box>
-                      </Box>
-
-                      <Box
-                        className="Quiz-answers"
-                        sx={designs.Quiz_Answers_Style}
-                      >
-                        {selectAnswerType === 'Multiple Choice' && (
-                          <>
-                            <Grid container columnSpacing={2} rowSpacing={1}>
-                              <Grid item xs={12} sm={6}>
-                                <TextField
-                                  id="filled-basic"
-                                  placeholder="Enter Answer A..."
-                                  variant="filled"
-                                  autoComplete="off"
-                                  name="answer1"
-                                  onChange={(event) =>
-                                    handleChange(index, event)
-                                  }
-                                  sx={designs.Answer_A_TextField_Style}
-                                  inputProps={{
-                                    style: {
-                                      height: '0em',
-                                      fontSize: '0.8em',
-                                      paddingLeft: '0.1em',
-                                      paddingRight: '0em',
-                                      marginBottom: '1em',
-                                      marginRight: '0.5em',
-                                      color: 'white',
-                                    },
-                                  }}
-                                  InputProps={{
-                                    disableUnderline: true,
-                                    startAdornment: (
-                                      <InputAdornment position="start">
-                                        <Box
-                                          className="Quiz-item"
-                                          sx={designs.Quiz_Item_Style2}
-                                        >
-                                          <Typography
-                                            sx={
-                                              designs.Answer_A_Typography_Style
-                                            }
-                                          >
-                                            A.
-                                          </Typography>
-                                        </Box>
-                                      </InputAdornment>
-                                    ),
-                                    endAdornment: (
-                                      <InputAdornment position="end">
-                                        <IconButton
-                                          aria-label="correct-answer"
-                                          sx={
-                                            designs.Correct_Answer_IconButton_Style
-                                          }
-                                        >
-                                          <Check sx={designs.CheckIcon_Style} />
-                                        </IconButton>
-                                      </InputAdornment>
-                                    ),
-                                  }}
-                                />
-                              </Grid>
-
-                              <Grid item xs={12} sm={6}>
-                                <TextField
-                                  id="filled-basic"
-                                  placeholder="Enter Answer B..."
-                                  variant="filled"
-                                  autoComplete="off"
-                                  name="answer2"
-                                  onChange={(event) =>
-                                    handleChange(index, event)
-                                  }
-                                  sx={designs.Answer_B_TextField_Style}
-                                  inputProps={{
-                                    style: {
-                                      height: '0em',
-                                      fontSize: '0.8em',
-                                      paddingLeft: '0.1em',
-                                      paddingRight: '0em',
-                                      marginBottom: '1em',
-                                      marginRight: '0.5em',
-                                      color: 'white',
-                                    },
-                                  }}
-                                  InputProps={{
-                                    disableUnderline: true,
-                                    startAdornment: (
-                                      <InputAdornment position="start">
-                                        <Box
-                                          className="Quiz-item"
-                                          sx={designs.Quiz_Item_Style2}
-                                        >
-                                          <Typography
-                                            sx={
-                                              designs.Answer_B_Typography_Style
-                                            }
-                                          >
-                                            B.
-                                          </Typography>
-                                        </Box>
-                                      </InputAdornment>
-                                    ),
-                                    endAdornment: (
-                                      <InputAdornment position="end">
-                                        <IconButton
-                                          aria-label="correct-answer"
-                                          sx={
-                                            designs.Correct_Answer_IconButton_Style
-                                          }
-                                        >
-                                          <Check sx={designs.CheckIcon_Style} />
-                                        </IconButton>
-                                      </InputAdornment>
-                                    ),
-                                  }}
-                                />
-                              </Grid>
-                            </Grid>
-
-                            <Grid container columnSpacing={2} rowSpacing={1}>
-                              <Grid item xs={12} sm={6}>
-                                <TextField
-                                  id="filled-basic"
-                                  placeholder="Enter Answer C..."
-                                  variant="filled"
-                                  autoComplete="off"
-                                  name="answer3"
-                                  onChange={(event) =>
-                                    handleChange(index, event)
-                                  }
-                                  sx={designs.Answer_C_TextField_Style}
-                                  inputProps={{
-                                    style: {
-                                      height: '0em',
-                                      fontSize: '0.8em',
-                                      paddingLeft: '0.1em',
-                                      paddingRight: '0em',
-                                      marginBottom: '1em',
-                                      marginRight: '0.5em',
-                                      color: 'white',
-                                    },
-                                  }}
-                                  InputProps={{
-                                    disableUnderline: true,
-                                    startAdornment: (
-                                      <InputAdornment position="start">
-                                        <Box
-                                          className="Quiz-item"
-                                          sx={designs.Quiz_Item_Style2}
-                                        >
-                                          <Typography
-                                            sx={
-                                              designs.Answer_C_Typography_Style
-                                            }
-                                          >
-                                            C.
-                                          </Typography>
-                                        </Box>
-                                      </InputAdornment>
-                                    ),
-                                    endAdornment: (
-                                      <InputAdornment position="end">
-                                        <IconButton
-                                          aria-label="correct-answer"
-                                          sx={
-                                            designs.Correct_Answer_IconButton_Style
-                                          }
-                                        >
-                                          <Check sx={designs.CheckIcon_Style} />
-                                        </IconButton>
-                                      </InputAdornment>
-                                    ),
-                                  }}
-                                />
-                              </Grid>
-
-                              <Grid item xs={12} sm={6}>
-                                <TextField
-                                  id="filled-basic"
-                                  placeholder="Enter Answer D..."
-                                  variant="filled"
-                                  autoComplete="off"
-                                  name="answer4"
-                                  onChange={(event) =>
-                                    handleChange(index, event)
-                                  }
-                                  sx={designs.Answer_D_TextField_Style}
-                                  inputProps={{
-                                    style: {
-                                      height: '0em',
-                                      fontSize: '0.8em',
-                                      paddingLeft: '0.1em',
-                                      paddingRight: '0em',
-                                      marginBottom: '1em',
-                                      marginRight: '0.5em',
-                                      color: 'white',
-                                    },
-                                  }}
-                                  InputProps={{
-                                    disableUnderline: true,
-                                    startAdornment: (
-                                      <InputAdornment position="start">
-                                        <Box
-                                          className="Quiz-item"
-                                          sx={designs.Quiz_Item_Style2}
-                                        >
-                                          <Typography
-                                            sx={
-                                              designs.Answer_D_Typography_Style
-                                            }
-                                          >
-                                            D.
-                                          </Typography>
-                                        </Box>
-                                      </InputAdornment>
-                                    ),
-                                    endAdornment: (
-                                      <InputAdornment position="end">
-                                        <IconButton
-                                          aria-label="correct-answer"
-                                          sx={
-                                            designs.Correct_Answer_IconButton_Style
-                                          }
-                                        >
-                                          <Check sx={designs.CheckIcon_Style} />
-                                        </IconButton>
-                                      </InputAdornment>
-                                    ),
-                                  }}
-                                />
-                              </Grid>
-                            </Grid>
-                          </>
-                        )}
-
-                        {selectAnswerType === 'Image Multiple Choice' && (
-                          <Quiz_imagemultiplechoice />
-                        )}
-                        {selectAnswerType === 'True or False' && (
-                          <Quiz_trueorfalse />
-                        )}
-                        {selectAnswerType === 'Short Answer' && <Quiz_shortanswer />}
                       </Box>
                     </Box>
                   </Grid>
@@ -902,4 +900,4 @@ function Quizform() {
   );
 }
 
-export default Quizform;
+export default Examform;

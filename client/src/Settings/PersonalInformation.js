@@ -17,28 +17,21 @@ function PersonalInformation() {
     { 
       label: 'First Name', 
       value: 'firstname', 
-      holder: 'Enter first name...' 
+      holder: 'Enter first name...',
+      default: 'Mark' 
     },
     { 
       label: 'Last Name', 
       value: 'lastname', 
-      holder: 'Enter last name...' 
+      holder: 'Enter last name...',
+      default: 'Andrei' 
     },
     { 
       label: 'Gender', 
       value: 'gender', 
-      holder: 'Enter first name...' 
-    },
-    { 
-      label: 'First Name', 
-      value: 'firstname', 
-      holder: 'Enter first name...' 
-    },
-    { 
-      label: 'First Name', 
-      value: 'firstname', 
-      holder: 'Enter first name...' 
-    },
+      holder: 'Choose your gender...',
+      default: 'Male' 
+    }
   ];
 
   return (
@@ -50,7 +43,7 @@ function PersonalInformation() {
           {textfield.map((item, index) => (
             <Stack key={index} sx = {designs.Stack_Style}>
               <Typography sx = {designs.TextFieldLabel_Style} children={item.label} />
-              <TextField variant="outlined" sx = {designs.TextField_Style} placeholder={item.holder} />
+              <TextField variant="outlined" defaultValue={item.default} sx = {designs.TextField_Style} placeholder={item.holder} />
             </Stack>
           ))}
         </Stack>

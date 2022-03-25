@@ -21,7 +21,6 @@ function Button({
         fullWidth={fullWidth}
         variant={variant}
         startIcon={startIcon}
-        onClick={onClick}
         children={content}
         {...rest}
       ></CusButton>

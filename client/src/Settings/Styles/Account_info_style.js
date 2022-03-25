@@ -26,7 +26,7 @@ function useStyle() {
         color: "#007FFF" 
     },
     Body1_Style: { 
-        margin: "0em 0em 1.8em 2.1em",
+        margin: "0em 0em 2.5em 2.1em",
         width: "relative",
         fontWeight: "500", 
         fontSize: "0.8em", 
@@ -36,12 +36,17 @@ function useStyle() {
     RightContainer2_GridItem_Style: {
         height: "max-content",
         marginBottom: "8em",
+        [theme.breakpoints.between('sm', 'md')]: {
+            height: "max-content",
+            marginBottom: "2em",
+        },
         [theme.breakpoints.down('sm')]: {
             height: "max-content",
+            marginBottom: "0em",
         } 
     },
     Subtitle1_Responsive_Style: {
-        margin: "0em 0em 0em 2.3em",
+        margin: "0em 0em 0em 2.8em",
         fontWeight: "600",
         fontSize: "0.9em", 
         color: "#007FFF",
@@ -59,7 +64,7 @@ function useStyle() {
         }
     },
     Body1_Responsive_Style: { 
-        margin: "0em 0em 0.8em 2.5em",
+        margin: "0em 0em 0em 3em",
         fontWeight: "500", 
         fontStyle: "italic",
         fontSize: "0.8em", 
@@ -71,7 +76,7 @@ function useStyle() {
             display: "initial"
         },
         [theme.breakpoints.down('sm')]: {
-            margin: "0em 0em 0.8em 0em",
+            margin: "0em 0em 0em 0em",
             width: "100%",
             display: "initial"
         } 
@@ -86,23 +91,41 @@ function useStyle() {
         }   
     },
     Stack2_Style: { 
-        margin: "0em 0em 0.8em 2.5em",
+        margin: "0em 0em 0em 2.5em",
+        // margin: "0em 0em 0.8em 2.5em",
         [theme.breakpoints.between('sm', 'md')]: {
-            margin: "0em 0em 0.8em 2.5em",
+            margin: "0em 0em 0em 2.5em",
         },
         [theme.breakpoints.down('sm')]: {
-            margin: "0em 0em 0.8em 0em",
+            margin: "0em 0em 0em 0em",
         }   
     },
     TextFieldLabel_Style: { 
         fontWeight: "500", 
         color: "#3F3D56", 
-        fontSize: "0.9em" 
+        fontSize: "0.9em"
     },
-    TextField_Style: { 
+    TextField_Style: {  
         fontWeight: "500", 
         color: "#3F3D56", 
-        fontSize: "0.5em" 
+        fontSize: "0.5em"
+    },
+    TextFieldLabel2_Style: { 
+        fontWeight: "500", 
+        color: "#3F3D56", 
+        fontSize: "0.9em",
+        marginTop: "0.5em",
+        [theme.breakpoints.between('sm', 'md')]: {
+            marginTop: "0.5em",
+        },
+        [theme.breakpoints.down('sm')]: {
+            marginTop: "0.5em",
+        } 
+    },
+    TextField2_Style: { 
+        fontWeight: "500", 
+        color: "#3F3D56", 
+        fontSize: "0.5em"
     },
     Button_Container_Style: { 
         display: "flex",

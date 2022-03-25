@@ -17,6 +17,7 @@ import { io } from 'socket.io-client';
 import TeleconStart from './Telecon/TeleconStart';
 import QuizLit from './Quizlit/Quizlit';
 import Quizform from './Quizlit/Quiz&ExamForm/Quizform';
+import Examform from './Quizlit/Quiz&ExamForm/Examform';
 import Rooms from './Rooms/Rooms';
 import Room_inside from './Rooms/Room-content-layout/Room_inside';
 import View_activity from './Rooms/Activities/View_activity';
@@ -104,6 +105,12 @@ function App() {
               exact
               path="/quizlit/createquiz"
               component={Quizform}
+            />
+
+            <ProtectedRoutes
+              exact
+              path="/quizlit/createexam"
+              component={Examform}
             />
 
             {/* Javen Routes */}
