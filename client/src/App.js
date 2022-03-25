@@ -19,7 +19,7 @@ import QuizLit from './Quizlit/Quizlit';
 import Quizform from './Quizlit/Quiz&ExamForm/Quizform';
 import Rooms from './Rooms/Rooms';
 import Room_inside from './Rooms/Room-content-layout/Room_inside';
-import View_activity from './Rooms/Room-content-layout/View_activity';
+import View_activity from './Rooms/Activities/View_activity';
 import Forgot_password from './pages-landing/Forgot_password';
 import Notfound from './Notfound';
 import Livequiz_multiplechoice from './Quizlit/LiveQuiz/Livequiz_multiplechoice';

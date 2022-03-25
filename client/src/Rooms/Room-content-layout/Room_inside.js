@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import Announce from './Announce';
-import Activities from './Activities';
-import Member from './Member';
+import Announce from '../Feed/Announce';
+import Activities from '../Activities/Activities';
+import Member from '../Members/Member';
 
 import {
   AppBar,
@@ -83,7 +83,7 @@ function Room_inside() {
                 <Tab
                   icon={<HiUserGroup size={25} />}
                   iconPosition="start"
-                  label="People"
+                  label="Members"
                   disableRipple
                 />
               </Tabs>

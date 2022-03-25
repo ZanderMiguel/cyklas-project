@@ -8,6 +8,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import Footer from '../pages-landing/Footer';
 
 //Import Mui
 import {
@@ -112,8 +113,8 @@ function Navbar_landingpage({ data }) {
         {value === 0 && <Home data={data} />}
         {value === 1 && <Service />}
         {value === 2 && <About />}
+        {value === 3 && <Contact />}
       </Container>
-      {value === 3 && <Contact />}
     </>
   );
 }

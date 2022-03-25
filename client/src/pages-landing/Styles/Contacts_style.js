@@ -246,10 +246,7 @@ function useStyle() {
     },
     Content2_Style: {
       padding: '15px 0px',
-      bottom: '0',
-      left: '0',
-      right: '0',
-      position: 'relative',
+      marginBottom: '0px',
       width: '100%',
       height: 'auto',
       backgroundColor: '#007FFF',

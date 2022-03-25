@@ -28,6 +28,7 @@ function Activities({ roomID }) {
             '&:hover': {
               backgroundColor: '#0072e6',
             },
+            marginBottom: 2,
           }}
           onClick={handleClickOpen}
         >
@@ -35,7 +36,7 @@ function Activities({ roomID }) {
         </Button>
       </Box>
       {opendialog && <Create_activity open={opendialog} close={handleClose} />}
-      <Grid container rowSpacing={1}>
+      <Grid container rowSpacing={2}>
         <Activities_layout roomID={roomID} />
       </Grid>
     </Container>
