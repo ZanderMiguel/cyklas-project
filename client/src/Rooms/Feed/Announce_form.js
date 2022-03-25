@@ -11,9 +11,9 @@ import {
   IconButton,
   Button,
 } from '@mui/material';
-import {useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import usePost from '../../customHooks/usePost'
+import usePost from '../../customHooks/usePost';
 import {
   FormatAlignLeft,
   FormatAlignCenter,
@@ -27,26 +27,30 @@ import {
 } from '@mui/icons-material';
 
 function Announce_form() {
-
-  const [announcecontent, setAccountContent] = React.useState('')
+  const [announcecontent, setAccountContent] = React.useState('');
   const [upload, setUpload] = React.useState('true');
   const [alignment, setAlignment] = React.useState('left');
   const [formats, setFormats] = React.useState(() => ['italic']);
   const bold = React.useRef(false);
 
-  const {post} = usePost()
-  const {roomID} = useParams()
-  
+  const { post } = usePost();
+  const { roomID } = useParams();
 
   const handleAnnounce = () => {
-    post('http://localhost:5000/announce/create', {author: {useID: JSON.parse(localStorage.userData).data.user._id,
-      name: `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName} ` }, rooms: [roomID], content: postData.current.textContent })
-  }
+    post('http://localhost:5000/announce/create', {
+      author: {
+        userID: JSON.parse(localStorage.userData).data.user._id,
+        name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
+          JSON.parse(localStorage.userData).data.user.lastName
+        } `,
+      },
+      rooms: [roomID],
+      content: postData.current.textContent,
+    });
+  };
 
-  
   const postData = React.useRef(null);
- 
-   
+
   const handleFormat = (event, newFormats) => {
     setFormats(newFormats);
   };
@@ -164,7 +168,9 @@ function Announce_form() {
         justifyContent="flex-end"
         marginTop="1rem"
       >
-        <Button variant="contained" onClick={handleAnnounce}>post</Button>
+        <Button variant="contained" onClick={handleAnnounce}>
+          post
+        </Button>
       </Box>
     </Paper>
   );

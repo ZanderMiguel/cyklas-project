@@ -13,17 +13,34 @@ import {
 import { MoreVert, Send } from '@mui/icons-material';
 import Comments from './Comments';
 import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
+import usePost from '../../customHooks/usePost';
 import useStyles from '../Styles/Announce_style';
 
 function Post_layout({ data }) {
   const commentContent = React.useRef(null);
+  const postID = React.useRef(null);
   const { designs } = useStyles();
+
+  const { post, data: comments } = usePost();
+
+  const handleSubmitComment = () => {
+    post('http://localhost:5000/comment/create', {
+      announcement: postID.current,
+      content: commentContent.current,
+      author: {
+        name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
+          JSON.parse(localStorage.userData).data.user.lastName
+        }`,
+        userID: JSON.parse(localStorage.userData).data.user._id,
+      },
+    });
+  };
 
   return (
     <Grid item xs={12}>
       {data &&
         data.map((item, index) => {
-          const { author, createdAt, content } = item;
+          const { author, createdAt, content, _id } = item;
 
           return (
             <Box className="Post" sx={designs.Post_Style} key={index}>
@@ -62,7 +79,7 @@ function Post_layout({ data }) {
               </Box>
 
               <Divider sx={designs.Divider_Style} />
-              <Comments commentContent={commentContent} />
+              <Comments postId={_id} />
               <Divider sx={{ mb: 2 }} />
               <Box className="write-comment" sx={designs.Write_Comment_Style}>
                 <Avatar
@@ -73,9 +90,15 @@ function Post_layout({ data }) {
 
                 <TextField
                   id="filled-basic"
+                  onClick={(event) => {
+                    postID.current = event.target.name;
+                  }}
+                  name={_id}
                   placeholder="Write a comment..."
                   variant="filled"
-                  ref={commentContent}
+                  onChange={(event) =>
+                    (commentContent.current = event.target.value)
+                  }
                   sx={designs.Comment_TextField_Style}
                   inputProps={{
                     style: {
@@ -99,6 +122,7 @@ function Post_layout({ data }) {
                         <IconButton
                           aria-label="send"
                           sx={designs.Send_IconButton_Style}
+                          onClick={handleSubmitComment}
                         >
                           <Send sx={designs.SendIcon_Style} />
                         </IconButton>
