@@ -43,7 +43,13 @@ function Message_area({ socket, room, username }) {
 
   return (
     <>
-      <Box width="100%" display="flex" justifyContent="center" padding={2}>
+      <Box
+        width="100%"
+        height="100%"
+        display="flex"
+        justifyContent="center"
+        padding={2}
+      >
         <Typography variant="h6">Message Area</Typography>
       </Box>
       <Divider variant="middle" />

@@ -2,30 +2,42 @@ import { useTheme } from '@mui/material/styles';
 
 function useStyle() {
   const theme = useTheme();
-
-  const div = theme.mixins.toolbar;
   const designs = {
-    IconbuttonStyle: {
-      ml: 1.5,
-      '&:hover': {
-        backgroundColor: 'blue',
+    leftIcons: {
+      IconbuttonStyle: {
+        mr: 1.5,
+        '&:hover': {
+          backgroundColor: '#3C4043',
+        },
       },
-    },
-    buttonStyle: {
-      color: 'whiteSmoke',
-    },
-    button_click_style: {
-      color: 'blue',
+      buttonStyle: {
+        color: 'whiteSmoke',
+      },
+      button_click_style: {
+        color: '#007FFF',
+      },
     },
     videoContainer: {
       display: 'flex',
       width: '100%',
-      height: '100%',
-      [theme.breakpoints.up('xs')]: {
-        paddingTop: '48px',
+      height: 'calc(100% - 80px)',
+    },
+    icon_container: {
+      display: 'flex',
+      alignItems: 'center',
+    },
+    rightIcons: {
+      IconbuttonStyle: {
+        ml: 0.5,
+        '&:hover': {
+          backgroundColor: '#3C4043',
+        },
       },
-      [theme.breakpoints.up('sm')]: {
-        paddingTop: '56px',
+      buttonStyle: {
+        color: 'whiteSmoke',
+      },
+      button_click_style: {
+        color: 'whiteSmoke',
       },
     },
   };
