@@ -30,6 +30,8 @@ import Exam_checkboxes from '././AnswerTypes/Exam_checkboxes';
 import Exam_enumeration from '././AnswerTypes/Exam_enumeration';
 import Exam_shortanswer from '././AnswerTypes/Exam_shortanswer';
 import Image_GIF from './Image_GIF';
+import ExamQuestionOptionspopover from '../../components/PopoverContent/ExamQuestionOptionspopover';
+import CusPopover from '../../components/Popover';
 import { Link } from "react-router-dom";
 
 const dataAnswerType = [
@@ -171,6 +173,48 @@ function Examform() {
     event.preventDefault();
   };
 
+    const [selectCorrectAnswerA, setSelectCorrectAnswerA] = useState(true);
+    const [selectCorrectAnswerB, setSelectCorrectAnswerB] = useState(true);
+    const [selectCorrectAnswerC, setSelectCorrectAnswerC] = useState(true);
+    const [selectCorrectAnswerD, setSelectCorrectAnswerD] = useState(true);
+
+    const handleClickCorrectAnswerA = () => {
+        setSelectCorrectAnswerA((prev) => !prev);
+        setSelectCorrectAnswerB(true);
+        setSelectCorrectAnswerC(true);
+        setSelectCorrectAnswerD(true);
+    };
+    const handleClickCorrectAnswerB = () => {
+        setSelectCorrectAnswerB((prev) => !prev);
+        setSelectCorrectAnswerA(true);
+        setSelectCorrectAnswerC(true);
+        setSelectCorrectAnswerD(true);
+    };
+    const handleClickCorrectAnswerC = () => {
+        setSelectCorrectAnswerC((prev) => !prev);
+        setSelectCorrectAnswerA(true);
+        setSelectCorrectAnswerB(true);
+        setSelectCorrectAnswerD(true);
+    };
+    const handleClickCorrectAnswerD = () => {
+        setSelectCorrectAnswerD((prev) => !prev);
+        setSelectCorrectAnswerA(true);
+        setSelectCorrectAnswerB(true);
+        setSelectCorrectAnswerC(true);
+    };
+
+    
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleClickNotif = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+
+    const handleCloseNotif = () => {
+      setAnchorEl(null);
+    };
+    const notif = Boolean(anchorEl); 
+     
   return (
     <Container maxWidth="lg">
       <Grid container justifyContent="center" rowSpacing = {1} sx = {{ margin: "0.5em 0em 2em 0em" }}>
@@ -289,10 +333,20 @@ function Examform() {
                   >
                     <IconButton
                       aria-label="options"
+                      onClick={handleClickNotif}
                       sx={designs.Exam_Options_IconButton_Style}
                     >
                       <MoreVert sx={designs.MoreVertIcon_Style} />
                     </IconButton>
+
+                      <CusPopover
+                        open={notif}
+                        anchorEl={anchorEl}
+                        onClose={handleCloseNotif}
+                      >
+                        <ExamQuestionOptionspopover />
+                      </CusPopover>
+
                   </Box>
                   <Grid item xs={12}>
                     <Box
@@ -475,15 +529,27 @@ function Examform() {
                                       </InputAdornment>
                                     ),
                                     endAdornment: (
-                                      <InputAdornment position="end">
-                                        <IconButton
+                                      <InputAdornment position="end"
+                                      onClick={handleClickCorrectAnswerA}>
+                                        {!selectCorrectAnswerA ? (
+                                       <IconButton aria-label="correct-answer" sx={designs.Correct_AnswerT_IconButton_Style}>
+                                          <Check sx={designs.CheckIconT_Style} />
+                                        </IconButton>
+                                        ) 
+                                        : 
+                                        (
+                                            <IconButton aria-label="correct-answer" sx={designs.Correct_AnswerF_IconButton_Style}>
+                                              <Check sx={designs.CheckIconF_Style} />
+                                            </IconButton>
+                                        )}
+                                        {/* <IconButton
                                           aria-label="correct-answer"
                                           sx={
                                             designs.Correct_Answer_IconButton_Style
                                           }
                                         >
                                           <Check sx={designs.CheckIcon_Style} />
-                                        </IconButton>
+                                        </IconButton> */}
                                       </InputAdornment>
                                     ),
                                   }}
@@ -531,15 +597,27 @@ function Examform() {
                                       </InputAdornment>
                                     ),
                                     endAdornment: (
-                                      <InputAdornment position="end">
-                                        <IconButton
+                                      <InputAdornment position="end"
+                                        onClick={handleClickCorrectAnswerB}>
+                                          {!selectCorrectAnswerB ? (
+                                              <IconButton aria-label="correct-answer" sx={designs.Correct_AnswerT_IconButton_Style}>
+                                                <Check sx={designs.CheckIconT2_Style} />
+                                              </IconButton>
+                                          ) 
+                                          : 
+                                          (
+                                              <IconButton aria-label="correct-answer" sx={designs.Correct_AnswerF_IconButton_Style}>
+                                                <Check sx={designs.CheckIconF_Style} />
+                                              </IconButton>
+                                          )}
+                                        {/* <IconButton
                                           aria-label="correct-answer"
                                           sx={
                                             designs.Correct_Answer_IconButton_Style
                                           }
                                         >
                                           <Check sx={designs.CheckIcon_Style} />
-                                        </IconButton>
+                                        </IconButton> */}
                                       </InputAdornment>
                                     ),
                                   }}
@@ -587,15 +665,19 @@ function Examform() {
                                       </InputAdornment>
                                     ),
                                     endAdornment: (
-                                      <InputAdornment position="end">
-                                        <IconButton
-                                          aria-label="correct-answer"
-                                          sx={
-                                            designs.Correct_Answer_IconButton_Style
-                                          }
-                                        >
-                                          <Check sx={designs.CheckIcon_Style} />
-                                        </IconButton>
+                                      <InputAdornment position="end"
+                                        onClick={handleClickCorrectAnswerC}>
+                                          {!selectCorrectAnswerC ? (
+                                              <IconButton aria-label="correct-answer" sx={designs.Correct_AnswerT_IconButton_Style}>
+                                                <Check sx={designs.CheckIconT3_Style} />
+                                              </IconButton>
+                                          ) 
+                                          : 
+                                          (
+                                              <IconButton aria-label="correct-answer" sx={designs.Correct_AnswerF_IconButton_Style}>
+                                                <Check sx={designs.CheckIconF_Style} />
+                                              </IconButton>
+                                          )}
                                       </InputAdornment>
                                     ),
                                   }}
@@ -643,15 +725,19 @@ function Examform() {
                                       </InputAdornment>
                                     ),
                                     endAdornment: (
-                                      <InputAdornment position="end">
-                                        <IconButton
-                                          aria-label="correct-answer"
-                                          sx={
-                                            designs.Correct_Answer_IconButton_Style
-                                          }
-                                        >
-                                          <Check sx={designs.CheckIcon_Style} />
-                                        </IconButton>
+                                      <InputAdornment position="end"
+                                        onClick={handleClickCorrectAnswerD}>
+                                          {!selectCorrectAnswerD ? (
+                                              <IconButton aria-label="correct-answer" sx={designs.Correct_AnswerT_IconButton_Style}>
+                                                <Check sx={designs.CheckIconT4_Style} />
+                                              </IconButton>
+                                          ) 
+                                          : 
+                                          (
+                                              <IconButton aria-label="correct-answer" sx={designs.Correct_AnswerF_IconButton_Style}>
+                                                <Check sx={designs.CheckIconF_Style} />
+                                              </IconButton>
+                                          )}
                                       </InputAdornment>
                                     ),
                                   }}

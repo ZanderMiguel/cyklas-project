@@ -253,6 +253,59 @@ function useStyle() {
       color: 'White',
       fontSize: '0.8em',
     },
+    Correct_AnswerT_IconButton_Style: {
+      height: '1.2em',
+      width: '1.2em',
+      backgroundColor: 'white',
+      marginRight: '0.6em',
+      "&: hover": {
+        backgroundColor: 'white'
+      },
+      [theme.breakpoints.down('sm')]: {
+        marginRight: '0.2em',
+      },
+    },
+    CheckIconT_Style: {
+      color: '#975DF5',
+      fontSize: '0.8em',
+      "&: hover": {
+        color: '#975DF5',
+      },
+    },
+    CheckIconT2_Style: {
+      color: '#F55D5D',
+      fontSize: '0.8em',
+      "&: hover": {
+        color: '#F55D5D',
+      },
+    },
+    CheckIconT3_Style: {
+      color: '#6CCF53',
+      fontSize: '0.8em',
+      "&: hover": {
+        color: '#6CCF53',
+      },
+    },
+    CheckIconT4_Style: {
+      color: '#F1B04E',
+      fontSize: '0.8em',
+      "&: hover": {
+        color: '#F1B04E',
+      },
+    },
+    Correct_AnswerF_IconButton_Style: {
+      height: '1.2em',
+      width: '1.2em',
+      border: '2px solid White',
+      marginRight: '0.6em',
+      [theme.breakpoints.down('sm')]: {
+        marginRight: '0.2em',
+      },
+    },
+    CheckIconF_Style: {
+      color: 'White',
+      fontSize: '0.8em',
+    },
     Answer_B_TextField_Style: {
       width: '100%',
       height: 'auto',
