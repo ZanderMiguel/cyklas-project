@@ -14,6 +14,7 @@ import {
   MenuItem,
   FormControl,
   InputLabel,
+  Input
 } from '@mui/material';
 import CusButton from '../../components/Button';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -24,6 +25,7 @@ import Quiz_imagemultiplechoice from "./AnswerTypes/Quiz_imagemultiplechoice";
 import Quiz_trueorfalse from "./AnswerTypes/Quiz_trueorfalse";
 import Quiz_shortanswer from "./AnswerTypes/Quiz_shortanswer";
 import Image_GIF from './Image_GIF';
+import { GridToolbarColumnsButton } from '@mui/x-data-grid';
 
 const dataAnswerType = [
   {
@@ -205,8 +207,8 @@ function Quizform() {
 
   return (
     <Container maxWidth="lg">
-      <Grid container justifyContent="center" spacing={1}>
-        <Grid item container justifyContent="flex-end">
+      <Grid container justifyContent="center" rowSpacing={1} sx = {{ margin: "0.5em 0em 2em 0em" }}>
+      <Grid item container justifyContent="flex-end">
           <Grid item>
             <CusButton
               variant="contained"
@@ -220,8 +222,7 @@ function Quizform() {
                 color: 'white',
                 '&:hover': {
                   backgroundColor: '#43a047',
-                },
-                mb: 2,
+                }
               }}
               startIcon={
                 <AddCircleIcon sx={{ color: 'white', fontSize: '2rem' }} />
@@ -272,12 +273,18 @@ function Quizform() {
               className="Instructions"
               width="relative"
               height="auto"
-              backgroundColor="#FCFCFC"
-              borderLeft="2px solid #DBDBDB"
-              borderRight="2px solid #DBDBDB"
-              borderBottom="2px solid #DBDBDB"
+              padding = "0.5em 2em"
+              backgroundColor="#FDFDFD"
             >
-              <TextField
+              <Input variant="standard"
+              multiline
+              fullWidth
+              rows={6}
+              disableUnderline
+              placeholder="Write quiz instructions here..."
+              sx={designs.Instruction_Input_Style}/>
+
+              {/* <TextField
                 multiline
                 rows={1}
                 placeholder="Write quiz instructions here..."
@@ -299,7 +306,7 @@ function Quizform() {
                 }}
                 InputProps={{ disableUnderline: true }}
                 autoComplete="off"
-              />
+              /> */}
             </Box>
           </Box>
         </Grid>

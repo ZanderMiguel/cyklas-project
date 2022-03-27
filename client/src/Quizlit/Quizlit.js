@@ -121,11 +121,10 @@ function Quizlit() {
 
           <Grid item xs={1}>
             <IconButton
-              size="small"
               onClick={handleClickAddQuiz}
               sx={designs.Add_IconButton_Style}
             >
-              <AddCircleIcon sx={{ color: 'green', fontSize: '2rem' }} />
+              <AddCircleIcon sx={{ color: '#56B73E', fontSize: '2rem', "&: hover": { color: "#39B41B"} }} />
             </IconButton>
           </Grid>
 

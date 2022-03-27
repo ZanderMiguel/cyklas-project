@@ -64,6 +64,12 @@ function useStyle() {
         backgroundColor: '#007FFF',
       },
     },
+    Instruction_Input_Style: {
+      backgroundColor: "transparent",
+      fontSize: "0.9em",
+      fontWeight: "500",
+      color: "#3F3D56"
+    },
     Quiz_Item_Style: {
       height: '1.9em',
       width: '1.9em',

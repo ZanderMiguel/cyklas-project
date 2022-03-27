@@ -1,24 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Box, List, ListItem, Typography, Divider } from '@mui/material';
-import { BsPencilSquare } from 'react-icons/bs';
-import { HiPuzzle } from 'react-icons/hi';
+import { Extension, ListAlt } from "@mui/icons-material";
+import QuizIcon from "../../assets/ImageJaven/QuizIcon.png";
+import ExamIcon from "../../assets/ImageJaven/ExamIcon.png";
+import useStyle from "./Styles/QuizlitAddpopover_style";
 
 function QuizlitAddpopover() {
+  const {designs} = useStyle();
+
   return (
-    <Box width="10rem" maxWidth={400} maxHeight={300}>
-      <List component="nav" sx={{ width: '100%' }}>
+    <Box sx = {designs.Container_Style}>
+      <List component="nav" sx = {designs.Nav_Style}>
         <ListItem button component={Link} to="/quizlit/createquiz">
-          <Box display="flex" alignItems="center">
-            <HiPuzzle color="#007fff" size={20} />
-            <Typography sx={{ ml: '1em', fontWeight: 600 }}>Quiz</Typography>
+          <Box sx = {designs.QuizContainer_Style}>
+            {/* <Extension sx = {{ fontsize: "1em", color: "#007FFF"}}/> */}
+            <img src = {QuizIcon} style = {{ height: "1.5em", width: "1.5em"}}/>
+            <Typography sx = {designs.Quiz_Typography_Style}>Quiz</Typography>
           </Box>
         </ListItem>
         <Divider />
         <ListItem button component={Link} to="/quizlit/createexam">
-          <Box display="flex">
-            <BsPencilSquare color="#007fff" size={20} />
-            <Typography sx={{ ml: '1em', fontWeight: 600 }}>Exam</Typography>
+          <Box sx = {designs.ExamContainer_Style}>
+            {/* <ListAlt sx = {{ fontsize: "1em", color: "#007FFF"}}/> */}
+            <img src = {ExamIcon} style = {{ height: "1.4em", width: "1.4em"}}/>
+            <Typography sx = {designs.Exam_Typography_Style}>Exam</Typography>
           </Box>
         </ListItem>
       </List>

@@ -25,6 +25,8 @@ import Forgot_password from './pages-landing/Forgot_password';
 import Notfound from './Notfound';
 import Livequiz_multiplechoice from './Quizlit/LiveQuiz/Livequiz_multiplechoice';
 import StudentLiveQuiz_multiplechoice from './Quizlit/LiveQuiz/StudentLiveQuiz_multiplechoice';
+import Livequiz_correctanswer from './Quizlit/LiveQuiz/Livequiz_correctanswer';
+import Livequiz_wronganswer from './Quizlit/LiveQuiz/Livequiz_wronganswer';
 import Student_rankings from './Quizlit/LiveQuiz/Student_rankings';
 // import Conference_details from './Telecon/Telecon_Components/Conference_details';
 // import Members from './Telecon/Telecon_Components/Members';
@@ -123,6 +125,16 @@ function App() {
               exact
               path="/StudentLiveQuiz_multiplechoice"
               component={StudentLiveQuiz_multiplechoice}
+            />
+             <ProtectedRoutes
+              exact
+              path="/Livequiz_correctanswer"
+              component={Livequiz_correctanswer}
+            />
+            <ProtectedRoutes
+              exact
+              path="/Livequiz_wronganswer"
+              component={Livequiz_wronganswer}
             />
             <ProtectedRoutes
               exact

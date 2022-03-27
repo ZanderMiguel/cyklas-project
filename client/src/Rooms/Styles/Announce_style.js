@@ -144,7 +144,7 @@ function useStyle() {
       marginBottom: '0.5em',
       padding: '0.5em 0em',
       display: 'flex',
-      border: ' 2px solid #DBDBDB',
+      border: ' 1px solid #DBDBDB',
       borderRadius: '0.8em',
       '&: hover': {
         cursor: 'pointer',

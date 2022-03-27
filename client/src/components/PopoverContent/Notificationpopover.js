@@ -12,8 +12,10 @@ import {
   Tab,
   Button,
 } from '@mui/material';
+import useStyle from "./Styles/Notificationpopover_style";
 
 function Notificationpopover({ general, request }) {
+  const {designs} = useStyle();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -29,39 +31,29 @@ function Notificationpopover({ general, request }) {
       <Divider />
 
       {value === 1 && (
-        <Box width="30rem" maxHeight="20rem" padding="0.5em 1em">
+        <Box sx = {designs.RequestContainer_Style}>
           {request.length > 0 ? (
             request.map((items, index) => (
               <div key={index}>
-                <Box width="100%" display="flex" alignItems="center">
-                  <Box display="flex" flexGrow={1} alignItems="center">
-                    <Box mr={2}>{items.avatar}</Box>
+                <Box sx = {designs.RequestContainer_Sub_Style}>
+                  <Box sx = {designs.RequestContainer_Sub2_Style}>
+                    <Box sx = {designs.RequestContainer_Sub3_Style}>{items.avatar}</Box>
                     <Typography>{items.student}</Typography>
                   </Box>
                   <Button
-                    variant="contained"
-                    sx={{ borderRadius: '0.9em', textTransform: 'none' }}
-                  >
+                    variant="contained" sx = {designs.AcceptButton_Style} >
                     Accept
                   </Button>
                   <Button
-                    variant="text"
-                    sx={{ textTransform: 'none', ml: '0.5em', mr: '0.7em' }}
-                  >
+                    variant="text" sx = {designs.DeclineButton_Style}>
                     Decline
                   </Button>
                 </Box>
-                <Divider sx={{ mb: '0.5em', mt: '0.5em' }} />
+                <Divider sx = {designs.Divider_Style} />
               </div>
             ))
           ) : (
-            <Box
-              width="100%"
-              height="20rem"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
+            <Box sx = {designs.RequestContainer_Sub4_Style}>
               <Typography children="have nothing to show" />
             </Box>
           )}
@@ -69,28 +61,22 @@ function Notificationpopover({ general, request }) {
       )}
 
       {value === 0 && (
-        <Box width="30rem" maxHeight="20rem" padding="0.5em 1em">
+        <Box sx = {designs.GeneralContainer_Style}>
           {general.length > 0 ? (
             general.map((items, index) => (
               <div key={index}>
-                <Box width="100%" display="flex" alignItems="center">
-                  <Box mr={2}>{items.avatar}</Box>
+                <Box sx = {designs.GeneralContainer_Sub_Style}>
+                  <Box sx = {designs.GeneralContainer_Sub2_Style}> {items.avatar}</Box>
                   <Box>
                     <Typography>{items.action} </Typography>
                     <Typography>{items.roomname}</Typography>
                   </Box>
                 </Box>
-                <Divider sx={{ mb: '0.5em', mt: '0.5em' }} />
+                <Divider sx = {designs.Divider_Style} />
               </div>
             ))
           ) : (
-            <Box
-              width="100%"
-              height="20rem"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
+            <Box sx = {designs.GeneralContainer_Sub3y_Style}>
               <Typography children="have nothing to show" />
             </Box>
           )}

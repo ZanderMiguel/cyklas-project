@@ -8,10 +8,10 @@ function useStyle() {
       className: 'Tiles1',
       width: '100%',
       height: 'auto',
-      marginBottom: '0.4em',
+      marginBottom: '0.5em',
       padding: '0.5em 0em',
       display: 'flex',
-      border: ' 2px solid #DBDBDB',
+      border: ' 1px solid #DBDBDB',
       borderRadius: '0.8em',
       textDecoration: "none",
       '&: hover': {
