@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const EvaluationSchema = new mongoose.Schema(
   {
     classCard: { type: mongoose.Schema.Types.ObjectId },
-    rating: { type: Number, required: true },
+    rating: { type: String, required: true },
     student: { type: mongoose.Schema.Types.ObjectId },
     professor: { type: mongoose.Schema.Types.ObjectId },
   },
