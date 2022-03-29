@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const client = new OAuth2Client(
   '90759507047-37dohu0dq74j6oui4b6hvb3tj4vpphkm.apps.googleusercontent.com'
 );
-
+const EvaluationModel = require('../models/model-evaluation');
 const createRegistration = async (req, res) => {
   try {
     const id = mongoose.Types.ObjectId();
@@ -26,6 +26,12 @@ const createRegistration = async (req, res) => {
     });
 
     await addUser.save();
+    if(req.body.userType === "Professor"){
+      const evaluate = new EvaluationModel({professor: id, rating: 'No ratings yet'})
+      await evaluate.save()
+    }
+
+
     console.log('Done!');
     return res.json({
       status: 'success',

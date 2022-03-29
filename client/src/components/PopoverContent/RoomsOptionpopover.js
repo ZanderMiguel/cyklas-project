@@ -1,19 +1,22 @@
 import React from 'react';
 import { List, ListItem, Divider, Box, Typography } from '@mui/material';
+import useStyle from "./Styles/RoomsOptionpopover_style";
 
 function RoomsOptionpopover() {
+  const {designs} = useStyle();
+
   return (
-    <Box width={130}>
-      <List component="nav" sx={{ width: '100%' }}>
+    <Box sx = {designs.Container_Style}>
+      <List component="nav" sx = {designs.Nav_Style}>
         <ListItem button>
-          <Box display="flex">
-            <Typography>Edit</Typography>
+          <Box sx = {designs.EditContainer_Style}>
+            <Typography sx = {designs.Edit_Typography_Style}>Edit</Typography>
           </Box>
         </ListItem>
         <Divider />
         <ListItem button>
-          <Box display="flex">
-            <Typography>Leave room</Typography>
+          <Box sx = {designs.LeaveRoomContainer_Style}>
+            <Typography sx = {designs.LeaveRoom_Typography_Style}>Leave room</Typography>
           </Box>
         </ListItem>
       </List>

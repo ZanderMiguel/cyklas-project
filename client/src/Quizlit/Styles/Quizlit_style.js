@@ -16,8 +16,13 @@ function useStyle() {
       },
     },
     Add_IconButton_Style: {
+      height: "1.2em",
+      width: "1.2em",
       float: 'right',
       marginTop: '1.2em',
+      "&: hover": {
+        backgroundColor: "trasnparent"
+      },
       [theme.breakpoints.down('md')]: {
         marginTop: '0.5em',
       },

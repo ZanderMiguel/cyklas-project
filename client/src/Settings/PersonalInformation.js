@@ -66,7 +66,7 @@ function PersonalInformation() {
           <Box className = "AccountPicture" sx = {designs.AccountPicture_Style}>
             <Typography children="Account Picture" sx = {designs.AccountPicture_Typography_Style}/>
             
-            <Avatar alt="Remy Sharp" children="N" sx = {designs.Avatar_Style}/>
+            <Avatar alt="Remy Sharp" children="M" sx = {designs.Avatar_Style}/>
 
             <label htmlFor="contained-button-file">
               <InsertImage

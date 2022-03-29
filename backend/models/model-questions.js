@@ -7,6 +7,7 @@ const QuestionSchema = new mongoose.Schema(
     madia: { type: Buffer },
     answerType: { type: String, required: true },
     quizID: { type: mongoose.Schema.Types.ObjectId },
+    timeLimit: {type: String}
   },
   { timestamps: true }
 );

@@ -47,10 +47,10 @@ const dataAnswerType = [
     value: 'Checkboxes',
     label: 'Checkboxes',
   },
-  {
-    value: 'Enumeration',
-    label: 'Enumeration',
-  },
+  // {
+  //   value: 'Enumeration',
+  //   label: 'Enumeration',
+  // },
   {
     value: 'Short Answer',
     label: 'Short Answer',
@@ -226,7 +226,7 @@ function Examform() {
               variant="contained"
               content="Create Exam"
               type="submit"
-              id="quizform"
+              id="examform"
               onClick={handleSubmit}
               sx={{
                 textDecoration: 'none',
