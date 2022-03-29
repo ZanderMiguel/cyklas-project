@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import useStyle from '../Styles/Quiz_multiplechoice_style';
 import { Delete } from '@mui/icons-material';
-function QuestionConfig({selectAnswerType, setAnswerType}) {
+function QuestionConfig({selectAnswerType, setAnswerType,questionMemo,counter}) {
     const { designs } = useStyle();
     const dataAnswerType = [
         {
@@ -112,16 +112,19 @@ function QuestionConfig({selectAnswerType, setAnswerType}) {
         },
     ];
 
-    const [selectTimeLimit, setTimeLimit] = useState('');
-    const [selectPoints, setPoints] = useState('');
+    const [selectTimeLimit, setTimeLimit] = useState('10 seconds');
+    const [selectPoints, setPoints] = useState('1 point');
     const handleChange1 = (event) => {
         setAnswerType(event.target.value);
+        questionMemo.current[counter - 1][event.target.name] = event.target.value
     };
     const handleChange2 = (event) => {
         setTimeLimit(event.target.value);
+        questionMemo.current[counter - 1][event.target.name] = event.target.value
     };
     const handleChange3 = (event) => {
         setPoints(event.target.value);
+        questionMemo.current[counter - 1][event.target.name] = event.target.value
     };
 
     return (
@@ -159,6 +162,7 @@ function QuestionConfig({selectAnswerType, setAnswerType}) {
                     label="SelectAnswerType"
                     disableUnderline
                     sx={designs.Select_Style}
+                    name="answerType"
                 >
                     {dataAnswerType.map(({ value, label }) => (
                         <MenuItem key={value} value={value}>
@@ -187,6 +191,7 @@ function QuestionConfig({selectAnswerType, setAnswerType}) {
                     label="SelectTimeLimit"
                     disableUnderline
                     sx={designs.Select_Style}
+                    name="timeLimit"
                 >
                     {dataTimeLimit.map(({ value, label }) => (
                         <MenuItem key={value} value={value}>
@@ -215,6 +220,7 @@ function QuestionConfig({selectAnswerType, setAnswerType}) {
                     label="SelectPoints"
                     disableUnderline
                     sx={designs.Select_Style}
+                    name="points"
                 >
                     {dataPoints.map(({ value, label }) => (
                         <MenuItem key={value} value={value}>

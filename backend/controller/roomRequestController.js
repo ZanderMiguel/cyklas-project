@@ -25,7 +25,7 @@ const declineRequest = async(req,res) => {
 }
 const acceptRequest = async(req,res) => {
     try{
-        await RoomsModel.updateMany({_id: req.body.room.roomID},{$push: {members: req.body.requests.memberID}})
+        await RoomsModel.updateMany({_id: req.body.room.roomID  },{$push: {members: req.body.requests.memberID}})
         await RoomRequestModel.findByIdAndDelete(req.body.reqID)
         return res.json({
             status: 'success',

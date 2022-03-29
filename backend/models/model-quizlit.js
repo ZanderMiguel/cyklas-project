@@ -5,10 +5,9 @@ const QuizlitSchema = new mongoose.Schema(
     _id: mongoose.Schema.Types.ObjectId,
     author: { type: Object, required: true },
     title: { type: String, required: true },
-    dueDate: {type: Date},
     quizType: { type: String, required: true },
     graded: { type: Boolean, required: true },
-    rooms: { type: Array, required: true },
+    rooms: { type: Array},
   },
   { timestamps: true }
 );

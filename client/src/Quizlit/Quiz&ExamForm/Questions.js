@@ -9,33 +9,36 @@ import {
     Grid
 } from '@mui/material';
 import useStyle from '../Styles/Quiz_multiplechoice_style';
-import { AddCircle, Check, MoreVert, Delete } from '@mui/icons-material';
+import { AddCircle, Check, MoreVert } from '@mui/icons-material';
 import Quiz_imagemultiplechoice from "./AnswerTypes/Quiz_imagemultiplechoice";
 import Quiz_trueorfalse from "./AnswerTypes/Quiz_trueorfalse";
 import Quiz_shortanswer from "./AnswerTypes/Quiz_shortanswer";
 import Image_GIF from './Image_GIF';
 import QuestionConfig from './QuestionConfig';
-function Questions() {
-
-    const [questions, setQuestions] = useState(new Map());
+import Quiz_multiplechoice from './AnswerTypes/Quiz_multiplechoice';
+function Questions({ counter, questionMemo }) {
+    
+    React.useMemo(()=>{
+        questionMemo.current[counter - 1] = {answerType: 'Multiple Choice',
+        points: '1 point',
+        timeLimit: '10 seconds'
+    }
+    },[])
+    
     const [opendialog, setOpenDialog] = useState(false);
     const [image, setImage] = useState('');
     const { designs } = useStyle();
 
     const [selectAnswerType, setAnswerType] = useState('Multiple Choice');
-
-
-    const questionKey = React.useRef();
-
     const handleChange = (event) => {
+        
+        questionMemo.current[counter - 1][event.target.name] = event.target.value
 
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-    };
+
     return (
-        <form  onSubmit={handleSubmit} id="quizform">
+        <form  id="quizform" name={counter}>
             <Grid container rowSpacing={1}>
                 <Box
                     className="Quiz-options-responsive"
@@ -93,13 +96,13 @@ function Questions() {
                                                         <Typography
                                                             sx={designs.Quiz_Item_Typography_Style}
                                                         >
-                                                            1.
+                                                            {counter}
                                                         </Typography>
                                                     </Box>
                                                 </InputAdornment>
                                             ),
                                         }}
-                                        name={`questions`}
+                                        name={`questionsContent`}
                                         tag="question"
                                         onChange={handleChange}
                                     />
@@ -179,7 +182,7 @@ function Questions() {
                                 className="Quiz-options"
                                 sx={designs.Quiz_Options_Style}
                             >
-                                <QuestionConfig setAnswerType={setAnswerType} selectAnswerType={selectAnswerType} />
+                                <QuestionConfig setAnswerType={setAnswerType} selectAnswerType={selectAnswerType} counter={counter} questionMemo={questionMemo} />
                             </Box>
                         </Box>
 
@@ -187,237 +190,7 @@ function Questions() {
                             className="Quiz-answers"
                             sx={designs.Quiz_Answers_Style}
                         >
-                            {selectAnswerType === 'Multiple Choice' && (
-                                <>
-                                    <Grid container columnSpacing={2} rowSpacing={1}>
-                                        <Grid item xs={12} sm={6}>
-                                            <TextField
-                                                id="filled-basic"
-                                                placeholder="Enter Answer A..."
-                                                variant="filled"
-                                                autoComplete="off"
-                                                name="answer1"
-                                                onChange={(event) =>
-                                                    handleChange( event)
-                                                }
-                                                sx={designs.Answer_A_TextField_Style}
-                                                inputProps={{
-                                                    style: {
-                                                        height: '0em',
-                                                        fontSize: '0.8em',
-                                                        paddingLeft: '0.1em',
-                                                        paddingRight: '0em',
-                                                        marginBottom: '1em',
-                                                        marginRight: '0.5em',
-                                                        color: 'white',
-                                                    },
-                                                }}
-                                                InputProps={{
-                                                    disableUnderline: true,
-                                                    startAdornment: (
-                                                        <InputAdornment position="start">
-                                                            <Box
-                                                                className="Quiz-item"
-                                                                sx={designs.Quiz_Item_Style2}
-                                                            >
-                                                                <Typography
-                                                                    sx={
-                                                                        designs.Answer_A_Typography_Style
-                                                                    }
-                                                                >
-                                                                    A.
-                                                                </Typography>
-                                                            </Box>
-                                                        </InputAdornment>
-                                                    ),
-                                                    endAdornment: (
-                                                        <InputAdornment position="end">
-                                                            <IconButton
-                                                                aria-label="correct-answer"
-                                                                sx={
-                                                                    designs.Correct_Answer_IconButton_Style
-                                                                }
-                                                            >
-                                                                <Check sx={designs.CheckIcon_Style} />
-                                                            </IconButton>
-                                                        </InputAdornment>
-                                                    ),
-                                                }}
-                                            />
-                                        </Grid>
-
-                                        <Grid item xs={12} sm={6}>
-                                            <TextField
-                                                id="filled-basic"
-                                                placeholder="Enter Answer B..."
-                                                variant="filled"
-                                                autoComplete="off"
-                                                name="answer2"
-                                                onChange={
-                                                    handleChange
-                                                }
-                                                sx={designs.Answer_B_TextField_Style}
-                                                inputProps={{
-                                                    style: {
-                                                        height: '0em',
-                                                        fontSize: '0.8em',
-                                                        paddingLeft: '0.1em',
-                                                        paddingRight: '0em',
-                                                        marginBottom: '1em',
-                                                        marginRight: '0.5em',
-                                                        color: 'white',
-                                                    },
-                                                }}
-                                                InputProps={{
-                                                    disableUnderline: true,
-                                                    startAdornment: (
-                                                        <InputAdornment position="start">
-                                                            <Box
-                                                                className="Quiz-item"
-                                                                sx={designs.Quiz_Item_Style2}
-                                                            >
-                                                                <Typography
-                                                                    sx={
-                                                                        designs.Answer_B_Typography_Style
-                                                                    }
-                                                                >
-                                                                    B.
-                                                                </Typography>
-                                                            </Box>
-                                                        </InputAdornment>
-                                                    ),
-                                                    endAdornment: (
-                                                        <InputAdornment position="end">
-                                                            <IconButton
-                                                                aria-label="correct-answer"
-                                                                sx={
-                                                                    designs.Correct_Answer_IconButton_Style
-                                                                }
-                                                            >
-                                                                <Check sx={designs.CheckIcon_Style} />
-                                                            </IconButton>
-                                                        </InputAdornment>
-                                                    ),
-                                                }}
-                                            />
-                                        </Grid>
-                                    </Grid>
-
-                                    <Grid container columnSpacing={2} rowSpacing={1}>
-                                        <Grid item xs={12} sm={6}>
-                                            <TextField
-                                                id="filled-basic"
-                                                placeholder="Enter Answer C..."
-                                                variant="filled"
-                                                autoComplete="off"
-                                                name="answer3"
-                                                onChange={
-                                                    handleChange
-                                                }
-                                                sx={designs.Answer_C_TextField_Style}
-                                                inputProps={{
-                                                    style: {
-                                                        height: '0em',
-                                                        fontSize: '0.8em',
-                                                        paddingLeft: '0.1em',
-                                                        paddingRight: '0em',
-                                                        marginBottom: '1em',
-                                                        marginRight: '0.5em',
-                                                        color: 'white',
-                                                    },
-                                                }}
-                                                InputProps={{
-                                                    disableUnderline: true,
-                                                    startAdornment: (
-                                                        <InputAdornment position="start">
-                                                            <Box
-                                                                className="Quiz-item"
-                                                                sx={designs.Quiz_Item_Style2}
-                                                            >
-                                                                <Typography
-                                                                    sx={
-                                                                        designs.Answer_C_Typography_Style
-                                                                    }
-                                                                >
-                                                                    C.
-                                                                </Typography>
-                                                            </Box>
-                                                        </InputAdornment>
-                                                    ),
-                                                    endAdornment: (
-                                                        <InputAdornment position="end">
-                                                            <IconButton
-                                                                aria-label="correct-answer"
-                                                                sx={
-                                                                    designs.Correct_Answer_IconButton_Style
-                                                                }
-                                                            >
-                                                                <Check sx={designs.CheckIcon_Style} />
-                                                            </IconButton>
-                                                        </InputAdornment>
-                                                    ),
-                                                }}
-                                            />
-                                        </Grid>
-
-                                        <Grid item xs={12} sm={6}>
-                                            <TextField
-                                                id="filled-basic"
-                                                placeholder="Enter Answer D..."
-                                                variant="filled"
-                                                autoComplete="off"
-                                                name="answer4"
-                                                onChange={
-                                                    handleChange
-                                                }
-                                                sx={designs.Answer_D_TextField_Style}
-                                                inputProps={{
-                                                    style: {
-                                                        height: '0em',
-                                                        fontSize: '0.8em',
-                                                        paddingLeft: '0.1em',
-                                                        paddingRight: '0em',
-                                                        marginBottom: '1em',
-                                                        marginRight: '0.5em',
-                                                        color: 'white',
-                                                    },
-                                                }}
-                                                InputProps={{
-                                                    disableUnderline: true,
-                                                    startAdornment: (
-                                                        <InputAdornment position="start">
-                                                            <Box
-                                                                className="Quiz-item"
-                                                                sx={designs.Quiz_Item_Style2}
-                                                            >
-                                                                <Typography
-                                                                    sx={
-                                                                        designs.Answer_D_Typography_Style
-                                                                    }
-                                                                >
-                                                                    D.
-                                                                </Typography>
-                                                            </Box>
-                                                        </InputAdornment>
-                                                    ),
-                                                    endAdornment: (
-                                                        <InputAdornment position="end">
-                                                            <IconButton
-                                                                aria-label="correct-answer"
-                                                                sx={
-                                                                    designs.Correct_Answer_IconButton_Style
-                                                                }
-                                                            >
-                                                                <Check sx={designs.CheckIcon_Style} />
-                                                            </IconButton>
-                                                        </InputAdornment>
-                                                    ),
-                                                }}
-                                            />
-                                        </Grid>
-                                    </Grid>
-                                </>
-                            )}
+                            {selectAnswerType === 'Multiple Choice' && <Quiz_multiplechoice handleChange={handleChange} questionMemo={questionMemo} counter={counter} />}
 
                             {selectAnswerType === 'Image Multiple Choice' && (
                                 <Quiz_imagemultiplechoice />

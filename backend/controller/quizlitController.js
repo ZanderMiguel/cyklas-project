@@ -21,7 +21,7 @@ const createQuizlit = async (req, res) => {
     const newQuizlit = new QuizlitModel({ _id: quizID, ...req.body });
     await newQuizlit.save();
     updateUserAndRoom(quizID, req.body.rooms);
-    return res.json({ status: 'success', data: newQuizlit });
+    return res.json({ status: 'success', data: quizID });
   } catch (err) {
     console.log(err);
     return res.json({

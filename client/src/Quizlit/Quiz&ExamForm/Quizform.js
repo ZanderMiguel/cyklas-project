@@ -14,16 +14,20 @@ import useStyle from '../Styles/Quiz_multiplechoice_style';
 import Questions from './Questions';
 
 import { AddCircle } from '@mui/icons-material';
-
+import usePost from '../../customHooks/usePost'
+import axios from 'axios'
 function Quizform() {
+  const { post,data } = usePost()
+  const counter = React.useRef(1)
   const { designs } = useStyle();
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
-  const [qArray,setQArray] = useState([<Questions />])
+  const title = React.useRef('')
+  const questionMemo = React.useRef([{}])
+  const [qArray, setQArray] = useState([<Questions counter={counter.current} questionMemo={questionMemo} />])
   const handleQuestionAdd = () => {
-    setQArray([...qArray,<Questions />])
-};
+    counter.current = counter.current + 1
+    setQArray([...qArray, <Questions counter={counter.current} questionMemo={questionMemo} />])
+  };
+
   return (
     <Container maxWidth="lg">
       <Grid container justifyContent="center" rowSpacing={1} sx={{ margin: "0.5em 0em 2em 0em" }}>
@@ -32,9 +36,33 @@ function Quizform() {
             <CusButton
               variant="contained"
               content="Create Quiz"
-              type="submit"
               id="quizform"
-              onClick={handleSubmit}
+              onClick={() => {
+                const questionPayload = []
+
+                
+                axios.post('http://localhost:5000/quizlit/create', {
+                  author: {
+                    userID: JSON.parse(localStorage.userData).data.user._id,
+                    name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
+                      JSON.parse(localStorage.userData).data.user.lastName
+                    } `,
+                  },
+                  
+                  title: title.current,
+                  quizType: 'Quiz',
+                  graded: false,
+                }).then((res)=>{
+                  questionMemo.current.forEach((item) => {
+                    const { title, answerType, correctAnswer, points, timeLimit, questionsContent, ...answers } = item
+                    questionPayload.push({ qAnswers: { ...answers }, answerType, correctAnswer, points, timeLimit, questionsContent,quizID: res.data.data })
+  
+                  })
+                  post('http://localhost:5000/question/create', { questionPayload })
+                }).catch(err=>console.log(err))
+                
+                
+              }}
               sx={{
                 textDecoration: 'none',
                 backgroundColor: '#4caf50',
@@ -85,6 +113,10 @@ function Quizform() {
                 }}
                 InputProps={{ disableUnderline: true }}
                 autoComplete="off"
+                name="title"
+                onChange={(event) => {
+                  title.current = event.target.value
+                }}
               />
             </Box>
 
@@ -105,32 +137,32 @@ function Quizform() {
             </Box>
           </Box>
         </Grid>
-        <Grid item xs={12}>
-          {qArray.map((item,index)=>{
-            return(
-              <div key={index}>
+
+        {qArray.map((item, index) => {
+          return (
+            <Grid item xs={12} key={index}>
               {item}
-              </div>
-            )
-          })}
-          <Grid item xs={12} sx={{ marginBottom: '2em' }}>
-            <Button
-              variant="contained"
-              startIcon={
-                <AddCircle
-                  style={{
-                    marginRight: '5px',
-                  }}
-                />
-              }
-              sx={designs.Add_Question_Button_Style}
-              type="submit"
-              onClick={handleQuestionAdd}
-            >
-              Add Question
-            </Button>
-          </Grid>
+            </Grid>
+          )
+        })}
+        <Grid item xs={12} sx={{ marginBottom: '2em' }}>
+          <Button
+            variant="contained"
+            startIcon={
+              <AddCircle
+                style={{
+                  marginRight: '5px',
+                }}
+              />
+            }
+            sx={designs.Add_Question_Button_Style}
+            type="submit"
+            onClick={handleQuestionAdd}
+          >
+            Add Question
+          </Button>
         </Grid>
+
       </Grid>
     </Container>
   );

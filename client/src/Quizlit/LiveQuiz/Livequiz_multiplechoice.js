@@ -109,21 +109,6 @@ function Livequiz_multiplechoice() {
               Blank Question
             </Typography>
           </Box>
-          {/* <TextField id="filled-read-only-input" placeholder="Blank Question" variant="filled" 
-                    sx = {designs.QuizQuestion_TextField_Style}
-                        inputProps={{style: {height: "0em", fontSize: "0.9em", paddingLeft: "0.2em", paddingRight: "0em", marginBottom: "1em", marginRight: "3em", color: "white"}}}
-                                    
-                        InputProps={{readOnly: true, disableUnderline: true,
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <Box className = "Quiz-item" sx = {designs.Quiz_Item_Style}>
-                                        <Typography sx = {designs.Quiz_Item_Typography_Style}>
-                                            1.
-                                        </Typography>
-                                    </Box>
-                                </InputAdornment>
-                            ),
-                    }}/> */}
         </Grid>
 
         <Grid item xs={12}>
@@ -157,21 +142,6 @@ function Livequiz_multiplechoice() {
               Blank Answer
             </Typography>
           </Box>
-          {/* <TextField id="filled-read-only-input" placeholder="Blank Answer" variant="filled" 
-                        sx = {designs.Answer_A_TextField_Style}
-                        inputProps={{style: {height: "0em", fontSize: "0.8em", paddingLeft: "0.1em", paddingRight: "0em", marginBottom: "1em", marginRight: "0.5em", color: "white"}}}
-                        
-                        InputProps={{readOnly: true, disableUnderline: true,
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                <Box className = "Quiz-item" sx = {designs.Quiz_Item_Style2}>
-                                        <Typography sx = {designs.Answer_A_Typography_Style}>
-                                            A.
-                                        </Typography>
-                                    </Box>
-                                </InputAdornment>
-                            )
-                    }}/> */}
         </Grid>
 
         <Grid item xs={12} sm={6}>
@@ -187,21 +157,6 @@ function Livequiz_multiplechoice() {
               Blank Answer
             </Typography>
           </Box>
-          {/* <TextField id="filled-read-only-input" placeholder="Blank Answer" variant="filled" 
-                        sx = {designs.Answer_B_TextField_Style}
-                        inputProps={{style: {height: "0em", fontSize: "0.8em", paddingLeft: "0.1em", paddingRight: "0em", marginBottom: "1em", marginRight: "0.5em", color: "white"}}}
-                        
-                        InputProps={{readOnly: true, disableUnderline: true,
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                <Box className = "Quiz-item" sx = {designs.Quiz_Item_Style2}>
-                                        <Typography sx = {designs.Answer_B_Typography_Style}>
-                                            B.
-                                        </Typography>
-                                    </Box>
-                                </InputAdornment>
-                            )
-                    }}/> */}
         </Grid>
       </Grid>
 
@@ -224,21 +179,6 @@ function Livequiz_multiplechoice() {
               Blank Answer
             </Typography>
           </Box>
-          {/* <TextField id="filled-read-only-input" placeholder="Blank Answer" variant="filled" 
-                        sx = {designs.Answer_C_TextField_Style}
-                        inputProps={{style: {height: "0em", fontSize: "0.8em", paddingLeft: "0.1em", paddingRight: "0em", marginBottom: "1em", marginRight: "0.5em", color: "white"}}}
-                        
-                        InputProps={{readOnly: true, disableUnderline: true,
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                <Box className = "Quiz-item" sx = {designs.Quiz_Item_Style2}>
-                                        <Typography sx = {designs.Answer_C_Typography_Style}>
-                                            C.
-                                        </Typography>
-                                    </Box>
-                                </InputAdornment>
-                            )
-                    }}/> */}
         </Grid>
 
         <Grid item xs={12} sm={6}>
@@ -254,24 +194,8 @@ function Livequiz_multiplechoice() {
               Blank Answer
             </Typography>
           </Box>
-          {/* <TextField id="filled-read-only-input" placeholder="Blank Answer" variant="filled" 
-                        sx = {designs.Answer_D_TextField_Style}
-                        inputProps={{style: {height: "0em", fontSize: "0.8em", paddingLeft: "0.1em", paddingRight: "0em", marginBottom: "1em", marginRight: "0.5em", color: "white"}}}
-                        
-                        InputProps={{readOnly: true, disableUnderline: true,
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                <Box className = "Quiz-item" sx = {designs.Quiz_Item_Style2}>
-                                        <Typography sx = {designs.Answer_D_Typography_Style}>
-                                            D.
-                                        </Typography>
-                                    </Box>
-                                </InputAdornment>
-                            )
-                    }}/> */}
         </Grid>
       </Grid>
-      {/* </Container> */}
     </Box>
   );
 }
