@@ -7,11 +7,14 @@ import Post_layout from './Post_layout';
 import Announce_form from './Announce_form';
 import Schoolworktiles_layout from '../Room-content-layout/Schoolworktiles_layout';
 
-function Announce() {
+function Announce({ socket }) {
   const { roomID } = useParams();
-  const [postData, setPostData] = React.useState(new Map());
-
+  const [postuuid, setPostUuid] = React.useState(null);
   const [data, setData] = React.useState(null);
+  socket.on('post-created', (uuid) => {
+    setPostUuid(uuid);
+  });
+
   React.useMemo(() => {
     axios
       .post('http://localhost:5000/announce', { rooms: roomID })
@@ -19,17 +22,17 @@ function Announce() {
         setData(res.data);
       })
       .catch((err) => console.log(err));
-  }, [roomID]);
+  }, [postuuid]);
 
   return (
     <>
       <CssBaseline />
       <Grid container sx={{ margin: '1em 0em' }}>
         <Grid item xs={12}>
-          <Announce_form />
+          <Announce_form socket={socket} />
         </Grid>
         <Grid item xs={12}>
-          {data && <Post_layout data={data} />}
+          {data && <Post_layout data={data} socket={socket} />}
         </Grid>
         <Schoolworktiles_layout />
       </Grid>

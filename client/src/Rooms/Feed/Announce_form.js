@@ -26,7 +26,7 @@ import {
   Tune,
 } from '@mui/icons-material';
 
-function Announce_form() {
+function Announce_form({ socket }) {
   const [announcecontent, setAccountContent] = React.useState('');
   const [upload, setUpload] = React.useState('true');
   const [alignment, setAlignment] = React.useState('left');
@@ -47,6 +47,7 @@ function Announce_form() {
       rooms: [roomID],
       content: postData.current.textContent,
     });
+    socket.emit('create-post');
   };
 
   const postData = React.useRef(null);

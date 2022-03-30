@@ -1,39 +1,39 @@
-import {useTheme} from '@mui/material/styles'
+import { useTheme } from '@mui/material/styles';
 
 function useStyle() {
-const theme = useTheme()
+  const theme = useTheme();
 
-const designs = {
+  const designs = {
     Container_Style: {
-        width: 400 ,
-        maxWidth: 400 ,
-        maxHeight: 300 
+      width: 400,
+      maxWidth: 400,
+      maxHeight: 300,
     },
-    Nav_Style: { 
-        width: '100%' 
+    Nav_Style: {
+      width: '100%',
     },
     Container_Sub_Style: {
-        display: "flex",
-        overflow: "auto"
+      display: 'flex',
+      overflow: 'auto',
     },
-    ProfileImg_Style: { 
-        mr: 2 
+    ProfileImg_Style: {
+      mr: 2,
     },
     Container_Sub2_Style: {
-        display: "flex"
+      display: 'flex',
     },
-    Setting_Style: { 
-        mr: '0.5em' 
+    Setting_Style: {
+      mr: '0.5em',
     },
     Container_Sub3_Style: {
-        display: "flex"
+      display: 'flex',
     },
-    Logout_Style: { 
-        mr: '0.5em' 
-    }
-};
+    Logout_Style: {
+      mr: '0.5em',
+    },
+  };
 
-return {designs};
+  return { designs, theme };
 }
 
-export default useStyle;  
+export default useStyle;

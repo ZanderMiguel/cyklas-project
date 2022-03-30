@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import moment from 'moment';
 import {
   Grid,
@@ -16,10 +16,11 @@ import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
 import usePost from '../../customHooks/usePost';
 import useStyles from '../Styles/Announce_style';
 
-function Post_layout({ data }) {
+function Post_layout({ data, socket }) {
   const commentContent = React.useRef(null);
   const postID = React.useRef(null);
   const { designs } = useStyles();
+  const [commentId, setCommentId] = React.useState(null);
 
   const { post, data: comments } = usePost();
 
@@ -34,14 +35,19 @@ function Post_layout({ data }) {
         userID: JSON.parse(localStorage.userData).data.user._id,
       },
     });
+    socket.emit('create-comment');
   };
+  useEffect(() => {
+    socket.on('post-comment', (uuid) => {
+      setCommentId(uuid);
+    });
+  }, [socket]);
 
   return (
     <Grid item xs={12}>
       {data &&
         data.map((item, index) => {
           const { author, createdAt, content, _id } = item;
-
           return (
             <Box className="Post" sx={designs.Post_Style} key={index}>
               <Box className="User" sx={designs.User_Style}>
@@ -77,9 +83,10 @@ function Post_layout({ data }) {
                   {content}
                 </Typography>
               </Box>
-
               <Divider sx={designs.Divider_Style} />
-              <Comments postId={_id} />
+
+              <Comments postId={_id} commentId={commentId} />
+
               <Divider sx={{ mb: 2 }} />
               <Box className="write-comment" sx={designs.Write_Comment_Style}>
                 <Avatar

@@ -12,7 +12,6 @@ import {
   Paper,
 } from '@mui/material';
 import { Send } from '@mui/icons-material';
-import ScrollToBottom from 'react-scroll-to-bottom';
 
 function Message_area({ socket, room, username }) {
   const [currentMessage, setCurrentMessage] = React.useState('');
@@ -54,46 +53,37 @@ function Message_area({ socket, room, username }) {
       </Box>
       <Divider variant="middle" />
       <Box height="29em" overflow="auto">
-        <ScrollToBottom
-          style={{
-            with: '100%',
-            height: '100%',
-            overflowY: 'scroll',
-            overflowX: 'hidden',
-          }}
-        >
-          {messagelist.map((messageContent, index) => {
-            return (
-              <Box key={index} display="flex" justifyContent="flex-start">
-                <Paper
-                  elevation={0}
-                  sx={{
-                    width: 'auto',
-                    maxWidth: '15em',
-                    marginBottom: '0.8em',
-                    marginLeft: '0.8em',
+        {messagelist.map((messageContent, index) => {
+          return (
+            <Box key={index} display="flex" justifyContent="flex-start">
+              <Paper
+                elevation={0}
+                sx={{
+                  width: 'auto',
+                  maxWidth: '15em',
+                  marginBottom: '0.8em',
+                  marginLeft: '0.8em',
 
-                    wordBreak: 'break-word',
-                  }}
-                >
-                  <Box display="flex" alignItems="center">
-                    <Typography
-                      sx={{ fontSize: '1em', fontWeight: 600, mr: '5px' }}
-                    >
-                      {messageContent.author}
-                    </Typography>
-                    <Typography sx={{ fontSize: '0.8em', color: 'gray' }}>
-                      {messageContent.time}
-                    </Typography>
-                  </Box>
-                  <Typography sx={{ flexWrap: 'wrap', fontSize: '0.8em' }}>
-                    {messageContent.message}
+                  wordBreak: 'break-word',
+                }}
+              >
+                <Box display="flex" alignItems="center">
+                  <Typography
+                    sx={{ fontSize: '1em', fontWeight: 600, mr: '5px' }}
+                  >
+                    {messageContent.author}
                   </Typography>
-                </Paper>
-              </Box>
-            );
-          })}
-        </ScrollToBottom>
+                  <Typography sx={{ fontSize: '0.8em', color: 'gray' }}>
+                    {messageContent.time}
+                  </Typography>
+                </Box>
+                <Typography sx={{ flexWrap: 'wrap', fontSize: '0.8em' }}>
+                  {messageContent.message}
+                </Typography>
+              </Paper>
+            </Box>
+          );
+        })}
       </Box>
       <Divider variant="middle" sx={{ mb: 1 }} />
       <Box display="flex" justifycontent="center" alignItems="center">

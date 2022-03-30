@@ -17,7 +17,7 @@ import { IoNewspaperSharp } from 'react-icons/io5';
 import { HiUserGroup } from 'react-icons/hi';
 import { FaClipboardList } from 'react-icons/fa';
 
-function Room_inside() {
+function Room_inside({ socket }) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -93,7 +93,7 @@ function Room_inside() {
       </AppBar>
       <Container maxWidth="md">
         {value === 0 ? (
-          <Announce />
+          <Announce socket={socket} />
         ) : value === 1 ? (
           <Activities roomID={roomID} />
         ) : (

@@ -23,12 +23,12 @@ function Rooms({ socket }) {
     setOpenDialog(false);
   };
 
-  const Professor = Boolean(true);
-  const Student = Boolean(false);
   const [newRoom, setNewRoom] = React.useState(null);
+
   socket.on('room-created', (created) => {
     setNewRoom(created);
   });
+
   React.useMemo(() => {
     post('http://localhost:5000/rooms', {
       userID: JSON.parse(localStorage.userData).data.user._id,
@@ -37,7 +37,8 @@ function Rooms({ socket }) {
   return (
     <>
       <Container maxWidth="md">
-        {Professor && (
+        {JSON.parse(localStorage.userData).data.user.userType ===
+          'Professor' && (
           <>
             <Grid
               container
@@ -87,7 +88,7 @@ function Rooms({ socket }) {
           </>
         )}
 
-        {Student && (
+        {JSON.parse(localStorage.userData).data.user.userType === 'Student' && (
           <>
             <Grid
               container
