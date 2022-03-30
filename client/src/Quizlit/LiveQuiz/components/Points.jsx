@@ -11,7 +11,7 @@ function Points({questionArray,counter}) {
   const { designs } = useStyle();
   return (
     <Grid item xs={12} sm={6} lg={3} sx={designs.Points_Items_Grid_Style}>
-          <Box className="Points" sx={designs.QuizStatus_Style}>
+          {questionArray && <Box className="Points" sx={designs.QuizStatus_Style}>
             <Box className="Points-sub" sx={designs.QuizStatus_Sub_Style}>
               <Star sx={designs.StarIcon_Style} />
 
@@ -21,10 +21,10 @@ function Points({questionArray,counter}) {
             </Box>
             <Box className="Points" sx={designs.QuizStatus_Sub2_Style}>
               <Typography noWrap sx={designs.QuizStatus_Typography2_Style}>
-              {questionArray.current[counter.current].points}
+              {questionArray[counter].points}
               </Typography>
             </Box>
-          </Box>
+          </Box>}
         </Grid>
   )
 }

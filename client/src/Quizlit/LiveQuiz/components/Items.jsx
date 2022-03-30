@@ -12,7 +12,7 @@ function Items({questionArray,counter}) {
   return (
     
     <Grid item xs={12} sm={6} lg={3} sx={designs.Points_Items_Grid_Style}>
-    <Box className="Items" sx={designs.QuizStatus_Style}>
+    {questionArray && <Box className="Items" sx={designs.QuizStatus_Style}>
       <Box className="Items-sub" sx={designs.QuizStatus_Sub_Style}>
         <Layers sx={designs.LayersIcon_Style} />
 
@@ -22,10 +22,10 @@ function Items({questionArray,counter}) {
       </Box>
       <Box className="Items" sx={designs.QuizStatus_Sub2_Style}>
         <Typography noWrap sx={designs.QuizStatus_Typography2_Style}>
-          {`${counter.current + 1} / ${questionArray.current.length}`}
+          {`${counter + 1} / ${questionArray.length}`}
         </Typography>
       </Box>
-    </Box>
+    </Box>}
   </Grid>
   )
 }

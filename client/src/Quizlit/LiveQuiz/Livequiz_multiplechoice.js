@@ -12,36 +12,53 @@ import Points from './components/Points';
 import Timer from './components/Timer';
 import axios from 'axios'
 import Multiple from './components/Multiple';
+import { useHistory } from 'react-router-dom'
 function Livequiz_multiplechoice({ socket }) {
   const { designs } = useStyle();
-  const questionArray = React.useRef(null)
+  const history = useHistory()
+  const [counter,setCounter] = React.useState(0)
+  const [questionArray, setQuestionArray] = React.useState(null)
+  socket.on('next-question',(index)=>{
+    console.log(index)
+  })
+  React.useMemo(() => {
+    axios.post('http://localhost:5000/question', { quizID: '62435059ff2c2c59af2f2436' })
+      .then((res) => {
+        setQuestionArray(res.data)
+        console.log(res.data)
+      })
+      .catch(err => { console.log(err) })
+  }, [counter])
 
-  const fetchData = async () => {
-    const response = await axios.post('http://localhost:5000/question', { quizID: '62435059ff2c2c59af2f2436' })
-    questionArray.current = response.data
-    return (
+  questionArray && socket.emit('timer-start', questionArray[counter].timeLimit.replace(' seconds', ''), questionArray[counter].points)
+  socket.on('times-up', (result) => {
+    result === true ? history.push('/Livequiz_correctanswer') : history.push('/Livequiz_wronganswer')
+  })
+
+  return (
+    <>
       <Box className="Container" sx={designs.Container_Style}>
         <Grid container columnSpacing={2} sx={designs.GridContainer1_Style}>
-          <Timer questionArray={questionArray} counter={counter} />
-          <Answered questionArray={questionArray} counter={counter} />
-          <Points questionArray={questionArray} counter={counter} />
-          <Items questionArray={questionArray} counter={counter} />
+          {questionArray && <><Timer questionArray={questionArray} counter={counter} socket={socket} />
+            <Answered questionArray={questionArray} counter={counter} />
+            <Points questionArray={questionArray} counter={counter} />
+            <Items questionArray={questionArray} counter={counter} /></>}
         </Grid>
-  
+
         <Grid container rowSpacing={0} sx={designs.GridContainer2_Style}>
           <Grid item xs={12}>
             <Box className="Quiz-question" sx={designs.Quiz_Questions_Style}>
               <Box className="Quiz-item" sx={designs.Quiz_Item_Style}>
                 <Typography sx={designs.Quiz_Item_Typography_Style}>
-                  {counter.current + 1}
+                  {counter + 1}
                 </Typography>
               </Box>
               <Typography noWrap sx={designs.Quiz_Questions_Typography_Style}>
-                {questionArray.current[counter.current].questionsContent}
+                {questionArray && questionArray[counter].questionsContent}
               </Typography>
             </Box>
           </Grid>
-  
+
           <Grid item xs={12}>
             <Box className="Image" sx={designs.QuizImage_Style}>
               <img
@@ -53,15 +70,9 @@ function Livequiz_multiplechoice({ socket }) {
             </Box>
           </Grid>
         </Grid>
-        <Multiple questionArray={questionArray} counter={counter} />
-      </Box>
-    );
-  }
-  console.log(fetchData())
-  const counter = React.useRef(0)
-  return (
-    <>{fetchData()}</>
-    )
+        <Multiple questionArray={questionArray} counter={counter} socket={socket} />
+      </Box></>
+  )
 }
 
 export default Livequiz_multiplechoice;

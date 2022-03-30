@@ -38,7 +38,8 @@ app.use(express.static('public'));
 //routers
 
 app.use(router);
-
+let result = ''
+let index = 0
 io.on('connection', (socket) => {
   socket.on('joinroom', (roomID, username) => {
     socket.join(roomID);
@@ -57,6 +58,43 @@ io.on('connection', (socket) => {
   socket.on('create-room', (created) => {
     socket.emit('room-created', created);
   });
+  socket.on('timer-start', (time,points) => {
+
+    const timer = setInterval(() => {
+      time--
+      socket.emit('play', time)
+
+    }, 1000)
+
+    socket.on('send-answer',(answer,correct)=>{
+      result = answer === correct? true: false
+      
+    })
+
+    setTimeout(() => {
+      clearInterval(timer)
+      
+      socket.emit('times-up',result)
+      result=''
+    }, (time * 1000)+1000)
+
+
+    socket.on('break',()=>{
+      let breakTime = 4
+      const count = setInterval(()=>{
+        breakTime--
+        socket.emit('next',points,breakTime)
+        
+      },1000)
+      setTimeout(()=>{
+        clearInterval(count)
+        index++
+        socket.emit('next-question',index)
+      },4000)
+    })
+  })
+  
+
 });
 
 //socket.io events
