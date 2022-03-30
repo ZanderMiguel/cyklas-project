@@ -1,11 +1,9 @@
 const { QuestionModel } = require('../models/model-questions');
-const mongoose = require('mongoose');
 
 const createQuestion = async (req, res) => {
   try {
-    const qID = mongoose.Types.ObjectId();
-    const newQuestion = new QuestionModel({ _id: qID, ...req.body });
-    await newQuestion.save();
+    const newQuestion = await QuestionModel.insertMany(req.body.questionPayload);
+
     return res.json({
       status: 'success',
       message: newQuestion,
