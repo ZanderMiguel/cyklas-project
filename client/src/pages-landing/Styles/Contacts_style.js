@@ -14,7 +14,7 @@ function useStyle() {
       alignItems: 'center',
     },
     Divider_Style: {
-      width: '90%',
+      width: '100%',
     },
     Content_Style: {
       height: 'auto',
@@ -247,9 +247,9 @@ function useStyle() {
     Content2_Style: {
       padding: '15px 0px',
       marginBottom: '0px',
-      width: '100%',
+      width: 'relative',
       height: 'auto',
-      backgroundColor: '#007FFF',
+      backgroundColor: '#007FFF'
     },
     Content2_Sub_Style: {
       display: 'flex',

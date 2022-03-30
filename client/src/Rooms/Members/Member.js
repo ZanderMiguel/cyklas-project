@@ -2,37 +2,25 @@ import React from 'react';
 import { Box, Button } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import People_table from './People_table';
+import Group_table from './Group_table';
+import useStyle from "./Styles/Member_style";
 
 function Member() {
+  const {designs} = useStyle();
+
   return (
     <>
-      <Box>
-        <Box
-          sx={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            mt: 3,
-            mb: 3,
-          }}
-        >
+      <Box sx = {designs.Container_Style}>
+        <Box sx = {designs.ButtonContainer_Style}>
           <Box flexGrow={1} />
           <Button
             startIcon={<AddCircleIcon />}
-            variant="contained"
-            sx={{
-              backgroundColor: '#007FFF',
-              color: 'white',
-              borderRadius: '10px',
-              '&:hover': {
-                backgroundColor: '#0072e6',
-              },
-            }}
-          >
+            variant="contained" sx = {designs.AddMember_Button_Style}>
             Add member
           </Button>
         </Box>
         <People_table />
+        <Group_table />
       </Box>
     </>
   );

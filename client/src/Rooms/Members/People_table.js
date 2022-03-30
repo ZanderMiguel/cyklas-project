@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Container,
   Box,
   Typography,
   Button,
@@ -7,38 +8,150 @@ import {
   Avatar,
   Grid,
   IconButton,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText
 } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { Delete, Folder } from '@mui/icons-material';
 
 import { DataGrid } from '@mui/x-data-grid';
 import useGet from '../../customHooks/useGet';
+import useStyle from "./Styles/People_table_style";
+
+const dataProf = [
+  {
+    memberName: "Mark Andrei",
+    children: "M"
+  }
+];
+
+const dataStud = [
+  {
+    memberName: "Tom Hiddleston",
+    children: "T"
+  },
+  {
+    memberName: "Tom Holland",
+    children: "T"
+  },
+  {
+    memberName: "Paul Rudd",
+    children: "P"
+  },
+  {
+    memberName: "Sebastian Stan",
+    children: "S"
+  },
+  {
+    memberName: "Robert Downey Jr.",
+    children: "R"
+  }
+];
 
 function People_table() {
+  const {designs} = useStyle();
+
   return (
-    <>
-      <Box backgroundColor="#F3F3F3">
-        <Box className="container" display="flex" padding="10px">
-          <Typography sx={{ ml: 3, fontWeight: 600, fontSize: '1.4em' }}>
-            PROFESSOR
-          </Typography>
-          <Box flexGrow={1} />
-          <Button variant="contained">Add profesor</Button>
-        </Box>
-        <Divider variant="middle" />
-        <div style={{ height: 'auto', width: '100%' }}></div>
-      </Box>
-      <Box backgroundColor="#F3F3F3" mt={3}>
-        <Box className="container" display="flex" padding="10px">
-          <Typography sx={{ ml: 3, fontWeight: 600, fontSize: '1.4em' }}>
-            STUDENT
-          </Typography>
-          <Box flexGrow={1} />
-          <Button variant="contained">Add profesor</Button>
-        </Box>
-        <Divider variant="middle" />
-        <div style={{ height: 'auto', width: '100%' }}></div>
-      </Box>
-    </>
+      <Container maxWidth = "md">
+        <Grid container rowSpacing = {1}>
+          <Grid item xs = {12}>
+            <Box className = "Total" sx = {designs.Total_Style}>
+              <Box flexGrow = {1} sx = {designs.BoxFlexGrow_Style}/>
+
+              <Typography sx = {designs.TotalProf_Typography_Style}>
+              1 Professor
+              </Typography>
+            </Box>
+            
+            <Box sx = {designs.Professor_Container_Style}>
+            <Box className="container" sx = {designs.Professor_Container_Sub_Style}>
+              <Typography sx = {designs.Professor_Typography_Style}>
+                Professor
+              </Typography>
+              <Box flexGrow={1} />
+              <Button variant="contained" sx = {designs.Leave_Button_Style}>Leave</Button>
+            </Box>
+            <Divider />
+
+            <Grid item xs={12}>
+                <List sx = {designs.List_Style}>
+                  {dataProf.map(function(items, index) {
+                    return (
+                      <ListItem key = {index} sx = {designs.ListItem_Style}>
+                        <ListItemAvatar>
+                          <Avatar children = {items.children}/>
+                        </ListItemAvatar>
+                        
+                        <ListItemText>
+                          <Typography sx = {designs.Prof_Typography_Style}>
+                          {items.memberName}
+                          </Typography>
+                        </ListItemText>
+
+                        <IconButton edge="end" aria-label="delete">
+                          <Delete/>
+                        </IconButton>
+                      </ListItem>
+                    )
+                  })}
+                </List>
+            </Grid>
+            </Box>
+          </Grid>
+
+          <Grid item xs = {12}>
+            <Box className = "Total" sx = {designs.Total_Style}>
+              <Box flexGrow = {1} sx = {designs.BoxFlexGrow_Style}/>
+
+              <Typography sx = {designs.TotalStud_Typography_Style}>
+              5 Students
+              </Typography>
+            </Box>
+
+            <Box sx = {designs.Student_Container_Style}>
+            <Box className="container" sx = {designs.Student_Container_Sub_Style}>
+              <Typography sx = {designs.Students_Typography_Style}>
+                Student
+              </Typography>
+              <Box flexGrow={1} />
+              <Button variant="contained" sx = {designs.RemoveAllStudents_Button_Style}>Remove Students</Button>
+            </Box>
+            <Divider/>
+
+            <Grid item xs={12}>
+                <List sx = {designs.List_Style}>
+                  {dataStud.map(function(items, index) {
+                    return (
+                      <>
+                      <ListItem key = {index} sx = {designs.ListItem_Style}>
+                        <ListItemAvatar>
+                          <Avatar children = {items.children}/>
+                        </ListItemAvatar>
+                        
+                        <ListItemText>
+                          <Typography sx = {designs.Student_Typography_Style}>
+                          {items.memberName}
+                          </Typography>
+                        </ListItemText>
+
+                        <IconButton edge="end" aria-label="delete">
+                          <Delete/>
+                        </IconButton>
+                      </ListItem>
+                      <Divider/>
+                      </>
+                    )
+                  })}
+                </List>
+            </Grid>
+            </Box>
+          </Grid>
+
+        </Grid>
+      </Container>
+      
+  
   );
 }
 

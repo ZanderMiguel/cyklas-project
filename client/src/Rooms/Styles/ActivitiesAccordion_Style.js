@@ -3,7 +3,11 @@ import { useTheme } from '@mui/material/styles';
 function useStyle() {
   const theme = useTheme();
   const designs = {
-    Activity_Tiles: {},
+    Activity_Tiles: {
+      "&: hover": {
+        boxShadow: 'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px'
+      }
+    },
     Lesson: {
       backgroundColor: '#F3F3F3',
       width: '100%',

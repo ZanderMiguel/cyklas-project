@@ -9,8 +9,8 @@ import Schoolworktiles_layout from '../Room-content-layout/Schoolworktiles_layou
 
 function Announce() {
   const { roomID } = useParams();
-  const [postData, setPostData] = React.useState(new Map());
-
+  const [announcecounter, setAnnounceCounter] = React.useState(false)
+  
   const [data, setData] = React.useState(null);
   React.useMemo(() => {
     axios
@@ -19,17 +19,17 @@ function Announce() {
         setData(res.data);
       })
       .catch((err) => console.log(err));
-  }, [roomID]);
+  }, []);
 
   return (
     <>
       <CssBaseline />
       <Grid container sx={{ margin: '1em 0em' }}>
         <Grid item xs={12}>
-          <Announce_form />
+          <Announce_form setAnnounceCounter={setAnnounceCounter}/>
         </Grid>
         <Grid item xs={12}>
-          {data && <Post_layout data={data} />}
+          {data && <Post_layout data={data}  />}
         </Grid>
         <Schoolworktiles_layout />
       </Grid>

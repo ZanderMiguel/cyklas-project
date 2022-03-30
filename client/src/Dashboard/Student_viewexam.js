@@ -326,7 +326,7 @@ function Student_viewexam() {
                             
                         </Box>
 
-                        <Typography sx = {designs.Type_Typography_Style}>
+                        {/* <Typography sx = {designs.Type_Typography_Style}>
                             Enumeration
                         </Typography>
 
@@ -392,7 +392,7 @@ function Student_viewexam() {
                                 Correct Answer: North, South, West, East
                             </Typography>
                             
-                        </Box>
+                        </Box> */}
                     </Box>
             </Grid>
         </Grid>
