@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import Navbar from './Navbar_Inside';
-import useGet from '../customHooks/useGet';
+
 function ProtectedRoutes({
   component: Component,
   path,
@@ -12,12 +12,12 @@ function ProtectedRoutes({
 }) {
   return (
     <>
-      {localStorage.token && <Navbar  />}
+      {localStorage.token && <Navbar />}
       <Route
         {...attrib}
         render={() => {
           return localStorage.token !== undefined ? (
-          //  {data ?  <Component data={data.current.data} /> : <Component/>}
+            //  {data ?  <Component data={data.current.data} /> : <Component/>}
             socket ? (
               <Component socket={socket} />
             ) : (
