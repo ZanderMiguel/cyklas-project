@@ -48,9 +48,9 @@ function App() {
       fontFamily: 'Poppins',
       color: '#3F3D56',
     },
-    pallete: {
+    palette: {
       primary: {
-        main: '#3F3D56',
+        main: '#007fff',
       },
     },
     mixins: {
@@ -86,6 +86,7 @@ function App() {
             <ProtectedRoutes
               exact
               path="/rooms/:roomID"
+              socket={socket}
               component={Room_inside}
             />
             <ProtectedRoutes
@@ -118,23 +119,27 @@ function App() {
             {/* Javen Routes */}
             <ProtectedRoutes
               exact
-              path="/Livequiz_multiplechoice"
+              path="/livequiz_multiplechoice"
               component={Livequiz_multiplechoice}
+              socket={socket}
             />
             <ProtectedRoutes
               exact
               path="/StudentLiveQuiz_multiplechoice"
               component={StudentLiveQuiz_multiplechoice}
+              
             />
-             <ProtectedRoutes
+            <ProtectedRoutes
               exact
               path="/Livequiz_correctanswer"
               component={Livequiz_correctanswer}
+              socket={socket}
             />
             <ProtectedRoutes
               exact
               path="/Livequiz_wronganswer"
               component={Livequiz_wronganswer}
+              socket={socket}
             />
             <ProtectedRoutes
               exact

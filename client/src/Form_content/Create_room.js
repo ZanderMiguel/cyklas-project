@@ -77,12 +77,8 @@ function Create_room({ open, close, maxWidth, state, socket }) {
       ...room,
       members: [JSON.parse(localStorage.userData).data.user._id],
     });
-
     state(false);
-    // if (post.data.message === 'Room Created') {
-    //   console.log('tangina naman');
-    // }
-    socket.emit('create-room', Math.random());
+    socket.emit('create-room');
   };
 
   return (

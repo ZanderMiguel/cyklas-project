@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-//const {Socket} = require('socket.io')
+const { v4 } = require('uuid');
 
 const io = require('socket.io')(3001, {
   cors: {
@@ -38,7 +38,8 @@ app.use(express.static('public'));
 //routers
 
 app.use(router);
-
+let result = ''
+let index = 0
 io.on('connection', (socket) => {
   socket.on('joinroom', (roomID, username) => {
     socket.join(roomID);
@@ -54,9 +55,52 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('User Disconnected', socket.id);
   });
-  socket.on('create-room', (created) => {
-    socket.emit('room-created', created);
+  socket.on('create-room', () => {
+    socket.emit('room-created', v4());
   });
+  socket.on('create-post', () => {
+    socket.emit('post-created', v4());
+  });
+  socket.on('create-comment', () => {
+    socket.emit('post-comment', v4());
+  });
+  socket.on('timer-start', (time,points) => {
+
+    const timer = setInterval(() => {
+      time--
+      socket.emit('play', time)
+
+    }, 1000)
+
+    socket.on('send-answer',(answer,correct)=>{
+      result = answer === correct? true: false
+      
+    })
+
+    setTimeout(() => {
+      clearInterval(timer)
+      
+      socket.emit('times-up',result)
+      result=''
+    }, (time * 1000)+1000)
+
+
+    socket.on('break',()=>{
+      let breakTime = 4
+      const count = setInterval(()=>{
+        breakTime--
+        socket.emit('next',points,breakTime)
+        
+      },1000)
+      setTimeout(()=>{
+        clearInterval(count)
+        index++
+        socket.emit('next-question',index)
+      },4000)
+    })
+  })
+  
+
 });
 
 //socket.io events

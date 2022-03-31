@@ -47,7 +47,6 @@ function Home({ data }) {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   const handleClickOpen = () => {
     setOpenDialog(true);
-    console.log(opendialog);
   };
   const handleClose = () => {
     setOpenDialog(false);
@@ -137,7 +136,7 @@ function Home({ data }) {
                 },
               }}
               startIcon={<AddCircleOutlineOutlinedIcon />}
-              onClick={(event) => console.log(event)}
+              onClick={handleClickOpen}
             />
           )}
           {isMatch ? null : (

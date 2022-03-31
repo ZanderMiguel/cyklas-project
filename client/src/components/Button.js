@@ -8,7 +8,6 @@ function Button({
   backgroundColor,
   color,
   hoverColour,
-  onClick,
   fullWidth,
   borderRadius,
   borderColor,
