@@ -64,13 +64,34 @@ function useStyle() {
       height: 'relative',
     },
     Option_IconButton_Style: {
-      height: '32px',
-      width: '32px',
+      borderRadius: "0em",
+      height: '1.2em',
+      width: '1.2em',
       margin: '8px 0px',
+      "&: hover": {
+        backgroundColor: "transparent"
+      }
+    },
+    EditIcon_Style: {
+      color: '#615F79',
+      fontSize: '20px',
+      "&: hover": {
+        color: '#007FFF',
+      }
+    },
+    DeleteIcon_Style: {
+      color: '#615F79',
+      fontSize: '20px',
+      "&: hover": {
+        color: '#FF3B00',
+      }
     },
     MoreVertIcon_Style: {
-      color: '#8E8E8E',
+      color: '#3F3D56',
       fontSize: '20px',
+      "&: hover": {
+        color: '#007FFF',
+      }
     },
     Post_Content_Style: {
       padding: '10px 75px',
@@ -138,16 +159,12 @@ function useStyle() {
     Actions_Style: {
       marginTop: "0.3em",
       display: "flex",
-      gap: "0.8em"
+      gap: "1em"
     },
     EditComment_Button_Style: {
       fontSize: "0.5em",
       fontWeight: "400",
-      color: "#3F3D56",
-      "&: hover": {
-        cursor: "pointer",
-        textDecoration: "underline"
-      }
+      color: "#3F3D56"
     },
     DividerV_Style: { 
       margin: "0.2em 0em" 
@@ -155,11 +172,7 @@ function useStyle() {
     DeleteComment_Button_Style: {
       fontSize: "0.5em",
       fontWeight: "400",
-      color: "#3F3D56",
-      "&: hover": {
-        cursor: "pointer",
-        textDecoration: "underline"
-      }
+      color: "#3F3D56"
     },
 
     // Schoolworktiles_layout

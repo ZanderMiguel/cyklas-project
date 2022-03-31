@@ -42,23 +42,27 @@ const request = [
 const general = [
   {
     avatar: <Avatar />,
-    action: 'Mark Andrei added you to his class',
-    roomname: 'Embedded Programming',
+    action: 'You are added to a new room "SOFTWARE ENGINEERING 2".',
+    user: 'Zander Miguel',
+    dateTime: 'December 25, 2024 at 9:05 AM'
   },
   {
     avatar: <Avatar />,
-    action: 'Mark Andrei added you to his class',
-    roomname: 'Embedded Programming',
+    action: 'You posted a new announcement on your room "EMBEDDED PROGRAMMING".',
+    user: 'Mark Andrei (You)',
+    dateTime: 'December 14, 2024 at 3:05 PM'
   },
   {
     avatar: <Avatar />,
-    action: 'Mark Andrei added you to his class',
-    roomname: 'Embedded Programming',
+    action: 'Your student from "EMBEDDED PROGRAMMING" wrote a comment on your post.',
+    user: 'Paul Rudd',
+    dateTime: 'November 16, 2024 at 12:35 AM'
   },
   {
     avatar: <Avatar />,
-    action: 'Mark Andrei added you to his class',
-    roomname: 'Embedded Programming',
+    action: 'Your student from "EMBEDDED PROGRAMMING" submitted an Activity.',
+    user: 'Paul Rudd',
+    dateTime: 'November 15, 2024 at 7:05 PM'
   },
 ];
 
