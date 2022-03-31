@@ -24,9 +24,6 @@ import Footer from './Footer';
 
 const style = { fontFamily: 'Poppins', marginTop: 1 };
 
-<<<<<<< Updated upstream
-function Home() {
-=======
 const googleSuccess = async (res) => {
   console.log(res);
   axios({
@@ -43,8 +40,6 @@ const googleFailure = (error) => {
 };
 
 function Home() {
-  const history = useHistory();
->>>>>>> Stashed changes
   const [isPending, setIsPending] = useState(true);
   const [opendialog, setOpenDialog] = useState(false);
   const [showPassword, setShowPassword] = React.useState(false);
@@ -73,10 +68,6 @@ function Home() {
           localStorage.setItem('token', response.data.token);
         localStorage.setItem('userData', JSON.stringify(response.data));
         setMyApi(new Map());
-<<<<<<< Updated upstream
-=======
-        history.push('/dashboard');
->>>>>>> Stashed changes
       })
       .catch((err) => {
         console.log(err.message);
