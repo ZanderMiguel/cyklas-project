@@ -12,11 +12,11 @@ import Points from './components/Points';
 import Timer from './components/Timer';
 import axios from 'axios'
 import Multiple from './components/Multiple';
-import { useHistory } from 'react-router-dom'
+import { useHistory,useParams } from 'react-router-dom'
 function Livequiz_multiplechoice({ socket }) {
   const { designs } = useStyle();
   const history = useHistory()
-  const [counter,setCounter] = React.useState(0)
+  const {counter} = useParams()
   const [questionArray, setQuestionArray] = React.useState(null)
   socket.on('next-question',(index)=>{
     console.log(index)

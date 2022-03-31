@@ -119,7 +119,7 @@ function App() {
             {/* Javen Routes */}
             <ProtectedRoutes
               exact
-              path="/livequiz_multiplechoice"
+              path="/livequiz_multiplechoice/:counter"
               component={Livequiz_multiplechoice}
               socket={socket}
             />

@@ -5,14 +5,15 @@ import { useHistory } from 'react-router-dom'
 function Livequiz_wronganswer({socket}) {
   React.useMemo(()=>{socket.emit('break')},[])
   const history = useHistory()
+  
   const [points,setPoints] = React.useState('Loading...')
   const [count,setCount] = React.useState(4)
   socket.on('next',(point,breakTime)=>{
     setPoints(`+ ${point}`)
     setCount(breakTime)
   })
-  socket.on('next-question',()=>{
-    history.push('/livequiz_multiplechoice')
+  socket.on('next-question',(index)=>{
+    history.push(`/livequiz_multiplechoice/${index}`)
   })
   return (
     <Box className = "container" sx = {{

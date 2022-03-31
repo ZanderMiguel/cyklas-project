@@ -11,8 +11,8 @@ socket.on('next',(point,breakTime)=>{
   setPoints(`+ ${point}`)
   setCount(breakTime)
 })
-socket.on('next-question',()=>{
-  history.push('/livequiz_multiplechoice')
+socket.on('next-question',(index)=>{
+  history.push(`/livequiz_multiplechoice/${index}`)
 })
   return (
     <Box className = "container" sx = {{
