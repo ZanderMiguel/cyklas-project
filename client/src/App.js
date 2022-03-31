@@ -103,19 +103,16 @@ function App() {
             />
             <ProtectedRoutes exact path="/settings" component={Setting} />
             <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
-
             <ProtectedRoutes
               exact
               path="/quizlit/createquiz"
               component={Quizform}
             />
-
             <ProtectedRoutes
               exact
               path="/quizlit/createexam"
               component={Examform}
             />
-
             {/* Javen Routes */}
             <ProtectedRoutes
               exact
@@ -127,7 +124,6 @@ function App() {
               exact
               path="/StudentLiveQuiz_multiplechoice"
               component={StudentLiveQuiz_multiplechoice}
-              
             />
             <ProtectedRoutes
               exact
@@ -146,39 +142,30 @@ function App() {
               path="/Student_rankings"
               component={Student_rankings}
             />
-
             <Route
               exact
               path="/Student_activities"
               component={Student_activities}
             />
-
             <Route
               exact
               path="/Student_viewactivity"
               component={Student_viewactivity}
             />
-
             <Route
               exact
               path="/Student_viewexam"
               component={Student_viewexam}
             />
-
             <Route
               exact
               path="/Student_viewquiz"
               component={Student_viewquiz}
             />
-
             <Route exact path="/Exam_take" component={Exam_take} />
-
             <Route exact path="/Exam_start" component={Exam_start} />
-
             <Route exact path="/View_quiz" component={View_quiz} />
-
             <Route exact path="/View_exam" component={View_exam} />
-
             <ProtectedRoutes exact path="/records" component={Records} />
             <Route path="/forgotpassword">
               <Forgot_password />

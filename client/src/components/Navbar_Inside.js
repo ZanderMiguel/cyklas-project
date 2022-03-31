@@ -87,6 +87,7 @@ function Navbar() {
 
   const account = Boolean(anchorEl1);
   const badgeDot = React.useRef(null);
+
   return (
     <>
       <CssBaseline />
@@ -138,7 +139,12 @@ function Navbar() {
               },
             }}
           >
-            <Avatar src={Zander} alt="profileImg" />
+            <Avatar
+              src={`${Buffer.from(
+                JSON.parse(localStorage.userData).data.user.image
+              ).toString()}`}
+              alt="profileImg"
+            />
             <Box
               sx={{
                 display: 'flex',
@@ -171,7 +177,11 @@ function Navbar() {
             anchorEl={anchorEl1}
             onClose={handleCloseArrow}
           >
-            <Accountpopover />
+            <Accountpopover
+              avatar={`${Buffer.from(
+                JSON.parse(localStorage.userData).data.user.image
+              ).toString()}`}
+            />
           </CusPopover>
         </Toolbar>
       </AppBar>
