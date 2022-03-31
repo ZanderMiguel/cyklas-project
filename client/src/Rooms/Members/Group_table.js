@@ -18,6 +18,7 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Tooltip
 } from '@mui/material';
 import { Delete, Inbox, StarBorder, ExpandMore, ExpandLess } from '@mui/icons-material';
 import GroupsIcon from "../../assets/ImageJaven/GroupsIcon.png";
@@ -62,7 +63,7 @@ function Group_table() {
                 Groups
               </Typography>
               <Box flexGrow={1} />
-              <Button variant="contained" sx = {designs.DeleteGroups_Button_Style}>Delete Groups</Button>
+              <Button variant="contained" sx = {designs.DeleteGroups_Button_Style}>Delete All Groups</Button>
             </Box>
             <Divider />
 
@@ -81,9 +82,11 @@ function Group_table() {
                         {items.groupName} 
                         </Typography>
 
+                        <Tooltip title="Delete this Group" placement="left">
                         <IconButton edge="end" aria-label="delete">
                           <Delete/>
                         </IconButton>
+                        </Tooltip>
                         </AccordionSummary>
                                 {items.groupMembers.map((items2, index) => {
                                     return (

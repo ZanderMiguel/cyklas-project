@@ -8,7 +8,7 @@ const designs = {
         width: "auto",
         height: "max-content",
         padding: "0em 0.5em",
-        backgroundColor: "#FCFCFC",
+        backgroundColor: "#F6F6F6",
         boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 1px"
     },
     Nav_Style: { 

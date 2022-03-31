@@ -11,7 +11,8 @@ import {
   List,
   ListItem,
   ListItemAvatar,
-  ListItemText
+  ListItemText,
+  Tooltip
 } from '@mui/material';
 import { Delete, Folder } from '@mui/icons-material';
 
@@ -89,9 +90,9 @@ function People_table() {
                           </Typography>
                         </ListItemText>
 
-                        <IconButton edge="end" aria-label="delete">
+                        {/* <IconButton edge="end" aria-label="delete">
                           <Delete/>
-                        </IconButton>
+                        </IconButton> */}
                       </ListItem>
                     )
                   })}
@@ -115,7 +116,7 @@ function People_table() {
                 Student
               </Typography>
               <Box flexGrow={1} />
-              <Button variant="contained" sx = {designs.RemoveAllStudents_Button_Style}>Remove Students</Button>
+              <Button variant="contained" sx = {designs.RemoveAllStudents_Button_Style}>Remove All Students</Button>
             </Box>
             <Divider/>
 
@@ -135,9 +136,11 @@ function People_table() {
                           </Typography>
                         </ListItemText>
 
+                        <Tooltip title="Remove this student" placement="left">
                         <IconButton edge="end" aria-label="delete">
                           <Delete/>
                         </IconButton>
+                        </Tooltip>
                       </ListItem>
                       <Divider/>
                       </>
