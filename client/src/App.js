@@ -93,7 +93,6 @@ function App() {
               exact
               path="/rooms/:roomID/:activityID"
               component={View_activity}
-              // data={data}
             />
             {/* Sample 2 id's */}
             <ProtectedRoutes

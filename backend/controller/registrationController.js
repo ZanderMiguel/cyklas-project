@@ -103,7 +103,6 @@ const userLogIn = async (req, res) => {
       });
     }
   } catch (err) {
-    console.log(err);
     return res.json({
       status: 'error',
       message: err,
