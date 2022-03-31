@@ -15,8 +15,20 @@ import Comments from './Comments';
 import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
 import usePost from '../../customHooks/usePost';
 import useStyles from '../Styles/Announce_style';
+import CusPopover from '../../components/Popover';
+import PostOptionspopover from '../../components/PopoverContent/PostOptionspopover';
 
 function Post_layout({ data, socket }) {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClickOption = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseOption = () => {
+    setAnchorEl(null);
+  };
+  const account = Boolean(anchorEl);
+
   const commentContent = React.useRef(null);
   const postID = React.useRef(null);
   const { designs } = useStyles();
@@ -72,10 +84,19 @@ function Post_layout({ data, socket }) {
 
                 <IconButton
                   aria-label="options"
+                  onClick={handleClickOption}
                   sx={designs.Option_IconButton_Style}
                 >
                   <MoreVert sx={designs.MoreVertIcon_Style} />
                 </IconButton>
+
+                <CusPopover
+                PaperProps={{ elevation: 0 }}
+                open={account}
+                anchorEl={anchorEl}
+                onClose={handleCloseOption}>
+                <PostOptionspopover />
+                </CusPopover>
               </Box>
 
               <Box className="post-content" sx={designs.Post_Content_Style}>

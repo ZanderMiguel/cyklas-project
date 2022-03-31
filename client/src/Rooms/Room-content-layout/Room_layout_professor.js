@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography, Paper, IconButton, Box, Grid } from '@mui/material';
 import { MoreVert } from '@mui/icons-material';
 import CusPopover from '../../components/Popover';
-import RoomsOptionpopover from '../../components/PopoverContent/RoomsOptionpopover';
+import RoomOptionspopover_professor from '../../components/PopoverContent/RoomOptionspopover_professor';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Link } from 'react-router-dom';
 import '../Styles/View_activity_style.css';
@@ -129,7 +129,7 @@ function Room_layout({ data }) {
                 anchorEl={anchorEl}
                 onClose={handleCloseOption}
               >
-                <RoomsOptionpopover />
+                <RoomOptionspopover_professor />
               </CusPopover>
 
               <Box

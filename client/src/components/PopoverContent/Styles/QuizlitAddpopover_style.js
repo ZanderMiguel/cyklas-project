@@ -5,9 +5,10 @@ const theme = useTheme()
 
 const designs = {
     Container_Style: {
-        width: "10rem",
-        maxWidth: 400,
-        maxHeight: 300
+        width: "auto",
+        height: "max-content",
+        padding: "0em 0.5em",
+        backgroundColor: "#FEFEFE"
     },
     Nav_Style: { 
         width: '100%' 
