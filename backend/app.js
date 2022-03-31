@@ -40,6 +40,7 @@ app.use(express.static('public'));
 app.use(router);
 let result = ''
 let index = 0
+let questionCount = 0
 io.on('connection', (socket) => {
   socket.on('joinroom', (roomID, username) => {
     socket.join(roomID);
@@ -64,11 +65,11 @@ io.on('connection', (socket) => {
   socket.on('create-comment', () => {
     socket.emit('post-comment', v4());
   });
-  socket.on('timer-start', (time,points) => {
-
+  socket.on('timer-start', (time,points,qCount) => {
+    questionCount = qCount
     const timer = setInterval(() => {
       time--
-      socket.emit('play', time)
+      socket.emit('play', time,index)
 
     }, 1000)
 
@@ -95,7 +96,7 @@ io.on('connection', (socket) => {
       setTimeout(()=>{
         clearInterval(count)
         index++
-        socket.emit('next-question',index)
+        socket.emit('next-question',index,questionCount)
       },4000)
     })
   })

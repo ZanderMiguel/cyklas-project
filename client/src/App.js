@@ -143,7 +143,7 @@ function App() {
             />
             <ProtectedRoutes
               exact
-              path="/Student_rankings"
+              path="/student_rankings"
               component={Student_rankings}
             />
 

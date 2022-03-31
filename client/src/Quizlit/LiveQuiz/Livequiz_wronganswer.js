@@ -5,15 +5,26 @@ import { useHistory } from 'react-router-dom'
 function Livequiz_wronganswer({socket}) {
   React.useMemo(()=>{socket.emit('break')},[])
   const history = useHistory()
-  
-  const [points,setPoints] = React.useState('Loading...')
   const [count,setCount] = React.useState(4)
   socket.on('next',(point,breakTime)=>{
-    setPoints(`+ ${point}`)
     setCount(breakTime)
   })
-  socket.on('next-question',(index)=>{
+  socket.on('next-question',(index,arrLen)=>{
+    if(index < arrLen){
     history.push(`/livequiz_multiplechoice/${index}`)
+
+    }else{
+    if(index === arrLen){
+      history.push(`/student_rankings`)
+      socket.removeAllListeners('next-question')
+      
+    }else{
+      if(index > arrLen){
+        history.push(`/not-found`)
+      }
+    }
+    }
+    
   })
   return (
     <Box className = "container" sx = {{
@@ -57,7 +68,7 @@ function Livequiz_wronganswer({socket}) {
             textAlign: "center",
             textTransform: "Uppercase"
             }}>
-            {points}
+            No points
         </Typography>
         
         <div>

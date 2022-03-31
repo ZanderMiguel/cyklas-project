@@ -11,8 +11,25 @@ socket.on('next',(point,breakTime)=>{
   setPoints(`+ ${point}`)
   setCount(breakTime)
 })
-socket.on('next-question',(index)=>{
+socket.on('next-question',(index,arrLen)=>{
+  if(index < arrLen){
   history.push(`/livequiz_multiplechoice/${index}`)
+
+  }else{
+  if(index === arrLen){
+    socket.off('next-question',()=>{
+      history.push(`/student_rankings`)
+      socket.removeAllListeners('next-question')
+
+    })
+    
+  }else{
+    if(index > arrLen){
+      history.push(`/not-found`)
+    }
+  }
+  }
+  
 })
   return (
     <Box className = "container" sx = {{

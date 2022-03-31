@@ -292,7 +292,6 @@ function Student_rankings() {
             >
               {data.map(function (items, index) {
                 return (
-                  <>
                     <Box
                       key={index}
                       className="Student"
@@ -337,9 +336,9 @@ function Student_rankings() {
                       >
                         {items.score}
                       </Typography>
-                    </Box>
                     <Divider sx={designs.StudentList_Divider_Style} />
-                  </>
+
+                    </Box>
                 );
               })}
             </Box>
