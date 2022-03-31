@@ -206,20 +206,7 @@ function View_activity() {
 
                 <Box
                   className="Attach-file"
-                  sx={{
-                    margin: '10px 0px',
-                    width: '50%',
-                    padding: '8px 15px',
-                    display: 'flex',
-                    gap: '15px',
-                    border: '1px solid #D4D4D4',
-                    borderRadius: '0.3em',
-                    '&: hover': {
-                      cursor: 'pointer',
-                      boxShadow:
-                        'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
-                    },
-                  }}
+                  sx = {designs.AttachFile_Style}
                 >
                   <img
                     src={Wordfile}
@@ -312,7 +299,7 @@ function View_activity() {
                 <Grid container columnSpacing={2} rowSpacing={1}>
                   {data.map(function (items, index) {
                     return (
-                      <Grid item md={4} sm={6} key={index}>
+                      <Grid item lg = {4} md={6} sm={12} xs = {12} key={index}>
                         <Box
                           className="Student-uploaded-file-container"
                           sx={designs.StudentUploadedFileContainer_Style}
@@ -326,7 +313,7 @@ function View_activity() {
 
                           <Box
                             className="Attach-file"
-                            sx={designs.AttachFile_Style}
+                            sx={designs.AttachFile2_Style}
                           >
                             <img
                               src={Wordfile}

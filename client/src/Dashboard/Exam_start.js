@@ -565,7 +565,7 @@ function Exam_start() {
                 </Box>
             </Grid>
 
-            <Grid item xs = {12} sx = {designs.Question_GridItem_Style}>
+            {/* <Grid item xs = {12} sx = {designs.Question_GridItem_Style}>
                 <Box className = "Type-points" sx = {designs.Type_Points_Style}>
                     <Typography sx = {designs.Type_Typography_Style}>
                         Enumeration
@@ -628,7 +628,7 @@ function Exam_start() {
                         }}/>
                     </Box>
                 </Box>
-            </Grid>
+            </Grid> */}
 
             <Grid item xs = {12}>
                 <Box className = "Button" sx = {designs.Button_Style}>

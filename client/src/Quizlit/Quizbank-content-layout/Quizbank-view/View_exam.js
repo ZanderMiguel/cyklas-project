@@ -159,7 +159,7 @@ function View_exam() {
 
         <Grid item xs = {8} sx = {{ margin: "0.5em 0em" }}>
             <Box className = "RoomName-CourseYearSec" sx = {designs.RoomName_CourseYearSec_Style}>
-                <Box sx={designs.FlexGrow_Box_Style} />
+                {/* <Box sx={designs.FlexGrow_Box_Style} /> */}
                 
                 <FormControl variant="standard" sx={designs.FormControlRoom_Style}>
                     <InputLabel id="demo-simple-select-standard-label"
@@ -184,7 +184,7 @@ function View_exam() {
                     </Select>
                 </FormControl>
 
-                <FormControl variant="standard" sx={designs.FormControlCourseYearSec_Style}>
+                {/* <FormControl variant="standard" sx={designs.FormControlCourseYearSec_Style}>
                     <InputLabel id="demo-simple-select-standard-label"
                      sx={designs.InputLabelCourseYearSec_Style}>
                      Course / Year and Section
@@ -205,7 +205,7 @@ function View_exam() {
                       </MenuItem>
                     ))}
                     </Select>
-                </FormControl>
+                </FormControl> */}
             </Box>
         </Grid>
 
@@ -616,7 +616,7 @@ function View_exam() {
                             
                         </Box>
 
-                        <Typography sx = {designs.Type_Typography_Style}>
+                        {/* <Typography sx = {designs.Type_Typography_Style}>
                             Enumeration
                         </Typography>
 
@@ -682,7 +682,7 @@ function View_exam() {
                                 Correct Answer: North, South, West, East
                             </Typography>
                             
-                        </Box>
+                        </Box> */}
 
                             
 

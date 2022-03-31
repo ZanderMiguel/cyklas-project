@@ -52,7 +52,7 @@ function Contact() {
         width="100%"
         gap="30px"
       >
-        <Box className="left_container" padding="20px" maxWidth="500px">
+        <Box className="left_container" padding="20px">
           <Typography
             sx={{
               ...style,

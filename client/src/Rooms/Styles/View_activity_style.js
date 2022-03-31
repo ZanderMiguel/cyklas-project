@@ -52,11 +52,9 @@ function useStyle() {
       "&: hover": {
           backgroundColor: "#005DC3"
       },
-      // [theme.breakpoints.down('sm')]: {
-      //     padding: "0.4em 0em",
-      //     marginRight: "0em",
-      //     width: "100%"
-      // },
+      [theme.breakpoints.down('md')]: {
+        margin: "0.7em 0em 0.5em 0em",
+      },
     },
     SortBy_Autocomplete_Style: {
       width: 120,
@@ -125,6 +123,9 @@ function useStyle() {
       padding: '0px 40px',
       height: 'auto',
       width: 'relative',
+      [theme.breakpoints.down('sm')]: {
+        padding: '0px 15px'
+      }
     },
     Lesson_Typography_Style: {
       height: 'max-content',
@@ -147,6 +148,9 @@ function useStyle() {
       width: 'relative',
       margin: '1px 0px 5px 0px',
       padding: '3px 40px',
+      [theme.breakpoints.down('sm')]: {
+        padding: '3px 15px'
+      }
     },
     ActivityInstructionsHead_Typography_Style: {
       width: '100%',
@@ -183,6 +187,9 @@ function useStyle() {
     Divider2_Style: {
       width: 'relative',
       margin: '0px 40px',
+      [theme.breakpoints.down('sm')]: {
+        margin: '0px 15px',
+      }
     },
     ViewComments_Style: {
       height: 'auto',
@@ -190,6 +197,9 @@ function useStyle() {
       margin: '5px 40px',
       display: 'flex',
       gap: '8px',
+      [theme.breakpoints.down('sm')]: {
+        margin: '5px 15px',
+      }
     },
     ViewComments_Typography_Style: {
       height: 'max-content',
@@ -214,6 +224,9 @@ function useStyle() {
       height: 'auto',
       display: 'flex',
       gap: '6px',
+      [theme.breakpoints.down('sm')]: {
+        margin: '0px 15px',
+      }
     },
     UserAvatar_Style: {
       marginTop: '2px',
@@ -245,17 +258,19 @@ function useStyle() {
       textTransform: 'Uppercase',
       color: '#3F3D56',
       margin: '10px 40px',
-    },
-    Divider2_Style: {
-      width: 'relative',
-      margin: '0px 40px',
+      [theme.breakpoints.down('sm')]: {
+        margin: '10px 15px',
+      }
     },
     UploadedFilesContainer_Style: {
       marginTop: '5px',
       height: '80%',
       width: 'relative',
-      padding: '5px 50px 5px 40px',
+      padding: '5px 40px 5px 40px',
       overflowY: 'auto',
+      [theme.breakpoints.down('sm')]: {
+        padding: '5px 15px',
+      }
     },
     StudentUploadedFileContainer_Style: {
       backgroundColor: '#F6F6F6',
@@ -263,7 +278,7 @@ function useStyle() {
       boxShadow:
         'rgba(50, 50, 93, 0.25) 0px 0px 2px -1px, rgba(0, 0, 0, 0.3) 0px 2px 3px -1px',
       height: '100%',
-      width: '100%',
+      width: 'relative'
     },
     StudentName_Typography_Style: {
       color: '#3F3D56',
@@ -275,7 +290,8 @@ function useStyle() {
     },
     AttachFile_Style: {
       backgroundColor: '#FCFCFC',
-      width: 'relative',
+      width: '80%',
+      marginTop: "0.8em",
       padding: '8px 15px',
       display: 'flex',
       gap: '15px',
@@ -286,6 +302,23 @@ function useStyle() {
         boxShadow:
           'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
       },
+      [theme.breakpoints.down('sm')]: {
+        width: '100%',
+      }
+    },
+    AttachFile2_Style: {
+      backgroundColor: '#FCFCFC',
+      width: 'relative',
+      padding: '8px 15px',
+      display: 'flex',
+      gap: '15px',
+      border: '1px solid #D4D4D4',
+      borderRadius: '0.3em',
+      '&: hover': {
+        cursor: 'pointer',
+        boxShadow:
+          'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
+      }
     },
     ActivityFileName_Style: {
       width: '85%',

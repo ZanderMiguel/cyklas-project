@@ -5,18 +5,29 @@ import ExamIcon from '../../assets/ImageJaven/ExamIcon.png';
 import { MoreVert } from '@mui/icons-material';
 import { Link } from "react-router-dom";
 import useStyle from '../Styles/Exam_style';
+import CusPopover from '../../components/Popover';
+import SchoolworksTilespopover from '../../components/PopoverContent/SchoolworksTilespopover';
+
 
 function Exam_layout({ bank }) {
   const { designs } = useStyle();
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClickOption = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseOption = () => {
+    setAnchorEl(null);
+  };
+  const account = Boolean(anchorEl);
+  
   return (
     <>
       {bank.map((item, idx) => {
         const { title, name, date, time } = item;
         return (
-          <Box sx={designs.BoxTileContainer} key={idx}
-          component = {Link}
-          to = "/View_exam">
+          <Box sx={designs.BoxTileContainer} key={idx}>
             <Box sx={designs.ExamContainer}>
               <img
                 src={ExamIcon}
@@ -27,7 +38,9 @@ function Exam_layout({ bank }) {
                 }}
               />
 
-              <Box sx={designs.ExamName_User_Date}>
+              <Box sx={designs.ExamName_User_Date} 
+              component = {Link}
+              to = "/View_exam">
                 <Box sx={designs.ExamName}>
                   <Typography noWrap sx={designs.Exam}>
                     {title}
@@ -46,9 +59,17 @@ function Exam_layout({ bank }) {
               </Box>
 
               <Box sx={designs.BoxOptions}>
-                <IconButton sx={designs.IconButtonOptions}>
+                <IconButton onClick={handleClickOption} sx={designs.IconButtonOptions}>
                   <MoreVert sx={designs.MoreVertIcon} />
                 </IconButton>
+
+                <CusPopover
+                  PaperProps={{ elevation: 0 }}
+                  open={account}
+                  anchorEl={anchorEl}
+                  onClose={handleCloseOption}>
+                  <SchoolworksTilespopover />
+                </CusPopover>
               </Box>
             </Box>
           </Box>

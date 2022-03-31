@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import moment from 'moment';
-import { Box, Typography, Avatar, IconButton } from '@mui/material';
+import { Box, Typography, Avatar, Divider, IconButton } from '@mui/material';
 import useStyles from '../Styles/Announce_style';
 import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
 import usePost from '../../customHooks/usePost';
@@ -63,6 +63,18 @@ function Comments({ postId, commentId }) {
                       </Box>
                       <Box className="content" fontSize="0.9rem">
                         {content}
+                      </Box>
+
+                      <Box className = "actions" sx = {designs.Actions_Style}>
+                        <Typography sx = {designs.EditComment_Button_Style}>
+                          Edit comment
+                        </Typography>
+
+                        <Divider orientation="vertical" flexItem sx = {designs.DividerV_Style} />
+
+                        <Typography sx = {designs.DeleteComment_Button_Style}>
+                          Delete comment
+                        </Typography>
                       </Box>
                     </Box>
                   </Box>

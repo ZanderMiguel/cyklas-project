@@ -32,11 +32,14 @@ function Announce_form({ socket }) {
   const [alignment, setAlignment] = React.useState('left');
   const [formats, setFormats] = React.useState(() => ['italic']);
   const bold = React.useRef(false);
+  const postData = React.useRef(null);
 
-  const { post } = usePost();
+
+  const { post, data } = usePost();
   const { roomID } = useParams();
 
   const handleAnnounce = () => {
+
     post('http://localhost:5000/announce/create', {
       author: {
         userID: JSON.parse(localStorage.userData).data.user._id,
@@ -50,8 +53,7 @@ function Announce_form({ socket }) {
     socket.emit('create-post');
   };
 
-  const postData = React.useRef(null);
-
+console.log(data)
   const handleFormat = (event, newFormats) => {
     setFormats(newFormats);
   };

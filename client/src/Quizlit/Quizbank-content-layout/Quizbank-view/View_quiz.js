@@ -157,7 +157,7 @@ function View_quiz() {
 
         <Grid item xs = {8} sx = {{ margin: "0.5em 0em" }}>
             <Box className = "RoomName-CourseYearSec" sx = {designs.RoomName_CourseYearSec_Style}>
-                <Box sx={designs.FlexGrow_Box_Style} />
+                {/* <Box sx={designs.FlexGrow_Box_Style} /> */}
                 
                 <FormControl variant="standard" sx={designs.FormControlRoom_Style}>
                     <InputLabel id="demo-simple-select-standard-label"
@@ -182,7 +182,7 @@ function View_quiz() {
                     </Select>
                 </FormControl>
 
-                <FormControl variant="standard" sx={designs.FormControlCourseYearSec_Style}>
+                {/* <FormControl variant="standard" sx={designs.FormControlCourseYearSec_Style}>
                     <InputLabel id="demo-simple-select-standard-label"
                      sx={designs.InputLabelCourseYearSec_Style}>
                      Course / Year and Section
@@ -203,7 +203,7 @@ function View_quiz() {
                       </MenuItem>
                     ))}
                     </Select>
-                </FormControl>
+                </FormControl> */}
             </Box>
         </Grid>
 

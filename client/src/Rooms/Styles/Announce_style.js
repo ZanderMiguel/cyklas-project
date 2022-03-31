@@ -135,6 +135,32 @@ function useStyle() {
       color: '#3F3D56',
       fontSize: '20px',
     },
+    Actions_Style: {
+      marginTop: "0.3em",
+      display: "flex",
+      gap: "0.8em"
+    },
+    EditComment_Button_Style: {
+      fontSize: "0.5em",
+      fontWeight: "400",
+      color: "#3F3D56",
+      "&: hover": {
+        cursor: "pointer",
+        textDecoration: "underline"
+      }
+    },
+    DividerV_Style: { 
+      margin: "0.2em 0em" 
+    },
+    DeleteComment_Button_Style: {
+      fontSize: "0.5em",
+      fontWeight: "400",
+      color: "#3F3D56",
+      "&: hover": {
+        cursor: "pointer",
+        textDecoration: "underline"
+      }
+    },
 
     // Schoolworktiles_layout
     BoxTileContainer: {
@@ -147,7 +173,6 @@ function useStyle() {
       border: ' 1px solid #DBDBDB',
       borderRadius: '0.8em',
       '&: hover': {
-        cursor: 'pointer',
         boxShadow:
           'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
       },
@@ -162,6 +187,10 @@ function useStyle() {
       height: 'max-content',
       margin: '0.3em 0em 0.3em 0em',
       flexGrow: 1,
+      "&: hover": {
+        cursor: 'pointer',
+        textDecoration: "underline"
+      }
     },
     ActivityName: {
       className: 'Activity-name',
@@ -194,7 +223,7 @@ function useStyle() {
       className: 'User-date',
       width: 'relative',
       display: 'flex',
-      gap: '0.2em',
+      gap: '0.2em'
     },
     Professor: {
       width: 'auto',
