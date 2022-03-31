@@ -16,7 +16,7 @@ function RoomOptionspopover_professor() {
             <Typography sx = {designs.EditRoom_Typography_Style}>Edit Room</Typography>
           </Box>
         </ListItem>
-        <Divider/>
+        {/* <Divider sx = {{ margin: "0em 1em"}}/> */}
         <ListItem button>
           <Box sx = {designs.LeaveRoomContainer_Style}>
             <DoorFrontOutlined sx = {designs.DoorFrontOutlined_Style}/>

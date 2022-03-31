@@ -32,8 +32,7 @@ const designs = {
         marginRight: '0.7em' 
     },
     Divider_Style: { 
-        marginBottom: '0.5em', 
-        marginTop: '0.5em' 
+        margin: "0.5em 0em 0.5em 1.5em"
     },
     RequestContainer_Sub4_Style: {
         width: "100%",
@@ -43,17 +42,24 @@ const designs = {
         justifyContent: "center"
     },
     GeneralContainer_Style: {
-        width: "30rem",
-        maxHeight: "20rem",
-        padding: "0.5em 1em"
+        margin: "0.8em 1em 0em 0em",
+        width: "relative",
+        height: "20em",
+        paddingLeft: "1em"
     },
     GeneralContainer_Sub_Style: {
         width: "100%",
         display: "flex",
-        alignItems: "center"
+        gap: "0.8em",
+        "&: hover": {
+            cursor: "pointer",
+            textDecoration: "underline"
+        }
     },
     GeneralContainer_Sub2_Style: {
-        marginRight: 2
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
     },
     GeneralContainer_Sub3_Style: {
         width: "100%",

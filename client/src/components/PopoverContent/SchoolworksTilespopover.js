@@ -16,7 +16,7 @@ function SchoolworksTilespopover() {
             <Typography sx = {designs.EditPost_Typography_Style}>Edit</Typography>
           </Box>
         </ListItem>
-        <Divider/>
+        {/* <Divider/> */}
         <ListItem button>
           <Box sx = {designs.DeletePostContainer_Style}>
             <DeleteOutlineOutlined sx = {designs.DeleteOutlineOutlined_Style}/>

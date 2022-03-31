@@ -8,7 +8,6 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import Footer from '../pages-landing/Footer';
 
 //Import Mui
 import {
@@ -28,7 +27,6 @@ function Navbar_landingpage({ data }) {
   const { page } = useParams();
   const history = useHistory();
   const theme = useTheme();
-  const isMatch = useMediaQuery(theme.breakpoints.down('sm'));
   const open = Boolean(anchorEl);
 
   const tabNameToIndex = {

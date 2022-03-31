@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Grid, Container, Typography, Paper } from '@mui/material';
+import React, { useState } from 'react';
+import { Grid, Container, Typography } from '@mui/material';
 import Room_layout from './Room-content-layout/Room_layout_professor';
-
 import CircularProgress from '@mui/material/CircularProgress';
 import Create_room from '../Form_content/Create_room';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
@@ -9,7 +8,7 @@ import Join_room from '../Form_content/Join_room';
 import usePost from '../customHooks/usePost';
 import Button from '../components/Button';
 import Room_layout_student from './Room-content-layout/Room_layout_student';
-import axios from 'axios';
+
 function Rooms({ socket }) {
   const [opendialog, setOpenDialog] = useState(false);
 

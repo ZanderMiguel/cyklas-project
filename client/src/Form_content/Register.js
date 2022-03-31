@@ -9,6 +9,7 @@ import usePost from '../customHooks/usePost';
 import { GoogleLogin } from 'react-google-login';
 import Input from '../components/Input';
 import Drowpdown from '../components/Drowpdown';
+import GoogleAuth from '../pages-landing/GoogleAuth';
 
 const genders = [
   {
@@ -277,23 +278,7 @@ function Register({ open, close }) {
               />
 
               <Grid item xs={6}>
-                <GoogleLogin
-                  clientId="579265708499-7ii87q3j1lhihqbuu20224o4mofhstme.apps.googleusercontent.com"
-                  render={(renderProps) => (
-                    <Button
-                      variant="outlined"
-                      fullWidth
-                      startIcon={<img src={Google} alt="Google Icon" />}
-                      onClick={renderProps.onClick}
-                      disabled={renderProps.disabled}
-                    >
-                      Continue to google
-                    </Button>
-                  )}
-                  onSuccess={googleSuccess}
-                  onFailure={googleFailure}
-                  cookiePolicy="single_host_origin"
-                />
+                <GoogleAuth usertype={usertype} />
               </Grid>
               <Grid item xs={6}>
                 <CusButton

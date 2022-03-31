@@ -9,8 +9,9 @@ import {
   Divider,
   TextField,
   InputAdornment,
+  Tooltip
 } from '@mui/material';
-import { MoreVert, Send } from '@mui/icons-material';
+import { Send, BorderColorOutlined, DeleteOutlineOutlined } from '@mui/icons-material';
 import Comments from './Comments';
 import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
 import usePost from '../../customHooks/usePost';
@@ -86,17 +87,29 @@ function Post_layout({ data, socket }) {
                   aria-label="options"
                   onClick={handleClickOption}
                   sx={designs.Option_IconButton_Style}
-                >
-                  <MoreVert sx={designs.MoreVertIcon_Style} />
+                > 
+                  <Tooltip title="Edit Post" placement="top">
+                  <BorderColorOutlined sx={designs.EditIcon_Style} />
+                  </Tooltip>
+                </IconButton>
+                
+                <IconButton
+                  aria-label="options"
+                  onClick={handleClickOption}
+                  sx={designs.Option_IconButton_Style}
+                > 
+                  <Tooltip title="Delete Post" placement="top">
+                  <DeleteOutlineOutlined sx={designs.DeleteIcon_Style} />
+                  </Tooltip>
                 </IconButton>
 
-                <CusPopover
+                {/* <CusPopover
                 PaperProps={{ elevation: 0 }}
                 open={account}
                 anchorEl={anchorEl}
                 onClose={handleCloseOption}>
                 <PostOptionspopover />
-                </CusPopover>
+                </CusPopover> */}
               </Box>
 
               <Box className="post-content" sx={designs.Post_Content_Style}>

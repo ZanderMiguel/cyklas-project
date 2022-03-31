@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
+import { useHistory } from 'react-router-dom';
 import {
   List,
   ListItem,
@@ -10,12 +11,18 @@ import {
   Avatar,
 } from '@mui/material';
 import { Settings, Logout } from '@mui/icons-material';
-import Zander from '../../assets/Images/zander.png';
 import useStyle from './Styles/Accountpopover_style';
 
-function Accountpopover() {
+function Accountpopover({ avatar }) {
+  const history = useHistory();
   const { designs } = useStyle();
   const theme = useTheme();
+
+  const handleLogOut = () => {
+    localStorage.removeItem('userData');
+    localStorage.removeItem('token');
+    history.push('/home');
+  };
 
   return (
     <Box sx={designs.Container_Style}>
@@ -23,7 +30,7 @@ function Accountpopover() {
         <ListItem>
           <Box sx={designs.Container_Sub_Style}>
             <Avatar
-              src={Zander}
+              src={avatar}
               alt="profileImg"
               sx={designs.ProfileImg_Style}
             />
@@ -47,7 +54,7 @@ function Accountpopover() {
           </Box>
         </ListItem>
         <Divider />
-        <ListItem button>
+        <ListItem button onClick={handleLogOut}>
           <Box sx={designs.Container_Sub3_Style}>
             <Logout sx={designs.Logout_Style} />
             <Typography>Log out</Typography>

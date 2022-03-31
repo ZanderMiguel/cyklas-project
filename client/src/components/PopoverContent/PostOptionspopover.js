@@ -16,7 +16,7 @@ function PostOptionspopover() {
             <Typography sx = {designs.EditPost_Typography_Style}>Edit Post</Typography>
           </Box>
         </ListItem>
-        <Divider/>
+        {/* <Divider/> */}
         <ListItem button sx = {designs.ListItemButton_Style}>
           <Box sx = {designs.DeletePostContainer_Style}>
             <DeleteOutlineOutlined sx = {designs.DeleteOutlineOutlined_Style}/>
