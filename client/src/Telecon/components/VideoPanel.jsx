@@ -4,7 +4,7 @@ import OffCamTile from './OffCamTile';
 import Peer from 'peerjs';
 import { useParams } from 'react-router-dom';
 function VideoPanel({ socket, muted, onCam }) {
-/*   const [state,setState] = React.useState([])
+  /*   const [state,setState] = React.useState([])
   const layout = React.useRef(null)
   const [tileWidth,setTileWidth] = React.useState(null) 
   const peers = {};
@@ -32,27 +32,27 @@ function VideoPanel({ socket, muted, onCam }) {
   });
   const { teleRoom } = useParams();
   myPeer.on('open', (id) => {
-    
-    socket.emit('join-room', teleRoom, id);
-    
-  })
+    // socket.emit('join-room', teleRoom, id);
+  });
   return (
     <div
-      
       style={{
         display: 'flex',
         width: '100%',
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
       }}
-      
     >
-
-      
-      
-      {<OnCamTile socket={socket} muted={muted} onCam={onCam} myPeer={myPeer} />}
+      {
+        <OnCamTile
+          socket={socket}
+          muted={muted}
+          onCam={onCam}
+          myPeer={myPeer}
+        />
+      }
     </div>
   );
 }

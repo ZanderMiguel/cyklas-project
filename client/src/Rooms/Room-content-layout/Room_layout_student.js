@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import { MoreVert } from '@mui/icons-material';
 import CusPopover from '../../components/Popover';
-import RoomsOptionpopover from '../../components/PopoverContent/RoomsOptionpopover';
+import RoomOptionspopover_student from '../../components/PopoverContent/RoomOptionspopover_student';
 import { Link } from 'react-router-dom';
 import CssBasedLine from '@mui/material/CssBaseline';
 
@@ -102,9 +102,18 @@ function Room_layout_student({ data }) {
                 <Box flexGrow={1} />
                 <Box className="right" display="flex" alignItems="flex-start">
                   <Avatar sx={{ width: '4rem', height: '4rem' }} />
-                  <IconButton sx={{ marginLeft: '0.3em' }}>
+                  <IconButton onClick={handleClickOption} sx={{ marginLeft: '0.3em' }}>
                     <MoreVert />
                   </IconButton>
+
+                  <CusPopover
+                  PaperProps={{ elevation: 0 }}
+                  open={account}
+                  anchorEl={anchorEl}
+                  onClose={handleCloseOption}
+                >
+                  <RoomOptionspopover_student />
+                </CusPopover>
                 </Box>
               </Box>
             </Paper>

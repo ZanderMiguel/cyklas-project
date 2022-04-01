@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import Announce from './Announce';
-import Activities from './Activities';
-import People from './People';
+import Announce from '../Feed/Announce';
+import Activities from '../Activities/Activities';
+import Member from '../Members/Member';
 
 import {
   AppBar,
@@ -17,9 +17,9 @@ import { IoNewspaperSharp } from 'react-icons/io5';
 import { HiUserGroup } from 'react-icons/hi';
 import { FaClipboardList } from 'react-icons/fa';
 
-function Room_inside({ data }) {
+function Room_inside({ socket }) {
   const [value, setValue] = React.useState(0);
-  console.log(data.current.data.user.RegID);
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -83,7 +83,7 @@ function Room_inside({ data }) {
                 <Tab
                   icon={<HiUserGroup size={25} />}
                   iconPosition="start"
-                  label="People"
+                  label="Members"
                   disableRipple
                 />
               </Tabs>
@@ -93,11 +93,11 @@ function Room_inside({ data }) {
       </AppBar>
       <Container maxWidth="md">
         {value === 0 ? (
-          <Announce data={data} />
+          <Announce socket={socket} />
         ) : value === 1 ? (
           <Activities roomID={roomID} />
         ) : (
-          <People />
+          <Member />
         )}
       </Container>
     </>

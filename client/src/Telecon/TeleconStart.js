@@ -1,11 +1,11 @@
 import React from 'react';
-import { Box, Typography, TextField } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import Input from '../components/Input';
 import virtualmeeting from '../assets/ImageJaven/Virtual Meeting 2.png';
 import Button from '../components/Button';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import VideocamIcon from '@mui/icons-material/Videocam';
-import { Link } from "react-router-dom";
-
+import { Link } from 'react-router-dom';
 
 function TeleconStart() {
   return (
@@ -82,20 +82,21 @@ function TeleconStart() {
             <Typography variant="h6" sx={{ mb: 2, fontWeight: 700 }}>
               ROOM
             </Typography>
-            <TextField variant="filled" />
+            <Input placeholder="Room name" size="small" />
           </Box>
           <Box mb={2}>
             <Typography variant="h6" sx={{ mb: 2, fontWeight: 700 }}>
               MAKE CONFERENCE
             </Typography>
             <Button
-              component = {Link}
-              to = "/Conference_details"
+              component={Link}
+              to="/telecon/room"
+              target="_blank"
               variant="outlined"
               content="Start a conference!"
               startIcon={<VideocamIcon />}
               size="large"
-              sx={{ textDecoration: "none", borderRadius: 10, ml: 5 }}
+              sx={{ textDecoration: 'none', borderRadius: 10, ml: 5 }}
             />
           </Box>
         </Box>

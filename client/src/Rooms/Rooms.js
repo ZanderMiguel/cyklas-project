@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Grid, Container, Typography, Paper } from '@mui/material';
+import React, { useState } from 'react';
+import { Grid, Container, Typography } from '@mui/material';
 import Room_layout from './Room-content-layout/Room_layout_professor';
-
 import CircularProgress from '@mui/material/CircularProgress';
 import Create_room from '../Form_content/Create_room';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
@@ -10,9 +9,9 @@ import usePost from '../customHooks/usePost';
 import Button from '../components/Button';
 import Room_layout_student from './Room-content-layout/Room_layout_student';
 
-function Rooms({ data: userData }) {
+function Rooms({ socket }) {
   const [opendialog, setOpenDialog] = useState(false);
-  console.log(userData.current.data.user.RegID);
+
   const { post, data, error, isPending } = usePost();
 
   const handleCreate = () => {
@@ -23,15 +22,22 @@ function Rooms({ data: userData }) {
     setOpenDialog(false);
   };
 
-  const Professor = Boolean(true);
-  const Student = Boolean(false);
-  post('http://localhost:5000/rooms', {
-    room: userData.current.data.user.rooms,
+  const [newRoom, setNewRoom] = React.useState(null);
+
+  socket.on('room-created', (created) => {
+    setNewRoom(created);
   });
+
+  React.useMemo(() => {
+    post('http://localhost:5000/rooms', {
+      userID: JSON.parse(localStorage.userData).data.user._id,
+    });
+  }, [newRoom]);
   return (
     <>
       <Container maxWidth="md">
-        {Professor && (
+        {JSON.parse(localStorage.userData).data.user.userType ===
+          'Professor' && (
           <>
             <Grid
               container
@@ -65,6 +71,8 @@ function Rooms({ data: userData }) {
                     close={handleCreateClose}
                     maxWidth="md"
                     state={setOpenDialog}
+                    userData={JSON.parse(localStorage.userData)}
+                    socket={socket}
                   />
                 )}
               </Grid>
@@ -79,7 +87,7 @@ function Rooms({ data: userData }) {
           </>
         )}
 
-        {Student && (
+        {JSON.parse(localStorage.userData).data.user.userType === 'Student' && (
           <>
             <Grid
               container

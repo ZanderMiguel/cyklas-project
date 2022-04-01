@@ -1,6 +1,6 @@
 import React from 'react';
 import Input from '../../components/Input';
-import useStyle from '../Announce_style';
+import useStyle from '../Styles/Announce_style';
 
 import { Box, Grid, TextField, Avatar, InputAdornment } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -23,6 +23,8 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
+import CusPopover from '../../components/Popover';
+import SchoolworksTilespopover from '../../components/PopoverContent/SchoolworksTilespopover';
 import {
   PanoramaOutlined,
   AttachFileOutlined,
@@ -30,96 +32,112 @@ import {
 } from '@mui/icons-material';
 
 const data = [
-    {
-    // Lesson: "Lesson 3", 
-    Activity: "Activity 5", 
-    Professor: "Mark Andrei (You)", 
-    date: "posted on " + Date.now() 
-    }, 
-  
-    {
-    // Lesson: "Lesson 2", 
-    Activity: "Activity 4", 
-    Professor: "Mark Andrei (You)", 
-    date: "posted on " + Date.now()
-    },
-  
-    {
-    // Lesson: "Lesson 2", 
-    Activity: "Activity 3", 
-    Professor: "Mark Andrei (You)", 
-    date: "posted on " + Date.now()
-    },
-  
-    {
-    // Lesson: "Lesson 1", 
-    Activity: "Activity 2", 
-    Professor: "Mark Andrei (You)", 
-    date: "posted on " + Date.now()
-    },
-  
-    {
-    // Lesson: "Lesson 1", 
-    Activity: "Activity 1", 
-    Professor: "Mark Andrei (You)", 
-    date: "posted on " + Date.now()
-    }
-  ];
-  
-function Schoolworktiles_layout() {
-    const { designs } = useStyle()
-    
-  return (
+  {
+    // Lesson: "Lesson 3",
+    Activity: 'Activity 5',
+    Professor: 'Mark Andrei (You)',
+    date: 'posted on ' + Date.now(),
+  },
 
+  {
+    // Lesson: "Lesson 2",
+    Activity: 'Activity 4',
+    Professor: 'Mark Andrei (You)',
+    date: 'posted on ' + Date.now(),
+  },
+
+  {
+    // Lesson: "Lesson 2",
+    Activity: 'Activity 3',
+    Professor: 'Mark Andrei (You)',
+    date: 'posted on ' + Date.now(),
+  },
+
+  {
+    // Lesson: "Lesson 1",
+    Activity: 'Activity 2',
+    Professor: 'Mark Andrei (You)',
+    date: 'posted on ' + Date.now(),
+  },
+
+  {
+    // Lesson: "Lesson 1",
+    Activity: 'Activity 1',
+    Professor: 'Mark Andrei (You)',
+    date: 'posted on ' + Date.now(),
+  },
+];
+
+function Schoolworktiles_layout() {
+  const { designs } = useStyle();
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClickOption = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseOption = () => {
+    setAnchorEl(null);
+  };
+  const account = Boolean(anchorEl);
+
+  return (
     <>
-    {data.map(function(item, index) {
+    
+    <Grid item xs={12} sx = {{ marginTop: "2em" }}>
+      {data.map(function (item, index) {
         return (
-          <Grid item xs={12} key = {index}>
-  
-          <Box sx = {designs.BoxTileContainer}>
-              <Box sx = {designs.ActivityContainer}>
-                      <img src = {ActivityIcon} 
-                          style = {{
-                            height: "2.2em",
-                            margin: "0.5em 0.8em 0em 1.4em"
-                          }}/>
-  
-                  <Box sx = {designs.ActivityName_User_Date}>
-                      <Box sx = {designs.ActivityName}>
-                          {/* <Typography
+            <Box key={index} sx={designs.BoxTileContainer}>
+              <Box sx={designs.ActivityContainer}>
+                <img
+                  src={ActivityIcon}
+                  style={{
+                    height: '2.2em',
+                    margin: '0.4em 0.8em 0em 1.4em',
+                  }}
+                />
+
+                <Box sx={designs.ActivityName_User_Date}>
+                  <Box sx={designs.ActivityName}>
+                    {/* <Typography
                           sx = {designs.Lesson}>
                           {item.Lesson}
                           </Typography> */}
-  
-                          <Typography noWrap
-                          sx = {designs.Activity}>
-                          {item.Activity}
-                          </Typography>
-                      </Box>
-  
-                      <Box sx = {designs.User_Date}>
-                          <Typography noWrap
-                          sx = {designs.Professor}>
-                          {item.Professor}
-                          </Typography>
-  
-                          <Typography noWrap
-                          sx = {designs.Date}>
-                          {item.date}
-                          </Typography>
-                      </Box>
+
+                    <Typography noWrap sx={designs.Activity}>
+                      {item.Activity}
+                    </Typography>
                   </Box>
-  
-                  <Box sx = {designs.BoxOptions}>
-                  <IconButton sx = {designs.IconButtonOptions}>
-                          <MoreVert sx = {designs.MoreVertIcon}/>
+
+                  <Box sx={designs.User_Date}>
+                    <Typography noWrap sx={designs.Professor}>
+                      {item.Professor}
+                    </Typography>
+
+                    <Typography noWrap sx={designs.Date}>
+                      {item.date}
+                    </Typography>
+                  </Box>
+                </Box>
+
+                <Box sx={designs.BoxOptions}>
+                  <IconButton onClick={handleClickOption} sx={designs.IconButtonOptions}>
+                    <MoreVert sx={designs.MoreVertIcon} />
                   </IconButton>
+
+                  <CusPopover
+                  PaperProps={{ elevation: 0 }}
+                  open={account}
+                  anchorEl={anchorEl}
+                  onClose={handleCloseOption}>
+                  <SchoolworksTilespopover />
+                  </CusPopover>
+                </Box>
               </Box>
-              </Box>
-          </Box>
-        </Grid>
-        )
-    })}
+            </Box>
+        );
+      })}
+      </Grid>
     </>
   );
 }

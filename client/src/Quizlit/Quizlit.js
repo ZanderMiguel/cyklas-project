@@ -9,7 +9,7 @@ import { Box, IconButton } from '@mui/material';
 import Quiz_layout from './Quizbank-content-layout/Quiz_layout';
 import Exam_layout from './Quizbank-content-layout/Exam_layout';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import useStyle from './Quizlit_style';
+import useStyle from './Styles/Quizlit_style';
 import CusPopover from '../components/Popover';
 import QuizlitAddpopover from '../components/PopoverContent/QuizlitAddpopover';
 
@@ -77,11 +77,6 @@ function Quizlit() {
   return (
     <>
       <Container maxWidth="md">
-        {/* <Box width="100%" display="flex" justifyContent="flex-end" mt="2em">
-          <IconButton size="small" onClick={handleClickAddQuiz}>
-            <AddCircleIcon sx={{ color: 'green', fontSize: '2rem' }} />
-          </IconButton>
-        </Box> */}
         <CusPopover open={open} anchorEl={anchorEl} onClose={handleClickClose}>
           <QuizlitAddpopover />
         </CusPopover>
@@ -102,7 +97,7 @@ function Quizlit() {
               <Tab
                 disableRipple
                 label={
-                  <Typography variant="h6" sx={{ fontWeight: '600' }}>
+                  <Typography variant="h6" sx={{ fontSize: "1.2em", fontWeight: '600' }}>
                     Quiz
                   </Typography>
                 }
@@ -113,7 +108,7 @@ function Quizlit() {
               <Tab
                 disableRipple
                 label={
-                  <Typography variant="h6" sx={{ fontWeight: '600' }}>
+                  <Typography variant="h6" sx={{ fontSize: "1.2em", fontWeight: '600' }}>
                     Exam
                   </Typography>
                 }
@@ -124,9 +119,12 @@ function Quizlit() {
             </Tabs>
           </Grid>
 
-          <Grid item xs = {1}>
-            <IconButton size="small" onClick={handleClickAddQuiz} sx = {designs.Add_IconButton_Style}>
-              <AddCircleIcon sx={{ color: 'green', fontSize: '2rem' }} />
+          <Grid item xs={1}>
+            <IconButton
+              onClick={handleClickAddQuiz}
+              sx={designs.Add_IconButton_Style}
+            >
+              <AddCircleIcon sx={{ color: '#56B73E', fontSize: '2rem', "&: hover": { color: "#39B41B"} }} />
             </IconButton>
           </Grid>
 
@@ -142,7 +140,7 @@ function Quizlit() {
               <Tab
                 disableRipple
                 label={
-                  <Typography variant="h6" sx={{ fontWeight: '600' }}>
+                  <Typography variant="h6" sx={{ fontSize: "1.2em", fontWeight: '600' }}>
                     Quiz
                   </Typography>
                 }
@@ -153,7 +151,7 @@ function Quizlit() {
               <Tab
                 disableRipple
                 label={
-                  <Typography variant="h6" sx={{ fontWeight: '600' }}>
+                  <Typography variant="h6" sx={{ fontSize: "1.2em", fontWeight: '600' }}>
                     Exam
                   </Typography>
                 }

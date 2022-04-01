@@ -14,7 +14,7 @@ import Hiquiana from '../assets/Images/hiquiana.png';
 import Rellama from '../assets/Images/rellama.png';
 import Rabago from '../assets/Images/rabago.png';
 import Orense from '../assets/Images/orense.png';
-import Warren from '../assets/Images/warren.png';
+import Footer from './Footer';
 
 const cards = {
   marginBottom: '20px',
@@ -137,73 +137,80 @@ const Cycrowd = [
 
 function About() {
   return (
-    <div className="Toptext">
-      <Typography
-        sx={{ fontWeight: 'bold', fontSize: 50 }}
-        style={{ color: '#3F3D56' }}
-        variant="h3"
-        align="center"
-        mt={10}
-      >
-        Our Team
-      </Typography>
-      <Typography
-        sx={{ fontWeight: 'bold' }}
-        style={{ color: '#EB7E42' }}
-        variant="h5"
-        align="center"
-        mt={1}
-      >
-        We are the CyCrowd Co.
-      </Typography>
+    <>
+      <div className="Toptext">
+        <Typography
+          sx={{ fontWeight: 'bold', fontSize: 50 }}
+          style={{ color: '#3F3D56' }}
+          variant="h3"
+          align="center"
+          mt={10}
+        >
+          Our Team
+        </Typography>
+        <Typography
+          sx={{ fontWeight: 'bold' }}
+          style={{ color: '#EB7E42' }}
+          variant="h5"
+          align="center"
+          mt={1}
+        >
+          We are the CyCrowd Co.
+        </Typography>
 
-      <Box
-        sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          '& > : not(style)': {
-            ml: 'auto',
-            mr: 'auto',
-            mt: 3,
-            width: 320,
-            height: 'auto',
-          },
-          gap: '2em',
-        }}
-      >
-        {Cycrowd.map((items, index) => (
-          <Card elevation={1} sx={{ maxWidth: 320, ...cards }} key={index}>
-            <Box
-              width="100%"
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-            >
-              {items.avatar}
-            </Box>
-            <CardContent>
-              <Typography align="center" variant="h6" sx={{ fontWeight: 700 }}>
-                {items.name}
-              </Typography>
-              <Typography
-                sx={{ color: '#8A8994', mt: 1, fontWeight: 600 }}
-                align="center"
-                variant="subtitle2"
+        <Box
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            '& > : not(style)': {
+              ml: 'auto',
+              mr: 'auto',
+              mt: 3,
+              width: 320,
+              height: 'auto',
+            },
+            gap: '2em',
+          }}
+        >
+          {Cycrowd.map((items, index) => (
+            <Card elevation={1} sx={{ maxWidth: 320, ...cards }} key={index}>
+              <Box
+                width="100%"
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
               >
-                {items.position}
-              </Typography>
-              <Typography
-                sx={{ color: '#8A8994', mt: 3, fontWeight: 400 }}
-                align="center"
-                variant="body1"
-              >
-                {items.description}
-              </Typography>
-            </CardContent>
-          </Card>
-        ))}
-      </Box>
-    </div>
+                {items.avatar}
+              </Box>
+              <CardContent>
+                <Typography
+                  align="center"
+                  variant="h6"
+                  sx={{ fontWeight: 700 }}
+                >
+                  {items.name}
+                </Typography>
+                <Typography
+                  sx={{ color: '#8A8994', mt: 1, fontWeight: 600 }}
+                  align="center"
+                  variant="subtitle2"
+                >
+                  {items.position}
+                </Typography>
+                <Typography
+                  sx={{ color: '#8A8994', mt: 3, fontWeight: 400 }}
+                  align="center"
+                  variant="body1"
+                >
+                  {items.description}
+                </Typography>
+              </CardContent>
+            </Card>
+          ))}
+        </Box>
+        <Footer />
+      </div>
+    </>
   );
 }
 

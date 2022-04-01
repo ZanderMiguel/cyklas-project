@@ -8,7 +8,6 @@ function Button({
   backgroundColor,
   color,
   hoverColour,
-  onClick,
   fullWidth,
   borderRadius,
   borderColor,
@@ -21,7 +20,6 @@ function Button({
         fullWidth={fullWidth}
         variant={variant}
         startIcon={startIcon}
-        onClick={onClick}
         children={content}
         {...rest}
       ></CusButton>

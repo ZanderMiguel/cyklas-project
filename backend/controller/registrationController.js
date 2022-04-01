@@ -7,37 +7,67 @@ const mongoose = require('mongoose');
 const client = new OAuth2Client(
   '90759507047-37dohu0dq74j6oui4b6hvb3tj4vpphkm.apps.googleusercontent.com'
 );
-
+const EvaluationModel = require('../models/model-evaluation');
 const createRegistration = async (req, res) => {
   try {
     const id = mongoose.Types.ObjectId();
-    console.log(id);
-    const password = await bcrypt.hash(req.body.password, 10);
-    const addRegistration = new RegistrationModel({
-      _id: id,
-      password: password,
+    const password = req.body.password
+      ? await bcrypt.hash(req.body.password, 10)
+      : false;
+
+    if (password) {
+      const addRegistration = new RegistrationModel({
+        _id: id,
+        password: password,
+      });
+      await addRegistration.save();
+    }
+
+    const googleUser = await UserModel.findOne({
+      emailAddress: req.body.emailAddress,
     });
+    if (googleUser) {
+      const token = jwt.sign(
+        {
+          id: id,
+        },
+        process.env.ACCESS_TOKEN,
+        { expiresIn: '1h' }
+      );
+      return res.json({
+        existing: true,
+        token,
+        emailAddress: req.body.emailAddress,
+      });
+    }
+
     const addUser = await new UserModel({
       RegID: id,
-      userType: req.body.userType,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      image: req.body.image,
-      emailAddress: req.body.emailAddress,
-      gender: req.body.gender,
+      ...req.body,
     });
-    await addRegistration.save();
+
     await addUser.save();
+    if (req.body.userType === 'Professor') {
+      const evaluate = new EvaluationModel({
+        professor: id,
+        rating: 'No ratings yet',
+      });
+      await evaluate.save();
+    }
+
     console.log('Done!');
     return res.json({
       status: 'success',
       message: 'Registratin Success!',
+      addUser,
+      existing: true,
     });
   } catch (error) {
     console.log('Something went wrong!' + error);
     return res.json({
       status: 'error',
       message: error,
+      existing: false,
     });
   }
 };
@@ -47,14 +77,18 @@ const userLogIn = async (req, res) => {
     const emailAddress = req.body.emailAddress;
     const password = req.body.password;
     const user = await UserModel.findOne({ emailAddress });
-    const userPass = await RegistrationModel.findById(user.RegID);
+    const userPass = user && (await RegistrationModel.findById(user.RegID));
     if (!user) {
       return res.json({
         status: 'error',
         message: 'Invalid username or password!',
       });
     }
-    if (await bcrypt.compare(password, userPass.password)) {
+
+    if (
+      (password && (await bcrypt.compare(password, userPass.password))) ||
+      req.body.token
+    ) {
       const token = jwt.sign(
         {
           id: user._id,
@@ -63,13 +97,12 @@ const userLogIn = async (req, res) => {
         { expiresIn: '1h' }
       );
       return res.json({
-        status: 'succes',
+        status: 'success',
         token: token,
         data: { user },
       });
     }
   } catch (err) {
-    console.log(err);
     return res.json({
       status: 'error',
       message: err,
@@ -79,11 +112,10 @@ const userLogIn = async (req, res) => {
 
 const displayRegistration = async (req, res) => {
   try {
-    const registration = await UserModel.find().sort({ createdAt: -1 });
-    console.log('Users Displayed');
-    return res.json(registration);
+    const user = await UserModel.findById(req.body.userID);
+    return res.json(user);
   } catch (error) {
-    console.log('Something went wrong!');
+    console.log('Something went wrong!', error);
     return res.json({
       status: 'error',
       message: error,

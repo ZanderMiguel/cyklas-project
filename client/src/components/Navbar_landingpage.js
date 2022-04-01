@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import About from '../pages-landing/About';
 import Home from '../pages-landing/Home';
-import Service from '../pages-landing/Service';
+import Services from '../pages-landing/Services/Services_main';
 import Contact from '../pages-landing/Contact';
 import { useParams, useHistory } from 'react-router-dom';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -27,12 +27,11 @@ function Navbar_landingpage({ data }) {
   const { page } = useParams();
   const history = useHistory();
   const theme = useTheme();
-  const isMatch = useMediaQuery(theme.breakpoints.down('sm'));
   const open = Boolean(anchorEl);
 
   const tabNameToIndex = {
     0: 'login',
-    1: 'service',
+    1: 'services',
     2: 'about',
     3: 'contact',
   };
@@ -87,7 +86,7 @@ function Navbar_landingpage({ data }) {
               style={{ textDecoration: 'none' }}
             >
               <Tab disableRipple label="Home" />
-              <Tab disableRipple label="Service" />
+              <Tab disableRipple label="Services" />
               <Tab disableRipple label="About" />
               <Tab disableRipple label="Contact" />
             </Tabs>
@@ -110,10 +109,10 @@ function Navbar_landingpage({ data }) {
       </AppBar>
       <Container maxWidth="xl">
         {value === 0 && <Home data={data} />}
-        {value === 1 && <Service />}
+        {value === 1 && <Services />}
         {value === 2 && <About />}
+        {value === 3 && <Contact />}
       </Container>
-      {value === 3 && <Contact />}
     </>
   );
 }
