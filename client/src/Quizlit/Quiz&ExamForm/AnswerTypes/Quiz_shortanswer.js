@@ -2,11 +2,11 @@ import React from 'react';
 import { Input } from '@mui/material';
 import useStyle from './Styles/Quiz_shortanswer_style';
 
-function Quiz_shortanswer() {
+function Quiz_shortanswer({questionMemo,counter}) {
   const { designs } = useStyle();
 
   const handleRows = (event) => {
-    console.log(event);
+    questionMemo.current[counter - 1][event.target.name] = event.target.value
   };
 
   return (

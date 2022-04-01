@@ -20,7 +20,7 @@ function Livequiz_multiplechoice({ socket }) {
   const [questionArray, setQuestionArray] = React.useState(null)
   
   React.useMemo(() => {
-    axios.post('http://192.168.1.13:5000/question', { quizID: '62435059ff2c2c59af2f2436' })
+    axios.post('http://localhost:5000/question', { quizID: '62435059ff2c2c59af2f2436' })
       .then((res) => {
         if(counter > res.data.length -1){
           history.push(`/not-found`)

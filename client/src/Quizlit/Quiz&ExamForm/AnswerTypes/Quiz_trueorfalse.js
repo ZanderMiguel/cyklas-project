@@ -1,21 +1,15 @@
 import React from 'react';
-import { Box, Typography, IconButton, Container, Grid } from '@mui/material';
+import { Box, Typography, IconButton,  Grid } from '@mui/material';
 import { Check } from '@mui/icons-material';
 import useStyle from './Styles/Quiz_trueorfalse_style';
-import { Link } from 'react-router-dom';
 
-function Quiz_trueorfalse() {
+function Quiz_trueorfalse({questionMemo,counter}) {
   const { designs } = useStyle();
-
+  const handleClick = (event) => {
+    questionMemo.current[counter - 1]['answer2'] = 'False'
+    questionMemo.current[counter - 1]['answer1'] = 'True'
+  }
   return (
-    // <Container maxWidth = "lg">
-    //     <Grid container rowSpacing = {1}>
-    //         <Grid item xs = {12}>
-    //             <Box className = "Quiz-container" sx = {designs.Quiz_Container_Style}>
-    //                 <Box className = "Quiz-answers"
-    //                 // component = { Link }
-    //                 // to = "/Quiz_multiplechoice"
-    //                 sx = {designs.Quiz_Answers_Style}>
     <>
       <Grid container columnSpacing={2} rowSpacing={1}>
         <Grid item xs={12} sm={6}>
@@ -30,8 +24,15 @@ function Quiz_trueorfalse() {
             <Box flexGrow={1} height="relative" />
 
             <IconButton
+              
               aria-label="correct-answer"
               sx={designs.Correct_Answer_IconButton_Style}
+              name="answer1"
+              onClick={(event) => {
+        
+                handleClick(event)
+                questionMemo.current[counter - 1]['correctAnswer'] = 'answer1'
+            }}
             >
               <Check sx={designs.CheckIcon_Style} />
             </IconButton>
@@ -52,6 +53,11 @@ function Quiz_trueorfalse() {
             <IconButton
               aria-label="correct-answer"
               sx={designs.Correct_Answer_IconButton_Style}
+              name="answer2"
+              onClick={(event) => {
+                handleClick(event)
+                questionMemo.current[counter - 1]['correctAnswer'] = 'answer2'
+            }}
             >
               <Check sx={designs.CheckIcon_Style} />
             </IconButton>
@@ -59,11 +65,6 @@ function Quiz_trueorfalse() {
         </Grid>
       </Grid>
     </>
-    //                     {/* </Box>
-    //             </Box>
-    //         </Grid>
-    //     </Grid>
-    // </Container> */}
   );
 }
 

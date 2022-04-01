@@ -36,7 +36,10 @@ function Questions({ counter, questionMemo }) {
 
     };
 
-
+    const handleImage = (event,imgUrl)=>{
+        questionMemo.current[counter - 1][event.target.name] = imgUrl
+        console.log(questionMemo.current)
+    }
     return (
         <form  id="quizform" name={counter}>
             <Grid container rowSpacing={1}>
@@ -193,12 +196,12 @@ function Questions({ counter, questionMemo }) {
                             {selectAnswerType === 'Multiple Choice' && <Quiz_multiplechoice handleChange={handleChange} questionMemo={questionMemo} counter={counter} />}
 
                             {selectAnswerType === 'Image Multiple Choice' && (
-                                <Quiz_imagemultiplechoice />
+                                <Quiz_imagemultiplechoice handleImage={handleImage} questionMemo={questionMemo} counter={counter}/>
                             )}
                             {selectAnswerType === 'True or False' && (
-                                <Quiz_trueorfalse />
+                                <Quiz_trueorfalse questionMemo={questionMemo} counter={counter}/>
                             )}
-                            {selectAnswerType === 'Short Answer' && <Quiz_shortanswer />}
+                            {selectAnswerType === 'Short Answer' && <Quiz_shortanswer questionMemo={questionMemo} counter={counter}/>}
                         </Box>
                     </Box>
                 </Grid>
