@@ -179,6 +179,8 @@ function Questions({ counter, questionMemo }) {
                                     close={() => setOpenDialog(false)}
                                     maxWidth="lg"
                                     setImage={setImage}
+                                    questionMemo={questionMemo}
+                                    counter={counter}
                                 />
                             )}
                             <Box

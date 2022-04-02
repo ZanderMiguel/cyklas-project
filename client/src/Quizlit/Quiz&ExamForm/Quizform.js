@@ -54,10 +54,11 @@ function Quizform() {
                   graded: false,
                 }).then((res)=>{
                   questionMemo.current.forEach((item) => {
-                    const { title, answerType, correctAnswer, points, timeLimit, questionsContent, ...answers } = item
-                    questionPayload.push({ qAnswers: { ...answers }, answerType, correctAnswer, points, timeLimit, questionsContent,quizID: res.data.data })
-  
+                    const { title, answerType, correctAnswer, points, timeLimit, questionsContent, media ,...answers } = item
+                    questionPayload.push({ qAnswers: { ...answers }, answerType, correctAnswer, points, timeLimit,media, questionsContent,quizID: res.data.data})
+                    console.log(questionPayload)
                   })
+                  
                   post('http://localhost:5000/question/create', { questionPayload })
                 }).catch(err=>console.log(err))
                 
