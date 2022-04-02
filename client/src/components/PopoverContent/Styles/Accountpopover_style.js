@@ -5,31 +5,34 @@ function useStyle() {
 
   const designs = {
     Container_Style: {
-      width: 400,
-      maxWidth: 400,
-      maxHeight: 300,
+      width: "auto",
+      height: "auto"
     },
     Nav_Style: {
       width: '100%',
     },
     Container_Sub_Style: {
+      padding: "0em 1em",
+      margin: "0.5em 0em",
       display: 'flex',
-      overflow: 'auto',
+      gap: "0.8em",
+      overFlowY: 'auto',
     },
     ProfileImg_Style: {
-      mr: 2,
     },
     Container_Sub2_Style: {
+      width: "100%",
+      height: "auto",
       display: 'flex',
+      gap: "0.8em"
     },
     Setting_Style: {
-      mr: '0.5em',
-    },
-    Container_Sub3_Style: {
-      display: 'flex',
+      color: "#6C6C6C",
+      fontSize: "1.5em"
     },
     Logout_Style: {
-      mr: '0.5em',
+      color: "#6C6C6C",
+      fontSize: "1.5em"
     },
   };
 
