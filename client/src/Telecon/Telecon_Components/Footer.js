@@ -32,6 +32,7 @@ import Message_area from '../TeleconSide/Message_area';
 import Information from '../TeleconSide/Info';
 import Member from '../TeleconSide/Member';
 import Presentation from '../TeleconSide/Presentation';
+import Livequiz_queue from "../../Form_content/Livequiz_queue";
 
 function Footer({
   setSideDrawer,
@@ -101,6 +102,16 @@ function Footer({
   };
   const handleToggleShareScreen = () => {
     setToggleShareScreen((prev) => !prev);
+  };
+
+  const [opendialog, setOpenDialog] = useState(false);
+
+  const handleCreate = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCreateClose = () => {
+    setOpenDialog(false);
   };
 
   return (
@@ -253,10 +264,19 @@ function Footer({
           />
         </IconButton>
         <IconButton sx={designs.rightIcons.IconbuttonStyle} size="large">
-          <MdQuiz
+          <MdQuiz onClick={handleCreate}
             style={{ height: '24px', width: '24px', color: 'whiteSmoke' }}
           />
         </IconButton>
+        {opendialog && (
+              <Livequiz_queue
+                open={opendialog}
+                close={handleCreateClose}
+                maxWidth="sm"
+                state={setOpenDialog}
+              />
+        )}
+
         <IconButton
           sx={{
             backgroundColor: '#f44336',

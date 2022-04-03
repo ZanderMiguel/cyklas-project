@@ -36,11 +36,11 @@ function Room_inside({ socket }) {
         <Toolbar>
           <Container maxWidth="xl">
             <Box display="flex" flexWrap="wrap">
-              <Box>
+              <Box sx = {{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
                 <Typography
                   sx={{
-                    fontSize: '1.5em',
-                    fontWeight: 650,
+                    fontSize: '1.2em',
+                    fontWeight: "700",
                     color: '#3F3D56',
                     textTransform: 'Uppercase',
                   }}
@@ -50,12 +50,10 @@ function Room_inside({ socket }) {
 
                 <Typography
                   sx={{
-                    fontSize: '1em',
-                    fontWeight: 500,
+                    fontSize: '0.8em',
+                    fontWeight: "500",
                     color: '#3F3D56',
-                    textTransform: 'Uppercase',
-                    alignSelf: 'flex-start',
-                    display: 'block',
+                    textTransform: 'Uppercase'
                   }}
                 >
                   BSCS 3A

@@ -16,6 +16,14 @@ function useStyle() {
         margin: '0em 0em 0.8em 0em',
       },
     },
+    FormControl_Style: {
+      margin: '0em 0em 0.8em 2em',
+      width: '100%',
+      paddingTop: "0em",
+      [theme.breakpoints.down('md')]: {
+        margin: '0em 0em 0.8em 0em',
+      },
+    },
     TextFieldLabel_Style: {
       fontWeight: '500',
       color: '#3F3D56',

@@ -8,7 +8,7 @@ const designs = {
         margin: "0.8em 1em 0em 0em",
         width: "relative",
         height: "20em",
-        overFlowY: "auto",
+        overflowY: "auto",
         paddingLeft: "1em"
     },
     RequestContainer_Sub_Style: {
@@ -24,13 +24,14 @@ const designs = {
         margin: "0.5em 0em 0.5em 3.4em"
     },
     Divider_Style: { 
-        margin: "0.5em 0em 0.5em 1.5em"
+        margin: "0em 0em 0em 1.5em"
     },
     GeneralContainer_Style: {
-        margin: "0.8em 1em 0em 0em",
+        border: "1px solid black",
+        margin: "0.8em 1em 0.8em 0em",
         width: "relative",
         height: "20em",
-        overFlowY: "auto",
+        overflowY: "auto",
         paddingLeft: "1em"
     },
     GeneralContainer_Sub_Style: {

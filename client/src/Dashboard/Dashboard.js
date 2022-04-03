@@ -185,19 +185,19 @@ const dataStudentRankings = [
   {
     avatar: <Avatar src = {AvatarIcon} sx = {{ marginRight: "0.5em", height: "2em", width: "2em" }}/>,
     studentName: "Yorme",
-    courseSec: "College Algebra",
+    courseSec: "3A",
     place: "3rd"
   },
   {
     avatar: <Avatar src = {AvatarIcon} sx = {{ marginRight: "0.5em", height: "2em", width: "2em" }}/>,
     studentName: "Bossing",
-    courseSec: "Paro paro G",
+    courseSec: "3A",
     place: "4th"
   },
   {
     avatar: <Avatar src = {AvatarIcon} sx = {{ marginRight: "0.5em", height: "2em", width: "2em" }}/>,
     studentName: "Wally",
-    courseSec: "Thesis Writing",
+    courseSec: "3A",
     place: "5th"
   }
 ];
@@ -412,7 +412,7 @@ function Dashboard() {
                 <Box flexGrow = {1}/>
 
                   <FormControl variant="standard" sx={{
-                    width: '32%',
+                    width: '33%',
                     padding: "0em"
                   }}>
                 {/* <InputLabel id="demo-simple-select-standard-label"
@@ -477,7 +477,7 @@ function Dashboard() {
                     <Box flexGrow = {1}/>
                     
                     <Typography sx = {{ 
-                          color: "#FF9100",
+                          color: "#FFC700",
                           fontSize: "0.9em",
                           fontWeight: "600",
                           width: "relative",
@@ -525,7 +525,7 @@ function Dashboard() {
                         <Box flexGrow = {1}/>
                         
                         <Typography sx = {{ 
-                              color: "#FF9100",
+                              color: "#FFC700",
                               fontSize: "0.9em",
                               fontWeight: "600",
                               width: "relative",
@@ -568,7 +568,7 @@ function Dashboard() {
                 <Box flexGrow = {1}/>
 
                   <FormControl variant="standard" sx={{
-                    width: '32%',
+                    width: '33%',
                     padding: "0em"
                   }}>
                 {/* <InputLabel id="demo-simple-select-standard-label"
