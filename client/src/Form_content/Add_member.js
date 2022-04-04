@@ -90,7 +90,13 @@ function Add_member({ open, close, maxWidth }) {
             </Button>
         </Box>
 
-        <Divider sx = {{ margin: "3em 2em 2em 2em" }}/>
+        <Grid item xs={12} sx = {{ margin: "3em 2em 2em 2em" }}>
+            <Divider>
+              <Typography children="or" sx = {{ color: "#3F3D56", fontSize: "0.8em", fontWeight: "600", textTransform: "uppercase" }} />
+            </Divider>
+        </Grid>
+
+        {/* <Divider sx = {{ margin: "3em 2em 2em 2em" }}/>
 
         <Typography sx = {{
             color: "#3F3D56",
@@ -107,7 +113,7 @@ function Add_member({ open, close, maxWidth }) {
             zIndex: 1
         }}>
             or
-        </Typography>
+        </Typography> */}
 
         <Stack sx={designs.Stack_Style}>
         <Box sx = {{ height: "auto", width: "relative", display: "flex", gap: "0.8em" }}>

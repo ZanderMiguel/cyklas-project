@@ -9,20 +9,22 @@ function Join_room({ open, close, maxWidth }) {
   return (
     <div>
       <Dialogform open={open} close={close} maxWidth={maxWidth}>
-        <Grid container spacing={2}>
+        <Grid container sx = {{ padding: "0em 2em" }}>
           <Grid item xs={12}>
-            <Typography variant="h5" sx={{ fontWeight: 600 }}>
+            <Typography sx={{ marginBottom: "0.8em", width: "100%", height: "max-content", color: "#2C2A46", fontSize: "1.2em", fontWeight: 600 }}>
               Join room as a Student
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Box display="flex" alignItems="center">
-              <Avatar sx={{ width: '3.5rem', height: '3.5rem' }} />
-              <Box marginLeft="0.5em">
-                <Typography variant="body1" sx={{ fontWeight: 500 }}>
+            <Box display="flex" alignItems="center" marginBottom = "1em">
+              <Avatar sx={{ marginRight: "0.5em", width: '3rem', height: '3rem' }} />
+              <Box>
+                <Typography sx={{ width: "auto", color: "#3F3D56", fontSize: "1em", fontWeight: 600 }}>
                   Student Name
                 </Typography>
-                <Typography variant="body2">Email@gmail.com</Typography>
+                <Typography sx={{ width: "auto", color: "#3F3D56", fontSize: "0.8em", fontWeight: 500 }}>
+                  
+                  Email@gmail.com</Typography>
               </Box>
             </Box>
           </Grid>
@@ -33,7 +35,7 @@ function Join_room({ open, close, maxWidth }) {
               size="small"
               placeholder="Enter room id..."
             />
-            <Typography variant="body2" sx={{ mt: 1 }}>
+            <Typography sx={{ width: "auto", height: "max-content", color: "#3F3D56", fontSize: "0.7em", fontWeight: "400", margin: "0.3em 0em 2em 0em" }}>
               Room IDs are provided by teachers to allow students to join a
               room.
             </Typography>
@@ -54,17 +56,16 @@ function Join_room({ open, close, maxWidth }) {
               />
             </Box>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} sx = {{ margin: "1em 0em 0.3em 0em" }}>
             <Divider>
-              <Typography children="or" variant="body2" />
+              <Typography children="or" sx = {{ color: "#3F3D56", fontSize: "0.8em", fontWeight: "600", textTransform: "uppercase" }} />
             </Divider>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="body1" sx={{ fontWeight: 500 }}>
-              Another way of joining a room is to ask your teacher to manually
-              add you.
+            <Typography sx={{ color: "#3F3D56", fontSize: "0.8em", fontWeight: 600 }}>
+              Another way of joining a room is to ask your teacher to manually add you.
             </Typography>
-            <Typography variant="body2">
+            <Typography sx={{ width: "auto", height: "max-content", color: "#3F3D56", fontSize: "0.7em", fontWeight: "400", margin: "0.3em 0em 2em 0em" }}>
               You will be notified on your gmail that you are added to a room.
             </Typography>
           </Grid>
