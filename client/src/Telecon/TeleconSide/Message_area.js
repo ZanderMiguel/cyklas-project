@@ -42,13 +42,7 @@ function Message_area({ socket, room, username }) {
 
   return (
     <>
-      <Box
-        width="100%"
-        height="100%"
-        display="flex"
-        justifyContent="center"
-        padding={2}
-      >
+      {/* <Box height="80%">
         <Typography variant="h6">Message Area</Typography>
       </Box>
       <Divider variant="middle" />
@@ -116,7 +110,95 @@ function Message_area({ socket, room, username }) {
         >
           <Send sx={{ height: '1em', width: '1em' }} />
         </IconButton>
-      </Box>
+      </Box> */}
+      <Paper>
+        <Box height="80%">
+          <Grid container>
+            <Grid item xs={12}>
+              <Typography
+                component="div"
+                sx={{ display: 'flex', justifyContent: 'center' }}
+                variant="h5"
+                noWrap
+              >
+                Message Area
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              {messagelist.map((messageContent, index) => {
+                return (
+                  <Box key={index} display="flex" justifyContent="flex-start">
+                    <Paper
+                      elevation={0}
+                      sx={{
+                        width: 'auto',
+                        maxWidth: '15em',
+                        marginBottom: '0.8em',
+                        marginLeft: '0.8em',
+                        wordBreak: 'break-word',
+                      }}
+                    >
+                      <Box display="flex" alignItems="center">
+                        <Typography
+                          sx={{ fontSize: '1em', fontWeight: 600, mr: '5px' }}
+                        >
+                          {messageContent.author}
+                        </Typography>
+                        <Typography sx={{ fontSize: '0.8em', color: 'gray' }}>
+                          {messageContent.time}
+                        </Typography>
+                      </Box>
+                      <Typography sx={{ flexWrap: 'wrap', fontSize: '0.8em' }}>
+                        {messageContent.message}
+                      </Typography>
+                    </Paper>
+                  </Box>
+                );
+              })}
+            </Grid>
+          </Grid>
+          <Box
+            position="absolute"
+            left="1rem"
+            bottom="90px"
+            display="flex"
+            alignItems="center"
+          >
+            <Grid container>
+              <Grid item>
+                <TextField
+                  autoComplete="off"
+                  variant="filled"
+                  placeholder="Send a message..."
+                  InputProps={{
+                    style: {
+                      height: '3em',
+                      fontSize: '0.8em',
+                      fontWeight: '500',
+                      paddingBottom: '1.5em',
+                      color: '#3F3D56',
+                      borderRadius: '50px',
+                    },
+                    disableUnderline: true,
+                  }}
+                  onChange={(e) => {
+                    setCurrentMessage(e.target.value);
+                  }}
+                  onKeyPress={(event) => {
+                    event.key === 'Enter' && sendMessage();
+                  }}
+                />
+              </Grid>
+              <IconButton
+                sx={{ height: '1.5em', width: '1.5em' }}
+                onClick={sendMessage}
+              >
+                <Send sx={{ height: '1em', width: '1em' }} />
+              </IconButton>
+            </Grid>
+          </Box>
+        </Box>
+      </Paper>
     </>
   );
 }

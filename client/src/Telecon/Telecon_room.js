@@ -32,13 +32,14 @@ function Telecon_room() {
             orientation="horizontal"
             in={sidedrawer}
             sx={{
-              marginRight: '1em',
+              marginLeft: '0.5em',
+              marginRight: '0.5em',
               '& .MuiCollapse-wrapperInner': {
                 width: '20rem',
               },
             }}
           >
-            <Paper>{sidecontent}</Paper>
+            {sidecontent}
           </Collapse>
 
           <Paper sx={{ width: '100%' }}></Paper>

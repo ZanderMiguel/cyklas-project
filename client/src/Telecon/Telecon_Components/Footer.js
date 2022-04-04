@@ -60,9 +60,14 @@ function Footer({
 
   //left icons events
   const handleToggleInfo = () => {
+    setSideDrawer(true);
     setToggleInfo((prev) => !prev);
-    setSideDrawer((prev) => !prev);
-    setSideContent(<Information />);
+    if (toggleInfo === false) {
+      setSideDrawer(true);
+    } else {
+      setSideDrawer(false);
+    }
+    setSideContent(<Message_area socket={socket} />);
     setToggleMember(false);
     setToggleMessage(false);
     setTogglePresent(false);
