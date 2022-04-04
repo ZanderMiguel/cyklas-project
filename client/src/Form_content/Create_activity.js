@@ -6,7 +6,7 @@ import Input from '../components/Input';
 function Create_activity({ open, close }) {
   return (
     <Dialogform title="Create Activity" open={open} close={close} maxWidth="md">
-      <Grid container spacing={2}>
+      <Grid container spacing={2} sx={{ p: '0em 2em' }}>
         <Input
           name="topic"
           inputLabel="Topic/Coverage"

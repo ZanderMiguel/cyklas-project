@@ -1,5 +1,16 @@
 import React, { ReactFragment, useState } from 'react';
-import { Grid, Typography, Avatar, Stack, TextField, Box, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import {
+  Grid,
+  Typography,
+  Avatar,
+  Stack,
+  TextField,
+  Box,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from '@mui/material';
 import { CameraAltOutlined } from '@mui/icons-material';
 import UploadImage from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
@@ -18,7 +29,7 @@ const textfield = [
     value: 'lastname',
     holder: 'Enter last name...',
     default: 'Andrei',
-  }
+  },
 ];
 
 const dataGender = [
@@ -30,10 +41,6 @@ const dataGender = [
     value: 'Female',
     label: 'Female',
   },
-  {
-    value: 'Others',
-    label: 'Others',
-  }
 ];
 
 function PersonalInformation() {
@@ -74,42 +81,45 @@ function PersonalInformation() {
           ))}
         </Stack>
 
-        <FormControl variant="standard" sx = {designs.FormControl_Style}>
-              <Typography sx = {{ 
-                fontWeight: '500',
-                color: '#3F3D56',
-                fontSize: '0.9em',
-              }}>
-                Gender
-              </Typography>
-                              
-              <Select labelId="demo-simple-select-standard-label"
-                id="demo-simple-select-standard"
-                value={selectGender}
-                onChange={handleChangeGender}
-                label="SelectRoom"
-                disableUnderline
-                sx={{
-                  border: "1px solid #C4C4C4",
-                  borderRadius: "0.3em",
-                  padding: "0.7em 0.9em",
-                  width: '92.3%',
-                  fontSize: '1em',
-                  fontWeight: '400',
-                  color: '#3F3D56',
-                  "&: hover": {
-                    border: "1px solid #212121"
-                  }
-                }}>
+        <FormControl variant="standard" sx={designs.FormControl_Style}>
+          <Typography
+            sx={{
+              fontWeight: '500',
+              color: '#3F3D56',
+              fontSize: '0.9em',
+            }}
+          >
+            Gender
+          </Typography>
 
-              {dataGender.map(({ value, label }) => (
-                <MenuItem key={value} value={value}>
-                  {' '}
-                  {label}{' '}
-                </MenuItem>
-              ))}
-              </Select>
-          </FormControl>
+          <Select
+            labelId="demo-simple-select-standard-label"
+            id="demo-simple-select-standard"
+            value={selectGender}
+            onChange={handleChangeGender}
+            label="SelectRoom"
+            disableUnderline
+            sx={{
+              border: '1px solid #C4C4C4',
+              borderRadius: '0.3em',
+              padding: '0.7em 0.9em',
+              width: '92.3%',
+              fontSize: '1em',
+              fontWeight: '400',
+              color: '#3F3D56',
+              '&: hover': {
+                border: '1px solid #212121',
+              },
+            }}
+          >
+            {dataGender.map(({ value, label }) => (
+              <MenuItem key={value} value={value}>
+                {' '}
+                {label}{' '}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
 
         <Box className="Clear-save" sx={designs.Clear_Save_Style}>
           <Box flexGrow={1} sx={designs.BoxFlexGrow_Style} />

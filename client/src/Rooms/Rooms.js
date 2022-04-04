@@ -114,11 +114,12 @@ function Rooms({ socket }) {
               </Grid>
             </Grid>
             <Grid container>
-              {data && data.length > 0 ? (
+              {/* {data && data.length > 0 ? (
                 <Room_layout_student data={data} />
               ) : (
                 <Typography> Nothing room to show</Typography>
-              )}
+              )} */}
+              <Room_layout_student />
             </Grid>
             {opendialog && (
               <Join_room
