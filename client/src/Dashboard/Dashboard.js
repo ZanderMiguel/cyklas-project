@@ -340,10 +340,11 @@ function Dashboard() {
                       {items.label}
                     </Typography>
 
-                    <Typography sx = {{
+                    <Typography noWrap sx = {{
                       color: "#615F79",
                       fontSize: "1.8em",
                       fontWeight: "600",
+                      width: "8em",
                       height: "relative",
                       textTransform: "Capitalize"
                     }}>

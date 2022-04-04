@@ -24,16 +24,14 @@ function Dialogform({ children, title, btn, open, close, maxWidth, divider }) {
         maxWidth={maxWidth}
       >
         <Grid container justifyContent="flex-end">
-          <Grid item sx = {{ padding: "0.5em 0.8em" }}>
-            <IconButton onClick={close} sx = {{ height: "1.2em", width: "1.2em" }}>
-              <CloseIcon sx = {{ fontSize: "0.8em" }}/>
-            </IconButton>
-          </Grid>
+          <IconButton onClick={close} sx = {{ margin: "0.3em 0.5em 0.3em 0em", height: "1.2em", width: "1.2em" }}>
+            <CloseIcon sx = {{ fontSize: "0.8em" }}/>
+          </IconButton>
         </Grid>
         {/* <DialogTitle border = "1px solid black">
           {divider && <Divider textAlign="left">{title}</Divider>}
         </DialogTitle> */}
-        <DialogContent>{children}</DialogContent>
+        <DialogContent sx = {{ padding: "0em", height: "auto" }} >{children}</DialogContent>
         <DialogActions sx={{padding: "0.5em 1.5em 1.5em 0.8em" }}>{btn}</DialogActions>
       </Dialog>
     </>

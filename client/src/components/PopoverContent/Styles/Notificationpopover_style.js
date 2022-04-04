@@ -5,7 +5,7 @@ const theme = useTheme()
 
 const designs = {
     RequestContainer_Style: {
-        margin: "0.8em 1em 0em 0em",
+        margin: "0.8em 1em 0.8em 0em",
         width: "relative",
         height: "25em",
         overflowY: "auto",

@@ -69,7 +69,7 @@ function Livequiz_queue({ open, close, maxWidth }) {
                   display: "flex",
                   width: "relative",
                   height: "auto",
-                  padding: "0.4em 1em",
+                  padding: "0.4em 1.5em",
                   backgroundColor: "#FCFCFC",
                   boxShadow: "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px"
               }}>
@@ -119,7 +119,7 @@ function Livequiz_queue({ open, close, maxWidth }) {
         
         {/* <Grid container sx = {{ width: "relative", height: "25em", overflowY: "auto" }}> */}
         <Typography sx = {{
-              marginTop: "2em",
+              margin: "2em 2em 0em 2em",
               padding: "0em 0em 0.8em 0em",
               color: "#3F3D56",
               fontSize: "0.8em",
@@ -132,7 +132,7 @@ function Livequiz_queue({ open, close, maxWidth }) {
           </Typography>
 
           <Grid item xs = {12}>
-            <Box sx = {{ height: "auto", width: "100%", display: "flex", padding: "0.5em 0em", marginBottom: "0.3em" }}>
+            <Box sx = {{ height: "auto", width: "relative", display: "flex", padding: "0.5em 0em", margin: "0em 2em 0.3em 1.5em" }}>
                 <Avatar src = {AvatarIcon} sx = {{ marginRight: "0.5em" }}/>
 
                 <Box sx = {{ height: "auto", width: "8em", display: "flex", flexDirection: "column", justifyContent: "center" }}>
@@ -215,13 +215,13 @@ function Livequiz_queue({ open, close, maxWidth }) {
           </Grid>
         
           <Typography sx = {{
-              margin: "2em 0em 0.3em 0em",
+              margin: "2em 2em 0em 2em",
               padding: "0em 0em 0.8em 0em",
-              color: "#007FFF",
-              fontSize: "0.7em",
+              color: "#3F3D56",
+              fontSize: "0.8em",
               fontWeight: "600",
-              textAlign: "right",
               width: "100%",
+              textAlign: "right",
               height: "max-content",
               borderBottom: "1px solid #DBDBDB"
           }}>
@@ -230,10 +230,10 @@ function Livequiz_queue({ open, close, maxWidth }) {
           {dataStudents.map(function(items, index) {
               return (
                 <Grid key = {index} item xs = {12}>
-                <Box sx = {{ height: "auto", width: "100%", display: "flex", padding: "0.5em 0em" }}>
-                    {items.avatar}
+                 <Box sx = {{ height: "auto", width: "relative", display: "flex", padding: "0.5em 0em", margin: "0em 2em 0.3em 1.5em" }}>
+                <Avatar src = {AvatarIcon} sx = {{ marginRight: "0.5em" }}/>
 
-                    <Box sx = {{ height: "auto", width: "8em", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                <Box sx = {{ height: "auto", width: "8em", display: "flex", flexDirection: "column", justifyContent: "center" }}>
                     <Typography sx = {{
                         color: "#3F3D56",
                         fontSize: "0.8em",

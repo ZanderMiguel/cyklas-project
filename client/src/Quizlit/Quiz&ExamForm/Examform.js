@@ -33,6 +33,7 @@ import Image_GIF from './Image_GIF';
 import ExamQuestionOptionspopover from '../../components/PopoverContent/ExamQuestionOptionspopover';
 import CusPopover from '../../components/Popover';
 import { Link } from "react-router-dom";
+import Post_exam from "../../Form_content/Post_exam";
 
 const dataAnswerType = [
   {
@@ -215,19 +216,30 @@ function Examform() {
     };
     const notif = Boolean(anchorEl); 
      
+    const [opendialog2, setOpenDialog2] = useState(false);
+
+    const handleCreate = () => {
+      setOpenDialog2(true);
+    };
+
+    const handleCreateClose = () => {
+      setOpenDialog2(false);
+    };
+
   return (
     <Container maxWidth="lg">
       <Grid container justifyContent="center" rowSpacing = {1} sx = {{ margin: "0.5em 0em 2em 0em" }}>
         <Grid item container justifyContent="flex-end">
           <Grid item>
             <CusButton
-            component = {Link}
-            to = "/Exam_take"
+              onClick = {handleCreate}
+            // component = {Link}
+            // to = "/Exam_take"
               variant="contained"
               content="Create Exam"
               type="submit"
               id="examform"
-              onClick={handleSubmit}
+              // onClick={handleSubmit}
               sx={{
                 textDecoration: 'none',
                 backgroundColor: '#4caf50',
@@ -240,6 +252,13 @@ function Examform() {
                 <AddCircleIcon sx={{ color: 'white', fontSize: '2rem' }} />
               }
             />
+             {opendialog2 && (
+              <Post_exam
+                open={opendialog2}
+                close={handleCreateClose}
+                maxWidth="md"
+                state={setOpenDialog2}
+              />)}
           </Grid>
         </Grid>
         <Grid item xs={12}>

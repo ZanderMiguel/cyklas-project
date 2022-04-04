@@ -33,6 +33,7 @@ import Information from '../TeleconSide/Info';
 import Member from '../TeleconSide/Member';
 import Presentation from '../TeleconSide/Presentation';
 import Livequiz_queue from "../../Form_content/Livequiz_queue";
+import Leave_conference from "../../Form_content/Leave_conference";
 
 function Footer({
   setSideDrawer,
@@ -114,6 +115,16 @@ function Footer({
     setOpenDialog(false);
   };
 
+  const [opendialogLeaveConference, setOpenDialogLeaveConference] = useState(false);
+
+  const handleCreateLeaveConference = () => {
+    setOpenDialogLeaveConference(true);
+  };
+
+  const handleCreateCloseLeaveConference = () => {
+    setOpenDialogLeaveConference(false);
+  };
+  
   return (
     <Box
       sx={{
@@ -263,8 +274,8 @@ function Footer({
             style={{ height: '24px', width: '24px', color: 'whiteSmoke' }}
           />
         </IconButton>
-        <IconButton sx={designs.rightIcons.IconbuttonStyle} size="large">
-          <MdQuiz onClick={handleCreate}
+        <IconButton onClick={handleCreate} sx={designs.rightIcons.IconbuttonStyle} size="large">
+          <MdQuiz 
             style={{ height: '24px', width: '24px', color: 'whiteSmoke' }}
           />
         </IconButton>
@@ -277,7 +288,7 @@ function Footer({
               />
         )}
 
-        <IconButton
+        <IconButton onClick = {handleCreateLeaveConference}
           sx={{
             backgroundColor: '#f44336',
             ml: 0.5,
@@ -291,6 +302,14 @@ function Footer({
             style={{ height: '24px', width: '24px', color: 'whiteSmoke' }}
           />
         </IconButton>
+        {opendialogLeaveConference && (
+              <Leave_conference
+                open={opendialogLeaveConference}
+                close={handleCreateCloseLeaveConference}
+                maxWidth="sm"
+                state={setOpenDialogLeaveConference}
+              />
+        )}
       </Box>
     </Box>
   );
