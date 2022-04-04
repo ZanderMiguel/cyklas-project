@@ -36,6 +36,7 @@ import Student_activities from './Dashboard/Student_activities';
 import Student_viewactivity from './Dashboard/Student_viewactivity';
 import Student_viewexam from './Dashboard/Student_viewexam';
 import Student_viewquiz from './Dashboard/Student_viewquiz';
+import Notifications_viewall from './Notifications/Notifications_viewall';
 import Exam_take from './Dashboard/Exam_take';
 import Exam_start from './Dashboard/Exam_start';
 import View_quiz from './Quizlit/Quizbank-content-layout/Quizbank-view/View_quiz';
@@ -160,6 +161,11 @@ function App() {
               exact
               path="/Student_viewquiz"
               component={Student_viewquiz}
+            />
+            <Route
+              exact
+              path="/Notifications_viewall"
+              component={Notifications_viewall}
             />
             <Route exact path="/Exam_take" component={Exam_take} />
             <Route exact path="/Exam_start" component={Exam_start} />

@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from '../assets/Ellipse 3.svg';
 import Notificationpopover from './PopoverContent/Notificationpopover';
+// import Notifications_viewall from '../Notifications/Notifications_viewall';
 import Accountpopover from './PopoverContent/Accountpopover';
 
 //MUI imports
@@ -189,6 +190,7 @@ function Navbar() {
           >
             <Notificationpopover general={general} request={request} />
           </CusPopover>
+            {/* <Notifications_viewall general={general} request={request} /> */}
           <Box
             display="flex"
             alignItems="center"

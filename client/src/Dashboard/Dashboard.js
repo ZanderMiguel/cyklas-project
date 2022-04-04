@@ -218,7 +218,7 @@ function Dashboard() {
   };
 
   return (
-    <Container maxWidth = "lg">
+    <Container maxWidth = "xl">
       <Grid container rowSpacing = {1} sx = {{ margin: "0.5em 0em" }}>
         <Grid item xs = {12}>
           <Box sx = {{ width: "relative", height: "auto", display: "flex" }}>
@@ -412,7 +412,7 @@ function Dashboard() {
                 <Box flexGrow = {1}/>
 
                   <FormControl variant="standard" sx={{
-                    width: '33%',
+                    width: '32%',
                     padding: "0em"
                   }}>
                 {/* <InputLabel id="demo-simple-select-standard-label"
@@ -568,7 +568,7 @@ function Dashboard() {
                 <Box flexGrow = {1}/>
 
                   <FormControl variant="standard" sx={{
-                    width: '33%',
+                    width: '32%',
                     padding: "0em"
                   }}>
                 {/* <InputLabel id="demo-simple-select-standard-label"
@@ -703,8 +703,8 @@ function Dashboard() {
             </Grid>
         </Grid>
         
-        <Grid item xs = {7} sx = {{ position: "absolute", top: 250, zIndex: 1 }}>
-          <Box sx = {{ width: "108%"}}>
+        <Grid item xs = {9} sx = {{ position: "absolute", top: 250, zIndex: 1 }}>
+          <Box sx = {{ width: "auto" }}>
 
           <Box sx = {{
             marginTop: "1em",
@@ -769,7 +769,7 @@ function Dashboard() {
                 textTransform: "Capitalize",
                 textAlign: "center",
                 height: "max-content",
-                width: "15em"
+                width: "20em"
               }}>
                 Room name
               </Typography>
@@ -793,7 +793,7 @@ function Dashboard() {
                 textTransform: "Capitalize",
                 textAlign: "center",
                 height: "max-content",
-                width: "10em"
+                width: "12em"
               }}>
                 year and section
               </Typography>
@@ -860,7 +860,7 @@ function Dashboard() {
                 alignItems: "center",
                 textAlign: "center",
                 height: "relative",
-                width: "15em"
+                width: "20em"
               }}>
                 {items.roomName}
               </Typography>
@@ -890,7 +890,7 @@ function Dashboard() {
                 alignItems: "center",
                 textAlign: "center",
                 height: "relative",
-                width: "10em"
+                width: "12em"
               }}>
                 {items.yearSection}
               </Typography>

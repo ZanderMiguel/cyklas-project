@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
+    Container, Grid,
   List,
   ListItem,
   ListItemText,
@@ -12,10 +13,160 @@ import {
   Tab,
   Button,
 } from '@mui/material';
-import { Circle, NotificationsActive } from "@mui/icons-material";
-import useStyle from "./Styles/Notificationpopover_style";
+import { Circle, NotificationsActive, PostAdd, ClearAll } from "@mui/icons-material";
+import AvatarIcon from "../assets/ImageJaven/Avatar.png";
+import useStyle from "./Styles/Notifications_viewall_style";
 
-function Notificationpopover({ general, request }) {
+const request = [
+    {
+      avatar: <Avatar src={AvatarIcon}/>,
+      user: 'Zander Miguel',
+      action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
+      dateTime: 'December 25, 2024 at 9:05 AM'
+    },
+    {
+      avatar: <Avatar src={AvatarIcon}/>,
+      user: 'Mang Pandesal',
+      action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
+      dateTime: 'December 25, 2024 at 9:05 AM'
+    },
+    {
+      avatar: <Avatar src={AvatarIcon}/>,
+      user: 'Verb',
+      action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
+      dateTime: 'December 25, 2024 at 9:05 AM'
+    },
+    {
+      avatar: <Avatar src={AvatarIcon}/>,
+      user: 'Isko',
+      action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
+      dateTime: 'December 25, 2024 at 9:05 AM'
+    },
+    {
+      avatar: <Avatar src={AvatarIcon}/>,
+      user: 'Yorme',
+      action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
+      dateTime: 'December 25, 2024 at 9:05 AM'
+    },
+    {
+      avatar: <Avatar src={AvatarIcon}/>,
+      user: 'Bossing',
+      action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
+      dateTime: 'December 25, 2024 at 9:05 AM'
+    },
+    {
+      avatar: <Avatar src={AvatarIcon}/>,
+      user: 'Allan',
+      action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
+      dateTime: 'December 25, 2024 at 9:05 AM'
+    },
+    {
+      avatar: <Avatar src={AvatarIcon}/>,
+      user: 'Wally',
+      action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
+      dateTime: 'December 25, 2024 at 9:05 AM'
+    }
+  ];
+  const general = [
+    {
+      avatar: <Avatar src={AvatarIcon}/>,
+      action: 'You are added to a new room "SOFTWARE ENGINEERING 2".',
+      user: 'Zander Miguel',
+      dateTime: 'December 25, 2024 at 9:05 AM'
+    },
+    {
+      avatar: <PostAdd sx = {{ color: "#47B753", borderRadius: "2em", fontSize: "2em" }}/>,
+      action: 'You posted a new announcement on your room "EMBEDDED PROGRAMMING".',
+      user: 'Mark Andrei (You)',
+      dateTime: 'December 14, 2024 at 3:05 PM'
+    },
+    {
+      avatar: <Avatar src={AvatarIcon}/>,
+      action: 'Your student from "EMBEDDED PROGRAMMING" wrote a comment on your post.',
+      user: 'Paul Rudd',
+      dateTime: 'November 16, 2024 at 12:35 AM'
+    },
+    {
+      avatar: <Avatar src={AvatarIcon}/>,
+      action: 'Your student from "EMBEDDED PROGRAMMING" submitted an Activity.',
+      user: 'Paul Rudd',
+      dateTime: 'November 15, 2024 at 7:05 PM'
+    },
+    {
+      avatar: <Avatar src={AvatarIcon}/>,
+      action: 'Your student from "EMBEDDED PROGRAMMING" wrote a comment on your post.',
+      user: 'Paul Rudd',
+      dateTime: 'November 16, 2024 at 12:35 AM'
+    },
+    {
+      avatar: <Avatar src={AvatarIcon}/>,
+      action: 'Your student from "EMBEDDED PROGRAMMING" submitted an Activity.',
+      user: 'Paul Rudd',
+      dateTime: 'November 15, 2024 at 7:05 PM'
+    },
+    {
+      avatar: <Avatar src={AvatarIcon}/>,
+      action: 'Your student from "EMBEDDED PROGRAMMING" wrote a comment on your post.',
+      user: 'Paul Rudd',
+      dateTime: 'November 16, 2024 at 12:35 AM'
+    },
+    {
+      avatar: <Avatar src={AvatarIcon}/>,
+      action: 'Your student from "EMBEDDED PROGRAMMING" submitted an Activity.',
+      user: 'Paul Rudd',
+      dateTime: 'November 15, 2024 at 7:05 PM'
+    },
+    {
+        avatar: <Avatar src={AvatarIcon}/>,
+        action: 'You are added to a new room "SOFTWARE ENGINEERING 2".',
+        user: 'Zander Miguel',
+        dateTime: 'December 25, 2024 at 9:05 AM'
+      },
+      {
+        avatar: <PostAdd sx = {{ color: "#47B753", borderRadius: "2em", fontSize: "2em" }}/>,
+        action: 'You posted a new announcement on your room "EMBEDDED PROGRAMMING".',
+        user: 'Mark Andrei (You)',
+        dateTime: 'December 14, 2024 at 3:05 PM'
+      },
+      {
+        avatar: <Avatar src={AvatarIcon}/>,
+        action: 'Your student from "EMBEDDED PROGRAMMING" wrote a comment on your post.',
+        user: 'Paul Rudd',
+        dateTime: 'November 16, 2024 at 12:35 AM'
+      },
+      {
+        avatar: <Avatar src={AvatarIcon}/>,
+        action: 'Your student from "EMBEDDED PROGRAMMING" submitted an Activity.',
+        user: 'Paul Rudd',
+        dateTime: 'November 15, 2024 at 7:05 PM'
+      },
+      {
+        avatar: <Avatar src={AvatarIcon}/>,
+        action: 'Your student from "EMBEDDED PROGRAMMING" wrote a comment on your post.',
+        user: 'Paul Rudd',
+        dateTime: 'November 16, 2024 at 12:35 AM'
+      },
+      {
+        avatar: <Avatar src={AvatarIcon}/>,
+        action: 'Your student from "EMBEDDED PROGRAMMING" submitted an Activity.',
+        user: 'Paul Rudd',
+        dateTime: 'November 15, 2024 at 7:05 PM'
+      },
+      {
+        avatar: <Avatar src={AvatarIcon}/>,
+        action: 'Your student from "EMBEDDED PROGRAMMING" wrote a comment on your post.',
+        user: 'Paul Rudd',
+        dateTime: 'November 16, 2024 at 12:35 AM'
+      },
+      {
+        avatar: <Avatar src={AvatarIcon}/>,
+        action: 'Your student from "EMBEDDED PROGRAMMING" submitted an Activity.',
+        user: 'Paul Rudd',
+        dateTime: 'November 15, 2024 at 7:05 PM'
+      }
+  ];
+
+function Notification_viewall() {
   const {designs} = useStyle();
   const [value, setValue] = React.useState(0);
 
@@ -23,11 +174,9 @@ function Notificationpopover({ general, request }) {
     setValue(newValue);
   };
   return (
-    <>
+    <Container maxWidth = "md">
       <Box sx = {{
         padding: "0.8em 0em 0em 0em",
-        position: "sticky",
-        top: 0,
         width: "relative",
         height: "auto",
         backgroundColor: "white"
@@ -46,23 +195,20 @@ function Notificationpopover({ general, request }) {
 
           <Box flexGrow = {1}/>
           
-          <Button 
-          component = {Link}
-          to = "/Notifications_viewall"
-          sx = {{
-              margin: "0em 1em 0.8em 2em",
+          <Button startIcon = {<ClearAll/>} sx = {{
+              margin: "0em 0em 0.8em 0em",
               padding: "0em 1em",
               fontSize: "0.8em",
               fontWeight: "500",
               textTransform: "none",
               backgroundColor: "transparent",
-              color: "#007FFF",
+              color: "#3F3D56",
               width: "max-content",
               "&: hover": {
                 backgroundColor: "transparent"
               }
             }}>
-              View all notifications
+              Clear Notifications
           </Button>
         </Box>
       
@@ -170,7 +316,7 @@ function Notificationpopover({ general, request }) {
                     fontSize: "0.8em", 
                     fontWeight: "600",
                     color: "#3F3D56",
-                    width: "22.5em"
+                    width: "40em"
                     }}>
                       {items.action} 
                     </Typography>
@@ -180,7 +326,7 @@ function Notificationpopover({ general, request }) {
                       display: "flex",
                       flexWrap: "wrap",
                       gap: "0.5em",
-                      width: "18em",
+                      width: "relative",
                       height: "auto"
                     }}>
                       <Typography sx = {{ 
@@ -206,9 +352,10 @@ function Notificationpopover({ general, request }) {
                     
                   </Box>
 
+                  <Box flexGrow = {1}/>
+
                   <Box sx = {designs.GeneralContainer_Sub2_Style}> {items.avatar}</Box>
                 </Box>
-                <Divider sx = {designs.Divider_Style} />
               </div>
               
             ))
@@ -221,9 +368,8 @@ function Notificationpopover({ general, request }) {
         </Box>
         </>
       )}
-        
-    </>
+    </Container>
   );
 }
 
-export default Notificationpopover;
+export default Notification_viewall;
