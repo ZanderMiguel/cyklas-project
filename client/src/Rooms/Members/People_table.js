@@ -16,7 +16,6 @@ import {
 } from '@mui/material';
 import { Delete, Folder } from '@mui/icons-material';
 
-import { DataGrid } from '@mui/x-data-grid';
 import useGet from '../../customHooks/useGet';
 import useStyle from "./Styles/People_table_style";
 

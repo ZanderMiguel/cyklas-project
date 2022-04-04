@@ -22,7 +22,6 @@ import {
 } from '@mui/material';
 import { Delete, Inbox, StarBorder, ExpandMore, ExpandLess } from '@mui/icons-material';
 import GroupsIcon from "../../assets/ImageJaven/GroupsIcon.png";
-import { DataGrid } from '@mui/x-data-grid';
 import useGet from '../../customHooks/useGet';
 import useStyle from "./Styles/Group_table_style";
 
