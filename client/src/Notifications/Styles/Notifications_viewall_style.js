@@ -5,19 +5,22 @@ const theme = useTheme()
 
 const designs = {
     RequestContainer_Style: {
-        margin: "0.8em 1em 0em 0em",
+        margin: "0.8em 0em 0.8em 0em",
+        padding: "0em 0em 0em 1em",
         width: "relative",
-        height: "auto",
-        paddingLeft: "1em"
+        height: "auto"
     },
     RequestContainer_Sub_Style: {
-        width: "100%",
+        borderRadius: "0.3em",
+        backgroundColor: "#F6F9F6",
+        padding: "0.5em 0.8em",
+        marginBottom: "0.5em",
+        width: "relative",
         display: "flex",
         gap: "0.8em"
     },
     RequestContainer_Sub2_Style: {
-        display: "flex",
-        flexGrow: 1,
+        display: "flex"  
     },
     RequestDivider_Style: { 
         margin: "0.5em 0em 0.5em 3.4em"
@@ -33,7 +36,7 @@ const designs = {
     },
     GeneralContainer_Sub_Style: {
         borderRadius: "0.3em",
-        backgroundColor: "#F3F6F3",
+        backgroundColor: "#F6F9F6",
         padding: "0.5em 0.8em",
         marginBottom: "0.5em",
         width: "relative",

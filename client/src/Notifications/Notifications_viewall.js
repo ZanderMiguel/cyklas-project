@@ -233,7 +233,8 @@ function Notification_viewall() {
                       fontSize: "0.8em", 
                       fontWeight: "600",
                       color: "#3F3D56",
-                      width: "relative"
+                      width: "auto",
+                      flexGrow: 1
                       }}>
                         {items.user}
                     </Typography>
@@ -242,7 +243,8 @@ function Notification_viewall() {
                     fontSize: "0.8em", 
                     fontWeight: "500",
                     color: "#64627F",
-                    width: "24.4em"
+                    width: "auto",
+                    flexGrow: 1
                     }}>
                       {items.action} 
                     </Typography>
@@ -251,12 +253,13 @@ function Notification_viewall() {
                       fontSize: "0.5em", 
                       fontWeight: "500",
                       color: "#8E8E8E",
-                      width: "relative"
+                      width: "auto",
+                      flexGrow: 1
                       }}>
                         {items.dateTime}
                       </Typography>
                       
-                      <Box sx = {{ marginTop: "0.5em", width: "relative", height: "auto", display: "flex", gap: "1em" }}>
+                      <Box sx = {{ flexGrow: 1, marginTop: "0.5em", width: "auto", height: "auto", display: "flex", gap: "1em" }}>
                       <Button variant = "contained" sx = {{
                         fontSize: "0.7em",
                         fontWeight: "600",
@@ -290,7 +293,6 @@ function Notification_viewall() {
                       </Box>
                   </Box>
                 </Box>
-                <Divider sx = {designs.RequestDivider_Style} />
               </div>
             ))
           ) : (
@@ -316,7 +318,8 @@ function Notification_viewall() {
                     fontSize: "0.8em", 
                     fontWeight: "600",
                     color: "#3F3D56",
-                    width: "40em"
+                    width: "auto",
+                    flexGrow: 1
                     }}>
                       {items.action} 
                     </Typography>
@@ -326,8 +329,9 @@ function Notification_viewall() {
                       display: "flex",
                       flexWrap: "wrap",
                       gap: "0.5em",
-                      width: "relative",
-                      height: "auto"
+                      width: "auto",
+                      height: "auto",
+                      flexGrow: 1
                     }}>
                       <Typography sx = {{ 
                       fontSize: "0.5em", 
