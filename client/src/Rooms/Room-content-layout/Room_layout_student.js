@@ -14,7 +14,7 @@ import CusPopover from '../../components/Popover';
 import RoomOptionspopover_student from '../../components/PopoverContent/RoomOptionspopover_student';
 import { Link } from 'react-router-dom';
 import CssBasedLine from '@mui/material/CssBaseline';
-import RoomBackground7 from '../../assets/ImageJaven/RoomBackground7.png';
+import RoomBackground8 from '../../assets/ImageJaven/RoomBackground8.png';
 
 const dataRoom = [
   {
@@ -66,7 +66,7 @@ function Room_layout_student({ data }) {
           <Grid item xs={12} key={index}>
             <Paper
               sx={{
-                backgroundImage: `url(${RoomBackground7})`,
+                backgroundImage: `url(${RoomBackground8})`,
                 backgroundSize: 'cover',
                 boxShadow: 'rgba(17, 17, 26, 0.1) 0px 1px 0px',
                 width: '100%',
