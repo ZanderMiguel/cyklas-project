@@ -38,13 +38,13 @@ function Room_layout({ data }) {
                 // backgroundColor: '#F6F6F6',
                 backgroundImage:`url(${RoomBackground6})`,
                 backgroundSize: 'cover',
-                boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px",
+                boxShadow: "rgba(17, 17, 26, 0.1) 0px 1px 0px",
                 width: '100%',
                 padding: '17px 17px 17px 35px',
                 borderRadius: '0.5em',
                 marginBottom: '1em',
                 '&:hover': {
-                  boxShadow: "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px",
+                  boxShadow: "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px"
                 },
               }}
             >  

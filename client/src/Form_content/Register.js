@@ -125,8 +125,9 @@ function Register({ open, close }) {
   return (
     <>
       <Router>
-        <Dialogform title="Register here" open={open} close={close}>
-          <Grid container overflow="auto" sx={{ mb: 2 }}>
+        <Dialogform divider title="Register here" open={open} close={close}>
+          <Box sx = {{ p: "0em 2em" }}>
+          <Grid container overflow="auto" sx={{ mb: 2  }}>
             <Grid
               container
               item
@@ -304,6 +305,7 @@ function Register({ open, close }) {
               </Grid>
             </Grid>
           </form>
+          </Box>
         </Dialogform>
       </Router>
     </>

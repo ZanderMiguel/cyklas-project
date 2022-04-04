@@ -11,7 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-function Dialogform({ children, title, btn, open, close, maxWidth, divider }) {
+function Dialogform({ children, title, btn, open, close, maxWidth, divider, ...rest}) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -28,9 +28,9 @@ function Dialogform({ children, title, btn, open, close, maxWidth, divider }) {
             <CloseIcon sx = {{ fontSize: "0.8em" }}/>
           </IconButton>
         </Grid>
-        {/* <DialogTitle border = "1px solid black">
+        <DialogTitle>
           {divider && <Divider textAlign="left">{title}</Divider>}
-        </DialogTitle> */}
+        </DialogTitle>
         <DialogContent sx = {{ padding: "0em", height: "auto" }} >{children}</DialogContent>
         <DialogActions sx={{padding: "0.5em 1.5em 1.5em 0.8em" }}>{btn}</DialogActions>
       </Dialog>
