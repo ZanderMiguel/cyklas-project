@@ -117,6 +117,7 @@ function Room_layout_student({ data }) {
                         color: '#3F3D56',
                         width: 'auto',
                         textTransform: 'uppercase',
+                        marginBottom: '1rem',
                       }}
                     >
                       {item.subtitle}
@@ -137,44 +138,37 @@ function Room_layout_student({ data }) {
                   </Box>
 
                   <Box
-                    display="flex"
-                    gap="0.5em"
-                    width="auto"
-                    flexGrow={1}
-                    flexWrap="wrap"
-                  >
-                    <Typography
-                      variant="subtitle1"
-                      noWrap
-                      sx={{
-                        fontSize: '0.8em',
-                        fontWeight: 500,
-                        color: '#8C8C8C',
-                        width: '8em',
-                      }}
-                    >
-                      {item.classDay}
-                    </Typography>
-
-                    <Divider
-                      orientation="vertical"
-                      flexItem
-                      sx={{ margin: '0.3em 0em' }}
-                    />
-
-                    <Typography
-                      variant="subtitle1"
-                      noWrap
-                      sx={{
-                        fontSize: '0.8em',
-                        fontWeight: 500,
-                        color: '#8C8C8C',
-                        width: '10em',
-                      }}
-                    >
-                      {item.classTime}
-                    </Typography>
-                  </Box>
+                className="Schedule"
+                display="flex"
+                gap="1em"
+                sx={{
+                  marginBottom: '5px',
+                }}
+              >
+                <Typography
+                  sx={{
+                    width: "7em",
+                    fontSize: '0.8em',
+                    fontWeight: '500',
+                    color: '#8C8C8C',
+                    textTransform: 'Capitalize',
+                  }}
+                >
+                  {item.classDay}
+                </Typography>
+                <Divider orientation = "vertical" flexItem sx = {{ margin: "0.3em 0em" }}/>
+                <Typography
+                  sx={{
+                    width: "5em",
+                    fontSize: '0.8em',
+                    fontWeight: '500',
+                    color: '#8C8C8C',
+                    textTransform: 'Uppercase',
+                  }}
+                >
+                  {item.classTime}
+                </Typography>
+              </Box>
                 </Box>
 
                 <Box

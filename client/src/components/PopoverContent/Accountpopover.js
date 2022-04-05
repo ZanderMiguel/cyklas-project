@@ -102,9 +102,7 @@ function Accountpopover({ avatar }) {
                       texTransform: 'none',
                       width: '13em',
                       height: 'auto',
-                      '&: hover': {
-                        cursor: 'pointer',
-                      },
+                      cursor: "default"
                     }}
                   >
                     {JSON.parse(localStorage.userData).data.user.emailAddress}
