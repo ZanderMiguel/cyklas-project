@@ -16,14 +16,13 @@ import Comments from './Comments';
 import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
 import usePost from '../../customHooks/usePost';
 import useStyles from '../Styles/Announce_style';
-import CusPopover from '../../components/Popover';
-import PostOptionspopover from '../../components/PopoverContent/PostOptionspopover';
+
 
 function Post_layout({ data, socket }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClickOption = (event) => {
-    setAnchorEl(event.currentTarget);
+    console.log(event)
   };
   const handleCloseOption = () => {
     setAnchorEl(null);

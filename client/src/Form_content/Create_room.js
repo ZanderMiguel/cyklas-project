@@ -18,16 +18,6 @@ const classtimes = [
     label: '11:30',
   },
 ];
-const Term = [
-  {
-    value: '2 Term',
-    label: '2 Term',
-  },
-  {
-    value: '3 Term',
-    label: '3 Term',
-  },
-];
 
 const gradingsystems = [
   {
@@ -45,19 +35,17 @@ function Create_room({ open, close, maxWidth, state, socket }) {
   const [course, setCourse] = useState('');
   const [classday, setClassDay] = useState('');
   const [yearAndSection, setYearandsection] = useState('');
-  const [classtime, setClassTime] = useState('10:30');
-  const [term, setTerm] = useState('2 Term');
+  const [classtime, setClassTime] = useState('')
   const [gradingsystem, setGradingSystem] = useState('Default');
 
-  const handleChangeTerm = (event) => {
-    setTerm(event.target.value);
-  };
-  const handleChangeClassTime = (event) => {
-    setClassTime(event.target.value);
-  };
+
+  
   const handleChangeGradingSystem = (event) => {
     setGradingSystem(event.target.value);
   };
+  const handleTime = (event) => {
+    setClassTime(event.target.value)
+  }
 
   const { post } = usePost();
 
@@ -85,6 +73,7 @@ function Create_room({ open, close, maxWidth, state, socket }) {
     <>
       <Dialogform
         title="Create your Room!"
+        divider
         open={open}
         close={close}
         maxWidth={maxWidth}
@@ -99,52 +88,49 @@ function Create_room({ open, close, maxWidth, state, socket }) {
             <Input
               inputLabel="Room Name"
               placeholder="Enter room name..."
+              autoComplete="off"
               value={roomname}
               onChange={(e) => setRoomname(e.target.value)}
               autoFocus
+              required
               half
             />
             <Input
               inputLabel="Course"
               placeholder="Enter course..."
+              autoComplete="off"
               value={course}
+              required
               onChange={(e) => setCourse(e.target.value)}
               half
             />
             <Input
               inputLabel="Class Day"
               placeholder="Enter class day..."
+              autoComplete="off"
               value={classday}
+              required
               onChange={(e) => setClassDay(e.target.value)}
               half
             />
             <Input
               inputLabel="Year and Section"
               placeholder="Enter year and section..."
+              autoComplete="off"
               value={yearAndSection}
+              required
               onChange={(e) => setYearandsection(e.target.value)}
               half
             />
-            <Dropdown
-              inputLabel="Class Time"
-              value={classtime}
-              onChange={handleChangeClassTime}
-              options={classtimes}
-              half
-            />
-            <Grid item xs={12} sm={6}>
-              <Datetime />
-            </Grid>
-            <Dropdown
-              inputLabel="Terms"
-              value={term}
-              onChange={handleChangeTerm}
-              options={Term}
-              half
-            />
+            {/* <Grid item xs={12} sm={6}>
+              <Datetime classtime={classtime} setClassTime={setClassTime} inputLabel="Class Time"/>
+            </Grid> */}
+            <Input inputLabel="Class time" autoComplete="off" required value={classtime} onChange={handleTime} placeholder="00:00 AM/PM" half/>
             <Dropdown
               inputLabel="Grading System"
+              autoComplete="off"
               value={gradingsystem}
+              required
               onChange={handleChangeGradingSystem}
               options={gradingsystems}
               half

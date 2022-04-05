@@ -44,7 +44,6 @@ function Telecon_room() {
             <Box position="relative" backgroundColor="white" height="100%">
             <Message_area socket={socket}/>
           </Box>
-            
           </Collapse>
           <Paper sx={{ width: '100%' }}></Paper>
         </Box>

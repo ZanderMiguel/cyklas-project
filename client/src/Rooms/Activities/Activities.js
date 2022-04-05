@@ -24,7 +24,6 @@ function Activities({ roomID }) {
           sx={{
             backgroundColor: '#007FFF',
             color: 'white',
-            borderRadius: '10px',
             '&:hover': {
               backgroundColor: '#0072e6',
             },
