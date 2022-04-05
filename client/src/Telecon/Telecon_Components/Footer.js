@@ -67,7 +67,7 @@ function Footer({
     } else {
       setSideDrawer(false);
     }
-    setSideContent(<Message_area socket={socket} />);
+    setSideContent('Message');
     setToggleMember(false);
     setToggleMessage(false);
     setTogglePresent(false);
@@ -75,7 +75,7 @@ function Footer({
   const handleToggleMember = () => {
     setToggleMember((prev) => !prev);
     setSideDrawer((prev) => !prev);
-    setSideContent(<Information />);
+    setSideContent('Info');
     setToggleInfo(false);
     setToggleMessage(false);
     setTogglePresent(false);
