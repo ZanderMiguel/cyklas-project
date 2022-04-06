@@ -9,6 +9,7 @@ import Groups_addmember from "./Groups_components/Groups_addmember";
 const dataGroup = [
   {
     groupName: "Group 1",
+    totalMembers: "3",
     groupMembers: [
        {
         avatar: <Avatar src = {AvatarIcon} sx = {{ height: "2em", width: "2em" }}/>,
@@ -22,6 +23,7 @@ const dataGroup = [
   },
   {
     groupName: "Group 2",
+    totalMembers: "2",
     groupMembers: [
         {
          avatar: <Avatar src = {AvatarIcon} sx = {{ height: "2em", width: "2em" }}/>,
@@ -51,19 +53,23 @@ const [opendialogAddMembers, setOpenDialogAddMembers] = useState(false);
                 {dataGroup.map((items, index) => {
                     return (
                         <Box sx = {{ width: "relative", height: "auto", display: "flex" }}>
-                        <Accordion key = {index} sx = {designs.Accordion_Style}>
-                        
-                        <AccordionSummary sx = {designs.AccordionSummary_Style}
-                        aria-controls="panel1a-content"
-                        id="panel1a-header"
-                        >
-                        <img src = {GroupsIcon} style = {{ marginTop: "0.3em", height: "2em", width: "2em", marginRight: "1em" }}/>
-                        
-                        <Typography sx = {designs.GroupName_Typography_Style}> 
-                        {items.groupName} 
-                        </Typography>
+                            <Accordion key = {index} sx = {designs.Accordion_Style}>
+                            
+                            <AccordionSummary sx = {designs.AccordionSummary_Style}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                            >
+                            <img src = {GroupsIcon} style = {{ marginTop: "0.3em", height: "2em", width: "2em", marginRight: "1em" }}/>
+                            
+                            <Typography sx = {designs.GroupName_Typography_Style}> 
+                            {items.groupName} 
+                            </Typography>
 
-                        </AccordionSummary>
+                            <Typography sx = {designs.TotalMembers_Typography_Style}> 
+                            {items.totalMembers} 
+                            </Typography>
+
+                            </AccordionSummary>
                         
                         <Divider sx = {{ margin: "0em 1.5em 0.5em 1.5em" }}/>
                         
