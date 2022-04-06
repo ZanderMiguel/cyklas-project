@@ -72,7 +72,7 @@ const data = [
 ];
 function Student_rankings() {
   const { designs } = useStyle();
-
+  console.log('shet')
   return (
     <Container maxWidth="xl">
       <Grid container sx={designs.GridContainer_Style}>

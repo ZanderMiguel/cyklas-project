@@ -13,25 +13,28 @@ import Timer from './components/Timer';
 import axios from 'axios'
 import Multiple from './components/Multiple';
 import { useHistory, useParams } from 'react-router-dom'
+import Quiz_imagemultiplechoice from '../Quiz&ExamForm/AnswerTypes/Quiz_imagemultiplechoice';
+import Quiz_trueorfalse from '../Quiz&ExamForm/AnswerTypes/Quiz_trueorfalse';
+import Quiz_shortanswer from '../Quiz&ExamForm/AnswerTypes/Quiz_shortanswer'
 function Livequiz_multiplechoice({ socket }) {
   const { designs } = useStyle();
   const history = useHistory()
   const { counter } = useParams()
   const [questionArray, setQuestionArray] = React.useState(null)
-  
+  const answerMemo = React.useRef('')
   React.useMemo(() => {
-    axios.post('http://localhost:5000/question', { quizID: '62435059ff2c2c59af2f2436' })
+    axios.post('http://localhost:5000/question', { quizID: '6247cb591523e415a76094d7' })
       .then((res) => {
-        if(counter > res.data.length -1){
+        if (counter > res.data.length - 1) {
           history.push(`/not-found`)
         }
         setQuestionArray(res.data)
       })
       .catch(err => { console.log(err) })
   }, [counter])
-
-  questionArray && socket.emit('timer-start', questionArray[counter].timeLimit.replace(' seconds', ''), questionArray[counter].points,questionArray.length)
-  socket.on('times-up', (result) => {
+  
+  questionArray && socket.emit('timer-start', questionArray[counter].timeLimit.replace(' seconds', ''), questionArray[counter].points, questionArray.length)
+  socket.once('times-up', (result) => {
     result === true ? history.push('/Livequiz_correctanswer') : history.push('/Livequiz_wronganswer')
   })
 
@@ -50,7 +53,7 @@ function Livequiz_multiplechoice({ socket }) {
             <Box className="Quiz-question" sx={designs.Quiz_Questions_Style}>
               <Box className="Quiz-item" sx={designs.Quiz_Item_Style}>
                 <Typography sx={designs.Quiz_Item_Typography_Style}>
-                  {counter + 1}
+                  {parseInt(counter) + 1}
                 </Typography>
               </Box>
               <Typography noWrap sx={designs.Quiz_Questions_Typography_Style}>
@@ -58,19 +61,22 @@ function Livequiz_multiplechoice({ socket }) {
               </Typography>
             </Box>
           </Grid>
-
+         
           <Grid item xs={12}>
             <Box className="Image" sx={designs.QuizImage_Style}>
-              <img
-                src={Image}
+            {questionArray && <img
+                src={questionArray[counter].media?questionArray[counter].media:Image}
                 style={{
                   height: '9em',
                 }}
-              />
+              />}
             </Box>
           </Grid>
         </Grid>
-        <Multiple questionArray={questionArray} counter={counter} socket={socket} />
+        {questionArray && questionArray[counter].answerType === 'Multiple Choice' && <Multiple questionArray={questionArray} counter={counter} socket={socket} />}
+        {questionArray && questionArray[counter].answerType === 'Image Multiple Choice' && <Quiz_imagemultiplechoice handleImage={null} questionMemo={null} counter={counter} questionArray={questionArray} socket={socket} />}
+        {questionArray && questionArray[counter].answerType === 'True or False' && <Quiz_trueorfalse  questionMemo={null} counter={counter} questionArray={questionArray} socket={socket} />}
+        {questionArray && questionArray[counter].answerType === 'Short Answer' && <Quiz_shortanswer questionMemo={answerMemo} counter={counter} questionArray={null} socket={socket} />}
       </Box></>
   )
 }

@@ -41,6 +41,9 @@ app.use(router);
 let result = ''
 let index = 0
 let questionCount = 0
+let points = 0
+let quizLobby = {}
+const participants = new Map()
 io.on('connection', (socket) => {
   socket.on('joinroom', (roomID, username) => {
     socket.join(roomID);
@@ -65,43 +68,46 @@ io.on('connection', (socket) => {
   socket.on('create-comment', () => {
     socket.emit('post-comment', v4());
   });
-  socket.on('timer-start', (time,points,qCount) => {
+  socket.on('timer-start', (time, point, qCount) => {
     questionCount = qCount
     const timer = setInterval(() => {
       time--
-      socket.emit('play', time,index)
+      socket.emit('play', time, index)
 
     }, 1000)
-
-    socket.on('send-answer',(answer,correct)=>{
-      result = answer === correct? true: false
-      
-    })
-
     setTimeout(() => {
       clearInterval(timer)
-      
-      socket.emit('times-up',result)
-      result=''
-    }, (time * 1000)+1000)
 
+      socket.emit('times-up', result)
+      result = ''
+    }, (time * 1000) + 1000)
 
-    socket.on('break',()=>{
-      let breakTime = 4
-      const count = setInterval(()=>{
-        breakTime--
-        socket.emit('next',points,breakTime)
-        
-      },1000)
-      setTimeout(()=>{
-        clearInterval(count)
-        index++
-        socket.emit('next-question',index,questionCount)
-      },4000)
-    })
+    points = point
+
   })
-  
+  socket.on('send-answer', (answer, correct) => {
+    result = answer === correct ? true : false
 
+  })
+  socket.on('break', () => {
+    let breakTime = 4
+    const count = setInterval(() => {
+      breakTime--
+      socket.emit('next', points, breakTime)
+
+    }, 1000)
+    setTimeout(() => {
+      clearInterval(count)
+      index++
+      socket.emit('next-question', index, questionCount)
+    }, 4000)
+  })
+  socket.on('join-quizLobby', (lobby, name) => {
+    participants.set(name,lobby)
+    quizLobby[lobby] = quizLobby[lobby] ?  [...quizLobby[lobby],name] : [name]
+    console.log(quizLobby[lobby])
+    socket.emit('joined-quizLobby',lobby,quizLobby[lobby])
+  })
 });
 
 //socket.io events

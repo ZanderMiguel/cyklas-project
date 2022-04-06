@@ -50,7 +50,7 @@ const findQuestions = async (req, res) => {
   try {
     const questions = await QuestionModel.find({
       quizID: req.body.quizID,
-    }).sort({ createdAt: -1 });
+    });
     return res.json(questions);
   } catch (error) {
     console.log(error);

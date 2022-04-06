@@ -42,7 +42,9 @@ import Exam_start from './Dashboard/Exam_start';
 import View_quiz from './Quizlit/Quizbank-content-layout/Quizbank-view/View_quiz';
 import View_exam from './Quizlit/Quizbank-content-layout/Quizbank-view/View_exam';
 import Telecon_room from './Telecon/Telecon_room';
-
+import JoinQuiz from './Quizlit/TestComponents/JoinQuiz'
+import ToLobby from './Quizlit/TestComponents/ToLobby'
+import Lobby from './Quizlit/TestComponents/Lobby'
 function App() {
   const theme = createTheme({
     typography: {
@@ -176,6 +178,18 @@ function App() {
               <Forgot_password />
             </Route>
             <Route path="/telecon/room" component={Telecon_room} />
+            <Route exact path="/quizlit/join" >
+              <JoinQuiz socket={socket} />
+            </Route>
+            <Route exact path="/quizlit/lobby">
+              <Lobby socket={socket} />
+            </Route>
+            <Route exact path="/quizlit/lobby/:lobby/:name">
+              <ToLobby socket={socket} />
+            </Route>
+
+
+
             <Route component={Notfound} />
           </Switch>
         </Router>

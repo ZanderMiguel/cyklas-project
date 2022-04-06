@@ -17,31 +17,32 @@ import Image_GIF from './Image_GIF';
 import QuestionConfig from './QuestionConfig';
 import Quiz_multiplechoice from './AnswerTypes/Quiz_multiplechoice';
 function Questions({ counter, questionMemo }) {
-    
-    React.useMemo(()=>{
-        questionMemo.current[counter - 1] = {answerType: 'Multiple Choice',
-        points: '1 point',
-        timeLimit: '10 seconds'
-    }
-    },[])
-    
+
+    React.useMemo(() => {
+        questionMemo.current[counter - 1] = {
+            answerType: 'Multiple Choice',
+            points: '1 point',
+            timeLimit: '10 seconds'
+        }
+    }, [])
+
     const [opendialog, setOpenDialog] = useState(false);
     const [image, setImage] = useState('');
     const { designs } = useStyle();
 
     const [selectAnswerType, setAnswerType] = useState('Multiple Choice');
     const handleChange = (event) => {
-        
+
         questionMemo.current[counter - 1][event.target.name] = event.target.value
 
     };
 
-    const handleImage = (event,imgUrl)=>{
+    const handleImage = (event, imgUrl) => {
         questionMemo.current[counter - 1][event.target.name] = imgUrl
         console.log(questionMemo.current)
     }
     return (
-        <form  id="quizform" name={counter}>
+        <form id="quizform" name={counter}>
             <Grid container rowSpacing={1}>
                 <Box
                     className="Quiz-options-responsive"
@@ -198,12 +199,12 @@ function Questions({ counter, questionMemo }) {
                             {selectAnswerType === 'Multiple Choice' && <Quiz_multiplechoice handleChange={handleChange} questionMemo={questionMemo} counter={counter} />}
 
                             {selectAnswerType === 'Image Multiple Choice' && (
-                                <Quiz_imagemultiplechoice handleImage={handleImage} questionMemo={questionMemo} counter={counter}/>
+                                <Quiz_imagemultiplechoice handleImage={handleImage} questionMemo={questionMemo} counter={counter} />
                             )}
                             {selectAnswerType === 'True or False' && (
-                                <Quiz_trueorfalse questionMemo={questionMemo} counter={counter}/>
+                                <Quiz_trueorfalse questionMemo={questionMemo} counter={counter} />
                             )}
-                            {selectAnswerType === 'Short Answer' && <Quiz_shortanswer questionMemo={questionMemo} counter={counter}/>}
+                            {selectAnswerType === 'Short Answer' && <Quiz_shortanswer questionMemo={questionMemo} counter={counter} />}
                         </Box>
                     </Box>
                 </Grid>

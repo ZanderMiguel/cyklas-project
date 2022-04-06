@@ -3,20 +3,22 @@ import {Box, Typography } from "@mui/material";
 import { CancelOutlined } from "@mui/icons-material";
 import { useHistory } from 'react-router-dom'
 function Livequiz_wronganswer({socket}) {
-  React.useMemo(()=>{socket.emit('break')},[])
+  
   const history = useHistory()
   const [count,setCount] = React.useState(4)
-  socket.on('next',(point,breakTime)=>{
+  socket.once('next',(point,breakTime)=>{
     setCount(breakTime)
   })
-  socket.on('next-question',(index,arrLen)=>{
+  React.useMemo(()=>{
+    socket.emit('break')
+  socket.once('next-question',(index,arrLen)=>{
     if(index < arrLen){
     history.push(`/livequiz_multiplechoice/${index}`)
 
     }else{
     if(index === arrLen){
       history.push(`/student_rankings`)
-      socket.removeAllListeners('next-question')
+      socket.removeAllListeners()
       
     }else{
       if(index > arrLen){
@@ -25,7 +27,7 @@ function Livequiz_wronganswer({socket}) {
     }
     }
     
-  })
+  })},[])
   return (
     <Box className = "container" sx = {{
         width: "100%",

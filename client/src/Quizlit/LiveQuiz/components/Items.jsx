@@ -22,7 +22,7 @@ function Items({questionArray,counter}) {
       </Box>
       <Box className="Items" sx={designs.QuizStatus_Sub2_Style}>
         <Typography noWrap sx={designs.QuizStatus_Typography2_Style}>
-          {`${counter + 1} / ${questionArray.length}`}
+          {`${parseInt(counter) + 1} / ${questionArray.length}`}
         </Typography>
       </Box>
     </Box>}
