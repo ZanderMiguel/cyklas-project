@@ -4,6 +4,7 @@ function useStyle() {
   const theme = useTheme();
   const designs = {
       Accordion_Style: {
+        paddingBottom: "0.5em",
         width: "auto",
         flexGrow: 1,
         backgroundColor: "transparent", 

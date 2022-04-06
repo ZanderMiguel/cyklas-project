@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Typography, Button, Avatar, List, Accordion, AccordionSummary, ListItemAvatar, ListItemText, Tooltip, IconButton, Box } from '@mui/material';
+import { Divider, Grid, Typography, Button, Avatar, List, Accordion, AccordionSummary, ListItemAvatar, ListItemText, Tooltip, IconButton, Box } from '@mui/material';
 import { AddCircle, AddCircleOutline, BorderColorOutlined, DeleteOutlined } from "@mui/icons-material";
 import GroupsIcon from '../../assets/ImageJaven/GroupsIcon.png';
 import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
@@ -64,6 +64,9 @@ const [opendialogAddMembers, setOpenDialogAddMembers] = useState(false);
                         </Typography>
 
                         </AccordionSummary>
+                        
+                        <Divider sx = {{ margin: "0em 1.5em 0.5em 1.5em" }}/>
+                        
                                 {items.groupMembers.map((items2, index) => {
                                     return (
                                     <List key = {index} component="div" sx = {designs.List_Style}>
@@ -81,7 +84,7 @@ const [opendialogAddMembers, setOpenDialogAddMembers] = useState(false);
                                 })}
                         </Accordion>
 
-                        <Box sx = {{ width: "10em", height: "relative", display: "flex", gap: "2em", alignItems: "center", justifyContent: "center" }}>
+                        <Box sx = {{ width: "10em", height: "max-content", padding: "1.2em 0em", display: "flex", gap: "2em", alignItems: "center", justifyContent: "center" }}>
                             <Tooltip title="Rename Group" placement="top">
                             <IconButton edge="end" aria-label="edit" sx = {{ width: "0.8em", height: "0.8em", "&: hover": { backgroundColor: "transparent", color: "#007FFF" } }}>
                             <BorderColorOutlined sx = {{ fontSize: "0.9em" }}/>

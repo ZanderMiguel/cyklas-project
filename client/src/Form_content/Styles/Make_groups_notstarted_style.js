@@ -25,7 +25,16 @@ function useStyle() {
         fontSize: "0.9em",
         fontWeight: "500"
       },
-      List_Style: {
+      TotalMembers_Typography_Style: {
+        width: "max-content",
+        textAlign: "right",
+        display: "flex",
+        alignItems: "center",
+        color: "#3F3D56",
+        fontSize: "0.9em",
+        fontWeight: "500"
+      },
+      List_Style: { 
           padding: "0em 1.5em", 
           display: "flex",
           alignItems: "center" 
