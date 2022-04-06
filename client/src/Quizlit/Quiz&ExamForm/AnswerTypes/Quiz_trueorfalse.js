@@ -11,7 +11,7 @@ function Quiz_trueorfalse({ questionMemo, counter,questionArray,socket }) {
   }
   const sendAnswer = (answer) => {
     console.log(answer)
-    socket.emit('send-answer',answer,questionArray[counter].correctAnswer)
+    socket.emit('send-answer',answer,questionArray[counter].correctAnswer,JSON.parse(localStorage.userData).data.user.firstName)
   }
   return (
     <>

@@ -70,9 +70,9 @@ const data = [
     score: '1 / 3',
   },
 ];
-function Student_rankings() {
+function Student_rankings({socket}) {
   const { designs } = useStyle();
-  console.log('shet')
+  socket.emit('game-ended','123',JSON.parse(localStorage.userData).data.user.firstName)
   return (
     <Container maxWidth="xl">
       <Grid container sx={designs.GridContainer_Style}>

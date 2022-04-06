@@ -45,6 +45,7 @@ import Telecon_room from './Telecon/Telecon_room';
 import JoinQuiz from './Quizlit/TestComponents/JoinQuiz'
 import ToLobby from './Quizlit/TestComponents/ToLobby'
 import Lobby from './Quizlit/TestComponents/Lobby'
+import LoadQuizlit from './Quizlit/TestComponents/LoadQuizlit'
 function App() {
   const theme = createTheme({
     typography: {
@@ -68,8 +69,19 @@ function App() {
       },
     },
   });
-
+  
   const socket = io.connect('http://localhost:3001');
+  const [quizlit,setQuizlit] = React.useState(null)
+  socket.on('joined-quizLobby',(lobby,quizLobby,questionArray)=>{
+   console.log('awit')
+    setQuizlit(<ProtectedRoutes
+      exact
+      path="/livequiz_multiplechoice/:counter"
+      component={Livequiz_multiplechoice}
+      socket={socket}
+      questionArray={questionArray}
+    />)
+  })
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -116,12 +128,7 @@ function App() {
               component={Examform}
             />
             {/* Javen Routes */}
-            <ProtectedRoutes
-              exact
-              path="/livequiz_multiplechoice/:counter"
-              component={Livequiz_multiplechoice}
-              socket={socket}
-            />
+            {quizlit}
             <ProtectedRoutes
               exact
               path="/StudentLiveQuiz_multiplechoice"
@@ -143,6 +150,7 @@ function App() {
               exact
               path="/student_rankings"
               component={Student_rankings}
+              socket={socket}
             />
             <Route
               exact
@@ -184,8 +192,8 @@ function App() {
             <Route exact path="/quizlit/lobby">
               <Lobby socket={socket} />
             </Route>
-            <Route exact path="/quizlit/lobby/:lobby/:name">
-              <ToLobby socket={socket} />
+            <Route exact path="/quizlit/lobby/:lobby/:name/:quizID">
+              <ToLobby socket={socket}/>
             </Route>
 
 

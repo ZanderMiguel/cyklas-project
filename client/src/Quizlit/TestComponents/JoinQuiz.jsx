@@ -6,7 +6,7 @@ function JoinQuiz() {
     return (
         <div><form onSubmit={(e)=>{
             e.preventDefault()
-            setRedirect(<Redirect to={`/quizlit/lobby/${lobby.current.room}/${lobby.current.name}`} />)
+            setRedirect(<Redirect to={`/quizlit/lobby/${lobby.current.room}/${JSON.parse(localStorage.userData).data.user.firstName}/${lobby.current.quizID}`} />)
         }}>
             <label htmlFor='room'>Room ID</label>
             
@@ -14,9 +14,10 @@ function JoinQuiz() {
                 lobby.current['room'] = e.target.value
                 console.log(lobby.current['room'])
             }}/>
-            <label htmlFor='name'>Username</label>
-            <input type="text" id="name"onChange={(e)=>{
-                lobby.current['name'] = e.target.value
+            
+            <label htmlFor='quizID'>Username</label>
+            <input type="text" id="quizID"onChange={(e)=>{
+                lobby.current['quizID'] = e.target.value
             }}/>
             <input type="submit" value="JOIN"/>
         </form>

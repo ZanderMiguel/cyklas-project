@@ -42,7 +42,8 @@ const displayAnnounce = async (req, res) => {
 const deleteAnnounce = async (req, res) => {
   try {
     await AnnouncementModel.findByIdAndDelete(req.body.announceID);
-    return res.json({ redirect: '/' });
+    console.log('deleted')
+    return res.json({ status: 'Deleted' });
   } catch (error) {
     console.log('Something went wrong!');
     return res.json({

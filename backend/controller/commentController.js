@@ -41,8 +41,6 @@ const deleteComment = async (req, res) => {
   try {
 
     await CommentModel.findByIdAndDelete(req.body.commentID);
-    await AnnouncementModel.updateMany({ _id: req.body.announcement }, { $pull: { comments: req.body.commentID } })
-
     return res.json({ redirect: '/' });
   } catch (error) {
     console.log(error);

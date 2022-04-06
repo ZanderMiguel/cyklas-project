@@ -3,7 +3,8 @@ import Dialogform from '../components/Dialogform';
 import Input from '../components/Input';
 import Dropdown from '../components/Drowpdown';
 import usePost from '../customHooks/usePost';
-import Datetime from '../components/Datetime';
+import moment from 'moment';
+
 
 import { Grid, Button, Select } from '@mui/material';
 import { ConstructionTwoTone } from '@mui/icons-material';
@@ -38,7 +39,6 @@ function Create_room({ open, close, maxWidth, state, socket }) {
   const [classtime, setClassTime] = useState('')
   const [gradingsystem, setGradingSystem] = useState('Default');
 
-
   
   const handleChangeGradingSystem = (event) => {
     setGradingSystem(event.target.value);
@@ -56,7 +56,7 @@ function Create_room({ open, close, maxWidth, state, socket }) {
       Course: course,
       ClassDays: classday,
       yearAndSection,
-      ClassTime: classtime,
+      ClassTime: moment(`March 25,2022 ${classtime}`).format('h:mm a'),
       GradingSystem: gradingsystem,
     };
 
@@ -125,7 +125,7 @@ function Create_room({ open, close, maxWidth, state, socket }) {
             {/* <Grid item xs={12} sm={6}>
               <Datetime classtime={classtime} setClassTime={setClassTime} inputLabel="Class Time"/>
             </Grid> */}
-            <Input inputLabel="Class time" autoComplete="off" required value={classtime} onChange={handleTime} placeholder="00:00 AM/PM" half/>
+            <Input inputLabel="Class time" autoComplete="off" required value={classtime} onChange={handleTime} type='time' half/>
             <Dropdown
               inputLabel="Grading System"
               autoComplete="off"

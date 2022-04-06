@@ -12,7 +12,7 @@ function Quiz_imagemultiplechoice({ handleImage, questionMemo, counter, question
   const [imgSrc4, setImgSrc4] = useState(Image);
   const sendAnswer = (answer) => {
     console.log(answer)
-    socket.emit('send-answer',answer,questionArray[counter].correctAnswer)
+    socket.emit('send-answer',answer,questionArray[counter].correctAnswer,JSON.parse(localStorage.userData).data.user.firstName)
   }
   return (
     <>

@@ -16,13 +16,25 @@ import Comments from './Comments';
 import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
 import usePost from '../../customHooks/usePost';
 import useStyles from '../Styles/Announce_style';
+import axios from 'axios';
 
 
 function Post_layout({ data, socket }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClickOption = (event) => {
-    console.log(event)
+  const handleEdit = (event) => {
+    
+  };
+  
+  const handleDelete = (event, _id) => {
+    console.log(_id )
+    axios.delete('http://localhost:5000/announce/delete', {data:{announceID: _id}})
+    .then((res)=>{
+    socket.emit('create-post')
+    console.log(res)
+    })
+    .catch((error)=>{console.log(error)})
+
   };
   const handleCloseOption = () => {
     setAnchorEl(null);
@@ -83,8 +95,9 @@ function Post_layout({ data, socket }) {
                 <Box sx={designs.BoxFlexGrow_Style} />
 
                 <IconButton
+                  name={_id}
                   aria-label="options"
-                  onClick={handleClickOption}
+                  onClick={handleEdit}
                   sx={designs.Option_IconButton_Style}
                 > 
                   <Tooltip title="Edit Post" placement="top">
@@ -94,7 +107,7 @@ function Post_layout({ data, socket }) {
                 
                 <IconButton
                   aria-label="options"
-                  onClick={handleClickOption}
+                  onClick={(event)=> handleDelete(event, _id)}
                   sx={designs.Option_IconButton_Style}
                 > 
                   <Tooltip title="Delete Post" placement="top">
@@ -118,7 +131,7 @@ function Post_layout({ data, socket }) {
               </Box>
               <Divider sx={designs.Divider_Style} />
 
-              <Comments postId={_id} commentId={commentId} />
+              <Comments postId={_id} commentId={commentId} socket={socket} />
 
               <Divider sx={{ mb: 2 }} />
               <Box className="write-comment" sx={designs.Write_Comment_Style}>
