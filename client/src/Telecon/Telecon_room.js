@@ -6,6 +6,8 @@ import Footer from './Telecon_Components/Footer';
 import Collapse from '@mui/material/Collapse';
 
 import useStyles from './Styles/Telecon_room_style';
+import Message_area from './TeleconSide/Message_area';
+import Information from './TeleconSide/Info'
 
 const socket = io.connect('http://localhost:3001');
 
@@ -13,7 +15,7 @@ function Telecon_room() {
   const { designs } = useStyles();
   const [sidedrawer, setSideDrawer] = useState(false);
 
-  const [sidecontent, setSideContent] = useState(false);
+  const [sidecontent, setSideContent] = useState('');
   const [username, setUsername] = useState('');
   const [room, setRoom] = useState('');
 
@@ -39,9 +41,10 @@ function Telecon_room() {
               },
             }}
           >
-            {sidecontent}
+            <Box position="relative" backgroundColor="white" height="100%">
+            <Message_area socket={socket}/>
+          </Box>
           </Collapse>
-
           <Paper sx={{ width: '100%' }}></Paper>
         </Box>
         <Footer

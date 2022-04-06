@@ -53,7 +53,7 @@ function Announce_form({ socket }) {
     socket.emit('create-post');
   };
 
-console.log(data)
+
   const handleFormat = (event, newFormats) => {
     setFormats(newFormats);
   };
