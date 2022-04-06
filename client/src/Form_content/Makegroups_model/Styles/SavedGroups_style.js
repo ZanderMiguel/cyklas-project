@@ -4,6 +4,7 @@ function useStyle() {
   const theme = useTheme();
   const designs = {
       Accordion_Style: {
+        paddingBottom: "0.5em",
         width: "auto",
         flexGrow: 1,
         backgroundColor: "transparent", 
@@ -14,6 +15,24 @@ function useStyle() {
       },
       AccordionSummary_Style: { 
           padding: "0em 1.5em" 
+      },
+      GroupName_Typography_Style: {
+        width: "auto",
+        display: "flex",
+        alignItems: "center",
+        flexGrow: 1,
+        color: "#3F3D56",
+        fontSize: "0.9em",
+        fontWeight: "500"
+      },
+      TotalMembers_Typography_Style: {
+        width: "max-content",
+        textAlign: "right",
+        display: "flex",
+        alignItems: "center",
+        color: "#3F3D56",
+        fontSize: "0.9em",
+        fontWeight: "500"
       },
       GroupName_Typography_Style: {
         width: "auto",

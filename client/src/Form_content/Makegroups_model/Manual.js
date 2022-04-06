@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Typography, Button, List, Accordion, AccordionSummary, ListItemAvatar, ListItemText, Tooltip, IconButton, Box } from '@mui/material';
+import { Divider, Grid, Typography, Button, List, Accordion, AccordionSummary, ListItemAvatar, ListItemText, Tooltip, IconButton, Box } from '@mui/material';
 import { AddCircle, AddCircleOutline, BorderColorOutlined, DeleteOutlined } from "@mui/icons-material";
 import GroupsIcon from '../../assets/ImageJaven/GroupsIcon.png';
 import useStyle from "./Styles/Manual_style";
@@ -8,6 +8,7 @@ import Groups_addmember from "./Groups_components/Groups_addmember";
 const dataGroup = [
   {
     groupName: "Untitled Group",
+    totalMembers: "0",
     groupMembers: [
        {
         
@@ -16,15 +17,6 @@ const dataGroup = [
         
        } 
       ]
-  },
-  {
-    groupName: "Untitled Group 2",
-    groupMembers: [
-        {
-        
-        }
-            
-       ]
   }
 ];
 
@@ -47,19 +39,26 @@ const [opendialogAddMembers, setOpenDialogAddMembers] = useState(false);
                 {dataGroup.map((items, index) => {
                     return (
                         <Box sx = {{ width: "relative", height: "auto", display: "flex" }}>
-                        <Accordion key = {index} sx = {designs.Accordion_Style}>
-                        
-                        <AccordionSummary sx = {designs.AccordionSummary_Style}
-                        aria-controls="panel1a-content"
-                        id="panel1a-header"
-                        >
-                        <img src = {GroupsIcon} style = {{ marginTop: "0.3em", height: "2em", width: "2em", marginRight: "1em" }}/>
-                        
-                        <Typography sx = {designs.GroupName_Typography_Style}> 
-                        {items.groupName} 
-                        </Typography>
+                            <Accordion key = {index} sx = {designs.Accordion_Style}>
+                            
+                            <AccordionSummary sx = {designs.AccordionSummary_Style}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                            >
+                            <img src = {GroupsIcon} style = {{ marginTop: "0.3em", height: "2em", width: "2em", marginRight: "1em" }}/>
+                            
+                            <Typography sx = {designs.GroupName_Typography_Style}> 
+                            {items.groupName} 
+                            </Typography>
 
-                        </AccordionSummary>
+                            <Typography sx = {designs.TotalMembers_Typography_Style}> 
+                            {items.totalMembers} 
+                            </Typography>
+
+                            </AccordionSummary>
+
+                        <Divider sx = {{ margin: "0em 1.5em 0.5em 1.5em" }}/>
+                        
                                 {items.groupMembers.map((items2, index) => {
                                     return (
                                     <List key = {index} component="div" sx = {designs.List_Style}>
@@ -77,7 +76,7 @@ const [opendialogAddMembers, setOpenDialogAddMembers] = useState(false);
                                 })}
                         </Accordion>
 
-                        <Box sx = {{ width: "10em", height: "relative", display: "flex", gap: "2em", alignItems: "center", justifyContent: "center" }}>
+                        <Box sx = {{ width: "10em", height: "max-content", padding: "1.2em 0em", display: "flex", gap: "2em", alignItems: "center", justifyContent: "center" }}>
                             <Tooltip title="Rename Group" placement="top">
                             <IconButton edge="end" aria-label="edit" sx = {{ width: "0.8em", height: "0.8em", "&: hover": { backgroundColor: "transparent", color: "#007FFF" } }}>
                             <BorderColorOutlined sx = {{ fontSize: "0.9em" }}/>

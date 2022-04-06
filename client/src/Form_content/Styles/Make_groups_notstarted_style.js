@@ -34,16 +34,7 @@ function useStyle() {
         fontSize: "0.9em",
         fontWeight: "500"
       },
-      GroupName_Typography_Style: {
-        width: "auto",
-        display: "flex",
-        alignItems: "center",
-        flexGrow: 1,
-        color: "#3F3D56",
-        fontSize: "0.9em",
-        fontWeight: "500"
-      },
-      List_Style: {
+      List_Style: { 
           padding: "0em 1.5em", 
           display: "flex",
           alignItems: "center" 

@@ -6,19 +6,20 @@ import { blue, grey } from "@mui/material/colors";
 import Automate from "./Makegroups_model/Automate";
 import Manual from "./Makegroups_model/Manual";
 import SavedGroups from "./Makegroups_model/SavedGroups";
-import Make_groups_notstarted from "./Make_groups_notstarted";
+import Make_groups_recreated from "./Make_groups_recreated";
+import { WarningAmber } from '@mui/icons-material';
 
-function Make_groups({ open, close, maxWidth }) {
+function Make_groups_recreate({ open, close, maxWidth }) {
     const [radioGroup, setRadioGroup] = useState("Automate");
 
-    const [opendialogCreateGroups, setOpenDialogCreateGroups] = useState(false);
+    const [opendialogGroupsRecreated, setOpenDialogGroupsRecreated] = useState(false);
 
-    const handleCreateCreateGroups = () => {
-      setOpenDialogCreateGroups(true);
+    const handleCreateGroupsRecreated = () => {
+      setOpenDialogGroupsRecreated(true);
     };
 
-    const handleCreateCloseCreateGroups = () => {
-      setOpenDialogCreateGroups(false);
+    const handleCreateCloseGroupsRecreated = () => {
+      setOpenDialogGroupsRecreated(false);
     };
 
   return (
@@ -26,7 +27,7 @@ function Make_groups({ open, close, maxWidth }) {
       <Dialogform open={open} close={close} maxWidth={maxWidth}
       btn={
         <Button
-          onClick = {handleCreateCreateGroups}
+          onClick = {handleCreateGroupsRecreated}
           variant="contained"
           startIcon={<img src = {GroupsIconButton} style = {{ height: "0.7em", width: "0.7em" }}/>}
           sx={{
@@ -41,43 +42,76 @@ function Make_groups({ open, close, maxWidth }) {
             },
           }}
         >
-          Create Groups
+          Recreate Groups
         </Button>
         
       }>
-      {opendialogCreateGroups && (
-        <Make_groups_notstarted
-          open={opendialogCreateGroups}
-          close={handleCreateCloseCreateGroups}
+      {opendialogGroupsRecreated && (
+        <Make_groups_recreated
+          open={opendialogGroupsRecreated}
+          close={handleCreateCloseGroupsRecreated}
           maxWidth="md"
-          state={setOpenDialogCreateGroups}
+          state={setOpenDialogGroupsRecreated}
         />
       )}
 
         <Grid container sx = {{ padding: "0em 2em" }}>
+
+            <Box sx = {{
+                display: "flex",
+                gap: "0.5em",
+                width: "relative",
+                height: "auto",
+                margin: "0.8em 0em",
+                alignItems: "center"
+            }}>
+                <WarningAmber sx = {{ color: "#FF9100", fontSize: "1.3em" }}/>
+
+                <Typography sx = {{
+                            width: "100%",
+                            height: "auto",
+                            color: "#FF9100",
+                            fontSize: "0.8em",
+                            fontWeight: "500"
+                        }}>
+                            All existing groups will be replaced.
+                </Typography>
+            </Box>
+            
+            
             <Grid item xs = {12}>
+            <Box sx = {{ width: "relative", height: "auto", display: "flex" }}>
                 <Box sx = {{
-                    display: "flex",
                     width: "relative",
+                    flexGrow: 1,
                     height: "auto"
                 }}>
-                    <Typography 
-                        // onClick = {handleCreateCreateGroups}
-                        sx = {{
+                    <Typography sx = {{
                         color: "#3F3D56",
                         fontSize: "1.3em",
                         fontWeight: "600",
                         textTransform: "Uppercase",
-                        width: "auto",
+                        width: "relative",
                         height: "max-content",
                         paddingRight: "8em"
                     }}>
                         make groups!
                     </Typography>
 
-                    <Box flexGrow = {1}/>
+                    <Typography sx = {{
+                        color: "#007FFF",
+                        fontSize: "0.8em",
+                        fontWeight: "600",
+                        textTransform: "Capitalize",
+                        width: "relative",
+                        height: "max-content",
+                        paddingRight: "8em"
+                    }}>
+                        Not started
+                    </Typography>
+                </Box>
 
-                    <Box sx = {{ width: "relative", height: "auto", display: "flex", alignItems: "center" }}>
+                <Box sx = {{ width: "relative", height: "auto", display: "flex", alignItems: "center" }}>
                         <FormControl sx = {{ width: "100%" }}>
                         <RadioGroup
                             row
@@ -111,17 +145,6 @@ function Make_groups({ open, close, maxWidth }) {
                         </RadioGroup>
                         </FormControl>
                     </Box>
-                    
-                    
-
-                    {/* <Box sx = {{ 
-                        display: "flex",
-                        gap: "0.8em",
-                        width: "auto",
-                        height: "auto"
-                    }}>
-
-                    </Box> */}
                 </Box>
             </Grid>
 
@@ -145,4 +168,4 @@ function Make_groups({ open, close, maxWidth }) {
   );
 }
 
-export default Make_groups;
+export default Make_groups_recreate;
