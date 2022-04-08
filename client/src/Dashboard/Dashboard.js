@@ -83,7 +83,7 @@ const dataStats = [
       </Box>
     ),
     label: 'Total Enrolled Students',
-    total: '22',
+    total: '223',
     updateValue: '',
     updateText: 'No New Added Student Today',
   },
@@ -104,7 +104,7 @@ const dataStats = [
       </Box>
     ),
     label: 'Total Posted Announcements',
-    total: '103',
+    total: '567',
     updateValue: '2',
     updateText: 'New Post Today',
   },
@@ -125,7 +125,7 @@ const dataStats = [
       </Box>
     ),
     label: 'Total Returned Activities',
-    total: '56',
+    total: '103',
     updateValue: '4',
     updateText: 'Returned Activities Today',
   },
@@ -255,9 +255,104 @@ const dataProfessorRatings = [
     rate: '90.1',
     rateIcon: <Star sx={{ fontSize: '1.2em', color: '#FFC700' }} />,
   },
+  {
+    avatar: (
+      <Avatar
+        src={AvatarIcon}
+        sx={{ marginRight: '0.5em', height: '2em', width: '2em' }}
+      />
+    ),
+    professorName: 'Isko',
+    room: 'Sotware Engineering 2',
+    rate: '95.4',
+    rateIcon: <Star sx={{ fontSize: '1.2em', color: '#FFC700' }} />,
+  },
+  {
+    avatar: (
+      <Avatar
+        src={AvatarIcon}
+        sx={{ marginRight: '0.5em', height: '2em', width: '2em' }}
+      />
+    ),
+    professorName: 'Yorme',
+    room: 'College Algebra',
+    rate: '94.0',
+    rateIcon: <Star sx={{ fontSize: '1.2em', color: '#FFC700' }} />,
+  },
+  {
+    avatar: (
+      <Avatar
+        src={AvatarIcon}
+        sx={{ marginRight: '0.5em', height: '2em', width: '2em' }}
+      />
+    ),
+    professorName: 'Bossing',
+    room: 'Paro paro G',
+    rate: '93.8',
+    rateIcon: <Star sx={{ fontSize: '1.2em', color: '#FFC700' }} />,
+  },
+  {
+    avatar: (
+      <Avatar
+        src={AvatarIcon}
+        sx={{ marginRight: '0.5em', height: '2em', width: '2em' }}
+      />
+    ),
+    professorName: 'Wally',
+    room: 'Thesis Writing',
+    rate: '90.1',
+    rateIcon: <Star sx={{ fontSize: '1.2em', color: '#FFC700' }} />,
+  },
 ];
 
 const dataStudentRankings = [
+  {
+    avatar: (
+      <Avatar
+        src={AvatarIcon}
+        sx={{ marginRight: '0.5em', height: '2em', width: '2em' }}
+      />
+    ),
+    studentName: 'Isko',
+    courseSec: '3A',
+    place: '2nd',
+    placeIcon: (
+      <WorkspacePremium sx={{ fontSize: '1.2em', color: '#EB7E42' }} />
+    ),
+  },
+  {
+    avatar: (
+      <Avatar
+        src={AvatarIcon}
+        sx={{ marginRight: '0.5em', height: '2em', width: '2em' }}
+      />
+    ),
+    studentName: 'Yorme',
+    courseSec: '3A',
+    place: '3rd',
+  },
+  {
+    avatar: (
+      <Avatar
+        src={AvatarIcon}
+        sx={{ marginRight: '0.5em', height: '2em', width: '2em' }}
+      />
+    ),
+    studentName: 'Bossing',
+    courseSec: '3A',
+    place: '4th',
+  },
+  {
+    avatar: (
+      <Avatar
+        src={AvatarIcon}
+        sx={{ marginRight: '0.5em', height: '2em', width: '2em' }}
+      />
+    ),
+    studentName: 'Wally',
+    courseSec: '3A',
+    place: '5th',
+  },
   {
     avatar: (
       <Avatar
@@ -324,937 +419,1385 @@ function Dashboard() {
 
   return (
     <Container maxWidth="xl">
-      <Grid container rowSpacing={1} sx={{ margin: '0.5em 0em' }}>
-        <Grid item xs={12}>
-          <Box sx={{ width: 'relative', height: 'auto', display: 'flex' }}>
-            <FormControl
-              variant="standard"
-              sx={{
-                width: '35%',
-                paddingTop: '0em',
-              }}
-            >
-              <InputLabel
-                id="demo-simple-select-standard-label"
-                sx={{
-                  fontSize: '0.9em',
-                  fontWeight: '500',
-                  color: '#3F3D56',
-                  textTransform: 'uppercase',
-                }}
-              >
-                Select Room
-              </InputLabel>
+        <Grid container sx = {{ height: "auto" }}>
+            <Grid item xs={12} sx = {{ marginTop: "1em" }}>
+            <Box sx={{ width: 'relative', height: 'auto', display: 'flex', flexWrap: "wrap" }}>
+            
+                <Box sx = {designs.SearchDashboard_Responsive_Style}>
+                    <IconButton
+                    aria-label="search"
+                    sx={{
+                        backgroundColor: '#FCF9FB',
+                        height: '1.3em',
+                        width: '1.3em',
+                        marginRight: "0.5em"
+                    }}
+                    >
+                    <Search
+                        sx={{
+                        color: '#82818E',
+                        fontSize: '0.9em',
+                        }}
+                    />
+                    </IconButton>
 
-              <Select
-                labelId="demo-simple-select-standard-label"
-                id="demo-simple-select-standard"
-                value={selectRoom}
-                onChange={handleChangeRoom}
-                label="SelectRoom"
-                disableUnderline
-                sx={{
-                  width: '100%',
-                  fontSize: '0.9em',
-                  fontWeight: '400',
-                  color: '#3F3D56',
-                  borderBottom: '1px solid #DBDBDB',
-                }}
-              >
-                {dataRoom.map(({ value, label }) => (
-                  <MenuItem key={value} value={value}>
-                    {' '}
-                    {label}{' '}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+                    <Input
+                    variant="standard"
+                    placeholder="Search dashboard..."
+                    sx={{
+                        height: '2.5em',
+                        width: '90%',
+                        backgroundColor: 'transparent',
+                        fontSize: '0.8em',
+                        fontWeight: '500',
+                        color: '#3F3D56',
+                    }}
+                    />
+                </Box>
+            
 
-            <IconButton
-              aria-label="search"
-              sx={{
-                backgroundColor: '#FCF9FB',
-                margin: '0.6em 0.5em 0em 1em',
-                height: '1.3em',
-                width: '1.3em',
-              }}
-            >
-              <Search
-                sx={{
-                  color: '#82818E',
-                  fontSize: '0.9em',
-                }}
-              />
-            </IconButton>
+                <FormControl
+                variant="standard"
+                sx={designs.SelectRoom_Style}
+                >
+                <InputLabel
+                    id="demo-simple-select-standard-label"
+                    sx={{
+                    fontSize: '0.9em',
+                    fontWeight: '500',
+                    color: '#3F3D56',
+                    textTransform: 'uppercase',
+                    }}
+                >
+                    Select Room
+                </InputLabel>
 
-            <Input
-              variant="standard"
-              placeholder="Search dashboard..."
-              sx={{
-                height: '2.5em',
-                width: '30.5em',
-                marginTop: '1.1em',
-                backgroundColor: 'transparent',
-                fontSize: '0.8em',
-                fontWeight: '600',
-                color: '#3F3D56',
-              }}
-            />
-          </Box>
+                <Select
+                    labelId="demo-simple-select-standard-label"
+                    id="demo-simple-select-standard"
+                    value={selectRoom}
+                    onChange={handleChangeRoom}
+                    label="SelectRoom"
+                    disableUnderline
+                    sx={{
+                    width: '100%',
+                    fontSize: '0.9em',
+                    fontWeight: '400',
+                    color: '#3F3D56',
+                    borderBottom: '1px solid #DBDBDB',
+                    }}
+                >
+                    {dataRoom.map(({ value, label }) => (
+                    <MenuItem key={value} value={value}>
+                        {' '}
+                        {label}{' '}
+                    </MenuItem>
+                    ))}
+                </Select>
+                </FormControl>
+                
+                <Box sx = {designs.SearchDashboard_Style}>
+                    <IconButton
+                    aria-label="search"
+                    sx={{
+                        backgroundColor: '#FCF9FB',
+                        margin: '0.6em 0.5em 0em 1em',
+                        height: '1.3em',
+                        width: '1.3em',
+                    }}
+                    >
+                    <Search
+                        sx={{
+                        color: '#82818E',
+                        fontSize: '0.9em',
+                        }}
+                    />
+                    </IconButton>
 
-          {/* <TextField id="filled-basic" placeholder="Search People" variant="filled" 
-                    sx = {designs.Search_TextField_Style}
-                    inputProps={{style: {height: "0em", fontSize: "0.8em", fontWeight: "500", paddingBottom: "1.8em", margin: "0em 1.5em 0em 0.5em", color: "#3F3D56"}}}
-                    InputProps={{disableUnderline: true,
-                    startAdornment: (
-                        <InputAdornment position="start">
-                            <IconButton aria-label="search" sx = {{
-                                    height: "1.3em",
-                                    width: "1.3em",
-                                    margin: "0em 0em 0.6em 0em"
+                    <Input
+                    variant="standard"
+                    placeholder="Search dashboard..."
+                    sx={{
+                        height: '2.5em',
+                        width: '30.5em',
+                        marginTop: '1.1em',
+                        backgroundColor: 'transparent',
+                        fontSize: '0.8em',
+                        fontWeight: '500',
+                        color: '#3F3D56',
+                    }}
+                    />
+                </Box>
+                
+            </Box>
+            </Grid>
+
+            <Box sx = {{ padding: "1em 0em", width: "100%", height: "auto", display: "flex", gap: "1em" }}>
+                <Grid container columnSpacing = {1} sx = {{ width: "100%", height: "100vh" }}>
+                    
+                    {dataStats.map(function (items, index) {
+                        return (
+                        <Grid key={index} item sm = {4} xs={12} sx={{ height: 'max-content' }}>
+                            <Box
+                            className="Announcements"
+                            sx={{
+                                width: 'relative',
+                                height: 'auto',
+                                padding: '0.7em 0em 0em 0em',
+                                backgroundColor: '#FCFCFC',
+                                boxShadow:
+                                'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px',
+                            }}
+                            >
+                            <Box
+                                className="New-announcement"
+                                sx={{
+                                display: 'flex',
+                                gap: '1em',
+                                width: 'relative',
+                                margin: '0em 0.8em',
+                                }}
+                            >
+                                <Box sx={{ height: 'auto', width: 'auto' }}>
+                                {items.icon}
+                                </Box>
+
+                                <Box sx={{ height: 'auto', width: 'relative' }}>
+                                <Typography
+                                    sx={{
+                                    color: '#8E8E8E',
+                                    fontSize: '0.8em',
+                                    fontWeight: '500',
+                                    width: "auto",
+                                    height: 'auto',
+                                    textTransform: 'Capitalize',
+                                    }}
+                                >
+                                    {items.label}
+                                </Typography>
+
+                                <Typography noWrap
+                                    sx={{
+                                    color: '#615F79',
+                                    fontSize: '1.8em',
+                                    fontWeight: '600',
+                                    width: 'relative',
+                                    height: 'auto',
+                                    wordBreak: "break-all",
+                                    textTransform: 'Uppercase',
+                                    }}
+                                >
+                                    {items.total}
+                                </Typography>
+                                </Box>
+                            </Box>
+
+                            <Box
+                                sx={{
+                                display: 'flex',
+                                gap: '0.5em',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                width: 'relative',
+                                margin: '0.5em 0em 0em 0em',
+                                padding: '0.4em',
+                                backgroundColor: '#EDF3F9',
+                                '&: hover': {
+                                    cursor: 'pointer',
+                                    transition: 'all 300ms',
+                                    backgroundColor: '#D8E9F9',
+                                },
+                                }}
+                            >
+                                <Typography
+                                sx={{
+                                    color: '#007FFF',
+                                    fontSize: '0.7em',
+                                    fontWeight: '600',
+                                    textTransform: 'uppercase',
+                                    height: 'relative',
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    textAlign: "center"
+                                }}
+                                >
+                                {items.updateValue}
+                                </Typography>
+
+                                <Typography
+                                sx={{
+                                    color: '#007FFF',
+                                    fontSize: '0.7em',
+                                    fontWeight: '600',
+                                    textTransform: 'uppercase',
+                                    height: 'relative',
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    textAlign: "center"
+                                }}
+                                >
+                                {items.updateText}
+                                </Typography>
+                            </Box>
+                            </Box>
+                        </Grid>
+                        );})}
+
+                        <Grid item xs = {12} sx = {designs.RightContainer_GridItem_Responsive_Style}>
+                            <Box sx={designs.MainContainer_Style}>
+                            <Box
+                                sx={{
+                                marginBottom: '0.3em',
+                                display: 'flex',
+                                width: 'relative',
+                                height: 'auto',
+                                }}
+                            >
+                                <Typography
+                                sx={{
+                                    color: '#615F79',
+                                    fontSize: '0.8em',
+                                    fontWeight: '600',
+                                    width: 'auto',
+                                    height: 'relative',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    textTransform: 'Uppercase',
+                                }}
+                                >
+                                Professor Ratings
+                                </Typography>
+
+                                <Box flexGrow={1} />
+
+                                <FormControl
+                                variant="standard"
+                                sx={{
+                                    width: 'auto',
+                                    padding: '0em',
+                                }}>
+                               
+                                <Select
+                                    labelId="demo-simple-select-standard-label"
+                                    id="demo-simple-select-standard"
+                                    value={selectRange}
+                                    onChange={handleChangeRange}
+                                    label="SelectRoom"
+                                    disableUnderline
+                                    sx={{
+                                    width: '100%',
+                                    fontSize: '0.7em',
+                                    fontWeight: '400',
+                                    color: '#8E8E8E',
+                                    }}
+                                >
+                                    {dataRange.map(({ value, label }) => (
+                                    <MenuItem key={value} value={value}>
+                                        {' '}
+                                        {label}{' '}
+                                    </MenuItem>
+                                    ))}
+                                </Select>
+                                </FormControl>
+                            </Box>
+
+                            <Box sx={designs.OverFlow_Responsive_Style}>
+                                <Box
+                                sx={{
+                                    boxShadow:
+                                    'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px',
+                                    backgroundColor: '#FCFCFC',
+                                    marginBottom: '0.3em',
+                                    width: 'relative',
+                                    height: 'auto',
+                                    display: 'flex',
+                                    padding: '0.3em 0.5em',
+                                }}
+                                >
+                                <Avatar
+                                    src={AvatarIcon}
+                                    sx={{ marginRight: '0.5em', height: '2em', width: '2em' }}
+                                />
+
+                                <Box
+                                    sx={designs.ProfessorList_Container_Style}
+                                >
+                                    <Typography
+                                    noWrap
+                                    sx={{
+                                        color: '#615F79',
+                                        fontSize: '0.7em',
+                                        fontWeight: '600',
+                                        width: 'relative',
+                                        height: 'max-content',
+                                    }}
+                                    >
+                                    Mark Andrei (You)
+                                    </Typography>
+
+                                    <Typography
+                                    noWrap
+                                    sx={{
+                                        color: '#8E8E8E',
+                                        fontSize: '0.6em',
+                                        fontWeight: '400',
+                                        width: 'relative',
+                                        height: 'max-content',
+                                    }}
+                                    >
+                                    Embedded Programming
+                                    </Typography>
+                                </Box>
+
+                                <Box flexGrow={1} />
+
+                                <Typography
+                                    sx={{
+                                    color: '#FFC700',
+                                    fontSize: '0.9em',
+                                    fontWeight: '600',
+                                    width: 'relative',
+                                    height: 'relative',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    }}
+                                >
+                                    96.7
+                                </Typography>
+
+                                <Box
+                                    sx={{
+                                    height: 'relative',
+                                    width: 'auto',
+                                    marginTop: '0.5em',
+                                    }}
+                                >
+                                    <Star sx={{ fontSize: '1.2em', color: '#FFC700' }} />
+                                </Box>
+                                </Box>
+
+                                {dataProfessorRatings.map(function (items, index) {
+                                return (
+                                    <Box
+                                    key={index}
+                                    sx={{
+                                        backgroundColor: '#FDFDFD',
+                                        marginBottom: '0.3em',
+                                        width: 'relative',
+                                        height: 'auto',
+                                        display: 'flex',
+                                        padding: '0.3em 0.5em',
+                                    }}
+                                    >
+                                    {items.avatar}
+
+                                    <Box
+                                        sx={{
+                                        marginTop: '0.2em',
+                                        width: 'auto',
+                                        flexGrow: 1,
+                                        height: 'max-content',
+                                        }}
+                                    >
+                                        <Typography
+                                        sx={{
+                                            color: '#615F79',
+                                            fontSize: '0.7em',
+                                            fontWeight: '600',
+                                            width: 'relative',
+                                            height: 'max-content',
+                                        }}
+                                        >
+                                        {items.professorName}
+                                        </Typography>
+
+                                        <Typography
+                                        sx={{
+                                            color: '#8E8E8E',
+                                            fontSize: '0.6em',
+                                            fontWeight: '400',
+                                            width: 'relative',
+                                            height: 'max-content',
+                                        }}
+                                        >
+                                        {items.room}
+                                        </Typography>
+                                    </Box>
+
+                                    <Box flexGrow={1} />
+
+                                    <Typography
+                                        sx={{
+                                        color: '#FFC700',
+                                        fontSize: '0.9em',
+                                        fontWeight: '600',
+                                        width: 'relative',
+                                        height: 'relative',
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        }}
+                                    >
+                                        {items.rate}
+                                    </Typography>
+
+                                    <Box
+                                        sx={{
+                                        height: 'relative',
+                                        width: 'auto',
+                                        marginTop: '0.5em',
+                                        }}
+                                    >
+                                        {items.rateIcon}
+                                    </Box>
+                                    </Box>
+                                );
+                                })}
+                            </Box>
+                            </Box>
+
+                            <Box sx={designs.MainContainer2_Style}>
+                            <Box
+                                sx={{
+                                marginBottom: '0.3em',
+                                display: 'flex',
+                                width: 'relative',
+                                height: 'auto',
+                                }}
+                            >
+                                <Typography
+                                sx={{
+                                    color: '#615F79',
+                                    fontSize: '0.8em',
+                                    fontWeight: '600',
+                                    width: 'auto',
+                                    height: 'relative',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    textTransform: 'Uppercase',
+                                }}
+                                >
+                                Student Rankings
+                                </Typography>
+
+                                <Box flexGrow={1} />
+
+                                <FormControl
+                                variant="standard"
+                                sx={{
+                                    width: 'auto',
+                                    padding: '0em',
+                                }}
+                                >
+                                {/* <InputLabel id="demo-simple-select-standard-label"
+                                sx={{
+                                fontSize: '0.7em',
+                                fontWeight: '500',
+                                color: '#8E8E8E',
+                                textTransform: "none"
+                                }}>
+                                This week
+                                </InputLabel> */}
+
+                                <Select
+                                    labelId="demo-simple-select-standard-label"
+                                    id="demo-simple-select-standard"
+                                    value={selectRange}
+                                    onChange={handleChangeRange}
+                                    label="SelectRoom"
+                                    disableUnderline
+                                    sx={{
+                                    width: '100%',
+                                    fontSize: '0.7em',
+                                    fontWeight: '400',
+                                    color: '#8E8E8E',
+                                    }}
+                                >
+                                    {dataRange.map(({ value, label }) => (
+                                    <MenuItem key={value} value={value}>
+                                        {' '}
+                                        {label}{' '}
+                                    </MenuItem>
+                                    ))}
+                                </Select>
+                                </FormControl>
+                            </Box>
+
+                            <Box sx={designs.OverFlow2_Responsive_Style}>
+                                <Box
+                                sx={{
+                                    boxShadow:
+                                    'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px',
+                                    backgroundColor: '#FCFCFC',
+                                    marginBottom: '0.3em',
+                                    width: 'relative',
+                                    height: 'auto',
+                                    display: 'flex',
+                                    padding: '0.3em 0.5em',
+                                }}
+                                >
+                                <Avatar
+                                    src={AvatarIcon}
+                                    sx={{ marginRight: '0.5em', height: '2em', width: '2em' }}
+                                />
+
+                                <Box
+                                    sx={{
+                                    marginTop: '0.2em',
+                                    width: 'auto',
+                                    flexGrow: 1,
+                                    height: 'max-content',
+                                    }}
+                                >
+                                    <Typography
+                                    noWrap
+                                    sx={{
+                                        color: '#615F79',
+                                        fontSize: '0.7em',
+                                        fontWeight: '600',
+                                        width: 'relative',
+                                        height: 'max-content',
+                                    }}
+                                    >
+                                    Paul Rudd
+                                    </Typography>
+
+                                    <Typography
+                                    noWrap
+                                    sx={{
+                                        color: '#8E8E8E',
+                                        fontSize: '0.6em',
+                                        fontWeight: '400',
+                                        width: 'relative',
+                                        height: 'max-content',
+                                    }}
+                                    >
+                                    3A
+                                    </Typography>
+                                </Box>
+
+                                <Box flexGrow={1} />
+
+                                <Typography
+                                    sx={{
+                                    color: '#F9A826',
+                                    fontSize: '0.9em',
+                                    fontWeight: '600',
+                                    width: 'relative',
+                                    height: 'relative',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    }}
+                                >
+                                    1st
+                                </Typography>
+
+                                <Box
+                                    sx={{
+                                    height: 'relative',
+                                    width: 'auto',
+                                    marginTop: '0.5em',
+                                    }}
+                                >
+                                    <WorkspacePremium
+                                    sx={{ fontSize: '1.2em', color: '#F9A826' }}
+                                    />
+                                </Box>
+                                </Box>
+
+                                {dataStudentRankings.map(function (items, index) {
+                                return (
+                                    <Box
+                                    key={index}
+                                    sx={{
+                                        backgroundColor: '#FDFDFD',
+                                        marginBottom: '0.3em',
+                                        width: 'relative',
+                                        height: 'auto',
+                                        display: 'flex',
+                                        padding: '0.3em 0.5em',
+                                    }}
+                                    >
+                                    {items.avatar}
+
+                                    <Box
+                                        sx={{
+                                        marginTop: '0.2em',
+                                        width: 'auto',
+                                        flexGrow: 1,
+                                        height: 'max-content',
+                                        }}
+                                    >
+                                        <Typography
+                                        sx={{
+                                            color: '#615F79',
+                                            fontSize: '0.7em',
+                                            fontWeight: '600',
+                                            width: 'relative',
+                                            height: 'max-content',
+                                        }}
+                                        >
+                                        {items.studentName}
+                                        </Typography>
+
+                                        <Typography
+                                        sx={{
+                                            color: '#8E8E8E',
+                                            fontSize: '0.6em',
+                                            fontWeight: '400',
+                                            width: 'relative',
+                                            height: 'max-content',
+                                        }}
+                                        >
+                                        {items.courseSec}
+                                        </Typography>
+                                    </Box>
+
+                                    <Box flexGrow={1} />
+
+                                    <Typography
+                                        sx={{
+                                        color: '#8582A0',
+                                        fontSize: '0.7em',
+                                        fontWeight: '600',
+                                        width: '5em',
+                                        height: 'relative',
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        textAlign: 'center',
+                                        }}
+                                    >
+                                        {items.place}
+                                    </Typography>
+                                    </Box>
+                                );
+                                })}
+                            </Box>
+                            </Box>
+                            </Grid>
+                        <Grid item xs = {12} sx = {{ height: "80vh" }}>
+                            <Box sx = {{
+                                marginTop: "1em",
+                                display: "flex",
+                                width: "relative",
+                                height: "auto"
+                            }}>
+                                <Typography
+                                    sx={{
+                                    color: '#615F79',
+                                    fontSize: '0.9em',
+                                    fontWeight: '600',
+                                    width: 'auto',
+                                    height: 'max-content',
+                                    textTransform: 'uppercase',
+                                    }}
+                                >
+                                    Rooms and Classes Schedule
+                                </Typography>
+
+                                <Box flexGrow={1} />
+
+                                <Button
+                                    sx={{
+                                    padding: '0em 2em',
+                                    fontSize: '0.8em',
+                                    fontWeight: '500',
+                                    textTransform: 'none',
+                                    backgroundColor: 'transparent',
+                                    color: '#007FFF',
+                                    width: 'max-content',
+                                    '&: hover': {
+                                        backgroundColor: 'transparent',
+                                    },
+                                    }}
+                                >
+                                    View all
+                                </Button>
+                            </Box>
+
+                            <Box sx={{
+                                    marginTop: '0.3em',
+                                    padding: '0.2em 0em 0.8em 0em',
+                                    width: 'relative',
+                                    height: 'auto',
+                                    boxShadow:
+                                    'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px',
+                                }}>
+                                
+                                <Box sx={{
+                                    width: 'relative',
+                                    height: 'auto',
+                                    margin: '0.5em 1em 0em 1em',
+                                    display: 'flex',
+                                    justifyContent: "space-between",
+                                    padding: '0.5em 1em',
                                     }}>
-                                <Search
-                                sx= {{
-                                    color: "#82818E",
-                                    fontSize: "0.9em"
+                                    
+                                    <Typography sx={{
+                                        color: '#615F79',
+                                        fontSize: '0.8em',
+                                        fontWeight: '600',
+                                        textTransform: 'Capitalize',
+                                        textAlign: 'center',
+                                        height: 'max-content',
+                                        width: '10%',
+                                    }}>
+                                    Room Id
+                                    </Typography>
 
-                                }}/>
-                            </IconButton>
-                        </InputAdornment>
-            ),}}/> */}
-        </Grid>
+                                    <Typography sx={{
+                                        color: '#615F79',
+                                        fontSize: '0.8em',
+                                        fontWeight: '600',
+                                        textTransform: 'Capitalize',
+                                        textAlign: 'center',
+                                        height: 'max-content',
+                                        width: '30%',
+                                    }}>
+                                    Room Name
+                                    </Typography>
 
-        <Grid container columnSpacing={1} sx={{ marginTop: '1em' }}>
-          {dataStats.map(function (items, index) {
-            return (
-              <Grid key={index} item xs={3} sx={{ height: 'relative' }}>
+                                    <Typography sx={{
+                                        color: '#615F79',
+                                        fontSize: '0.8em',
+                                        fontWeight: '600',
+                                        textTransform: 'Capitalize',
+                                        textAlign: 'center',
+                                        height: 'max-content',
+                                        width: '20%',
+                                    }}>
+                                    Course
+                                    </Typography>
+
+                                    <Typography sx={{
+                                        color: '#615F79',
+                                        fontSize: '0.8em',
+                                        fontWeight: '600',
+                                        textTransform: 'Capitalize',
+                                        textAlign: 'center',
+                                        height: 'max-content',
+                                        width: '15%',
+                                    }}>
+                                    Year and Section
+                                    </Typography>
+
+                                    <Typography sx={{
+                                        color: '#615F79',
+                                        fontSize: '0.8em',
+                                        fontWeight: '600',
+                                        textTransform: 'Capitalize',
+                                        textAlign: 'center',
+                                        height: 'max-content',
+                                        width: '15%',
+                                    }}>
+                                    Class Time
+                                    </Typography>
+
+                                    <Typography sx={{
+                                        color: '#615F79',
+                                        fontSize: '0.8em',
+                                        fontWeight: '600',
+                                        textTransform: 'Capitalize',
+                                        textAlign: 'center',
+                                        height: 'max-content',
+                                        width: '10%',
+                                    }}>
+                                    Terms
+                                    </Typography>
+                                </Box>
+
+                                <Box sx={{
+                                    width: 'relative',
+                                    height: '63vh',
+                                    padding: '0em 1em',
+                                    overflowY: 'auto',
+                                    }}>
+                                    {dataTable.map(function (items, index) {
+                                    return (
+                                        <Box
+                                        key={index}
+                                        sx={{
+                                            width: 'relative',
+                                            height: 'auto',
+                                            marginTop: '0.3em',
+                                            display: 'flex',
+                                            justifyContent: "space-between",
+                                            backgroundColor: '#FAF8F9',
+                                            padding: '0.8em 1em',
+                                            "&: hover": {
+                                                cursor: "pointer",
+                                                backgroundColor: "#F9F6F8"
+                                            }
+                                        }}
+                                        >
+                                        <Typography
+                                            sx={{
+                                            color: '#007FFF',
+                                            fontSize: '0.8em',
+                                            fontWeight: '600',
+                                            textTransform: 'Capitalize',
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            textAlign: 'center',
+                                            height: 'relative',
+                                            width: '10%',
+                                            }}
+                                        >
+                                            {items.roomID}
+                                        </Typography>
+
+                                        <Typography
+                                            sx={{
+                                            color: '#615F79',
+                                            fontSize: '0.8em',
+                                            fontWeight: '500',
+                                            textTransform: 'Capitalize',
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            textAlign: 'center',
+                                            height: 'relative',
+                                            width: '30%',
+                                            }}
+                                        >
+                                            {items.roomName}
+                                        </Typography>
+
+                                        <Typography
+                                            sx={{
+                                            color: '#615F79',
+                                            fontSize: '0.8em',
+                                            fontWeight: '500',
+                                            textTransform: 'Capitalize',
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            textAlign: 'center',
+                                            height: 'relative',
+                                            width: '20%',
+                                            }}
+                                        >
+                                            {items.course}
+                                        </Typography>
+
+                                        <Typography
+                                            sx={{
+                                            color: '#615F79',
+                                            fontSize: '0.8em',
+                                            fontWeight: '500',
+                                            textTransform: 'uppercase',
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            textAlign: 'center',
+                                            height: 'relative',
+                                            width: '15%',
+                                            }}
+                                        >
+                                            {items.yearSection}
+                                        </Typography>
+
+                                        <Typography
+                                            sx={{
+                                            color: '#615F79',
+                                            fontSize: '0.8em',
+                                            fontWeight: '500',
+                                            textTransform: 'uppercase',
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            textAlign: 'center',
+                                            height: 'relative',
+                                            width: '15%',
+                                            }}
+                                        >
+                                            {items.classTime}
+                                        </Typography>
+
+                                        <Typography
+                                            sx={{
+                                            color: '#615F79',
+                                            fontSize: '0.8em',
+                                            fontWeight: '500',
+                                            textTransform: 'uppercase',
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            textAlign: 'center',
+                                            height: 'relative',
+                                            width: '10%',
+                                            }}
+                                        >
+                                            {items.Terms}
+                                        </Typography>
+                                        </Box>
+                                    );
+                                    })}
+                                </Box>
+                            </Box>
+                        </Grid>
+                        {/* <Box sx = {{ width: "100%", height: "60vh", border: "1px solid black"}}>
+                        </Box> */}
+                </Grid>
+
+                <Grid item xs = {4} sx = {designs.RightContainer_GridItem_Style}>
+                <Box sx={designs.MainContainer_Style}>
                 <Box
-                  className="Announcements"
-                  sx={{
+                    sx={{
+                    marginBottom: '0.3em',
+                    display: 'flex',
                     width: 'relative',
                     height: 'auto',
-                    padding: '0.7em 0em 0em 0em',
-                    backgroundColor: '#FCFCFC',
-                    boxShadow:
-                      'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px',
-                  }}
-                >
-                  <Box
-                    className="New-announcement"
-                    sx={{
-                      display: 'flex',
-                      gap: '1em',
-                      width: 'relative',
-                      margin: '0em 0.8em',
                     }}
-                  >
-                    <Box sx={{ height: 'auto', width: 'auto' }}>
-                      {items.icon}
-                    </Box>
+                >
+                    <Typography
+                    sx={{
+                        color: '#615F79',
+                        fontSize: '0.8em',
+                        fontWeight: '600',
+                        width: 'auto',
+                        height: 'relative',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        textTransform: 'Uppercase',
+                    }}
+                    >
+                    Professor Ratings
+                    </Typography>
 
-                    <Box sx={{ height: 'auto', width: 'relative' }}>
-                      <Typography
+                    <Box flexGrow={1} />
+
+                    <FormControl
+                    variant="standard"
+                    sx={{
+                        width: 'auto',
+                        padding: '0em',
+                    }}
+                    >
+                    {/* <InputLabel id="demo-simple-select-standard-label"
+                    sx={{
+                    fontSize: '0.7em',
+                    fontWeight: '500',
+                    color: '#8E8E8E',
+                    textTransform: "none"
+                    }}>
+                    This week
+                    </InputLabel> */}
+
+                    <Select
+                        labelId="demo-simple-select-standard-label"
+                        id="demo-simple-select-standard"
+                        value={selectRange}
+                        onChange={handleChangeRange}
+                        label="SelectRoom"
+                        disableUnderline
                         sx={{
-                          color: '#8E8E8E',
-                          fontSize: '0.8em',
-                          fontWeight: '500',
-                          height: 'relative',
-                          textTransform: 'Capitalize',
+                        width: '100%',
+                        fontSize: '0.7em',
+                        fontWeight: '400',
+                        color: '#8E8E8E',
                         }}
-                      >
-                        {items.label}
-                      </Typography>
+                    >
+                        {dataRange.map(({ value, label }) => (
+                        <MenuItem key={value} value={value}>
+                            {' '}
+                            {label}{' '}
+                        </MenuItem>
+                        ))}
+                    </Select>
+                    </FormControl>
+                </Box>
 
-                      <Typography
+                <Box sx={designs.OverFlow_Style}>
+                    <Box
+                    sx={{
+                        boxShadow:
+                        'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px',
+                        backgroundColor: '#FCFCFC',
+                        marginBottom: '0.3em',
+                        width: 'relative',
+                        height: 'auto',
+                        display: 'flex',
+                        padding: '0.3em 0.5em',
+                    }}
+                    >
+                    <Avatar
+                        src={AvatarIcon}
+                        sx={{ marginRight: '0.5em', height: '2em', width: '2em' }}
+                    />
+
+                    <Box
+                        sx={{
+                        marginTop: '0.2em',
+                        width: '8em',
+                        height: 'max-content',
+                        }}
+                    >
+                        <Typography
                         noWrap
                         sx={{
-                          color: '#615F79',
-                          fontSize: '1.8em',
-                          fontWeight: '600',
-                          width: '8em',
-                          height: 'relative',
-                          textTransform: 'Capitalize',
-                        }}
-                      >
-                        {items.total}
-                      </Typography>
-                    </Box>
-                  </Box>
-
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      gap: '0.5em',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      width: 'relative',
-                      margin: '0.5em 0em 0em 0em',
-                      padding: '0.4em',
-                      backgroundColor: '#EDF3F9',
-                      '&: hover': {
-                        cursor: 'pointer',
-                        transition: 'all 300ms',
-                        backgroundColor: '#D8E9F9',
-                      },
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        color: '#007FFF',
-                        fontSize: '0.7em',
-                        fontWeight: '600',
-                        textTransform: 'uppercase',
-                        height: 'relative',
-                      }}
-                    >
-                      {items.updateValue}
-                    </Typography>
-
-                    <Typography
-                      sx={{
-                        color: '#007FFF',
-                        fontSize: '0.7em',
-                        fontWeight: '600',
-                        textTransform: 'uppercase',
-                        height: 'relative',
-                      }}
-                    >
-                      {items.updateText}
-                    </Typography>
-                  </Box>
-                </Box>
-              </Grid>
-            );
-          })}
-          <Grid item xs={3} sx={{ height: 'auto' }}>
-            <Box sx={designs.MainContainer_Style}>
-              <Box
-                sx={{
-                  marginBottom: '0.3em',
-                  display: 'flex',
-                  width: 'relative',
-                  height: 'auto',
-                }}
-              >
-                <Typography
-                  sx={{
-                    color: '#615F79',
-                    fontSize: '0.8em',
-                    fontWeight: '600',
-                    width: 'auto',
-                    height: 'relative',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    textTransform: 'Uppercase',
-                  }}
-                >
-                  Professor Ratings
-                </Typography>
-
-                <Box flexGrow={1} />
-
-                <FormControl
-                  variant="standard"
-                  sx={{
-                    width: '32%',
-                    padding: '0em',
-                  }}
-                >
-                  {/* <InputLabel id="demo-simple-select-standard-label"
-                sx={{
-                  fontSize: '0.7em',
-                  fontWeight: '500',
-                  color: '#8E8E8E',
-                  textTransform: "none"
-                }}>
-                This week
-                </InputLabel> */}
-
-                  <Select
-                    labelId="demo-simple-select-standard-label"
-                    id="demo-simple-select-standard"
-                    value={selectRange}
-                    onChange={handleChangeRange}
-                    label="SelectRoom"
-                    disableUnderline
-                    sx={{
-                      width: '100%',
-                      fontSize: '0.7em',
-                      fontWeight: '400',
-                      color: '#8E8E8E',
-                    }}
-                  >
-                    {dataRange.map(({ value, label }) => (
-                      <MenuItem key={value} value={value}>
-                        {' '}
-                        {label}{' '}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </Box>
-
-              <Box sx={designs.OverFlow_Style}>
-                <Box
-                  sx={{
-                    boxShadow:
-                      'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px',
-                    backgroundColor: '#FCFCFC',
-                    marginBottom: '0.3em',
-                    width: 'relative',
-                    height: 'auto',
-                    display: 'flex',
-                    padding: '0.3em 0.5em',
-                  }}
-                >
-                  <Avatar
-                    src={AvatarIcon}
-                    sx={{ marginRight: '0.5em', height: '2em', width: '2em' }}
-                  />
-
-                  <Box
-                    sx={{
-                      marginTop: '0.2em',
-                      width: '8em',
-                      height: 'max-content',
-                    }}
-                  >
-                    <Typography
-                      noWrap
-                      sx={{
-                        color: '#615F79',
-                        fontSize: '0.7em',
-                        fontWeight: '600',
-                        width: 'relative',
-                        height: 'max-content',
-                      }}
-                    >
-                      Mark Andrei (You)
-                    </Typography>
-
-                    <Typography
-                      noWrap
-                      sx={{
-                        color: '#8E8E8E',
-                        fontSize: '0.6em',
-                        fontWeight: '400',
-                        width: 'relative',
-                        height: 'max-content',
-                      }}
-                    >
-                      Embedded Programming
-                    </Typography>
-                  </Box>
-
-                  <Box flexGrow={1} />
-
-                  <Typography
-                    sx={{
-                      color: '#FFC700',
-                      fontSize: '0.9em',
-                      fontWeight: '600',
-                      width: 'relative',
-                      height: 'relative',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                  >
-                    96.7
-                  </Typography>
-
-                  <Box
-                    sx={{
-                      height: 'relative',
-                      width: 'auto',
-                      marginTop: '0.5em',
-                    }}
-                  >
-                    <Star sx={{ fontSize: '1.2em', color: '#FFC700' }} />
-                  </Box>
-                </Box>
-
-                {dataProfessorRatings.map(function (items, index) {
-                  return (
-                    <Box
-                      key={index}
-                      sx={{
-                        backgroundColor: '#FDFDFD',
-                        marginBottom: '0.3em',
-                        width: 'relative',
-                        height: 'auto',
-                        display: 'flex',
-                        padding: '0.3em 0.5em',
-                      }}
-                    >
-                      {items.avatar}
-
-                      <Box
-                        sx={{
-                          marginTop: '0.2em',
-                          width: '10em',
-                          height: 'max-content',
-                        }}
-                      >
-                        <Typography
-                          sx={{
                             color: '#615F79',
                             fontSize: '0.7em',
                             fontWeight: '600',
                             width: 'relative',
                             height: 'max-content',
-                          }}
+                        }}
                         >
-                          {items.professorName}
+                        Mark Andrei (You)
                         </Typography>
 
                         <Typography
-                          sx={{
+                        noWrap
+                        sx={{
                             color: '#8E8E8E',
                             fontSize: '0.6em',
                             fontWeight: '400',
                             width: 'relative',
                             height: 'max-content',
-                          }}
+                        }}
                         >
-                          {items.room}
+                        Embedded Programming
                         </Typography>
-                      </Box>
-
-                      <Box flexGrow={1} />
-
-                      <Typography
-                        sx={{
-                          color: '#FFC700',
-                          fontSize: '0.9em',
-                          fontWeight: '600',
-                          width: 'relative',
-                          height: 'relative',
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                        }}
-                      >
-                        {items.rate}
-                      </Typography>
-
-                      <Box
-                        sx={{
-                          height: 'relative',
-                          width: 'auto',
-                          marginTop: '0.5em',
-                        }}
-                      >
-                        {items.rateIcon}
-                      </Box>
                     </Box>
-                  );
-                })}
-              </Box>
-            </Box>
 
-            <Box sx={designs.MainContainer2_Style}>
-              <Box
-                sx={{
-                  marginBottom: '0.3em',
-                  display: 'flex',
-                  width: 'relative',
-                  height: 'auto',
-                }}
-              >
-                <Typography
-                  sx={{
-                    color: '#615F79',
-                    fontSize: '0.8em',
-                    fontWeight: '600',
-                    width: 'auto',
-                    height: 'relative',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    textTransform: 'Uppercase',
-                  }}
-                >
-                  Student Rankings
-                </Typography>
+                    <Box flexGrow={1} />
 
-                <Box flexGrow={1} />
-
-                <FormControl
-                  variant="standard"
-                  sx={{
-                    width: '32%',
-                    padding: '0em',
-                  }}
-                >
-                  {/* <InputLabel id="demo-simple-select-standard-label"
-                sx={{
-                  fontSize: '0.7em',
-                  fontWeight: '500',
-                  color: '#8E8E8E',
-                  textTransform: "none"
-                }}>
-                This week
-                </InputLabel> */}
-
-                  <Select
-                    labelId="demo-simple-select-standard-label"
-                    id="demo-simple-select-standard"
-                    value={selectRange}
-                    onChange={handleChangeRange}
-                    label="SelectRoom"
-                    disableUnderline
-                    sx={{
-                      width: '100%',
-                      fontSize: '0.7em',
-                      fontWeight: '400',
-                      color: '#8E8E8E',
-                    }}
-                  >
-                    {dataRange.map(({ value, label }) => (
-                      <MenuItem key={value} value={value}>
-                        {' '}
-                        {label}{' '}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </Box>
-
-              <Box sx={designs.OverFlow2_Style}>
-                <Box
-                  sx={{
-                    boxShadow:
-                      'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px',
-                    backgroundColor: '#FCFCFC',
-                    marginBottom: '0.3em',
-                    width: 'relative',
-                    height: 'auto',
-                    display: 'flex',
-                    padding: '0.3em 0.5em',
-                  }}
-                >
-                  <Avatar
-                    src={AvatarIcon}
-                    sx={{ marginRight: '0.5em', height: '2em', width: '2em' }}
-                  />
-
-                  <Box
-                    sx={{
-                      marginTop: '0.2em',
-                      width: '8em',
-                      height: 'max-content',
-                    }}
-                  >
                     <Typography
-                      noWrap
-                      sx={{
-                        color: '#615F79',
-                        fontSize: '0.7em',
+                        sx={{
+                        color: '#FFC700',
+                        fontSize: '0.9em',
                         fontWeight: '600',
                         width: 'relative',
-                        height: 'max-content',
-                      }}
+                        height: 'relative',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        }}
                     >
-                      Paul Rudd
+                        96.7
                     </Typography>
 
+                    <Box
+                        sx={{
+                        height: 'relative',
+                        width: 'auto',
+                        marginTop: '0.5em',
+                        }}
+                    >
+                        <Star sx={{ fontSize: '1.2em', color: '#FFC700' }} />
+                    </Box>
+                    </Box>
+
+                    {dataProfessorRatings.map(function (items, index) {
+                    return (
+                        <Box
+                        key={index}
+                        sx={{
+                            backgroundColor: '#FDFDFD',
+                            marginBottom: '0.3em',
+                            width: 'relative',
+                            height: 'auto',
+                            display: 'flex',
+                            padding: '0.3em 0.5em',
+                        }}
+                        >
+                        {items.avatar}
+
+                        <Box
+                            sx={{
+                            marginTop: '0.2em',
+                            width: '10em',
+                            height: 'max-content',
+                            }}
+                        >
+                            <Typography
+                            sx={{
+                                color: '#615F79',
+                                fontSize: '0.7em',
+                                fontWeight: '600',
+                                width: 'relative',
+                                height: 'max-content',
+                            }}
+                            >
+                            {items.professorName}
+                            </Typography>
+
+                            <Typography
+                            sx={{
+                                color: '#8E8E8E',
+                                fontSize: '0.6em',
+                                fontWeight: '400',
+                                width: 'relative',
+                                height: 'max-content',
+                            }}
+                            >
+                            {items.room}
+                            </Typography>
+                        </Box>
+
+                        <Box flexGrow={1} />
+
+                        <Typography
+                            sx={{
+                            color: '#FFC700',
+                            fontSize: '0.9em',
+                            fontWeight: '600',
+                            width: 'relative',
+                            height: 'relative',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            }}
+                        >
+                            {items.rate}
+                        </Typography>
+
+                        <Box
+                            sx={{
+                            height: 'relative',
+                            width: 'auto',
+                            marginTop: '0.5em',
+                            }}
+                        >
+                            {items.rateIcon}
+                        </Box>
+                        </Box>
+                    );
+                    })}
+                </Box>
+                </Box>
+
+                <Box sx={designs.MainContainer2_Style}>
+                <Box
+                    sx={{
+                    marginBottom: '0.3em',
+                    display: 'flex',
+                    width: 'relative',
+                    height: 'auto',
+                    }}
+                >
                     <Typography
-                      noWrap
-                      sx={{
-                        color: '#8E8E8E',
-                        fontSize: '0.6em',
-                        fontWeight: '400',
-                        width: 'relative',
-                        height: 'max-content',
-                      }}
+                    sx={{
+                        color: '#615F79',
+                        fontSize: '0.8em',
+                        fontWeight: '600',
+                        width: 'auto',
+                        height: 'relative',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        textTransform: 'Uppercase',
+                    }}
                     >
-                      3A
+                    Student Rankings
                     </Typography>
-                  </Box>
 
-                  <Box flexGrow={1} />
+                    <Box flexGrow={1} />
 
-                  <Typography
+                    <FormControl
+                    variant="standard"
                     sx={{
-                      color: '#F9A826',
-                      fontSize: '0.9em',
-                      fontWeight: '600',
-                      width: 'relative',
-                      height: 'relative',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
+                        width: 'auto',
+                        padding: '0em',
                     }}
-                  >
-                    1st
-                  </Typography>
-
-                  <Box
+                    >
+                    {/* <InputLabel id="demo-simple-select-standard-label"
                     sx={{
-                      height: 'relative',
-                      width: 'auto',
-                      marginTop: '0.5em',
+                    fontSize: '0.7em',
+                    fontWeight: '500',
+                    color: '#8E8E8E',
+                    textTransform: "none"
+                    }}>
+                    This week
+                    </InputLabel> */}
+
+                    <Select
+                        labelId="demo-simple-select-standard-label"
+                        id="demo-simple-select-standard"
+                        value={selectRange}
+                        onChange={handleChangeRange}
+                        label="SelectRoom"
+                        disableUnderline
+                        sx={{
+                        width: '100%',
+                        fontSize: '0.7em',
+                        fontWeight: '400',
+                        color: '#8E8E8E',
+                        }}
+                    >
+                        {dataRange.map(({ value, label }) => (
+                        <MenuItem key={value} value={value}>
+                            {' '}
+                            {label}{' '}
+                        </MenuItem>
+                        ))}
+                    </Select>
+                    </FormControl>
+                </Box>
+
+                <Box sx={designs.OverFlow2_Style}>
+                    <Box
+                    sx={{
+                        boxShadow:
+                        'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px',
+                        backgroundColor: '#FCFCFC',
+                        marginBottom: '0.3em',
+                        width: 'relative',
+                        height: 'auto',
+                        display: 'flex',
+                        padding: '0.3em 0.5em',
                     }}
-                  >
-                    <WorkspacePremium
-                      sx={{ fontSize: '1.2em', color: '#F9A826' }}
+                    >
+                    <Avatar
+                        src={AvatarIcon}
+                        sx={{ marginRight: '0.5em', height: '2em', width: '2em' }}
                     />
-                  </Box>
-                </Box>
 
-                {dataStudentRankings.map(function (items, index) {
-                  return (
                     <Box
-                      key={index}
-                      sx={{
-                        backgroundColor: '#FDFDFD',
-                        marginBottom: '0.3em',
-                        width: 'relative',
-                        height: 'auto',
-                        display: 'flex',
-                        padding: '0.3em 0.5em',
-                      }}
-                    >
-                      {items.avatar}
-
-                      <Box
                         sx={{
-                          marginTop: '0.2em',
-                          width: '10em',
-                          height: 'max-content',
+                        marginTop: '0.2em',
+                        width: '8em',
+                        height: 'max-content',
                         }}
-                      >
+                    >
                         <Typography
-                          sx={{
+                        noWrap
+                        sx={{
                             color: '#615F79',
                             fontSize: '0.7em',
                             fontWeight: '600',
                             width: 'relative',
                             height: 'max-content',
-                          }}
+                        }}
                         >
-                          {items.studentName}
+                        Paul Rudd
                         </Typography>
 
                         <Typography
-                          sx={{
+                        noWrap
+                        sx={{
                             color: '#8E8E8E',
                             fontSize: '0.6em',
                             fontWeight: '400',
                             width: 'relative',
                             height: 'max-content',
-                          }}
+                        }}
                         >
-                          {items.courseSec}
+                        3A
                         </Typography>
-                      </Box>
-
-                      <Box flexGrow={1} />
-
-                      <Typography
-                        sx={{
-                          color: '#8582A0',
-                          fontSize: '0.7em',
-                          fontWeight: '600',
-                          width: '5em',
-                          height: 'relative',
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          textAlign: 'center',
-                        }}
-                      >
-                        {items.place}
-                      </Typography>
                     </Box>
-                  );
-                })}
-              </Box>
-            </Box>
-          </Grid>
-        </Grid>
 
-        <Grid item xs={12} sx={{ position: 'absolute', top: 250, zIndex: 1 }}>
-          <Box sx={{ width: 'auto' }}>
-            <Box
-              sx={{
-                marginTop: '1em',
-                width: 'relative',
-                height: 'auto',
-                display: 'flex',
-              }}
-            >
-              <Typography
-                sx={{
-                  color: '#615F79',
-                  fontSize: '0.9em',
-                  fontWeight: '600',
-                  width: 'auto',
-                  height: 'max-content',
-                  textTransform: 'uppercase',
-                }}
-              >
-                Rooms and Classes Schedule
-              </Typography>
+                    <Box flexGrow={1} />
 
-              <Box flexGrow={1} />
-
-              <Button
-                sx={{
-                  padding: '0em 2em',
-                  fontSize: '0.8em',
-                  fontWeight: '500',
-                  textTransform: 'none',
-                  backgroundColor: 'transparent',
-                  color: '#007FFF',
-                  width: 'max-content',
-                  '&: hover': {
-                    backgroundColor: 'transparent',
-                  },
-                }}
-              >
-                View all
-              </Button>
-            </Box>
-
-            <Box
-              sx={{
-                marginTop: '0.5em',
-                padding: '0.2em 0em 0.8em 0em',
-                width: 'relative',
-                height: 'auto',
-                boxShadow:
-                  'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px',
-              }}
-            >
-              <Box
-                sx={{
-                  width: 'relative',
-                  height: 'auto',
-                  margin: '0.5em 1em 0em 1em',
-                  display: 'flex',
-                  gap: '0.5em',
-                  padding: '0.5em 1em',
-                }}
-              >
-                <Typography
-                  sx={{
-                    color: '#615F79',
-                    fontSize: '0.8em',
-                    fontWeight: '600',
-                    textTransform: 'Capitalize',
-                    textAlign: 'center',
-                    height: 'max-content',
-                    width: '8em',
-                  }}
-                >
-                  Room Id
-                </Typography>
-
-                <Typography
-                  sx={{
-                    color: '#615F79',
-                    fontSize: '0.8em',
-                    fontWeight: '600',
-                    textTransform: 'Capitalize',
-                    textAlign: 'center',
-                    height: 'max-content',
-                    width: '20em',
-                  }}
-                >
-                  Room name
-                </Typography>
-
-                <Typography
-                  sx={{
-                    color: '#615F79',
-                    fontSize: '0.8em',
-                    fontWeight: '600',
-                    textTransform: 'Capitalize',
-                    textAlign: 'center',
-                    height: 'max-content',
-                    width: '13em',
-                  }}
-                >
-                  Course
-                </Typography>
-
-                <Typography
-                  sx={{
-                    color: '#615F79',
-                    fontSize: '0.8em',
-                    fontWeight: '600',
-                    textTransform: 'Capitalize',
-                    textAlign: 'center',
-                    height: 'max-content',
-                    width: '12em',
-                  }}
-                >
-                  year and section
-                </Typography>
-
-                <Typography
-                  sx={{
-                    color: '#615F79',
-                    fontSize: '0.8em',
-                    fontWeight: '600',
-                    textTransform: 'Capitalize',
-                    textAlign: 'center',
-                    height: 'max-content',
-                    width: '10em',
-                  }}
-                >
-                  class time
-                </Typography>
-
-                <Typography
-                  sx={{
-                    color: '#615F79',
-                    fontSize: '0.8em',
-                    fontWeight: '600',
-                    textTransform: 'Capitalize',
-                    textAlign: 'center',
-                    height: 'max-content',
-                    width: '6em',
-                  }}
-                >
-                  terms
-                </Typography>
-              </Box>
-
-              <Box
-                sx={{
-                  width: 'relative',
-                  height: '17em',
-                  padding: '0em 0em 0em 1em',
-                  overflowY: 'auto',
-                }}
-              >
-                {dataTable.map(function (items, index) {
-                  return (
-                    <Box
-                      key={index}
-                      sx={{
+                    <Typography
+                        sx={{
+                        color: '#F9A826',
+                        fontSize: '0.9em',
+                        fontWeight: '600',
                         width: 'relative',
-                        height: 'auto',
-                        marginTop: '0.3em',
+                        height: 'relative',
                         display: 'flex',
-                        gap: '0.5em',
-                        backgroundColor: '#FAF8F9',
-                        padding: '0.8em 1em',
-                      }}
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        }}
                     >
-                      <Typography
-                        sx={{
-                          color: '#007FFF',
-                          fontSize: '0.8em',
-                          fontWeight: '600',
-                          textTransform: 'Capitalize',
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          textAlign: 'center',
-                          height: 'relative',
-                          width: '8em',
-                        }}
-                      >
-                        {items.roomID}
-                      </Typography>
+                        1st
+                    </Typography>
 
-                      <Typography
+                    <Box
                         sx={{
-                          color: '#615F79',
-                          fontSize: '0.8em',
-                          fontWeight: '500',
-                          textTransform: 'Capitalize',
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          textAlign: 'center',
-                          height: 'relative',
-                          width: '20em',
+                        height: 'relative',
+                        width: 'auto',
+                        marginTop: '0.5em',
                         }}
-                      >
-                        {items.roomName}
-                      </Typography>
-
-                      <Typography
-                        sx={{
-                          color: '#615F79',
-                          fontSize: '0.8em',
-                          fontWeight: '500',
-                          textTransform: 'Capitalize',
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          textAlign: 'center',
-                          height: 'relative',
-                          width: '13em',
-                        }}
-                      >
-                        {items.course}
-                      </Typography>
-
-                      <Typography
-                        sx={{
-                          color: '#615F79',
-                          fontSize: '0.8em',
-                          fontWeight: '500',
-                          textTransform: 'uppercase',
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          textAlign: 'center',
-                          height: 'relative',
-                          width: '12em',
-                        }}
-                      >
-                        {items.yearSection}
-                      </Typography>
-
-                      <Typography
-                        sx={{
-                          color: '#615F79',
-                          fontSize: '0.8em',
-                          fontWeight: '500',
-                          textTransform: 'uppercase',
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          textAlign: 'center',
-                          height: 'relative',
-                          width: '10em',
-                        }}
-                      >
-                        {items.classTime}
-                      </Typography>
-
-                      <Typography
-                        sx={{
-                          color: '#615F79',
-                          fontSize: '0.8em',
-                          fontWeight: '500',
-                          textTransform: 'uppercase',
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          textAlign: 'center',
-                          height: 'relative',
-                          width: '6em',
-                        }}
-                      >
-                        {items.Terms}
-                      </Typography>
+                    >
+                        <WorkspacePremium
+                        sx={{ fontSize: '1.2em', color: '#F9A826' }}
+                        />
                     </Box>
-                  );
-                })}
-              </Box>
+                    </Box>
+
+                    {dataStudentRankings.map(function (items, index) {
+                    return (
+                        <Box
+                        key={index}
+                        sx={{
+                            backgroundColor: '#FDFDFD',
+                            marginBottom: '0.3em',
+                            width: 'relative',
+                            height: 'auto',
+                            display: 'flex',
+                            padding: '0.3em 0.5em',
+                        }}
+                        >
+                        {items.avatar}
+
+                        <Box
+                            sx={{
+                            marginTop: '0.2em',
+                            width: '10em',
+                            height: 'max-content',
+                            }}
+                        >
+                            <Typography
+                            sx={{
+                                color: '#615F79',
+                                fontSize: '0.7em',
+                                fontWeight: '600',
+                                width: 'relative',
+                                height: 'max-content',
+                            }}
+                            >
+                            {items.studentName}
+                            </Typography>
+
+                            <Typography
+                            sx={{
+                                color: '#8E8E8E',
+                                fontSize: '0.6em',
+                                fontWeight: '400',
+                                width: 'relative',
+                                height: 'max-content',
+                            }}
+                            >
+                            {items.courseSec}
+                            </Typography>
+                        </Box>
+
+                        <Box flexGrow={1} />
+
+                        <Typography
+                            sx={{
+                            color: '#8582A0',
+                            fontSize: '0.7em',
+                            fontWeight: '600',
+                            width: '5em',
+                            height: 'relative',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            textAlign: 'center',
+                            }}
+                        >
+                            {items.place}
+                        </Typography>
+                        </Box>
+                    );
+                    })}
+                </Box>
+                </Box>
+                </Grid>
             </Box>
-          </Box>
         </Grid>
-      </Grid>
     </Container>
   );
 }
