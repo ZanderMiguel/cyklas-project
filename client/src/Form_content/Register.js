@@ -1,30 +1,27 @@
 import React, { useState } from 'react';
 import { Grid, Button, Typography, Avatar, Box } from '@mui/material';
-
 import Dialogform from '../components/Dialogform';
-import Google from '../assets/Rectangle 134.svg';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import CusButton from '../components/Button';
-import usePost from '../customHooks/usePost';
-import { GoogleLogin } from 'react-google-login';
 import Input from '../components/Input';
 import Drowpdown from '../components/Drowpdown';
-import GoogleAuth from '../pages-landing/GoogleAuth';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
-const genders = [
-  {
-    value: 'Male',
-    label: 'Male',
-  },
-  {
-    value: 'Female',
-    label: 'Female',
-  },
-];
+// const genders = [
+//   {
+//     value: 'Male',
+//     label: 'Male',
+//   },
+//   {
+//     value: 'Female',
+//     label: 'Female',
+//   },
+// ];
 
-function Register({ open, close }) {
-  const [toggleprof, setToggleProf] = useState('outlined');
-  const [togglestud, setToggleStud] = useState('outlined');
+function Register({ open, close, setOpenDialog, setNotif }) {
+  const [toggleprof, setToggleProf] = useState('text');
+  const [togglestud, setToggleStud] = useState('text');
   const [imgSrc, setImgSrc] = useState(null);
   const [usertype, setUserType] = useState('');
   const [firstname, setFirstName] = useState('');
@@ -43,7 +40,6 @@ function Register({ open, close }) {
   const [passwordError, setPasswordError] = useState(false);
   const [confirmpasswordError, setConfirmPasswordError] = useState(false);
 
-  const { post } = usePost();
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
 
@@ -92,72 +88,59 @@ function Register({ open, close }) {
       const userRegister = {
         userType: usertype,
         firstName: firstname,
-        gender,
         lastName: lastname,
         emailAddress: emailaddress,
         password,
         image: imgSrc,
       };
 
-      post('http://localhost:5000/register', userRegister);
+      axios
+        .post('http://localhost:5000/register', userRegister)
+        .then(() => {
+          setNotif(
+            toast.success('Registered Successfully!', {
+              position: toast.POSITION.TOP_CENTER,
+              autoClose: 5000,
+              draggable: false,
+              closeOnClick: true,
+            })
+          );
+          setOpenDialog(false);
+        })
+        .catch((err) => {
+          console.log(err.message);
+          setNotif(
+            toast.error(`${err}`, {
+              position: toast.POSITION.TOP_CENTER,
+              autoClose: 5000,
+              draggable: false,
+              closeOnClick: true,
+            })
+          );
+        });
     }
   };
   const handleClickProf = (text) => (event) => {
     setToggleProf('contained');
-    setToggleStud('outlined');
+    setToggleStud('text');
     setUserTypeError(false);
     setUserType(text);
   };
   const handleClickStud = (text) => (event) => {
     setToggleStud('contained');
-    setToggleProf('outlined');
+    setToggleProf('text');
     setUserTypeError(false);
     setUserType(text);
   };
-  const googleSuccess = async (res) => {
-    console.log(res);
-  };
-  const googleFailure = (error) => {
-    console.log(error);
-    console.log('Google Sign In was unsucessful. Try again later');
-  };
-
   return (
     <>
       <Router>
         <Dialogform divider title="Register here" open={open} close={close}>
-          <Box sx = {{ p: "0em 2em" }}>
-          <Grid container overflow="auto" sx={{ mb: 2  }}>
+          <Box sx={{ pr: '2em', pl: '2em', pb: '2em', pt: '0em' }}>
             <Grid
               container
               item
-              xs={6}
-              justifyContent="space-around"
-              alignItems="center"
-            >
-              <Button
-                sx={{ borderRadius: '20px' }}
-                variant={toggleprof}
-                disableRipple
-                onClick={handleClickProf('Professor')}
-                name="userType"
-              >
-                Professor
-              </Button>
-              <Button
-                sx={{ borderRadius: '50px' }}
-                variant={togglestud}
-                disableRipple
-                onClick={handleClickStud('Student')}
-                name="userType"
-              >
-                Student
-              </Button>
-            </Grid>
-            <Grid
-              container
-              item
-              xs={6}
+              xs={12}
               justifyContent="space-around"
               alignItems="center"
             >
@@ -175,136 +158,156 @@ function Register({ open, close }) {
                   style={{ display: 'none' }}
                   onChange={(event) => {
                     console.log(URL.createObjectURL(event.target.files[0]));
-
                     setImgSrc(URL.createObjectURL(event.target.files[0]));
-                    //setImgSrc(event.target.files[0])
                   }}
                 />
               </div>
             </Grid>
-            {usertypeError && (
-              <Grid item xs={12}>
-                <Box
-                  sx={{
-                    padding: 1,
-                    marginTop: '1em',
-                    borderRadius: '5px',
-                    backgroundColor: '#ef5350',
-                    color: 'white',
-                  }}
-                >
-                  <Typography sx={{ fontSize: '0.8em', fontWeight: 600 }}>
-                    Please select "PROFESSOR" or "STUDENT"
-                  </Typography>
-                </Box>
+            <Grid container overflow="auto" sx={{ mb: 2 }}>
+              <Typography variant="subtitle1" sx={{ mb: 2 }}>
+                Select user type:
+              </Typography>
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <Button
+                    fullWidth
+                    variant={toggleprof}
+                    disableRipple
+                    onClick={handleClickProf('Professor')}
+                    name="userType"
+                  >
+                    Professor
+                  </Button>
+                </Grid>
+                <Grid item xs={6}>
+                  <Button
+                    fullWidth
+                    variant={togglestud}
+                    disableRipple
+                    onClick={handleClickStud('Student')}
+                    name="userType"
+                  >
+                    Student
+                  </Button>
+                </Grid>
               </Grid>
-            )}
-          </Grid>
-          <form onSubmit={handleSubmit} noValidate autoComplete="off">
-            <Grid container spacing={2}>
-              <Input
-                name="firstName"
-                inputLabel="First Name"
-                placeholder="First name*"
-                required
-                autoComplete="off"
-                error={firstnameError}
-                helperText={
-                  firstnameError ? 'Please enter your first name' : false
-                }
-                onChange={(event) => setFirstName(event.target.value)}
-                autoFocus
-                half
-              />
-              <Input
-                name="lastName"
-                inputLabel="Last Name"
-                placeholder="Last name*"
-                autoComplete="off"
-                error={lastnameError}
-                helperText={
-                  lastnameError ? 'Please enter your last name' : false
-                }
-                onChange={(event) => setLastName(event.target.value)}
-                half
-              />
-              <Input
-                name="emailAddress"
-                inputLabel="Email Address"
-                placeholder="Email address*"
-                type="email"
-                autoComplete="off"
-                error={emailaddressError}
-                helperText={
-                  emailaddressError ? 'Please enter your email address' : false
-                }
-                onChange={(event) => setEmailAddress(event.target.value)}
-                half
-              />
-              <Drowpdown
-                label="Gender"
-                inputLabel="Gender"
-                name="gender"
-                value={gender}
-                onChange={(e) => setGender(e.target.value)}
-                options={genders}
-                half
-              />
-              <Input
-                name="password"
-                placeholder="Password*"
-                inputLabel="Password"
-                autoComplete="off"
-                error={passwordError}
-                helperText={
-                  passwordError ? 'Please enter your password' : false
-                }
-                type={showPassword ? 'text' : 'password'}
-                handleShowPassword={handleShowPassword}
-                onChange={(event) => setPassword(event.target.value)}
-              />
-              <Input
-                name="confirmpassword"
-                inputLabel="Confirm Password"
-                placeholder="Confirm password*"
-                type={showPassword ? 'text' : 'password'}
-                handleShowPassword={handleShowPassword}
-                error={confirmpasswordError}
-                helperText={
-                  confirmpasswordError
-                    ? 'Confirm password is empty or it is not the same as your entered password'
-                    : false
-                }
-                onChange={(event) => setConfirmPassword(event.target.value)}
-              />
-
-              <Grid item xs={6}>
-                <GoogleAuth usertype={usertype} />
-              </Grid>
-              <Grid item xs={6}>
-                <CusButton
-                  content="Create Account"
-                  fullWidth
-                  variant="contained"
-                  borderRadius="10px"
-                  type="submit"
-                  sx={{
-                    backgroundColor: '#007FFF',
-                    color: 'white',
-                    '&:hover': {
-                      backgroundColor: '#0072e6',
-                    },
-                  }}
-                />
-                <Typography>
-                  Already have an account?
-                  <Link style={{ textDecoration: 'none' }} to="/home">
-                    Sign In
-                  </Link>
-                </Typography>
-              </Grid>
+              {usertypeError && (
+                <Grid item xs={12}>
+                  <Box
+                    sx={{
+                      padding: 1,
+                      marginTop: '1em',
+                      borderRadius: '5px',
+                      backgroundColor: '#ef5350',
+                      color: 'white',
+                    }}
+                  >
+                    <Typography sx={{ fontSize: '0.8em', fontWeight: 600 }}>
+                      Please select "PROFESSOR" or "STUDENT"
+                    </Typography>
+                  </Box>
+                </Grid>
+              )}
             </Grid>
-          </form>
+            <form onSubmit={handleSubmit} noValidate autoComplete="off">
+              <Grid container spacing={2}>
+                <Input
+                  name="firstName"
+                  inputLabel="First Name"
+                  placeholder="First name*"
+                  required
+                  autoComplete="off"
+                  error={firstnameError}
+                  helperText={
+                    firstnameError ? 'Please enter your first name' : false
+                  }
+                  onChange={(event) => setFirstName(event.target.value)}
+                  autoFocus
+                  half
+                />
+                <Input
+                  name="lastName"
+                  inputLabel="Last Name"
+                  placeholder="Last name*"
+                  required
+                  autoComplete="off"
+                  error={lastnameError}
+                  helperText={
+                    lastnameError ? 'Please enter your last name' : false
+                  }
+                  onChange={(event) => setLastName(event.target.value)}
+                  half
+                />
+                <Input
+                  name="emailAddress"
+                  inputLabel="Email Address"
+                  placeholder="Email address*"
+                  required
+                  type="email"
+                  autoComplete="off"
+                  error={emailaddressError}
+                  helperText={
+                    emailaddressError
+                      ? 'Please enter your email address'
+                      : false
+                  }
+                  onChange={(event) => setEmailAddress(event.target.value)}
+                />
+                {/* <Drowpdown
+                  label="Gender"
+                  inputLabel="Gender"
+                  name="gender"
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
+                  options={genders}
+                  half
+                /> */}
+                <Input
+                  name="password"
+                  placeholder="Password*"
+                  required
+                  inputLabel="Password"
+                  autoComplete="off"
+                  error={passwordError}
+                  helperText={
+                    passwordError ? 'Please enter your password' : false
+                  }
+                  type={showPassword ? 'text' : 'password'}
+                  handleShowPassword={handleShowPassword}
+                  onChange={(event) => setPassword(event.target.value)}
+                />
+                <Input
+                  name="confirmpassword"
+                  inputLabel="Confirm Password"
+                  placeholder="Confirm password*"
+                  type={showPassword ? 'text' : 'password'}
+                  handleShowPassword={handleShowPassword}
+                  error={confirmpasswordError}
+                  helperText={
+                    confirmpasswordError
+                      ? 'Confirm password is empty or it is not the same as your entered password'
+                      : false
+                  }
+                  onChange={(event) => setConfirmPassword(event.target.value)}
+                />
+                <Grid item xs={12}>
+                  <CusButton
+                    content="Create Account"
+                    fullWidth
+                    variant="contained"
+                    borderRadius="10px"
+                    type="submit"
+                    sx={{
+                      backgroundColor: '#007FFF',
+                      color: 'white',
+                      '&:hover': {
+                        backgroundColor: '#0072e6',
+                      },
+                    }}
+                  />
+                </Grid>
+              </Grid>
+            </form>
           </Box>
         </Dialogform>
       </Router>

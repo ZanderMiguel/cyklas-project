@@ -64,8 +64,8 @@ function Contact() {
             Send us a message
           </Typography>
           <Typography sx={{ ...style, color: '#007FFF' }} variant="h6">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique,
-            optio?
+            Got a question? We'd love to hear from you. <br />
+            Send us a message and we'll respond as soon as possible.
           </Typography>
 
           <CssTextField
@@ -130,8 +130,8 @@ function Contact() {
             </Typography>
           </Box>
         </Box>
+        <Footer />
       </Box>
-      <Footer />
     </>
   );
 }

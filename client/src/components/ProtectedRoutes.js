@@ -13,7 +13,7 @@ function ProtectedRoutes({
 }) {
   return (
     <>
-    <CssBaseline />
+      <CssBaseline />
       {localStorage && <Navbar />}
       <Route
         {...attrib}
@@ -21,9 +21,13 @@ function ProtectedRoutes({
           return localStorage.token !== undefined ? (
             socket ? (
               <>
-              
-               {questionArray ? <Component questionArray={questionArray} socket={socket}/>:<Component socket={socket} />}
-            </>) :(
+                {questionArray ? (
+                  <Component questionArray={questionArray} socket={socket} />
+                ) : (
+                  <Component socket={socket} />
+                )}
+              </>
+            ) : (
               <Component />
             )
           ) : (
