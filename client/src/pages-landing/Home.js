@@ -19,7 +19,8 @@ import MaleLogo from '../assets/Images/avatar_male.png';
 import Register from '../Form_content/Register';
 import GoogleAuth from './GoogleAuth';
 import Footer from './Footer';
-import { ToastContainer, cssTransition } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const style = { fontFamily: 'Poppins', marginTop: 1 };
 
@@ -44,8 +45,6 @@ function Home() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsPending(true);
-
     axios
       .post('http://localhost:5000/login', Object.fromEntries(myApi))
       .then((response) => {
@@ -57,7 +56,11 @@ function Home() {
       .catch((err) => {
         console.log(err.message);
         setMyApi(new Map());
-        setIsPending(true);
+        setNotif(
+          toast.error('Error', {
+            position: toast.POSITION.TOP_CENTER,
+          })
+        );
       });
   };
   const theme = useTheme();
@@ -84,7 +87,6 @@ function Home() {
                 variant="h4"
                 sx={{
                   ...style,
-
                   fontWeight: 'bold',
                   display: 'flex',
                   justifyContent: 'center',
@@ -198,7 +200,6 @@ function Home() {
                     <Button
                       disabled={isPending ? false : true}
                       fullWidth
-                      content="log in"
                       variant="contained"
                       borderRadius="10px"
                       type="submit"
@@ -211,7 +212,9 @@ function Home() {
                           backgroundColor: '#0072e6',
                         },
                       }}
-                    />
+                    >
+                      Log in
+                    </Button>
                   </Grid>
                   <Grid item xs={12}>
                     {isMatch ? (
