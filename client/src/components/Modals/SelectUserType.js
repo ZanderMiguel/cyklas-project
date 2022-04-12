@@ -1,9 +1,11 @@
 import React from 'react';
 import Dialogform from '../Dialogform';
 import { Grid, Button, Typography } from '@mui/material';
+import { useHistory } from 'react-router-dom';
 function SelectUserType({ open, signIn, googleData, close }) {
   const toggleProf = React.useRef('outlined');
   const toggleStud = React.useRef('outlined');
+  const history = useHistory();
   return (
     <Dialogform open={open} close={close} maxWidth="lg">
       <div style={{ width: 400, height: 'auto' }}>
@@ -29,6 +31,7 @@ function SelectUserType({ open, signIn, googleData, close }) {
                 toggleProf.current = 'contained';
                 signIn({ userType: 'Professor', ...googleData.current });
                 close();
+                history.push('/dashboard');
               }}
               name="userType"
             >
@@ -45,6 +48,7 @@ function SelectUserType({ open, signIn, googleData, close }) {
                 toggleProf.current = 'outlined';
                 signIn({ userType: 'Student', ...googleData.current });
                 close();
+                history.push('/dashboard');
               }}
               name="userType"
             >

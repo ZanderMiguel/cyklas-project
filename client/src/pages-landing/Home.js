@@ -29,7 +29,6 @@ function Home() {
   const [opendialog, setOpenDialog] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [notif, setNotif] = useState(null);
-  const [redirect, setRedirect] = React.useState(null);
 
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -240,8 +239,7 @@ function Home() {
                     )}
                   </Grid>
                   <Grid item xs={12}>
-                    <GoogleAuth setRedirect={setRedirect} />
-                    {redirect && redirect}
+                    <GoogleAuth />
                   </Grid>
                 </Grid>
               </form>
