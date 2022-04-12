@@ -5,6 +5,8 @@ import { Grid, Box, Button } from '@mui/material';
 import Input from '../components/Input';
 
 function Create_activity({ open, close }) {
+
+
   const [topic, setTopic] = useState('');
   const [type, setType] = useState('');
   const [title, setTitle] = useState('');
@@ -12,16 +14,35 @@ function Create_activity({ open, close }) {
   const [duedate, setDueDate] = useState('');
   const [instruction, setInstruction] = useState('');
 
+  //errorState
+  const [titleerror, setTitleError] = useState(false)
+  const [pointserror, setPointsError] = useState(false)
+  const [typeerror, setTypeError] = useState(false)
+
   const handleCreateActivity = () => {
+    setTitleError(false)
+    setPointsError(false)
+    setTypeError(false)
+
+    if (title === '') {
+      setTitleError(true)
+    }
+    if (points === '') {
+      setPointsError(true)
+    }
+    if(type === '') {
+      setTypeError(true)
+    }
+
     const Activity = {
-      activityTopic: topic,
       activityTitle: title,
       activityType: type,
       activityPoints: points,
       activityDueDate: duedate,
       activityInstruction: instruction,
     };
-    axios
+    if(title && points && type) {
+      axios
       .post('http://localhost:5000/activity/create', Activity)
       .then((res) => {
         console.log(res);
@@ -29,6 +50,7 @@ function Create_activity({ open, close }) {
       .catch((err) => {
         console.log(err);
       });
+    }
   };
 
   return (
@@ -40,7 +62,7 @@ function Create_activity({ open, close }) {
       maxWidth="md"
     >
       <Grid container spacing={2} sx={{ p: '0em 2em' }}>
-        <Input
+        {/* <Input
           name="topic"
           inputLabel="Topic/Coverage"
           autoComplete="off"
@@ -49,6 +71,19 @@ function Create_activity({ open, close }) {
           onChange={(event) => setTopic(event.target.value)}
           autoFocus
           half
+        /> */}
+             <Input
+          name="title"
+          inputLabel="TItle"
+          autoComplete="off"
+          value={title}
+          autoFocus
+          onChange={(event) => setTitle(event.target.value)}
+          error={titleerror}
+                  helperText={
+                    titleerror ? 'Please enter a title' : false
+                  }
+          placeholder="Enter activity title..."
         />
         <Input
           name="type"
@@ -56,16 +91,11 @@ function Create_activity({ open, close }) {
           autoComplete="off"
           placeholder="Homework"
           value={type}
+          error={typeerror}
+          helperText={
+            typeerror ? 'Please select type' : false
+          }
           onChange={(event) => setType(event.target.value)}
-          half
-        />
-        <Input
-          name="title"
-          inputLabel="TItle"
-          autoComplete="off"
-          value={title}
-          onChange={(event) => setTitle(event.target.value)}
-          placeholder="Enter activity title..."
           half
         />
         <Input
@@ -73,6 +103,9 @@ function Create_activity({ open, close }) {
           inputLabel="Points"
           autoComplete="off"
           value={points}
+          error={pointserror}
+          helperText={
+          pointserror ? 'Please enter points' : false}
           onChange={(event) => setPoints(event.target.value)}
           placeholder="Set activity points"
           half

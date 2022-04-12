@@ -72,16 +72,15 @@ function ActivitiesAccordion({ roomID, activity }) {
 
   return (
     <>
-      {activity &&
-        activity.map(function (items, index) {
-          const {
-            activityDueDate: duedate,
-            activityInstruction: instruction,
-            activityPoints: points,
-            activityTitle: title,
-            activityTopic: topic,
-            activityType: type,
-          } = items;
+      {data.map(function (items, index) {
+          // const {
+          //   activityDueDate: duedate,
+          //   activityInstruction: instruction,
+          //   activityPoints: points,
+          //   activityTitle: title,
+          //   activityTopic: topic,
+          //   activityType: type,
+          // } = items;
 
           return (
             <Grid key={index} item xs={12}>
@@ -93,7 +92,7 @@ function ActivitiesAccordion({ roomID, activity }) {
                 >
                   <AccordionSummary
                     aria-controls={items.Activity}
-                    id={topic}
+                    id={items.Activity_FileName_Typography}
                     sx={designs.AccordionSummary_Style}
                   >
                     <Box
@@ -113,11 +112,11 @@ function ActivitiesAccordion({ roomID, activity }) {
                         sx={designs.Activity_Information_Style}
                       >
                         <Typography noWrap sx={designs.Activity_Typography}>
-                          {title}
+                          {items.Activity}
                         </Typography>
 
                         <Typography noWrap sx={designs.Type_Typography}>
-                          {type}
+                          {items.Type}
                         </Typography>
 
                         <Typography noWrap sx={designs.Due_Date}>
@@ -125,7 +124,7 @@ function ActivitiesAccordion({ roomID, activity }) {
                         </Typography>
 
                         <Typography noWrap sx={designs.Date}>
-                          {duedate}
+                          {items.DueDate}
                         </Typography>
 
                         <Box className="Seperator" sx={designs.Seperator}></Box>
@@ -212,7 +211,7 @@ function ActivitiesAccordion({ roomID, activity }) {
                           </Typography>
 
                           <Typography sx={designs.Points_Value_Typography}>
-                            {points}
+                            {items.Points}
                           </Typography>
                         </Box>
 
@@ -270,7 +269,7 @@ function ActivitiesAccordion({ roomID, activity }) {
                       </Box>
                     </Box>
 
-                    <Divider sx={designs.Divider2} />
+                    <Divider/>
 
                     <Button
                       sx={designs.ViewHomework_Button_Style}
