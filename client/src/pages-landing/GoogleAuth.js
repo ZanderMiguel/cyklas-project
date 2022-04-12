@@ -3,11 +3,11 @@ import { GoogleLogin } from 'react-google-login';
 import Google from '../assets/Rectangle 134.svg';
 import Button from '../components/Button';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+
 import Register from '../Form_content/Register';
 import SelectUserType from '../components/Modals/SelectUserType';
-function GoogleAuth() {
-  const history = useHistory();
+function GoogleAuth({ setRedirect }) {
   const [state, setState] = React.useState(false);
   const googleData = React.useRef(null);
 
@@ -26,7 +26,6 @@ function GoogleAuth() {
               console.log('Google login success', res.data);
               localStorage.setItem('token', res.data.token);
               localStorage.setItem('userData', JSON.stringify(res.data));
-              history.push('/dashboard');
             })
             .catch((err) => console.log(err));
         }
@@ -48,6 +47,7 @@ function GoogleAuth() {
     };
     googleData.current = googleAuth;
     signIn(googleAuth);
+    setRedirect(<Redirect to="/dashboard" />);
   };
   const googleFailure = (error) => {
     console.log(error);
