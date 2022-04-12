@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 
 const {
   createRegistrationController,
@@ -90,17 +92,18 @@ router.delete('/quizlit/delete', deleteQuizlitController);
 router.post('/quizlit', findQuizlitController);
 router.post('/myQuizlit', displayQuizlitOnQuizlit);
 router.post('/roomQuizlit', displayQuizlitOnRoom);
-
+const upload = require('../middleware/upload')
 const {
   createQuestionController,
   updateQuestionController,
   deleteQuestionController,
-  findQuestionController,
+  findQuestionController
+  
 } = require('../controller/questionsController');
-router.post('/question/create', createQuestionController);
-router.put('/question/update', updateQuestionController);
-router.delete('/question/delete', deleteQuestionController);
-router.post('/question', findQuestionController);
+router.post('/question/create',bodyParser.json(), upload.single('answer1'),upload.single('answer2'),upload.single('answer3'),upload.single('answer4'),upload.single('qImage') ,createQuestionController);
+router.put('/question/update', bodyParser.json(),updateQuestionController);
+router.delete('/question/delete', bodyParser.json(),deleteQuestionController);
+router.post('/question', bodyParser.json(),findQuestionController);
 
 const {
   addMembers,

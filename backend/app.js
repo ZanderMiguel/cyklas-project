@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const { v4 } = require('uuid');
+const grid = require('gridfs-stream')
 
 const io = require('socket.io')(3001, {
   cors: {
@@ -12,13 +13,18 @@ const io = require('socket.io')(3001, {
 const cors = require('cors');
 const router = require('./routers/routers');
 const mongoose = require('mongoose');
-
+let gfs
 const startAndConnectToDb = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
+    const conn = mongoose.createConnection(process.env.MONGODB_URI)
+    conn.once('open',()=>{
+      gfs = grid(conn.db,mongoose.mongo)
+      gfs.collection('uploads')
+    })
     await app.listen(process.env.PORT, () => {
       console.log(
         `Server is running on port ${process.env.PORT}\nConnected to Database!`
