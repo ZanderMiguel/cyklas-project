@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Grid,
@@ -6,6 +6,7 @@ import {
   Divider,
   CssBaseline,
   IconButton,
+  Button,
 } from '@mui/material';
 import useStyle from './Styles/Contacts_style';
 import CyklasLogo from '../assets/ImageJaven/CyklasLogo.png';
@@ -13,9 +14,14 @@ import Facebook from '../assets/ImageJaven/Facebook.png';
 import Instagram from '../assets/ImageJaven/Instagram.png';
 import Twitter from '../assets/ImageJaven/Twitter.png';
 import Youtube from '../assets/ImageJaven/Youtube.png';
+import Terms_condition from './Terms_condition';
+import Privacy_policy from './Privacy_policy';
 
 function Footer() {
   const { designs } = useStyle();
+  const [terms, setTerms] = useState(false);
+  const [privacy, setPrivacy] = useState(false);
+
   return (
     <>
       <CssBaseline />
@@ -169,13 +175,22 @@ function Footer() {
         <Box className="Content2-sub" sx={designs.Content2_Sub_Style}>
           <Box className="TC-PP" sx={designs.TC_PP_Style}>
             <Typography
-              onClick={() => {
-                alert('clicked');
-              }}
+              onClick={() => setTerms(true)}
               sx={designs.TermsCondition_Typography_Style}
             >
               Terms & Conditions
             </Typography>
+            {terms && (
+              <Terms_condition
+                open={terms}
+                close={() => setTerms(false)}
+                btn={
+                  <Button variant="text" onClick={() => setTerms(false)}>
+                    Agree
+                  </Button>
+                }
+              />
+            )}
 
             <Divider
               orientation="vertical"
@@ -184,13 +199,22 @@ function Footer() {
             />
 
             <Typography
-              onClick={() => {
-                alert('clicked');
-              }}
+              onClick={() => setPrivacy(true)}
               sx={designs.PrivacyPolicy_Typography_Style}
             >
               Privacy Policy
             </Typography>
+            {privacy && (
+              <Privacy_policy
+                open={privacy}
+                close={() => setPrivacy(false)}
+                btn={
+                  <Button variant="text" onClick={() => setPrivacy(false)}>
+                    Agree
+                  </Button>
+                }
+              />
+            )}
           </Box>
 
           <Box

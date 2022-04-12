@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Redirect, Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import axios from 'axios';
 import './Styles/Landingpage.css';
@@ -13,36 +13,21 @@ import {
   Divider,
   useMediaQuery,
 } from '@mui/material';
-
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import Flatimage from '../assets/Images/illustration.svg';
 import MaleLogo from '../assets/Images/avatar_male.png';
-
 import Register from '../Form_content/Register';
 import GoogleAuth from './GoogleAuth';
 import Footer from './Footer';
+import { ToastContainer, cssTransition } from 'react-toastify';
 
 const style = { fontFamily: 'Poppins', marginTop: 1 };
-
-const googleSuccess = async (res) => {
-  console.log(res);
-  axios({
-    method: 'POST',
-    url: 'http://localhost:5000/googlelogin',
-    data: { tokenId: res.tokenId },
-  }).then((res) => {
-    console.log('Google login success', res);
-  });
-};
-const googleFailure = (error) => {
-  console.log(error);
-  console.log('Google Sign In was unsucessful. Try again later');
-};
 
 function Home() {
   const [isPending, setIsPending] = useState(true);
   const [opendialog, setOpenDialog] = useState(false);
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [notif, setNotif] = useState(null);
 
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -84,6 +69,7 @@ function Home() {
         <Redirect from="/home/login" to="/dashboard" />
       ) : (
         <>
+          <ToastContainer />
           <Box
             display="flex"
             justifyContent="center"
@@ -153,7 +139,14 @@ function Home() {
                 />
               )}
             </Box>
-            {opendialog && <Register open={opendialog} close={handleClose} />}
+            {opendialog && (
+              <Register
+                open={opendialog}
+                close={handleClose}
+                setOpenDialog={setOpenDialog}
+                setNotif={setNotif}
+              />
+            )}
             <Paper
               elevation={3}
               sx={{
@@ -194,7 +187,7 @@ function Home() {
                   <Grid item xs={12}>
                     <Typography variant="subtitle2">
                       <Link
-                        href="/forgotpassword"
+                        to="/forgotpassword"
                         style={{ color: '#007FFF', textDecoration: 'none' }}
                       >
                         Forgot password?
@@ -232,6 +225,7 @@ function Home() {
                         Don't have an account?
                         <Link
                           to="#"
+                          onClick={() => setOpenDialog(true)}
                           style={{ color: '#007FFF', textDecoration: 'none' }}
                         >
                           Sign up

@@ -42,9 +42,10 @@ import Exam_start from './Dashboard/Exam_start';
 import View_quiz from './Quizlit/Quizbank-content-layout/Quizbank-view/View_quiz';
 import View_exam from './Quizlit/Quizbank-content-layout/Quizbank-view/View_exam';
 import Telecon_room from './Telecon/Telecon_room';
-import JoinQuiz from './Quizlit/TestComponents/JoinQuiz'
-import ToLobby from './Quizlit/TestComponents/ToLobby'
-import Lobby from './Quizlit/TestComponents/Lobby'
+import JoinQuiz from './Quizlit/TestComponents/JoinQuiz';
+import ToLobby from './Quizlit/TestComponents/ToLobby';
+import Lobby from './Quizlit/TestComponents/Lobby';
+import LoadQuizlit from './Quizlit/TestComponents/LoadQuizlit';
 function App() {
   const theme = createTheme({
     typography: {
@@ -70,6 +71,19 @@ function App() {
   });
 
   const socket = io.connect('http://localhost:3001');
+  const [quizlit, setQuizlit] = React.useState(null);
+  socket.on('joined-quizLobby', (lobby, quizLobby, questionArray) => {
+    console.log('awit');
+    setQuizlit(
+      <ProtectedRoutes
+        exact
+        path="/livequiz_multiplechoice/:counter"
+        component={Livequiz_multiplechoice}
+        socket={socket}
+        questionArray={questionArray}
+      />
+    );
+  });
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -77,6 +91,7 @@ function App() {
           <Switch>
             <Redirect exact from="/" to="/home/login" />
             <Redirect exact from="/home" to="/home/login" />
+            <Route path="/forgotpassword" component={Forgot_password} />
             <Route exact path="/home/:page?" component={Navbar_landingpage} />
             <ProtectedRoutes exact path="/dashboard" component={Dashboard} />
             <ProtectedRoutes exact path="/telecon" component={TeleconStart} />
@@ -116,12 +131,7 @@ function App() {
               component={Examform}
             />
             {/* Javen Routes */}
-            <ProtectedRoutes
-              exact
-              path="/livequiz_multiplechoice/:counter"
-              component={Livequiz_multiplechoice}
-              socket={socket}
-            />
+            {quizlit}
             <ProtectedRoutes
               exact
               path="/StudentLiveQuiz_multiplechoice"
@@ -143,6 +153,7 @@ function App() {
               exact
               path="/student_rankings"
               component={Student_rankings}
+              socket={socket}
             />
             <Route
               exact
@@ -174,22 +185,16 @@ function App() {
             <Route exact path="/View_quiz" component={View_quiz} />
             <Route exact path="/View_exam" component={View_exam} />
             <ProtectedRoutes exact path="/records" component={Records} />
-            <Route path="/forgotpassword">
-              <Forgot_password />
-            </Route>
             <Route path="/telecon/room" component={Telecon_room} />
-            <Route exact path="/quizlit/join" >
+            <Route exact path="/quizlit/join">
               <JoinQuiz socket={socket} />
             </Route>
             <Route exact path="/quizlit/lobby">
               <Lobby socket={socket} />
             </Route>
-            <Route exact path="/quizlit/lobby/:lobby/:name">
+            <Route exact path="/quizlit/lobby/:lobby/:name/:quizID">
               <ToLobby socket={socket} />
             </Route>
-
-
-
             <Route component={Notfound} />
           </Switch>
         </Router>

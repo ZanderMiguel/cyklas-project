@@ -9,7 +9,7 @@ function Multiple({questionArray,counter,socket}) {
     const { designs } = useStyle();
     const sendAnswer = (answer) => {
       console.log(answer)
-      socket.emit('send-answer',answer,questionArray[counter].correctAnswer)
+      socket.emit('send-answer',answer,questionArray[counter].correctAnswer,JSON.parse(localStorage.userData).data.user.firstName)
     }
 
   return (

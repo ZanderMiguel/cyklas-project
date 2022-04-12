@@ -44,12 +44,7 @@ app.use(express.static('public'));
 //routers
 
 app.use(router);
-let result = ''
-let index = 0
-let questionCount = 0
-let points = 0
 let quizLobby = {}
-const participants = new Map()
 io.on('connection', (socket) => {
   socket.on('joinroom', (roomID, username) => {
     socket.join(roomID);
@@ -74,46 +69,55 @@ io.on('connection', (socket) => {
   socket.on('create-comment', () => {
     socket.emit('post-comment', v4());
   });
-  socket.on('timer-start', (time, point, qCount) => {
-    questionCount = qCount
+  socket.on('timer-start', (time, point, qCount,lobby,name) => {
+    socket.join(lobby)
+    quizLobby[lobby][name]['questionCount'] = qCount
     const timer = setInterval(() => {
       time--
-      socket.emit('play', time, index)
+      io.in(lobby).emit('play', time, quizLobby[lobby][name].index)
 
     }, 1000)
     setTimeout(() => {
       clearInterval(timer)
 
-      socket.emit('times-up', result)
-      result = ''
+      io.in(lobby).emit('times-up', quizLobby[lobby][name]['result'])
+      quizLobby[lobby][name]['result'] = ''
     }, (time * 1000) + 1000)
 
-    points = point
+    quizLobby[lobby][name]['points'] = point
 
   })
-  socket.on('send-answer', (answer, correct) => {
-    result = answer === correct ? true : false
+  socket.on('send-answer', (answer, correct, name,lobby='123') => {
+    quizLobby[lobby][name]['result'] = answer === correct ? true : false
 
   })
-  socket.on('break', () => {
+  socket.on('break', (lobby,name) => {
+    socket.join(lobby)
     let breakTime = 4
     const count = setInterval(() => {
       breakTime--
-      socket.emit('next', points, breakTime)
+      io.in(lobby).emit('next', quizLobby[lobby][name].points, breakTime)
 
     }, 1000)
     setTimeout(() => {
       clearInterval(count)
-      index++
-      socket.emit('next-question', index, questionCount)
+      quizLobby[lobby][name].index++
+      io.in(lobby).emit('next-question', quizLobby[lobby][name].index, quizLobby[lobby][name]['questionCount'])
     }, 4000)
   })
-  socket.on('join-quizLobby', (lobby, name) => {
-    participants.set(name,lobby)
-    quizLobby[lobby] = quizLobby[lobby] ?  [...quizLobby[lobby],name] : [name]
-    console.log(quizLobby[lobby])
-    socket.emit('joined-quizLobby',lobby,quizLobby[lobby])
+  socket.on('join-quizLobby', (lobby, name,questionArray) => {
+    quizLobby[lobby] = quizLobby[lobby] ?  {participants: [...quizLobby[lobby].participants,name]} : {participants: [name]}
+    quizLobby[lobby][name] = {index: 0,result: ''}
+    socket.join(lobby)
+    io.in(lobby).emit('joined-quizLobby',lobby,quizLobby[lobby].participants,questionArray)
   })
+  socket.on('game-ended',(lobby,name)=>{
+    quizLobby[lobby][name]['result'] = ''
+    quizLobby[lobby][name]['index'] = 0
+    quizLobby[lobby][name]['questionCount'] = 0
+    quizLobby[lobby][name]['points'] = 0
+  })
+
 });
 
 //socket.io events

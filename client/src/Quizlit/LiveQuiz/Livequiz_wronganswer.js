@@ -10,7 +10,7 @@ function Livequiz_wronganswer({socket}) {
     setCount(breakTime)
   })
   React.useMemo(()=>{
-    socket.emit('break')
+    socket.emit('break','123',JSON.parse(localStorage.userData).data.user.firstName)
   socket.once('next-question',(index,arrLen)=>{
     if(index < arrLen){
     history.push(`/livequiz_multiplechoice/${index}`)

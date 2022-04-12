@@ -1,7 +1,8 @@
 import React from 'react'
-
+import {Redirect} from 'react-router-dom'
 function Lobby({socket}) {
     const [nameArr,setNameArr] = React.useState(null)
+    const [redirect,setRedirect] = React.useState(null)
     socket.once('joined-quizLobby',(lobby,names)=>{
         setNameArr(names)
     })
@@ -15,7 +16,10 @@ function Lobby({socket}) {
                     </div>
                 )
             })}
-            <input type='button' value='start' style={{position: 'absolute', bottom: '0'}}/>
+            <input type='button' value='start' style={{position: 'absolute', bottom: '0'}}
+            onClick={()=>setRedirect(<Redirect to="/livequiz_multiplechoice/0" />)}
+            />
+            {redirect && redirect}
         </div>
     )
 }

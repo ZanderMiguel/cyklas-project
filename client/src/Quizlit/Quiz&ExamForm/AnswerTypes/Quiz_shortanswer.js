@@ -6,7 +6,7 @@ function Quiz_shortanswer({questionMemo,counter}) {
   const { designs } = useStyle();
 
   const handleRows = (event) => {
-    questionMemo.current[counter - 1][event.target.name] = event.target.value
+    questionMemo.current[counter - 1]['answer1'] = event.target.value
   };
 
   return (

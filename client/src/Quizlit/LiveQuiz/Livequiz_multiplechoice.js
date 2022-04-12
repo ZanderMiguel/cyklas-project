@@ -16,27 +16,16 @@ import { useHistory, useParams } from 'react-router-dom'
 import Quiz_imagemultiplechoice from '../Quiz&ExamForm/AnswerTypes/Quiz_imagemultiplechoice';
 import Quiz_trueorfalse from '../Quiz&ExamForm/AnswerTypes/Quiz_trueorfalse';
 import Quiz_shortanswer from '../Quiz&ExamForm/AnswerTypes/Quiz_shortanswer'
-function Livequiz_multiplechoice({ socket }) {
+function Livequiz_multiplechoice({ socket,questionArray }) {
   const { designs } = useStyle();
   const history = useHistory()
   const { counter } = useParams()
-  const [questionArray, setQuestionArray] = React.useState(null)
   const answerMemo = React.useRef('')
-  React.useMemo(() => {
-    axios.post('http://localhost:5000/question', { quizID: '6247cb591523e415a76094d7' })
-      .then((res) => {
-        if (counter > res.data.length - 1) {
-          history.push(`/not-found`)
-        }
-        setQuestionArray(res.data)
-      })
-      .catch(err => { console.log(err) })
-  }, [counter])
-  
-  questionArray && socket.emit('timer-start', questionArray[counter].timeLimit.replace(' seconds', ''), questionArray[counter].points, questionArray.length)
-  socket.once('times-up', (result) => {
+  console.log(questionArray)
+  questionArray && socket.emit('timer-start', questionArray[counter].timeLimit.replace(' seconds', ''), questionArray[counter].points, questionArray.length,'123',JSON.parse(localStorage.userData).data.user.firstName)
+  socket.on('times-up', (result,lobby) => {
     result === true ? history.push('/Livequiz_correctanswer') : history.push('/Livequiz_wronganswer')
-  })
+  })  
 
   return (
     <>
