@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const createActivitySchema = new mongoose.Schema(
   {
-    activityTopic: { type: String, required: true },
+    activityTopic: { type: String},
     activityTitle: { type: String, required: true },
     terms: { type: String },
     activityType: { type: String, required: true },
