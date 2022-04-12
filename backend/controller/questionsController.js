@@ -1,12 +1,18 @@
 const { QuestionModel } = require('../models/model-questions');
 
+
 const createQuestion = async (req, res) => {
   try {
     const newQuestion = await QuestionModel.insertMany(req.body.questionPayload);
-
+    console.log({
+      status: 'success',
+      message: newQuestion,
+      file: req.file
+    })
     return res.json({
       status: 'success',
       message: newQuestion,
+      file: req.file
     });
   } catch (error) {
     console.log(error);
@@ -65,5 +71,5 @@ module.exports = {
   createQuestionController: createQuestion,
   updateQuestionController: updateQuestion,
   deleteQuestionController: deleteQuestion,
-  findQuestionController: findQuestions,
+  findQuestionController: findQuestions, 
 };

@@ -28,7 +28,7 @@ function Image_GIF({ open, close, maxWidth, setImage,questionMemo,counter }) {
           </label>
           <input
             type="file"
-            name="answer2"
+            name="qImage"
             id="getFile2"
             style={{ display: 'none' }}
             onChange={(event) => {

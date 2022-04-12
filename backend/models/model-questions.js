@@ -6,7 +6,7 @@ const QuestionSchema = new mongoose.Schema(
     qAnswers: {type: Object},
     points: {type: String, required: true},
     answers: { type: Array },
-    media: { type: String },
+    media: { type: Buffer },
     correctAnswer: {type: String},
     answerType: { type: String, required: true },
     quizID: { type: mongoose.Schema.Types.ObjectId },
