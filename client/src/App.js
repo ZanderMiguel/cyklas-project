@@ -181,7 +181,7 @@ function App() {
               component={Notifications_viewall}
             />
             <Route exact path="/Exam_take" component={Exam_take} />
-            <Route exact path="/Exam_start" component={Exam_start} />
+            <Route exact path="/Exam_start/:examID" component={Exam_start} />
             <Route exact path="/View_quiz" component={View_quiz} />
             <Route exact path="/View_exam" component={View_exam} />
             <ProtectedRoutes exact path="/records" component={Records} />

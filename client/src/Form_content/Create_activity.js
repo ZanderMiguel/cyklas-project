@@ -1,55 +1,148 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import Dialogform from '../components/Dialogform';
 import { Grid, Box, Button } from '@mui/material';
 import Input from '../components/Input';
 
 function Create_activity({ open, close }) {
+
+
+  const [topic, setTopic] = useState('');
+  const [type, setType] = useState('');
+  const [title, setTitle] = useState('');
+  const [points, setPoints] = useState('');
+  const [duedate, setDueDate] = useState('');
+  const [instruction, setInstruction] = useState('');
+
+  //errorState
+  const [titleerror, setTitleError] = useState(false)
+  const [pointserror, setPointsError] = useState(false)
+  const [typeerror, setTypeError] = useState(false)
+
+  const handleCreateActivity = () => {
+    setTitleError(false)
+    setPointsError(false)
+    setTypeError(false)
+
+    if (title === '') {
+      setTitleError(true)
+    }
+    if (points === '') {
+      setPointsError(true)
+    }
+    if(type === '') {
+      setTypeError(true)
+    }
+
+    const Activity = {
+      activityTitle: title,
+      activityType: type,
+      activityPoints: points,
+      activityDueDate: duedate,
+      activityInstruction: instruction,
+    };
+    if(title && points && type) {
+      axios
+      .post('http://localhost:5000/activity/create', Activity)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
+  };
+
   return (
-    <Dialogform title="Create Activity" divider open={open} close={close} maxWidth="md">
+    <Dialogform
+      title="Create Activity"
+      divider
+      open={open}
+      close={close}
+      maxWidth="md"
+    >
       <Grid container spacing={2} sx={{ p: '0em 2em' }}>
-        <Input
+        {/* <Input
           name="topic"
           inputLabel="Topic/Coverage"
+          autoComplete="off"
           placeholder="Enter activity topic..."
+          value={topic}
+          onChange={(event) => setTopic(event.target.value)}
           autoFocus
           half
-        />
-        <Input name="type" inputLabel="Type" placeholder="Homework" half />
-        <Input
+        /> */}
+             <Input
           name="title"
           inputLabel="TItle"
+          autoComplete="off"
+          value={title}
+          autoFocus
+          onChange={(event) => setTitle(event.target.value)}
+          error={titleerror}
+                  helperText={
+                    titleerror ? 'Please enter a title' : false
+                  }
           placeholder="Enter activity title..."
+        />
+        <Input
+          name="type"
+          inputLabel="Type"
+          autoComplete="off"
+          placeholder="Homework"
+          value={type}
+          error={typeerror}
+          helperText={
+            typeerror ? 'Please select type' : false
+          }
+          onChange={(event) => setType(event.target.value)}
           half
         />
         <Input
           name="points"
           inputLabel="Points"
+          autoComplete="off"
+          value={points}
+          error={pointserror}
+          helperText={
+          pointserror ? 'Please enter points' : false}
+          onChange={(event) => setPoints(event.target.value)}
           placeholder="Set activity points"
           half
         />
-        <Input
+        {/* <Input
           name="term"
           inputLabel="Term"
           placeholder="Choose term..."
           half
-        />
+        /> */}
         <Input
           name="duedate"
           inputLabel="Due Date"
+          autoComplete="off"
+          value={duedate}
+          onChange={(event) => setDueDate(event.target.value)}
           placeholder="Set due date and time for this activity"
           half
         />
         <Input
-          name="duedate"
+          name="instruction"
+          autoComplete="off"
           multiline
           rows={6}
-          variant="filled"
+          variant="outlined"
           inputLabel="Instruction"
+          value={instruction}
+          onChange={(event) => setInstruction(event.target.value)}
           placeholder="Enter activity instruction..."
         />
         <Box className="action" display="flex" width="100%">
           <Box flexGrow={1} />
-          <Button variant="contained" sx={{ mt: 2 }}>
+          <Button
+            onClick={handleCreateActivity}
+            variant="contained"
+            sx={{ mt: 2, mb: 2 }}
+          >
             Post
           </Button>
         </Box>

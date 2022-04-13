@@ -14,7 +14,7 @@ function ProtectedRoutes({
   return (
     <>
       <CssBaseline />
-      {localStorage && <Navbar />}
+      {localStorage.token && <Navbar />}
       <Route
         {...attrib}
         render={() => {

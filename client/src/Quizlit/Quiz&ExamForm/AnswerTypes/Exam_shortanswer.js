@@ -11,20 +11,19 @@ function Exam_shortanswer() {
 
   return (
     <>
-    <Grid container xs = {12} sx = {{ padding: "0em 2em 1.5em 2em" }}>
+      <Grid item xs={12} sx={{ padding: '0em 2em 1.5em 2em' }}>
         <Input
-            variant="standard"
-            multiline
-            rows={6}
-            fullWidth
-            placeholder="Students will write their answers in here."
-            readOnly
-            disableUnderline
-            onChange={handleRows}
-            sx={designs.ShortAnswer_Input_Style}
+          variant="standard"
+          multiline
+          rows={6}
+          fullWidth
+          placeholder="Students will write their answers in here."
+          readOnly
+          disableUnderline
+          onChange={handleRows}
+          sx={designs.ShortAnswer_Input_Style}
         />
-    </Grid>
-      
+      </Grid>
     </>
   );
 }

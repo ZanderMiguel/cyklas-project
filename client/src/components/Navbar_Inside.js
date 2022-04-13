@@ -20,109 +20,117 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Drawer from './Drawer';
 import CusPopover from './Popover';
-import AvatarIcon from "../assets/ImageJaven/Avatar.png";
+import AvatarIcon from '../assets/ImageJaven/Avatar.png';
 import { useTheme } from '@mui/material/styles';
 import { PostAdd } from '@mui/icons-material';
 
 const request = [
   {
-    avatar: <Avatar src={AvatarIcon}/>,
+    avatar: <Avatar src={AvatarIcon} />,
     user: 'Zander Miguel',
     action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
-    dateTime: 'December 25, 2024 at 9:05 AM'
+    dateTime: 'December 25, 2024 at 9:05 AM',
   },
   {
-    avatar: <Avatar src={AvatarIcon}/>,
+    avatar: <Avatar src={AvatarIcon} />,
     user: 'Mang Pandesal',
     action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
-    dateTime: 'December 25, 2024 at 9:05 AM'
+    dateTime: 'December 25, 2024 at 9:05 AM',
   },
   {
-    avatar: <Avatar src={AvatarIcon}/>,
+    avatar: <Avatar src={AvatarIcon} />,
     user: 'Verb',
     action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
-    dateTime: 'December 25, 2024 at 9:05 AM'
+    dateTime: 'December 25, 2024 at 9:05 AM',
   },
   {
-    avatar: <Avatar src={AvatarIcon}/>,
+    avatar: <Avatar src={AvatarIcon} />,
     user: 'Isko',
     action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
-    dateTime: 'December 25, 2024 at 9:05 AM'
+    dateTime: 'December 25, 2024 at 9:05 AM',
   },
   {
-    avatar: <Avatar src={AvatarIcon}/>,
+    avatar: <Avatar src={AvatarIcon} />,
     user: 'Yorme',
     action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
-    dateTime: 'December 25, 2024 at 9:05 AM'
+    dateTime: 'December 25, 2024 at 9:05 AM',
   },
   {
-    avatar: <Avatar src={AvatarIcon}/>,
+    avatar: <Avatar src={AvatarIcon} />,
     user: 'Bossing',
     action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
-    dateTime: 'December 25, 2024 at 9:05 AM'
+    dateTime: 'December 25, 2024 at 9:05 AM',
   },
   {
-    avatar: <Avatar src={AvatarIcon}/>,
+    avatar: <Avatar src={AvatarIcon} />,
     user: 'Allan',
     action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
-    dateTime: 'December 25, 2024 at 9:05 AM'
+    dateTime: 'December 25, 2024 at 9:05 AM',
   },
   {
-    avatar: <Avatar src={AvatarIcon}/>,
+    avatar: <Avatar src={AvatarIcon} />,
     user: 'Wally',
     action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
-    dateTime: 'December 25, 2024 at 9:05 AM'
-  }
+    dateTime: 'December 25, 2024 at 9:05 AM',
+  },
 ];
 const general = [
   {
-    avatar: <Avatar src={AvatarIcon}/>,
+    avatar: <Avatar src={AvatarIcon} />,
     action: 'You are added to a new room "SOFTWARE ENGINEERING 2".',
     user: 'Zander Miguel',
-    dateTime: 'December 25, 2024 at 9:05 AM'
+    dateTime: 'December 25, 2024 at 9:05 AM',
   },
   {
-    avatar: <PostAdd sx = {{ color: "#47B753", borderRadius: "2em", fontSize: "2em" }}/>,
-    action: 'You posted a new announcement on your room "EMBEDDED PROGRAMMING".',
+    avatar: (
+      <PostAdd
+        sx={{ color: '#47B753', borderRadius: '2em', fontSize: '2em' }}
+      />
+    ),
+    action:
+      'You posted a new announcement on your room "EMBEDDED PROGRAMMING".',
     user: 'Mark Andrei (You)',
-    dateTime: 'December 14, 2024 at 3:05 PM'
+    dateTime: 'December 14, 2024 at 3:05 PM',
   },
   {
-    avatar: <Avatar src={AvatarIcon}/>,
-    action: 'Your student from "EMBEDDED PROGRAMMING" wrote a comment on your post.',
+    avatar: <Avatar src={AvatarIcon} />,
+    action:
+      'Your student from "EMBEDDED PROGRAMMING" wrote a comment on your post.',
     user: 'Paul Rudd',
-    dateTime: 'November 16, 2024 at 12:35 AM'
+    dateTime: 'November 16, 2024 at 12:35 AM',
   },
   {
-    avatar: <Avatar src={AvatarIcon}/>,
+    avatar: <Avatar src={AvatarIcon} />,
     action: 'Your student from "EMBEDDED PROGRAMMING" submitted an Activity.',
     user: 'Paul Rudd',
-    dateTime: 'November 15, 2024 at 7:05 PM'
+    dateTime: 'November 15, 2024 at 7:05 PM',
   },
   {
-    avatar: <Avatar src={AvatarIcon}/>,
-    action: 'Your student from "EMBEDDED PROGRAMMING" wrote a comment on your post.',
+    avatar: <Avatar src={AvatarIcon} />,
+    action:
+      'Your student from "EMBEDDED PROGRAMMING" wrote a comment on your post.',
     user: 'Paul Rudd',
-    dateTime: 'November 16, 2024 at 12:35 AM'
+    dateTime: 'November 16, 2024 at 12:35 AM',
   },
   {
-    avatar: <Avatar src={AvatarIcon}/>,
+    avatar: <Avatar src={AvatarIcon} />,
     action: 'Your student from "EMBEDDED PROGRAMMING" submitted an Activity.',
     user: 'Paul Rudd',
-    dateTime: 'November 15, 2024 at 7:05 PM'
+    dateTime: 'November 15, 2024 at 7:05 PM',
   },
   {
-    avatar: <Avatar src={AvatarIcon}/>,
-    action: 'Your student from "EMBEDDED PROGRAMMING" wrote a comment on your post.',
+    avatar: <Avatar src={AvatarIcon} />,
+    action:
+      'Your student from "EMBEDDED PROGRAMMING" wrote a comment on your post.',
     user: 'Paul Rudd',
-    dateTime: 'November 16, 2024 at 12:35 AM'
+    dateTime: 'November 16, 2024 at 12:35 AM',
   },
   {
-    avatar: <Avatar src={AvatarIcon}/>,
+    avatar: <Avatar src={AvatarIcon} />,
     action: 'Your student from "EMBEDDED PROGRAMMING" submitted an Activity.',
     user: 'Paul Rudd',
-    dateTime: 'November 15, 2024 at 7:05 PM'
-  }
+    dateTime: 'November 15, 2024 at 7:05 PM',
+  },
 ];
 
 function Navbar() {
@@ -190,7 +198,7 @@ function Navbar() {
           >
             <Notificationpopover general={general} request={request} />
           </CusPopover>
-            {/* <Notifications_viewall general={general} request={request} /> */}
+          {/* <Notifications_viewall general={general} request={request} /> */}
           <Box
             display="flex"
             alignItems="center"
@@ -204,9 +212,7 @@ function Navbar() {
             }}
           >
             <Avatar
-              src={`${Buffer.from(
-                JSON.parse(localStorage.userData).data.user.image
-              ).toString()}`}
+              src={`${JSON.parse(localStorage.userData).data.user.image}`}
               alt="profileImg"
             />
             <Box

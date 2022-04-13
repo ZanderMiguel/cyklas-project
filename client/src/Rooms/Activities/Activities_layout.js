@@ -62,211 +62,228 @@ const data = [
   },
 ];
 
-function ActivitiesAccordion({ roomID }) {
+function ActivitiesAccordion({ roomID, activity }) {
   const { designs } = useStyle();
   const [expanded, setExpanded] = React.useState(false);
 
-  const handleChange = (panel) => (event,isExpanded) => {
+  const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
   return (
     <>
       {data.map(function (items, index) {
-        return (
-          <Grid key={index} item xs={12}>
-            <Box className="Activity_Tiles" sx={designs.Activity_Tiles}>
-              <Accordion
-                expanded={expanded === `${items.Activity}`}
-                onChange={handleChange(`${items.Activity}`)}
-                sx={designs.Accordion_Style}
-              >
-                <AccordionSummary
-                  aria-controls={items.Activity}
-                  id={items.Activity}
-                  sx={designs.AccordionSummary_Style}
+          // const {
+          //   activityDueDate: duedate,
+          //   activityInstruction: instruction,
+          //   activityPoints: points,
+          //   activityTitle: title,
+          //   activityTopic: topic,
+          //   activityType: type,
+          // } = items;
+
+          return (
+            <Grid key={index} item xs={12}>
+              <Box className="Activity_Tiles" sx={designs.Activity_Tiles}>
+                <Accordion
+                  expanded={expanded === `${index}`}
+                  onChange={handleChange(`${index}`)}
+                  sx={designs.Accordion_Style}
                 >
-                  <Box
-                    className="Activity_Icon_Activity_Type"
-                    sx={designs.Activity_Icon_Activity_Type}
-                  >
-                    <img
-                      src={ActivityIcon}
-                      style={{
-                        height: '30px',
-                        margin: '4px 15px 0px 0px',
-                      }}
-                    />
-
-                    <Box
-                      className="Activity_Information"
-                      sx={designs.Activity_Information_Style}
-                    >
-                      <Typography noWrap sx={designs.Activity_Typography}>
-                        {items.Activity}
-                      </Typography>
-
-                      <Typography noWrap sx={designs.Type_Typography}>
-                        {items.Type}
-                      </Typography>
-
-                      <Typography noWrap sx={designs.Due_Date}>
-                        Due Date:
-                      </Typography>
-
-                      <Typography noWrap sx={designs.Date}>
-                        {items.DueDate}
-                      </Typography>
-
-                      <Box className="Seperator" sx={designs.Seperator}></Box>
-
-                      <Typography noWrap sx={designs.Time}>
-                        {items.DueTime}
-                      </Typography>
-                    </Box>
-                  </Box>
-
-                  <Box sx={{ flexGrow: 1 }} />
-                </AccordionSummary>
-                <AccordionDetails sx={designs.Accordion_Details_Style}>
-                  <Box
-                    className="Button-container"
-                    sx={designs.Button_Container_Style}
+                  <AccordionSummary
+                    aria-controls={items.Activity}
+                    id={items.Activity_FileName_Typography}
+                    sx={designs.AccordionSummary_Style}
                   >
                     <Box
-                      className="Button-flexGrow"
-                      sx={designs.Button_FlexGrow}
-                    />
-
-                    <Box
-                      className="Button-container-sub"
-                      sx={designs.Button_Container_Sub}
+                      className="Activity_Icon_Activity_Type"
+                      sx={designs.Activity_Icon_Activity_Type}
                     >
-                      <IconButton aria-label="edit" size="medium">
-                        <Edit sx={designs.Edit_Icon_Style} />
-                      </IconButton>
+                      <img
+                        src={ActivityIcon}
+                        style={{
+                          height: '30px',
+                          margin: '4px 15px 0px 0px',
+                        }}
+                      />
 
-                      <IconButton aria-label="delete" size="medium">
-                        <Delete sx={designs.Delete_Icon_Style} />
-                      </IconButton>
-                    </Box>
-                  </Box>
-
-                  <Box
-                    className="Activity-details"
-                    sx={designs.Activity_Details_Style}
-                  >
-                    <Box
-                      className="Type_Due_Date"
-                      sx={designs.Type_Due_Date_Style}
-                    >
-                      <Box className="Type">
-                        <Typography sx={designs.Type_Responsive_Typography}>
-                          Homework
+                      <Box
+                        className="Activity_Information"
+                        sx={designs.Activity_Information_Style}
+                      >
+                        <Typography noWrap sx={designs.Activity_Typography}>
+                          {items.Activity}
                         </Typography>
-                      </Box>
 
-                      <Box className="Due_Date" sx={designs.DueDate_Responsive}>
-                        <Typography sx={designs.DueDate_Responsive_Typography}>
+                        <Typography noWrap sx={designs.Type_Typography}>
+                          {items.Type}
+                        </Typography>
+
+                        <Typography noWrap sx={designs.Due_Date}>
                           Due Date:
                         </Typography>
 
-                        <Typography sx={designs.Date_Responsive_Typography}>
-                          December 05, 2021
+                        <Typography noWrap sx={designs.Date}>
+                          {items.DueDate}
                         </Typography>
 
-                        <Box className="Seperator" sx={designs.SeperatorV} />
+                        <Box className="Seperator" sx={designs.Seperator}></Box>
 
-                        <Typography noWrap sx={designs.Responsive_Time}>
-                          5:00 pm
+                        <Typography noWrap sx={designs.Time}>
+                          {items.DueTime}
                         </Typography>
                       </Box>
                     </Box>
 
-                    <Box sx={designs.Empty_Box_FlexGrow} />
+                    <Box sx={{ flexGrow: 1 }} />
+                  </AccordionSummary>
+                  <AccordionDetails sx={designs.Accordion_Details_Style}>
+                    <Box
+                      className="Button-container"
+                      sx={designs.Button_Container_Style}
+                    >
+                      <Box
+                        className="Button-flexGrow"
+                        sx={designs.Button_FlexGrow}
+                      />
 
-                    <Box sx={designs.Empty_Box_FlexGrow2} />
+                      <Box
+                        className="Button-container-sub"
+                        sx={designs.Button_Container_Sub}
+                      >
+                        <IconButton aria-label="edit" size="medium">
+                          <Edit sx={designs.Edit_Icon_Style} />
+                        </IconButton>
+
+                        <IconButton aria-label="delete" size="medium">
+                          <Delete sx={designs.Delete_Icon_Style} />
+                        </IconButton>
+                      </Box>
+                    </Box>
 
                     <Box
-                      className="Points_Postedby"
-                      sx={designs.Points_Postedby_Style}
+                      className="Activity-details"
+                      sx={designs.Activity_Details_Style}
                     >
-                      <Box className="Points" sx={designs.Points}>
-                        <Typography sx={designs.Points_Typography}>
-                          Points:
-                        </Typography>
+                      <Box
+                        className="Type_Due_Date"
+                        sx={designs.Type_Due_Date_Style}
+                      >
+                        <Box className="Type">
+                          <Typography sx={designs.Type_Responsive_Typography}>
+                            Homework
+                          </Typography>
+                        </Box>
 
-                        <Typography sx={designs.Points_Value_Typography}>
-                          {items.PointsValue}
-                        </Typography>
-                      </Box>
-
-                      <Box className="Postedby" sx={designs.Postedby_Style}>
-                        <Typography sx={designs.Postedby_Typography}>
-                          {items.PostedBy}
-                        </Typography>
-
-                        <Typography sx={designs.Date_Posted_Typography}>
-                          {items.PostedTime}
-                        </Typography>
-                      </Box>
-                    </Box>
-                  </Box>
-
-                  <Divider sx={designs.Divider1} />
-
-                  <Box
-                    className="Activity-details2"
-                    sx={designs.Activity_Details2_Style}
-                  >
-                    <Typography sx={designs.Instructions_Typography}>
-                      {items.InstructionsHead}
-                    </Typography>
-
-                    <Typography sx={designs.Instructions2_Typography}>
-                      {items.Instructions}
-                    </Typography>
-
-                    <Box className="Attach-file" sx={designs.Attach_File_Style}>
-                      <Box className="Icon">
-                        <img
-                          src={Wordfile}
-                          style={{
-                            height: '40px',
-                          }}
-                        />
-                      </Box>
-
-                      <Box className="Activity-filename" marginTop="1px">
-                        <Typography
-                          noWrap
-                          sx={designs.Activity_FileName_Typography}
+                        <Box
+                          className="Due_Date"
+                          sx={designs.DueDate_Responsive}
                         >
-                          {items.ActivityFile}
-                        </Typography>
+                          <Typography
+                            sx={designs.DueDate_Responsive_Typography}
+                          >
+                            Due Date:
+                          </Typography>
 
-                        <Typography sx={designs.DocumentFile_Typography}>
-                          Document File
-                        </Typography>
+                          <Typography sx={designs.Date_Responsive_Typography}>
+                            December 05, 2021
+                          </Typography>
+
+                          <Box className="Seperator" sx={designs.SeperatorV} />
+
+                          <Typography noWrap sx={designs.Responsive_Time}>
+                            5:00 pm
+                          </Typography>
+                        </Box>
+                      </Box>
+
+                      <Box sx={designs.Empty_Box_FlexGrow} />
+
+                      <Box sx={designs.Empty_Box_FlexGrow2} />
+
+                      <Box
+                        className="Points_Postedby"
+                        sx={designs.Points_Postedby_Style}
+                      >
+                        <Box className="Points" sx={designs.Points}>
+                          <Typography sx={designs.Points_Typography}>
+                            Points:
+                          </Typography>
+
+                          <Typography sx={designs.Points_Value_Typography}>
+                            {items.Points}
+                          </Typography>
+                        </Box>
+
+                        <Box className="Postedby" sx={designs.Postedby_Style}>
+                          <Typography sx={designs.Postedby_Typography}>
+                            {items.PostedBy}
+                          </Typography>
+
+                          <Typography sx={designs.Date_Posted_Typography}>
+                            {items.PostedTime}
+                          </Typography>
+                        </Box>
                       </Box>
                     </Box>
-                  </Box>
 
-                  <Divider sx={designs.Divider2} />
+                    <Divider sx={designs.Divider1} />
 
-                  <Button
-                    sx={designs.ViewHomework_Button_Style}
-                    component={Link}
-                    to={`/Rooms/${roomID}/${items.Lesson}`}
-                  >
-                    View Homework
-                  </Button>
-                </AccordionDetails>
-              </Accordion>
-            </Box>
-          </Grid>
-        );
-      })}
+                    <Box
+                      className="Activity-details2"
+                      sx={designs.Activity_Details2_Style}
+                    >
+                      <Typography sx={designs.Instructions_Typography}>
+                        {items.InstructionsHead}
+                      </Typography>
+
+                      <Typography sx={designs.Instructions2_Typography}>
+                        {items.Instructions}
+                      </Typography>
+
+                      <Box
+                        className="Attach-file"
+                        sx={designs.Attach_File_Style}
+                      >
+                        <Box className="Icon">
+                          <img
+                            src={Wordfile}
+                            style={{
+                              height: '40px',
+                            }}
+                          />
+                        </Box>
+
+                        <Box className="Activity-filename" marginTop="1px">
+                          <Typography
+                            noWrap
+                            sx={designs.Activity_FileName_Typography}
+                          >
+                            {items.ActivityFile}
+                          </Typography>
+
+                          <Typography sx={designs.DocumentFile_Typography}>
+                            Document File
+                          </Typography>
+                        </Box>
+                      </Box>
+                    </Box>
+
+                    <Divider/>
+
+                    <Button
+                      sx={designs.ViewHomework_Button_Style}
+                      component={Link}
+                      to={`/Rooms/${roomID}/${items.Lesson}`}
+                    >
+                      View Homework
+                    </Button>
+                  </AccordionDetails>
+                </Accordion>
+              </Box>
+            </Grid>
+          );
+        })}
     </>
   );
 }

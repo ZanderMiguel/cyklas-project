@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Container, Grid, Divider, Typography, Button, IconButton, Box, FormControl, Input, InputLabel, Select, MenuItem } from "@mui/material";
-import { FolderSharedOutlined, Grading, Search } from "@mui/icons-material";
+import { FolderSharedOutlined, Search } from "@mui/icons-material";
 import Records_tableClassRecords from "./Records_tableClassRecords";
 import useStyle from "./Styles/Records_style";
+import Grading from "./Grading";
 
 const dataRoom = [
   {
@@ -69,25 +70,23 @@ function Records() {
     setToggleClassRecords(false);
   };
 
-  const [selectRoom, setSelectRoom] = useState('');
+  const [selectRoom, setSelectRoom] = useState('Embedded Programming');
 
   const handleChangeRoom = (event) => {
     setSelectRoom(event.target.value);
   };
 
-  const [selectCourseYearSection, setSelectCourseYearSection] = useState('');
+  const [selectCourseYearSection, setSelectCourseYearSection] = useState('BSCS 3A');
 
   const handleChangeCourseYearSection = (event) => {
     setSelectCourseYearSection(event.target.value);
   };
 
-  const [selectTerm, setSelectTerm] = useState('');
+  const [selectTerm, setSelectTerm] = useState('MID TERM');
 
   const handleChangeTerm = (event) => {
     setSelectTerm(event.target.value);
   };
-
-  const [radioGroup, setRadioGroup] = useState("Automate");
   
   return (
     <Container maxWidth = "lg">
@@ -370,17 +369,14 @@ function Records() {
               <Records_tableClassRecords/>
               </Grid>
             </Grid>
-
-            {/* {radioGroup === "Automate" && (
-                <Automate/>
-            )} */}
             
             
           </Box>
         </Grid>
       </Grid>
     </Container>
-  )
-}
 
+    // <Container maxWidth="md"><Grading/></Container>
+  )
+  }
 export default Records;
