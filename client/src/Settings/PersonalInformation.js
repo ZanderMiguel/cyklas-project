@@ -81,7 +81,7 @@ function PersonalInformation() {
           ))}
         </Stack>
 
-        <FormControl variant="standard" sx={designs.FormControl_Style}>
+        {/* <FormControl variant="standard" sx={designs.FormControl_Style}>
           <Typography
             sx={{
               fontWeight: '500',
@@ -119,7 +119,7 @@ function PersonalInformation() {
               </MenuItem>
             ))}
           </Select>
-        </FormControl>
+        </FormControl> */}
 
         <Box className="Clear-save" sx={designs.Clear_Save_Style}>
           <Box flexGrow={1} sx={designs.BoxFlexGrow_Style} />

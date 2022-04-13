@@ -26,14 +26,18 @@ function useStyle(){
             }
         },
         SearchDashboard_Style: {
-            display: "flex", 
-            justifyContent: "center", 
+            border: "1px solid #DBDBDB",
+            borderRadius: "0.3em",
+            padding: "0.3em 0.8em",
+            display: "flex",
+            gap: "0.5em",
             alignItems: "center",
             height: "auto", 
-            width: "auto",
-            [theme.breakpoints.down('md')]: {
-                display: "none"
-            } 
+            width: "relative",
+            "&: hover": {
+                border: "1px solid #007FFF",
+                transition: "all 300ms"
+            }
         },
         Search_TextField_Style: {
             width: "relative",
@@ -45,10 +49,10 @@ function useStyle(){
             height: "auto", 
             width: "relative", 
             marginTop: "1em",
-            [theme.breakpoints.up('md')]: {
+            [theme.breakpoints.up('lg')]: {
                 display: "none"
             },
-            [theme.breakpoints.down('md')]: {
+            [theme.breakpoints.down('lg')]: {
                 display: "initial"
             }
         },
@@ -56,12 +60,12 @@ function useStyle(){
             height: "100vh", 
             width: "relative", 
             marginBottom: "1em",
-            [theme.breakpoints.down('md')]: {
+            [theme.breakpoints.down('lg')]: {
                 display: "none"
             }
         },
         OverFlow_Responsive_Style: { 
-            height: "15em", width: "relative", overflowY: "auto" 
+            height: "15em", width: "relative", overflowY: "auto", borderTop: "1px solid #DBDBDB", borderBottom: "1px solid #DBDBDB" 
         },
         ProfessorList_Container_Style: {
             marginTop: '0.2em',
@@ -70,19 +74,19 @@ function useStyle(){
             height: 'max-content',
         },
         OverFlow2_Responsive_Style: { 
-            height: "15em", width: "relative", overflowY: "auto" 
+            height: "15em", width: "relative", overflowY: "auto", borderTop: "1px solid #DBDBDB", borderBottom: "1px solid #DBDBDB" 
         },
         MainContainer_Style: { 
             width: "relative", height: "auto"
         },
         OverFlow_Style: { 
-            height: "30vh", width: "relative", overflowY: "auto" 
+            height: "30vh", width: "relative", overflowY: "auto", borderTop: "1px solid #DBDBDB", borderBottom: "1px solid #DBDBDB"
         },
         MainContainer2_Style: { 
             marginTop: "1.2em", width: "relative", height: "auto"
         },
         OverFlow2_Style: { 
-            height: "55vh", width: "relative", overflowY: "auto" 
+            height: "60vh", width: "relative", overflowY: "auto", borderTop: "1px solid #DBDBDB", borderBottom: "1px solid #DBDBDB"
         },
 
 };

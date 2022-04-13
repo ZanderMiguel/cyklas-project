@@ -96,7 +96,7 @@ function Accountpopover({ avatar }) {
                   <Typography
                     noWrap
                     sx={{
-                      color: '#3F3D56',
+                      color: '#87859D',
                       fontSize: '0.8em',
                       fontWeight: '500',
                       texTransform: 'none',
@@ -119,6 +119,7 @@ function Accountpopover({ avatar }) {
           to="/settings"
           sx={{
             padding: '0.5em 1em',
+            borderLeft: '5px solid transparent',
             '&: hover': {
               backgroundColor: '#FCFCFC',
               borderLeft: '5px solid #007FFF',
@@ -135,7 +136,7 @@ function Accountpopover({ avatar }) {
                 color: '#3F3D56',
               }}
             >
-              Setting
+              Settings
             </Typography>
           </Box>
         </ListItem>
@@ -145,6 +146,7 @@ function Accountpopover({ avatar }) {
           onClick={handleLogOut}
           sx={{
             padding: '0.5em 1.2em',
+            borderLeft: '5px solid transparent',
             '&: hover': {
               backgroundColor: '#FCFCFC',
               borderLeft: '5px solid #007FFF',

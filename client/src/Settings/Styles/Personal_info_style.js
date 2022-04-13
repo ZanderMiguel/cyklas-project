@@ -52,7 +52,8 @@ function useStyle() {
       padding: '0.1em 2.5em',
       marginRight: '0.5em',
       boxShadow: 'none',
-      '&: hover': { boxShadow: 'none', backgroundColor: 'transparent' },
+      color: "#3F3D56",
+      '&: hover': { boxShadow: 'none', backgroundColor: '#E7E7E7' },
       [theme.breakpoints.down('sm')]: {
         width: '50%',
         padding: '0.3em 2.5em',

@@ -30,6 +30,7 @@ import {
 } from '@mui/icons-material';
 import AvatarIcon from '../assets/ImageJaven/Avatar.png';
 import useStyle from './Styles/Dashboard_style';
+import Dashboard_tableRoomsSchedules from './Dashboard_tableRoomsSchedules';
 
 const dataRoom = [
   {
@@ -84,8 +85,55 @@ const dataStats = [
     ),
     label: 'Total Enrolled Students',
     total: '223',
-    updateValue: '',
-    updateText: 'No New Added Student Today',
+    update: <Box
+    sx={{
+    display: 'flex',
+    gap: '0.5em',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 'relative',
+    margin: '0.5em 0em 0em 0em',
+    padding: '0.4em',
+    backgroundColor: '#F0F0F0',
+    // '&: hover': {
+    //     cursor: 'pointer',
+    //     transition: 'all 300ms',
+    //     backgroundColor: '#D8E9F9',
+    // },
+    }}
+>
+    <Typography
+    sx={{
+        color: '#8E8E8E',
+        fontSize: '0.7em',
+        fontWeight: '600',
+        textTransform: 'uppercase',
+        height: 'relative',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center"
+    }}
+    >
+    
+    </Typography>
+
+    <Typography
+    sx={{
+        color: '#8E8E8E',
+        fontSize: '0.7em',
+        fontWeight: '600',
+        textTransform: 'uppercase',
+        height: 'relative',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center"
+    }}
+    >
+    No New Added Student Today
+    </Typography>
+</Box>
   },
   {
     icon: (
@@ -105,8 +153,55 @@ const dataStats = [
     ),
     label: 'Total Posted Announcements',
     total: '567',
-    updateValue: '2',
-    updateText: 'New Post Today',
+    update: <Box
+    sx={{
+    display: 'flex',
+    gap: '0.5em',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 'relative',
+    margin: '0.5em 0em 0em 0em',
+    padding: '0.4em',
+    backgroundColor: '#EDF3F9',
+    '&: hover': {
+        cursor: 'pointer',
+        transition: 'all 300ms',
+        backgroundColor: '#D8E9F9',
+    },
+    }}
+>
+    <Typography
+    sx={{
+        color: '#007FFF',
+        fontSize: '0.7em',
+        fontWeight: '600',
+        textTransform: 'uppercase',
+        height: 'relative',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center"
+    }}
+    >
+    2
+    </Typography>
+
+    <Typography
+    sx={{
+        color: '#007FFF',
+        fontSize: '0.7em',
+        fontWeight: '600',
+        textTransform: 'uppercase',
+        height: 'relative',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center"
+    }}
+    >
+    New Post Today
+    </Typography>
+</Box>
   },
   {
     icon: (
@@ -126,8 +221,55 @@ const dataStats = [
     ),
     label: 'Total Returned Activities',
     total: '103',
-    updateValue: '4',
-    updateText: 'Returned Activities Today',
+    update: <Box
+    sx={{
+    display: 'flex',
+    gap: '0.5em',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 'relative',
+    margin: '0.5em 0em 0em 0em',
+    padding: '0.4em',
+    backgroundColor: '#EDF3F9',
+    '&: hover': {
+        cursor: 'pointer',
+        transition: 'all 300ms',
+        backgroundColor: '#D8E9F9',
+    },
+    }}
+>
+    <Typography
+    sx={{
+        color: '#007FFF',
+        fontSize: '0.7em',
+        fontWeight: '600',
+        textTransform: 'uppercase',
+        height: 'relative',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center"
+    }}
+    >
+    4
+    </Typography>
+
+    <Typography
+    sx={{
+        color: '#007FFF',
+        fontSize: '0.7em',
+        fontWeight: '600',
+        textTransform: 'uppercase',
+        height: 'relative',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center"
+    }}
+    >
+    Returned Activities Today
+    </Typography>
+</Box>
   },
 ];
 
@@ -420,7 +562,7 @@ function Dashboard() {
   return (
     <Container maxWidth="xl">
         <Grid container sx = {{ height: "auto" }}>
-            <Grid item xs={12} sx = {{ marginTop: "1em" }}>
+            {/* <Grid item xs={12} sx = {{ marginTop: "1em" }}>
             <Box sx={{ width: 'relative', height: 'auto', display: 'flex', flexWrap: "wrap" }}>
             
                 <Box sx = {designs.SearchDashboard_Responsive_Style}>
@@ -429,8 +571,7 @@ function Dashboard() {
                     sx={{
                         backgroundColor: '#FCF9FB',
                         height: '1.3em',
-                        width: '1.3em',
-                        marginRight: "0.5em"
+                        width: '1.3em'
                     }}
                     >
                     <Search
@@ -444,9 +585,11 @@ function Dashboard() {
                     <Input
                     variant="standard"
                     placeholder="Search dashboard..."
+                    disableUnderline
                     sx={{
+                        border: "1px solid black",
                         height: '2.5em',
-                        width: '90%',
+                        width: '100%',
                         backgroundColor: 'transparent',
                         fontSize: '0.8em',
                         fontWeight: '500',
@@ -496,45 +639,51 @@ function Dashboard() {
                 </Select>
                 </FormControl>
                 
-                <Box sx = {designs.SearchDashboard_Style}>
-                    <IconButton
-                    aria-label="search"
-                    sx={{
-                        backgroundColor: '#FCF9FB',
-                        margin: '0.6em 0.5em 0em 1em',
-                        height: '1.3em',
-                        width: '1.3em',
-                    }}
-                    >
-                    <Search
-                        sx={{
-                        color: '#82818E',
-                        fontSize: '0.9em',
-                        }}
-                    />
-                    </IconButton>
-
-                    <Input
-                    variant="standard"
-                    placeholder="Search dashboard..."
-                    sx={{
-                        height: '2.5em',
-                        width: '30.5em',
-                        marginTop: '1.1em',
-                        backgroundColor: 'transparent',
-                        fontSize: '0.8em',
-                        fontWeight: '500',
-                        color: '#3F3D56',
-                    }}
-                    />
-                </Box>
+                
+                
                 
             </Box>
-            </Grid>
+            </Grid> */}
+
+                  <Grid item md = {6} xs = {12} sx = {{ marginTop: "1em" }}> 
+                    <Box sx = {designs.SearchDashboard_Style}>
+                        <IconButton
+                        aria-label="search"
+                        sx={{
+                            backgroundColor: 'transparent',
+                            height: '1.2em',
+                            width: '1.2em',
+                            "&: hover": {
+                              backgroundColor: "#FCF9FB"
+                            }
+                        }}
+                        >
+                        <Search
+                            sx={{
+                            color: '#82818E',
+                            fontSize: '0.8em',
+                            }}
+                        />
+                        </IconButton>
+
+                        <Input
+                        variant="standard"
+                        placeholder="Search dashboard..."
+                        disableUnderline
+                        sx={{
+                            height: '2.5em',
+                            width: '30.5em',
+                            backgroundColor: 'transparent',
+                            fontSize: '0.8em',
+                            fontWeight: '500',
+                            color: '#3F3D56',
+                        }}
+                        />
+                    </Box>
+                  </Grid>
 
             <Box sx = {{ padding: "1em 0em", width: "100%", height: "auto", display: "flex", gap: "1em" }}>
-                <Grid container columnSpacing = {1} sx = {{ width: "100%", height: "100vh" }}>
-                    
+                <Grid container columnSpacing = {1} rowSpacing = {2} sx = {{ width: "100%", height: "100vh" }}>
                     {dataStats.map(function (items, index) {
                         return (
                         <Grid key={index} item sm = {4} xs={12} sx={{ height: 'max-content' }}>
@@ -591,56 +740,7 @@ function Dashboard() {
                                 </Typography>
                                 </Box>
                             </Box>
-
-                            <Box
-                                sx={{
-                                display: 'flex',
-                                gap: '0.5em',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                width: 'relative',
-                                margin: '0.5em 0em 0em 0em',
-                                padding: '0.4em',
-                                backgroundColor: '#EDF3F9',
-                                '&: hover': {
-                                    cursor: 'pointer',
-                                    transition: 'all 300ms',
-                                    backgroundColor: '#D8E9F9',
-                                },
-                                }}
-                            >
-                                <Typography
-                                sx={{
-                                    color: '#007FFF',
-                                    fontSize: '0.7em',
-                                    fontWeight: '600',
-                                    textTransform: 'uppercase',
-                                    height: 'relative',
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    textAlign: "center"
-                                }}
-                                >
-                                {items.updateValue}
-                                </Typography>
-
-                                <Typography
-                                sx={{
-                                    color: '#007FFF',
-                                    fontSize: '0.7em',
-                                    fontWeight: '600',
-                                    textTransform: 'uppercase',
-                                    height: 'relative',
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    textAlign: "center"
-                                }}
-                                >
-                                {items.updateText}
-                                </Typography>
-                            </Box>
+                            {items.update}
                             </Box>
                         </Grid>
                         );})}
@@ -649,7 +749,10 @@ function Dashboard() {
                             <Box sx={designs.MainContainer_Style}>
                             <Box
                                 sx={{
-                                marginBottom: '0.3em',
+                                borderBottom: "2px solid #007FFF",
+                                borderRight: "1px solid #DBDBDB",
+                                borderLeft: "1px solid #DBDBDB",
+                                backgroundColor: 'transparent',
                                 display: 'flex',
                                 width: 'relative',
                                 height: 'auto',
@@ -690,8 +793,8 @@ function Dashboard() {
                                     sx={{
                                     width: '100%',
                                     fontSize: '0.7em',
-                                    fontWeight: '400',
-                                    color: '#8E8E8E',
+                                    fontWeight: '500',
+                                    color: '#007FFF',
                                     }}
                                 >
                                     {dataRange.map(({ value, label }) => (
@@ -914,8 +1017,8 @@ function Dashboard() {
                                     sx={{
                                     width: '100%',
                                     fontSize: '0.7em',
-                                    fontWeight: '400',
-                                    color: '#8E8E8E',
+                                    fontWeight: '500',
+                                    color: '#007FFF',
                                     }}
                                 >
                                     {dataRange.map(({ value, label }) => (
@@ -931,10 +1034,10 @@ function Dashboard() {
                             <Box sx={designs.OverFlow2_Responsive_Style}>
                                 <Box
                                 sx={{
-                                    boxShadow:
-                                    'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px',
-                                    backgroundColor: '#FCFCFC',
-                                    marginBottom: '0.3em',
+                                    borderBottom: "2px solid #007FFF",
+                                    borderRight: "1px solid #DBDBDB",
+                                    borderLeft: "1px solid #DBDBDB",
+                                    backgroundColor: 'transparent',
                                     width: 'relative',
                                     height: 'auto',
                                     display: 'flex',
@@ -1082,267 +1185,8 @@ function Dashboard() {
                             </Box>
                             </Box>
                             </Grid>
-                        <Grid item xs = {12} sx = {{ height: "80vh" }}>
-                            <Box sx = {{
-                                marginTop: "1em",
-                                display: "flex",
-                                width: "relative",
-                                height: "auto"
-                            }}>
-                                <Typography
-                                    sx={{
-                                    color: '#615F79',
-                                    fontSize: '0.9em',
-                                    fontWeight: '600',
-                                    width: 'auto',
-                                    height: 'max-content',
-                                    textTransform: 'uppercase',
-                                    }}
-                                >
-                                    Rooms and Classes Schedule
-                                </Typography>
-
-                                <Box flexGrow={1} />
-
-                                <Button
-                                    sx={{
-                                    padding: '0em 2em',
-                                    fontSize: '0.8em',
-                                    fontWeight: '500',
-                                    textTransform: 'none',
-                                    backgroundColor: 'transparent',
-                                    color: '#007FFF',
-                                    width: 'max-content',
-                                    '&: hover': {
-                                        backgroundColor: 'transparent',
-                                    },
-                                    }}
-                                >
-                                    View all
-                                </Button>
-                            </Box>
-
-                            <Box sx={{
-                                    marginTop: '0.3em',
-                                    padding: '0.2em 0em 0.8em 0em',
-                                    width: 'relative',
-                                    height: 'auto',
-                                    boxShadow:
-                                    'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px',
-                                }}>
-                                
-                                <Box sx={{
-                                    width: 'relative',
-                                    height: 'auto',
-                                    margin: '0.5em 1em 0em 1em',
-                                    display: 'flex',
-                                    justifyContent: "space-between",
-                                    padding: '0.5em 1em',
-                                    }}>
-                                    
-                                    <Typography sx={{
-                                        color: '#615F79',
-                                        fontSize: '0.8em',
-                                        fontWeight: '600',
-                                        textTransform: 'Capitalize',
-                                        textAlign: 'center',
-                                        height: 'max-content',
-                                        width: '10%',
-                                    }}>
-                                    Room Id
-                                    </Typography>
-
-                                    <Typography sx={{
-                                        color: '#615F79',
-                                        fontSize: '0.8em',
-                                        fontWeight: '600',
-                                        textTransform: 'Capitalize',
-                                        textAlign: 'center',
-                                        height: 'max-content',
-                                        width: '30%',
-                                    }}>
-                                    Room Name
-                                    </Typography>
-
-                                    <Typography sx={{
-                                        color: '#615F79',
-                                        fontSize: '0.8em',
-                                        fontWeight: '600',
-                                        textTransform: 'Capitalize',
-                                        textAlign: 'center',
-                                        height: 'max-content',
-                                        width: '20%',
-                                    }}>
-                                    Course
-                                    </Typography>
-
-                                    <Typography sx={{
-                                        color: '#615F79',
-                                        fontSize: '0.8em',
-                                        fontWeight: '600',
-                                        textTransform: 'Capitalize',
-                                        textAlign: 'center',
-                                        height: 'max-content',
-                                        width: '15%',
-                                    }}>
-                                    Year and Section
-                                    </Typography>
-
-                                    <Typography sx={{
-                                        color: '#615F79',
-                                        fontSize: '0.8em',
-                                        fontWeight: '600',
-                                        textTransform: 'Capitalize',
-                                        textAlign: 'center',
-                                        height: 'max-content',
-                                        width: '15%',
-                                    }}>
-                                    Class Time
-                                    </Typography>
-
-                                    <Typography sx={{
-                                        color: '#615F79',
-                                        fontSize: '0.8em',
-                                        fontWeight: '600',
-                                        textTransform: 'Capitalize',
-                                        textAlign: 'center',
-                                        height: 'max-content',
-                                        width: '10%',
-                                    }}>
-                                    Terms
-                                    </Typography>
-                                </Box>
-
-                                <Box sx={{
-                                    width: 'relative',
-                                    height: '63vh',
-                                    padding: '0em 1em',
-                                    overflowY: 'auto',
-                                    }}>
-                                    {dataTable.map(function (items, index) {
-                                    return (
-                                        <Box
-                                        key={index}
-                                        sx={{
-                                            width: 'relative',
-                                            height: 'auto',
-                                            marginTop: '0.3em',
-                                            display: 'flex',
-                                            justifyContent: "space-between",
-                                            backgroundColor: '#FAF8F9',
-                                            padding: '0.8em 1em',
-                                            "&: hover": {
-                                                cursor: "pointer",
-                                                backgroundColor: "#F9F6F8"
-                                            }
-                                        }}
-                                        >
-                                        <Typography
-                                            sx={{
-                                            color: '#007FFF',
-                                            fontSize: '0.8em',
-                                            fontWeight: '600',
-                                            textTransform: 'Capitalize',
-                                            display: 'flex',
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                            textAlign: 'center',
-                                            height: 'relative',
-                                            width: '10%',
-                                            }}
-                                        >
-                                            {items.roomID}
-                                        </Typography>
-
-                                        <Typography
-                                            sx={{
-                                            color: '#615F79',
-                                            fontSize: '0.8em',
-                                            fontWeight: '500',
-                                            textTransform: 'Capitalize',
-                                            display: 'flex',
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                            textAlign: 'center',
-                                            height: 'relative',
-                                            width: '30%',
-                                            }}
-                                        >
-                                            {items.roomName}
-                                        </Typography>
-
-                                        <Typography
-                                            sx={{
-                                            color: '#615F79',
-                                            fontSize: '0.8em',
-                                            fontWeight: '500',
-                                            textTransform: 'Capitalize',
-                                            display: 'flex',
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                            textAlign: 'center',
-                                            height: 'relative',
-                                            width: '20%',
-                                            }}
-                                        >
-                                            {items.course}
-                                        </Typography>
-
-                                        <Typography
-                                            sx={{
-                                            color: '#615F79',
-                                            fontSize: '0.8em',
-                                            fontWeight: '500',
-                                            textTransform: 'uppercase',
-                                            display: 'flex',
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                            textAlign: 'center',
-                                            height: 'relative',
-                                            width: '15%',
-                                            }}
-                                        >
-                                            {items.yearSection}
-                                        </Typography>
-
-                                        <Typography
-                                            sx={{
-                                            color: '#615F79',
-                                            fontSize: '0.8em',
-                                            fontWeight: '500',
-                                            textTransform: 'uppercase',
-                                            display: 'flex',
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                            textAlign: 'center',
-                                            height: 'relative',
-                                            width: '15%',
-                                            }}
-                                        >
-                                            {items.classTime}
-                                        </Typography>
-
-                                        <Typography
-                                            sx={{
-                                            color: '#615F79',
-                                            fontSize: '0.8em',
-                                            fontWeight: '500',
-                                            textTransform: 'uppercase',
-                                            display: 'flex',
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                            textAlign: 'center',
-                                            height: 'relative',
-                                            width: '10%',
-                                            }}
-                                        >
-                                            {items.Terms}
-                                        </Typography>
-                                        </Box>
-                                    );
-                                    })}
-                                </Box>
-                            </Box>
+                        <Grid item xs = {12} sx = {{ height: "auto" }}>
+                            <Dashboard_tableRoomsSchedules/>
                         </Grid>
                         {/* <Box sx = {{ width: "100%", height: "60vh", border: "1px solid black"}}>
                         </Box> */}
@@ -1403,8 +1247,8 @@ function Dashboard() {
                         sx={{
                         width: '100%',
                         fontSize: '0.7em',
-                        fontWeight: '400',
-                        color: '#8E8E8E',
+                        fontWeight: '500',
+                        color: '#007FFF',
                         }}
                     >
                         {dataRange.map(({ value, label }) => (
@@ -1420,10 +1264,10 @@ function Dashboard() {
                 <Box sx={designs.OverFlow_Style}>
                     <Box
                     sx={{
-                        boxShadow:
-                        'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px',
-                        backgroundColor: '#FCFCFC',
-                        marginBottom: '0.3em',
+                        borderBottom: "2px solid #007FFF",
+                        borderRight: "1px solid #DBDBDB",
+                        borderLeft: "1px solid #DBDBDB",
+                        backgroundColor: 'transparent',
                         width: 'relative',
                         height: 'auto',
                         display: 'flex',
@@ -1438,7 +1282,8 @@ function Dashboard() {
                     <Box
                         sx={{
                         marginTop: '0.2em',
-                        width: '8em',
+                        width: 'auto',
+                        flexGrow: 1,
                         height: 'max-content',
                         }}
                     >
@@ -1502,8 +1347,10 @@ function Dashboard() {
                         <Box
                         key={index}
                         sx={{
-                            backgroundColor: '#FDFDFD',
-                            marginBottom: '0.3em',
+                            backgroundColor: 'transparent',
+                            borderRight: "1px solid #DBDBDB",
+                            borderLeft: "1px solid #DBDBDB",
+                            borderBottom: "1px solid #DBDBDB",
                             width: 'relative',
                             height: 'auto',
                             display: 'flex',
@@ -1515,7 +1362,8 @@ function Dashboard() {
                         <Box
                             sx={{
                             marginTop: '0.2em',
-                            width: '10em',
+                            width: 'auto',
+                            flexGrow: 1,
                             height: 'max-content',
                             }}
                         >
@@ -1630,8 +1478,8 @@ function Dashboard() {
                         sx={{
                         width: '100%',
                         fontSize: '0.7em',
-                        fontWeight: '400',
-                        color: '#8E8E8E',
+                        fontWeight: '500',
+                        color: '#007FFF',
                         }}
                     >
                         {dataRange.map(({ value, label }) => (
@@ -1647,14 +1495,14 @@ function Dashboard() {
                 <Box sx={designs.OverFlow2_Style}>
                     <Box
                     sx={{
-                        boxShadow:
-                        'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px',
-                        backgroundColor: '#FCFCFC',
-                        marginBottom: '0.3em',
+                        borderBottom: "2px solid #007FFF",
+                        borderRight: "1px solid #DBDBDB",
+                        borderLeft: "1px solid #DBDBDB",
+                        backgroundColor: 'transparent',
                         width: 'relative',
                         height: 'auto',
                         display: 'flex',
-                        padding: '0.3em 0.5em',
+                        padding: '0.3em 0.5em'
                     }}
                     >
                     <Avatar
@@ -1665,7 +1513,8 @@ function Dashboard() {
                     <Box
                         sx={{
                         marginTop: '0.2em',
-                        width: '8em',
+                        width: 'auto',
+                        flexGrow: 1,
                         height: 'max-content',
                         }}
                     >
@@ -1731,8 +1580,10 @@ function Dashboard() {
                         <Box
                         key={index}
                         sx={{
-                            backgroundColor: '#FDFDFD',
-                            marginBottom: '0.3em',
+                            backgroundColor: 'transparent',
+                            borderRight: "1px solid #DBDBDB",
+                            borderLeft: "1px solid #DBDBDB",
+                            borderBottom: "1px solid #DBDBDB",
                             width: 'relative',
                             height: 'auto',
                             display: 'flex',
@@ -1744,7 +1595,8 @@ function Dashboard() {
                         <Box
                             sx={{
                             marginTop: '0.2em',
-                            width: '10em',
+                            width: 'auto',
+                            flexGrow: 1,
                             height: 'max-content',
                             }}
                         >
