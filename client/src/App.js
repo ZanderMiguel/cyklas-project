@@ -46,6 +46,12 @@ import JoinQuiz from './Quizlit/TestComponents/JoinQuiz';
 import ToLobby from './Quizlit/TestComponents/ToLobby';
 import Lobby from './Quizlit/TestComponents/Lobby';
 import LoadQuizlit from './Quizlit/TestComponents/LoadQuizlit';
+
+// Student Side
+import ClassCards_main from "./student_side/ClassCards/ClassCards_main";
+import Evaluation from "./student_side/ClassCards/Evaluation";
+import Dashboard_main from "./student_side/Dashboard/Dashboard_main";
+
 function App() {
   const theme = createTheme({
     typography: {
@@ -180,6 +186,12 @@ function App() {
               path="/Notifications_viewall"
               component={Notifications_viewall}
             />
+
+            {/* Student Side */}
+            <Route exact path="/ClassCards_main" component={ClassCards_main}/>
+            <Route exact path="/Evaluation" component={Evaluation}/>
+            <Route exact path="/Dashboard_main" component={Dashboard_main}/>
+
             <Route exact path="/Exam_take" component={Exam_take} />
             <Route exact path="/Exam_start/:examID" component={Exam_start} />
             <Route exact path="/View_quiz" component={View_quiz} />
