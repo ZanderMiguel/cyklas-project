@@ -58,24 +58,31 @@ function Grading_system() {
               id="panel1bh-header"
             >
               <Typography sx={{ width: '33%', flexShrink: 0 }}>
-                General settings
+                (Grading Given Title or Name)
               </Typography>
             </AccordionSummary>
             <Divider />
             <AccordionDetails>
               <Box display="flex" sx={{ mb: 2 }}>
                 <Box flexGrow={1}>
-                  <Typography variant="h6"> Class Standing</Typography>
+                  <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                    Class Standing
+                  </Typography>
                 </Box>
                 <Box>
                   <Typography>60%</Typography>
                 </Box>
               </Box>
+              <Typography sx={{ mb: 2 }}>
+                The Grade categories must be a total of 60%
+              </Typography>
               {input.map((item, index) => (
                 <Box key={index} sx={{ mb: 2 }}>
                   <TextField
                     name="category"
                     label="Category"
+                    autoComplete="off"
+                    size="small"
                     value={item.category}
                     variant="outlined"
                     sx={{ mr: 2 }}
@@ -84,6 +91,8 @@ function Grading_system() {
                   <TextField
                     name="percentage"
                     label="Percentage"
+                    autoComplete="off"
+                    size="small"
                     value={item.percentage}
                     variant="outlined"
                     onChange={(event) => handleChangeInput(index, event)}
@@ -103,42 +112,14 @@ function Grading_system() {
               ))}
               <Box display="flex" sx={{ mb: 2 }}>
                 <Box flexGrow={1}>
-                  <Typography variant="h5"> Class Standing</Typography>
+                  <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                    Major Exam
+                  </Typography>
                 </Box>
                 <Box>
-                  <Typography>60%</Typography>
+                  <Typography>40%</Typography>
                 </Box>
               </Box>
-              {input.map((item, index) => (
-                <Box key={index} sx={{ mb: 2 }}>
-                  <TextField
-                    name="category"
-                    label="Category"
-                    value={item.category}
-                    variant="outlined"
-                    sx={{ mr: 2 }}
-                    onChange={(event) => handleChangeInput(index, event)}
-                  />
-                  <TextField
-                    name="percentage"
-                    label="Percentage"
-                    value={item.percentage}
-                    variant="outlined"
-                    onChange={(event) => handleChangeInput(index, event)}
-                  />
-                  {index > 0 && (
-                    <IconButton
-                      sx={{ ml: 2 }}
-                      onClick={() => handleRemoveFields(index)}
-                    >
-                      <Remove />
-                    </IconButton>
-                  )}
-                  <IconButton sx={{ ml: 2 }} onClick={() => handleAddFields()}>
-                    <Add />
-                  </IconButton>
-                </Box>
-              ))}
             </AccordionDetails>
             <Divider />
             <AccordionActions>

@@ -332,7 +332,7 @@ function Records_tableClassRecords() {
               paddingTop: '0em',
             }}
           >
-            <Select
+            {/* <Select
               labelId="demo-simple-select-standard-label"
               id="demo-simple-select-standard"
               value={selectTerm}
@@ -357,7 +357,7 @@ function Records_tableClassRecords() {
                   {label}
                 </MenuItem>
               ))}
-            </Select>
+            </Select> */}
           </FormControl>
         </Grid>
         <Grid item md={3} sm={12} xs={12}>
