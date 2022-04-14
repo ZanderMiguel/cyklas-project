@@ -80,7 +80,8 @@ function ClassCards_table() {
                     <td data-label = "FINAL TERM Grade"> {items.finaltermGrade} </td>
                     <td data-label = "FINAL Grade"> {items.finalGrade} </td>
                     <td data-label = "Actions">
-                        <button class = "edit-btn" disabled> Evaluate </button> 
+                        {/* <button class = "evaluate-btn" id = "evaluate-Button"> Evaluate </button> */}
+                        <button class = "evaluate-btn" id = "evaluate-Button" disabled> Evaluate </button> 
                     </td>
                 </tr>
                 )

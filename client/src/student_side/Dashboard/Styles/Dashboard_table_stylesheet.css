@@ -60,7 +60,7 @@
     justify-content: center;
     align-items: center;
 }
-.rooms-table tbody td .edit-btn {
+.rooms-table tbody td .view-btn {
     font-family: Poppins;
     text-decoration: none;
     color: white;
@@ -71,7 +71,7 @@
     border: none;
     border-radius: 0.5em;
 } 
-.rooms-table tbody td .edit-btn:hover {
+.rooms-table tbody td .view-btn:hover {
     cursor: pointer;
     background-color: #056dd4;
     transition: all 300ms;
@@ -119,7 +119,7 @@
         padding-left: 1em;
         padding-right: 1em;
     }
-    .rooms-table tbody tr td .edit-btn {
+    .rooms-table tbody tr td .view-btn {
         width: 50%;
         padding: 0.5em 1.3em;
     } 

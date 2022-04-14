@@ -183,7 +183,7 @@ const dataStats = [
         textAlign: "center"
     }}
     >
-    2
+    (2)
     </Typography>
 
     <Typography
@@ -251,7 +251,7 @@ const dataStats = [
         textAlign: "center"
     }}
     >
-    4
+    (4)
     </Typography>
 
     <Typography

@@ -47,18 +47,19 @@
     color: #007FFF;
     font-weight: 600;
 }
-.classcards-table tbody td .edit-btn {
+.classcards-table tbody td .evaluate-btn {
     font-family: Poppins;
     text-decoration: none;
     color: white;
     font-size: 0.8em;
     font-weight: 600;
+    /* background-color: #0276EA; */
     background-color: #dbdada;
     padding: 0.3em 1.3em;
     border: none;
     border-radius: 0.5em;
 } 
-/* .classcards-table tbody td .edit-btn:hover {
+/* .classcards-table tbody td .evaluate-btn:hover {
     cursor: pointer;
     background-color: #056dd4;
     transition: all 300ms;

@@ -115,7 +115,7 @@ function Dashboard_table() {
                     <td data-label = "Class Time"> {items.classTime} </td>
                     <td data-label = "Professor"> {items.professorName} </td>
                     <td data-label = ""> 
-                        <button class = "edit-btn"> View </button> 
+                        <button class = "view-btn"> View </button> 
                         <button class = "leave-btn"> Leave </button> 
                     </td>
                 </tr>

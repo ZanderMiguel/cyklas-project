@@ -1,8 +1,8 @@
 import React from 'react';
-import Input from '../../components/Input';
-import useStyle from '../Styles/Announce_style';
+import Input from '../../../../components/Input';
+import useStyle from './Styles/Schoolworktiles_layout_style';
 
-import { Box, Grid, TextField, Avatar, InputAdornment } from '@mui/material';
+import { Box, Grid, TextField, Avatar, InputAdornment, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { MoreVert, Send, KeyboardArrowDown } from '@mui/icons-material';
 import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
@@ -14,11 +14,11 @@ import FormatItalicIcon from '@mui/icons-material/FormatItalic';
 import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
 import FormatColorFillIcon from '@mui/icons-material/FormatColorFill';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
-import ActivityIcon from '../../assets/ImageJaven/ActivityIcon.png';
-import QuizIcon from '../../assets/ImageJaven/QuizIcon.png';
-import ExamIcon from '../../assets/ImageJaven/ExamIcon.png';
-import MeetingIcon from '../../assets/ImageJaven/MeetingIcon.png';
+import AvatarIcon from '../../../../assets/ImageJaven/Avatar.png';
+import ActivityIcon from '../../../../assets/ImageJaven/ActivityIcon.png';
+import QuizIcon from '../../../../assets/ImageJaven/QuizIcon.png';
+import ExamIcon from '../../../../assets/ImageJaven/ExamIcon.png';
+import MeetingIcon from '../../../../assets/ImageJaven/MeetingIcon.png';
 import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import ToggleButton from '@mui/material/ToggleButton';
@@ -26,8 +26,8 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
-import CusPopover from '../../components/Popover';
-import SchoolworksTilespopover from '../../components/PopoverContent/SchoolworksTilespopover';
+import CusPopover from '../../../../components/Popover';
+import SchoolworksTilespopover from '../../../../components/PopoverContent/SchoolworksTilespopover';
 import {
   PanoramaOutlined,
   AttachFileOutlined,
@@ -46,7 +46,24 @@ const data = [
                 />,
     Activity: 'Activity 5',
     Professor: 'Mark Andrei',
-    date: 'posted this activity on ' + Date.now()
+    date: 'posted this activity on ' + Date.now(),
+    action: <Button variant = "contained" sx = {{
+                    backgroundColor: "#0276EA",
+                    color: "white",
+                    fontSize: "0.8em",
+                    fontWeight: "600",
+                    textTransform: "Capitalize",
+                    boxShadow: "none",
+                    padding: "0.3em 0em",
+                    margin: "0em 0.7em",
+                    width: "7em",
+                    "&: hover": {
+                      backgroundColor: "#056dd4",
+                      boxShadow: "none"
+                    }
+                  }}>
+                  View
+                  </Button>
   },
 
   {
@@ -60,7 +77,24 @@ const data = [
                 />,
     Activity: 'Variables',
     Professor: 'Mark Andrei',
-    date: 'posted this quiz on ' + Date.now()
+    date: 'posted this quiz on ' + Date.now(),
+    action: <Button variant = "contained" sx = {{
+                    backgroundColor: "#0276EA",
+                    color: "white",
+                    fontSize: "0.8em",
+                    fontWeight: "600",
+                    textTransform: "Capitalize",
+                    boxShadow: "none",
+                    padding: "0.3em 0em",
+                    margin: "0em 0.7em",
+                    width: "7em",
+                    "&: hover": {
+                      backgroundColor: "#056dd4",
+                      boxShadow: "none"
+                    }
+                  }}>
+                  View
+                  </Button>
   },
 
   {
@@ -74,7 +108,24 @@ const data = [
                 />,
     Activity: 'Preliminary Exam',
     Professor: 'Mark Andrei',
-    date: 'posted this exam on ' + Date.now()
+    date: 'posted this exam on ' + Date.now(),
+    action: <Button variant = "contained" sx = {{
+                    backgroundColor: "#0276EA",
+                    color: "white",
+                    fontSize: "0.8em",
+                    fontWeight: "600",
+                    textTransform: "Capitalize",
+                    boxShadow: "none",
+                    padding: "0.3em 0em",
+                    margin: "0em 0.7em",
+                    width: "7em",
+                    "&: hover": {
+                      backgroundColor: "#056dd4",
+                      boxShadow: "none"
+                    }
+                  }}>
+                  View
+                  </Button>
   },
 
   {
@@ -88,7 +139,24 @@ const data = [
                 />,
     Activity: 'Video Conference',
     Professor: 'Mark Andrei',
-    date: 'created this metting on ' + Date.now()
+    date: 'created this metting on ' + Date.now(),
+    action: <Button variant = "contained" sx = {{
+                    backgroundColor: "#49B854",
+                    color: "white",
+                    fontSize: "0.8em",
+                    fontWeight: "600",
+                    textTransform: "Capitalize",
+                    boxShadow: "none",
+                    padding: "0.3em 0em",
+                    margin: "0em 0.7em",
+                    width: "7em",
+                    "&: hover": {
+                      backgroundColor: "#3CAB47",
+                      boxShadow: "none"
+                    }
+                  }}>
+                  Join
+                  </Button>
   },
 
   {
@@ -102,7 +170,24 @@ const data = [
                 />,
     Activity: 'Activity 1',
     Professor: 'Mark Andrei',
-    date: 'posted this activity on ' + Date.now()
+    date: 'posted this activity on ' + Date.now(),
+    action: <Button variant = "contained" sx = {{
+                    backgroundColor: "#0276EA",
+                    color: "white",
+                    fontSize: "0.8em",
+                    fontWeight: "600",
+                    textTransform: "Capitalize",
+                    boxShadow: "none",
+                    padding: "0.3em 0em",
+                    margin: "0em 0.7em",
+                    width: "7em",
+                    "&: hover": {
+                      backgroundColor: "#056dd4",
+                      boxShadow: "none"
+                    }
+                  }}>
+                  View
+                  </Button>
   },
 ];
 
@@ -127,13 +212,7 @@ function Schoolworktiles_layout() {
         return (
             <Box key={index} sx={designs.BoxTileContainer}>
               <Box sx={designs.ActivityContainer}>
-                <img
-                  src={ActivityIcon}
-                  style={{
-                    height: '2.2em',
-                    margin: '0.4em 0.8em 0em 1.4em',
-                  }}
-                />
+                {item.icon}
 
                 <Box sx={designs.ActivityName_User_Date}>
                   <Box sx={designs.ActivityName}>
@@ -157,8 +236,18 @@ function Schoolworktiles_layout() {
                     </Typography>
                   </Box>
                 </Box>
+                
+                <Box sx = {{ 
+                  height: "relative",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  paddingRight: "1em" 
+                }}>
+                  {item.action}
+                </Box>
 
-                <Box sx={designs.BoxOptions}>
+                {/* <Box sx={designs.BoxOptions}>
                   <IconButton onClick={handleClickOption} sx={designs.IconButtonOptions}>
                     <MoreVert sx={designs.MoreVertIcon} />
                   </IconButton>
@@ -170,7 +259,7 @@ function Schoolworktiles_layout() {
                   onClose={handleCloseOption}>
                   <SchoolworksTilespopover />
                   </CusPopover>
-                </Box>
+                </Box> */}
               </Box>
             </Box>
         );
