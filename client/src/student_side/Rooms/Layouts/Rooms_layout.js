@@ -89,7 +89,7 @@ function Rooms_layout({ data }) {
                   <Typography
                     component={Link}
                     // to={`/rooms/${item.id}`}
-                    to = "/Rooms_inside"
+                    to = "/Rooms_inside2"
                     variant="h5"
                     sx={{
                       fontSize: '1.5em',

@@ -92,6 +92,7 @@ function useStyle() {
       textTransform: 'none',
       fontSize: '13px',
       fontWeight: '500',
+      textDecoration: "none",
       '&: hover': {
         cursor: 'pointer',
         color: '#3F3D56',
@@ -106,6 +107,7 @@ function useStyle() {
       textTransform: 'none',
       fontSize: '13px',
       fontWeight: '500',
+      textDecoration: "none",
       '&: hover': {
         cursor: 'pointer',
         color: '#3F3D56',
@@ -120,6 +122,7 @@ function useStyle() {
       textTransform: 'none',
       fontSize: '13px',
       fontWeight: '500',
+      textDecoration: "none",
       '&: hover': {
         cursor: 'pointer',
         color: '#3F3D56',
@@ -134,6 +137,7 @@ function useStyle() {
       textTransform: 'none',
       fontSize: '13px',
       fontWeight: '500',
+      textDecoration: "none",
       '&: hover': {
         cursor: 'pointer',
         color: '#3F3D56',
@@ -171,6 +175,7 @@ function useStyle() {
       textTransform: 'none',
       fontSize: '13px',
       fontWeight: '500',
+      textDecoration: "none",
       '&: hover': {
         cursor: 'pointer',
         color: '#3F3D56',
@@ -185,6 +190,7 @@ function useStyle() {
       textTransform: 'none',
       fontSize: '13px',
       fontWeight: '500',
+      textDecoration: "none",
       '&: hover': {
         cursor: 'pointer',
         color: '#3F3D56',
@@ -199,6 +205,7 @@ function useStyle() {
       textTransform: 'none',
       fontSize: '13px',
       fontWeight: '500',
+      textDecoration: "none",
       '&: hover': {
         cursor: 'pointer',
         color: '#3F3D56',
@@ -246,10 +253,12 @@ function useStyle() {
     },
     Content2_Style: {
       padding: '15px 0px',
-      marginBottom: '0px',
+      margin: 0,
       width: '100%',
       height: 'auto',
       backgroundColor: '#007FFF',
+      position: "relative",
+      bottom: 0
     },
     Content2_Sub_Style: {
       display: 'flex',

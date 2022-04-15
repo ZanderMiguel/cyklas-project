@@ -16,6 +16,7 @@ import Twitter from '../assets/ImageJaven/Twitter.png';
 import Youtube from '../assets/ImageJaven/Youtube.png';
 import Terms_condition from './Terms_condition';
 import Privacy_policy from './Privacy_policy';
+import {Link} from "react-router-dom";
 
 function Footer() {
   const { designs } = useStyle();
@@ -61,19 +62,27 @@ function Footer() {
                   CykLas
                 </Typography>
 
-                <Typography sx={designs.Home_TypographyButton_Style}>
+                <Typography sx={designs.Home_TypographyButton_Style}
+                component = {Link}
+                to = "/Home">
                   Home
                 </Typography>
 
-                <Typography sx={designs.Services_TypographyButton_Style}>
+                <Typography sx={designs.Services_TypographyButton_Style}
+                component = {Link}
+                to = "/Services">
                   Services
                 </Typography>
 
-                <Typography sx={designs.About_TypographyButton_Style}>
+                <Typography sx={designs.About_TypographyButton_Style}
+                component = {Link}
+                to = "/About">
                   About
                 </Typography>
 
-                <Typography sx={designs.Contacts_TypographyButton_Style}>
+                <Typography sx={designs.Contacts_TypographyButton_Style}
+                component = {Link}
+                to = "/Contact">
                   Contacts
                 </Typography>
               </Box>
@@ -88,15 +97,21 @@ function Footer() {
                   Services
                 </Typography>
 
-                <Typography sx={designs.Classroom_TypographyButton_Style}>
+                <Typography sx={designs.Classroom_TypographyButton_Style}
+                component = {Link}
+                to = "/CyClassroom">
                   CyClassroom
                 </Typography>
 
-                <Typography sx={designs.Quizlit_TypographyButton_Style}>
+                <Typography sx={designs.Quizlit_TypographyButton_Style}
+                component = {Link}
+                to = "/QuizLit2">
                   QuizLit
                 </Typography>
 
-                <Typography sx={designs.Telecon_TypographyButton_Style}>
+                <Typography sx={designs.Telecon_TypographyButton_Style}
+                component = {Link}
+                to = "/TeleCon">
                   Telecon (Video Conference)
                 </Typography>
               </Box>

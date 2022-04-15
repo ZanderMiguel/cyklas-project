@@ -58,7 +58,7 @@ const dataTable = [
 function ClassCards_table() {
   return (
     <>
-        <table class = "classcards-table" >
+        <table className = "classcards-table" >
             <thead>
               <tr>
                 <th> Room ID </th>
@@ -80,8 +80,8 @@ function ClassCards_table() {
                     <td data-label = "FINAL TERM Grade"> {items.finaltermGrade} </td>
                     <td data-label = "FINAL Grade"> {items.finalGrade} </td>
                     <td data-label = "Actions">
-                        {/* <button class = "evaluate-btn" id = "evaluate-Button"> Evaluate </button> */}
-                        <button class = "evaluate-btn" id = "evaluate-Button" disabled> Evaluate </button> 
+                        {/* <button className = "evaluate-btn" id = "evaluate-Button"> Evaluate </button> */}
+                        <button className = "evaluate-btn" id = "evaluate-Button" disabled> Evaluate </button> 
                     </td>
                 </tr>
                 )

@@ -127,13 +127,7 @@ function Schoolworktiles_layout() {
         return (
             <Box key={index} sx={designs.BoxTileContainer}>
               <Box sx={designs.ActivityContainer}>
-                <img
-                  src={ActivityIcon}
-                  style={{
-                    height: '2.2em',
-                    margin: '0.4em 0.8em 0em 1.4em',
-                  }}
-                />
+                {item.icon}
 
                 <Box sx={designs.ActivityName_User_Date}>
                   <Box sx={designs.ActivityName}>

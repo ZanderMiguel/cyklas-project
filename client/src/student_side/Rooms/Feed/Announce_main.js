@@ -11,9 +11,9 @@ function Announce_main({ socket }) {
   const { roomID } = useParams();
   const [postuuid, setPostUuid] = React.useState(null);
   const [data, setData] = React.useState(null);
-//   socket.on('post-created', (uuid) => {
-//     setPostUuid(uuid);
-//   });
+  // socket.on('post-created', (uuid) => {
+  //   setPostUuid(uuid);
+  // });
 
   React.useMemo(() => {
     axios

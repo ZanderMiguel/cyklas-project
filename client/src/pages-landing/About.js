@@ -150,7 +150,7 @@ function About() {
         </Typography>
         <Typography
           sx={{ fontWeight: 'bold' }}
-          style={{ color: '#EB7E42' }}
+          style={{ color: '#007FFF' }}
           variant="h5"
           align="center"
           mt={1}
@@ -179,6 +179,7 @@ function About() {
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
+                
               >
                 {items.avatar}
               </Box>
@@ -198,9 +199,8 @@ function About() {
                   {items.position}
                 </Typography>
                 <Typography
-                  sx={{ color: '#8A8994', mt: 3, fontWeight: 400 }}
+                  sx={{ color: '#8A8994', mt: 3, p: "0em 0.8em", fontSize: "0.9em", fontWeight: 400 }}
                   align="center"
-                  variant="body1"
                 >
                   {items.description}
                 </Typography>

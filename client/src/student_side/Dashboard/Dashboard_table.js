@@ -87,11 +87,11 @@ const dataTable = [
 function Dashboard_table() {
   return (
     <div>
-        <div class = "header">
+        <div className = "header">
             <h1> Rooms and Classes Schedules </h1>
         </div>
         
-        <table class = "rooms-table" >
+        <table className = "rooms-table" >
             <thead>
               <tr>
                 <th> Room Name </th>
@@ -115,8 +115,8 @@ function Dashboard_table() {
                     <td data-label = "Class Time"> {items.classTime} </td>
                     <td data-label = "Professor"> {items.professorName} </td>
                     <td data-label = ""> 
-                        <button class = "view-btn"> View </button> 
-                        <button class = "leave-btn"> Leave </button> 
+                        <button className = "view-btn"> View </button> 
+                        <button className = "leave-btn"> Leave </button> 
                     </td>
                 </tr>
                 )

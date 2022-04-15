@@ -8,6 +8,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import {Link} from "react-router-dom";
 
 //Import Mui
 import {
@@ -61,11 +62,19 @@ function Navbar_landingpage({ data }) {
 
   return (
     <>
-      <AppBar position="sticky" sx={{ background: 'white' }} elevation={0}>
+      <AppBar position="sticky" sx={{ background: 'white', padding: "0.5em 0em 0em 0em" }} elevation={0}>
         <Container maxWidth="xl">
           <Box display="flex" alignItems="center" flexWrap="wrap">
-            <Box display="flex" alignItems="center">
-              <img src={Logo} alt="cyklas logo" />
+            <Box display="flex" alignItems="center"
+            component = {Link}
+            to = "/Home"
+            sx = {{
+              textDecoration: "none",
+              "&: hover": {
+                cursor: "pointer"
+              }
+            }}>
+              <img src={Logo} alt="cyklas logo" style = {{ marginRight: "0.5em", height: "3em", width: "3em" }}/>
               <Typography
                 variant="h6"
                 fontFamily="Poppins"

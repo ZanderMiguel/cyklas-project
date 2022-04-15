@@ -17,7 +17,7 @@ import { IoNewspaperSharp } from 'react-icons/io5';
 import { HiUserGroup } from 'react-icons/hi';
 import { FaClipboardList } from 'react-icons/fa';
 
-function Rooms_inside({ socket }) {
+function Rooms_inside2({ socket }) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -102,4 +102,4 @@ function Rooms_inside({ socket }) {
   );
 }
 
-export default Rooms_inside;
+export default Rooms_inside2;
