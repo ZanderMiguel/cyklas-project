@@ -17,7 +17,7 @@ import { IoNewspaperSharp } from 'react-icons/io5';
 import { HiUserGroup } from 'react-icons/hi';
 import { FaClipboardList } from 'react-icons/fa';
 
-function Rooms_inside2({ socket }) {
+function Rooms_Inside2({ socket }) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -36,11 +36,17 @@ function Rooms_inside2({ socket }) {
         <Toolbar>
           <Container maxWidth="xl">
             <Box display="flex" flexWrap="wrap">
-              <Box sx = {{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                }}
+              >
                 <Typography
                   sx={{
                     fontSize: '1.2em',
-                    fontWeight: "700",
+                    fontWeight: '700',
                     color: '#3F3D56',
                     textTransform: 'Uppercase',
                   }}
@@ -51,9 +57,9 @@ function Rooms_inside2({ socket }) {
                 <Typography
                   sx={{
                     fontSize: '0.8em',
-                    fontWeight: "500",
+                    fontWeight: '500',
                     color: '#3F3D56',
-                    textTransform: 'Uppercase'
+                    textTransform: 'Uppercase',
                   }}
                 >
                   BSCS 3A
@@ -102,4 +108,4 @@ function Rooms_inside2({ socket }) {
   );
 }
 
-export default Rooms_inside2;
+export default Rooms_Inside2;

@@ -1,11 +1,11 @@
 import React from 'react';
-import { CssBaseline, Grid } from '@mui/material';
+import { CssBaseline, Grid, Paper } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 import Post_layout from './Post_layout';
-import Announce_form from './Announce_form';
 import Schoolworktiles_layout from '../Room-content-layout/Schoolworktiles_layout';
+import Rich_text from './Rich_text';
 
 function Announce({ socket }) {
   const { roomID } = useParams();
@@ -29,7 +29,9 @@ function Announce({ socket }) {
       <CssBaseline />
       <Grid container sx={{ margin: '1em 0em' }}>
         <Grid item xs={12}>
-          <Announce_form socket={socket} />
+          <Paper sx={{ p: 2 }}>
+            <Rich_text socket={socket} />
+          </Paper>
         </Grid>
         <Grid item xs={12}>
           {data && <Post_layout data={data} socket={socket} />}

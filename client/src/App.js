@@ -11,12 +11,12 @@ import Setting from './Settings/SettingsCont';
 import ProtectedRoutes from './components/ProtectedRoutes';
 import Dashboard from './Dashboard/Dashboard';
 import Navbar_landingpage from './components/Navbar_landingpage';
-import Services_main from "./pages-landing/Services/Services_main";
-import About from "./pages-landing/About";
-import Contact from "./pages-landing/Contact";
-import CyClassroom from "./pages-landing/Services/CyClassroom";
-import QuizLit2 from "./pages-landing/Services/QuizLit";
-import TeleCon from "./pages-landing/Services/TeleCon";
+import Services_main from './pages-landing/Services/Services_main';
+import About from './pages-landing/About';
+import Contact from './pages-landing/Contact';
+import CyClassroom from './pages-landing/Services/CyClassroom';
+import QuizLit2 from './pages-landing/Services/QuizLit';
+import TeleCon from './pages-landing/Services/TeleCon';
 
 import { io } from 'socket.io-client';
 
@@ -54,16 +54,16 @@ import Lobby from './Quizlit/TestComponents/Lobby';
 import LoadQuizlit from './Quizlit/TestComponents/LoadQuizlit';
 
 // Student Side
-import ClassCards_main from "./student_side/ClassCards/ClassCards_main";
-import Evaluation from "./student_side/ClassCards/Evaluation";
-import Dashboard_main from "./student_side/Dashboard/Dashboard_main";
-import Activities_main from "./student_side/Rooms/Activities/Activities_main";
-import Activity_viewed from "./student_side/Rooms/Activities/Viewed/Activity_viewed";
-import Quiz_viewed from "./student_side/Rooms/Activities/Viewed/Quiz_viewed";
-import Exam_viewed from "./student_side/Rooms/Activities/Viewed/Exam_viewed";
-import Rooms_inside2 from "./student_side/Rooms/Rooms_inside2";
-import Rooms_main from "./student_side/Rooms/Rooms_main";
-import Settings_main from "./student_side/Settings/Settings_main";
+import ClassCards_main from './student_side/ClassCards/ClassCards_main';
+import Evaluation from './student_side/ClassCards/Evaluation';
+import Dashboard_main from './student_side/Dashboard/Dashboard_main';
+import Activities_main from './student_side/Rooms/Activities/Activities_main';
+import Activity_viewed from './student_side/Rooms/Activities/Viewed/Activity_viewed';
+import Quiz_viewed from './student_side/Rooms/Activities/Viewed/Quiz_viewed';
+import Exam_viewed from './student_side/Rooms/Activities/Viewed/Exam_viewed';
+import Rooms_Inside2 from './student_side/Rooms/Rooms_Inside2';
+import Rooms_main from './student_side/Rooms/Rooms_main';
+import Settings_main from './student_side/Settings/Settings_main';
 
 function App() {
   const theme = createTheme({
@@ -208,18 +208,23 @@ function App() {
             />
 
             {/* Student Side */}
-            <Route exact path="/ClassCards_main" component={ClassCards_main}/>
-            <Route exact path="/Evaluation" component={Evaluation}/>
-            <Route exact path="/Dashboard_main" component={Dashboard_main}/>
-            <Route exact path="/Activities_main" component={Activities_main}/>
-            <Route exact path="/Activity_viewed" component={Activity_viewed}/>
-            <Route exact path="/Quiz_viewed" component={Quiz_viewed}/>
-            <Route exact path="/Exam_viewed" component={Exam_viewed}/>
-            <Route exact path="/Rooms_inside2">
-              <Rooms_inside2 socket = {socket}/>
+            <Route exact path="/ClassCards_main" component={ClassCards_main} />
+            <Route exact path="/Evaluation" component={Evaluation} />
+            <Route exact path="/Dashboard_main" component={Dashboard_main} />
+            <Route exact path="/Activities_main" component={Activities_main} />
+            <Route exact path="/Activity_viewed" component={Activity_viewed} />
+            <Route exact path="/Quiz_viewed" component={Quiz_viewed} />
+            <Route exact path="/Exam_viewed" component={Exam_viewed} />
+            <Route exact path="/Rooms_Inside2">
+              <Rooms_Inside2 socket={socket} />
             </Route>
-            <Route exact path="/Rooms_main" component={Rooms_main} socket={socket}/>
-            <Route exact path="/Settings_main" component={Settings_main}/>
+            <Route
+              exact
+              path="/Rooms_main"
+              component={Rooms_main}
+              socket={socket}
+            />
+            <Route exact path="/Settings_main" component={Settings_main} />
 
             <Route exact path="/Exam_take" component={Exam_take} />
             <Route exact path="/Exam_start/:examID" component={Exam_start} />

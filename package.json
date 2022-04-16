@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "draftjs-to-html": "^0.9.1"
+  }
+}

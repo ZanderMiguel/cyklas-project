@@ -3,11 +3,12 @@ const mongoose = require('mongoose');
 const ActivitySchema = new mongoose.Schema(
   {
     author: { type: mongoose.Schema.Types.ObjectId },
-    activityTopic: { type: String},
+    activityTopic: { type: String },
     activityTitle: { type: String, required: true },
     activityType: { type: String, required: true },
     activityPoints: { type: Number, required: true },
     activityDueDate: { type: Date },
+    activityInstruction: { type: Object },
     media: { type: Buffer },
     rooms: [mongoose.Schema.Types.ObjectId],
   },

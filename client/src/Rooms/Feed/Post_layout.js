@@ -9,32 +9,38 @@ import {
   Divider,
   TextField,
   InputAdornment,
-  Tooltip
+  Tooltip,
 } from '@mui/material';
-import { Send, BorderColorOutlined, DeleteOutlineOutlined } from '@mui/icons-material';
+import {
+  Send,
+  BorderColorOutlined,
+  DeleteOutlineOutlined,
+} from '@mui/icons-material';
 import Comments from './Comments';
 import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
 import usePost from '../../customHooks/usePost';
 import useStyles from '../Styles/Announce_style';
 import axios from 'axios';
-
+import draftToHtml from 'draftjs-to-html';
+import ReactHtmlParser from 'react-html-parser';
 
 function Post_layout({ data, socket }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleEdit = (event) => {
-    
-  };
-  
-  const handleDelete = (event, _id) => {
-    console.log(_id )
-    axios.delete('http://localhost:5000/announce/delete', {data:{announceID: _id}})
-    .then((res)=>{
-    socket.emit('create-post')
-    console.log(res)
-    })
-    .catch((error)=>{console.log(error)})
+  const handleEdit = (event) => {};
 
+  const handleDelete = (event, _id) => {
+    console.log(_id);
+    axios
+      .delete('http://localhost:5000/announce/delete', {
+        data: { announceID: _id },
+      })
+      .then((res) => {
+        socket.emit('create-post');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   const handleCloseOption = () => {
     setAnchorEl(null);
@@ -99,19 +105,19 @@ function Post_layout({ data, socket }) {
                   aria-label="options"
                   onClick={handleEdit}
                   sx={designs.Option_IconButton_Style}
-                > 
+                >
                   <Tooltip title="Edit Post" placement="top">
-                  <BorderColorOutlined sx={designs.EditIcon_Style} />
+                    <BorderColorOutlined sx={designs.EditIcon_Style} />
                   </Tooltip>
                 </IconButton>
-                
+
                 <IconButton
                   aria-label="options"
-                  onClick={(event)=> handleDelete(event, _id)}
+                  onClick={(event) => handleDelete(event, _id)}
                   sx={designs.Option_IconButton_Style}
-                > 
+                >
                   <Tooltip title="Delete Post" placement="top">
-                  <DeleteOutlineOutlined sx={designs.DeleteIcon_Style} />
+                    <DeleteOutlineOutlined sx={designs.DeleteIcon_Style} />
                   </Tooltip>
                 </IconButton>
 
@@ -125,9 +131,7 @@ function Post_layout({ data, socket }) {
               </Box>
 
               <Box className="post-content" sx={designs.Post_Content_Style}>
-                <Typography sx={designs.Post_Typography_Style}>
-                  {content}
-                </Typography>
+                {ReactHtmlParser(draftToHtml(content))}
               </Box>
               <Divider sx={designs.Divider_Style} />
 
