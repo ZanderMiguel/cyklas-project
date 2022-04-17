@@ -61,7 +61,7 @@ import Activities_main from './student_side/Rooms/Activities/Activities_main';
 import Activity_viewed from './student_side/Rooms/Activities/Viewed/Activity_viewed';
 import Quiz_viewed from './student_side/Rooms/Activities/Viewed/Quiz_viewed';
 import Exam_viewed from './student_side/Rooms/Activities/Viewed/Exam_viewed';
-import Rooms_Inside2 from './student_side/Rooms/Rooms_Inside2';
+import Rooms_inside2 from './student_side/Rooms/Rooms_inside2';
 import Rooms_main from './student_side/Rooms/Rooms_main';
 import Settings_main from './student_side/Settings/Settings_main';
 
@@ -216,7 +216,7 @@ function App() {
             <Route exact path="/Quiz_viewed" component={Quiz_viewed} />
             <Route exact path="/Exam_viewed" component={Exam_viewed} />
             <Route exact path="/Rooms_Inside2">
-              <Rooms_Inside2 socket={socket} />
+              <Rooms_inside2 socket={socket} />
             </Route>
             <Route
               exact
