@@ -75,6 +75,7 @@ const deleteQuizlit = async (req, res) => {
 const findQuizlit = async (req, res) => {
   try {
     const quiz = await QuizlitModel.findById(req.body.quizID.replace(':',''));
+    console.log(quiz)
     return res.json(quiz);
   } catch (err) {
     console.log(err);
@@ -86,7 +87,7 @@ const findQuizlit = async (req, res) => {
 };
 const displayQuizlitOnQuizlit = async (req, res) => {
   try {
-    const quizList = await QuizlitModel.find({ userID: req.body.userID }).sort({
+    const quizList = await QuizlitModel.find({ "author.userID": req.body.userID }).sort({
       createdAt: -1,
     });
     return res.json(quizList);

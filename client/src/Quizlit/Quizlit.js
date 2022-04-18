@@ -36,9 +36,7 @@ function Quizlit() {
         console.log(res.data)
       }).catch(err => console.log(err))
   }, [])
-  const [comp, setComp] = React.useState(data && <Quiz_layout bank={data.filter(item=>{
-    return item.quizType === 'Quiz'
-  })} />);
+  const [comp, setComp] = React.useState(null);
   const open = Boolean(anchorEl);
 
   return (
@@ -69,7 +67,7 @@ function Quizlit() {
                   </Typography>
                 }
                 onClick={() => {
-                  setComp(<Quiz_layout bank={data.filter(item=>{
+                  setComp(data && <Quiz_layout bank={data.filter(item=>{
                     console.log(item.quizType)
                     return item.quizType === 'Quiz'
                   })} />);
@@ -83,7 +81,7 @@ function Quizlit() {
                   </Typography>
                 }
                 onClick={() => {
-                  setComp(<Exam_layout bank={data.filter(item=>{
+                  setComp(data && <Exam_layout bank={data.filter(item=>{
                     console.log(item.quizType)
                     return item.quizType === 'Exam'
                   })} />);
@@ -118,7 +116,7 @@ function Quizlit() {
                   </Typography>
                 }
                 onClick={() => {
-                  setComp(<Quiz_layout bank={data.filter(item=>{
+                  setComp(data &&<Quiz_layout bank={ data.filter(item=>{
                     console.log(item.quizType)
                     return item.quizType === 'Quiz'
                   })} />);
@@ -132,7 +130,7 @@ function Quizlit() {
                   </Typography>
                 }
                 onClick={() => {
-                  setComp(<Exam_layout bank={data.filter(item=>{
+                  setComp(data && <Exam_layout bank={data.filter(item=>{
                     console.log(item.quizType)
                     return item.quizType === 'Exam'
                   })} />);
