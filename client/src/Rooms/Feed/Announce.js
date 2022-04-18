@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 import Post_layout from './Post_layout';
-import Schoolworktiles_layout from '../Room-content-layout/Schoolworktiles_layout';
 import Rich_text from './Rich_text';
 
 function Announce({ socket }) {
@@ -34,9 +33,8 @@ function Announce({ socket }) {
           </Paper>
         </Grid>
         <Grid item xs={12}>
-          {data && <Post_layout data={data} socket={socket} />}
+          {data && <Post_layout data={data} socket={socket} roomID={roomID} />}
         </Grid>
-        <Schoolworktiles_layout />
       </Grid>
     </>
   );

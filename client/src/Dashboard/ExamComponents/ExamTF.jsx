@@ -3,11 +3,11 @@ import { Grid, Box, Typography, Divider } from '@mui/material';
 import Image from '../../assets/ImageJaven/Image.png';
 import useStyle from '../Styles/Exam_start_style';
 import '../Styles/Exam_start_stylesheet.css';
-function ExamTF({ item }) {
+function ExamTF({ item , index}) {
   const { designs } = useStyle();
   const [answerButtonToggleTrue, setAnswerButtonToggleTrue] = useState(true);
   const [answerButtonToggleFalse, setAnswerButtonToggleFalse] = useState(true);
-
+  
   const handleClickTrue = () => {
     setAnswerButtonToggleTrue((prev) => !prev);
     setAnswerButtonToggleFalse(true);
@@ -36,7 +36,7 @@ function ExamTF({ item }) {
           sx={designs.Question_Container_Style}
         >
           <Box className="Question" sx={designs.Question_Style}>
-            <Typography sx={designs.Item_Typography_Style}>4.</Typography>
+            <Typography sx={designs.Item_Typography_Style}>{index+1}.</Typography>
 
             <Typography sx={designs.Question_Typography_Style}>
               {item.questionsContent}
@@ -103,7 +103,7 @@ function ExamTF({ item }) {
 
         <Box className="Image-container" sx={designs.Image_Container_Style}>
           <img
-            src={item.media || Image}
+            src={`${item.media}`|| Image}
             alt="Image"
             style={{
               height: '6.5em',

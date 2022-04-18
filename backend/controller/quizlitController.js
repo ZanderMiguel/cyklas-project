@@ -1,5 +1,5 @@
 const { QuizlitModel } = require('../models/model-quizlit');
-const UserModel = require('../models/model-users');
+const { AnnouncementModel } = require('../models/model-announcement');
 const { RoomsModel } = require('../models/model-createRoom');
 const mongoose = require('mongoose');
 
@@ -18,8 +18,11 @@ const updateUserAndRoom = async (quizlit, roomID) => {
 const createQuizlit = async (req, res) => {
   try {
     const quizID = mongoose.Types.ObjectId();
+    const announceID = mongoose.Types.ObjectId()
     const newQuizlit = new QuizlitModel({ _id: quizID, ...req.body });
+    const newAnnounce = new AnnouncementModel({_id: announceID,content: {quizID},author:req.body.author,...req.body})
     await newQuizlit.save();
+    if(req.body.type) await newAnnounce.save()
     updateUserAndRoom(quizID, req.body.rooms);
     return res.json({ status: 'success', data: quizID });
   } catch (err) {
@@ -71,7 +74,7 @@ const deleteQuizlit = async (req, res) => {
 
 const findQuizlit = async (req, res) => {
   try {
-    const quiz = await QuizlitModel.findById(req.body.quizID);
+    const quiz = await QuizlitModel.findById(req.body.quizID.replace(':',''));
     return res.json(quiz);
   } catch (err) {
     console.log(err);

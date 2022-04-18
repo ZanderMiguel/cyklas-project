@@ -4,7 +4,7 @@ import Image from '../../assets/ImageJaven/Image.png';
 import useStyle from '../Styles/Exam_start_style';
 import '../Styles/Exam_start_stylesheet.css';
 
-function ExamMulti({ item }) {
+function ExamMulti({ item,index }) {
   const { designs } = useStyle();
 
   const [answerButtonToggleA, setAnswerButtonToggleA] = useState(true);
@@ -56,7 +56,7 @@ function ExamMulti({ item }) {
           sx={designs.Question_Container_Style}
         >
           <Box className="Question" sx={designs.Question_Style}>
-            <Typography sx={designs.Item_Typography_Style}>1.</Typography>
+            <Typography sx={designs.Item_Typography_Style}>{index+1}.</Typography>
 
             <Typography sx={designs.Question_Typography_Style}>
               {item.questionsContent}
@@ -94,7 +94,7 @@ function ExamMulti({ item }) {
                 </Box>
               ) : (
                 <Typography sx={designs.AnswerAF_Typography_Style}>
-                  A. &nbsp;&nbsp; &nbsp; 6
+                  A. &nbsp;&nbsp; &nbsp; {item.qAnswers.answer1}
                 </Typography>
               )}
             </Box>
@@ -114,7 +114,7 @@ function ExamMulti({ item }) {
                 </Box>
               ) : (
                 <Typography sx={designs.AnswerBF_Typography_Style}>
-                  B. &nbsp;&nbsp; &nbsp; 1
+                  B. &nbsp;&nbsp; &nbsp; {item.qAnswers.answer2}
                 </Typography>
               )}
             </Box>
@@ -134,7 +134,7 @@ function ExamMulti({ item }) {
                 </Box>
               ) : (
                 <Typography sx={designs.AnswerCF_Typography_Style}>
-                  C. &nbsp;&nbsp; &nbsp; 2
+                  C. &nbsp;&nbsp; &nbsp; {item.qAnswers.answer3}
                 </Typography>
               )}
             </Box>
@@ -154,7 +154,7 @@ function ExamMulti({ item }) {
                 </Box>
               ) : (
                 <Typography sx={designs.AnswerDF_Typography_Style}>
-                  D. &nbsp;&nbsp; &nbsp; 3
+                  D. &nbsp;&nbsp; &nbsp; {item.qAnswers.answer4}
                 </Typography>
               )}
             </Box>
