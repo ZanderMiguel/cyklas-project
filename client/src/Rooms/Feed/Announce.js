@@ -14,13 +14,35 @@ function Announce({ socket }) {
     setPostUuid(uuid);
   });
 
-  React.useMemo(() => {
+  React.useEffect(() => {
+    let unmounted = false;
+    let source = axios.CancelToken.source();
     axios
-      .post('http://localhost:5000/announce', { rooms: roomID })
+      .post(
+        'http://localhost:5000/announce',
+        { rooms: roomID },
+        {
+          cancelToken: source.token,
+        }
+      )
       .then((res) => {
-        setData(res.data);
+        if (!unmounted) {
+          setData(res.data);
+        }
       })
-      .catch((err) => console.log(err));
+      .catch((e) => {
+        if (!unmounted) {
+          if (axios.isCancel(e)) {
+            console.log(`request cancelled:${e.message}`);
+          } else {
+            console.log('another error happened:' + e.message);
+          }
+        }
+      });
+    return () => {
+      unmounted = true;
+      source.cancel('Cancelling in cleanup');
+    };
   }, [postuuid]);
 
   return (

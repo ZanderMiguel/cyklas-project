@@ -17,12 +17,34 @@ function Activities({ roomID }) {
   };
 
   useEffect(() => {
+    let unmounted = false;
+    let source = axios.CancelToken.source();
     axios
-      .post('http://localhost:5000/activity', { roomID })
+      .post(
+        'http://localhost:5000/activity',
+        { roomID },
+        {
+          cancelToken: source.token,
+        }
+      )
       .then((res) => {
-        setActivity(res.data);
+        if (!unmounted) {
+          setActivity(res.data);
+        }
       })
-      .catch((err) => console.log(err));
+      .catch((e) => {
+        if (!unmounted) {
+          if (axios.isCancel(e)) {
+            console.log(`request cancelled:${e.message}`);
+          } else {
+            console.log('another error happened:' + e.message);
+          }
+        }
+      });
+    return () => {
+      unmounted = true;
+      source.cancel('Cancelling in cleanup');
+    };
   }, []);
   return (
     <Container maxWidth="md">

@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import moment from 'moment';
-import Schoolworktiles_layout from '../Room-content-layout/Schoolworktiles_layout';
-
 import {
   Grid,
   Box,
@@ -26,10 +24,10 @@ import axios from 'axios';
 import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser from 'react-html-parser';
 
-function Post_layout({ data, socket,roomID }) {
+function Post_layout({ data, socket }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleEdit = (event) => { };
+  const handleEdit = (event) => {};
 
   const handleDelete = (event, _id) => {
     console.log(_id);
@@ -61,8 +59,9 @@ function Post_layout({ data, socket,roomID }) {
       announcement: postID.current,
       content: commentContent.current,
       author: {
-        name: `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName
-          }`,
+        name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
+          JSON.parse(localStorage.userData).data.user.lastName
+        }`,
         userID: JSON.parse(localStorage.userData).data.user._id,
       },
     });
@@ -122,11 +121,18 @@ function Post_layout({ data, socket,roomID }) {
                   </Tooltip>
                 </IconButton>
 
+                {/* <CusPopover
+                PaperProps={{ elevation: 0 }}
+                open={account}
+                anchorEl={anchorEl}
+                onClose={handleCloseOption}>
+                <PostOptionspopover />
+                </CusPopover> */}
               </Box>
-              {content.quizID ? <Schoolworktiles_layout roomID={roomID} content={content.quizID}/> : <Box className="post-content" sx={designs.Post_Content_Style}>
-                {ReactHtmlParser(draftToHtml(content))}
-              </Box>}
 
+              <Box className="post-content" sx={designs.Post_Content_Style}>
+                {ReactHtmlParser(draftToHtml(content))}
+              </Box>
               <Divider sx={designs.Divider_Style} />
 
               <Comments postId={_id} commentId={commentId} socket={socket} />

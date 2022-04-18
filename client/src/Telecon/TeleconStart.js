@@ -13,7 +13,7 @@ import Button from '../components/Button';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import { Link } from 'react-router-dom';
-import useStyle from './Styles/TeleconStart_style';
+import axios from 'axios';
 
 const dataRoom = [
   {
@@ -35,13 +35,20 @@ const dataRoom = [
 ];
 
 function TeleconStart() {
-  const { designs } = useStyle();
-
   const [selectRoom, setSelectRoom] = useState('');
-
   const handleChangeRoom = (event) => {
     setSelectRoom(event.target.value);
   };
+  React.useEffect(() => {
+    axios
+      .post('http://localhost:5000/rooms', {
+        userID: JSON.parse(localStorage.userData).data.user._id,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <>
@@ -146,7 +153,6 @@ function TeleconStart() {
               >
                 Select Room
               </Typography>
-
               <Select
                 labelId="demo-simple-select-standard-label"
                 id="demo-simple-select-standard"
@@ -168,9 +174,8 @@ function TeleconStart() {
                 }}
               >
                 {dataRoom.map(({ value, label }) => (
-                  <MenuItem key={value} value={value}>
-                    {' '}
-                    {label}{' '}
+                  <MenuItem key={label} value={value}>
+                    {label}
                   </MenuItem>
                 ))}
               </Select>
