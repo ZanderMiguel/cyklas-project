@@ -18,13 +18,12 @@ function Activities({ roomID }) {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/activity')
+      .post('http://localhost:5000/activity', { roomID })
       .then((res) => {
         setActivity(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
-
   return (
     <Container maxWidth="md">
       <Box

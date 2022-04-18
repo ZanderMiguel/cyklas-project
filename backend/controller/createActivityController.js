@@ -21,11 +21,13 @@ async function createActivity(req, res) {
 
 const displayActivity = async (req, res) => {
   try {
-    const activity = await Activity.find().sort({ createdAt: -1 });
+    const activity = await Activity.find({
+      rooms: req.body.roomID.replace(':', ''),
+    }).sort({ createdAt: -1 });
     console.log('activity posted!');
     return res.json(activity);
   } catch (error) {
-    console.log('Something went wrong!');
+    console.log(error);
     return res.json({
       status: 'error',
       message: error,

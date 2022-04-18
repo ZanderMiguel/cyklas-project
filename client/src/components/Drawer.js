@@ -76,6 +76,7 @@ function Drawer() {
     },
   ];
   const divs = React.useRef(null);
+
   const list = () => (
     <Box
       sx={{ width: 280 }}

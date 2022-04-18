@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const bodyParser = require('body-parser')
-const methodOverride = require('method-override')
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 
 const {
   createRegistrationController,
@@ -28,7 +28,7 @@ const {
   updateActivityController,
 } = require('../controller/createActivityController');
 router.post('/activity/create', createActivityController);
-router.get('/activity', displayActivityController);
+router.post('/activity', displayActivityController);
 router.delete('/actiity/delete/:id', deleteActivityController);
 router.put('/activity/update/:id', updateActivityController);
 
@@ -37,11 +37,13 @@ const {
   displayRoomController,
   deleteRoomController,
   updateRoomController,
+  findRoom,
 } = require('../controller/roomsController');
 router.post('/rooms/create', createRoomController);
 router.post('/rooms', displayRoomController);
 router.delete('/rooms/delete', deleteRoomController);
 router.put('/rooms/update', updateRoomController);
+router.post('/rooms/my-room', findRoom);
 
 const {
   createFeedController,
@@ -92,18 +94,26 @@ router.delete('/quizlit/delete', deleteQuizlitController);
 router.post('/quizlit', findQuizlitController);
 router.post('/myQuizlit', displayQuizlitOnQuizlit);
 router.post('/roomQuizlit', displayQuizlitOnRoom);
-const upload = require('../middleware/upload')
+const upload = require('../middleware/upload');
 const {
   createQuestionController,
   updateQuestionController,
   deleteQuestionController,
-  findQuestionController
-  
+  findQuestionController,
 } = require('../controller/questionsController');
-router.post('/question/create',bodyParser.json(), upload.single('answer1'),upload.single('answer2'),upload.single('answer3'),upload.single('answer4'),upload.single('qImage') ,createQuestionController);
-router.put('/question/update', bodyParser.json(),updateQuestionController);
-router.delete('/question/delete', bodyParser.json(),deleteQuestionController);
-router.post('/question', bodyParser.json(),findQuestionController);
+router.post(
+  '/question/create',
+  bodyParser.json(),
+  upload.single('answer1'),
+  upload.single('answer2'),
+  upload.single('answer3'),
+  upload.single('answer4'),
+  upload.single('qImage'),
+  createQuestionController
+);
+router.put('/question/update', bodyParser.json(), updateQuestionController);
+router.delete('/question/delete', bodyParser.json(), deleteQuestionController);
+router.post('/question', bodyParser.json(), findQuestionController);
 
 const {
   addMembers,
