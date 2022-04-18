@@ -110,13 +110,6 @@ function App() {
           <Switch>
             <Redirect exact from="/" to="/home/login" />
             <Redirect exact from="/home" to="/home/login" />
-            <Route path="/Services" component={Services_main} />
-            <Route path="/Contact" component={Contact} />
-            <Route path="/About" component={About} />
-            <Route path="/CyClassroom" component={CyClassroom} />
-            <Route path="/QuizLit2" component={QuizLit} />
-            <Route path="/TeleCon" component={TeleCon} />
-
             <Route path="/forgotpassword" component={Forgot_password} />
             <Route exact path="/home/:page?" component={Navbar_landingpage} />
             <ProtectedRoutes exact path="/dashboard" component={Dashboard} />
@@ -137,12 +130,6 @@ function App() {
               exact
               path="/rooms/:roomID/:activityID"
               component={View_activity}
-            />
-            {/* Sample 2 id's */}
-            <ProtectedRoutes
-              exact
-              path="/rooms/:id/:ab/:w"
-              component={Dashboard}
             />
             <ProtectedRoutes exact path="/settings" component={Setting} />
             <ProtectedRoutes exact path="/quizlit" component={QuizLit} />

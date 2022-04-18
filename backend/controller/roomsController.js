@@ -34,7 +34,15 @@ const displayRooms = async (req, res) => {
     return res.json(error);
   }
 };
-
+const findRoom = async (req, res) => {
+  try {
+    const room = await RoomsModel.findById(req.body.roomID);
+    return res.json(room);
+  } catch (err) {
+    console.log(err);
+    return res.json({ status: error, message: err });
+  }
+};
 const deleteRooms = async (req, res) => {
   try {
     await RoomsModel.findByIdAndDelete(req.body.roomID);
@@ -61,4 +69,5 @@ module.exports = {
   displayRoomController: displayRooms,
   deleteRoomController: deleteRooms,
   updateRoomController: updateRooms,
+  findRoom,
 };

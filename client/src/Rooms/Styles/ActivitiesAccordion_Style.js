@@ -123,7 +123,6 @@ function useStyle() {
     },
     Activity_Details_Style: {
       width: '90%',
-      display: 'flex',
       flexWrap: 'wrap',
       margin: '0px 45px 15px 45px',
       [theme.breakpoints.down('sm')]: {
@@ -140,7 +139,7 @@ function useStyle() {
       color: '#3F3D56',
       fontWeight: '500',
       fontSize: '13px',
-      marginBottom: '5px',
+      marginTop: 1,
     },
     DueDate_Responsive: {
       display: 'flex',
@@ -242,7 +241,9 @@ function useStyle() {
     },
     Activity_Details2_Style: {
       width: '90%',
-      padding: '10px 0px',
+      color: '#3F3D56',
+      fontWeight: '500',
+      fontSize: '13px',
       margin: '0px 45px',
       [theme.breakpoints.down('sm')]: {
         margin: '0px 15px 0px 15px',
@@ -250,12 +251,10 @@ function useStyle() {
     },
     Instructions_Typography: {
       color: '#3F3D56',
-      fontSize: '14px',
+      fontSize: '13px',
       fontWeight: 'bold',
       textTransform: 'Uppercase',
       width: 'auto',
-      margin: '0px 30px 4px 30px',
-      padding: '0px 0px 0px 25px',
       [theme.breakpoints.down('sm')]: {
         padding: '0px 0px 4px 15px',
       },
@@ -309,7 +308,7 @@ function useStyle() {
       color: '#0069D3',
       fontWeight: 'bold',
       textTransform: 'Capitalize',
-      marginLeft: '45px',
+      marginLeft: '30px',
       '&: hover': {
         backgroundColor: '#EAEAEA',
       },

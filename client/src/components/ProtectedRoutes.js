@@ -11,10 +11,12 @@ function ProtectedRoutes({
   questionArray,
   ...attrib
 }) {
+  console.log();
   return (
     <>
       <CssBaseline />
-      {localStorage.token && <Navbar />}
+      {localStorage.token && <Navbar path={path} />}
+
       <Route
         {...attrib}
         render={() => {
