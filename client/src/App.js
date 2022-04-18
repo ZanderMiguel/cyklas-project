@@ -34,10 +34,6 @@ import StudentLiveQuiz_multiplechoice from './Quizlit/LiveQuiz/StudentLiveQuiz_m
 import Livequiz_correctanswer from './Quizlit/LiveQuiz/Livequiz_correctanswer';
 import Livequiz_wronganswer from './Quizlit/LiveQuiz/Livequiz_wronganswer';
 import Student_rankings from './Quizlit/LiveQuiz/Student_rankings';
-// import Conference_details from './Telecon/Telecon_Components/Conference_details';
-// import Members from './Telecon/Telecon_Components/Members';
-// import Message_area from './Telecon/components/Messages';
-// import Presentation from './Telecon/Telecon_Components/Presentation';
 import Student_activities from './Dashboard/Student_activities';
 import Student_viewactivity from './Dashboard/Student_viewactivity';
 import Student_viewexam from './Dashboard/Student_viewexam';
@@ -226,7 +222,7 @@ function App() {
             />
             <Route exact path="/Settings_main" component={Settings_main} />
 
-            <Route exact path="/Exam_take" component={Exam_take} />
+            <Route exact path="/Exam_take/:quizID" component={Exam_take} />
             <Route exact path="/Exam_start/:examID" component={Exam_start} />
             <Route exact path="/View_quiz" component={View_quiz} />
             <Route exact path="/View_exam" component={View_exam} />

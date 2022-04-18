@@ -55,6 +55,7 @@ function Examform() {
             />
             {opendialog2 && (
               <Post_exam
+                itemCount={exQArray.length}
                 open={opendialog2}
                 close={handleCreateClose}
                 maxWidth="md"

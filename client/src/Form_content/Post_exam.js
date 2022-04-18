@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import Dialogform from '../components/Dialogform';
-import Input from '../components/Input';
-import CusButton from '../components/Button';
 import {
   Grid,
   Box,
   Typography,
-  Avatar,
   Button,
   FormControl,
   InputLabel,
@@ -16,49 +13,9 @@ import {
   Checkbox,
 } from '@mui/material';
 import { Save } from '@mui/icons-material';
-import AvatarIcon from '../assets/ImageJaven/Avatar.png';
 import ExamIconButton from '../assets/ImageJaven/ExamIconButton.png';
 import useStyle from './Styles/Post_exam_style';
 import axios from 'axios';
-
-const dataRoom = [
-  {
-    value: 'Embedded Programming',
-    label: 'Embedded Programming',
-  },
-  {
-    value: 'Art Appreciation',
-    label: 'Art Appreciation',
-  },
-  {
-    value: 'Science, Technology and Society',
-    label: 'Science, Technology and Society',
-  },
-  {
-    value: 'Software Engineering',
-    label: 'Software Engineering',
-  },
-];
-
-const dataCourseYearSec = [
-  {
-    value: 'BSCS 3A',
-    label: 'BSCS 3A',
-  },
-  {
-    value: 'BSCS 3B',
-    label: 'BSCS 3B',
-  },
-  {
-    value: 'BSCS 3C',
-    label: 'BSCS 3C',
-  },
-  {
-    value: 'BSCS 4A',
-    label: 'BSCS 4A',
-  },
-];
-
 const dataStudent = [
   {
     value: 'All Student',
@@ -116,7 +73,7 @@ const dataTimeLimit = [
     label: '2 hours',
   },
 ];
-function Post_exam({ open, close, maxWidth, questionMemo, exam, counter }) {
+function Post_exam({ open, close, maxWidth, questionMemo, exam, counter, itemCount }) {
   const { designs } = useStyle();
 
   const [selectRoom, setSelectRoom] = useState('');
@@ -150,35 +107,40 @@ function Post_exam({ open, close, maxWidth, questionMemo, exam, counter }) {
   };
 
   const [selectTimeLimit, setSelectTimeLimit] = useState('');
-
   const handleChangeTimeLimit = (event) => {
     setSelectTimeLimit(event.target.value);
   };
-  const handleClickSave = () => {
+  const handleClickSave = (type) => {
     const questionPayload = [];
     axios
       .post('http://localhost:5000/quizlit/create', {
         author: {
           userID: JSON.parse(localStorage.userData).data.user._id,
-          name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
-            JSON.parse(localStorage.userData).data.user.lastName
-          } `,
+          name: `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName
+            } `,
         },
-
+        rooms: [roomId.current],
+        dueDate: 'unavailable',
+        timeLimit: selectTimeLimit,
+        students: 'unavailable',
         title: exam.current.title,
         instruction: exam.current.instruction,
         quizType: 'Exam',
         graded: false,
+        type
       })
       .then((res) => {
         questionMemo.current.forEach((item) => {
+          console.log(item)
           const {
             answerType,
             correctAnswer,
             points,
             questionsContent,
+            media,
             ...others
           } = item;
+
           questionPayload.push({
             qAnswers: { ...others },
             quizID: res.data.data,
@@ -186,12 +148,13 @@ function Post_exam({ open, close, maxWidth, questionMemo, exam, counter }) {
             correctAnswer,
             points,
             questionsContent,
+            media
           });
         });
         axios
           .post('http://localhost:5000/question/create', { questionPayload })
           .then((res) => {
-            console.log(res);
+            console.log(questionPayload);
             questionMemo.current = [{}];
             counter.current = 0;
             close();
@@ -200,6 +163,19 @@ function Post_exam({ open, close, maxWidth, questionMemo, exam, counter }) {
       })
       .catch((err) => console.log(err));
   };
+  let point = 0
+  questionMemo.current.forEach((item) => {
+    point += parseInt(item.points.replace(' point', ''))
+  })
+  const [dataRoom, setDataRoom] = React.useState(null)
+  React.useMemo(() => {
+    axios.post('http://localhost:5000/rooms', {
+      userID: JSON.parse(localStorage.userData).data.user._id,
+    }).then((res) => {
+      setDataRoom(res.data)
+    })
+  }, [])
+  const roomId = React.useRef(null)
   return (
     <div>
       <Dialogform
@@ -218,7 +194,7 @@ function Post_exam({ open, close, maxWidth, questionMemo, exam, counter }) {
             <Button
               variant="contained"
               startIcon={<Save />}
-              onClick={handleClickSave}
+              onClick={() => { handleClickSave(null) }}
               sx={{
                 border: '1px solid #007FFF',
                 backgroundColor: 'transparent',
@@ -240,6 +216,10 @@ function Post_exam({ open, close, maxWidth, questionMemo, exam, counter }) {
 
             <Button
               variant="contained"
+              onClick={() => {
+                handleClickSave('quizlit')
+
+              }}
               startIcon={
                 <img
                   src={ExamIconButton}
@@ -318,12 +298,17 @@ function Post_exam({ open, close, maxWidth, questionMemo, exam, counter }) {
                   },
                 }}
               >
-                {dataRoom.map(({ value, label }) => (
-                  <MenuItem key={value} value={value}>
-                    {' '}
-                    {label}{' '}
-                  </MenuItem>
-                ))}
+                {dataRoom && dataRoom.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value} accessKey={value._id}
+                      onClick={(e) => {
+                        roomId.current = e.target.accessKey
+                      }}>
+                      {' '}
+                      {value.RoomName}{' '}
+                    </MenuItem>
+                  )
+                })}
               </Select>
             </FormControl>
 
@@ -366,12 +351,15 @@ function Post_exam({ open, close, maxWidth, questionMemo, exam, counter }) {
                   },
                 }}
               >
-                {dataCourseYearSec.map(({ value, label }) => (
-                  <MenuItem key={value} value={value}>
-                    {' '}
-                    {label}{' '}
-                  </MenuItem>
-                ))}
+                {dataRoom && dataRoom.map((value, index) => {
+
+                  return (
+                    <MenuItem key={index} value={value}>
+                      {' '}
+                      {value.Course}{' '}{value.yearAndSection}
+                    </MenuItem>
+                  )
+                })}
               </Select>
             </FormControl>
 
@@ -589,7 +577,7 @@ function Post_exam({ open, close, maxWidth, questionMemo, exam, counter }) {
                   <Grid container rowSpacing={1} columnSpacing={1}>
                     <Grid item md={2} sm={6} xs={12}>
                       <Typography sx={designs.Items_Typography_Style}>
-                        5 items
+                        {itemCount} items
                       </Typography>
                     </Grid>
                     <Grid item md={3} sm={6} xs={12}>
@@ -599,7 +587,7 @@ function Post_exam({ open, close, maxWidth, questionMemo, exam, counter }) {
                         </Typography>
 
                         <Typography sx={designs.Points_Typography_Style}>
-                          10 points
+                          {point} points
                         </Typography>
                       </Box>
                     </Grid>

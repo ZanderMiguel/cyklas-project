@@ -24,7 +24,7 @@ function Quiz_layout({ bank }) {
   return (
     <>
       {bank.map((item, idx) => {
-        const { title, name, date, time } = item;
+        const { title, author, createdAt } = item;
         return (
           <Box sx={designs.BoxTileContainer} key={idx}>
             <Box sx={designs.QuizContainer}>
@@ -48,11 +48,11 @@ function Quiz_layout({ bank }) {
 
                 <Box sx={designs.User_Date}>
                   <Typography noWrap sx={designs.Professor}>
-                    {name} (You)
+                    {author.name} (You)
                   </Typography>
 
                   <Typography noWrap sx={designs.Date}>
-                    {date} at {time}
+                    {createdAt} at {createdAt}
                   </Typography>
                 </Box>
               </Box>

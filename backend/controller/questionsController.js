@@ -52,7 +52,7 @@ const deleteQuestion = async (req, res) => {
 const findQuestions = async (req, res) => {
   try {
     const questions = await QuestionModel.find({
-      quizID: req.body.quizID,
+      quizID: req.body.quizID.replace(':',''),
     });
     return res.json(questions);
   } catch (error) {

@@ -4,7 +4,7 @@ import Image from '../../assets/ImageJaven/Image.png';
 import '../Styles/Exam_start_stylesheet.css';
 import useStyle from '../Styles/Exam_start_style';
 
-function ExamShort({ item }) {
+function ExamShort({ item, index }) {
   const { designs } = useStyle();
 
   return (
@@ -23,10 +23,10 @@ function ExamShort({ item }) {
           sx={designs.Question_Container_Style}
         >
           <Box className="Question" sx={designs.Question_Style}>
-            <Typography sx={designs.Item_Typography_Style}>2.</Typography>
+            <Typography sx={designs.Item_Typography_Style}>{index+1}.</Typography>
 
             <Typography sx={designs.Question_Typography_Style}>
-              What is your wish for Christmas?
+              {item.questionsContent}
             </Typography>
           </Box>
 
@@ -59,7 +59,7 @@ function ExamShort({ item }) {
 
         <Box className="Image-container" sx={designs.Image_Container_Style}>
           <img
-            src={Image}
+            src={`${item.media.toString()}` || Image}
             alt="Image"
             style={{
               height: '6.5em',

@@ -29,6 +29,7 @@ function Exam_start() {
           .post('http://localhost:5000/question', { quizID })
           .then((res) => {
             setData([response.data, res.data]);
+            console.log([response.data, res.data])
           })
           .catch((err) => console.log(err));
       })
@@ -106,10 +107,10 @@ function Exam_start() {
                 xs={12}
                 sx={designs.ExamName_GridItem_Style}
               >
-                {answerType === 'Multiple Choice' && <ExamMulti item={item} />}
-                {answerType === 'Short Answer' && <ExamShort item={item} />}
-                {answerType === 'Checkboxes' && <ExamCB item={item} />}
-                {answerType === 'True or False' && <ExamTF item={item} />}
+                {answerType === 'Multiple Choice' && <ExamMulti item={item} index={index} />}
+                {answerType === 'Short Answer' && <ExamShort item={item} index={index}/>}
+                {answerType === 'Checkboxes' && <ExamCB item={item} index={index}/>}
+                {answerType === 'True or False' && <ExamTF item={item} index={index}/>}
               </Grid>
             );
           })}
