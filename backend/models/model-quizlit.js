@@ -8,6 +8,9 @@ const QuizlitSchema = new mongoose.Schema(
     quizType: { type: String, required: true },
     graded: { type: Boolean, required: true },
     rooms: { type: Array},
+    dueDate: {type: String},
+    timeLimit: {type: String},
+    students: { type: String}
   },
   { timestamps: true }
 );

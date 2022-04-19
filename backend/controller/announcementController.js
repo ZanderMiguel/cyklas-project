@@ -1,5 +1,4 @@
 const { AnnouncementModel } = require('../models/model-announcement');
-const { RoomsModel } = require('../models/model-createRoom');
 const mongoose = require('mongoose');
 async function createAnnouncement(req, res) {
   try {

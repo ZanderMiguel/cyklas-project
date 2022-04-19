@@ -133,8 +133,7 @@ const general = [
   },
 ];
 
-function Navbar() {
-  const [badge, setBadge] = React.useState();
+function Navbar({ path }) {
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorEl1, setAnchorEl1] = React.useState(null);
@@ -158,7 +157,6 @@ function Navbar() {
 
   const account = Boolean(anchorEl1);
   const badgeDot = React.useRef(null);
-
   return (
     <>
       <CssBaseline />
@@ -180,7 +178,23 @@ function Navbar() {
             }}
             variant="h6"
           >
-            Dashboard
+            {path === '/dashboard'
+              ? 'Dashboard'
+              : path === '/telecon'
+              ? 'Telecon'
+              : path === `/rooms`
+              ? 'Rooms'
+              : path === '/rooms/:roomID'
+              ? 'Rooms'
+              : path === '/rooms/:roomID/:activityID'
+              ? 'Rooms'
+              : path === '/classcard'
+              ? 'Class Card'
+              : path === '/quizlit'
+              ? 'Quizlit'
+              : path === '/records'
+              ? 'Records'
+              : path === '/settings' && 'Setting'}
           </Typography>
           <IconButton size="small" onClick={handleClickNotif}>
             <Badge

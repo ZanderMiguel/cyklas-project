@@ -11,8 +11,10 @@ import Input from '../components/Input';
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertToRaw } from 'draft-js';
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { useParams } from 'react-router-dom';
 
 function Create_activity({ open, close }) {
+  const { roomID } = useParams();
   const [topic, setTopic] = useState('');
   const [type, setType] = useState('');
   const [title, setTitle] = useState('');
@@ -58,6 +60,7 @@ function Create_activity({ open, close }) {
       activityPoints: points,
       activityDueDate: duedate,
       activityInstruction: convertedState,
+      rooms: [roomID],
     };
     if (title && points && type) {
       axios
@@ -80,16 +83,6 @@ function Create_activity({ open, close }) {
       maxWidth="md"
     >
       <Grid container spacing={2} sx={{ p: '0em 2em' }}>
-        {/* <Input
-          name="topic"
-          inputLabel="Topic/Coverage"
-          autoComplete="off"
-          placeholder="Enter activity topic..."
-          value={topic}
-          onChange={(event) => setTopic(event.target.value)}
-          autoFocus
-          half
-        /> */}
         <Input
           name="title"
           inputLabel="TItle"
@@ -123,12 +116,6 @@ function Create_activity({ open, close }) {
           placeholder="Set activity points"
           half
         />
-        {/* <Input
-          name="term"
-          inputLabel="Term"
-          placeholder="Choose term..."
-          half
-        /> */}
         <Input
           name="duedate"
           inputLabel="Due Date"

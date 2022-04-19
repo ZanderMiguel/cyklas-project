@@ -8,7 +8,7 @@ function usePost() {
 
   const post = (url, obj, head) => {
     axios
-      .post(url, obj)
+      .post(url, obj, head)
       .then((res) => {
         setData(res.data);
         setIsPending(false);

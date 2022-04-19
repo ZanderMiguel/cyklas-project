@@ -5,14 +5,14 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { Box, IconButton } from '@mui/material';
+import { IconButton } from '@mui/material';
 import Quiz_layout from './Quizbank-content-layout/Quiz_layout';
 import Exam_layout from './Quizbank-content-layout/Exam_layout';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import useStyle from './Styles/Quizlit_style';
 import CusPopover from '../components/Popover';
 import QuizlitAddpopover from '../components/PopoverContent/QuizlitAddpopover';
-
+import axios from 'axios'
 function Quizlit() {
   const { designs } = useStyle();
 
@@ -28,50 +28,15 @@ function Quizlit() {
   const handleClickClose = (event) => {
     setAnchorEl(null);
   };
-  const bank = [
-    [
-      {
-        title: 'Variables',
-        name: 'Mark Orense',
-        date: Date.now().toLocaleString(),
-        time: Date.now().toLocaleString(),
-      },
-      {
-        title: 'Conditional Statements',
-        name: 'Mark Orense',
-        date: Date.now().toLocaleString(),
-        time: Date.now().toLocaleString(),
-      },
-      {
-        title: 'Arrays',
-        name: 'Mark Orense',
-        date: Date.now().toLocaleString(),
-        time: Date.now().toLocaleString(),
-      },
-    ],
-    [
-      {
-        title: 'Preliminary Exam',
-        name: 'Mark Orense',
-        date: Date.now().toLocaleString(),
-        time: Date.now().toLocaleString(),
-      },
-      {
-        title: 'Midtem Exam',
-        name: 'Mark Orense',
-        date: Date.now().toLocaleString(),
-        time: Date.now().toLocaleString(),
-      },
-      {
-        title: 'Final Exam',
-        name: 'Mark Orense',
-        date: Date.now().toLocaleString(),
-        time: Date.now().toLocaleString(),
-      },
-    ],
-  ];
-
-  const [comp, setComp] = React.useState(<Quiz_layout bank={bank[0]} />);
+  const [data, setData] = React.useState(null)
+  React.useMemo(() => {
+    axios.post('http://localhost:5000/myQuizlit', { userID: JSON.parse(localStorage.userData).data.user._id })
+      .then(res => {
+        setData(res.data)
+        console.log(res.data)
+      }).catch(err => console.log(err))
+  }, [])
+  const [comp, setComp] = React.useState(null);
   const open = Boolean(anchorEl);
 
   return (
@@ -102,7 +67,10 @@ function Quizlit() {
                   </Typography>
                 }
                 onClick={() => {
-                  setComp(<Quiz_layout bank={bank[0]} />);
+                  setComp(data && <Quiz_layout bank={data.filter(item=>{
+                    console.log(item.quizType)
+                    return item.quizType === 'Quiz'
+                  })} />);
                 }}
               />
               <Tab
@@ -113,7 +81,10 @@ function Quizlit() {
                   </Typography>
                 }
                 onClick={() => {
-                  setComp(<Exam_layout bank={bank[1]} />);
+                  setComp(data && <Exam_layout bank={data.filter(item=>{
+                    console.log(item.quizType)
+                    return item.quizType === 'Exam'
+                  })} />);
                 }}
               />
             </Tabs>
@@ -124,7 +95,7 @@ function Quizlit() {
               onClick={handleClickAddQuiz}
               sx={designs.Add_IconButton_Style}
             >
-              <AddCircleIcon sx={{ color: '#56B73E', fontSize: '2rem', "&: hover": { color: "#39B41B"} }} />
+              <AddCircleIcon sx={{ color: '#56B73E', fontSize: '2rem', "&: hover": { color: "#39B41B" } }} />
             </IconButton>
           </Grid>
 
@@ -145,7 +116,10 @@ function Quizlit() {
                   </Typography>
                 }
                 onClick={() => {
-                  setComp(<Quiz_layout bank={bank[0]} />);
+                  setComp(data &&<Quiz_layout bank={ data.filter(item=>{
+                    console.log(item.quizType)
+                    return item.quizType === 'Quiz'
+                  })} />);
                 }}
               />
               <Tab
@@ -156,7 +130,10 @@ function Quizlit() {
                   </Typography>
                 }
                 onClick={() => {
-                  setComp(<Exam_layout bank={bank[1]} />);
+                  setComp(data && <Exam_layout bank={data.filter(item=>{
+                    console.log(item.quizType)
+                    return item.quizType === 'Exam'
+                  })} />);
                 }}
               />
             </Tabs>
