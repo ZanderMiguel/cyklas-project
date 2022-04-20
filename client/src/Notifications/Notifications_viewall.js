@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import {
   Container,
   Divider,
@@ -15,56 +14,7 @@ import AvatarIcon from "../assets/ImageJaven/Avatar.png";
 import useStyle from "./Styles/Notifications_viewall_style";
 import Requests from './Requests';
 import axios from 'axios'
-const request = [
-  {
-    avatar: <Avatar src={AvatarIcon} />,
-    user: 'Zander Miguel',
-    action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
-    dateTime: 'December 25, 2024 at 9:05 AM'
-  },
-  {
-    avatar: <Avatar src={AvatarIcon} />,
-    user: 'Mang Pandesal',
-    action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
-    dateTime: 'December 25, 2024 at 9:05 AM'
-  },
-  {
-    avatar: <Avatar src={AvatarIcon} />,
-    user: 'Verb',
-    action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
-    dateTime: 'December 25, 2024 at 9:05 AM'
-  },
-  {
-    avatar: <Avatar src={AvatarIcon} />,
-    user: 'Isko',
-    action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
-    dateTime: 'December 25, 2024 at 9:05 AM'
-  },
-  {
-    avatar: <Avatar src={AvatarIcon} />,
-    user: 'Yorme',
-    action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
-    dateTime: 'December 25, 2024 at 9:05 AM'
-  },
-  {
-    avatar: <Avatar src={AvatarIcon} />,
-    user: 'Bossing',
-    action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
-    dateTime: 'December 25, 2024 at 9:05 AM'
-  },
-  {
-    avatar: <Avatar src={AvatarIcon} />,
-    user: 'Allan',
-    action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
-    dateTime: 'December 25, 2024 at 9:05 AM'
-  },
-  {
-    avatar: <Avatar src={AvatarIcon} />,
-    user: 'Wally',
-    action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
-    dateTime: 'December 25, 2024 at 9:05 AM'
-  }
-];
+
 const general = [
   {
     avatar: <Avatar src={AvatarIcon} />,
@@ -222,17 +172,7 @@ function Notification_viewall() {
 
       {value === 1 && (
         <Box sx={designs.RequestContainer_Style}>
-          {request.length > 0 ? (
-            request.map((items, index) => (
-              <div key={index}>
-                <Requests items={items} />
-              </div>
-            ))
-          ) : (
-            <Box sx={designs.RequestContainer_Sub4_Style}>
-              <Typography children="have nothing to show" />
-            </Box>
-          )}
+          <Requests />
         </Box>
       )}
 

@@ -1,14 +1,16 @@
 import React from 'react'
 import {
+    Divider,
     Box,
     Typography,
+    Avatar,
     Button,
 } from '@mui/material';
-import useStyle from "./Styles/Notifications_viewall_style";
+import useStyle from "../components/PopoverContent/Styles/Notificationpopover_style";
 import axios from 'axios'
 import moment from 'moment'
-function Requests() {
-    const { designs } = useStyle();
+function RequestPopup() {
+    const { designs } = useStyle()
     const [items, setItems] = React.useState(null)
     React.useMemo(() => {
         axios.post('http://localhost:5000/requests', { userID: JSON.parse(localStorage.userData).data.user._id })
@@ -17,22 +19,20 @@ function Requests() {
                 console.log(res.data)
             }).catch(err => console.log(err))
     }, [])
-
+    
     return (
         <>{items ? items.map((element, index) => {
-
-            return (
-                <Box sx={designs.RequestContainer_Sub_Style} key={index}>
-
-                    <Box sx={designs.RequestContainer_Sub2_Style}> <img src={element.requests.userImage} alt=""/></Box>
+            return(
+            <div key={index}>
+                <Box sx={designs.RequestContainer_Sub_Style}>
+                    <Box sx={designs.RequestContainer_Sub2_Style}> <Avatar src={element.requests.userImage} alt="" /></Box>
 
                     <Box>
                         <Typography sx={{
                             fontSize: "0.8em",
                             fontWeight: "600",
                             color: "#3F3D56",
-                            width: "auto",
-                            flexGrow: 1
+                            width: "relative"
                         }}>
                             {element.requests.userName}
                         </Typography>
@@ -41,8 +41,7 @@ function Requests() {
                             fontSize: "0.8em",
                             fontWeight: "500",
                             color: "#64627F",
-                            width: "auto",
-                            flexGrow: 1
+                            width: "24.4em"
                         }}>
                             {`is requesting to join your room ${element.requests.RoomName}`}
                         </Typography>
@@ -51,13 +50,12 @@ function Requests() {
                             fontSize: "0.5em",
                             fontWeight: "500",
                             color: "#8E8E8E",
-                            width: "auto",
-                            flexGrow: 1
+                            width: "relative"
                         }}>
                             {moment(element.createdAt).format('MMMM DD YYYY / h:mm a')}
                         </Typography>
 
-                        <Box sx={{ flexGrow: 1, marginTop: "0.5em", width: "auto", height: "auto", display: "flex", gap: "1em" }}>
+                        <Box sx={{ marginTop: "0.5em", width: "relative", height: "auto", display: "flex", gap: "1em" }}>
                             <Button variant="contained" sx={{
                                 fontSize: "0.7em",
                                 fontWeight: "600",
@@ -69,7 +67,19 @@ function Requests() {
                                 "&: hover": {
                                     backgroundColor: "#005DC3"
                                 }
-                            }}>
+                            }}
+                            onClick={(e)=>{
+                                console.log(e.target.nonce)
+                                axios.post('http://localhost:5000/requests/accept',{roomID:e.target.name,memberID:e.target.accessKey,reqID:e.target.nonce})
+                                .then(res=>{
+                                    setItems(res.data)
+                                    console.log(res.data)
+                                }).catch(err=>console.log(err))
+                            }}
+                            name={element.room}
+                            accessKey={element.requests.studentID}
+                            nonce={element._id}
+                            >
                                 Accept
                             </Button>
 
@@ -91,12 +101,12 @@ function Requests() {
                         </Box>
                     </Box>
                 </Box>
-            )
+                <Divider sx={designs.RequestDivider_Style} />
+            </div>)
         }) : <Box sx={designs.RequestContainer_Sub4_Style}>
-            <Typography children="have nothing to show" />
+            <Typography children="Have nothing to show" />
         </Box>}</>
-
     )
 }
 
-export default Requests
+export default RequestPopup

@@ -16,18 +16,31 @@ import {
 import { IoNewspaperSharp } from 'react-icons/io5';
 import { HiUserGroup } from 'react-icons/hi';
 import { FaClipboardList } from 'react-icons/fa';
+import axios from 'axios';
 
 function Rooms_Inside2({ socket }) {
   const [value, setValue] = React.useState(0);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+  const [roomData,setRoomData] = React.useState(null)
   const { roomID } = useParams();
-
+  console.log(roomID)
+  React.useMemo(() => {
+    axios.post('http://localhost:5000/requests/to-join', {
+      userID: JSON.parse(localStorage.userData).data.user._id,
+      userName: `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName
+      }`,
+      roomID,
+      userImage: JSON.parse(localStorage.userData).data.user.image,
+    }).then(res=>{
+      setRoomData(res.data)
+      console.log(res.data)
+    }).catch(err=>console.log(err))
+  }, []);
   return (
     <>
+    {roomData && roomData.room ? <>
       <AppBar
         position="sticky"
         elevation={1}
@@ -103,7 +116,7 @@ function Rooms_Inside2({ socket }) {
         ) : (
           <Members_main />
         )}
-      </Container>
+      </Container></>:<center><h1>{roomData && roomData.message}</h1></center>}
     </>
   );
 }

@@ -60,7 +60,8 @@ import Exam_viewed from './student_side/Rooms/Activities/Viewed/Exam_viewed';
 import Rooms_Inside2 from './student_side/Rooms/Rooms_Inside2';
 import Rooms_main from './student_side/Rooms/Rooms_main';
 import Settings_main from './student_side/Settings/Settings_main';
-
+import axios from 'axios';
+import Room from './components/Room'
 function App() {
   const theme = createTheme({
     typography: {
@@ -99,9 +100,10 @@ function App() {
       />
     );
   });
+  axios.post('http://localhost:5000/rooms')
   return (
     <>
-      <ThemeProvider theme={theme}>
+      {<ThemeProvider theme={theme}>
         <Router>
           <Switch>
             <Redirect exact from="/" to="/home/login" />
@@ -116,12 +118,17 @@ function App() {
               component={Rooms}
               socket={socket}
             />
-            <ProtectedRoutes
+            {JSON.parse(localStorage.userData).data.user.userType === "Professor" ? <ProtectedRoutes
               exact
               path="/rooms/:roomID"
               socket={socket}
               component={Room_inside}
-            />
+            /> : <ProtectedRoutes
+              exact
+              path="/rooms/:roomID"
+              socket={socket}
+              component={Rooms_Inside2}
+            />}
             <ProtectedRoutes
               exact
               path="/rooms/:roomID/:activityID"
@@ -198,7 +205,7 @@ function App() {
             <Route exact path="/Activity_viewed" component={Activity_viewed} />
             <Route exact path="/Quiz_viewed" component={Quiz_viewed} />
             <Route exact path="/Exam_viewed" component={Exam_viewed} />
-            <Route exact path="/Rooms_Inside2">
+            <Route exact path="/Rooms/Student/:shit">
               <Rooms_Inside2 socket={socket} />
             </Route>
             <Route
@@ -227,7 +234,7 @@ function App() {
             <Route component={Notfound} />
           </Switch>
         </Router>
-      </ThemeProvider>
+      </ThemeProvider>}
     </>
   );
 }

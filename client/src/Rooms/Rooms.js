@@ -8,8 +8,10 @@ import Join_room from '../Form_content/Join_room';
 import usePost from '../customHooks/usePost';
 import Button from '../components/Button';
 import Room_layout_student from './Room-content-layout/Room_layout_student';
-
+import axios from 'axios'
+import {useParams} from 'react-router-dom'
 function Rooms({ socket }) {
+  const {roomID} = useParams()
   const [opendialog, setOpenDialog] = useState(false);
 
   const { post, data, error, isPending } = usePost();
@@ -32,7 +34,9 @@ function Rooms({ socket }) {
     post('http://localhost:5000/rooms', {
       userID: JSON.parse(localStorage.userData).data.user._id,
     });
+    
   }, [newRoom]);
+  
   return (
     <>
       <Container maxWidth="md">
@@ -114,11 +118,6 @@ function Rooms({ socket }) {
               </Grid>
             </Grid>
             <Grid container>
-              {/* {data && data.length > 0 ? (
-                <Room_layout_student data={data} />
-              ) : (
-                <Typography> Nothing room to show</Typography>
-              )} */}
               <Room_layout_student />
             </Grid>
             {opendialog && (

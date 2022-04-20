@@ -55,13 +55,6 @@ function Room_layout_student({ data }) {
     <>
       <CssBasedLine />
       {dataRoom.map((item, index) => {
-        // const {
-        //   _id: id,
-        //   RoomName: title,
-        //   Course: subtitle,
-        //   ClassDays: date,
-        //   ClassTime: time,
-        // } = item;
         return (
           <Grid item xs={12} key={index}>
             <Paper
