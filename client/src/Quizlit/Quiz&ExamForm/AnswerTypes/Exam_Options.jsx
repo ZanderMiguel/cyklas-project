@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import useStyle from '../../Styles/Examform_style';
 
-import { Link } from 'react-router-dom';
 import { ContentCopyOutlined, Delete } from '@mui/icons-material';
 import {
   Select,
@@ -75,16 +74,16 @@ const dataPoints = [
   },
 ];
 
-const answertypeoptions = [
-  {
-    value: 'Multiple Choice',
-    label: 'Multiple Choice',
-  },
-  {
-    value: 'Female',
-    label: 'Female',
-  },
-];
+// const answertypeoptions = [
+//   {
+//     value: 'Multiple Choice',
+//     label: 'Multiple Choice',
+//   },
+//   {
+//     value: 'Female',
+//     label: 'Female',
+//   },
+// ];
 function Exam_Options({
   selectAnswerType,
   setAnswerType,

@@ -3,11 +3,11 @@ import { Grid, Box, Typography, Divider } from '@mui/material';
 import Image from '../../assets/ImageJaven/Image.png';
 import useStyle from '../Styles/Exam_start_style';
 import '../Styles/Exam_start_stylesheet.css';
-function ExamTF({ item , index}) {
+function ExamTF({ item, index }) {
   const { designs } = useStyle();
   const [answerButtonToggleTrue, setAnswerButtonToggleTrue] = useState(true);
   const [answerButtonToggleFalse, setAnswerButtonToggleFalse] = useState(true);
-  
+
   const handleClickTrue = () => {
     setAnswerButtonToggleTrue((prev) => !prev);
     setAnswerButtonToggleFalse(true);
@@ -36,7 +36,9 @@ function ExamTF({ item , index}) {
           sx={designs.Question_Container_Style}
         >
           <Box className="Question" sx={designs.Question_Style}>
-            <Typography sx={designs.Item_Typography_Style}>{index+1}.</Typography>
+            <Typography sx={designs.Item_Typography_Style}>
+              {index + 1}.
+            </Typography>
 
             <Typography sx={designs.Question_Typography_Style}>
               {item.questionsContent}
@@ -51,7 +53,7 @@ function ExamTF({ item , index}) {
           >
             <img
               src={Image}
-              alt="Image"
+              alt="uploadedImage"
               style={{
                 height: '5.5em',
               }}
@@ -103,8 +105,8 @@ function ExamTF({ item , index}) {
 
         <Box className="Image-container" sx={designs.Image_Container_Style}>
           <img
-            src={`${item.media}`|| Image}
-            alt="Image"
+            src={`${item.media}` || Image}
+            alt="uploadedImage"
             style={{
               height: '6.5em',
             }}

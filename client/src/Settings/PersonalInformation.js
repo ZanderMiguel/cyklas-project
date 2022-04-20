@@ -45,6 +45,7 @@ const dataGender = [
 
 function PersonalInformation() {
   const { designs } = useStyle();
+  const [image, setImage] = useState(null);
 
   const InsertImage = styled('input')({
     display: 'none',
@@ -55,7 +56,7 @@ function PersonalInformation() {
   const handleChangeGender = (event) => {
     setSelectGender(event.target.value);
   };
-
+  console.log(image);
   return (
     <>
       <Grid item md={6} xs={12}>
@@ -145,13 +146,21 @@ function PersonalInformation() {
             sx={designs.AccountPicture_Typography_Style}
           />
 
-          <Avatar alt="Remy Sharp" children="M" sx={designs.Avatar_Style} />
+          <Avatar
+            src={image}
+            alt="Remy Sharp"
+            children="M"
+            sx={designs.Avatar_Style}
+          />
 
           <label htmlFor="contained-button-file">
             <InsertImage
               accept="image/*"
               id="contained-button-file"
               multiple
+              onChange={(event) =>
+                setImage(URL.createObjectURL(event.target.files[0]))
+              }
               type="file"
             />
             <UploadImage

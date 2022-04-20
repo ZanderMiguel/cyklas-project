@@ -31,6 +31,7 @@ function Dialogform({
         open={open}
         onClose={close}
         maxWidth={maxWidth}
+        {...rest}
       >
         <Grid container justifyContent="flex-end">
           <IconButton
@@ -44,9 +45,11 @@ function Dialogform({
             <CloseIcon sx={{ fontSize: '0.8em' }} />
           </IconButton>
         </Grid>
-        <DialogTitle sx={{ pl: '2em', pr: '2em', pt: '0.5em', pb: '1em' }}>
-          {divider && <Divider textAlign="left">{title}</Divider>}
-        </DialogTitle>
+        {divider && (
+          <DialogTitle sx={{ pl: '2em', pr: '2em', pt: '0.5em', pb: '1em' }}>
+            <Divider textAlign="left">{title}</Divider>
+          </DialogTitle>
+        )}
         <DialogContent sx={{ padding: '0em', height: 'auto' }}>
           {children}
         </DialogContent>

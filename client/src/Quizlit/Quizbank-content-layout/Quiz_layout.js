@@ -1,10 +1,10 @@
 import React from 'react';
-import { Buttons as Button, Boxs as Box } from '../../components/Component';
+import { Boxs as Box } from '../../components/Component';
 import { Typography, IconButton } from '@mui/material';
 import { MoreVert } from '@mui/icons-material';
 import QuizIcon from '../../assets/ImageJaven/QuizIcon.png';
 import useStyle from '../Styles/Quiz_style';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import CusPopover from '../../components/Popover';
 import SchoolworksTilespopover from '../../components/PopoverContent/SchoolworksTilespopover';
 
@@ -37,9 +37,11 @@ function Quiz_layout({ bank }) {
                 }}
               />
 
-              <Box sx={designs.QuizName_User_Date} 
-              component = {Link}
-              to = "/View_quiz">
+              <Box
+                sx={designs.QuizName_User_Date}
+                component={Link}
+                to="/View_quiz"
+              >
                 <Box sx={designs.QuizName}>
                   <Typography noWrap sx={designs.Quiz}>
                     {title}
@@ -58,7 +60,10 @@ function Quiz_layout({ bank }) {
               </Box>
 
               <Box sx={designs.BoxOptions}>
-                <IconButton onClick={handleClickOption} sx={designs.IconButtonOptions}>
+                <IconButton
+                  onClick={handleClickOption}
+                  sx={designs.IconButtonOptions}
+                >
                   <MoreVert sx={designs.MoreVertIcon} />
                 </IconButton>
 
@@ -66,7 +71,8 @@ function Quiz_layout({ bank }) {
                   PaperProps={{ elevation: 0 }}
                   open={account}
                   anchorEl={anchorEl}
-                  onClose={handleCloseOption}>
+                  onClose={handleCloseOption}
+                >
                   <SchoolworksTilespopover />
                 </CusPopover>
               </Box>

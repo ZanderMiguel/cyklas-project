@@ -40,7 +40,7 @@ const deleteGradingSystem = async (req, res) => {
 const displayGradingSystem = async (req, res) => {
   try {
     const gradingSystem = GradingSystemModel.find({
-      user: req.body.userID,
+      userID: req.body.userID,
     }).sort({ createdAt: -1 });
     console.log('Grading System Displayed');
     return res.json(gradingSystem);
