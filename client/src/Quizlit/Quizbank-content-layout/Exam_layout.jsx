@@ -1,13 +1,12 @@
 import React from 'react';
-import { Buttons as Button, Boxs as Box } from '../../components/Component';
+import { Boxs as Box } from '../../components/Component';
 import { Typography, IconButton } from '@mui/material';
 import ExamIcon from '../../assets/ImageJaven/ExamIcon.png';
 import { MoreVert } from '@mui/icons-material';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import useStyle from '../Styles/Exam_style';
 import CusPopover from '../../components/Popover';
 import SchoolworksTilespopover from '../../components/PopoverContent/SchoolworksTilespopover';
-
 
 function Exam_layout({ bank }) {
   const { designs } = useStyle();
@@ -21,7 +20,7 @@ function Exam_layout({ bank }) {
     setAnchorEl(null);
   };
   const account = Boolean(anchorEl);
-  
+
   return (
     <>
       {bank.map((item, idx) => {
@@ -38,9 +37,11 @@ function Exam_layout({ bank }) {
                 }}
               />
 
-              <Box sx={designs.ExamName_User_Date} 
-              component = {Link}
-              to = "/View_exam">
+              <Box
+                sx={designs.ExamName_User_Date}
+                component={Link}
+                to="/View_exam"
+              >
                 <Box sx={designs.ExamName}>
                   <Typography noWrap sx={designs.Exam}>
                     {title}
@@ -59,7 +60,10 @@ function Exam_layout({ bank }) {
               </Box>
 
               <Box sx={designs.BoxOptions}>
-                <IconButton onClick={handleClickOption} sx={designs.IconButtonOptions}>
+                <IconButton
+                  onClick={handleClickOption}
+                  sx={designs.IconButtonOptions}
+                >
                   <MoreVert sx={designs.MoreVertIcon} />
                 </IconButton>
 
@@ -67,7 +71,8 @@ function Exam_layout({ bank }) {
                   PaperProps={{ elevation: 0 }}
                   open={account}
                   anchorEl={anchorEl}
-                  onClose={handleCloseOption}>
+                  onClose={handleCloseOption}
+                >
                   <SchoolworksTilespopover />
                 </CusPopover>
               </Box>

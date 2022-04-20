@@ -5,20 +5,19 @@ import Dropdown from '../components/Drowpdown';
 import usePost from '../customHooks/usePost';
 import moment from 'moment';
 
+import { Grid, Button } from '@mui/material';
+// import { ConstructionTwoTone } from '@mui/icons-material';
 
-import { Grid, Button, Select } from '@mui/material';
-import { ConstructionTwoTone } from '@mui/icons-material';
-
-const classtimes = [
-  {
-    value: '10:30',
-    label: '10:30',
-  },
-  {
-    value: '11:30',
-    label: '11:30',
-  },
-];
+// const classtimes = [
+//   {
+//     value: '10:30',
+//     label: '10:30',
+//   },
+//   {
+//     value: '11:30',
+//     label: '11:30',
+//   },
+// ];
 
 const gradingsystems = [
   {
@@ -36,16 +35,15 @@ function Create_room({ open, close, maxWidth, state, socket }) {
   const [course, setCourse] = useState('');
   const [classday, setClassDay] = useState('');
   const [yearAndSection, setYearandsection] = useState('');
-  const [classtime, setClassTime] = useState('')
+  const [classtime, setClassTime] = useState('');
   const [gradingsystem, setGradingSystem] = useState('Default');
 
-  
   const handleChangeGradingSystem = (event) => {
     setGradingSystem(event.target.value);
   };
   const handleTime = (event) => {
-    setClassTime(event.target.value)
-  }
+    setClassTime(event.target.value);
+  };
 
   const { post } = usePost();
 
@@ -125,7 +123,15 @@ function Create_room({ open, close, maxWidth, state, socket }) {
             {/* <Grid item xs={12} sm={6}>
               <Datetime classtime={classtime} setClassTime={setClassTime} inputLabel="Class Time"/>
             </Grid> */}
-            <Input inputLabel="Class time" autoComplete="off" required value={classtime} onChange={handleTime} type='time' half/>
+            <Input
+              inputLabel="Class time"
+              autoComplete="off"
+              required
+              value={classtime}
+              onChange={handleTime}
+              type="time"
+              half
+            />
             <Dropdown
               inputLabel="Grading System"
               autoComplete="off"

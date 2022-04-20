@@ -1,7 +1,5 @@
 import React from 'react';
 import Dialogform from '../components/Dialogform';
-import Input from '../components/Input';
-import CusButton from '../components/Button';
 import { Grid, Box, Typography, Avatar, Button } from '@mui/material';
 import {
   Check,

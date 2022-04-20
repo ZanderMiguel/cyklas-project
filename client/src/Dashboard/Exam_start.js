@@ -29,13 +29,12 @@ function Exam_start() {
           .post('http://localhost:5000/question', { quizID })
           .then((res) => {
             setData([response.data, res.data]);
-            console.log([response.data, res.data])
+            console.log([response.data, res.data]);
           })
           .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
-  }, []);
-  console.log(data);
+  }, [quizID]);
   return (
     <Container maxWidth="md">
       <Grid container rowSpacing={1}>
@@ -107,10 +106,18 @@ function Exam_start() {
                 xs={12}
                 sx={designs.ExamName_GridItem_Style}
               >
-                {answerType === 'Multiple Choice' && <ExamMulti item={item} index={index} />}
-                {answerType === 'Short Answer' && <ExamShort item={item} index={index}/>}
-                {answerType === 'Checkboxes' && <ExamCB item={item} index={index}/>}
-                {answerType === 'True or False' && <ExamTF item={item} index={index}/>}
+                {answerType === 'Multiple Choice' && (
+                  <ExamMulti item={item} index={index} />
+                )}
+                {answerType === 'Short Answer' && (
+                  <ExamShort item={item} index={index} />
+                )}
+                {answerType === 'Checkboxes' && (
+                  <ExamCB item={item} index={index} />
+                )}
+                {answerType === 'True or False' && (
+                  <ExamTF item={item} index={index} />
+                )}
               </Grid>
             );
           })}

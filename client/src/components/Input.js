@@ -29,7 +29,7 @@ const Input = ({
 }) => {
   return (
     <Grid item xs={12} sm={half ? 6 : 12}>
-      <Typography variant="body1" sx={{ ml: 1, fontWeight: 500 }}>
+      <Typography variant="body1" sx={{ ml: 1, mb: 1, fontWeight: 500 }}>
         {inputLabel}
       </Typography>
       <TextField

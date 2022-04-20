@@ -11,12 +11,12 @@ import Setting from './Settings/SettingsCont';
 import ProtectedRoutes from './components/ProtectedRoutes';
 import Dashboard from './Dashboard/Dashboard';
 import Navbar_landingpage from './components/Navbar_landingpage';
-import Services_main from './pages-landing/Services/Services_main';
-import About from './pages-landing/About';
-import Contact from './pages-landing/Contact';
-import CyClassroom from './pages-landing/Services/CyClassroom';
-import QuizLit2 from './pages-landing/Services/QuizLit';
-import TeleCon from './pages-landing/Services/TeleCon';
+// import Services_main from './pages-landing/Services/Services_main';
+// import About from './pages-landing/About';
+// import Contact from './pages-landing/Contact';
+// import CyClassroom from './pages-landing/Services/CyClassroom';
+// import QuizLit2 from './pages-landing/Services/QuizLit';
+// import TeleCon from './pages-landing/Services/TeleCon';
 
 import { io } from 'socket.io-client';
 
@@ -47,7 +47,7 @@ import Telecon_room from './Telecon/Telecon_room';
 import JoinQuiz from './Quizlit/TestComponents/JoinQuiz';
 import ToLobby from './Quizlit/TestComponents/ToLobby';
 import Lobby from './Quizlit/TestComponents/Lobby';
-import LoadQuizlit from './Quizlit/TestComponents/LoadQuizlit';
+// import LoadQuizlit from './Quizlit/TestComponents/LoadQuizlit';
 
 // Student Side
 import ClassCards_main from './student_side/ClassCards/ClassCards_main';
@@ -57,7 +57,7 @@ import Activities_main from './student_side/Rooms/Activities/Activities_main';
 import Activity_viewed from './student_side/Rooms/Activities/Viewed/Activity_viewed';
 import Quiz_viewed from './student_side/Rooms/Activities/Viewed/Quiz_viewed';
 import Exam_viewed from './student_side/Rooms/Activities/Viewed/Exam_viewed';
-import Rooms_Inside2 from './student_side/Rooms/Rooms_Inside2';
+import ROOMS_INSIDE2 from './student_side/Rooms/Rooms_Inside2';
 import Rooms_main from './student_side/Rooms/Rooms_main';
 import Settings_main from './student_side/Settings/Settings_main';
 import axios from 'axios';
@@ -127,7 +127,7 @@ function App() {
               exact
               path="/rooms/:roomID"
               socket={socket}
-              component={Rooms_Inside2}
+              component={ROOMS_INSIDE2}
             />}
             <ProtectedRoutes
               exact
@@ -205,9 +205,7 @@ function App() {
             <Route exact path="/Activity_viewed" component={Activity_viewed} />
             <Route exact path="/Quiz_viewed" component={Quiz_viewed} />
             <Route exact path="/Exam_viewed" component={Exam_viewed} />
-            <Route exact path="/Rooms/Student/:shit">
-              <Rooms_Inside2 socket={socket} />
-            </Route>
+
             <Route
               exact
               path="/Rooms_main"

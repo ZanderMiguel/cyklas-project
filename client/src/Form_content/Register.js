@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Grid, Button, Typography, Avatar, Box } from '@mui/material';
 import Dialogform from '../components/Dialogform';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import CusButton from '../components/Button';
 import Input from '../components/Input';
-import Drowpdown from '../components/Drowpdown';
+
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
@@ -27,7 +27,6 @@ function Register({ open, close, setOpenDialog, setNotif }) {
   const [firstname, setFirstName] = useState('');
   const [lastname, setLastName] = useState('');
   const [emailaddress, setEmailAddress] = useState('');
-  const [gender, setGender] = useState('Male');
   const [password, setPassword] = useState('');
   const [confirmpassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -52,23 +51,23 @@ function Register({ open, close, setOpenDialog, setNotif }) {
     setPasswordError(false);
     setConfirmPasswordError(false);
 
-    if (usertype == '') {
+    if (usertype === '') {
       setUserTypeError(true);
     }
 
-    if (firstname == '') {
+    if (firstname === '') {
       setFirstNameError(true);
     }
-    if (lastname == '') {
+    if (lastname === '') {
       setLastNameError(true);
     }
-    if (emailaddress == '') {
+    if (emailaddress === '') {
       setEmailAddressError(true);
     }
-    if (password == '') {
+    if (password === '') {
       setPasswordError(true);
     }
-    if (confirmpassword == '') {
+    if (confirmpassword === '') {
       setConfirmPasswordError(true);
     }
     if (password === confirmpassword) {
@@ -83,7 +82,7 @@ function Register({ open, close, setOpenDialog, setNotif }) {
       lastname &&
       emailaddress &&
       password &&
-      confirmpassword == password
+      confirmpassword === password
     ) {
       const userRegister = {
         userType: usertype,

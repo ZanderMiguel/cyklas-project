@@ -4,7 +4,7 @@ import Image from '../../assets/ImageJaven/Image.png';
 import useStyle from '../Styles/Exam_start_style';
 import '../Styles/Exam_start_stylesheet.css';
 
-function ExamMulti({ item,index }) {
+function ExamMulti({ item, index }) {
   const { designs } = useStyle();
 
   const [answerButtonToggleA, setAnswerButtonToggleA] = useState(true);
@@ -56,7 +56,9 @@ function ExamMulti({ item,index }) {
           sx={designs.Question_Container_Style}
         >
           <Box className="Question" sx={designs.Question_Style}>
-            <Typography sx={designs.Item_Typography_Style}>{index+1}.</Typography>
+            <Typography sx={designs.Item_Typography_Style}>
+              {index + 1}.
+            </Typography>
 
             <Typography sx={designs.Question_Typography_Style}>
               {item.questionsContent}
@@ -71,7 +73,7 @@ function ExamMulti({ item,index }) {
           >
             <img
               src={Image}
-              alt="Image"
+              alt="uploadedImage"
               style={{
                 height: '5.5em',
               }}
@@ -164,7 +166,7 @@ function ExamMulti({ item,index }) {
         <Box className="Image-container" sx={designs.Image_Container_Style}>
           <img
             src={item.media || Image}
-            alt="Image"
+            alt="uploadedImage"
             style={{
               height: '6.5em',
             }}

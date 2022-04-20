@@ -37,7 +37,7 @@ function ExamCB({ item }) {
           >
             <img
               src={Image}
-              alt="Image"
+              alt="uploadedImage"
               style={{
                 height: '5.5em',
               }}
@@ -82,7 +82,7 @@ function ExamCB({ item }) {
         <Box className="Image-container" sx={designs.Image_Container_Style}>
           <img
             src={Image}
-            alt="Image"
+            alt="uploadedImage"
             style={{
               height: '6.5em',
             }}

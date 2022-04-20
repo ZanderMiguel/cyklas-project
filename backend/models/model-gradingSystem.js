@@ -2,9 +2,11 @@ const mongoose = require('mongoose');
 
 const GradingSystemSchema = new mongoose.Schema(
   {
-    classification: { type: Array, required: true },
+    GradingName: { type: String, required: true },
+    Classification: { type: Array, required: true },
+    Category: { type: Array, required: true },
     rooms: [mongoose.Schema.Types.ObjectId],
-    user: { type: mongoose.Schema.Types.ObjectId },
+    userID: { type: mongoose.Schema.Types.ObjectId },
   },
   { timestamps: true }
 );
