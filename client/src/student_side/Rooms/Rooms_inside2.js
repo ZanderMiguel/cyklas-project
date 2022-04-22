@@ -39,10 +39,10 @@ function Rooms_Inside2({ socket }) {
       })
       .then((res) => {
         setRoomData(res.data);
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
+
   return (
     <>
       {roomData && roomData.room ? (

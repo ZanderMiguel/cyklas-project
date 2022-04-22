@@ -100,7 +100,7 @@ function App() {
       />
     );
   });
-  axios.post('http://localhost:5000/rooms');
+
   return (
     <>
       {
@@ -119,22 +119,13 @@ function App() {
                 component={Rooms}
                 socket={socket}
               />
-              {JSON.parse(localStorage.userData).data.user.userType ===
-              'Professor' ? (
-                <ProtectedRoutes
-                  exact
-                  path="/rooms/:roomID"
-                  socket={socket}
-                  component={Room_inside}
-                />
-              ) : (
-                <ProtectedRoutes
-                  exact
-                  path="/rooms/:roomID"
-                  socket={socket}
-                  component={ROOMS_INSIDE2}
-                />
-              )}
+              <ProtectedRoutes
+                exact
+                path="/rooms/:roomID"
+                socket={socket}
+                component={Room_inside}
+              />
+
               <ProtectedRoutes
                 exact
                 path="/rooms/:roomID/:activityID"

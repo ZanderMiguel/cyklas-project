@@ -32,9 +32,10 @@ function Room_inside({ socket }) {
       .post('http://localhost:5000/rooms/my-room', { roomID })
       .then((res) => {
         setRoomData(res.data);
+        console.log(res.data);
       })
       .catch((err) => console.log(err));
-  }, [roomdata]);
+  }, []);
 
   return (
     <>
@@ -115,7 +116,7 @@ function Room_inside({ socket }) {
         ) : value === 1 ? (
           <Activities roomID={roomID} />
         ) : (
-          <Member />
+          <Member roomdata={roomdata} />
         )}
       </Container>
     </>
