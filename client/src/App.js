@@ -57,7 +57,7 @@ import Activities_main from './student_side/Rooms/Activities/Activities_main';
 import Activity_viewed from './student_side/Rooms/Activities/Viewed/Activity_viewed';
 import Quiz_viewed from './student_side/Rooms/Activities/Viewed/Quiz_viewed';
 import Exam_viewed from './student_side/Rooms/Activities/Viewed/Exam_viewed';
-import ROOMS_INSIDE2 from './student_side/Rooms/Rooms_Inside2';
+import ROOMS_INSIDE2 from './student_side/Rooms/Rooms_inside2';
 import Rooms_main from './student_side/Rooms/Rooms_main';
 import Settings_main from './student_side/Settings/Settings_main';
 import axios from 'axios';
@@ -132,7 +132,7 @@ function App() {
                   exact
                   path="/rooms/:roomID"
                   socket={socket}
-                  component={Room_inside}
+                  component={ROOMS_INSIDE2}
                 />
               )}
               <ProtectedRoutes
