@@ -30,8 +30,9 @@ function Drawer() {
 
     setDrawer(open);
   };
+
   const userType =
-    'Professor' === 'Professor'
+    JSON.parse(localStorage.userData).data.user.userType === 'Professor'
       ? [
           {
             icon: <MdQuiz size="25px" />,
@@ -56,6 +57,7 @@ function Drawer() {
             path: '/Records',
           },
         ];
+
   const drawerlist = [
     {
       icon: <RiDashboardLine size="25px" />,
@@ -67,7 +69,6 @@ function Drawer() {
       text: 'Rooms',
       path: '/rooms',
     },
-
     ...userType,
     {
       icon: <MdOutlineSettings size="25px" />,
@@ -75,6 +76,7 @@ function Drawer() {
       path: '/settings',
     },
   ];
+
   const divs = React.useRef(null);
 
   const list = () => (

@@ -50,7 +50,7 @@ function Room_layout_student({ data }) {
                   >
                     <Typography
                       component={Link}
-                      to={`/rooms/${item.id}`}
+                      to={`/rooms/${item._id}`}
                       variant="h5"
                       sx={{
                         fontSize: '1.5em',

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Announce from '../Feed/Announce';
 import Activities from '../Activities/Activities';
 import Member from '../Members/Member';
+import Student_activities from '../../student_side/Rooms/Activities/Activities_main';
 import {
   AppBar,
   Toolbar,
@@ -114,7 +115,12 @@ function Room_inside({ socket }) {
         {value === 0 ? (
           <Announce socket={socket} />
         ) : value === 1 ? (
-          <Activities roomID={roomID} />
+          JSON.parse(localStorage.userData).data.user.userType ===
+          'Professor' ? (
+            <Activities roomID={roomID} />
+          ) : (
+            <Student_activities />
+          )
         ) : (
           <Member roomdata={roomdata} />
         )}

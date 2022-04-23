@@ -49,7 +49,7 @@ const dataStud = [
   },
 ];
 
-function Memberstable({ roomdata }) {
+function Memberstable({ members }) {
   const { designs } = useStyle();
 
   return (
@@ -78,25 +78,25 @@ function Memberstable({ roomdata }) {
             <Divider />
             <Grid item xs={12}>
               <List sx={designs.List_Style}>
-                {dataProf.map(function (items, index) {
-                  return (
-                    <ListItem key={index} sx={designs.ListItem_Style}>
-                      <ListItemAvatar>
-                        <Avatar children={items.children} />
-                      </ListItemAvatar>
-
-                      <ListItemText>
-                        <Typography sx={designs.Prof_Typography_Style}>
-                          {items.memberName}
-                        </Typography>
-                      </ListItemText>
-
-                      {/* <IconButton edge="end" aria-label="delete">
-                          <Delete/>
-                        </IconButton> */}
-                    </ListItem>
-                  );
-                })}
+                {members &&
+                  members.map(function (items, index) {
+                    return (
+                      <div key={index}>
+                        {items.userType === 'Professor' && (
+                          <ListItem key={index} sx={designs.ListItem_Style}>
+                            <ListItemAvatar>
+                              <Avatar src={items.image} />
+                            </ListItemAvatar>
+                            <ListItemText>
+                              <Typography sx={designs.Prof_Typography_Style}>
+                                {items.firstName} {items.lastName}
+                              </Typography>
+                            </ListItemText>
+                          </ListItem>
+                        )}
+                      </div>
+                    );
+                  })}
               </List>
             </Grid>
           </Box>
@@ -128,28 +128,37 @@ function Memberstable({ roomdata }) {
 
             <Grid item xs={12}>
               <List sx={designs.List_Style}>
-                {roomdata &&
-                  roomdata.members.map(function (items, index) {
+                {members &&
+                  members.map((items, index) => {
                     return (
                       <div key={index}>
-                        <ListItem sx={designs.ListItem_Style}>
-                          <ListItemAvatar>
-                            <Avatar children={items.children} />
-                          </ListItemAvatar>
+                        {items.userType === 'Student' && (
+                          <>
+                            <ListItem sx={designs.ListItem_Style}>
+                              <ListItemAvatar>
+                                <Avatar src={items.image} />
+                              </ListItemAvatar>
 
-                          <ListItemText>
-                            <Typography sx={designs.Student_Typography_Style}>
-                              {items.memberName}
-                            </Typography>
-                          </ListItemText>
+                              <ListItemText>
+                                <Typography
+                                  sx={designs.Student_Typography_Style}
+                                >
+                                  {items.firstName} {items.lastName}
+                                </Typography>
+                              </ListItemText>
 
-                          <Tooltip title="Remove this student" placement="left">
-                            <IconButton edge="end" aria-label="delete">
-                              <Delete />
-                            </IconButton>
-                          </Tooltip>
-                        </ListItem>
-                        <Divider />
+                              <Tooltip
+                                title="Remove this student"
+                                placement="left"
+                              >
+                                <IconButton edge="end" aria-label="delete">
+                                  <Delete />
+                                </IconButton>
+                              </Tooltip>
+                            </ListItem>
+                            <Divider />
+                          </>
+                        )}
                       </div>
                     );
                   })}

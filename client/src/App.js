@@ -11,15 +11,7 @@ import Setting from './Settings/SettingsCont';
 import ProtectedRoutes from './components/ProtectedRoutes';
 import Dashboard from './Dashboard/Dashboard';
 import Navbar_landingpage from './components/Navbar_landingpage';
-// import Services_main from './pages-landing/Services/Services_main';
-// import About from './pages-landing/About';
-// import Contact from './pages-landing/Contact';
-// import CyClassroom from './pages-landing/Services/CyClassroom';
-// import QuizLit2 from './pages-landing/Services/QuizLit';
-// import TeleCon from './pages-landing/Services/TeleCon';
-
 import { io } from 'socket.io-client';
-
 import TeleconStart from './Telecon/TeleconStart';
 import QuizLit from './Quizlit/Quizlit';
 import Quizform from './Quizlit/Quiz&ExamForm/Quizform';
@@ -107,12 +99,16 @@ function App() {
         <ThemeProvider theme={theme}>
           <Router>
             <Switch>
+              {/* LandingPage with Login */}
               <Redirect exact from="/" to="/home/login" />
               <Redirect exact from="/home" to="/home/login" />
               <Route path="/forgotpassword" component={Forgot_password} />
               <Route exact path="/home/:page?" component={Navbar_landingpage} />
+
+              {/* Dashboard */}
               <ProtectedRoutes exact path="/dashboard" component={Dashboard} />
-              <ProtectedRoutes exact path="/telecon" component={TeleconStart} />
+
+              {/* Rooms */}
               <ProtectedRoutes
                 exact
                 path="/rooms"
@@ -125,13 +121,13 @@ function App() {
                 socket={socket}
                 component={Room_inside}
               />
-
               <ProtectedRoutes
                 exact
                 path="/rooms/:roomID/:activityID"
                 component={View_activity}
               />
-              <ProtectedRoutes exact path="/settings" component={Setting} />
+
+              {/* Quizlit */}
               <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
               <ProtectedRoutes
                 exact
@@ -143,8 +139,17 @@ function App() {
                 path="/quizlit/createexam"
                 component={Examform}
               />
+
+              {/* Telecon */}
+              <ProtectedRoutes exact path="/telecon" component={TeleconStart} />
+
+              {/* Records */}
+              <ProtectedRoutes exact path="/records" component={Records} />
+
+              {/* Setting */}
+              <ProtectedRoutes exact path="/settings" component={Setting} />
+
               {/* Javen Routes */}
-              {quizlit}
               <ProtectedRoutes
                 exact
                 path="/StudentLiveQuiz_multiplechoice"
@@ -227,7 +232,7 @@ function App() {
               <Route exact path="/Exam_start/:examID" component={Exam_start} />
               <Route exact path="/View_quiz" component={View_quiz} />
               <Route exact path="/View_exam" component={View_exam} />
-              <ProtectedRoutes exact path="/records" component={Records} />
+
               <Route path="/telecon/room" component={Telecon_room} />
               <Route exact path="/quizlit/join">
                 <JoinQuiz socket={socket} />

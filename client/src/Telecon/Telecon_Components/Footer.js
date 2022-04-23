@@ -32,9 +32,9 @@ import Message_area from '../TeleconSide/Message_area';
 import Information from '../TeleconSide/Info';
 import Member from '../TeleconSide/Member';
 import Presentation from '../TeleconSide/Presentation';
-import Livequiz_queue from "../../Form_content/Livequiz_queue";
-import Leave_conference from "../../Form_content/Leave_conference";
-import Make_groups from "../../Form_content/Make_groups";
+import Livequiz_queue from '../../Form_content/Livequiz_queue';
+import Leave_conference from '../../Form_content/Leave_conference';
+import Make_groups from '../../Form_content/Make_groups';
 
 function Footer({
   setSideDrawer,
@@ -121,7 +121,8 @@ function Footer({
     setOpenDialog(false);
   };
 
-  const [opendialogLeaveConference, setOpenDialogLeaveConference] = useState(false);
+  const [opendialogLeaveConference, setOpenDialogLeaveConference] =
+    useState(false);
 
   const handleCreateLeaveConference = () => {
     setOpenDialogLeaveConference(true);
@@ -140,7 +141,7 @@ function Footer({
   const handleCreateCloseMakeGroups = () => {
     setOpenDialogMakeGroups(false);
   };
-  
+
   return (
     <Box
       sx={{
@@ -155,20 +156,6 @@ function Footer({
         padding: '0px 1.5em',
       }}
     >
-      {/* <input
-        type="text"
-        placeholder="username"
-        onChange={(event) => setUsername(event.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Id"
-        onChange={(event) => setRoom(event.target.value)}
-      />
-      <button onClick={handleUser}> send</button> */}
-
-      {/* left icons */}
-
       <Box sx={designs.icon_container}>
         <IconButton
           sx={designs.leftIcons.IconbuttonStyle}
@@ -285,34 +272,43 @@ function Footer({
             <ScreenShareOutlined sx={designs.rightIcons.buttonStyle} />
           )}
         </IconButton>
-        <IconButton onClick = {handleCreateMakeGroups} sx={designs.rightIcons.IconbuttonStyle} size="large">
+        <IconButton
+          onClick={handleCreateMakeGroups}
+          sx={designs.rightIcons.IconbuttonStyle}
+          size="large"
+        >
           <FaObjectGroup
             style={{ height: '24px', width: '24px', color: 'whiteSmoke' }}
           />
         </IconButton>
         {opendialogMakeGroups && (
-              <Make_groups
-                open={opendialogMakeGroups}
-                close={handleCreateCloseMakeGroups}
-                maxWidth="md"
-                state={setOpenDialogMakeGroups}
-              />
+          <Make_groups
+            open={opendialogMakeGroups}
+            close={handleCreateCloseMakeGroups}
+            maxWidth="md"
+            state={setOpenDialogMakeGroups}
+          />
         )}
-        <IconButton onClick={handleCreate} sx={designs.rightIcons.IconbuttonStyle} size="large">
-          <MdQuiz 
+        <IconButton
+          onClick={handleCreate}
+          sx={designs.rightIcons.IconbuttonStyle}
+          size="large"
+        >
+          <MdQuiz
             style={{ height: '24px', width: '24px', color: 'whiteSmoke' }}
           />
         </IconButton>
         {opendialog && (
-              <Livequiz_queue
-                open={opendialog}
-                close={handleCreateClose}
-                maxWidth="sm"
-                state={setOpenDialog}
-              />
+          <Livequiz_queue
+            open={opendialog}
+            close={handleCreateClose}
+            maxWidth="sm"
+            state={setOpenDialog}
+          />
         )}
 
-        <IconButton onClick = {handleCreateLeaveConference}
+        <IconButton
+          onClick={handleCreateLeaveConference}
           sx={{
             backgroundColor: '#f44336',
             ml: 0.5,
@@ -327,12 +323,12 @@ function Footer({
           />
         </IconButton>
         {opendialogLeaveConference && (
-              <Leave_conference
-                open={opendialogLeaveConference}
-                close={handleCreateCloseLeaveConference}
-                maxWidth="sm"
-                state={setOpenDialogLeaveConference}
-              />
+          <Leave_conference
+            open={opendialogLeaveConference}
+            close={handleCreateCloseLeaveConference}
+            maxWidth="sm"
+            state={setOpenDialogLeaveConference}
+          />
         )}
       </Box>
     </Box>

@@ -5,11 +5,13 @@ import Memberstable from './Memberstable';
 import Group_table from './Group_table';
 import useStyle from './Styles/Member_style';
 import Add_member from '../../Form_content/Add_member';
+import axios from 'axios';
 
 function Member({ roomdata }) {
   const { designs } = useStyle();
 
   const [opendialog, setOpenDialog] = useState(false);
+  const [members, setMembers] = useState(null);
 
   const handleCreate = () => {
     setOpenDialog(true);
@@ -18,6 +20,13 @@ function Member({ roomdata }) {
   const handleCreateClose = () => {
     setOpenDialog(false);
   };
+
+  React.useEffect(() => {
+    axios
+      .post('http://localhost:5000/get/members', { members: roomdata.members })
+      .then((res) => setMembers(res.data))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <>
@@ -41,7 +50,7 @@ function Member({ roomdata }) {
             />
           )}
         </Box>
-        <Memberstable roomdata={roomdata} />
+        <Memberstable members={members} />
         <Group_table />
       </Box>
     </>
