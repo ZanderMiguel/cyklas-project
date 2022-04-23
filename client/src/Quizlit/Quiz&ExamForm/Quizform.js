@@ -16,7 +16,7 @@ import Questions from './Questions';
 import { AddCircle } from '@mui/icons-material';
 import usePost from '../../customHooks/usePost'
 import axios from 'axios'
-import Background10 from '../../assets/ImageJaven/Background10.png';
+import Background11 from '../../assets/ImageJaven/Background11.png';
 
 function Quizform() {
   const { post,data } = usePost()
@@ -83,17 +83,18 @@ function Quizform() {
         <Grid item xs={12}>
           <Box
             className="Quiz-title"
-            height="10em"
+            height="auto"
             width="100%"
+            padding = "0.8em 1.5em 2.6em 1.5em"
+            borderRadius = "0em 0em 0.5em 0.5em"
             sx = {{
-              backgroundImage: `url(${Background10})`,
+              backgroundImage: `url(${Background11})`,
               backgroundSize: 'cover',
-              boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"
             }}
           >   
               <Input variant="standard"
                 multiline
-                rows={5}
+                rows={3}
                 overflowY = "hidden"
                 disableUnderline
                 onChange={(event) => {
@@ -102,12 +103,11 @@ function Quizform() {
                 defaultValue="Untitled Quiz"
                 sx={{
                   overflowY: "hidden",
-                  margin: "0.8em 0em 0.8em 1.5em",
-                  width: "30%",
+                  width: "60%",
                   backgroundColor: "transparent",
-                  fontSize: "1em",
+                  fontSize: "1.4em",
                   fontWeight: "600",
-                  color: "#007FFF"
+                  color: "white"
                 }} />
               {/* <TextField
                 id="filled-basic"

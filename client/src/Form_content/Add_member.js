@@ -7,10 +7,12 @@ import { CallEnd, ContentCopy } from "@mui/icons-material";
 import AvatarIcon from "../assets/ImageJaven/Avatar.png";
 import ExamIconButton from "../assets/ImageJaven/ExamIconButton.png";
 import useStyle from "./Styles/Add_member_style";
+import Copy_link from "./Copy_link";
 
 function Add_member({ open, close, maxWidth }) {
     const {designs} = useStyle();
 
+    
   return (
     <div>
       <Dialogform open={open} close={close} maxWidth={maxWidth} 
@@ -48,7 +50,8 @@ function Add_member({ open, close, maxWidth }) {
         // </Box>
         // }
         >
-        <Grid item xs = {12} >
+
+        <Grid item xs = {12}>
             <Stack sx={designs.Stack_Style}>
               <Typography
                 sx={designs.TextFieldLabel_Style}
@@ -74,7 +77,7 @@ function Add_member({ open, close, maxWidth }) {
             </Stack>
         </Grid>
 
-        <Box sx = {{ margin: "0em 2em", width: "relative", height: "auto", display: "flex", justifyContent: "flex-end" }}>
+        <Box sx = {{ padding: "0em 2em", width: "relative", height: "auto", display: "flex", justifyContent: "flex-end" }}>
             <Button variant="contained" sx = {{ 
               backgroundColor: "#0069D3",
               color: "white",
@@ -90,7 +93,7 @@ function Add_member({ open, close, maxWidth }) {
             </Button>
         </Box>
 
-        <Grid item xs={12} sx = {{ margin: "3em 2em 2em 2em" }}>
+        <Grid item xs={12} sx = {{ padding: "0em 2em", margin: "1em 0em" }}>
             <Divider>
               <Typography children="or" sx = {{ color: "#3F3D56", fontSize: "0.8em", fontWeight: "600", textTransform: "uppercase" }} />
             </Divider>
@@ -115,11 +118,12 @@ function Add_member({ open, close, maxWidth }) {
             or
         </Typography> */}
 
+        <Grid item xs = {12} sx = {{ margin: "1em 0em 3em 0em"}}>
         <Stack sx={designs.Stack_Style}>
         <Box sx = {{ height: "auto", width: "relative", display: "flex", gap: "0.8em" }}>
                 <Box sx = {{ height: "auto", width: "relative" }}>
                 <Typography
-                    sx={designs.TextFieldLabel_Style}
+                    sx={designs.TextFieldLabel2_Style}
                     children="Classroom Link (For Professor(s))"
                 />
                 <TextField
@@ -131,24 +135,7 @@ function Add_member({ open, close, maxWidth }) {
                 </Box>
                 
                 <Box sx = {{ height: "auto", width: "relative", display: "flex", alignItems: "flex-end" }}>
-                    <Button variant="contained" startIcon = {<ContentCopy/>} sx = {{ 
-                                border: "1px solid #0069D3",
-                                backgroundColor: "transparent",
-                                height: "max-content",
-                                boxShadow: "none",
-                                color: "#0069D3",
-                                fontSize: "0.8em",
-                                fontWeight: "600",
-                                textTransform: "Capitalize",
-                                padding: "0.3em 3em",
-                                "&: hover": {
-                                    border: "1px solid #005DC3",
-                                    backgroundColor: "transparent",
-                                    boxShadow: "none",
-                                }
-                                }}>
-                                Copy Link
-                    </Button>
+                    <Copy_link/>
                 </Box>
                 
             </Box>
@@ -158,7 +145,7 @@ function Add_member({ open, close, maxWidth }) {
             <Box sx = {{ height: "auto", width: "relative", display: "flex", gap: "0.8em" }}>
                 <Box sx = {{ height: "auto", width: "relative" }}>
                 <Typography
-                    sx={designs.TextFieldLabel_Style}
+                    sx={designs.TextFieldLabel2_Style}
                     children="Classroom Link (For Student(s))"
                 />
                 <TextField
@@ -170,29 +157,14 @@ function Add_member({ open, close, maxWidth }) {
                 </Box>
                 
                 <Box sx = {{ height: "auto", width: "relative", display: "flex", alignItems: "flex-end" }}>
-                    <Button variant="contained" startIcon = {<ContentCopy/>} sx = {{ 
-                                border: "1px solid #0069D3",
-                                backgroundColor: "transparent",
-                                height: "max-content",
-                                boxShadow: "none",
-                                color: "#0069D3",
-                                fontSize: "0.8em",
-                                fontWeight: "600",
-                                textTransform: "Capitalize",
-                                padding: "0.3em 3em",
-                                "&: hover": {
-                                    border: "1px solid #005DC3",
-                                    backgroundColor: "transparent",
-                                    boxShadow: "none",
-                                }
-                                }}>
-                                Copy Link
-                    </Button>
+                  <Copy_link/>
                 </Box>
                 
             </Box>
               
         </Stack>
+        </Grid>
+        
 
       </Dialogform>
     </div>

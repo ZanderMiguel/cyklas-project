@@ -672,7 +672,7 @@ function Dashboard() {
                         disableUnderline
                         sx={{
                             height: '2.5em',
-                            width: '30.5em',
+                            width: '100%',
                             backgroundColor: 'transparent',
                             fontSize: '0.8em',
                             fontWeight: '500',
