@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Container,
   Box,
@@ -49,7 +49,7 @@ const dataStud = [
   },
 ];
 
-function People_table() {
+function Memberstable({ roomdata }) {
   const { designs } = useStyle();
 
   return (
@@ -58,12 +58,10 @@ function People_table() {
         <Grid item xs={12}>
           <Box className="Total" sx={designs.Total_Style}>
             <Box flexGrow={1} sx={designs.BoxFlexGrow_Style} />
-
             <Typography sx={designs.TotalProf_Typography_Style}>
               1 Professor
             </Typography>
           </Box>
-
           <Box sx={designs.Professor_Container_Style}>
             <Box
               className="container"
@@ -78,7 +76,6 @@ function People_table() {
               </Button>
             </Box>
             <Divider />
-
             <Grid item xs={12}>
               <List sx={designs.List_Style}>
                 {dataProf.map(function (items, index) {
@@ -131,30 +128,31 @@ function People_table() {
 
             <Grid item xs={12}>
               <List sx={designs.List_Style}>
-                {dataStud.map(function (items, index) {
-                  return (
-                    <div key={index}>
-                      <ListItem sx={designs.ListItem_Style}>
-                        <ListItemAvatar>
-                          <Avatar children={items.children} />
-                        </ListItemAvatar>
+                {roomdata &&
+                  roomdata.members.map(function (items, index) {
+                    return (
+                      <div key={index}>
+                        <ListItem sx={designs.ListItem_Style}>
+                          <ListItemAvatar>
+                            <Avatar children={items.children} />
+                          </ListItemAvatar>
 
-                        <ListItemText>
-                          <Typography sx={designs.Student_Typography_Style}>
-                            {items.memberName}
-                          </Typography>
-                        </ListItemText>
+                          <ListItemText>
+                            <Typography sx={designs.Student_Typography_Style}>
+                              {items.memberName}
+                            </Typography>
+                          </ListItemText>
 
-                        <Tooltip title="Remove this student" placement="left">
-                          <IconButton edge="end" aria-label="delete">
-                            <Delete />
-                          </IconButton>
-                        </Tooltip>
-                      </ListItem>
-                      <Divider />
-                    </div>
-                  );
-                })}
+                          <Tooltip title="Remove this student" placement="left">
+                            <IconButton edge="end" aria-label="delete">
+                              <Delete />
+                            </IconButton>
+                          </Tooltip>
+                        </ListItem>
+                        <Divider />
+                      </div>
+                    );
+                  })}
               </List>
             </Grid>
           </Box>
@@ -164,4 +162,4 @@ function People_table() {
   );
 }
 
-export default People_table;
+export default Memberstable;

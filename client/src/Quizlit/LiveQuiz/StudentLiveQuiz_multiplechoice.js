@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-  Typography,
-  TextField,
-  InputAdornment,
-  Box,
-  Container,
-  Grid,
-} from '@mui/material';
-import { Link } from 'react-router-dom';
-import Image from '../../assets/ImageJaven/Image.png';
+import { Typography, Box, Grid } from '@mui/material';
 import { Timer, SportsScore, Star, Layers } from '@mui/icons-material';
 import useStyle from '../Styles/StudentLiveQuiz_multiplechoice_style';
 

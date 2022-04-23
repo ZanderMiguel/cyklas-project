@@ -63,11 +63,21 @@ const updateRooms = async (req, res) => {
     return res.json(error);
   }
 };
-
+const getMembersData = async(req,res)=>{
+  try{
+    const members = await User.find({
+      _id: {$in: req.body.members}
+    })
+    return res.json(members)
+  }catch(error){
+    console.log(error)
+    return res.json(error)
+  }
+}
 module.exports = {
   createRoomController: createRooms,
   displayRoomController: displayRooms,
   deleteRoomController: deleteRooms,
   updateRoomController: updateRooms,
-  findRoom,
+  findRoom,getMembersData
 };

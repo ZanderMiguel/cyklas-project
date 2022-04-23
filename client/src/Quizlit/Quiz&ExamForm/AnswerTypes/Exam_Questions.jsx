@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import useStyle from '../../Styles/Examform_style';
-import Exam_multiplechoice from './Exam_multiplechoice';
-import Exam_trueorfalse from './Exam_trueorfalse';
-import Exam_checkboxes from './Exam_checkboxes';
-import Exam_enumeration from './Exam_enumeration';
-import Exam_shortanswer from './Exam_shortanswer';
-import Image_GIF from '../Image_GIF';
+import EXAM_MULTIPLECHOICE from './Exam_multiplechoice';
+import EXAM_TRUEORFALSE from './Exam_trueorfalse';
+import EXAM_CHECKBOXES from './Exam_checkboxes';
+import EXAM_ENUMERATION from './Exam_enumeration';
+import EXAM_SHORTANSWER from './Exam_shortanswer';
+import IMAGE_GIF from '../Image_GIF';
 import ExamQuestionOptionspopover from '../../../components/PopoverContent/ExamQuestionOptionspopover';
 import CusPopover from '../../../components/Popover';
-import Exam_Options from './Exam_Options';
+import EXAM_OPTIONS from './Exam_Options';
 import {
   AddCircle,
   MoreVert,
@@ -32,7 +32,7 @@ function Exam_Questions({ counter, questionMemo }) {
       answerType: 'Multiple Choice',
       points: '2 point',
     };
-  }, []);
+  }, [counter, questionMemo]);
   const [selectAnswerType, setAnswerType] = useState('Multiple Choice');
 
   const handleChange = (event) => {
@@ -164,6 +164,7 @@ function Exam_Questions({ counter, questionMemo }) {
                         >
                           <img
                             src={image}
+                            alt=""
                             width="100%"
                             height="300px"
                             style={{
@@ -208,38 +209,38 @@ function Exam_Questions({ counter, questionMemo }) {
                 </Box>
 
                 {selectAnswerType === 'Multiple Choice' && (
-                  <Exam_multiplechoice
+                  <EXAM_MULTIPLECHOICE
                     questionMemo={questionMemo}
                     counter={counter}
                   />
                 )}
                 {selectAnswerType === 'True or False' && (
-                  <Exam_trueorfalse
+                  <EXAM_TRUEORFALSE
                     questionMemo={questionMemo}
                     counter={counter}
                   />
                 )}
                 {selectAnswerType === 'Checkboxes' && (
-                  <Exam_checkboxes
+                  <EXAM_CHECKBOXES
                     questionMemo={questionMemo}
                     counter={counter}
                   />
                 )}
                 {selectAnswerType === 'Enumeration' && (
-                  <Exam_enumeration
+                  <EXAM_ENUMERATION
                     questionMemo={questionMemo}
                     counter={counter}
                   />
                 )}
                 {selectAnswerType === 'Short Answer' && (
-                  <Exam_shortanswer
+                  <EXAM_SHORTANSWER
                     questionMemo={questionMemo}
                     counter={counter}
                   />
                 )}
               </Box>
               {opendialog && (
-                <Image_GIF
+                <IMAGE_GIF
                   open={opendialog}
                   close={() => setOpenDialog(false)}
                   maxWidth="lg"
@@ -249,7 +250,7 @@ function Exam_Questions({ counter, questionMemo }) {
                 />
               )}
               {
-                <Exam_Options
+                <EXAM_OPTIONS
                   selectAnswerType={selectAnswerType}
                   setAnswerType={setAnswerType}
                   questionMemo={questionMemo}

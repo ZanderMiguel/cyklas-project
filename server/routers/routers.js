@@ -14,12 +14,6 @@ router.post('/getUser', displayRegistrationController);
 router.delete('/register/:id', deleteRegistrationController);
 router.post('/login', userLogInController);
 
-const {
-  googlelogin,
-  googleAccountsController,
-} = require('../controller/googleAuthController');
-router.post('/googlelogin', googlelogin);
-router.get('/getUsers', googleAccountsController);
 
 const {
   createActivityController,
@@ -37,14 +31,14 @@ const {
   displayRoomController,
   deleteRoomController,
   updateRoomController,
-  findRoom,
+  findRoom,getMembersData
 } = require('../controller/roomsController');
 router.post('/rooms/create', createRoomController);
 router.post('/rooms', displayRoomController);
 router.delete('/rooms/delete', deleteRoomController);
 router.put('/rooms/update', updateRoomController);
 router.post('/rooms/my-room', findRoom);
-
+router.post('/get/members',getMembersData)
 const {
   createFeedController,
   displayFeedController,

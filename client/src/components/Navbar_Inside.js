@@ -15,7 +15,6 @@ import {
 } from '@mui/material';
 import { Badge } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
-import Zander from '../assets/Images/zander.png';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Drawer from './Drawer';
