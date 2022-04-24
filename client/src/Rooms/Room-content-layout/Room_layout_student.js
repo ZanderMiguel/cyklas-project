@@ -18,7 +18,6 @@ import RoomBackground8 from '../../assets/ImageJaven/RoomBackground8.png';
 import axios from 'axios';
 
 function Room_layout_student({ data }) {
-  console.log(data);
   return (
     <>
       <CssBasedLine />

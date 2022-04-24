@@ -51,12 +51,6 @@ function PersonalInformation() {
     display: 'none',
   });
 
-  const [selectGender, setSelectGender] = useState('Male');
-
-  const handleChangeGender = (event) => {
-    setSelectGender(event.target.value);
-  };
-  console.log(image);
   return (
     <>
       <Grid item md={6} xs={12}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import Announce_main from './Feed/Announce_main';
-import Activities_main from './Activities/Activities_main';
+import Activities_main from '../../Rooms/Activities/StudentsActivtityLayout/Activities_main';
 import Members_main from './Members/Members_main';
 
 import {

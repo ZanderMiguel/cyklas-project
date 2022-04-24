@@ -27,8 +27,7 @@ import {
   ExpandMore,
   ExpandLess,
 } from '@mui/icons-material';
-import GroupsIcon from '../../assets/ImageJaven/GroupsIcon.png';
-import useGet from '../../customHooks/useGet';
+import GroupsIcon from '../../../assets/ImageJaven/GroupsIcon.png';
 import useStyle from './Styles/Group_table_style';
 
 const dataGroup = [

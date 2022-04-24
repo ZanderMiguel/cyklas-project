@@ -47,14 +47,14 @@ function Drawer() {
           {
             icon: <VscFileSubmodule size="25px" />,
             text: 'Records',
-            path: '/Records',
+            path: '/records',
           },
         ]
       : [
           {
             icon: <VscFileSubmodule size="25px" />,
             text: 'ClassCard',
-            path: '/Records',
+            path: '/classcards',
           },
         ];
 

@@ -4,7 +4,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Memberstable from './Memberstable';
 import Group_table from './Group_table';
 import useStyle from './Styles/Member_style';
-import Add_member from '../../Form_content/Add_member';
+import Add_member from '../../../Form_content/Add_member';
 import axios from 'axios';
 
 function Member({ roomdata }) {

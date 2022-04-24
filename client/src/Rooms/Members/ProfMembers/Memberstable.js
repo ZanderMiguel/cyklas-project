@@ -15,39 +15,7 @@ import {
   Tooltip,
 } from '@mui/material';
 import { Delete, Folder } from '@mui/icons-material';
-
-import useGet from '../../customHooks/useGet';
 import useStyle from './Styles/People_table_style';
-
-const dataProf = [
-  {
-    memberName: 'Mark Andrei',
-    children: 'M',
-  },
-];
-
-const dataStud = [
-  {
-    memberName: 'Tom Hiddleston',
-    children: 'T',
-  },
-  {
-    memberName: 'Tom Holland',
-    children: 'T',
-  },
-  {
-    memberName: 'Paul Rudd',
-    children: 'P',
-  },
-  {
-    memberName: 'Sebastian Stan',
-    children: 'S',
-  },
-  {
-    memberName: 'Robert Downey Jr.',
-    children: 'R',
-  },
-];
 
 function Memberstable({ members }) {
   const { designs } = useStyle();
@@ -79,7 +47,7 @@ function Memberstable({ members }) {
             <Grid item xs={12}>
               <List sx={designs.List_Style}>
                 {members &&
-                  members.map(function (items, index) {
+                  members.map((items, index) => {
                     return (
                       <div key={index}>
                         {items.userType === 'Professor' && (

@@ -1,26 +1,34 @@
 import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { io } from 'socket.io-client';
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   Redirect,
 } from 'react-router-dom';
+//Landing Page
+import Navbar_landingpage from './components/Navbar_landingpage';
+import Forgot_password from './pages-landing/Forgot_password';
+
+//Dashboard
+import Dashboard from './Dashboard/Dashboard';
+//Rooms
+import Rooms from './Rooms/Rooms';
+import Room_inside from './Rooms/Room-content-layout/Room_inside';
+import View_activity from './Rooms/Activities/ProfActivityLayout/View_activity';
+import Activities_main from './Rooms/Activities/StudentsActivtityLayout/Activities_main';
+import Activity_viewed from './Rooms/Activities/StudentsActivtityLayout/View/Activity_viewed';
+
 import Records from './Records/Records';
 import Setting from './Settings/SettingsCont';
 import ProtectedRoutes from './components/ProtectedRoutes';
-import Dashboard from './Dashboard/Dashboard';
-import Navbar_landingpage from './components/Navbar_landingpage';
-import { io } from 'socket.io-client';
+
 import TeleconStart from './Telecon/TeleconStart';
 import QuizLit from './Quizlit/Quizlit';
 import Quizform from './Quizlit/Quiz&ExamForm/Quizform';
 import Examform from './Quizlit/Quiz&ExamForm/Examform';
-import Rooms from './Rooms/Rooms';
-import Room_inside from './Rooms/Room-content-layout/Room_inside';
-import View_activity from './Rooms/Activities/View_activity';
-import Forgot_password from './pages-landing/Forgot_password';
-import Notfound from './Notfound';
+
 import Livequiz_multiplechoice from './Quizlit/LiveQuiz/Livequiz_multiplechoice';
 import StudentLiveQuiz_multiplechoice from './Quizlit/LiveQuiz/StudentLiveQuiz_multiplechoice';
 import Livequiz_correctanswer from './Quizlit/LiveQuiz/Livequiz_correctanswer';
@@ -39,20 +47,19 @@ import Telecon_room from './Telecon/Telecon_room';
 import JoinQuiz from './Quizlit/TestComponents/JoinQuiz';
 import ToLobby from './Quizlit/TestComponents/ToLobby';
 import Lobby from './Quizlit/TestComponents/Lobby';
+
+import Notfound from './Notfound';
 // import LoadQuizlit from './Quizlit/TestComponents/LoadQuizlit';
 
 // Student Side
-import ClassCards_main from './student_side/ClassCards/ClassCards_main';
-import Evaluation from './student_side/ClassCards/Evaluation';
+import ClassCards_main from './ClassCards/ClassCards_main';
+import Evaluation from './ClassCards/Evaluation';
 import Dashboard_main from './student_side/Dashboard/Dashboard_main';
-import Activities_main from './student_side/Rooms/Activities/Activities_main';
-import Activity_viewed from './student_side/Rooms/Activities/Viewed/Activity_viewed';
-import Quiz_viewed from './student_side/Rooms/Activities/Viewed/Quiz_viewed';
-import Exam_viewed from './student_side/Rooms/Activities/Viewed/Exam_viewed';
-import ROOMS_INSIDE2 from './student_side/Rooms/Rooms_inside2';
+
+import Quiz_viewed from './Rooms/Activities/StudentsActivtityLayout/View/Quiz_viewed';
+import Exam_viewed from './Rooms/Activities/StudentsActivtityLayout/View/Exam_viewed';
 import Rooms_main from './student_side/Rooms/Rooms_main';
 import Settings_main from './student_side/Settings/Settings_main';
-import axios from 'axios';
 
 function App() {
   const theme = createTheme({
@@ -123,8 +130,13 @@ function App() {
               />
               <ProtectedRoutes
                 exact
-                path="/rooms/:roomID/:activityID"
+                path="/rooms/:roomID/a/:activityID"
                 component={View_activity}
+              />
+              <ProtectedRoutes
+                exact
+                path="/rooms/:roomID/s/:activityID"
+                component={Activity_viewed}
               />
 
               {/* Quizlit */}
@@ -145,6 +157,13 @@ function App() {
 
               {/* Records */}
               <ProtectedRoutes exact path="/records" component={Records} />
+
+              {/* Class Card */}
+              <ProtectedRoutes
+                exact
+                path="/classcards"
+                component={ClassCards_main}
+              />
 
               {/* Setting */}
               <ProtectedRoutes exact path="/settings" component={Setting} />
