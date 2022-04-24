@@ -1,6 +1,7 @@
 import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { io } from 'socket.io-client';
+import ProtectedRoutes from './components/ProtectedRoutes';
 import {
   BrowserRouter as Router,
   Route,
@@ -20,11 +21,18 @@ import View_activity from './Rooms/Activities/ProfActivityLayout/View_activity';
 import Activities_main from './Rooms/Activities/StudentsActivtityLayout/Activities_main';
 import Activity_viewed from './Rooms/Activities/StudentsActivtityLayout/View/Activity_viewed';
 
+//Records & Classcards
 import Records from './Records/Records';
-import Setting from './Settings/SettingsCont';
-import ProtectedRoutes from './components/ProtectedRoutes';
+import ClassCards_main from './ClassCards/ClassCards_main';
+import Evaluation from './ClassCards/Evaluation';
 
+//Setting
+import Setting from './Settings/SettingsCont';
+
+//Telecon
 import TeleconStart from './Telecon/TeleconStart';
+
+//Quizlit
 import QuizLit from './Quizlit/Quizlit';
 import Quizform from './Quizlit/Quiz&ExamForm/Quizform';
 import Examform from './Quizlit/Quiz&ExamForm/Examform';
@@ -52,8 +60,7 @@ import Notfound from './Notfound';
 // import LoadQuizlit from './Quizlit/TestComponents/LoadQuizlit';
 
 // Student Side
-import ClassCards_main from './ClassCards/ClassCards_main';
-import Evaluation from './ClassCards/Evaluation';
+
 import Dashboard_main from './student_side/Dashboard/Dashboard_main';
 import axios from 'axios'
 import Quiz_viewed from './Rooms/Activities/StudentsActivtityLayout/View/Quiz_viewed';

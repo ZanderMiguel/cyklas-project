@@ -193,6 +193,8 @@ function Navbar({ path }) {
               ? 'Class Card'
               : path === '/quizlit'
               ? 'Quizlit'
+              : path === '/quizlit/createquiz'
+              ? 'Quizlit'
               : path === '/records'
               ? 'Records'
               : path === '/settings' && 'Setting'}

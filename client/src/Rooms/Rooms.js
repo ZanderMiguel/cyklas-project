@@ -35,7 +35,6 @@ function Rooms({ socket }) {
       userID: JSON.parse(localStorage.userData).data.user._id,
     });
   }, [newRoom]);
-
   return (
     <>
       <Container maxWidth="md">

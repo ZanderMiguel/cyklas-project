@@ -83,8 +83,8 @@ function Room_layout_student({ data }) {
                       >
                         {item.Course}
                       </Typography>
-
                       <Typography
+                        key={index}
                         variant="subtitle1"
                         noWrap
                         sx={{
@@ -94,7 +94,7 @@ function Room_layout_student({ data }) {
                           width: 'auto',
                         }}
                       >
-                        Prof. Orense
+                        Room Creator
                       </Typography>
                     </Box>
 

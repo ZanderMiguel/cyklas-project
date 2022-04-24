@@ -63,36 +63,52 @@ function Footer({
   const handleToggleInfo = () => {
     setSideDrawer(true);
     setToggleInfo((prev) => !prev);
+
     if (toggleInfo === false) {
       setSideDrawer(true);
     } else {
       setSideDrawer(false);
     }
-    setSideContent('Message');
+    setSideContent('Info');
     setToggleMember(false);
     setToggleMessage(false);
     setTogglePresent(false);
   };
   const handleToggleMember = () => {
+    setSideDrawer(true);
     setToggleMember((prev) => !prev);
-    setSideDrawer((prev) => !prev);
-    setSideContent('Info');
+    if (toggleMember === false) {
+      setSideDrawer(true);
+    } else {
+      setSideDrawer(false);
+    }
+    setSideContent('Member');
     setToggleInfo(false);
     setToggleMessage(false);
     setTogglePresent(false);
   };
   const handleToggleMessage = () => {
+    setSideDrawer(true);
     setToggleMessage((prev) => !prev);
-    setSideDrawer((prev) => !prev);
-    setSideContent(<Information />);
+    if (toggleMessage === false) {
+      setSideDrawer(true);
+    } else {
+      setSideDrawer(false);
+    }
+    setSideContent('Message');
     setToggleInfo(false);
     setToggleMember(false);
     setTogglePresent(false);
   };
   const handleTogglePresent = () => {
+    setSideDrawer(true);
     setTogglePresent((prev) => !prev);
-    setSideDrawer((prev) => !prev);
-    setSideContent(<Information />);
+    setSideContent('Presentation');
+    if (togglePresent === false) {
+      setSideDrawer(true);
+    } else {
+      setSideDrawer(false);
+    }
     setToggleInfo(false);
     setToggleMember(false);
     setToggleMessage(false);

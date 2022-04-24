@@ -6,18 +6,6 @@ import usePost from '../customHooks/usePost';
 import moment from 'moment';
 
 import { Grid, Button } from '@mui/material';
-// import { ConstructionTwoTone } from '@mui/icons-material';
-
-// const classtimes = [
-//   {
-//     value: '10:30',
-//     label: '10:30',
-//   },
-//   {
-//     value: '11:30',
-//     label: '11:30',
-//   },
-// ];
 
 const gradingsystems = [
   {
@@ -120,9 +108,6 @@ function Create_room({ open, close, maxWidth, state, socket }) {
               onChange={(e) => setYearandsection(e.target.value)}
               half
             />
-            {/* <Grid item xs={12} sm={6}>
-              <Datetime classtime={classtime} setClassTime={setClassTime} inputLabel="Class Time"/>
-            </Grid> */}
             <Input
               inputLabel="Class time"
               autoComplete="off"
