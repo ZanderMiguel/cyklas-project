@@ -23,7 +23,9 @@ function Member({ roomdata }) {
 
   React.useEffect(() => {
     axios
-      .post('http://localhost:5000/get/members', { members: roomdata.members })
+      .post('http://localhost:5000/get/members', {
+        members: roomdata.room.members,
+      })
       .then((res) => setMembers(res.data))
       .catch((err) => console.log(err));
   }, []);

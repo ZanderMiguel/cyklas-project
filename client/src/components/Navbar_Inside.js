@@ -134,6 +134,7 @@ const general = [
 
 function Navbar({ path }) {
   const theme = useTheme();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorEl1, setAnchorEl1] = React.useState(null);
 
@@ -156,6 +157,7 @@ function Navbar({ path }) {
 
   const account = Boolean(anchorEl1);
   const badgeDot = React.useRef(null);
+  console.log(path);
   return (
     <>
       <CssBaseline />

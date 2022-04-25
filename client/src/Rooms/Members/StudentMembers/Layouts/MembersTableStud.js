@@ -15,8 +15,6 @@ import useStyle from './Styles/People_table_layout_style';
 
 function MembersTableStud({ members }) {
   const { designs } = useStyle();
-
-  console.log(members);
   return (
     <Container maxWidth="md">
       <Grid container rowSpacing={1}>

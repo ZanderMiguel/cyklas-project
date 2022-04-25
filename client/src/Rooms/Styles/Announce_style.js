@@ -64,34 +64,34 @@ function useStyle() {
       height: 'relative',
     },
     Option_IconButton_Style: {
-      borderRadius: "0em",
+      borderRadius: '0em',
       height: '1.2em',
       width: '1.2em',
       margin: '8px 0px',
-      "&: hover": {
-        backgroundColor: "transparent"
-      }
+      '&: hover': {
+        backgroundColor: 'transparent',
+      },
     },
     EditIcon_Style: {
       color: '#615F79',
       fontSize: '20px',
-      "&: hover": {
+      '&: hover': {
         color: '#007FFF',
-      }
+      },
     },
     DeleteIcon_Style: {
       color: '#615F79',
       fontSize: '20px',
-      "&: hover": {
+      '&: hover': {
         color: '#FF3B00',
-      }
+      },
     },
     MoreVertIcon_Style: {
       color: '#3F3D56',
       fontSize: '20px',
-      "&: hover": {
+      '&: hover': {
         color: '#007FFF',
-      }
+      },
     },
     Post_Content_Style: {
       padding: '10px 75px',
@@ -157,22 +157,22 @@ function useStyle() {
       fontSize: '20px',
     },
     Actions_Style: {
-      marginTop: "0.3em",
-      display: "flex",
-      gap: "1em"
+      marginTop: '0.3em',
+      display: 'flex',
+      gap: '1em',
     },
     EditComment_Button_Style: {
-      fontSize: "0.5em",
-      fontWeight: "400",
-      color: "#3F3D56"
+      fontSize: '0.5em',
+      fontWeight: '400',
+      color: '#3F3D56',
     },
-    DividerV_Style: { 
-      margin: "0.2em 0em" 
+    DividerV_Style: {
+      margin: '0.2em 0em',
     },
     DeleteComment_Button_Style: {
-      fontSize: "0.5em",
-      fontWeight: "400",
-      color: "#3F3D56"
+      fontSize: '0.5em',
+      fontWeight: '400',
+      color: '#3F3D56',
     },
 
     // Schoolworktiles_layout
@@ -200,10 +200,10 @@ function useStyle() {
       height: 'max-content',
       margin: '0.3em 0em 0.3em 0em',
       flexGrow: 1,
-      "&: hover": {
-        cursor: "pointer",
-        textDecoration: "underline"
-      }
+      '&: hover': {
+        cursor: 'pointer',
+        textDecoration: 'underline',
+      },
     },
     ActivityName: {
       className: 'Activity-name',
@@ -223,47 +223,47 @@ function useStyle() {
       textTransform: 'Uppercase',
       color: '#3F3D56',
       [theme.breakpoints.between('sm', 'md')]: {
-          width: "22em",
+        width: '22em',
       },
       [theme.breakpoints.down('sm')]: {
-          padding: "0.4em 0em 0em 0em",
-          width: "100%",
-          height: "relative"
-      }
+        padding: '0.4em 0em 0em 0em',
+        width: '100%',
+        height: 'relative',
+      },
     },
     User_Date: {
-      className: "User-date", 
-      width: "35em", 
-      display: "flex", 
-      gap: "0.2em",
-      [theme.breakpoints.between('md', "lg")]: {
-          width: "24em",
+      className: 'User-date',
+      width: '35em',
+      display: 'flex',
+      gap: '0.2em',
+      [theme.breakpoints.between('md', 'lg')]: {
+        width: '24em',
       },
       [theme.breakpoints.between('sm', 'md')]: {
-        width: "20em",
+        width: '20em',
       },
       [theme.breakpoints.down('sm')]: {
-        display: "none"
-      }
+        display: 'none',
+      },
     },
     Professor: {
-      width: "auto",
-      fontSize: "0.5em",
-      fontWeight: "700",
-      textTransform: "Capitalize",
-      fontStyle: "Italic",
-      color: "#3F3D56"
+      width: 'auto',
+      fontSize: '0.5em',
+      fontWeight: '700',
+      textTransform: 'Capitalize',
+      fontStyle: 'Italic',
+      color: '#3F3D56',
     },
     Date: {
-      width: "45em",
-      fontSize: "0.5em",
-      fontWeight: "600",
-      textTransform: "none",
-      fontStyle: "Italic",
-      color: "#3F3D56",
+      width: '45em',
+      fontSize: '0.5em',
+      fontWeight: '600',
+      textTransform: 'none',
+      fontStyle: 'Italic',
+      color: '#3F3D56',
       [theme.breakpoints.down('md')]: {
-          width: "30em",
-      }
+        width: '30em',
+      },
     },
     BoxOptions: {
       className: 'option',
@@ -280,7 +280,7 @@ function useStyle() {
     MoreVertIcon: {
       color: '#8E8E8E',
       fontSize: '0.8em',
-    }
+    },
   };
 
   return { designs };

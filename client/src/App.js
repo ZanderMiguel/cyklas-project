@@ -111,34 +111,22 @@ function App() {
         <ThemeProvider theme={theme}>
           <Router>
             <Switch>
+              {/* Landing Page with Log in */}
               <Redirect exact from="/" to="/home/login" />
               <Redirect exact from="/home" to="/home/login" />
               <Route path="/forgotpassword" component={Forgot_password} />
               <Route exact path="/home/:page?" component={Navbar_landingpage} />
+
+              {/* Dashboard */}
               <ProtectedRoutes exact path="/dashboard" component={Dashboard} />
-              <ProtectedRoutes exact path="/telecon" component={TeleconStart} />
+
+              {/* Rooms */}
               <ProtectedRoutes
                 exact
                 path="/rooms"
                 component={Rooms}
                 socket={socket}
               />
-              {JSON.parse(localStorage.userData).data.user.userType ===
-              'Professor' ? (
-                <ProtectedRoutes
-                  exact
-                  path="/rooms/:roomID"
-                  socket={socket}
-                  component={Room_inside}
-                />
-              ) : (
-                <ProtectedRoutes
-                  exact
-                  path="/rooms/:roomID"
-                  socket={socket}
-                  component={ROOMS_INSIDE2}
-                />
-              )}
 
               <ProtectedRoutes
                 exact
@@ -150,7 +138,7 @@ function App() {
                 path="/rooms/:roomID/s/:activityID"
                 component={Activity_viewed}
               />
-              <ProtectedRoutes exact path="/settings" component={Setting} />
+              {/* Quizlit */}
               <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
               <ProtectedRoutes
                 exact
@@ -162,8 +150,32 @@ function App() {
                 path="/quizlit/createexam"
                 component={Examform}
               />
+              <Route exact path="/quizlit/join">
+                <JoinQuiz socket={socket} />
+              </Route>
+              <Route exact path="/quizlit/lobby">
+                <Lobby socket={socket} />
+              </Route>
+              <Route exact path="/quizlit/lobby/:lobby/:name/:quizID">
+                <ToLobby socket={socket} />
+              </Route>
+
+              {/* Telecon */}
+              <ProtectedRoutes exact path="/telecon" component={TeleconStart} />
+              <Route path="/telecon/room" component={Telecon_room} />
+
+              {/* Records and Classcards */}
+              <ProtectedRoutes exact path="/records" component={Records} />
+              <ProtectedRoutes
+                exact
+                path="/classcards"
+                component={ClassCards_main}
+              />
+
+              {/* Setting */}
+              <ProtectedRoutes exact path="/settings" component={Setting} />
+
               {/* Javen Routes */}
-              {quizlit}
               <ProtectedRoutes
                 exact
                 path="/StudentLiveQuiz_multiplechoice"
@@ -214,11 +226,6 @@ function App() {
               />
 
               {/* Student Side */}
-              <Route
-                exact
-                path="/ClassCards_main"
-                component={ClassCards_main}
-              />
               <Route exact path="/Evaluation" component={Evaluation} />
               <Route exact path="/Dashboard_main" component={Dashboard_main} />
               <Route
@@ -241,22 +248,11 @@ function App() {
                 socket={socket}
               />
               <Route exact path="/Settings_main" component={Settings_main} />
-
               <Route exact path="/Exam_take/:quizID" component={Exam_take} />
               <Route exact path="/Exam_start/:examID" component={Exam_start} />
               <Route exact path="/View_quiz" component={View_quiz} />
               <Route exact path="/View_exam" component={View_exam} />
-              <ProtectedRoutes exact path="/records" component={Records} />
-              <Route path="/telecon/room" component={Telecon_room} />
-              <Route exact path="/quizlit/join">
-                <JoinQuiz socket={socket} />
-              </Route>
-              <Route exact path="/quizlit/lobby">
-                <Lobby socket={socket} />
-              </Route>
-              <Route exact path="/quizlit/lobby/:lobby/:name/:quizID">
-                <ToLobby socket={socket} />
-              </Route>
+              <ProtectedRoutes socket={socket} />
               <Route component={Notfound} />
             </Switch>
           </Router>
