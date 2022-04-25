@@ -120,7 +120,7 @@ function App() {
               component={Rooms}
               socket={socket}
             />
-            <ProtectedRoutes socket={socket}/>
+            
             <ProtectedRoutes
               exact
               path="/rooms/:roomID/:activityID"
@@ -221,6 +221,7 @@ function App() {
             <Route exact path="/quizlit/lobby/:lobby/:name/:quizID">
               <ToLobby socket={socket} />
             </Route>
+            <ProtectedRoutes socket={socket}/>
             <Route component={Notfound} />
           </Switch>
         </Router>

@@ -17,23 +17,24 @@ import AvatarIcon from '../../../../assets/ImageJaven/Avatar.png';
 import usePost from '../../../../customHooks/usePost';
 import useStyles from './Styles/Post_layout_style';
 import axios from 'axios';
-
-
-function Post_layout({ data, socket }) {
+import Schoolworktiles_layout from './Schoolworktiles_layout';
+import draftToHtml from 'draftjs-to-html';
+import ReactHtmlParser from 'react-html-parser';
+function Post_layout({ data, socket,roomID }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleEdit = (event) => {
-    
+
   };
-  
+
   const handleDelete = (event, _id) => {
-    console.log(_id )
-    axios.delete('http://localhost:5000/announce/delete', {data:{announceID: _id}})
-    .then((res)=>{
-    socket.emit('create-post')
-    console.log(res)
-    })
-    .catch((error)=>{console.log(error)})
+    console.log(_id)
+    axios.delete('http://localhost:5000/announce/delete', { data: { announceID: _id } })
+      .then((res) => {
+        socket.emit('create-post')
+        console.log(res)
+      })
+      .catch((error) => { console.log(error) })
 
   };
   const handleCloseOption = () => {
@@ -53,9 +54,8 @@ function Post_layout({ data, socket }) {
       announcement: postID.current,
       content: commentContent.current,
       author: {
-        name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
-          JSON.parse(localStorage.userData).data.user.lastName
-        }`,
+        name: `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName
+          }`,
         userID: JSON.parse(localStorage.userData).data.user._id,
       },
     });
@@ -72,6 +72,7 @@ function Post_layout({ data, socket }) {
       {data &&
         data.map((item, index) => {
           const { author, createdAt, content, _id } = item;
+          
           return (
             <Box className="Post" sx={designs.Post_Style} key={index}>
               <Box className="User" sx={designs.User_Style}>
@@ -99,34 +100,37 @@ function Post_layout({ data, socket }) {
                   aria-label="options"
                   onClick={handleEdit}
                   sx={designs.Option_IconButton_Style}
-                > 
+                >
                   <Tooltip title="Edit Post" placement="top">
-                  <BorderColorOutlined sx={designs.EditIcon_Style} />
-                  </Tooltip>
-                </IconButton>
-                
-                <IconButton
-                  aria-label="options"
-                  onClick={(event)=> handleDelete(event, _id)}
-                  sx={designs.Option_IconButton_Style}
-                > 
-                  <Tooltip title="Delete Post" placement="top">
-                  <DeleteOutlineOutlined sx={designs.DeleteIcon_Style} />
+                    <BorderColorOutlined sx={designs.EditIcon_Style} />
                   </Tooltip>
                 </IconButton>
 
-                {/* <CusPopover
-                PaperProps={{ elevation: 0 }}
-                open={account}
-                anchorEl={anchorEl}
-                onClose={handleCloseOption}>
-                <PostOptionspopover />
-                </CusPopover> */}
+                <IconButton
+                  aria-label="options"
+                  onClick={(event) => handleDelete(event, _id)}
+                  sx={designs.Option_IconButton_Style}
+                >
+                  <Tooltip title="Delete Post" placement="top">
+                    <DeleteOutlineOutlined sx={designs.DeleteIcon_Style} />
+                  </Tooltip>
+                </IconButton>
+
               </Box>
 
               <Box className="post-content" sx={designs.Post_Content_Style}>
                 <Typography sx={designs.Post_Typography_Style}>
-                  {content}
+                  {content.quizID ? (
+                    <Schoolworktiles_layout
+                      roomID={roomID}
+                      content={content.quizID}
+                    />
+                  ) : (
+                    <Box className="post-content" sx={designs.Post_Content_Style}>
+                      {ReactHtmlParser(draftToHtml(content))}
+                    </Box>
+                  )}
+
                 </Typography>
               </Box>
               <Divider sx={designs.Divider_Style} />

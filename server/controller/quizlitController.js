@@ -78,7 +78,7 @@ const findQuizlit = async (req, res) => {
     console.log(quiz)
     return res.json(quiz);
   } catch (err) {
-    console.log(err);
+    console.log(err,'bobo');
     return res.json({
       status: 'error',
       message: err,

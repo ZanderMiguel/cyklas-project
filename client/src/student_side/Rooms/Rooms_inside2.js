@@ -115,7 +115,7 @@ function Rooms_Inside2({ socket }) {
           </AppBar>
           <Container maxWidth="lg">
             {value === 0 ? (
-              <Announce_main socket={socket} />
+              <Announce_main socket={socket} roomID={roomID} />
             ) : value === 1 ? (
               <Activities_main roomID={roomID} />
             ) : (

@@ -22,6 +22,7 @@ function ProtectedRoutes({
 
       {Component ? <Route
         {...attrib}
+        
         render={() => {
           return localStorage.token !== undefined ? (
             socket ? (
