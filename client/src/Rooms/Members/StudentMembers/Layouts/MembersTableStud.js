@@ -85,6 +85,7 @@ function MembersTableStud({ members }) {
               <List sx={designs.List_Style}>
                 {members &&
                   members.map((items, index) => {
+                    console.log(items);
                     return (
                       <div key={index}>
                         {items.userType === 'Student' && (

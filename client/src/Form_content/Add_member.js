@@ -11,75 +11,26 @@ import {
   Stack,
 } from '@mui/material';
 import { ContentCopy } from '@mui/icons-material';
-// import AvatarIcon from "../assets/ImageJaven/Avatar.png";
-// import ExamIconButton from "../assets/ImageJaven/ExamIconButton.png";
+import { useLocation } from 'react-router-dom';
 import useStyle from './Styles/Add_member_style';
 
 function Add_member({ open, close, maxWidth }) {
+  const location = useLocation();
   const { designs } = useStyle();
 
   return (
     <div>
-      <Dialogform
-        open={open}
-        close={close}
-        maxWidth={maxWidth}
-        // btn={
-        // <Box sx = {{ display: "flex", gap: "1em", height: "auto", width: "relative"}}>
-        //   <Button onClick={close} variant="contained" sx = {{
-        //       backgroundColor: "transparent",
-        //       boxShadow: "none",
-        //       color: "#3F3D56",
-        //       fontSize: "0.8em",
-        //       fontWeight: "600",
-        //       textTransform: "Capitalize",
-        //       padding: "0.3em 3em",
-        //       "&: hover": {
-        //         backgroundColor: "transparent",
-        //         boxShadow: "none",
-        //       }
-        //       }}>
-        //     Cancel
-        //   </Button>
-
-        //   <Button variant="contained" startIcon = {<CallEnd/>} sx = {{
-        //       backgroundColor: "#F74747",
-        //       color: "white",
-        //       fontSize: "0.8em",
-        //       fontWeight: "600",
-        //       textTransform: "Capitalize",
-        //       padding: "0.3em 3em",
-        //       "&: hover": {
-        //           backgroundColor: "#F02D2D"
-        //       }
-        //       }}>
-        //     Leave
-        //   </Button>
-        // </Box>
-        // }
-      >
+      <Dialogform open={open} close={close} maxWidth={maxWidth}>
         <Grid item xs={12}>
           <Stack sx={designs.Stack_Style}>
-            <Typography
-              sx={designs.TextFieldLabel_Style}
-              children="Add Teacher(s)"
-            />
+            <Typography sx={designs.TextFieldLabel_Style}>
+              Add Member'(s)
+            </Typography>
             <TextField
               variant="outlined"
+              autoComplete="off"
               sx={designs.TextField_Style}
-              placeholder="Enter teacher(s)'s email address..."
-            />
-          </Stack>
-
-          <Stack sx={designs.Stack_Style}>
-            <Typography
-              sx={designs.TextFieldLabel_Style}
-              children="Add Student(s)"
-            />
-            <TextField
-              variant="outlined"
-              sx={designs.TextField_Style}
-              placeholder="Enter student(s)'s email address..."
+              placeholder="Enter email address..."
             />
           </Stack>
         </Grid>
@@ -124,26 +75,6 @@ function Add_member({ open, close, maxWidth }) {
             />
           </Divider>
         </Grid>
-
-        {/* <Divider sx = {{ margin: "3em 2em 2em 2em" }}/>
-
-        <Typography sx = {{
-            color: "#3F3D56",
-            fontSize: "1em",
-            backgroundColor: "white",
-            fontWeight: "600",
-            textTransform: "uppercase",
-            textAlign: "center",
-            width: "5em",
-            height: "max-content",
-            position: "absolute",
-            top: "58%",
-            left: "47%",
-            zIndex: 1
-        }}>
-            or
-        </Typography> */}
-
         <Stack sx={designs.Stack_Style}>
           <Box
             sx={{
@@ -161,63 +92,7 @@ function Add_member({ open, close, maxWidth }) {
               <TextField
                 variant="standard"
                 sx={designs.TextField2_Style}
-                defaultValue="https://www.cyklas.com/EmbeddedProgramming/Professor"
-                InputProps={{ readOnly: true }}
-              />
-            </Box>
-
-            <Box
-              sx={{
-                height: 'auto',
-                width: 'relative',
-                display: 'flex',
-                alignItems: 'flex-end',
-              }}
-            >
-              <Button
-                variant="contained"
-                startIcon={<ContentCopy />}
-                sx={{
-                  border: '1px solid #0069D3',
-                  backgroundColor: 'transparent',
-                  height: 'max-content',
-                  boxShadow: 'none',
-                  color: '#0069D3',
-                  fontSize: '0.8em',
-                  fontWeight: '600',
-                  textTransform: 'Capitalize',
-                  padding: '0.3em 3em',
-                  '&: hover': {
-                    border: '1px solid #005DC3',
-                    backgroundColor: 'transparent',
-                    boxShadow: 'none',
-                  },
-                }}
-              >
-                Copy Link
-              </Button>
-            </Box>
-          </Box>
-        </Stack>
-
-        <Stack sx={designs.Stack_Style}>
-          <Box
-            sx={{
-              height: 'auto',
-              width: 'relative',
-              display: 'flex',
-              gap: '0.8em',
-            }}
-          >
-            <Box sx={{ height: 'auto', width: 'relative' }}>
-              <Typography
-                sx={designs.TextFieldLabel_Style}
-                children="Classroom Link (For Student(s))"
-              />
-              <TextField
-                variant="standard"
-                sx={designs.TextField2_Style}
-                defaultValue="https://www.cyklas.com/EmbeddedProgramming/Student"
+                defaultValue={location.pathname}
                 InputProps={{ readOnly: true }}
               />
             </Box>
