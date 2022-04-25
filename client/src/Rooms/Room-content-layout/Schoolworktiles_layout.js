@@ -35,7 +35,7 @@ function Schoolworktiles_layout({ content, roomID }) {
   return (
     <>
 
-      <Grid item xs={12} sx={{ marginTop: "2em" }}>
+      {data && <><Grid item xs={12} sx={{ marginTop: "2em" }}>
 
         <Box sx={designs.BoxTileContainer}>
           <Box sx={designs.ActivityContainer}>
@@ -95,7 +95,7 @@ function Schoolworktiles_layout({ content, roomID }) {
           </Box>
         </Box>
 
-      </Grid>
+      </Grid></>}
     </>
   );
 }

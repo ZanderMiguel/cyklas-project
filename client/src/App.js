@@ -15,7 +15,6 @@ import Forgot_password from './pages-landing/Forgot_password';
 import Dashboard from './Dashboard/Dashboard';
 //Rooms
 import Rooms from './Rooms/Rooms';
-import Room_inside from './Rooms/Room-content-layout/Room_inside';
 import View_activity from './Rooms/Activities/ProfActivityLayout/View_activity';
 import Activities_main from './Rooms/Activities/StudentsActivtityLayout/Activities_main';
 import Activity_viewed from './Rooms/Activities/StudentsActivtityLayout/View/Activity_viewed';
@@ -47,7 +46,6 @@ import Telecon_room from './Telecon/Telecon_room';
 import JoinQuiz from './Quizlit/TestComponents/JoinQuiz';
 import ToLobby from './Quizlit/TestComponents/ToLobby';
 import Lobby from './Quizlit/TestComponents/Lobby';
-import ROOMS_INSIDE2 from './student_side/Rooms/Rooms_inside2'
 import Notfound from './Notfound';
 // import LoadQuizlit from './Quizlit/TestComponents/LoadQuizlit';
 
@@ -87,7 +85,6 @@ function App() {
   const socket = io.connect('http://localhost:3001');
   const [quizlit, setQuizlit] = React.useState(null);
   socket.on('joined-quizLobby', (lobby, quizLobby, questionArray) => {
-    console.log('awit');
     setQuizlit(
       <ProtectedRoutes
         exact
@@ -116,17 +113,7 @@ function App() {
               component={Rooms}
               socket={socket}
             />
-            {JSON.parse(localStorage.userData).data.user.userType === "Professor" ? <ProtectedRoutes
-              exact
-              path="/rooms/:roomID"
-              socket={socket}
-              component={Room_inside}
-            /> : <ProtectedRoutes
-              exact
-              path="/rooms/:roomID"
-              socket={socket}
-              component={ROOMS_INSIDE2}
-            />}
+            <ProtectedRoutes socket={socket}/>
             <ProtectedRoutes
               exact
               path="/rooms/:roomID/:activityID"

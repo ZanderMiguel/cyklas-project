@@ -41,7 +41,7 @@ function Rooms_Inside2({ socket }) {
       })
       .catch((err) => console.log(err));
   }, []);
-
+  roomData && console.log(roomData)
   return (
     <>
       {roomData && roomData.room ? (
@@ -119,7 +119,7 @@ function Rooms_Inside2({ socket }) {
             ) : value === 1 ? (
               <Activities_main roomID={roomID} />
             ) : (
-              <Members_main />
+              <Members_main roomData={roomData}/>
             )}
           </Container>
         </>

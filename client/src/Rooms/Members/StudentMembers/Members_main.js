@@ -7,19 +7,18 @@ import Group_table_layout from './Layouts/Groups_table_layout';
 import useStyle from './Styles/Members_main_style';
 import LeaveRoom from '../../../components/Modals/LeaveRoom';
 
-function Members_main({ roomdata }) {
+function Members_main({ roomData }) {
   const { designs } = useStyle();
 
   const [opendialog, setOpenDialog] = useState(false);
   const [members, setMembers] = useState(null);
-
   const handleClose = () => {
     setOpenDialog(false);
   };
-
+  members && console.log(members)
   useEffect(() => {
     axios
-      .post('http://localhost:5000/get/members', { members: roomdata.members })
+      .post('http://localhost:5000/get/members', { members: roomData.room.members })
       .then((res) => setMembers(res.data))
       .catch((err) => console.log(err));
   }, []);

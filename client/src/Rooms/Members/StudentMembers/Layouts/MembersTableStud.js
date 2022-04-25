@@ -87,18 +87,18 @@ function MembersTableStud({ members }) {
                   members.map((items, index) => {
                     return (
                       <div key={index}>
-                        {members.userType === 'Professor' && (
+                        {items.userType === 'Student' && (
                           <>
                             <ListItem sx={designs.ListItem_Style}>
                               <ListItemAvatar>
-                                <Avatar children={items.children} />
+                                <Avatar src={items.image} />
                               </ListItemAvatar>
 
                               <ListItemText>
                                 <Typography
                                   sx={designs.Student_Typography_Style}
                                 >
-                                  {items.memberName}
+                                  {items.firstName} {items.lastName}
                                 </Typography>
                               </ListItemText>
                             </ListItem>
