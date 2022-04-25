@@ -16,6 +16,7 @@ import Forgot_password from './pages-landing/Forgot_password';
 import Dashboard from './Dashboard/Dashboard';
 //Rooms
 import Rooms from './Rooms/Rooms';
+import Room_inside from './Rooms/Room-content-layout/Room_inside';
 import View_activity from './Rooms/Activities/ProfActivityLayout/View_activity';
 import Activities_main from './Rooms/Activities/StudentsActivtityLayout/Activities_main';
 import Activity_viewed from './Rooms/Activities/StudentsActivtityLayout/View/Activity_viewed';

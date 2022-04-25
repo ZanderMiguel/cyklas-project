@@ -35,6 +35,8 @@ import Presentation from '../TeleconSide/Presentation';
 import Livequiz_queue from '../../Form_content/Livequiz_queue';
 import Leave_conference from '../../Form_content/Leave_conference';
 import Make_groups from '../../Form_content/Make_groups';
+import CusPopover from '../../components/Popover';
+import QuizPopover from '../../components/PopoverContent/QuizPopover';
 
 function Footer({
   setSideDrawer,
@@ -47,6 +49,15 @@ function Footer({
   handleUser,
 }) {
   const { designs } = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const quiz = Boolean(anchorEl);
+  const handleClickQuiz = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseQuiz = () => {
+    setAnchorEl(null);
+  };
 
   //left icons
   const [toggleInfo, setToggleInfo] = useState(false);
@@ -306,7 +317,7 @@ function Footer({
           />
         )}
         <IconButton
-          onClick={handleCreate}
+          onClick={handleClickQuiz}
           sx={designs.rightIcons.IconbuttonStyle}
           size="large"
         >
@@ -314,6 +325,22 @@ function Footer({
             style={{ height: '24px', width: '24px', color: 'whiteSmoke' }}
           />
         </IconButton>
+        <CusPopover
+          open={quiz}
+          anchorEl={anchorEl}
+          onClose={handleCloseQuiz}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'left',
+          }}
+          transformOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+        >
+          <QuizPopover />
+        </CusPopover>
+
         {opendialog && (
           <Livequiz_queue
             open={opendialog}
