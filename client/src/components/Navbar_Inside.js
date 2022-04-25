@@ -194,7 +194,7 @@ function Navbar({ path }) {
               ? 'Quizlit'
               : path === '/records'
               ? 'Records'
-              : path === '/settings' && 'Setting'}
+              : path === '/settings' && 'Settings'}
           </Typography>
           <IconButton size="small" onClick={handleClickNotif}>
             <Badge

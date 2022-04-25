@@ -645,7 +645,7 @@ function Dashboard() {
             </Box>
             </Grid> */}
 
-                  <Grid item md = {6} xs = {12} sx = {{ marginTop: "1em" }}> 
+                  <Grid item xs = {12} sx = {{ marginTop: "1em", display: "flex", justifyContent: "center", alignItems: "center" }}> 
                     <Box sx = {designs.SearchDashboard_Style}>
                         <IconButton
                         aria-label="search"

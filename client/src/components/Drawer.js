@@ -7,7 +7,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import {
-  MdQuiz,
+  MdOutlineQuiz,
   MdOutlineVideoCameraFront,
   MdOutlineSettings,
 } from 'react-icons/md';
@@ -34,7 +34,7 @@ function Drawer() {
     'Professor' === 'Professor'
       ? [
           {
-            icon: <MdQuiz size="25px" />,
+            icon: <MdOutlineQuiz size="25px" />,
             text: 'Quizlit',
             path: '/quizlit',
           },
@@ -71,7 +71,7 @@ function Drawer() {
     ...userType,
     {
       icon: <MdOutlineSettings size="25px" />,
-      text: 'Setting',
+      text: 'Settings',
       path: '/settings',
     },
   ];
@@ -100,6 +100,8 @@ function Drawer() {
                 button
                 key={text}
                 sx={{
+                  marginBottom: "0.4em",
+                  paddingLeft: "1.4em",
                   '&:hover': {
                     backgroundColor: '#71707B',
                     '& .MuiListItemIcon-root': {
@@ -108,8 +110,7 @@ function Drawer() {
                     '& .MuiTypography-root': {
                       color: 'white',
                     },
-                  },
-                  marginBottom: '10px',
+                  }
                 }}
               >
                 <ListItemIcon>{icon}</ListItemIcon>
@@ -117,9 +118,9 @@ function Drawer() {
                 <ListItemText
                   primary={
                     <Typography
-                      variant="h6"
                       sx={{
                         color: '#3F3D56',
+                        fontSize: "1.1em",
                         fontWeight: 500,
                       }}
                     >

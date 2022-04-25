@@ -7,7 +7,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import Records from './Records/Records';
-import Setting from './Settings/SettingsCont';
+import Setting from './Settings/Settings';
 import ProtectedRoutes from './components/ProtectedRoutes';
 import Dashboard from './Dashboard/Dashboard';
 import Navbar_landingpage from './components/Navbar_landingpage';
