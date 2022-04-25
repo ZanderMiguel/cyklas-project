@@ -15,10 +15,18 @@ function Members_main({ roomData }) {
   const handleClose = () => {
     setOpenDialog(false);
   };
+<<<<<<< Updated upstream
   members && console.log(members)
   useEffect(() => {
     axios
       .post('http://localhost:5000/get/members', { members: roomData.room.members })
+=======
+  useEffect(() => {
+    axios
+      .post('http://localhost:5000/get/members', {
+        members: roomdata.members,
+      })
+>>>>>>> Stashed changes
       .then((res) => setMembers(res.data))
       .catch((err) => console.log(err));
   }, []);

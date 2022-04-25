@@ -79,10 +79,6 @@ function Post_layout({ data, socket, roomID }) {
       {data &&
         data.map((item, index) => {
           const { author, createdAt, content, _id } = item;
-          console.log(
-            author.userID,
-            JSON.parse(localStorage.userData).data.user._id
-          );
           return (
             <Box className="Post" sx={designs.Post_Style} key={index}>
               <Box className="User" sx={designs.User_Style}>

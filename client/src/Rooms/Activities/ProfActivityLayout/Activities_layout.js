@@ -45,6 +45,7 @@ function ActivitiesAccordion({ roomID, activity }) {
             activityPoints: points,
             activityTitle: title,
             activityType: type,
+            _id: _id,
           } = items;
           return (
             <Grid key={index} item xs={12}>
@@ -171,7 +172,7 @@ function ActivitiesAccordion({ roomID, activity }) {
                     <Button
                       sx={designs.ViewHomework_Button_Style}
                       component={Link}
-                      to={`/Rooms/${roomID}/a/${items.Lesson}`}
+                      to={`/Rooms/${roomID}/p/${_id}`}
                     >
                       VIEW ACTIVITY
                     </Button>

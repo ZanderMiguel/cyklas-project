@@ -31,8 +31,9 @@ function Rooms_Inside2({ socket }) {
     axios
       .post('http://localhost:5000/requests/to-join', {
         userID: JSON.parse(localStorage.userData).data.user._id,
-        userName: `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName
-          }`,
+        userName: `${JSON.parse(localStorage.userData).data.user.firstName} ${
+          JSON.parse(localStorage.userData).data.user.lastName
+        }`,
         roomID,
         userImage: JSON.parse(localStorage.userData).data.user.image,
       })
@@ -133,4 +134,3 @@ function Rooms_Inside2({ socket }) {
 }
 
 export default Rooms_Inside2;
-

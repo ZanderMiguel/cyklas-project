@@ -15,6 +15,8 @@ import useStyle from './Styles/People_table_layout_style';
 
 function MembersTableStud({ members }) {
   const { designs } = useStyle();
+
+  console.log(members);
   return (
     <Container maxWidth="md">
       <Grid container rowSpacing={1}>
@@ -69,7 +71,7 @@ function MembersTableStud({ members }) {
             <Box flexGrow={1} sx={designs.BoxFlexGrow_Style} />
 
             <Typography sx={designs.TotalStud_Typography_Style}>
-              5 Classmates
+              1 student
             </Typography>
           </Box>
 
@@ -85,7 +87,6 @@ function MembersTableStud({ members }) {
               <List sx={designs.List_Style}>
                 {members &&
                   members.map((items, index) => {
-                    console.log(items);
                     return (
                       <div key={index}>
                         {items.userType === 'Student' && (
