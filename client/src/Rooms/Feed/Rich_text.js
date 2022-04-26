@@ -53,6 +53,7 @@ function Rich_text({ socket }) {
       setEditorState(EditorState.createEmpty());
     }
     socket.emit('create-post');
+    
   };
 
   return (
