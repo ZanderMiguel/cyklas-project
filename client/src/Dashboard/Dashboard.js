@@ -639,42 +639,39 @@ function Dashboard() {
             </Box>
             </Grid> */}
 
-        <Grid item md={6} xs={12} sx={{ marginTop: '1em' }}>
-          <Box sx={designs.SearchDashboard_Style}>
-            <IconButton
-              aria-label="search"
-              sx={{
-                backgroundColor: 'transparent',
-                height: '1.2em',
-                width: '1.2em',
-                '&: hover': {
-                  backgroundColor: '#FCF9FB',
-                },
-              }}
-            >
-              <Search
+            <Grid item xs = {12} sx = {{ marginTop: "1em", display: "flex", justifyContent: "center", alignItems: "center" }}> 
+              <Box sx = {designs.SearchDashboard_Style}>
+                <IconButton
+                aria-label="search"
                 sx={{
-                  color: '#82818E',
-                  fontSize: '0.8em',
-                }}
-              />
-            </IconButton>
+                    backgroundColor: 'transparent',
+                    height: '1.2em',
+                    width: '1.2em',
+                    "&: hover": {
+                      backgroundColor: "#FCF9FB"
+                    }
+                }}>
+                <Search
+                    sx={{
+                    color: '#82818E',
+                    fontSize: '0.8em',
+                    }}/>
 
-            <Input
-              variant="standard"
-              placeholder="Search dashboard..."
-              disableUnderline
-              sx={{
-                height: '2.5em',
-                width: '30.5em',
-                backgroundColor: 'transparent',
-                fontSize: '0.8em',
-                fontWeight: '500',
-                color: '#3F3D56',
-              }}
-            />
-          </Box>
-        </Grid>
+                </IconButton>
+
+                <Input
+                variant="standard"
+                placeholder="Search dashboard..."
+                disableUnderline
+                sx={{
+                    height: '2.5em',
+                    width: '100%',
+                    fontSize: "0.8em",
+                    fontWeight: "500",
+                    backgroundColor: 'transparent',
+                }}/>
+              </Box>
+            </Grid>
 
         <Box
           sx={{
