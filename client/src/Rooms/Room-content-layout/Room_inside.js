@@ -141,7 +141,7 @@ function Room_inside({ socket }) {
               </Container>
             </Toolbar>
           </AppBar>
-          <Container maxWidth="md">
+          <Container maxWidth="lg">
             {value === 0 ? (
               <Announce socket={socket} />
             ) : value === 1 ? (

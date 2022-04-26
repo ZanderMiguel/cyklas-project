@@ -4,10 +4,11 @@ function useStyle() {
   const theme = useTheme();
   const designs = {
     Activity_Tiles: {
-        marginBottom: "0.6em",
-        "&: hover": {
-          boxShadow: 'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px'
-        }
+      marginBottom: '0.6em',
+      '&: hover': {
+        boxShadow:
+          'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
+      },
     },
     // Lesson: {
     //   backgroundColor: '#F3F3F3',
@@ -38,21 +39,21 @@ function useStyle() {
     Activity_Icon_Activity_Type: {
       display: 'flex',
       height: 'relative',
-      width: "100%"
+      width: '100%',
     },
     Activity_Information_Style: {
       display: 'flex',
-      width: "100%"
+      width: '100%',
     },
     Activity_Typography: {
       width: '5em',
-      display: "flex",
+      display: 'flex',
       flexGrow: 1,
       fontSize: '15px',
       textTransform: 'Uppercase',
       fontWeight: '600',
       color: '#3F3D56',
-      paddingTop: '7px'
+      paddingTop: '7px',
     },
     Type_Typography: {
       width: '80px',
@@ -60,8 +61,8 @@ function useStyle() {
       fontWeight: '500',
       fontSize: '13px',
       paddingTop: '7px',
-      marginLeft: "0.5em",
-      textAlign: "center",
+      marginLeft: '0.5em',
+      textAlign: 'center',
       [theme.breakpoints.down('md')]: {
         display: 'none',
       },
@@ -71,7 +72,7 @@ function useStyle() {
       fontSize: '13px',
       fontWeight: 'bold',
       paddingTop: '7px',
-      marginLeft: "0.5em",
+      marginLeft: '0.5em',
       [theme.breakpoints.down('md')]: {
         display: 'none',
       },
@@ -80,10 +81,10 @@ function useStyle() {
       width: '150px',
       color: '#3F3D56',
       fontSize: '13px',
-      textAlign: "center",
+      textAlign: 'center',
       fontWeight: 'bold',
       paddingTop: '7px',
-      marginLeft: "0.5em",
+      marginLeft: '0.5em',
       [theme.breakpoints.down('md')]: {
         display: 'none',
       },
@@ -93,7 +94,7 @@ function useStyle() {
       height: '12px',
       backgroundColor: '#C9C9C9',
       marginTop: '11px',
-      marginLeft: "0.5em",
+      marginLeft: '0.5em',
       [theme.breakpoints.down('md')]: {
         display: 'none',
       },
@@ -105,34 +106,34 @@ function useStyle() {
       fontWeight: 'bold',
       textTransform: 'Uppercase',
       paddingTop: '7px',
-      marginLeft: "0.5em",
+      marginLeft: '0.5em',
       [theme.breakpoints.down('md')]: {
         display: 'none',
       },
     },
     Status: {
-        width: '10em',
-        color: '#007FFF',
-        fontSize: '13px',
-        fontWeight: 'bold',
-        textAlign: 'center',
-        textTransform: 'Uppercase',
-        paddingTop: '7px',
-        marginLeft: "0.5em",
-        [theme.breakpoints.down('sm')]: {
-            display: "none"
-        },
+      width: '10em',
+      color: '#007FFF',
+      fontSize: '13px',
+      fontWeight: 'bold',
+      textAlign: 'center',
+      textTransform: 'Uppercase',
+      paddingTop: '7px',
+      marginLeft: '0.5em',
+      [theme.breakpoints.down('sm')]: {
+        display: 'none',
+      },
     },
     StatusIcon_Style: {
-        fontSize: "0.7em",
-        color: "#007FFF",
-        margin: "1em 0em 0em 1em",
-        [theme.breakpoints.up('sm')]: {
-            display: "none"
-        },
-        [theme.breakpoints.down('sm')]: {
-            display: "initial"
-        },
+      fontSize: '0.7em',
+      color: '#007FFF',
+      margin: '1em 0em 0em 1em',
+      [theme.breakpoints.up('sm')]: {
+        display: 'none',
+      },
+      [theme.breakpoints.down('sm')]: {
+        display: 'initial',
+      },
     },
     Button_Container_Style: {
       display: 'flex',
@@ -155,8 +156,6 @@ function useStyle() {
     },
     Activity_Details_Style: {
       width: 'relative',
-      display: 'flex',
-      flexWrap: 'wrap',
       margin: '0px 20px 15px 20px',
       [theme.breakpoints.down('sm')]: {
         margin: '0px 5px 15px 5px',
@@ -168,11 +167,11 @@ function useStyle() {
       },
     },
     Type_Responsive_Typography: {
-      width: '80px',
+      width: 'auto',
       color: '#3F3D56',
       fontWeight: '500',
       fontSize: '13px',
-      marginBottom: '5px',
+      padding: '0.8em 0em 0em 0em',
     },
     DueDate_Responsive: {
       display: 'flex',
@@ -274,7 +273,6 @@ function useStyle() {
     },
     Activity_Details2_Style: {
       width: 'relative',
-      padding: '10px 0px',
       margin: '0px 20px',
       [theme.breakpoints.down('sm')]: {
         margin: '0px 5px 0px 5px',
@@ -286,12 +284,6 @@ function useStyle() {
       fontWeight: 'bold',
       textTransform: 'Uppercase',
       width: 'auto',
-      margin: '0px 30px 4px 30px',
-      padding: '0px 0px 0px 25px',
-      [theme.breakpoints.down('sm')]: {
-        margin: '0px 0px 4px 0px',
-        padding: '0px'
-      },
     },
     Instructions2_Typography: {
       color: '#3F3D56',
@@ -350,7 +342,7 @@ function useStyle() {
       [theme.breakpoints.down('sm')]: {
         marginLeft: '15px',
       },
-    }
+    },
   };
   return { designs };
 }

@@ -13,6 +13,9 @@ import useStyle from './Styles/Quizlit_style';
 import CusPopover from '../components/Popover';
 import QuizlitAddpopover from '../components/PopoverContent/QuizlitAddpopover';
 import axios from 'axios';
+import { Add, AddCircleOutlineOutlined } from '@mui/icons-material';
+import Button from '../components/Button';
+
 function Quizlit() {
   const { designs } = useStyle();
 
@@ -44,16 +47,11 @@ function Quizlit() {
 
   return (
     <>
-      <Container maxWidth="md">
-        <CusPopover open={open} anchorEl={anchorEl} onClose={handleClickClose}>
-          <QuizlitAddpopover />
-        </CusPopover>
-      </Container>
-      <Container maxWidth="lg">
-        <Grid container columnSpacing={3}>
+      <Container maxWidth="lg" sx={{ padding: '0em' }}>
+        <Grid container columnSpacing={3} sx={{ margin: '0em' }}>
           <Grid item xs={2}></Grid>
 
-          <Grid item md={8} xs={11}>
+          <Grid item md={8} xs={12}>
             <Tabs
               orientation="horizontal"
               variant="scrollable"
@@ -100,11 +98,40 @@ function Quizlit() {
             </Tabs>
           </Grid>
 
-          <Grid item xs={1}>
-            <IconButton
+          <Grid
+            item
+            xs={2}
+            sx={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+            }}
+          >
+            <Button
+              variant="contained"
+              content="Create"
+              startIcon={<AddCircleOutlineOutlined />}
+              onClick={handleClickAddQuiz}
+              sx={{
+                backgroundColor: '#007FFF',
+                color: 'white',
+                '&:hover': {
+                  backgroundColor: '#0072e6',
+                },
+              }}
+            />
+            <CusPopover
+              open={open}
+              anchorEl={anchorEl}
+              onClose={handleClickClose}
+            >
+              <QuizlitAddpopover />
+            </CusPopover>
+            {/* <IconButton
               onClick={handleClickAddQuiz}
               sx={designs.Add_IconButton_Style}
             >
+              
+
               <AddCircleIcon
                 sx={{
                   color: '#56B73E',
@@ -112,7 +139,7 @@ function Quizlit() {
                   '&: hover': { color: '#39B41B' },
                 }}
               />
-            </IconButton>
+            </IconButton> */}
           </Grid>
 
           <Grid item xs={2}>
@@ -148,7 +175,7 @@ function Quizlit() {
               />
             </Tabs>
           </Grid>
-          <Grid item md={9} xs={12} sx={{ marginTop: '0.8em' }}>
+          <Grid item md={10} xs={12} sx={{ marginTop: '0.8em' }}>
             {value === 0
               ? data && (
                   <Quiz_layout

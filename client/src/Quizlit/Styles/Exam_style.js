@@ -13,7 +13,7 @@ function useStyle() {
       display: 'flex',
       border: ' 1px solid #DBDBDB',
       borderRadius: '0.8em',
-      textDecoration: "none",
+      textDecoration: 'none',
       '&: hover': {
         boxShadow:
           'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
@@ -25,15 +25,17 @@ function useStyle() {
       width: '100%',
     },
     ExamName_User_Date: {
-      className: 'Activity-name-User-date',
-      height: 'max-content',
-      margin: '0.3em 0em 0.3em 0em',
+      width: 'auto',
+      display: 'flex',
       flexGrow: 1,
-      textDecoration: "none",
-      "&: hover": {
-        cursor: "pointer",
-        textDecoration: "underline"
-      }
+      alignItems: 'center',
+      height: 'relative',
+      margin: '0.3em 0em 0.3em 0em',
+      textDecoration: 'none',
+      '&: hover': {
+        cursor: 'pointer',
+        textDecoration: 'underline',
+      },
     },
     ExamName: {
       className: 'Activity-name',
@@ -65,7 +67,7 @@ function useStyle() {
     },
     Professor: {
       width: 'auto',
-      fontSize: '0.5em',
+      fontSize: '0.7em',
       fontWeight: '600',
       textTransform: 'Capitalize',
       fontStyle: 'Italic',
@@ -79,7 +81,7 @@ function useStyle() {
     },
     Date: {
       width: '20em',
-      fontSize: '0.5em',
+      fontSize: '0.7em',
       fontWeight: '500',
       textTransform: 'none',
       fontStyle: 'Italic',

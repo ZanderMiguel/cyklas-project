@@ -56,7 +56,7 @@ function RequestPopup() {
 
                   <Typography
                     sx={{
-                      fontSize: '0.5em',
+                      fontSize: '0.7em',
                       fontWeight: '500',
                       color: '#8E8E8E',
                       width: 'relative',

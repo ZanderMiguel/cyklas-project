@@ -639,39 +639,50 @@ function Dashboard() {
             </Box>
             </Grid> */}
 
-            <Grid item xs = {12} sx = {{ marginTop: "1em", display: "flex", justifyContent: "center", alignItems: "center" }}> 
-              <Box sx = {designs.SearchDashboard_Style}>
-                <IconButton
-                aria-label="search"
+        <Grid
+          item
+          xs={12}
+          sx={{
+            marginTop: '1em',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Box sx={designs.SearchDashboard_Style}>
+            <IconButton
+              aria-label="search"
+              sx={{
+                backgroundColor: 'transparent',
+                height: '1.2em',
+                width: '1.2em',
+                '&: hover': {
+                  backgroundColor: '#FCF9FB',
+                },
+              }}
+            >
+              <Search
                 sx={{
-                    backgroundColor: 'transparent',
-                    height: '1.2em',
-                    width: '1.2em',
-                    "&: hover": {
-                      backgroundColor: "#FCF9FB"
-                    }
-                }}>
-                <Search
-                    sx={{
-                    color: '#82818E',
-                    fontSize: '0.8em',
-                    }}/>
+                  color: '#82818E',
+                  fontSize: '0.8em',
+                }}
+              />
+            </IconButton>
 
-                </IconButton>
-
-                <Input
-                variant="standard"
-                placeholder="Search dashboard..."
-                disableUnderline
-                sx={{
-                    height: '2.5em',
-                    width: '100%',
-                    fontSize: "0.8em",
-                    fontWeight: "500",
-                    backgroundColor: 'transparent',
-                }}/>
-              </Box>
-            </Grid>
+            <Input
+              variant="standard"
+              placeholder="Search dashboard..."
+              disableUnderline
+              sx={{
+                height: '2.5em',
+                width: '100%',
+                fontSize: '0.8em',
+                fontWeight: '500',
+                backgroundColor: 'transparent',
+              }}
+            />
+          </Box>
+        </Grid>
 
         <Box
           sx={{
@@ -680,14 +691,13 @@ function Dashboard() {
             height: 'auto',
             display: 'flex',
             gap: '1em',
-          }}>
-
+          }}
+        >
           <Grid
             container
             columnSpacing={1}
-            rowSpacing={2}
-            sx={{ width: '100%', height: '100vh' }}>
-
+            sx={{ width: '100%', height: '75vh' }}
+          >
             {dataStats.map(function (items, index) {
               return (
                 <Grid
@@ -695,7 +705,8 @@ function Dashboard() {
                   item
                   sm={4}
                   xs={12}
-                  sx={{ height: 'max-content' }}>
+                  sx={{ height: 'max-content' }}
+                >
                   <Box
                     className="Announcements"
                     sx={{
@@ -705,7 +716,8 @@ function Dashboard() {
                       backgroundColor: '#FCFCFC',
                       boxShadow:
                         'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px',
-                    }}>
+                    }}
+                  >
                     <Box
                       className="New-announcement"
                       sx={{
@@ -1197,7 +1209,13 @@ function Dashboard() {
                 </Box>
               </Box>
             </Grid>
-            <Grid item xs={12} sx={{ height: 'auto' }}>
+            <Grid
+              item
+              xs={12}
+              sx={{
+                height: 'auto',
+              }}
+            >
               <DASHBOARD_TABLEROOMS_SCHEDULES />
             </Grid>
             {/* <Box sx = {{ width: "100%", height: "60vh", border: "1px solid black"}}>

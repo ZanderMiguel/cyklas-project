@@ -48,7 +48,7 @@ function Group_table() {
   const { designs } = useStyle();
 
   return (
-    <Container maxWidth="md">
+    <>
       <Grid container rowSpacing={1}>
         <Grid item xs={12}>
           <Box className="Total" sx={designs.Total_Style}>
@@ -131,7 +131,7 @@ function Group_table() {
           </Box>
         </Grid>
       </Grid>
-    </Container>
+    </>
   );
 }
 

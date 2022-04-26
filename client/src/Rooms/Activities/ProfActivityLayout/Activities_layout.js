@@ -19,6 +19,7 @@ import Divider from '@mui/material/Divider';
 import { Link } from 'react-router-dom';
 import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser from 'react-html-parser';
+import ActivityFile from '../../../components/ActivityFile';
 
 function ActivitiesAccordion({ roomID, activity }) {
   const { designs } = useStyle();
@@ -145,22 +146,25 @@ function ActivitiesAccordion({ roomID, activity }) {
                       </Typography>
                       <Box>{ReactHtmlParser(draftToHtml(instruction))}</Box>
                     </Box>
-                    <Box>
+                    <Box sx={{ padding: '0em 2.8em' }}>
                       <Grid container spacing={1}>
                         <Grid item xs={6}>
-                          <Paper sx={{ width: '100%' }}>
+                          <ActivityFile />
+                          {/* <Paper sx={{ width: '100%' }}>
                             Every Files uploaded file goes here
-                          </Paper>
+                          </Paper> */}
                         </Grid>
                         <Grid item xs={6}>
-                          <Paper sx={{ width: '100%' }}>
+                          <ActivityFile />
+                          {/* <Paper sx={{ width: '100%' }}>
                             Every Files uploaded file goes here
-                          </Paper>
+                          </Paper> */}
                         </Grid>
                         <Grid item xs={6}>
-                          <Paper sx={{ width: '100%' }}>
+                          <ActivityFile />
+                          {/* <Paper sx={{ width: '100%' }}>
                             Every Files uploaded file goes here
-                          </Paper>
+                          </Paper> */}
                         </Grid>
                       </Grid>
                     </Box>

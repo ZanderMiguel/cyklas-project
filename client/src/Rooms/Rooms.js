@@ -37,7 +37,7 @@ function Rooms({ socket }) {
   }, [newRoom]);
   return (
     <>
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         {JSON.parse(localStorage.userData).data.user.userType ===
           'Professor' && (
           <>

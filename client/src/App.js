@@ -23,8 +23,8 @@ import Activity_viewed from './Rooms/Activities/StudentsActivtityLayout/View/Act
 
 //Records & Classcards
 import Records from './Records/Records';
-import ClassCards_main from './ClassCards/ClassCards_main';
-import Evaluation from './ClassCards/Evaluation';
+import ClassCards_main from './Records/Classcards/ClassCards_main';
+import Evaluation from './Records/Classcards/Evaluation';
 
 //Setting
 import Settings from './Settings/Settings';
