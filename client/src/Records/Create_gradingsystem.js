@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import Dialogform from '../components/Dialogform';
-import { TextField, Box, Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import Input from '../components/Input';
-import axios from 'axios';
 import Grading_layout from './Grading_layout';
 
 function Create_gradingsystem({ open, close, name, counter, setGS, GS, data }) {

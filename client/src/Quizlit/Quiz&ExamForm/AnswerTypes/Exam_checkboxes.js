@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Typography, Button, Box, Checkbox, Input } from '@mui/material';
+import { Grid, Button, Box, Checkbox, Input } from '@mui/material';
 import { AddCircle } from '@mui/icons-material';
 import useStyle from './Styles/Exam_checkboxes_style';
 

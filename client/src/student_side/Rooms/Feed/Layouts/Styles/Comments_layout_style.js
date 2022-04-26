@@ -1,8 +1,4 @@
-import { useTheme } from '@mui/material/styles';
-
 function useStyle() {
-  const theme = useTheme();
-
   const designs = {
     View_Comments_Style: {
       height: 'auto',
@@ -52,23 +48,23 @@ function useStyle() {
       fontSize: '20px',
     },
     Actions_Style: {
-      marginTop: "0.3em",
-      display: "flex",
-      gap: "1em"
+      marginTop: '0.3em',
+      display: 'flex',
+      gap: '1em',
     },
     EditComment_Button_Style: {
-      fontSize: "0.5em",
-      fontWeight: "400",
-      color: "#3F3D56"
+      fontSize: '0.5em',
+      fontWeight: '400',
+      color: '#3F3D56',
     },
-    DividerV_Style: { 
-      margin: "0.2em 0em" 
+    DividerV_Style: {
+      margin: '0.2em 0em',
     },
     DeleteComment_Button_Style: {
-      fontSize: "0.5em",
-      fontWeight: "400",
-      color: "#3F3D56"
-    }
+      fontSize: '0.5em',
+      fontWeight: '400',
+      color: '#3F3D56',
+    },
   };
 
   return { designs };

@@ -1,8 +1,4 @@
-import { useTheme } from '@mui/material/styles';
-
 function useStyle() {
-  const theme = useTheme();
-
   const designs = {
     Left_Container_Style: {
       width: '100%',

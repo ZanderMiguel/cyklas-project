@@ -1,13 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Typography,
-  Container,
-  Grid,
-  Tabs,
-  Tab,
-  Box,
-  CssBaseline,
-} from '@mui/material';
+import { Typography, Grid, Tabs, Tab, Box } from '@mui/material';
 import useStyle from './Styles/Activities_main_style';
 import Activities_layout from './Layout/Activities_layout';
 import Quizzes_layout from './Layout/Quizzes_layout';

@@ -1,7 +1,4 @@
-import { useTheme } from '@mui/material/styles';
-
 function useStyle() {
-  const theme = useTheme();
   const designs = {
     leftIcons: {
       IconbuttonStyle: {
@@ -41,7 +38,7 @@ function useStyle() {
       },
     },
   };
-  return { designs, theme };
+  return { designs };
 }
 
 export default useStyle;

@@ -1,8 +1,4 @@
-import { useTheme } from '@mui/material/styles';
-
 function useStyle() {
-  const theme = useTheme();
-
   const designs = {
     Content_Container_Style: {
       margin: '2em 0em',

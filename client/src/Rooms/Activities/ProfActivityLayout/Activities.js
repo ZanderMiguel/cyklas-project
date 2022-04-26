@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Box, Button, Grid } from '@mui/material';
+import { Box, Button, Grid } from '@mui/material';
 import Create_activity from '../../../Form_content/Create_activity';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Activities_layout from './Activities_layout';

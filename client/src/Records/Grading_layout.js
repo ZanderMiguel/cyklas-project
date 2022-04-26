@@ -36,6 +36,12 @@ function Grading_layout({ data, name, counter }) {
   return (
     <div>
       <Accordion
+        sx={{
+          '&: hover': {
+            boxShadow:
+              'rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px',
+          },
+        }}
         expanded={expanded === 'panel1'}
         onChange={handleChange('panel1')}
       >
@@ -44,7 +50,14 @@ function Grading_layout({ data, name, counter }) {
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>
+          <Typography
+            sx={{
+              fontSize: '0.9em',
+              fontWeight: '600',
+              width: 'auto',
+              flexShrink: 0,
+            }}
+          >
             {name.current[counter]
               ? name.current[counter]['GradingName']
               : 'Default'}
@@ -52,7 +65,7 @@ function Grading_layout({ data, name, counter }) {
         </AccordionSummary>
         <Divider />
         <AccordionDetails>
-          <Box display="flex" sx={{ mb: 2 }}>
+          <Box display="flex" sx={{ mb: 1 }}>
             <Box flexGrow={1}>
               <Typography variant="h6" sx={{ fontWeight: 600 }}>
                 Class Standing
@@ -64,7 +77,7 @@ function Grading_layout({ data, name, counter }) {
               </Typography>
             </Box>
           </Box>
-          <Typography sx={{ mb: 2 }}>
+          <Typography sx={{ mb: 2, color: '#8E8E8E', fontSize: '0.9em' }}>
             The Grade categories must be a total of 60%
           </Typography>
           {input.map((item, index) => (
@@ -112,8 +125,34 @@ function Grading_layout({ data, name, counter }) {
         </AccordionDetails>
         <Divider />
         <AccordionActions>
-          <Button variant="text">delete</Button>
-          <Button onClick={() => console.log(data.current)} variant="contained">
+          <Button
+            variant="text"
+            sx={{
+              padding: '0.3em 2em',
+              color: '#3F3D56',
+              fontSize: '0.8em',
+              fontWeight: '600',
+              textTransform: 'Capitalize',
+              boxShadow: 'none',
+              '&: hover': {
+                backgroundColor: 'transparent',
+              },
+            }}
+          >
+            delete
+          </Button>
+          <Button
+            onClick={() => console.log(data.current)}
+            variant="contained"
+            sx={{
+              padding: '0.3em 2em',
+              color: 'white',
+              fontSize: '0.8em',
+              fontWeight: '600',
+              textTransform: 'Capitalize',
+              boxShadow: 'none',
+            }}
+          >
             save
           </Button>
         </AccordionActions>

@@ -157,7 +157,7 @@ function Navbar({ path }) {
 
   const account = Boolean(anchorEl1);
   const badgeDot = React.useRef(null);
-  console.log(path);
+
   return (
     <>
       <CssBaseline />
