@@ -48,7 +48,7 @@ function Exam_layout({ bank }) {
                   </Typography>
                 </Box>
 
-                <Box sx={designs.User_Date}>
+                {/* <Box sx={designs.User_Date}>
                   <Typography noWrap sx={designs.Professor}>
                     {name} (You)
                   </Typography>
@@ -56,7 +56,7 @@ function Exam_layout({ bank }) {
                   <Typography noWrap sx={designs.Date}>
                     {date} at {time}
                   </Typography>
-                </Box>
+                </Box> */}
               </Box>
 
               <Box sx={designs.BoxOptions}>

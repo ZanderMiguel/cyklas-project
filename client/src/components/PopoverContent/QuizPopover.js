@@ -8,9 +8,11 @@ import {
   Button,
   Divider,
 } from '@mui/material';
+import Livequiz_queue from '../../Form_content/Livequiz_queue';
 
 function QuizPopover() {
   const [quizzes, setQuizzes] = useState(null);
+  const [opendialog, setOpenDialog] = useState(false);
 
   React.useEffect(() => {
     axios
@@ -23,6 +25,15 @@ function QuizPopover() {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  const handleStartQuiz = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseQuiz = () => {
+    setOpenDialog(false);
+  };
+
   return (
     <Box height="15em" width="20em">
       {quizzes &&
@@ -33,13 +44,23 @@ function QuizPopover() {
                 <Box display="flex" width="100%">
                   <Typography>{items.title}</Typography>
                   <Box flexGrow={1} />
-                  <Button variant="contained">Start</Button>
+                  <Button variant="contained" onClick={handleStartQuiz}>
+                    Start
+                  </Button>
                 </Box>
               </ListItem>
               <Divider />
             </List>
           );
         })}
+      {opendialog && (
+        <Livequiz_queue
+          open={opendialog}
+          close={handleCloseQuiz}
+          maxWidth="sm"
+          state={setOpenDialog}
+        />
+      )}
     </Box>
   );
 }

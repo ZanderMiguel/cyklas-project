@@ -24,6 +24,7 @@ import Wordfile from '../../../assets/ImageJaven/Wordfile.png';
 import { KeyboardArrowDown, Send } from '@mui/icons-material';
 import useStyle from '../../Styles/View_activity_style';
 import '../../Styles/View_activity_style.css';
+import ActivityIcon from '../../../assets/ImageJaven/ActivityIcon.png';
 
 const sortOptions = [
   {
@@ -183,13 +184,38 @@ function View_activity() {
           <Box className="Activity" sx={designs.Activity_Style}>
             <Box className="Activity-info" sx={designs.ActivityInfo_Style}>
               <Box className="Activity-title" sx={designs.ActivityTitle_Style}>
-                <Typography sx={designs.Lesson_Typography_Style}>
+                {/* <Typography sx={designs.Lesson_Typography_Style}>
                   Lesson 2 -
-                </Typography>
+                </Typography> */}
+
+                <img
+                  src={ActivityIcon}
+                  style={{
+                    height: '35px',
+                  }}
+                />
+
                 <Typography noWrap sx={designs.Activity_Typography_Style}>
                   Activity 4
                 </Typography>
+
+                <Typography noWrap sx={designs.ActivityType_Typography_Style}>
+                  Activity
+                </Typography>
               </Box>
+
+              <Box
+                className="Activity-duedate"
+                sx={designs.ActivityDueDate_Style}
+              >
+                <Typography sx={designs.ActivityDueDate_Typography_Style}>
+                  Due Date:
+                </Typography>
+                <Typography sx={designs.ActivityDueDate2_Typography_Style}>
+                  March 18, 2021
+                </Typography>
+              </Box>
+
               <Box
                 className="Activity-instructions"
                 sx={designs.ActivityInstructions_Style}

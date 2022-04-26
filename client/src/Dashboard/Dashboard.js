@@ -639,7 +639,16 @@ function Dashboard() {
             </Box>
             </Grid> */}
 
-        <Grid item md={6} xs={12} sx={{ marginTop: '1em' }}>
+        <Grid
+          item
+          xs={12}
+          sx={{
+            marginTop: '1em',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
           <Box sx={designs.SearchDashboard_Style}>
             <IconButton
               aria-label="search"
@@ -666,11 +675,10 @@ function Dashboard() {
               disableUnderline
               sx={{
                 height: '2.5em',
-                width: '30.5em',
-                backgroundColor: 'transparent',
+                width: '100%',
                 fontSize: '0.8em',
                 fontWeight: '500',
-                color: '#3F3D56',
+                backgroundColor: 'transparent',
               }}
             />
           </Box>
@@ -688,8 +696,7 @@ function Dashboard() {
           <Grid
             container
             columnSpacing={1}
-            rowSpacing={2}
-            sx={{ width: '100%', height: '100vh' }}
+            sx={{ width: '100%', height: '75vh' }}
           >
             {dataStats.map(function (items, index) {
               return (
@@ -1202,7 +1209,13 @@ function Dashboard() {
                 </Box>
               </Box>
             </Grid>
-            <Grid item xs={12} sx={{ height: 'auto' }}>
+            <Grid
+              item
+              xs={12}
+              sx={{
+                height: 'auto',
+              }}
+            >
               <DASHBOARD_TABLEROOMS_SCHEDULES />
             </Grid>
             {/* <Box sx = {{ width: "100%", height: "60vh", border: "1px solid black"}}>

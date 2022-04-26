@@ -20,20 +20,31 @@ function Image_GIF({ open, close, maxWidth, setImage, questionMemo, counter }) {
           pauseOnFocusLoss
           draggable
         />
+        <Box padding = "0em 2em 2em 2em">
         <Box width="100%">
           <label htmlFor="getFile2">
-            <div
-              style={{
+            <Box
+              sx={{
                 display: 'flex',
+                gap: "0.5em",
                 justifyContent: 'center',
                 alignItems: 'center',
                 margin: 'auto 10px',
                 color: '#067FFF',
-              }}
-            >
+                "&: hover": {
+                  cursor: "pointer",
+                  textDecoration: "underline"
+                }
+              }}>
               <UploadIcon />
-              <h4>Upload Image</h4>
-            </div>
+              <Typography sx = {{
+                color: "#007FFF",
+                fontSize: "1em",
+                fontWeight: "600"
+              }}>
+                Upload File
+              </Typography>
+            </Box>
           </label>
           <input
             type="file"
@@ -53,7 +64,7 @@ function Image_GIF({ open, close, maxWidth, setImage, questionMemo, counter }) {
           sx={{ mt: 2, mb: 2 }}
         />
 
-        <ReactGiphySearchbox
+        <ReactGiphySearchbox 
           apiKey="XxX3x09HDBNVWLAGVGLndWDiXNmw42gO"
           onSelect={(item) => {
             setImage(item.images.fixed_width.url);
@@ -68,6 +79,7 @@ function Image_GIF({ open, close, maxWidth, setImage, questionMemo, counter }) {
             { mq: '700px', columns: 4, imageWidth: 140, gutter: 5 },
           ]}
         />
+        </Box>
       </Dialogform>
     </>
   );

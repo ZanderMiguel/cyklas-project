@@ -3,20 +3,20 @@ import { useTheme } from '@mui/material/styles';
 function useStyle() {
   const theme = useTheme();
   const designs = {
-    SearchDashboard_Responsive_Style: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: 'auto',
-      width: '100%',
-      marginBottom: '0.5em',
-      [theme.breakpoints.up('md')]: {
-        display: 'none',
-      },
-      [theme.breakpoints.down('md')]: {
-        display: 'initial',
-      },
-    },
+    // SearchDashboard_Responsive_Style: {
+    //     display: "flex",
+    //     justifyContent: "center",
+    //     alignItems: "center",
+    //     height: "auto",
+    //     width: "100%",
+    //     marginBottom: "0.5em",
+    //     [theme.breakpoints.up('md')]: {
+    //         display: "none"
+    //     },
+    //     [theme.breakpoints.down('md')]: {
+    //         display: "initial"
+    //     }
+    // },
     SelectRoom_Style: {
       width: '35%',
       paddingTop: '0em',
@@ -32,7 +32,7 @@ function useStyle() {
       gap: '0.5em',
       alignItems: 'center',
       height: 'auto',
-      width: 'relative',
+      width: '45%',
       '&: hover': {
         border: '1px solid #007FFF',
         transition: 'all 300ms',

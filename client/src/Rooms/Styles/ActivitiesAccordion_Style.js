@@ -110,7 +110,7 @@ function useStyle() {
     Button_Container_Sub: {
       width: 'max-content',
       display: 'flex',
-      gap: '5px',
+      gap: '0.8em',
     },
     Edit_Icon_Style: {
       color: '#3F3D56',

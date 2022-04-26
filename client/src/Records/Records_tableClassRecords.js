@@ -252,7 +252,7 @@ function Records_tableClassRecords() {
   return (
     <>
       <Grid container columnSpacing={1} rowSpacing={1}>
-        <Grid item md={3} sm={4} xs={12}>
+        <Grid item xs={4}>
           <FormControl
             variant="standard"
             sx={{
@@ -269,12 +269,12 @@ function Records_tableClassRecords() {
               disableUnderline
               sx={{
                 width: '100%',
-                fontSize: '0.8em',
+                fontSize: '0.9em',
                 fontWeight: '400',
                 color: '#3F3D56',
                 border: '1px solid #DBDBDB',
                 borderRadius: '0.2em',
-                paddingLeft: '0.5em',
+                padding: '0.2em 0em 0.2em 0.6em',
                 '&: hover': {
                   border: '1px solid #212121',
                 },
@@ -288,7 +288,7 @@ function Records_tableClassRecords() {
             </Select>
           </FormControl>
         </Grid>
-        <Grid item md={3} sm={4} xs={12}>
+        {/* <Grid item md={3} sm={4} xs={12}>
           <FormControl
             variant="standard"
             sx={{
@@ -305,7 +305,7 @@ function Records_tableClassRecords() {
               disableUnderline
               sx={{
                 width: '100%',
-                fontSize: '0.8em',
+                fontSize: '0.9em',
                 fontWeight: '400',
                 color: '#3F3D56',
                 border: '1px solid #DBDBDB',
@@ -323,8 +323,8 @@ function Records_tableClassRecords() {
               ))}
             </Select>
           </FormControl>
-        </Grid>
-        <Grid item md={3} sm={4} xs={12}>
+        </Grid> */}
+        {/* <Grid item md={3} sm={4} xs={12}>
           <FormControl
             variant="standard"
             sx={{
@@ -332,7 +332,7 @@ function Records_tableClassRecords() {
               paddingTop: '0em',
             }}
           >
-            {/* <Select
+            <Select
               labelId="demo-simple-select-standard-label"
               id="demo-simple-select-standard"
               value={selectTerm}
@@ -357,16 +357,19 @@ function Records_tableClassRecords() {
                   {label}
                 </MenuItem>
               ))}
-            </Select> */}
+            </Select>
           </FormControl>
-        </Grid>
-        <Grid item md={3} sm={12} xs={12}>
+        </Grid> */}
+
+        <Grid item xs={4} />
+
+        <Grid item xs={4}>
           <Box
             sx={{
               border: '1px solid #DBDBDB',
               backgroundColor: '#FAFBFC',
               borderRadius: '0.3em',
-              padding: '0.1em 1em 0.1em 0.8em',
+              padding: '0.2em 1em 0.2em 0.8em',
               display: 'flex',
               gap: '0.5em',
               alignItems: 'center',
@@ -392,7 +395,7 @@ function Records_tableClassRecords() {
               <Search
                 sx={{
                   color: '#82818E',
-                  fontSize: '0.7em',
+                  fontSize: '0.9em',
                 }}
               />
             </IconButton>
@@ -404,7 +407,7 @@ function Records_tableClassRecords() {
               sx={{
                 width: '100%',
                 backgroundColor: 'transparent',
-                fontSize: '0.7em',
+                fontSize: '0.9em',
                 fontWeight: '500',
                 color: '#3F3D56',
               }}

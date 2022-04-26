@@ -48,7 +48,7 @@ function Quiz_layout({ bank }) {
                   </Typography>
                 </Box>
 
-                <Box sx={designs.User_Date}>
+                {/* <Box sx={designs.User_Date}>
                   <Typography noWrap sx={designs.Professor}>
                     {author.name} (You)
                   </Typography>
@@ -56,7 +56,7 @@ function Quiz_layout({ bank }) {
                   <Typography noWrap sx={designs.Date}>
                     {createdAt} at {createdAt}
                   </Typography>
-                </Box>
+                </Box> */}
               </Box>
 
               <Box sx={designs.BoxOptions}>

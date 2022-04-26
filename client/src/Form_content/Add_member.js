@@ -18,6 +18,7 @@ function Add_member({ open, close, maxWidth }) {
   const location = useLocation();
   const { designs } = useStyle();
 
+    
   return (
     <div>
       <Dialogform open={open} close={close} maxWidth={maxWidth}>
@@ -130,6 +131,8 @@ function Add_member({ open, close, maxWidth }) {
             </Box>
           </Box>
         </Stack>
+        
+
       </Dialogform>
     </div>
   );

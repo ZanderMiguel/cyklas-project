@@ -59,7 +59,7 @@ function Telecon_room() {
               )}
             </Box>
           </Collapse>
-          <Paper sx={{ width: '100%' }}></Paper>
+          <Paper sx={{ width: '100%', margin: '0.5em 0.5em 0em 0em' }}></Paper>
         </Box>
         <Footer
           setSideDrawer={setSideDrawer}

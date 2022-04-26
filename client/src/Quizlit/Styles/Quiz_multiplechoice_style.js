@@ -273,15 +273,31 @@ function useStyle() {
       margin: '0.4em 0.3em 0.3em 0.7em',
     },
     Add_Question_Button_Style: {
-      float: 'Left',
       backgroundColor: '#0069D3',
       textTransform: 'Capitalize',
       fontSize: '0.8em',
-      fontWeight: 'bold',
+      fontWeight: '600',
       width: 'max-content',
       padding: '0.4em 2.4em',
       borderRadius: '0.4em',
+      boxShadow: "none",
+      "&: hover": {
+        boxShadow: "none"
+      }
     },
+    CreateQuiz_Button_Style: {
+      backgroundColor: "#4CAF50",
+      borderRadius: '0.4em',
+      color: "white",
+      fontSize: "0.8em",
+      fontWeight: "700",
+      textTransform: "Capitalize",
+      padding: "0.4em 2.4em",
+      boxShadow: "none",
+      "&: hover": {
+        backgroundColor: "#43A047"
+      }
+    }
   };
 
   return { designs };

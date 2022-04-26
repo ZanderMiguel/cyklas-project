@@ -8,7 +8,7 @@ import {
   Button,
   Box,
 } from '@mui/material';
-import AvatarIcon from '../assets/ImageJaven/Avatar.png';
+import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
 
 function Evaluation() {
   const [selectedValue, setSelectedValue] = React.useState('a');

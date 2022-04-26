@@ -17,6 +17,13 @@ function useStyle() {
       color: '#3F3D56',
       fontSize: '0.8em',
     },
+    TextFieldLabel2_Style: {
+      width: "50em",
+      marginBottom: "0.5em",
+    fontWeight: '700',
+    color: '#3F3D56',
+    fontSize: '0.8em',
+    },
     TextField_Style: {
       width: 'relative',
       fontWeight: '500',

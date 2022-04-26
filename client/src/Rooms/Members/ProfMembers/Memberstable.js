@@ -21,7 +21,7 @@ function Memberstable({ members }) {
   const { designs } = useStyle();
 
   return (
-    <Container maxWidth="md">
+    <>
       <Grid container rowSpacing={1}>
         <Grid item xs={12}>
           <Box className="Total" sx={designs.Total_Style}>
@@ -135,7 +135,7 @@ function Memberstable({ members }) {
           </Box>
         </Grid>
       </Grid>
-    </Container>
+    </>
   );
 }
 

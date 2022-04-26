@@ -47,7 +47,7 @@ function Activities({ roomID }) {
     };
   }, []);
   return (
-    <Container maxWidth="md">
+    <>
       <Box
         sx={{ width: '100%', display: 'flex', justifyContent: 'center', mt: 3 }}
       >
@@ -72,7 +72,7 @@ function Activities({ roomID }) {
       <Grid container rowSpacing={2}>
         <Activities_layout roomID={roomID} activity={activity} />
       </Grid>
-    </Container>
+    </>
   );
 }
 

@@ -58,10 +58,10 @@ function ClassCards_table() {
       <table className="classcards-table">
         <thead>
           <tr>
-            <th> Room ID </th>
+            {/* <th> Room ID </th> */}
             <th> Room Name </th>
-            <th> MIDTERM Grade </th>
-            <th> FINAL TERM Grade </th>
+            {/* <th> MIDTERM Grade </th>
+            <th> FINAL TERM Grade </th> */}
             <th> FINAL Grade </th>
             <th> Actions </th>
           </tr>
@@ -71,10 +71,10 @@ function ClassCards_table() {
           {dataTable.map(function (items, index) {
             return (
               <tr key={index}>
-                <td data-label="Room ID"> {items.roomID} </td>
+                {/* <td data-label="Room ID"> {items.roomID} </td> */}
                 <td data-label="Room Name"> {items.roomName} </td>
-                <td data-label="MIDTERM Grade"> {items.midtermGrade} </td>
-                <td data-label="FINAL TERM Grade"> {items.finaltermGrade} </td>
+                {/* <td data-label="MIDTERM Grade"> {items.midtermGrade} </td>
+                <td data-label="FINAL TERM Grade"> {items.finaltermGrade} </td> */}
                 <td data-label="FINAL Grade"> {items.finalGrade} </td>
                 <td data-label="Actions">
                   {/* <button className = "evaluate-btn" id = "evaluate-Button"> Evaluate </button> */}
@@ -94,10 +94,10 @@ function ClassCards_table() {
 
         <tfoot>
           <tr>
+            {/* <td> </td> */}
             <td> </td>
-            <td> </td>
-            <td> </td>
-            <td> </td>
+            {/* <td> </td>
+            <td> </td> */}
             <td> Total Rooms: </td>
             <td data-label="Total Rooms"> 5 </td>
           </tr>

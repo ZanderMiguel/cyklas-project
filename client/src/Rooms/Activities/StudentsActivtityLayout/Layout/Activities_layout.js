@@ -19,6 +19,7 @@ import Divider from '@mui/material/Divider';
 import { Link } from 'react-router-dom';
 import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser from 'react-html-parser';
+import ActivityFile from '../../../../components/ActivityFile';
 
 const data = [
   {
@@ -325,11 +326,15 @@ function Activities_layout({ roomID, activity }) {
                           </Typography>
                         </Box>
                       </Box>
-                      <Box display="flex">
+
+                      <Box
+                        display="flex"
+                        gap="0.8em"
+                        padding="0.8em 0em 0em 0em"
+                      >
                         <Typography
                           sx={{
-                            mt: 1,
-                            fontWeight: '500',
+                            fontWeight: '600',
                             fontSize: '13px',
                           }}
                         >
@@ -337,8 +342,6 @@ function Activities_layout({ roomID, activity }) {
                         </Typography>
                         <Typography
                           sx={{
-                            ml: 1,
-                            mt: 1,
                             fontWeight: '500',
                             fontSize: '13px',
                           }}
@@ -356,22 +359,29 @@ function Activities_layout({ roomID, activity }) {
                       </Typography>
                       <Box>{ReactHtmlParser(draftToHtml(instruction))}</Box>
                     </Box>
-                    <Box>
-                      <Grid container spacing={1}>
+                    <Box
+                      sx={{
+                        padding: '0.8em 1.2em',
+                      }}
+                    >
+                      <Grid container columnSpacing={1} rowSpacing={1}>
                         <Grid item xs={6}>
-                          <Paper sx={{ width: '100%' }}>
+                          <ActivityFile />
+                          {/* <Paper sx={{ width: '100%' }}>
                             Every Files uploaded file goes here
-                          </Paper>
+                          </Paper> */}
                         </Grid>
                         <Grid item xs={6}>
-                          <Paper sx={{ width: '100%' }}>
+                          <ActivityFile />
+                          {/* <Paper sx={{ width: '100%' }}>
                             Every Files uploaded file goes here
-                          </Paper>
+                          </Paper> */}
                         </Grid>
                         <Grid item xs={6}>
-                          <Paper sx={{ width: '100%' }}>
+                          <ActivityFile />
+                          {/* <Paper sx={{ width: '100%' }}>
                             Every Files uploaded file goes here
-                          </Paper>
+                          </Paper> */}
                         </Grid>
                       </Grid>
                     </Box>

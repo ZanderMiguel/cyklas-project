@@ -7,9 +7,10 @@ function useStyle() {
       height: 'auto',
       display: 'flex',
       justifyContent: 'flex-start',
+      alignItems: 'center',
       gap: '0.8em',
       backgroundColor: '#8E58E7',
-      padding: '0.8em 1.6em',
+      padding: '0.6em 1.6em',
       borderRadius: '0.5em',
     },
 
@@ -19,7 +20,7 @@ function useStyle() {
       display: 'flex',
       gap: '0.8em',
       backgroundColor: '#E75858',
-      padding: '0.8em 1.6em',
+      padding: '0.6em 1.6em',
       borderRadius: '0.5em',
     },
     Answer_C_Style: {
@@ -28,7 +29,7 @@ function useStyle() {
       display: 'flex',
       gap: '0.8em',
       backgroundColor: '#6CCF53',
-      padding: '0.8em 1.6em',
+      padding: '0.6em 1.6em',
       borderRadius: '0.5em',
     },
     Answer_D_Style: {
@@ -37,7 +38,7 @@ function useStyle() {
       display: 'flex',
       gap: '0.8em',
       backgroundColor: '#F1B04E',
-      padding: '0.8em 1.6em',
+      padding: '0.6em 1.6em',
       borderRadius: '0.5em',
     },
     Checkbox_Style: {

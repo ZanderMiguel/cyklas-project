@@ -61,6 +61,7 @@ function Exam_multiplechoice({ counter, questionMemo }) {
               style: {
                 height: '0em',
                 fontSize: '0.8em',
+                fontWeight: '600',
                 paddingLeft: '0.1em',
                 paddingRight: '0em',
                 marginBottom: '1em',
@@ -126,6 +127,7 @@ function Exam_multiplechoice({ counter, questionMemo }) {
               style: {
                 height: '0em',
                 fontSize: '0.8em',
+                fontWeight: '600',
                 paddingLeft: '0.1em',
                 paddingRight: '0em',
                 marginBottom: '1em',
@@ -191,6 +193,7 @@ function Exam_multiplechoice({ counter, questionMemo }) {
               style: {
                 height: '0em',
                 fontSize: '0.8em',
+                fontWeight: '600',
                 paddingLeft: '0.1em',
                 paddingRight: '0em',
                 marginBottom: '1em',
@@ -256,6 +259,7 @@ function Exam_multiplechoice({ counter, questionMemo }) {
               style: {
                 height: '0em',
                 fontSize: '0.8em',
+                fontWeight: '600',
                 paddingLeft: '0.1em',
                 paddingRight: '0em',
                 marginBottom: '1em',
