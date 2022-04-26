@@ -15,7 +15,6 @@ import {
 } from '@mui/material';
 import { Badge } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
-import Zander from '../assets/Images/zander.png';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Drawer from './Drawer';
@@ -135,6 +134,7 @@ const general = [
 
 function Navbar({ path }) {
   const theme = useTheme();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorEl1, setAnchorEl1] = React.useState(null);
 
@@ -157,6 +157,7 @@ function Navbar({ path }) {
 
   const account = Boolean(anchorEl1);
   const badgeDot = React.useRef(null);
+  console.log(path);
   return (
     <>
       <CssBaseline />
@@ -186,11 +187,15 @@ function Navbar({ path }) {
               ? 'Rooms'
               : path === '/rooms/:roomID'
               ? 'Rooms'
-              : path === '/rooms/:roomID/:activityID'
+              : path === '/rooms/:roomID/s/:activityID'
               ? 'Rooms'
-              : path === '/classcard'
+              : path === '/rooms/:roomID/p/:activityID'
+              ? 'Rooms'
+              : path === '/classcards'
               ? 'Class Card'
               : path === '/quizlit'
+              ? 'Quizlit'
+              : path === '/quizlit/createquiz'
               ? 'Quizlit'
               : path === '/records'
               ? 'Records'

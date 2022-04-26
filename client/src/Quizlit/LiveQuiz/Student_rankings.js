@@ -70,9 +70,13 @@ const data = [
     score: '1 / 3',
   },
 ];
-function Student_rankings({socket}) {
+function Student_rankings({ socket }) {
   const { designs } = useStyle();
-  socket.emit('game-ended','123',JSON.parse(localStorage.userData).data.user.firstName)
+  socket.emit(
+    'game-ended',
+    '123',
+    JSON.parse(localStorage.userData).data.user.firstName
+  );
   return (
     <Container maxWidth="xl">
       <Grid container sx={designs.GridContainer_Style}>
@@ -88,6 +92,7 @@ function Student_rankings({socket}) {
             startIcon={
               <img
                 src={Back}
+                alt=""
                 style={{
                   marginRight: '0.3em',
                 }}
@@ -120,6 +125,7 @@ function Student_rankings({socket}) {
                 <Box className="Place" sx={designs.Place_Style}>
                   <img
                     src={Silver}
+                    alt=""
                     style={{
                       height: '2.5em',
                     }}
@@ -150,6 +156,7 @@ function Student_rankings({socket}) {
                 <Box className="Place" sx={designs.Place_Style}>
                   <img
                     src={Gold}
+                    alt=""
                     style={{
                       height: '2.5em',
                     }}
@@ -180,6 +187,7 @@ function Student_rankings({socket}) {
                 <Box className="Place" sx={designs.Place_Style}>
                   <img
                     src={Bronze}
+                    alt=""
                     style={{
                       height: '2.5em',
                     }}
@@ -210,6 +218,7 @@ function Student_rankings({socket}) {
                 <Box className="Place" sx={designs.Place_Style}>
                   <img
                     src={Gold}
+                    alt=""
                     style={{
                       height: '2.5em',
                     }}
@@ -235,6 +244,7 @@ function Student_rankings({socket}) {
                 <Box className="Place" sx={designs.Place_Style}>
                   <img
                     src={Silver}
+                    alt=""
                     style={{
                       height: '2.5em',
                     }}
@@ -260,6 +270,7 @@ function Student_rankings({socket}) {
                 <Box className="Place" sx={designs.Place_Style}>
                   <img
                     src={Bronze}
+                    alt=""
                     style={{
                       height: '2.5em',
                     }}
@@ -292,29 +303,29 @@ function Student_rankings({socket}) {
             >
               {data.map(function (items, index) {
                 return (
-                    <Box
-                      key={index}
-                      className="Student"
-                      sx={designs.Student_Style}
+                  <Box
+                    key={index}
+                    className="Student"
+                    sx={designs.Student_Style}
+                  >
+                    <Avatar
+                      alt="Remy Sharp"
+                      src={AvatarIcon}
+                      sx={designs.StudentList_AvatarIcon_Avatar_Style}
+                    />
+                    <Typography
+                      noWrap
+                      sx={designs.StudentList_StudentName_Typography_Style}
                     >
-                      <Avatar
-                        alt="Remy Sharp"
-                        src={AvatarIcon}
-                        sx={designs.StudentList_AvatarIcon_Avatar_Style}
-                      />
-                      <Typography
-                        noWrap
-                        sx={designs.StudentList_StudentName_Typography_Style}
-                      >
-                        {items.studentName}
-                      </Typography>
+                      {items.studentName}
+                    </Typography>
 
-                      <Box
-                        flexGrow={1}
-                        sx={designs.StudentList_BoxFlexGrow_Style2}
-                      />
+                    <Box
+                      flexGrow={1}
+                      sx={designs.StudentList_BoxFlexGrow_Style2}
+                    />
 
-                      {/* <Typography
+                    {/* <Typography
                                     sx={{
                                         width: "25%",
                                         height: "relative",
@@ -330,15 +341,14 @@ function Student_rankings({socket}) {
                                     {items.status}
                                 </Typography>   */}
 
-                      <Typography
-                        noWrap
-                        sx={designs.StudentList_Score_Typography_Style}
-                      >
-                        {items.score}
-                      </Typography>
+                    <Typography
+                      noWrap
+                      sx={designs.StudentList_Score_Typography_Style}
+                    >
+                      {items.score}
+                    </Typography>
                     <Divider sx={designs.StudentList_Divider_Style} />
-
-                    </Box>
+                  </Box>
                 );
               })}
             </Box>
@@ -352,6 +362,7 @@ function Student_rankings({socket}) {
               startIcon={
                 <img
                   src={Back}
+                  alt=""
                   style={{
                     marginRight: '0.3em',
                   }}
@@ -369,6 +380,7 @@ function Student_rankings({socket}) {
               startIcon={
                 <img
                   src={Dismiss}
+                  alt=""
                   style={{
                     height: '1.1em',
                     marginRight: '0.3em',

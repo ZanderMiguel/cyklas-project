@@ -15,12 +15,11 @@ import { useParams } from 'react-router-dom';
 
 function Create_activity({ open, close }) {
   const { roomID } = useParams();
-  const [topic, setTopic] = useState('');
   const [type, setType] = useState('');
   const [title, setTitle] = useState('');
   const [points, setPoints] = useState('');
   const [duedate, setDueDate] = useState('');
-  const [instruction, setInstruction] = useState('');
+  // const [instruction, setInstruction] = useState('');
 
   //errorState
   const [titleerror, setTitleError] = useState(false);
@@ -28,7 +27,7 @@ function Create_activity({ open, close }) {
   const [typeerror, setTypeError] = useState(false);
 
   //Rich text Editor
-  const [upload, setUpload] = React.useState('true');
+  // const [upload, setUpload] = React.useState('true');
   const [editorState, setEditorState] = React.useState(
     EditorState.createEmpty()
   );
@@ -172,7 +171,7 @@ function Create_activity({ open, close }) {
               borderRadius: '0px 0px 4px 4px',
             }}
           >
-            {upload && <Box padding="10px">File uploaded/Image/Link</Box>}
+            <Box padding="10px">File uploaded/Image/Link</Box>
             <Stack direction="row" spacing={2}>
               <IconButton
                 aria-label="image"

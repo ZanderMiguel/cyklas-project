@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   Container,
   Grid,
@@ -33,7 +33,9 @@ function Records() {
     setToggleGradingSystem(false);
     setToggleClassRecords(false);
   };
-
+  const data = useRef([{}]);
+  const name = useRef([{}]);
+  const counter = useRef(0);
   return (
     <Container maxWidth="lg">
       <Grid container>
@@ -165,7 +167,9 @@ function Records() {
             <Grid container columnSpacing={1} rowSpacing={1}>
               <Grid item xs={12}>
                 {toggleClassRecords && <Records_tableClassRecords />}
-                {!toggleGradingSystem && <Grading_system />}
+                {!toggleGradingSystem && (
+                  <Grading_system data={data} name={name} counter={counter} />
+                )}
               </Grid>
             </Grid>
           </Box>

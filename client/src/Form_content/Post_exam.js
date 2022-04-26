@@ -73,7 +73,15 @@ const dataTimeLimit = [
     label: '2 hours',
   },
 ];
-function Post_exam({ open, close, maxWidth, questionMemo, exam, counter, itemCount }) {
+function Post_exam({
+  open,
+  close,
+  maxWidth,
+  questionMemo,
+  exam,
+  counter,
+  itemCount,
+}) {
   const { designs } = useStyle();
 
   const [selectRoom, setSelectRoom] = useState('');
@@ -116,8 +124,9 @@ function Post_exam({ open, close, maxWidth, questionMemo, exam, counter, itemCou
       .post('http://localhost:5000/quizlit/create', {
         author: {
           userID: JSON.parse(localStorage.userData).data.user._id,
-          name: `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName
-            } `,
+          name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
+            JSON.parse(localStorage.userData).data.user.lastName
+          } `,
         },
         rooms: [roomId.current],
         dueDate: 'unavailable',
@@ -127,11 +136,11 @@ function Post_exam({ open, close, maxWidth, questionMemo, exam, counter, itemCou
         instruction: exam.current.instruction,
         quizType: 'Exam',
         graded: false,
-        type
+        type,
       })
       .then((res) => {
         questionMemo.current.forEach((item) => {
-          console.log(item)
+          console.log(item);
           const {
             answerType,
             correctAnswer,
@@ -148,7 +157,7 @@ function Post_exam({ open, close, maxWidth, questionMemo, exam, counter, itemCou
             correctAnswer,
             points,
             questionsContent,
-            media
+            media,
           });
         });
         axios
@@ -163,19 +172,21 @@ function Post_exam({ open, close, maxWidth, questionMemo, exam, counter, itemCou
       })
       .catch((err) => console.log(err));
   };
-  let point = 0
+  let point = 0;
   questionMemo.current.forEach((item) => {
-    point += parseInt(item.points.replace(' point', ''))
-  })
-  const [dataRoom, setDataRoom] = React.useState(null)
+    point += parseInt(item.points.replace(' point', ''));
+  });
+  const [dataRoom, setDataRoom] = React.useState(null);
   React.useMemo(() => {
-    axios.post('http://localhost:5000/rooms', {
-      userID: JSON.parse(localStorage.userData).data.user._id,
-    }).then((res) => {
-      setDataRoom(res.data)
-    })
-  }, [])
-  const roomId = React.useRef(null)
+    axios
+      .post('http://localhost:5000/rooms', {
+        userID: JSON.parse(localStorage.userData).data.user._id,
+      })
+      .then((res) => {
+        setDataRoom(res.data);
+      });
+  }, []);
+  const roomId = React.useRef(null);
   return (
     <div>
       <Dialogform
@@ -194,7 +205,9 @@ function Post_exam({ open, close, maxWidth, questionMemo, exam, counter, itemCou
             <Button
               variant="contained"
               startIcon={<Save />}
-              onClick={() => { handleClickSave(null) }}
+              onClick={() => {
+                handleClickSave(null);
+              }}
               sx={{
                 border: '1px solid #007FFF',
                 backgroundColor: 'transparent',
@@ -217,12 +230,12 @@ function Post_exam({ open, close, maxWidth, questionMemo, exam, counter, itemCou
             <Button
               variant="contained"
               onClick={() => {
-                handleClickSave('quizlit')
-
+                handleClickSave('quizlit');
               }}
               startIcon={
                 <img
                   src={ExamIconButton}
+                  alt=""
                   style={{ height: '0.7em', width: '0.7em' }}
                 />
               }
@@ -298,17 +311,21 @@ function Post_exam({ open, close, maxWidth, questionMemo, exam, counter, itemCou
                   },
                 }}
               >
-                {dataRoom && dataRoom.map((value, index) => {
-                  return (
-                    <MenuItem key={index} value={value} accessKey={value._id}
-                      onClick={(e) => {
-                        roomId.current = e.target.accessKey
-                      }}>
-                      {' '}
-                      {value.RoomName}{' '}
-                    </MenuItem>
-                  )
-                })}
+                {dataRoom &&
+                  dataRoom.map((value, index) => {
+                    return (
+                      <MenuItem
+                        key={index}
+                        value={value}
+                        accessKey={value._id}
+                        onClick={(e) => {
+                          roomId.current = e.target.accessKey;
+                        }}
+                      >
+                        {value.RoomName}
+                      </MenuItem>
+                    );
+                  })}
               </Select>
             </FormControl>
 
@@ -351,15 +368,15 @@ function Post_exam({ open, close, maxWidth, questionMemo, exam, counter, itemCou
                   },
                 }}
               >
-                {dataRoom && dataRoom.map((value, index) => {
-
-                  return (
-                    <MenuItem key={index} value={value}>
-                      {' '}
-                      {value.Course}{' '}{value.yearAndSection}
-                    </MenuItem>
-                  )
-                })}
+                {dataRoom &&
+                  dataRoom.map((value, index) => {
+                    return (
+                      <MenuItem key={index} value={value}>
+                        {' '}
+                        {value.Course} {value.yearAndSection}
+                      </MenuItem>
+                    );
+                  })}
               </Select>
             </FormControl>
 

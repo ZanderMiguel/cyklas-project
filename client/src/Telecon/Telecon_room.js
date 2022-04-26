@@ -3,18 +3,19 @@ import { Box, CssBaseline, Paper } from '@mui/material';
 
 import { io } from 'socket.io-client';
 import Footer from './Telecon_Components/Footer';
-import Collapse from '@mui/material/Collapse';
+import { Collapse } from '@mui/material';
 
 import useStyles from './Styles/Telecon_room_style';
 import Message_area from './TeleconSide/Message_area';
-import Information from './TeleconSide/Info'
+import Presentation from './TeleconSide/Presentation';
+import Info from './TeleconSide/Info';
+import Member from './TeleconSide/Member';
 
 const socket = io.connect('http://localhost:3001');
 
 function Telecon_room() {
   const { designs } = useStyles();
   const [sidedrawer, setSideDrawer] = useState(false);
-
   const [sidecontent, setSideContent] = useState('');
   const [username, setUsername] = useState('');
   const [room, setRoom] = useState('');
@@ -41,11 +42,24 @@ function Telecon_room() {
               },
             }}
           >
-            <Box position="relative" backgroundColor="white" height="100%">
-            <Message_area socket={socket}/>
-          </Box>
+            <Box
+              position="relative"
+              backgroundColor="white"
+              height="100%"
+              mt={1}
+            >
+              {sidecontent === 'Info' ? (
+                <Info />
+              ) : sidecontent === 'Member' ? (
+                <Member />
+              ) : sidecontent === 'Message' ? (
+                <Message_area socket={socket} />
+              ) : (
+                sidecontent === 'Presentation' && <Presentation />
+              )}
+            </Box>
           </Collapse>
-          <Paper sx={{ width: '100%' }}></Paper>
+          <Paper sx={{ width: '100%', backgroundColor: 'transparent' }}></Paper>
         </Box>
         <Footer
           setSideDrawer={setSideDrawer}

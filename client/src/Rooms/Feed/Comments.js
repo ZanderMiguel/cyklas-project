@@ -82,57 +82,60 @@ function Comments({ postId, commentId, socket }) {
                         {content}
                       </Box>
 
-                      <Box className="actions" sx={designs.Actions_Style}>
-                        <Box
-                          onClick={handleEditComment}
-                          sx={{
-                            display: 'flex',
-                            gap: '0.5em',
-                            width: 'auto',
-                            height: 'auto',
-                            '&: hover': {
-                              cursor: 'pointer',
-                              textDecoration: 'underline',
-                            },
-                          }}
-                        >
-                          <BorderColorOutlined
-                            sx={{ color: '#585670', fontSize: '0.9em' }}
+                      {JSON.parse(localStorage.userData).data.user._id ===
+                        author.userID && (
+                        <Box className="actions" sx={designs.Actions_Style}>
+                          <Box
+                            onClick={handleEditComment}
+                            sx={{
+                              display: 'flex',
+                              gap: '0.5em',
+                              width: 'auto',
+                              height: 'auto',
+                              '&: hover': {
+                                cursor: 'pointer',
+                                textDecoration: 'underline',
+                              },
+                            }}
+                          >
+                            <BorderColorOutlined
+                              sx={{ color: '#585670', fontSize: '0.9em' }}
+                            />
+
+                            <Typography sx={designs.EditComment_Button_Style}>
+                              Edit comment
+                            </Typography>
+                          </Box>
+
+                          <Divider
+                            orientation="vertical"
+                            flexItem
+                            sx={designs.DividerV_Style}
                           />
 
-                          <Typography sx={designs.EditComment_Button_Style}>
-                            Edit comment
-                          </Typography>
+                          <Box
+                            onClick={() => handleDeleteComment(_id)}
+                            sx={{
+                              display: 'flex',
+                              gap: '0.5em',
+                              width: 'auto',
+                              height: 'auto',
+                              '&: hover': {
+                                cursor: 'pointer',
+                                textDecoration: 'underline',
+                              },
+                            }}
+                          >
+                            <DeleteOutlineOutlined
+                              sx={{ color: '#585670', fontSize: '0.9em' }}
+                            />
+
+                            <Typography sx={designs.DeleteComment_Button_Style}>
+                              Delete comment
+                            </Typography>
+                          </Box>
                         </Box>
-
-                        <Divider
-                          orientation="vertical"
-                          flexItem
-                          sx={designs.DividerV_Style}
-                        />
-
-                        <Box
-                          onClick={() => handleDeleteComment(_id)}
-                          sx={{
-                            display: 'flex',
-                            gap: '0.5em',
-                            width: 'auto',
-                            height: 'auto',
-                            '&: hover': {
-                              cursor: 'pointer',
-                              textDecoration: 'underline',
-                            },
-                          }}
-                        >
-                          <DeleteOutlineOutlined
-                            sx={{ color: '#585670', fontSize: '0.9em' }}
-                          />
-
-                          <Typography sx={designs.DeleteComment_Button_Style}>
-                            Delete comment
-                          </Typography>
-                        </Box>
-                      </Box>
+                      )}
                     </Box>
                   </Box>
                 </div>

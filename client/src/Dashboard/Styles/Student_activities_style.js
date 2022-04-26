@@ -3,37 +3,37 @@ import { useTheme } from '@mui/material/styles';
 function useStyle() {
   const theme = useTheme();
   const designs = {
-    TabsH_GridItem_Style: { 
-        marginTop: "2em",
-        [theme.breakpoints.up('md')]: {
-            display: 'none'
-        },
-        [theme.breakpoints.down('md')]: {
-            display: 'initial',
-        } 
+    TabsH_GridItem_Style: {
+      marginTop: '2em',
+      [theme.breakpoints.up('md')]: {
+        display: 'none',
+      },
+      [theme.breakpoints.down('md')]: {
+        display: 'initial',
+      },
     },
     TabsV_GridItem_Style: {
-        marginTop: "2em",
-        [theme.breakpoints.down('md')]: {
-            display: "none"
-        },
+      marginTop: '2em',
+      [theme.breakpoints.down('md')]: {
+        display: 'none',
+      },
     },
-    Tiles_GridItem_Style: { 
-        marginTop: "2em",
-        [theme.breakpoints.down('md')]: {
-            marginTop: "0.5em"
-        },
+    Tiles_GridItem_Style: {
+      marginTop: '2em',
+      [theme.breakpoints.down('md')]: {
+        marginTop: '0.5em',
+      },
     },
     Tabs_Main_Style2: {
-        borderRight: 1,
-        borderColor: 'transparent'
+      borderRight: 1,
+      borderColor: 'transparent',
     },
     Tabs_Main_Style3: {
-        borderRight: 1,
-        borderColor: 'transparent',
+      borderRight: 1,
+      borderColor: 'transparent',
     },
     Activity_Tiles: {
-        marginBottom: "0.4em"
+      marginBottom: '0.4em',
     },
     // Lesson: {
     //   backgroundColor: '#F3F3F3',
@@ -64,21 +64,21 @@ function useStyle() {
     Activity_Icon_Activity_Type: {
       display: 'flex',
       height: 'relative',
-      width: "100%"
+      width: '100%',
     },
     Activity_Information_Style: {
       display: 'flex',
-      width: "100%"
+      width: '100%',
     },
     Activity_Typography: {
       width: '5em',
-      display: "flex",
+      display: 'flex',
       flexGrow: 1,
       fontSize: '15px',
       textTransform: 'Uppercase',
       fontWeight: '600',
       color: '#3F3D56',
-      paddingTop: '7px'
+      paddingTop: '7px',
     },
     Type_Typography: {
       width: '80px',
@@ -86,8 +86,8 @@ function useStyle() {
       fontWeight: '500',
       fontSize: '13px',
       paddingTop: '7px',
-      marginLeft: "0.5em",
-      textAlign: "center",
+      marginLeft: '0.5em',
+      textAlign: 'center',
       [theme.breakpoints.down('md')]: {
         display: 'none',
       },
@@ -97,7 +97,7 @@ function useStyle() {
       fontSize: '13px',
       fontWeight: 'bold',
       paddingTop: '7px',
-      marginLeft: "0.5em",
+      marginLeft: '0.5em',
       [theme.breakpoints.down('md')]: {
         display: 'none',
       },
@@ -106,10 +106,10 @@ function useStyle() {
       width: '150px',
       color: '#3F3D56',
       fontSize: '13px',
-      textAlign: "center",
+      textAlign: 'center',
       fontWeight: 'bold',
       paddingTop: '7px',
-      marginLeft: "0.5em",
+      marginLeft: '0.5em',
       [theme.breakpoints.down('md')]: {
         display: 'none',
       },
@@ -119,7 +119,7 @@ function useStyle() {
       height: '12px',
       backgroundColor: '#C9C9C9',
       marginTop: '11px',
-      marginLeft: "0.5em",
+      marginLeft: '0.5em',
       [theme.breakpoints.down('md')]: {
         display: 'none',
       },
@@ -131,34 +131,34 @@ function useStyle() {
       fontWeight: 'bold',
       textTransform: 'Uppercase',
       paddingTop: '7px',
-      marginLeft: "0.5em",
+      marginLeft: '0.5em',
       [theme.breakpoints.down('md')]: {
         display: 'none',
       },
     },
     Status: {
-        width: '10em',
-        color: '#007FFF',
-        fontSize: '13px',
-        fontWeight: 'bold',
-        textAlign: 'center',
-        textTransform: 'Uppercase',
-        paddingTop: '7px',
-        marginLeft: "0.5em",
-        [theme.breakpoints.down('sm')]: {
-            display: "none"
-        },
+      width: '10em',
+      color: '#007FFF',
+      fontSize: '13px',
+      fontWeight: 'bold',
+      textAlign: 'center',
+      textTransform: 'Uppercase',
+      paddingTop: '7px',
+      marginLeft: '0.5em',
+      [theme.breakpoints.down('sm')]: {
+        display: 'none',
+      },
     },
     StatusIcon_Style: {
-        fontSize: "0.7em",
-        color: "#007FFF",
-        margin: "1em 0em 0em 1em",
-        [theme.breakpoints.up('sm')]: {
-            display: "none"
-        },
-        [theme.breakpoints.down('sm')]: {
-            display: "initial"
-        },
+      fontSize: '0.7em',
+      color: '#007FFF',
+      margin: '1em 0em 0em 1em',
+      [theme.breakpoints.up('sm')]: {
+        display: 'none',
+      },
+      [theme.breakpoints.down('sm')]: {
+        display: 'initial',
+      },
     },
     Button_Container_Style: {
       display: 'flex',
@@ -316,7 +316,7 @@ function useStyle() {
       padding: '0px 0px 0px 25px',
       [theme.breakpoints.down('sm')]: {
         margin: '0px 0px 4px 0px',
-        padding: '0px'
+        padding: '0px',
       },
     },
     Instructions2_Typography: {
@@ -379,185 +379,186 @@ function useStyle() {
     },
 
     // Quizzes
-    BoxTileContainer: {
-      className: "Tiles1", 
-      width: "relative", 
-      height: "auto", 
-      marginBottom: "0.5em",
-      padding: "0.5em 1.5em",
-      display: "flex",
-      border: " 1px solid #DBDBDB", 
-      borderRadius: "0.8em",
-      textDecoration: "none",
-      "&: hover": {
-          cursor: "pointer",
-          boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"
+    BoxTileContainer1: {
+      className: 'Tiles1',
+      width: 'relative',
+      height: 'auto',
+      marginBottom: '0.5em',
+      padding: '0.5em 1.5em',
+      display: 'flex',
+      border: ' 1px solid #DBDBDB',
+      borderRadius: '0.8em',
+      textDecoration: 'none',
+      '&: hover': {
+        cursor: 'pointer',
+        boxShadow:
+          'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
       },
       [theme.breakpoints.down('sm')]: {
-        padding: "0.2em 0.8em",
-      }
-  },
-  QuizName_User_Date: {
-      className: "Activity-name-User-date",
-      height: "max-content", 
-      margin: "0.3em 0em 0.3em 0em",
-      [theme.breakpoints.down('sm')]: {
-        display: "flex",
-        flexGrow: 1,
-        height: "auto", 
-      }
-  },
-  Quiz: {
-      fontSize: "0.9em",
-      width: "25em",
-      fontWeight: "600",
-      textTransform: "Uppercase",
-      color: "#3F3D56",
-      [theme.breakpoints.between('sm', 'md')]: {
-          width: "22em",
+        padding: '0.2em 0.8em',
       },
-      [theme.breakpoints.down('sm')]: {
-          padding: "0.4em 0em 0em 0em",
-          width: "100%",
-          height: "relative"
-      }
-  },
-  User_Date: {
-      className: "User-date", 
-      width: "35em", 
-      display: "flex", 
-      gap: "0.2em",
-      [theme.breakpoints.between('md', "lg")]: {
-          width: "24em",
-      },
-      [theme.breakpoints.between('sm', 'md')]: {
-        width: "20em",
-      },
-      [theme.breakpoints.down('sm')]: {
-        display: "none"
-      }
-  },
-  Professor: {
-      width: "auto",
-      fontSize: "0.5em",
-      fontWeight: "700",
-      textTransform: "Capitalize",
-      fontStyle: "Italic",
-      color: "#3F3D56"
-  },
-  Date2: {
-      width: "45em",
-      fontSize: "0.5em",
-      fontWeight: "600",
-      textTransform: "none",
-      fontStyle: "Italic",
-      color: "#3F3D56",
-      [theme.breakpoints.down('md')]: {
-          width: "30em",
-      }
-  },
-  BoxFlexGrow_Style: {
-      margin: "0.4em 0em 0.3em 0em",
-      [theme.breakpoints.down('sm')]: {
-        display: "none"
-      }
-  },
-  Points_Score_Style: {
-      height: "auto",
-      width: "11.3em",
-      margin: "0.4em 0em 0.3em 0em",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      gap: "1em",
-      [theme.breakpoints.between('sm', 'md')]: {
-        width: "5.5em"
-      },
-      [theme.breakpoints.down('sm')]: {
-        display: "none"
-      }
-  },
-  Points_Style: {
-      fontSize: "0.9em",
-      fontWeight: "600",
-      color: "#47B753",
-  },
-  DividerV_Style: {
-      height: "1em",
-      [theme.breakpoints.down('md')]: {
-          display: "none"
-      }
-  },
-  Score_Style: {
-    fontSize: "0.9em",
-    fontWeight: "600",
-    color: "#007FFF",
-    [theme.breakpoints.down('md')]: {
-      display: "none"
-    }
-  },
-  BoxOptions: {
-      className: "option", 
-      display: "flex", 
-      justifyContent: "center", 
-      alignItems: "center",
-      margin: "0.4em 0em 0.3em 0.7em"
-  },
-  IconButtonOptions: {
-      ariaLabel: "options",
-      height: "1.3em",
-      width: "1.3em",
-      
-  },
-  MoreVertIcon: {
-      color: "#8E8E8E",
-      fontSize: "0.8em"
-  },
-
-  // Exams
-  BoxTileContainer: {
-    className: "Tiles1", 
-    width: "relative", 
-    height: "auto", 
-    marginBottom: "0.5em",
-    padding: "0.5em 1.5em",
-    display: "flex",
-    border: " 1px solid #DBDBDB", 
-    borderRadius: "0.8em",
-    textDecoration: "none",
-    "&: hover": {
-        cursor: "pointer",
-        boxShadow: "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px"
     },
-    [theme.breakpoints.down('sm')]: {
-      padding: "0.2em 0.8em",
-    }
-  },
-  ExamName_User_Date: {
-      className: "Activity-name-User-date",
-      height: "max-content", 
-      margin: "0.3em 0em 0.3em 0em",
+    QuizName_User_Date: {
+      className: 'Activity-name-User-date',
+      height: 'max-content',
+      margin: '0.3em 0em 0.3em 0em',
       [theme.breakpoints.down('sm')]: {
-        display: "flex",
+        display: 'flex',
         flexGrow: 1,
-        height: "auto", 
-      }
-  },
-  Exam: {
-      fontSize: "0.9em",
-      width: "25em",
-      fontWeight: "600",
-      textTransform: "Uppercase",
-      color: "#3F3D56",
+        height: 'auto',
+      },
+    },
+    Quiz: {
+      fontSize: '0.9em',
+      width: '25em',
+      fontWeight: '600',
+      textTransform: 'Uppercase',
+      color: '#3F3D56',
       [theme.breakpoints.between('sm', 'md')]: {
-          width: "22em",
+        width: '22em',
       },
       [theme.breakpoints.down('sm')]: {
-          padding: "0.4em 0em 0em 0em",
-          width: "100%",
-          height: "relative"
-      }
-  }
+        padding: '0.4em 0em 0em 0em',
+        width: '100%',
+        height: 'relative',
+      },
+    },
+    User_Date: {
+      className: 'User-date',
+      width: '35em',
+      display: 'flex',
+      gap: '0.2em',
+      [theme.breakpoints.between('md', 'lg')]: {
+        width: '24em',
+      },
+      [theme.breakpoints.between('sm', 'md')]: {
+        width: '20em',
+      },
+      [theme.breakpoints.down('sm')]: {
+        display: 'none',
+      },
+    },
+    Professor: {
+      width: 'auto',
+      fontSize: '0.5em',
+      fontWeight: '700',
+      textTransform: 'Capitalize',
+      fontStyle: 'Italic',
+      color: '#3F3D56',
+    },
+    Date2: {
+      width: '45em',
+      fontSize: '0.5em',
+      fontWeight: '600',
+      textTransform: 'none',
+      fontStyle: 'Italic',
+      color: '#3F3D56',
+      [theme.breakpoints.down('md')]: {
+        width: '30em',
+      },
+    },
+    BoxFlexGrow_Style: {
+      margin: '0.4em 0em 0.3em 0em',
+      [theme.breakpoints.down('sm')]: {
+        display: 'none',
+      },
+    },
+    Points_Score_Style: {
+      height: 'auto',
+      width: '11.3em',
+      margin: '0.4em 0em 0.3em 0em',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      gap: '1em',
+      [theme.breakpoints.between('sm', 'md')]: {
+        width: '5.5em',
+      },
+      [theme.breakpoints.down('sm')]: {
+        display: 'none',
+      },
+    },
+    Points_Style: {
+      fontSize: '0.9em',
+      fontWeight: '600',
+      color: '#47B753',
+    },
+    DividerV_Style: {
+      height: '1em',
+      [theme.breakpoints.down('md')]: {
+        display: 'none',
+      },
+    },
+    Score_Style: {
+      fontSize: '0.9em',
+      fontWeight: '600',
+      color: '#007FFF',
+      [theme.breakpoints.down('md')]: {
+        display: 'none',
+      },
+    },
+    BoxOptions: {
+      className: 'option',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      margin: '0.4em 0em 0.3em 0.7em',
+    },
+    IconButtonOptions: {
+      ariaLabel: 'options',
+      height: '1.3em',
+      width: '1.3em',
+    },
+    MoreVertIcon: {
+      color: '#8E8E8E',
+      fontSize: '0.8em',
+    },
+
+    // Exams
+    BoxTileContainer2: {
+      className: 'Tiles1',
+      width: 'relative',
+      height: 'auto',
+      marginBottom: '0.5em',
+      padding: '0.5em 1.5em',
+      display: 'flex',
+      border: ' 1px solid #DBDBDB',
+      borderRadius: '0.8em',
+      textDecoration: 'none',
+      '&: hover': {
+        cursor: 'pointer',
+        boxShadow:
+          'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
+      },
+      [theme.breakpoints.down('sm')]: {
+        padding: '0.2em 0.8em',
+      },
+    },
+    ExamName_User_Date: {
+      className: 'Activity-name-User-date',
+      height: 'max-content',
+      margin: '0.3em 0em 0.3em 0em',
+      [theme.breakpoints.down('sm')]: {
+        display: 'flex',
+        flexGrow: 1,
+        height: 'auto',
+      },
+    },
+    Exam: {
+      fontSize: '0.9em',
+      width: '25em',
+      fontWeight: '600',
+      textTransform: 'Uppercase',
+      color: '#3F3D56',
+      [theme.breakpoints.between('sm', 'md')]: {
+        width: '22em',
+      },
+      [theme.breakpoints.down('sm')]: {
+        padding: '0.4em 0em 0em 0em',
+        width: '100%',
+        height: 'relative',
+      },
+    },
   };
   return { designs };
 }

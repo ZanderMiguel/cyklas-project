@@ -1,5 +1,4 @@
-import { useTheme } from "@mui/material/styles";
-import { grey } from '@mui/material/colors';
+import { useTheme } from '@mui/material/styles';
 
 function useStyle(){
     const theme = useTheme();
@@ -92,4 +91,4 @@ function useStyle(){
 };
     return {designs};
 }
-    export default useStyle;
+export default useStyle;

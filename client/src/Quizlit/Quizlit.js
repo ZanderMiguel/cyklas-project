@@ -12,7 +12,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import useStyle from './Styles/Quizlit_style';
 import CusPopover from '../components/Popover';
 import QuizlitAddpopover from '../components/PopoverContent/QuizlitAddpopover';
-import axios from 'axios'
+import axios from 'axios';
 function Quizlit() {
   const { designs } = useStyle();
 
@@ -28,14 +28,17 @@ function Quizlit() {
   const handleClickClose = (event) => {
     setAnchorEl(null);
   };
-  const [data, setData] = React.useState(null)
-  React.useMemo(() => {
-    axios.post('http://localhost:5000/myQuizlit', { userID: JSON.parse(localStorage.userData).data.user._id })
-      .then(res => {
-        setData(res.data)
-        console.log(res.data)
-      }).catch(err => console.log(err))
-  }, [])
+  const [data, setData] = React.useState(null);
+  React.useEffect(() => {
+    axios
+      .post('http://localhost:5000/myQuizlit', {
+        userID: JSON.parse(localStorage.userData).data.user._id,
+      })
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   const [comp, setComp] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -61,30 +64,37 @@ function Quizlit() {
             >
               <Tab
                 disableRipple
+                value={value}
                 label={
-                  <Typography variant="h6" sx={{ fontSize: "1.2em", fontWeight: '600' }}>
+                  <Typography
+                    variant="h6"
+                    sx={{ fontSize: '1.2em', fontWeight: '600' }}
+                  >
                     Quiz
                   </Typography>
                 }
-                onClick={() => {
-                  setComp(data && <Quiz_layout bank={data.filter(item=>{
-                    console.log(item.quizType)
-                    return item.quizType === 'Quiz'
-                  })} />);
-                }}
               />
               <Tab
                 disableRipple
                 label={
-                  <Typography variant="h6" sx={{ fontSize: "1.2em", fontWeight: '600' }}>
+                  <Typography
+                    variant="h6"
+                    sx={{ fontSize: '1.2em', fontWeight: '600' }}
+                  >
                     Exam
                   </Typography>
                 }
                 onClick={() => {
-                  setComp(data && <Exam_layout bank={data.filter(item=>{
-                    console.log(item.quizType)
-                    return item.quizType === 'Exam'
-                  })} />);
+                  setComp(
+                    data && (
+                      <Exam_layout
+                        bank={data.filter((item) => {
+                          console.log(item.quizType);
+                          return item.quizType === 'Exam';
+                        })}
+                      />
+                    )
+                  );
                 }}
               />
             </Tabs>
@@ -95,7 +105,13 @@ function Quizlit() {
               onClick={handleClickAddQuiz}
               sx={designs.Add_IconButton_Style}
             >
-              <AddCircleIcon sx={{ color: '#56B73E', fontSize: '2rem', "&: hover": { color: "#39B41B" } }} />
+              <AddCircleIcon
+                sx={{
+                  color: '#56B73E',
+                  fontSize: '2rem',
+                  '&: hover': { color: '#39B41B' },
+                }}
+              />
             </IconButton>
           </Grid>
 
@@ -111,35 +127,44 @@ function Quizlit() {
               <Tab
                 disableRipple
                 label={
-                  <Typography variant="h6" sx={{ fontSize: "1.2em", fontWeight: '600' }}>
+                  <Typography
+                    variant="h6"
+                    sx={{ fontSize: '1.2em', fontWeight: '600' }}
+                  >
                     Quiz
                   </Typography>
                 }
-                onClick={() => {
-                  setComp(data &&<Quiz_layout bank={ data.filter(item=>{
-                    console.log(item.quizType)
-                    return item.quizType === 'Quiz'
-                  })} />);
-                }}
               />
               <Tab
                 disableRipple
                 label={
-                  <Typography variant="h6" sx={{ fontSize: "1.2em", fontWeight: '600' }}>
+                  <Typography
+                    variant="h6"
+                    sx={{ fontSize: '1.2em', fontWeight: '600' }}
+                  >
                     Exam
                   </Typography>
                 }
-                onClick={() => {
-                  setComp(data && <Exam_layout bank={data.filter(item=>{
-                    console.log(item.quizType)
-                    return item.quizType === 'Exam'
-                  })} />);
-                }}
               />
             </Tabs>
           </Grid>
           <Grid item md={9} xs={12} sx={{ marginTop: '0.8em' }}>
-            {comp}
+            {value === 0
+              ? data && (
+                  <Quiz_layout
+                    bank={data.filter((item) => {
+                      return item.quizType === 'Quiz';
+                    })}
+                  />
+                )
+              : value === 1 &&
+                data && (
+                  <Exam_layout
+                    bank={data.filter((item) => {
+                      return item.quizType === 'Exam';
+                    })}
+                  />
+                )}
           </Grid>
         </Grid>
       </Container>

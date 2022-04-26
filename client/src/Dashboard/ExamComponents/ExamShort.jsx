@@ -23,7 +23,9 @@ function ExamShort({ item, index }) {
           sx={designs.Question_Container_Style}
         >
           <Box className="Question" sx={designs.Question_Style}>
-            <Typography sx={designs.Item_Typography_Style}>{index+1}.</Typography>
+            <Typography sx={designs.Item_Typography_Style}>
+              {index + 1}.
+            </Typography>
 
             <Typography sx={designs.Question_Typography_Style}>
               {item.questionsContent}
@@ -38,7 +40,7 @@ function ExamShort({ item, index }) {
           >
             <img
               src={Image}
-              alt="Image"
+              alt="uploadedImage"
               style={{
                 height: '5.5em',
               }}
@@ -60,7 +62,7 @@ function ExamShort({ item, index }) {
         <Box className="Image-container" sx={designs.Image_Container_Style}>
           <img
             src={`${item.media.toString()}` || Image}
-            alt="Image"
+            alt="uploadedImage"
             style={{
               height: '6.5em',
             }}
