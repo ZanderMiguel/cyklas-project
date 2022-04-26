@@ -19,11 +19,11 @@ import {
   Select,
   MenuItem,
 } from '@mui/material';
-import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
-import Wordfile from '../../assets/ImageJaven/Wordfile.png';
+import AvatarIcon from '../../../assets/ImageJaven/Avatar.png';
+import Wordfile from '../../../assets/ImageJaven/Wordfile.png';
 import { KeyboardArrowDown, Send } from '@mui/icons-material';
-import useStyle from '../Styles/View_activity_style';
-import '../Styles/View_activity_style.css';
+import useStyle from '../../Styles/View_activity_style';
+import '../../Styles/View_activity_style.css';
 
 const sortOptions = [
   {
@@ -204,10 +204,7 @@ function View_activity() {
                   parts of the question.
                 </Typography>
 
-                <Box
-                  className="Attach-file"
-                  sx = {designs.AttachFile_Style}
-                >
+                <Box className="Attach-file" sx={designs.AttachFile_Style}>
                   <img
                     src={Wordfile}
                     style={{
@@ -299,7 +296,7 @@ function View_activity() {
                 <Grid container columnSpacing={2} rowSpacing={1}>
                   {data.map(function (items, index) {
                     return (
-                      <Grid item lg = {4} md={6} sm={12} xs = {12} key={index}>
+                      <Grid item lg={4} md={6} sm={12} xs={12} key={index}>
                         <Box
                           className="Student-uploaded-file-container"
                           sx={designs.StudentUploadedFileContainer_Style}

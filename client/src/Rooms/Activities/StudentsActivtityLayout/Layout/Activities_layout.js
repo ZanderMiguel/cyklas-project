@@ -4,26 +4,30 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  AccordionActions,
   IconButton,
   Container,
   Grid,
   Box,
   Button,
+  Paper,
 } from '@mui/material';
-import { Edit, Delete } from '@mui/icons-material';
-import ActivityIcon from '../../assets/ImageJaven/ActivityIcon.png';
-import Wordfile from '../../assets/ImageJaven/Wordfile.png';
-import useStyle from '../Student_activities_style';
+import { Circle } from '@mui/icons-material';
+import ActivityIcon from '../../../../assets/ImageJaven/ActivityIcon.png';
+import useStyle from './Styles/Activities_layout_style';
 import Divider from '@mui/material/Divider';
-import { Link, Router } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import draftToHtml from 'draftjs-to-html';
+import ReactHtmlParser from 'react-html-parser';
 
 const data = [
   {
-    Lesson: 'Lesson 5',
+    // Lesson: 'Lesson 5',
     Activity: 'Activity 5',
     Type: 'Homework',
     DueDate: 'December 05, 2021',
     DueTime: '5:00 PM',
+    Status: 'handed-out',
     PointsValue: '100',
     PostedBy: 'Mark Andrei',
     PostedTime: 'Posted on December 10, 2021 at 10:00 PM',
@@ -33,11 +37,12 @@ const data = [
     ActivityFile: 'Activity 5.docx',
   },
   {
-    Lesson: 'Lesson 4',
+    // Lesson: 'Lesson 4',
     Activity: 'Activity 4',
     Type: 'Activity',
     DueDate: 'December 02, 2021',
     DueTime: '1:00 PM',
+    Status: 'handed-out',
     PointsValue: '100',
     PostedBy: 'Mark Andrei',
     PostedTime: 'Posted on November 27, 2021 at 6:30 PM',
@@ -47,11 +52,12 @@ const data = [
     ActivityFile: 'Activity 4.docx',
   },
   {
-    Lesson: 'Lesson 3',
+    // Lesson: 'Lesson 3',
     Activity: 'Activity 3',
     Type: 'Activity',
     DueDate: 'November 15, 2021',
     DueTime: '9:00 AM',
+    Status: 'handed-out',
     PointsValue: '100',
     PostedBy: 'Mark Andrei',
     PostedTime: 'Posted on November 10, 2021 at 4:00 PM',
@@ -62,20 +68,24 @@ const data = [
   },
 ];
 
-function Student_activities({ roomID }) {
+function Activities_layout({ roomID, activity }) {
   const { designs } = useStyle();
   const [expanded, setExpanded] = React.useState(false);
 
-  const handleChange = (panel) => (isExpanded) => {
+  const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
   return (
     <>
-      {data.map(function (items, index) {
-        return (
-          <Grid key={index} item xs={12}>
-            <Box className="Activity_Tiles" sx={designs.Activity_Tiles}>
+      {/* {activity &&
+        activity.map((items, index) => {
+          return (
+            <Box
+              key={index}
+              className="Activity_Tiles"
+              sx={designs.Activity_Tiles}
+            >
               <Accordion
                 expanded={expanded === `${items.Activity}`}
                 onChange={handleChange(`${items.Activity}`)}
@@ -123,6 +133,12 @@ function Student_activities({ roomID }) {
                       <Typography noWrap sx={designs.Time}>
                         {items.DueTime}
                       </Typography>
+
+                      <Typography noWrap sx={designs.Status}>
+                        {items.Status}
+                      </Typography>
+
+                      <Circle sx={designs.StatusIcon_Style} />
                     </Box>
                   </Box>
 
@@ -137,19 +153,6 @@ function Student_activities({ roomID }) {
                       className="Button-flexGrow"
                       sx={designs.Button_FlexGrow}
                     />
-
-                    <Box
-                      className="Button-container-sub"
-                      sx={designs.Button_Container_Sub}
-                    >
-                      <IconButton aria-label="edit" size="medium">
-                        <Edit sx={designs.Edit_Icon_Style} />
-                      </IconButton>
-
-                      <IconButton aria-label="delete" size="medium">
-                        <Delete sx={designs.Delete_Icon_Style} />
-                      </IconButton>
-                    </Box>
                   </Box>
 
                   <Box
@@ -257,18 +260,141 @@ function Student_activities({ roomID }) {
                   <Button
                     sx={designs.ViewHomework_Button_Style}
                     component={Link}
-                    to={`/Rooms/${roomID}/${items.Lesson}`}
+                    to="/Activity_viewed"
                   >
                     View Homework
                   </Button>
                 </AccordionDetails>
               </Accordion>
             </Box>
-          </Grid>
-        );
-      })}
+          );
+        })} */}
+      {activity &&
+        activity.map(function (items, index) {
+          const {
+            activityDueDate: duedate,
+            activityInstruction: instruction,
+            activityPoints: points,
+            activityTitle: title,
+            activityType: type,
+          } = items;
+          return (
+            <Grid key={index} item xs={12}>
+              <Box className="Activity_Tiles" sx={designs.Activity_Tiles}>
+                <Accordion
+                  expanded={expanded === `${index}`}
+                  onChange={handleChange(`${index}`)}
+                  sx={designs.Accordion_Style}
+                >
+                  <AccordionSummary
+                    aria-controls={items.Activity}
+                    id={items.Activity_FileName_Typography}
+                    sx={designs.AccordionSummary_Style}
+                  >
+                    <Box display="flex" alignItem="center" width="100%">
+                      <img
+                        src={ActivityIcon}
+                        style={{
+                          height: '30px',
+                          margin: '4px 15px 0px 0px',
+                        }}
+                      />
+                      <Typography noWrap sx={designs.Activity_Typography}>
+                        {title}
+                      </Typography>
+                      <Box flexGrow={1} />
+                      <Typography noWrap sx={designs.Type_Typography}>
+                        {type}
+                      </Typography>
+                    </Box>
+                  </AccordionSummary>
+                  <Divider />
+
+                  <AccordionDetails sx={designs.Accordion_Details_Style}>
+                    <Box
+                      className="Activity-details"
+                      sx={designs.Activity_Details_Style}
+                    >
+                      <Box
+                        className="Type_Due_Date"
+                        sx={designs.Type_Due_Date_Style}
+                      >
+                        <Box className="Type">
+                          <Typography sx={designs.Type_Responsive_Typography}>
+                            {type}
+                          </Typography>
+                        </Box>
+                      </Box>
+                      <Box display="flex">
+                        <Typography
+                          sx={{
+                            mt: 1,
+                            fontWeight: '500',
+                            fontSize: '13px',
+                          }}
+                        >
+                          {duedate ? `Due Date: ` : 'No Due Date'}
+                        </Typography>
+                        <Typography
+                          sx={{
+                            ml: 1,
+                            mt: 1,
+                            fontWeight: '500',
+                            fontSize: '13px',
+                          }}
+                        >
+                          {duedate ? duedate : ''}
+                        </Typography>
+                      </Box>
+                    </Box>
+                    <Box
+                      className="Activity-details2"
+                      sx={designs.Activity_Details2_Style}
+                    >
+                      <Typography sx={designs.Instructions_Typography}>
+                        {instruction ? 'Instructions: ' : ''}
+                      </Typography>
+                      <Box>{ReactHtmlParser(draftToHtml(instruction))}</Box>
+                    </Box>
+                    <Box>
+                      <Grid container spacing={1}>
+                        <Grid item xs={6}>
+                          <Paper sx={{ width: '100%' }}>
+                            Every Files uploaded file goes here
+                          </Paper>
+                        </Grid>
+                        <Grid item xs={6}>
+                          <Paper sx={{ width: '100%' }}>
+                            Every Files uploaded file goes here
+                          </Paper>
+                        </Grid>
+                        <Grid item xs={6}>
+                          <Paper sx={{ width: '100%' }}>
+                            Every Files uploaded file goes here
+                          </Paper>
+                        </Grid>
+                      </Grid>
+                    </Box>
+                  </AccordionDetails>
+                  <Divider />
+                  <AccordionActions
+                    sx={{ justifyContent: 'flex-start', padding: '10px' }}
+                  >
+                    <Button
+                      sx={designs.ViewHomework_Button_Style}
+                      component={Link}
+                      to={`/Rooms/${roomID}/s/${items._id}`}
+                    >
+                      VIEW ACTIVITY
+                    </Button>
+                  </AccordionActions>
+                </Accordion>
+              </Box>
+            </Grid>
+          );
+        })}
     </>
   );
 }
 
-export default Student_activities;
+export default Activities_layout;

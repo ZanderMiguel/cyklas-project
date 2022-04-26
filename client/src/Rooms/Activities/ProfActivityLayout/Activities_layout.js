@@ -13,54 +13,12 @@ import {
   Paper,
 } from '@mui/material';
 import { Edit, Delete } from '@mui/icons-material';
-import ActivityIcon from '../../assets/ImageJaven/ActivityIcon.png';
-import Wordfile from '../../assets/ImageJaven/Wordfile.png';
-import useStyle from '../Styles/ActivitiesAccordion_Style';
+import ActivityIcon from '../../../assets/ImageJaven/ActivityIcon.png';
+import useStyle from '../../Styles/ActivitiesAccordion_Style';
 import Divider from '@mui/material/Divider';
 import { Link } from 'react-router-dom';
 import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser from 'react-html-parser';
-
-const data = [
-  {
-    Lesson: 'Lesson 5',
-    Activity: 'Activity 5',
-    Type: 'Homework',
-    DueDate: 'December 05, 2021',
-    PointsValue: '100',
-    Instructions: `Read all questions carefully and don't forget to answer all parts of
-        the question.`,
-    ActivityFile: 'Activity 5.docx',
-  },
-  {
-    Lesson: 'Lesson 4',
-    Activity: 'Activity 4',
-    Type: 'Activity',
-    DueDate: 'December 02, 2021',
-    DueTime: '1:00 PM',
-    PointsValue: '100',
-    PostedBy: 'Mark Andrei',
-    PostedTime: 'Posted on November 27, 2021 at 6:30 PM',
-    InstructionsHead: 'First, read all directions carefully',
-    Instructions: `Read all questions carefully and don't forget to answer all parts of
-        the question.`,
-    ActivityFile: 'Activity 4.docx',
-  },
-  {
-    Lesson: 'Lesson 3',
-    Activity: 'Activity 3',
-    Type: 'Activity',
-    DueDate: 'November 15, 2021',
-    DueTime: '9:00 AM',
-    PointsValue: '100',
-    PostedBy: 'Mark Andrei',
-    PostedTime: 'Posted on November 10, 2021 at 4:00 PM',
-    InstructionsHead: 'First, read all directions carefully',
-    Instructions: `Read all questions carefully and don't forget to answer all parts of
-        the question.`,
-    ActivityFile: 'Activity 3.docx',
-  },
-];
 
 function ActivitiesAccordion({ roomID, activity }) {
   const { designs } = useStyle();
@@ -86,8 +44,8 @@ function ActivitiesAccordion({ roomID, activity }) {
             activityInstruction: instruction,
             activityPoints: points,
             activityTitle: title,
-            // activityTopic: topic,
             activityType: type,
+            _id: _id,
           } = items;
           return (
             <Grid key={index} item xs={12}>
@@ -155,27 +113,6 @@ function ActivitiesAccordion({ roomID, activity }) {
                             {type}
                           </Typography>
                         </Box>
-
-                        {/* <Box
-                          className="Due_Date"
-                          sx={designs.DueDate_Responsive}
-                        >
-                          <Typography
-                            sx={designs.DueDate_Responsive_Typography}
-                          >
-                            Due Date:
-                          </Typography>
-
-                          <Typography sx={designs.Date_Responsive_Typography}>
-                            December 05, 2021
-                          </Typography>
-
-                          <Box className="Seperator" sx={designs.SeperatorV} />
-
-                          <Typography noWrap sx={designs.Responsive_Time}>
-                            5:00 pm
-                          </Typography>
-                        </Box> */}
                       </Box>
                       <Box display="flex">
                         <Typography
@@ -198,38 +135,7 @@ function ActivitiesAccordion({ roomID, activity }) {
                           {duedate ? duedate : ''}
                         </Typography>
                       </Box>
-                      {/* <Box sx={designs.Empty_Box_FlexGrow} />
-
-                      <Box sx={designs.Empty_Box_FlexGrow2} /> */}
-
-                      {/* <Box
-                        className="Points_Postedby"
-                        sx={designs.Points_Postedby_Style}
-                      >
-                        <Box className="Points" sx={designs.Points}>
-                          <Typography sx={designs.Points_Typography}>
-                            Points:
-                          </Typography>
-
-                          <Typography sx={designs.Points_Value_Typography}>
-                            {items.Points}
-                          </Typography>
-                        </Box>
-
-                        <Box className="Postedby" sx={designs.Postedby_Style}>
-                          <Typography sx={designs.Postedby_Typography}>
-                            {items.PostedBy}
-                          </Typography>
-
-                          <Typography sx={designs.Date_Posted_Typography}>
-                            {items.PostedTime}
-                          </Typography> 
-                        </Box>
-                      </Box> */}
                     </Box>
-
-                    {/* <Divider sx={designs.Divider1} /> */}
-
                     <Box
                       className="Activity-details2"
                       sx={designs.Activity_Details2_Style}
@@ -238,33 +144,6 @@ function ActivitiesAccordion({ roomID, activity }) {
                         {instruction ? 'Instructions: ' : ''}
                       </Typography>
                       <Box>{ReactHtmlParser(draftToHtml(instruction))}</Box>
-
-                      {/* <Box
-                        className="Attach-file"
-                        sx={designs.Attach_File_Style}
-                      >
-                        <Box className="Icon">
-                          <img
-                            src={Wordfile}
-                            style={{
-                              height: '40px',
-                            }}
-                          />
-                        </Box>
-
-                        <Box className="Activity-filename" marginTop="1px">
-                          <Typography
-                            noWrap
-                            sx={designs.Activity_FileName_Typography}
-                          >
-                            {items.ActivityFile}
-                          </Typography>
-
-                          <Typography sx={designs.DocumentFile_Typography}>
-                            Document File
-                          </Typography>
-                        </Box>
-                      </Box> */}
                     </Box>
                     <Box>
                       <Grid container spacing={1}>
@@ -293,7 +172,7 @@ function ActivitiesAccordion({ roomID, activity }) {
                     <Button
                       sx={designs.ViewHomework_Button_Style}
                       component={Link}
-                      to={`/Rooms/${roomID}/${items.Lesson}`}
+                      to={`/Rooms/${roomID}/p/${_id}`}
                     >
                       VIEW ACTIVITY
                     </Button>

@@ -322,8 +322,7 @@ function Post_exam({
                           roomId.current = e.target.accessKey;
                         }}
                       >
-                        {' '}
-                        {value.RoomName}{' '}
+                        {value.RoomName}
                       </MenuItem>
                     );
                   })}

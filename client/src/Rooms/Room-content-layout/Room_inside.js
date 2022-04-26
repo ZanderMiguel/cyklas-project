@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Announce from '../Feed/Announce';
-import Activities from '../Activities/Activities';
-import Member from '../Members/Member';
+import Activities from '../Activities/ProfActivityLayout/Activities';
+import Activities_main from '../Activities/StudentsActivtityLayout/Activities_main';
+import Member from '../Members/ProfMembers/Member';
+import MemberStudents from '../../Rooms/Members/StudentMembers/Members_main';
 import {
   AppBar,
   Toolbar,
@@ -34,7 +36,7 @@ function Room_inside({ socket }) {
         setRoomData(res.data);
       })
       .catch((err) => console.log(err));
-  }, [roomdata]);
+  }, []);
 
   return (
     <>
@@ -113,9 +115,17 @@ function Room_inside({ socket }) {
         {value === 0 ? (
           <Announce socket={socket} />
         ) : value === 1 ? (
-          <Activities roomID={roomID} />
+          JSON.parse(localStorage.userData).data.user.userType ===
+          'Professor' ? (
+            <Activities roomID={roomID} />
+          ) : (
+            <Activities_main roomID={roomID} />
+          )
+        ) : JSON.parse(localStorage.userData).data.user.userType ===
+          'Professor' ? (
+          <Member roomdata={roomdata} />
         ) : (
-          <Member />
+          <MemberStudents roomdata={roomdata} />
         )}
       </Container>
     </>

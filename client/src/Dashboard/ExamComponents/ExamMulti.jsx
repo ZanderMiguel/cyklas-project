@@ -3,38 +3,42 @@ import { Grid, Box, Typography, Divider } from '@mui/material';
 import Image from '../../assets/ImageJaven/Image.png';
 import useStyle from '../Styles/Exam_start_style';
 import '../Styles/Exam_start_stylesheet.css';
-
-function ExamMulti({ item, index }) {
+function ExamMulti({ item, index,qAnswers }) {
   const { designs } = useStyle();
 
   const [answerButtonToggleA, setAnswerButtonToggleA] = useState(true);
   const [answerButtonToggleB, setAnswerButtonToggleB] = useState(true);
   const [answerButtonToggleC, setAnswerButtonToggleC] = useState(true);
   const [answerButtonToggleD, setAnswerButtonToggleD] = useState(true);
-
+  qAnswers.current[index]['questions']= item._id
   const handleClickA = () => {
     setAnswerButtonToggleA((prev) => !prev);
     setAnswerButtonToggleB(true);
     setAnswerButtonToggleC(true);
     setAnswerButtonToggleD(true);
+    qAnswers.current[index]['answers'] = 'answer1'
   };
   const handleClickB = () => {
     setAnswerButtonToggleB((prev) => !prev);
     setAnswerButtonToggleA(true);
     setAnswerButtonToggleC(true);
     setAnswerButtonToggleD(true);
+    qAnswers.current[index]['answers'] = 'answer2'
+
   };
   const handleClickC = () => {
     setAnswerButtonToggleC((prev) => !prev);
     setAnswerButtonToggleA(true);
     setAnswerButtonToggleB(true);
     setAnswerButtonToggleD(true);
+    qAnswers.current[index]['answers'] = 'answer3'
   };
   const handleClickD = () => {
     setAnswerButtonToggleD((prev) => !prev);
     setAnswerButtonToggleA(true);
     setAnswerButtonToggleB(true);
     setAnswerButtonToggleC(true);
+    qAnswers.current[index]['answers'] = 'answer4'
   };
   return (
     <Grid item xs={12} sx={designs.Question_GridItem_Style}>

@@ -21,23 +21,9 @@ import AvatarIcon from '../../../assets/ImageJaven/Avatar.png';
 import ExamIcon from '../../../assets/ImageJaven/ExamIcon.png';
 import useStyle from '../../Styles/View_exam_style';
 import '../../Styles/View_quiz_stylesheet.css';
+import axios from 'axios'
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-
-// const sortOptions = [
-//   {
-//     label: 'First name',
-//   },
-//   {
-//     label: 'Last name',
-//   },
-//   {
-//     label: 'Submitted',
-//   },
-//   {
-//     label: 'Missing',
-//   },
-// ];
 
 const data = [
   {
@@ -99,26 +85,6 @@ const dataRoom = [
     label: 'Software Engineering',
   },
 ];
-
-// const dataCourseYearSec = [
-//   {
-//     value: 'BSCS 2A',
-//     label: 'BSCS 2A',
-//   },
-//   {
-//     value: 'BSCS 3A',
-//     label: 'BSCS 3A',
-//   },
-//   {
-//     value: 'BSIT 3A',
-//     label: 'BSIT 3A',
-//   },
-//   {
-//     value: 'BSCS 4A',
-//     label: 'BSCS 4A',
-//   },
-// ];
-
 function View_exam() {
   // const [view, setView] = React.useState(false);
   const { designs } = useStyle();
@@ -126,7 +92,13 @@ function View_exam() {
   // const { roomID, activityID } = useParams();
 
   const [selectSort, setSort] = useState('');
-
+  React.useMemo(() => {
+    axios.post('http://localhost:5000/rooms', {
+      userID: JSON.parse(localStorage.userData).data.user._id,
+    }).then(res=>{
+      console.log(res.data)
+    }).catch(err=>console.log(err));
+  }, []);
   const handleChangeSort = (event) => {
     setSort(event.target.value);
   };

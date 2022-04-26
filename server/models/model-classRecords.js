@@ -4,7 +4,6 @@ const ClassRecordSchema = new mongoose.Schema(
   {
     room: [{ type: mongoose.Schema.Types.ObjectId }],
     courseYrSec: [{ type: Array, required: true }],
-    term: { type: String, required: true },
     students: { type: Array },
     totalStudents: { type: Number },
     professor: { type: mongoose.Schema.Types.ObjectId },

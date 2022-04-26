@@ -26,13 +26,12 @@ import axios from 'axios';
 import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser from 'react-html-parser';
 
-function Post_layout({ data, socket,roomID }) {
+function Post_layout({ data, socket, roomID }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleEdit = (event) => { };
+  const handleEdit = (event) => {};
 
   const handleDelete = (event, _id) => {
-    console.log(_id);
     axios
       .delete('http://localhost:5000/announce/delete', {
         data: { announceID: _id },
@@ -61,8 +60,9 @@ function Post_layout({ data, socket,roomID }) {
       announcement: postID.current,
       content: commentContent.current,
       author: {
-        name: `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName
-          }`,
+        name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
+          JSON.parse(localStorage.userData).data.user.lastName
+        }`,
         userID: JSON.parse(localStorage.userData).data.user._id,
       },
     });
@@ -101,31 +101,41 @@ function Post_layout({ data, socket,roomID }) {
 
                 <Box sx={designs.BoxFlexGrow_Style} />
 
-                <IconButton
-                  name={_id}
-                  aria-label="options"
-                  onClick={handleEdit}
-                  sx={designs.Option_IconButton_Style}
-                >
-                  <Tooltip title="Edit Post" placement="top">
-                    <BorderColorOutlined sx={designs.EditIcon_Style} />
-                  </Tooltip>
-                </IconButton>
-
-                <IconButton
-                  aria-label="options"
-                  onClick={(event) => handleDelete(event, _id)}
-                  sx={designs.Option_IconButton_Style}
-                >
-                  <Tooltip title="Delete Post" placement="top">
-                    <DeleteOutlineOutlined sx={designs.DeleteIcon_Style} />
-                  </Tooltip>
-                </IconButton>
-
+                {author.userID ===
+                  JSON.parse(localStorage.userData).data.user._id && (
+                  <>
+                    <IconButton
+                      name={_id}
+                      aria-label="options"
+                      onClick={handleEdit}
+                      sx={designs.Option_IconButton_Style}
+                    >
+                      <Tooltip title="Edit Post" placement="top">
+                        <BorderColorOutlined sx={designs.EditIcon_Style} />
+                      </Tooltip>
+                    </IconButton>
+                    <IconButton
+                      aria-label="options"
+                      onClick={(event) => handleDelete(event, _id)}
+                      sx={designs.Option_IconButton_Style}
+                    >
+                      <Tooltip title="Delete Post" placement="top">
+                        <DeleteOutlineOutlined sx={designs.DeleteIcon_Style} />
+                      </Tooltip>
+                    </IconButton>{' '}
+                  </>
+                )}
               </Box>
-              {content.quizID ? <Schoolworktiles_layout roomID={roomID} content={content.quizID}/> : <Box className="post-content" sx={designs.Post_Content_Style}>
-                {ReactHtmlParser(draftToHtml(content))}
-              </Box>}
+              {content.quizID ? (
+                <Schoolworktiles_layout
+                  roomID={roomID}
+                  content={content.quizID}
+                />
+              ) : (
+                <Box className="post-content" sx={designs.Post_Content_Style}>
+                  {ReactHtmlParser(draftToHtml(content))}
+                </Box>
+              )}
 
               <Divider sx={designs.Divider_Style} />
 

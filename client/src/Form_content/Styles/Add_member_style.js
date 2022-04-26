@@ -5,7 +5,7 @@ function useStyle() {
   const designs = {
     Stack_Style: {
       width: 'relative',
-      margin: '0em 2em 0.8em 2em',
+      margin: '0em 2em 2em 2em',
       [theme.breakpoints.down('md')]: {
         margin: '0em 0em 0.8em 0em',
       },

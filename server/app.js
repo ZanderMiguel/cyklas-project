@@ -117,7 +117,13 @@ io.on('connection', (socket) => {
     quizLobby[lobby][name]['questionCount'] = 0
     quizLobby[lobby][name]['points'] = 0
   })
-
+  const exam_time = {}
+  socket.on('start-exam',(id,examTime)=>{
+    socket.join(id)
+    examTime[examTime.length -1] =0
+    exam_time[id] = examTime
+    io.in(id).emit('timer-start',[1,3,5])
+  })
 });
 
 //socket.io events
