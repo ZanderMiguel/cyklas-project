@@ -148,7 +148,6 @@ function Notificationpopover({ general, request }) {
                     </Box>
 
                     <Box sx={designs.GeneralContainer_Sub2_Style}>
-                      {' '}
                       {items.avatar}
                     </Box>
                   </Box>

@@ -3,10 +3,12 @@ import { Box, Typography, Button } from '@mui/material';
 import useStyle from './Styles/Notifications_viewall_style';
 import axios from 'axios';
 import moment from 'moment';
+
 function Requests() {
   const { designs } = useStyle();
   const [items, setItems] = React.useState(null);
-  React.useMemo(() => {
+
+  React.useEffect(() => {
     axios
       .post('http://localhost:5000/requests', {
         userID: JSON.parse(localStorage.userData).data.user._id,

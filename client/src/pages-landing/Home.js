@@ -48,16 +48,25 @@ function Home() {
     axios
       .post('http://localhost:5000/login', Object.fromEntries(myApi))
       .then((response) => {
-        response.data.token &&
-          localStorage.setItem('token', response.data.token);
-        localStorage.setItem('userData', JSON.stringify(response.data));
+        if (response.data.status === 'error') {
+          setNotif(
+            toast.error('Invalid Username or Password!', {
+              position: toast.POSITION.TOP_CENTER,
+            })
+          );
+        } else {
+          response.data.token &&
+            localStorage.setItem('token', response.data.token);
+          localStorage.setItem('userData', JSON.stringify(response.data));
+        }
+
         setMyApi(new Map());
       })
       .catch((err) => {
         console.log(err.message);
         setMyApi(new Map());
         setNotif(
-          toast.error('Error', {
+          toast.error(`${err.message}`, {
             position: toast.POSITION.TOP_CENTER,
           })
         );

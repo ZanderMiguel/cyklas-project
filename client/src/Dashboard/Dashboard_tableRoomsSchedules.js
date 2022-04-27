@@ -120,7 +120,6 @@ function Dashboard_tableRoomsSchedules({ roomdata }) {
         <tbody>
           {roomdata &&
             roomdata.map((items, index) => {
-              console.log(roomdata);
               return (
                 <tr key={index}>
                   <td data-label="Room ID"> {items.roomId} </td>

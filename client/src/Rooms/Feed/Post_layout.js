@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import moment from 'moment';
 import Schoolworktiles_layout from '../Room-content-layout/Schoolworktiles_layout';
 
@@ -26,7 +26,7 @@ import axios from 'axios';
 import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser from 'react-html-parser';
 
-function Post_layout({ data, socket, roomID }) {
+function Post_layout({ data, socket, roomID, commentId }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleEdit = (event) => {};
@@ -48,18 +48,16 @@ function Post_layout({ data, socket, roomID }) {
   };
   const account = Boolean(anchorEl);
 
-  const commentContent = React.useRef(null);
-  const postID = React.useRef(null);
+  const [commentContent, setCommentContent] = useState('');
+  const postID = useRef(null);
   const { designs } = useStyles();
-  const [commentId, setCommentId] = React.useState(null);
 
   const { post, data: comments } = usePost();
-
 
   const handleSubmitComment = () => {
     post('http://localhost:5000/comment/create', {
       announcement: postID.current,
-      content: commentContent.current,
+      content: commentContent,
       author: {
         name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
           JSON.parse(localStorage.userData).data.user.lastName
@@ -69,11 +67,6 @@ function Post_layout({ data, socket, roomID }) {
     });
     socket.emit('create-comment');
   };
-  useEffect(() => {
-    socket.on('post-comment', (uuid) => {
-      setCommentId(uuid);
-    });
-  }, [socket]);
 
   return (
     <Grid item xs={12}>
@@ -123,7 +116,7 @@ function Post_layout({ data, socket, roomID }) {
                       <Tooltip title="Delete Post" placement="top">
                         <DeleteOutlineOutlined sx={designs.DeleteIcon_Style} />
                       </Tooltip>
-                    </IconButton>{' '}
+                    </IconButton>
                   </>
                 )}
               </Box>
@@ -158,9 +151,10 @@ function Post_layout({ data, socket, roomID }) {
                   name={_id}
                   placeholder="Write a comment..."
                   variant="filled"
-                  onChange={(event) =>
-                    (commentContent.current = event.target.value)
-                  }
+                  onChange={(event) => setCommentContent(event.target.value)}
+                  onKeyPress={(event) => {
+                    event.key === 'Enter' && handleSubmitComment();
+                  }}
                   sx={designs.Comment_TextField_Style}
                   inputProps={{
                     style: {
