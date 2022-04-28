@@ -5,15 +5,13 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { IconButton } from '@mui/material';
 import Quiz_layout from './Quizbank-content-layout/Quiz_layout';
 import Exam_layout from './Quizbank-content-layout/Exam_layout';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import useStyle from './Styles/Quizlit_style';
 import CusPopover from '../components/Popover';
 import QuizlitAddpopover from '../components/PopoverContent/QuizlitAddpopover';
 import axios from 'axios';
-import { Add, AddCircleOutlineOutlined } from '@mui/icons-material';
+import { AddCircleOutlineOutlined } from '@mui/icons-material';
 import Button from '../components/Button';
 
 function Quizlit() {

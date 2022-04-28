@@ -10,7 +10,8 @@ const QuizlitSchema = new mongoose.Schema(
     rooms: { type: Array},
     dueDate: {type: String},
     timeLimit: {type: String},
-    students: { type: String}
+    students: { type: String},
+    instruction: {type:String}
   },
   { timestamps: true }
 );
