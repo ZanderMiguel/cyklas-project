@@ -10,8 +10,6 @@ import {
   Tooltip,
 } from '@mui/material';
 import { DoorFrontOutlined } from '@mui/icons-material';
-import CusPopover from '../../../components/Popover';
-import RoomOptionspopover_student from '../../../components/PopoverContent/RoomOptionspopover_student';
 import { Link } from 'react-router-dom';
 import CssBasedLine from '@mui/material/CssBaseline';
 import RoomBackground8 from '../../../assets/ImageJaven/RoomBackground8.png';
@@ -89,7 +87,7 @@ function Rooms_layout({ data }) {
                   <Typography
                     component={Link}
                     // to={`/rooms/${item.id}`}
-                    to = "/Rooms_inside2"
+                    to="/Rooms_inside2"
                     variant="h5"
                     sx={{
                       fontSize: '1.5em',
@@ -139,37 +137,41 @@ function Rooms_layout({ data }) {
                   </Box>
 
                   <Box
-                className="Schedule"
-                display="flex"
-                gap="1em"
-                sx={{
-                  marginBottom: '5px',
-                }}
-              >
-                <Typography
-                  sx={{
-                    width: "7em",
-                    fontSize: '0.8em',
-                    fontWeight: '500',
-                    color: '#8C8C8C',
-                    textTransform: 'Capitalize',
-                  }}
-                >
-                  {item.classDay}
-                </Typography>
-                <Divider orientation = "vertical" flexItem sx = {{ margin: "0.3em 0em" }}/>
-                <Typography
-                  sx={{
-                    width: "5em",
-                    fontSize: '0.8em',
-                    fontWeight: '500',
-                    color: '#8C8C8C',
-                    textTransform: 'Uppercase',
-                  }}
-                >
-                  {item.classTime}
-                </Typography>
-              </Box>
+                    className="Schedule"
+                    display="flex"
+                    gap="1em"
+                    sx={{
+                      marginBottom: '5px',
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        width: '7em',
+                        fontSize: '0.8em',
+                        fontWeight: '500',
+                        color: '#8C8C8C',
+                        textTransform: 'Capitalize',
+                      }}
+                    >
+                      {item.classDay}
+                    </Typography>
+                    <Divider
+                      orientation="vertical"
+                      flexItem
+                      sx={{ margin: '0.3em 0em' }}
+                    />
+                    <Typography
+                      sx={{
+                        width: '5em',
+                        fontSize: '0.8em',
+                        fontWeight: '500',
+                        color: '#8C8C8C',
+                        textTransform: 'Uppercase',
+                      }}
+                    >
+                      {item.classTime}
+                    </Typography>
+                  </Box>
                 </Box>
 
                 <Box

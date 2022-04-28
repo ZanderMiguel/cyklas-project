@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
-  Container,
   Box,
   Typography,
   Button,
@@ -14,7 +13,7 @@ import {
   ListItemText,
   Tooltip,
 } from '@mui/material';
-import { Delete, Folder } from '@mui/icons-material';
+import { Delete } from '@mui/icons-material';
 import useStyle from './Styles/People_table_style';
 
 function Memberstable({ members }) {

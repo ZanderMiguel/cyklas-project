@@ -22,6 +22,7 @@ import CusPopover from './Popover';
 import AvatarIcon from '../assets/ImageJaven/Avatar.png';
 import { useTheme } from '@mui/material/styles';
 import { PostAdd } from '@mui/icons-material';
+import { useLocation } from 'react-router-dom';
 
 const request = [
   {
@@ -132,8 +133,9 @@ const general = [
   },
 ];
 
-function Navbar({ path }) {
+function Navbar() {
   const theme = useTheme();
+  const location = useLocation();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorEl1, setAnchorEl1] = React.useState(null);
@@ -157,7 +159,7 @@ function Navbar({ path }) {
 
   const account = Boolean(anchorEl1);
   const badgeDot = React.useRef(null);
-  console.log(path);
+
   return (
     <>
       <CssBaseline />
@@ -179,27 +181,19 @@ function Navbar({ path }) {
             }}
             variant="h6"
           >
-            {path === '/dashboard'
+            {location.pathname.slice(0, 10) === '/dashboard'
               ? 'Dashboard'
-              : path === '/telecon'
+              : location.pathname.slice(0, 9) === '/telecon'
               ? 'Telecon'
-              : path === `/rooms`
+              : location.pathname.slice(0, 6) === `/rooms`
               ? 'Rooms'
-              : path === '/rooms/:roomID'
-              ? 'Rooms'
-              : path === '/rooms/:roomID/s/:activityID'
-              ? 'Rooms'
-              : path === '/rooms/:roomID/p/:activityID'
-              ? 'Rooms'
-              : path === '/classcards'
+              : location.pathname.slice(0, 11) === '/classcards'
               ? 'Class Card'
-              : path === '/quizlit'
+              : location.pathname.slice(0, 8) === '/quizlit'
               ? 'Quizlit'
-              : path === '/quizlit/createquiz'
-              ? 'Quizlit'
-              : path === '/records'
+              : location.pathname.slice(0, 8) === '/records'
               ? 'Records'
-              : path === '/settings' && 'Settings'}
+              : location.pathname.slice(0, 9) === '/settings' && 'Settings'}
           </Typography>
           <IconButton size="small" onClick={handleClickNotif}>
             <Badge
@@ -231,7 +225,7 @@ function Navbar({ path }) {
             }}
           >
             <Avatar
-              src={`${JSON.parse(localStorage.userData).data.user.image}`}
+              src={JSON.parse(localStorage.userData).data.user.image}
               alt="profileImg"
             />
             <Box

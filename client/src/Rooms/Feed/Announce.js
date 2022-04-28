@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CssBaseline, Grid, Paper } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -8,10 +8,15 @@ import Rich_text from './Rich_text';
 
 function Announce({ socket }) {
   const { roomID } = useParams();
-  const [postuuid, setPostUuid] = React.useState(null);
-  const [data, setData] = React.useState(null);
+  const [postuuid, setPostUuid] = useState(null);
+  const [data, setData] = useState(null);
+  const [commentId, setCommentId] = useState(null);
+
   socket.on('post-created', (uuid) => {
     setPostUuid(uuid);
+  });
+  socket.on('post-comment', (uuid) => {
+    setCommentId(uuid);
   });
 
   React.useEffect(() => {
@@ -28,6 +33,7 @@ function Announce({ socket }) {
       .then((res) => {
         if (!unmounted) {
           setData(res.data);
+          socket.emit('create-comment');
         }
       })
       .catch((e) => {
@@ -55,7 +61,14 @@ function Announce({ socket }) {
           </Paper>
         </Grid>
         <Grid item xs={12}>
-          {data && <Post_layout data={data} socket={socket} roomID={roomID} />}
+          {data && (
+            <Post_layout
+              data={data}
+              socket={socket}
+              roomID={roomID}
+              commentId={commentId}
+            />
+          )}
         </Grid>
       </Grid>
     </>

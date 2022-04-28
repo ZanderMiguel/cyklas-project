@@ -1,7 +1,6 @@
 import { useTheme } from '@mui/material/styles';
 
 function useStyle() {
-  const theme = useTheme();
   const designs = {
     Container_Style: {
       padding: '1em 0em ',

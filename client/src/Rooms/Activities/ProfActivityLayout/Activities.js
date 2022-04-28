@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Box, Button, Grid } from '@mui/material';
+import React, { useState, useEffect,useRef } from 'react';
+import { Box, Button, Grid } from '@mui/material';
 import Create_activity from '../../../Form_content/Create_activity';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Activities_layout from './Activities_layout';
@@ -8,7 +8,8 @@ import axios from 'axios';
 function Activities({ roomID }) {
   const [opendialog, setOpenDialog] = useState(false);
   const [activity, setActivity] = useState(null);
-
+  
+  
   const handleClickOpen = () => {
     setOpenDialog(true);
   };
@@ -45,7 +46,7 @@ function Activities({ roomID }) {
       unmounted = true;
       source.cancel('Cancelling in cleanup');
     };
-  }, []);
+  }, [opendialog]);
   return (
     <>
       <Box
@@ -68,9 +69,9 @@ function Activities({ roomID }) {
           Create Activity
         </Button>
       </Box>
-      {opendialog && <Create_activity open={opendialog} close={handleClose} />}
+      {opendialog && <Create_activity open={opendialog} close={handleClose} setOpenDialog={setOpenDialog} />}
       <Grid container rowSpacing={2}>
-        <Activities_layout roomID={roomID} activity={activity} />
+        <Activities_layout roomID={roomID} activity={activity}  />
       </Grid>
     </>
   );

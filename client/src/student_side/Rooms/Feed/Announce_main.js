@@ -5,22 +5,21 @@ import axios from 'axios';
 
 import Post_layout from './Layouts/Post_layout';
 import Announce_form from './Announce_form';
-import Schoolworktiles_layout from './Layouts/Schoolworktiles_layout';
 
 function Announce_main({ socket }) {
   const { roomID } = useParams();
   const [postuuid, setPostUuid] = React.useState(null);
   const [data, setData] = React.useState(null);
-   socket.on('post-created', (uuid) => {
-     setPostUuid(uuid);
-   });
+  socket.on('post-created', (uuid) => {
+    setPostUuid(uuid);
+  });
 
   React.useMemo(() => {
     axios
       .post('http://localhost:5000/announce', { rooms: roomID })
       .then((res) => {
         setData(res.data);
-        console.log(res.data)
+        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, [postuuid]);

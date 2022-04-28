@@ -21,7 +21,7 @@ import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser from 'react-html-parser';
 import ActivityFile from '../../../components/ActivityFile';
 
-function ActivitiesAccordion({ roomID, activity }) {
+function ActivitiesAccordion({ roomID, activity}) {
   const { designs } = useStyle();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -35,11 +35,11 @@ function ActivitiesAccordion({ roomID, activity }) {
   const handleDelete = (event) => {
     event.stopPropagation();
   };
-
+  
   return (
     <>
       {activity &&
-        activity.map(function (items, index) {
+        activity.map( (items, index) => {
           const {
             activityDueDate: duedate,
             activityInstruction: instruction,
@@ -47,8 +47,10 @@ function ActivitiesAccordion({ roomID, activity }) {
             activityTitle: title,
             activityType: type,
             _id: _id,
-          } = items;
+          } = items
+
           return (
+            
             <Grid key={index} item xs={12}>
               <Box className="Activity_Tiles" sx={designs.Activity_Tiles}>
                 <Accordion

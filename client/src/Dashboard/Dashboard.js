@@ -21,25 +21,8 @@ import {
 } from '@mui/icons-material';
 import AvatarIcon from '../assets/ImageJaven/Avatar.png';
 import useStyle from './Styles/Dashboard_style';
+import axios from 'axios';
 import DASHBOARD_TABLEROOMS_SCHEDULES from './Dashboard_tableRoomsSchedules';
-// const dataRoom = [
-//   {
-//     value: 'Embedded Programming',
-//     label: 'Embedded Programming',
-//   },
-//   {
-//     value: 'Art Appreciation',
-//     label: 'Art Appreciation',
-//   },
-//   {
-//     value: 'Science, Technology and Society',
-//     label: 'Science, Technology and Society',
-//   },
-//   {
-//     value: 'Software Engineering',
-//     label: 'Software Engineering',
-//   },
-// ];
 
 const dataRange = [
   {
@@ -540,18 +523,20 @@ const dataStudentRankings = [
 
 function Dashboard() {
   const { designs } = useStyle();
-
-  // const [selectRoom, setSelectRoom] = useState('');
-
-  // const handleChangeRoom = (event) => {
-  //   setSelectRoom(event.target.value);
-  // };
-
   const [selectRange, setSelectRange] = useState('This week');
-
+  const [roomdata, setRoom] = useState(null);
   const handleChangeRange = (event) => {
     setSelectRange(event.target.value);
   };
+
+  React.useEffect(() => {
+    axios
+      .post('http://localhost:5000/rooms', {
+        userID: JSON.parse(localStorage.userData).data.user._id,
+      })
+      .then((res) => setRoom(res.data))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <Container maxWidth="xl">
@@ -1216,7 +1201,7 @@ function Dashboard() {
                 height: 'auto',
               }}
             >
-              <DASHBOARD_TABLEROOMS_SCHEDULES />
+              <DASHBOARD_TABLEROOMS_SCHEDULES roomdata={roomdata} />
             </Grid>
             {/* <Box sx = {{ width: "100%", height: "60vh", border: "1px solid black"}}>
                         </Box> */}

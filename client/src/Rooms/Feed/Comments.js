@@ -11,7 +11,7 @@ import usePost from '../../customHooks/usePost';
 import ReactScrollableFeed from 'react-scrollable-feed';
 import axios from 'axios';
 
-function Comments({ postId, commentId, socket }) {
+function Comments({ postId, commentId, socket, reloadcomment }) {
   const { designs } = useStyles();
   const { post, data } = usePost();
 
@@ -27,10 +27,9 @@ function Comments({ postId, commentId, socket }) {
       .catch((error) => console.log(error));
   };
 
-  React.useMemo(() => {
+  React.useEffect(() => {
     post('http://localhost:5000/comment', { announcement: postId });
   }, [commentId]);
-
   return (
     <>
       <Box className="View-comments" sx={designs.View_Comments_Style}>

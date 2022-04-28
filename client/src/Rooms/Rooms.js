@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Container, Typography } from '@mui/material';
+import { Grid, Container } from '@mui/material';
 import Room_layout from './Room-content-layout/Room_layout_professor';
 import CircularProgress from '@mui/material/CircularProgress';
 import Create_room from '../Form_content/Create_room';
@@ -8,7 +8,6 @@ import Join_room from '../Form_content/Join_room';
 import usePost from '../customHooks/usePost';
 import Button from '../components/Button';
 import Room_layout_student from './Room-content-layout/Room_layout_student';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
 function Rooms({ socket }) {
   const { roomID } = useParams();
@@ -37,7 +36,7 @@ function Rooms({ socket }) {
   }, [newRoom]);
   return (
     <>
-      <Container maxWidth="lg">
+      <Container maxWidth="md">
         {JSON.parse(localStorage.userData).data.user.userType ===
           'Professor' && (
           <>

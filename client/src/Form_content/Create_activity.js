@@ -13,7 +13,7 @@ import { EditorState, convertToRaw } from 'draft-js';
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { useParams } from 'react-router-dom';
 
-function Create_activity({ open, close }) {
+function Create_activity({ open, close, setOpenDialog }) {
   const { roomID } = useParams();
   const [type, setType] = useState('');
   const [title, setTitle] = useState('');
@@ -65,7 +65,7 @@ function Create_activity({ open, close }) {
       axios
         .post('http://localhost:5000/activity/create', Activity)
         .then((res) => {
-          console.log(res);
+          setOpenDialog(false)
         })
         .catch((err) => {
           console.log(err);

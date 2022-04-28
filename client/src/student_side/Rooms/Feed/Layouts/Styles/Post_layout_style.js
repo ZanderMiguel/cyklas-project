@@ -1,8 +1,4 @@
-import { useTheme } from '@mui/material/styles';
-
 function useStyle() {
-  const theme = useTheme();
-
   const designs = {
     Post_Style: {
       width: '100%',
@@ -64,34 +60,34 @@ function useStyle() {
       height: 'relative',
     },
     Option_IconButton_Style: {
-      borderRadius: "0em",
+      borderRadius: '0em',
       height: '1.2em',
       width: '1.2em',
       margin: '8px 0px',
-      "&: hover": {
-        backgroundColor: "transparent"
-      }
+      '&: hover': {
+        backgroundColor: 'transparent',
+      },
     },
     EditIcon_Style: {
       color: '#615F79',
       fontSize: '20px',
-      "&: hover": {
+      '&: hover': {
         color: '#007FFF',
-      }
+      },
     },
     DeleteIcon_Style: {
       color: '#615F79',
       fontSize: '20px',
-      "&: hover": {
+      '&: hover': {
         color: '#FF3B00',
-      }
+      },
     },
     MoreVertIcon_Style: {
       color: '#3F3D56',
       fontSize: '20px',
-      "&: hover": {
+      '&: hover': {
         color: '#007FFF',
-      }
+      },
     },
     Post_Content_Style: {
       padding: '10px 75px',
@@ -155,7 +151,7 @@ function useStyle() {
     SendIcon_Style: {
       color: '#3F3D56',
       fontSize: '20px',
-    }
+    },
   };
 
   return { designs };

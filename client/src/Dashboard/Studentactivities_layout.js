@@ -95,7 +95,7 @@ function Studentactivities_layout({ roomID }) {
                 >
                   <img
                     src={ActivityIcon}
-                    atl="Activity_Icon_Image"
+                    alt="Activity_Icon_Image"
                     style={{
                       height: '30px',
                       margin: '4px 15px 0px 0px',

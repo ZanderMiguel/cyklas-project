@@ -18,7 +18,7 @@ import {
 import AvatarIcon from '../assets/ImageJaven/Avatar.png';
 import useStyle from './Styles/Notifications_viewall_style';
 import Requests from './Requests';
-import axios from 'axios'
+import axios from 'axios';
 
 const general = [
   {
@@ -252,7 +252,7 @@ function Notification_viewall() {
                       >
                         <Typography
                           sx={{
-                            fontSize: '0.5em',
+                            fontSize: '0.7em',
                             fontWeight: '600',
                             color: '#605E73',
                             width: 'auto',
@@ -269,7 +269,7 @@ function Notification_viewall() {
 
                         <Typography
                           sx={{
-                            fontSize: '0.5em',
+                            fontSize: '0.7em',
                             fontWeight: '500',
                             color: '#8E8E8E',
                             width: 'auto',
