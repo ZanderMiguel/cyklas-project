@@ -65,6 +65,9 @@ function Post_layout({ data, socket, roomID, commentId }) {
         userID: JSON.parse(localStorage.userData).data.user._id,
       },
     });
+    if (comments) {
+      setCommentContent('');
+    }
     socket.emit('create-comment');
   };
 
@@ -151,6 +154,7 @@ function Post_layout({ data, socket, roomID, commentId }) {
                   name={_id}
                   placeholder="Write a comment..."
                   variant="filled"
+                  value={commentContent}
                   onChange={(event) => setCommentContent(event.target.value)}
                   onKeyPress={(event) => {
                     event.key === 'Enter' && handleSubmitComment();
