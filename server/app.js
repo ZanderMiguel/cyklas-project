@@ -122,7 +122,7 @@ io.on('connection', (socket) => {
     socket.join(id)
     examTime[examTime.length -1] =0
     exam_time[id] = examTime
-    io.in(id).emit('timer-start',[1,3,5])
+    io.in(id).emit('timer-start',exam_time[id])
   })
 });
 

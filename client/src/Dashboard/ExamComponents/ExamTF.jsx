@@ -4,19 +4,23 @@ import Image from '../../assets/ImageJaven/Image.png';
 import useStyle from '../Styles/Exam_start_style';
 import '../Styles/Exam_start_stylesheet.css';
 function ExamTF({ item, index,qAnswers }) {
+  React.useMemo(()=>{qAnswers.current.push({})},[])
   const { designs } = useStyle();
   const [answerButtonToggleTrue, setAnswerButtonToggleTrue] = useState(true);
   const [answerButtonToggleFalse, setAnswerButtonToggleFalse] = useState(true);
   qAnswers.current[index]['answeredBy'] = JSON.parse(localStorage.userData).data.user._id
   qAnswers.current[index]['questions']= item._id
+  console.log(qAnswers.current)
 
   const handleClickTrue = () => {
     setAnswerButtonToggleTrue((prev) => !prev);
     setAnswerButtonToggleFalse(true);
+    qAnswers.current[index]['answers'] = 'answer1'
   };
   const handleClickFalse = () => {
     setAnswerButtonToggleFalse((prev) => !prev);
     setAnswerButtonToggleTrue(true);
+    qAnswers.current[index]['answers'] = 'answer2'
   };
   return (
     <Grid item xs={12} sx={designs.Question_GridItem_Style}>

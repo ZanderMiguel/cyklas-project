@@ -5,13 +5,14 @@ import useStyle from '../Styles/Exam_start_style';
 import '../Styles/Exam_start_stylesheet.css';
 function ExamMulti({ item, index,qAnswers }) {
   const { designs } = useStyle();
-
+  React.useMemo(()=>{qAnswers.current.push({})},[])
   const [answerButtonToggleA, setAnswerButtonToggleA] = useState(true);
   const [answerButtonToggleB, setAnswerButtonToggleB] = useState(true);
   const [answerButtonToggleC, setAnswerButtonToggleC] = useState(true);
   const [answerButtonToggleD, setAnswerButtonToggleD] = useState(true);
   qAnswers.current[index]['questions']= item._id
   qAnswers.current[index]['answeredBy'] = JSON.parse(localStorage.userData).data.user._id
+  console.log(qAnswers.current)
   const handleClickA = () => {
     setAnswerButtonToggleA((prev) => !prev);
     setAnswerButtonToggleB(true);

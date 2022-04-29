@@ -7,14 +7,16 @@ import {
 } from '@mui/material';
 import '../../Styles/View_quiz_stylesheet.css';
 import useStyle from '../../Styles/View_exam_style';
-import axios from 'axios'
-function StudentsList({ items,setStdID }) {
-    const {designs} = useStyle()
+function StudentsList({ items, setStdID}) {
+    const { designs } = useStyle()
     return (
-        <Box  sx={designs.Student_Box_Style}
-        onClick={()=>{
-            setStdID(items._id)
-        }}
+        <Box sx={designs.Student_Box_Style}
+            onClick={() => {
+
+                setStdID(items._id)
+                
+
+            }}
         >
             <Checkbox sx={designs.Student_Checkbox_Style} />
             <Avatar
@@ -38,8 +40,10 @@ function StudentsList({ items,setStdID }) {
                 {items.firstName} {items.lastName}
             </Typography>
             <Box flexGrow={1} height="relative" width="relative" />
-            <Typography sx={designs.StudentScore_Typography_Style}>
-                {items.score}
+            <Typography
+                id={items._id}
+                sx={designs.StudentScore_Typography_Style}>
+               
             </Typography>
         </Box>
     )
