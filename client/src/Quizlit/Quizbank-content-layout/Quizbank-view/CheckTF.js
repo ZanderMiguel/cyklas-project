@@ -5,10 +5,37 @@ import {
 } from '@mui/material';
 import useStyle from '../../Styles/View_exam_style';
 import '../../Styles/View_quiz_stylesheet.css';
-function CheckTF() {
-    const {designs} = useStyle()
+import axios from 'axios'
+function CheckTF({ stdID, item, index, setScore, setOverAll }) {
+    const { designs } = useStyle()
+    const [exist, setExist] = React.useState(null)
+    const [data, setData] = React.useState(null)
+    React.useMemo(() => {
+        axios.post('http://localhost:5000/answers', { answeredBy: stdID, questionID: item._id }).then(res => {
+            setScore(0)
+            setOverAll(0)
+            if (res.data.length > 0) {
+                setExist(true)
+                setData(res.data)
+                console.log(res.data,'putanginamo')
+                setOverAll(prev => prev + parseInt(item.points.replace(' points', '')))
+
+                if (item.correctAnswer === res.data?.[0].answers) {
+                    setScore(prev => prev + parseInt(item.points.replace(' points', '')))
+
+
+                }
+            }
+            if (res.data.length < 1) {
+                setExist(false)
+                setData(null)
+            }
+
+        })
+            .catch(err => console.log(err))
+    }, [stdID])
     return (
-        <div><Typography sx={designs.Type_Typography_Style}>
+        <div>{data && exist ?<><Typography sx={designs.Type_Typography_Style}>
             True or False
         </Typography>
 
@@ -32,7 +59,7 @@ function CheckTF() {
                 </Box>
 
                 <Box className="Choices" sx={designs.Choices_Style}>
-                    <Box className="Choice-a" sx={designs.ChoiceTrue_Style}>
+                    <Box className="Choice-a" sx={data[0]?.answers === "answer1" ?designs.ChoiceTrue_Style:designs.ChoiceFalse_Style}>
                         <Typography sx={designs.Choice_Typography_Style}>
                             A.
                         </Typography>
@@ -42,7 +69,7 @@ function CheckTF() {
                         </Typography>
                     </Box>
 
-                    <Box className="Choice-b" sx={designs.ChoiceFalse_Style}>
+                    <Box className="Choice-b" sx={data[0]?.answers === "answer2" ?designs.ChoiceTrue_Style:designs.ChoiceFalse_Style}>
                         <Typography sx={designs.Choice_Typography_Style}>
                             B.
                         </Typography>
@@ -56,7 +83,7 @@ function CheckTF() {
                 <Typography sx={designs.CorrectAnswer_Typography_Style}>
                     Correct Answer: True
                 </Typography>
-            </Box></div>
+            </Box></> : <center><h4>Nothing to display</h4></center>}</div>
     )
 }
 

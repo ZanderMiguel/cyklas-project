@@ -8,7 +8,7 @@ import useStyle from '../../Styles/View_exam_style';
 import '../../Styles/View_quiz_stylesheet.css';
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-function CheckBoxes() {
+function CheckBoxes({ stdID, item, index, setScore, setOverAll }) {
     const {designs} = useStyle()
     return (
         <div>

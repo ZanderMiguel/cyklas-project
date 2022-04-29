@@ -19,7 +19,7 @@ import '../../Styles/View_quiz_stylesheet.css';
 import SelectRoom from './SelectRoom'
 import StudentsList from './StudentsList';
 import CheckAnswers from './CheckAnswers';
-import {useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import moment from 'moment'
 const dataSort = [
@@ -46,20 +46,25 @@ function View_exam() {
   const { designs } = useStyle();
   const [selectSort, setSort] = useState('');
   const [data, setData] = useState(null)
-  const {examID} = useParams()
-  const [quizData,setQuizData] = useState(null)
-  const [stdID,setStdID] = useState(null)
+  const { examID } = useParams()
+  const [quizData, setQuizData] = useState(null)
+  const [stdID, setStdID] = useState(null)
+  const [score, setScore] = useState(0)
+  const [overAll, setOverAll] = useState(0)
+  const stdScore = React.useRef([])
   const handleChangeSort = (event) => {
     setSort(event.target.value);
   };
-  React.useMemo(()=>{
-    axios.post('http://localhost:5000/quizlit',{quizID:examID})
-    .then((res)=>{
-      setQuizData(res.data)
-      console.log(res.data)
-    })
-    .catch(err=>console.log(err))
-  },[])
+  React.useMemo(() => {
+    axios.post('http://localhost:5000/quizlit', { quizID: examID })
+      .then((res) => {
+        setQuizData(res.data)
+
+      })
+      .catch(err => console.log(err))
+  }, [])
+  document.getElementById(`${stdID}`) && (document.getElementById(`${stdID}`).innerHTML = `${(score / overAll) * 100}%`.replace('NaN%', 'Missing'))
+
   return (
     <Container maxWidth="lg">
       <Grid container columnSpacing={1}>
@@ -113,8 +118,8 @@ function View_exam() {
             >
               {data && data.map(function (items, index) {
                 return (
-                  <div key={index}><StudentsList items={items} setStdID={setStdID} /></div>
-                  
+                  <div key={index}><StudentsList stdScore={stdScore} items={items} setStdID={setStdID} setScore={setScore} score={score} overAll={overAll} setOverAll={setOverAll} /></div>
+
                 );
               })}
             </Box>
@@ -180,10 +185,10 @@ function View_exam() {
               </Typography>
 
               <Typography sx={designs.Score_Typography_Style}>
-                10 / 10
+                {`${score} / ${overAll}`}
               </Typography>
             </Box>
-            {stdID && quizData && <CheckAnswers quizID={quizData._id} stdID={stdID}/>}
+            {stdID && quizData && <CheckAnswers quizID={quizData._id} stdID={stdID} setScore={setScore} setOverAll={setOverAll} />}
 
           </Box>
         </Grid>

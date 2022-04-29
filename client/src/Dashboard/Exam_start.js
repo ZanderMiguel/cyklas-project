@@ -22,7 +22,7 @@ function Exam_start({ socket }) {
   const { designs } = useStyle();
   const { examID: quizID } = useParams();
   const [data, setData] = React.useState(null);
-  const qAnswers = React.useRef([{}])
+  const qAnswers = React.useRef([])
   const [redirect, setRedirect] = React.useState(null)
   React.useMemo(() => {
     axios
@@ -125,8 +125,9 @@ function Exam_start({ socket }) {
             <Button
               onClick={() => {
                 axios.post('http://localhost:5000/answers/create', { answersPayload: qAnswers.current }).then(res => {
-                  setRedirect(<Redirect to="/dashboard" />)
                   console.log(res.data)
+                  setRedirect(<Redirect to="/dashboard" />)
+
                 }).catch(err => console.log(err))
               }}
               sx={designs.SubmitExam_Button_Style}>Submit</Button>
