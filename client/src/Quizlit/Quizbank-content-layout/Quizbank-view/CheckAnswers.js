@@ -24,10 +24,10 @@ function CheckAnswers({ quizID, stdID, setScore, setOverAll,stdScore }) {
             {data && data.map((item, index) => {
                 return (
                     <div key={index}>
-                        {item.answerType === "Multiple Choice" && <CheckMultiple item={item} stdID={stdID} index={index} setScore={setScore} setOverAll={setOverAll} stdScore={stdScore} />}
-                        {item.answerType === "Short Answer" && <CheckShort item={item} stdID={stdID} index={index} setScore={setScore} setOverAll={setOverAll} />}
-                        {item.answerType === "Checkboxes" && <CheckBoxes item={item} stdID={stdID} index={index} setScore={setScore} setOverAll={setOverAll} />}
-                        {item.answerType === "True or False" && <CheckTF item={item} stdID={stdID} index={index} setScore={setScore} setOverAll={setOverAll} />}
+                        {item.answerType === "Multiple Choice" && <CheckMultiple item={item} stdID={stdID} setScore={setScore} setOverAll={setOverAll} stdScore={stdScore} />}
+                        {item.answerType === "Short Answer" && <CheckShort item={item} stdID={stdID} setScore={setScore} setOverAll={setOverAll} />}
+                        {item.answerType === "Checkboxes" && <CheckBoxes item={item} stdID={stdID} setScore={setScore} setOverAll={setOverAll} />}
+                        {item.answerType === "True or False" && <CheckTF item={item} stdID={stdID} setScore={setScore} setOverAll={setOverAll} />}
 
                     </div>
                 )

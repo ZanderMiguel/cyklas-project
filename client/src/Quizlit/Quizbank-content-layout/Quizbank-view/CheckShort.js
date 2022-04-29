@@ -7,9 +7,29 @@ import {
 } from '@mui/material';
 import useStyle from '../../Styles/View_exam_style';
 import '../../Styles/View_quiz_stylesheet.css';
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-function CheckShort() {
-    const {designs} = useStyle()
+import axios from 'axios'
+function CheckShort({ stdID, item, setScore, setOverAll }) {
+    const { designs } = useStyle()
+    const [exist, setExist] = React.useState(null)
+    const [data, setData] = React.useState(null)
+
+    React.useMemo(() => {
+        axios.post('http://localhost:5000/answers', { answeredBy: stdID, questionID: item._id }).then(res => {
+
+            if (res.data.length > 0) {
+                setExist(true)
+                setData(res.data)
+                setOverAll(prev => prev + parseInt(item.points.replace(' points', '')))
+
+            }
+            if (res.data.length < 1) {
+                setExist(false)
+                setData(null)
+            }
+
+        })
+            .catch(err => console.log(err))
+    }, [stdID])
     return (
         <div>
 
@@ -45,6 +65,19 @@ function CheckShort() {
                         }}
                         variant="standard"
                         sx={designs.Points_TextField_Style}
+                        onChange={(e) => {
+                            try {
+                                if (parseInt(e.target.value) > parseInt(item.points.replace(' points', ''))) {
+                                    setScore(prev => prev+ parseInt(item.points.replace(' points', '')))
+                                }
+                                if (parseInt(e.target.value) <= parseInt(item.points.replace(' points', ''))) {
+                                    setScore(prev => prev+ e.target.value)
+                                }
+                                
+                            } catch (err) {
+                                e.target.value = ''
+                            }
+                        }}
                     />
 
                     <Typography sx={designs.PointsText_Typography_Style}>
