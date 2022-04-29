@@ -7,11 +7,15 @@ import {
 } from '@mui/material';
 import '../../Styles/View_quiz_stylesheet.css';
 import useStyle from '../../Styles/View_exam_style';
-
-function StudentsList({ index,items }) {
+import axios from 'axios'
+function StudentsList({ items,setStdID }) {
     const {designs} = useStyle()
     return (
-        <Box  sx={designs.Student_Box_Style}>
+        <Box  sx={designs.Student_Box_Style}
+        onClick={()=>{
+            setStdID(items._id)
+        }}
+        >
             <Checkbox sx={designs.Student_Checkbox_Style} />
             <Avatar
                 alt="Remy Sharp"

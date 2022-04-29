@@ -12,7 +12,7 @@ const createAnswer = async (req, res) => {
 
 const displayAnswer = async (req, res) => {
   try {
-    const answer = await AnswerModel.find({ questions: req.body.questionID });
+    const answer = await AnswerModel.find({ questions: req.body.questionID, answeredBy: req.body.answeredBy });
     console.log('Answer Displayed');
     return res.json(answer);
   } catch (error) {

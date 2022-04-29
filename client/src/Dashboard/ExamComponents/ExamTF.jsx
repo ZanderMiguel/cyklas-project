@@ -3,10 +3,12 @@ import { Grid, Box, Typography, Divider } from '@mui/material';
 import Image from '../../assets/ImageJaven/Image.png';
 import useStyle from '../Styles/Exam_start_style';
 import '../Styles/Exam_start_stylesheet.css';
-function ExamTF({ item, index }) {
+function ExamTF({ item, index,qAnswers }) {
   const { designs } = useStyle();
   const [answerButtonToggleTrue, setAnswerButtonToggleTrue] = useState(true);
   const [answerButtonToggleFalse, setAnswerButtonToggleFalse] = useState(true);
+  qAnswers.current[index]['answeredBy'] = JSON.parse(localStorage.userData).data.user._id
+  qAnswers.current[index]['questions']= item._id
 
   const handleClickTrue = () => {
     setAnswerButtonToggleTrue((prev) => !prev);
