@@ -12,18 +12,14 @@ function CheckTF({ stdID, item, index, setScore, setOverAll }) {
     const [data, setData] = React.useState(null)
     React.useMemo(() => {
         axios.post('http://localhost:5000/answers', { answeredBy: stdID, questionID: item._id }).then(res => {
-            setScore(0)
-            setOverAll(0)
+
             if (res.data.length > 0) {
                 setExist(true)
                 setData(res.data)
-                console.log(res.data,'putanginamo')
                 setOverAll(prev => prev + parseInt(item.points.replace(' points', '')))
 
                 if (item.correctAnswer === res.data?.[0].answers) {
                     setScore(prev => prev + parseInt(item.points.replace(' points', '')))
-
-
                 }
             }
             if (res.data.length < 1) {
@@ -81,7 +77,7 @@ function CheckTF({ stdID, item, index, setScore, setOverAll }) {
                 </Box>
 
                 <Typography sx={designs.CorrectAnswer_Typography_Style}>
-                    Correct Answer: True
+                    Correct Answer: {item.correctAnswer === "answer1"?'True':'False'}
                 </Typography>
             </Box></> : <center><h4>Nothing to display</h4></center>}</div>
     )

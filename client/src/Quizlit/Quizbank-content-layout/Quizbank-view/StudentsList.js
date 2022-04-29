@@ -7,12 +7,8 @@ import {
 } from '@mui/material';
 import '../../Styles/View_quiz_stylesheet.css';
 import useStyle from '../../Styles/View_exam_style';
-function StudentsList({ items, setStdID, setScore, overAll, score, setOverAll, stdScore,refresher }) {
+function StudentsList({ items, setStdID}) {
     const { designs } = useStyle()
-    stdScore.current[items._id] = {}
-    stdScore.current[items._id]['score'] = score
-    stdScore.current[items._id]['overall'] = overAll
-    
     return (
         <Box sx={designs.Student_Box_Style}
             onClick={() => {

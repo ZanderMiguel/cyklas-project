@@ -6,14 +6,14 @@ import {
 import useStyle from '../../Styles/View_exam_style';
 import '../../Styles/View_quiz_stylesheet.css';
 import axios from 'axios'
-function CheckMultiple({ stdID, item, index, setScore, setOverAll }) {
+function CheckMultiple({ stdID, item, setScore, setOverAll }) {
     const { designs } = useStyle()
     const [exist, setExist] = React.useState(null)
     const [data, setData] = React.useState(null)
+
     React.useMemo(() => {
         axios.post('http://localhost:5000/answers', { answeredBy: stdID, questionID: item._id }).then(res => {
-            setScore(0)
-            setOverAll(0)
+            
             if (res.data.length > 0) {
                 setExist(true)
                 setData(res.data)
@@ -21,7 +21,6 @@ function CheckMultiple({ stdID, item, index, setScore, setOverAll }) {
 
                 if (item.correctAnswer === res.data?.[0].answers) {
                     setScore(prev => prev + parseInt(item.points.replace(' points', '')))
-
 
                 }
             }
@@ -102,7 +101,7 @@ function CheckMultiple({ stdID, item, index, setScore, setOverAll }) {
                     </Box>
 
                     <Typography sx={designs.CorrectAnswer_Typography_Style}>
-                        Correct Answer: C
+                        Correct Answer: {item.correctAnswer === "answer1" ? 'A' : item.correctAnswer === "answer2" ? 'B' : item.correctAnswer === "answer3" ? 'C' : 'D'}
                     </Typography>
                 </Box></> : <center><h4>Nothing to display</h4></center>}</div>
     )
