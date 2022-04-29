@@ -41,7 +41,10 @@ function MainSessionHeader() {
                 height: "max-content",
                 width: "auto",
                 flexGrow: 1,
-                wordSpacing: "0.1em"
+                wordSpacing: "0.1em",
+                "&: hover": {
+                    cursor: "default"
+                }
             }}/>
         </Box>
 
@@ -50,17 +53,17 @@ function MainSessionHeader() {
         <Box
         sx = {{
             height: "2.5em",
-            border: "1px solid #DEDEDE",
             borderRadius: "0.4em",
             display: "flex",
             gap: "0.5em",
             alignItems: "center",
             padding: "0.3em 0.6em",
-            "&: hover": {
-                cursor: "pointer",
-                backgroundColor: "#282B31",
-                transition: "all 300ms"
-            }
+            border: "1px solid #DEDEDE",
+            // "&: hover": {
+            //     cursor: "pointer",
+            //     backgroundColor: "#282B31",
+            //     transition: "all 300ms"
+            // }
         }}>
             <PeopleAlt sx = {{ color: "#DEDEDE", fontSize: "1.2em" }}/>
 
@@ -73,6 +76,9 @@ function MainSessionHeader() {
                 height: "max-content",
                 width: "auto",
                 flexGrow: 1,
+                "&: hover": {
+                    cursor: "default"
+                }
             }}/>
         </Box>
     </Box>
