@@ -162,15 +162,9 @@ function App() {
 
               {/* Telecon */}
               <ProtectedRoutes exact path="/telecon" component={TeleconStart} />
-<<<<<<< Updated upstream
-              
-              <Route path="/telecon/room" component={TeleconRoomV2}  />
-
-=======
               <Route path="/telecon/room">
                 <TeleconRoomV2 socket={socket} />
               </Route>
->>>>>>> Stashed changes
               {/* <Route path="/TeleconRoomV2" component={TeleconRoomV2} /> */}
 
               {/* Records and Classcards */}

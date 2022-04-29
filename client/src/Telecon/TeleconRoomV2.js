@@ -30,11 +30,7 @@ import {
   CoPresentOutlined,
 } from '@mui/icons-material';
 
-<<<<<<< Updated upstream
-function TeleconRoomV2({socket}) {
-=======
 function TeleconRoomV2({ socket }) {
->>>>>>> Stashed changes
   const [sidedrawer, setSideDrawer] = React.useState(false);
   const [sidecontent, setSideContent] = React.useState('');
   const [currentMessage, setCurrentMessage] = React.useState('');
@@ -86,34 +82,6 @@ function TeleconRoomV2({ socket }) {
                         width: '25rem',
                     },
                     }}> */}
-<<<<<<< Updated upstream
-                    <Slide direction="left" in={sidedrawer} mountOnEnter unmountOnExit>
-                        
-                    <Grid item xs = {10} sx = {{ height: "98vh" }}>
-                    
-                    {sidecontent === 'MeetingInformation' ? (
-                        <MeetingInformation/>
-                    )
-                    : 
-                    sidecontent === 'Members' ? (
-                        <Members />
-                    )
-                    : 
-                    sidecontent === 'MessageArea' ? (
-                        <MessageArea socket={socket} />
-                    )
-                    : 
-                    (
-                    sidecontent === 'PresentationCriteria' && <PresentationCriteria/>
-                    )
-                    }
-                    </Grid>
-                    {/* </Collapse> */}
-                    </Slide>
-            </Box>
-                
-            <RightContentSideBar setSideDrawer={setSideDrawer} setSideContent={setSideContent}/>
-=======
             <Slide direction="left" in={sidedrawer} mountOnEnter unmountOnExit>
               <Grid item xs={10} sx={{ height: '98vh' }}>
                 {sidecontent === 'MeetingInformation' ? (
@@ -134,7 +102,6 @@ function TeleconRoomV2({ socket }) {
                   )
                 )}
               </Grid>
-              {/* </Collapse> */}
             </Slide>
           </Box>
 
@@ -142,7 +109,6 @@ function TeleconRoomV2({ socket }) {
             setSideDrawer={setSideDrawer}
             setSideContent={setSideContent}
           />
->>>>>>> Stashed changes
         </Box>
       </Box>
     </>
