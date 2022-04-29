@@ -4,8 +4,10 @@ import Image from '../../assets/ImageJaven/Image.png';
 import '../Styles/Exam_start_stylesheet.css';
 import useStyle from '../Styles/Exam_start_style';
 
-function ExamShort({ item, index }) {
+function ExamShort({ item, index,qAnswers }) {
   const { designs } = useStyle();
+  qAnswers.current[index]['answeredBy'] = JSON.parse(localStorage.userData).data.user._id
+  qAnswers.current[index]['questions']= item._id
 
   return (
     <Grid item xs={12} sx={designs.Question_GridItem_Style}>

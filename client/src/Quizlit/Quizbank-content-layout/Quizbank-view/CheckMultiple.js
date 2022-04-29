@@ -5,11 +5,28 @@ import {
 } from '@mui/material';
 import useStyle from '../../Styles/View_exam_style';
 import '../../Styles/View_quiz_stylesheet.css';
-function CheckMultiple() {
+import axios from 'axios'
+function CheckMultiple({stdID,item,index}) {
     const { designs } = useStyle()
+    const [exist,setExist] = React.useState(null)
+    const [data,setData] = React.useState(null)
+    React.useMemo(()=>{axios.post('http://localhost:5000/answers', { answeredBy: stdID, questionID: item._id }).then(res => {
+        if(res.data.length>0){
+            setExist(true)
+            setData(res.data)
+        }
+        if(res.data.length<1){
+            setExist(false)
+            setData(null)
+        }
+        console.log('tanga')
+    })
+        .catch(err => console.log(err))
+    },[stdID])
+    
     return (
         <div>
-            <Typography sx={designs.Type_Typography_Style}>
+            {data && exist ?<> <Typography sx={designs.Type_Typography_Style}>
                 Multiple Choice
             </Typography>
 
@@ -18,7 +35,7 @@ function CheckMultiple() {
                     <Typography sx={designs.Item_Typography_Style}>1.</Typography>
 
                     <Typography sx={designs.Item_Question_Typography_Style}>
-                        1 + 1 is equal to?
+                    {item.questionsContent}
                     </Typography>
 
                     <Box flexGrow={1} sx={designs.BoxFlexGrow_Style} />
@@ -33,43 +50,43 @@ function CheckMultiple() {
                 </Box>
 
                 <Box className="Choices" sx={designs.Choices_Style}>
-                    <Box className="Choice-a" sx={designs.ChoiceA_Style}>
+                    <Box className="Choice-a" sx={data[index].answers==="answer1"?designs.ChoiceC_Style:designs.ChoiceA_Style}>
                         <Typography sx={designs.Choice_Typography_Style}>
                             A.
                         </Typography>
 
                         <Typography sx={designs.Choice_Typography_Style}>
-                            6
+                            {item.qAnswers.answer1}
                         </Typography>
                     </Box>
 
-                    <Box className="Choice-b" sx={designs.ChoiceB_Style}>
+                    <Box className="Choice-b" sx={data[index].answers==="answer2"?designs.ChoiceC_Style:designs.ChoiceB_Style}>
                         <Typography sx={designs.Choice_Typography_Style}>
                             B.
                         </Typography>
 
                         <Typography sx={designs.Choice_Typography_Style}>
-                            1
+                        {item.qAnswers.answer2}
                         </Typography>
                     </Box>
 
-                    <Box className="Choice-c" sx={designs.ChoiceC_Style}>
+                    <Box className="Choice-c" sx={data[index].answers==="answer3"?designs.ChoiceC_Style:designs.ChoiceB_Style}>
                         <Typography sx={designs.Choice_Typography_Style}>
                             C.
                         </Typography>
 
                         <Typography sx={designs.Choice_Typography_Style}>
-                            2
+                        {item.qAnswers.answer3}
                         </Typography>
                     </Box>
 
-                    <Box className="Choice-d" sx={designs.ChoiceD_Style}>
+                    <Box className="Choice-d" sx={data[index].answers==="answer4"?designs.ChoiceC_Style:designs.ChoiceD_Style}>
                         <Typography sx={designs.Choice_Typography_Style}>
                             D.
                         </Typography>
 
                         <Typography sx={designs.Choice_Typography_Style}>
-                            3
+                        {item.qAnswers.answer4}
                         </Typography>
                     </Box>
                 </Box>
@@ -77,7 +94,7 @@ function CheckMultiple() {
                 <Typography sx={designs.CorrectAnswer_Typography_Style}>
                     Correct Answer: C
                 </Typography>
-            </Box></div>
+            </Box></>:<center><h4>Nothing to display</h4></center>}</div>
     )
 }
 

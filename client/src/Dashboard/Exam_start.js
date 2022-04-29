@@ -16,14 +16,14 @@ import ExamMulti from './ExamComponents/ExamMulti';
 import ExamShort from './ExamComponents/ExamShort';
 import ExamCB from './ExamComponents/ExamCB';
 import ExamTF from './ExamComponents/ExamTF';
-import { useParams,Redirect } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import axios from 'axios';
-function Exam_start({socket}) {
+function Exam_start({ socket }) {
   const { designs } = useStyle();
   const { examID: quizID } = useParams();
   const [data, setData] = React.useState(null);
   const qAnswers = React.useRef([{}])
-  const [redirect,setRedirect] = React.useState(null)
+  const [redirect, setRedirect] = React.useState(null)
   React.useMemo(() => {
     axios
       .post('http://localhost:5000/quizlit', { quizID })
@@ -42,7 +42,7 @@ function Exam_start({socket}) {
     <Container maxWidth="md">
       <Grid container rowSpacing={1}>
         <Grid item xs={12} sx={designs.Timer_GridItem_Style}>
-          {data && <ExamTimer data={data[0]} socket={socket}/>}
+          {data && <ExamTimer data={data[0]} socket={socket} />}
         </Grid>
 
         <Grid item xs={12} sx={designs.ExamName_GridItem_Style}>
@@ -103,16 +103,16 @@ function Exam_start({socket}) {
                 sx={designs.ExamName_GridItem_Style}
               >
                 {answerType === 'Multiple Choice' && (
-                  <ExamMulti item={item} index={index} qAnswers={qAnswers}  />
+                  <ExamMulti item={item} index={index} qAnswers={qAnswers} />
                 )}
                 {answerType === 'Short Answer' && (
-                  <ExamShort item={item} index={index} />
+                  <ExamShort item={item} index={index} qAnswers={qAnswers} />
                 )}
                 {answerType === 'Checkboxes' && (
-                  <ExamCB item={item} index={index} />
+                  <ExamCB item={item} index={index} qAnswers={qAnswers} />
                 )}
                 {answerType === 'True or False' && (
-                  <ExamTF item={item} index={index} />
+                  <ExamTF item={item} index={index} qAnswers={qAnswers} />
                 )}
               </Grid>
             );
@@ -122,11 +122,14 @@ function Exam_start({socket}) {
           <Box className="Button" sx={designs.Button_Style}>
             <Box flexGrow={1} sx={designs.BoxFlexGrow_Style} />
 
-            <Button 
-            onClick={()=>{axios.post('http://localhost:5000/answers/create',{answersPayload:qAnswers.current}).then(res=>{
-            setRedirect(<Redirect to="/dashboard" />)  
-            console.log(res.data)}).catch(err=>console.log(err))}}
-            sx={designs.SubmitExam_Button_Style}>Submit</Button>
+            <Button
+              onClick={() => {
+                axios.post('http://localhost:5000/answers/create', { answersPayload: qAnswers.current }).then(res => {
+                  setRedirect(<Redirect to="/dashboard" />)
+                  console.log(res.data)
+                }).catch(err => console.log(err))
+              }}
+              sx={designs.SubmitExam_Button_Style}>Submit</Button>
           </Box>
           {redirect && redirect}
         </Grid>
