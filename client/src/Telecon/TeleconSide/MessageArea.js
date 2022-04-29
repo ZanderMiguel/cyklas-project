@@ -16,6 +16,7 @@ import { Send, Chat } from '@mui/icons-material';
 import ReactScrollableFeed from 'react-scrollable-feed';
 import { FaBox } from 'react-icons/fa';
 import moment from 'moment';
+import Message from '../../assets/ImageJaven/Message.png';
 
 function MessageArea({
   socket,
@@ -56,13 +57,7 @@ function MessageArea({
       style={{
         position: 'relative',
         width: '23.9rem',
-<<<<<<< Updated upstream
-        height: '98vh'
-=======
         height: '98vh',
-        border: '1px solid #464646',
-        position: 'relative',
->>>>>>> Stashed changes
       }}
     >
       <Box
@@ -99,10 +94,40 @@ function MessageArea({
 
       <Box
         sx={{
-          height: '78vh',
+          height: '83vh',
           overflowY: 'auto',
         }}
       >
+        <Box
+          sx={{
+            width: 'relative',
+            height: 'auto',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '1em',
+            padding: '0em 0.8em',
+            marginBottom: '1em',
+          }}
+        >
+          <img src={Message} alt="Message" style={{ height: '8em' }} />
+
+          <Typography
+            children="Messages can only be seen by people in this call and are deleted when the call ends."
+            sx={{
+              width: '23em',
+              height: 'max-content',
+              padding: '0.4em 0em',
+              textAlign: 'center',
+              color: '#DEDEDE',
+              fontSize: '0.7em',
+              fontWeight: '600',
+              borderRadius: '0.3em',
+            }}
+          />
+        </Box>
+
         <ReactScrollableFeed>
           {messagelist.map((messageContent, index) => {
             return (
@@ -182,13 +207,12 @@ function MessageArea({
       <Box
         sx={{
           position: 'absolute',
-          bottom: '0px',
+          bottom: 10,
           width: '100%',
           display: 'flex',
           height: 'auto',
           gap: '0.8em',
           padding: '0.4em 1.3em',
-          marginTop: '0.8em',
           borderTop: '1px solid #464646',
         }}
       >
