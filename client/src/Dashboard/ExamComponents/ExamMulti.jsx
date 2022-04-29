@@ -11,6 +11,7 @@ function ExamMulti({ item, index,qAnswers }) {
   const [answerButtonToggleC, setAnswerButtonToggleC] = useState(true);
   const [answerButtonToggleD, setAnswerButtonToggleD] = useState(true);
   qAnswers.current[index]['questions']= item._id
+  qAnswers.current[index]['answeredBy'] = JSON.parse(localStorage.userData).data.user._id
   const handleClickA = () => {
     setAnswerButtonToggleA((prev) => !prev);
     setAnswerButtonToggleB(true);
@@ -24,7 +25,6 @@ function ExamMulti({ item, index,qAnswers }) {
     setAnswerButtonToggleC(true);
     setAnswerButtonToggleD(true);
     qAnswers.current[index]['answers'] = 'answer2'
-
   };
   const handleClickC = () => {
     setAnswerButtonToggleC((prev) => !prev);

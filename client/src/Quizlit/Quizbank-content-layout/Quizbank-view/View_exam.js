@@ -48,6 +48,7 @@ function View_exam() {
   const [data, setData] = useState(null)
   const {examID} = useParams()
   const [quizData,setQuizData] = useState(null)
+  const [stdID,setStdID] = useState(null)
   const handleChangeSort = (event) => {
     setSort(event.target.value);
   };
@@ -112,7 +113,7 @@ function View_exam() {
             >
               {data && data.map(function (items, index) {
                 return (
-                  <div key={index}><StudentsList index={index} items={items} /></div>
+                  <div key={index}><StudentsList items={items} setStdID={setStdID} /></div>
                   
                 );
               })}
@@ -182,7 +183,7 @@ function View_exam() {
                 10 / 10
               </Typography>
             </Box>
-            {quizData && <CheckAnswers quizID={quizData._id}/>}
+            {stdID && quizData && <CheckAnswers quizID={quizData._id} stdID={stdID}/>}
 
           </Box>
         </Grid>

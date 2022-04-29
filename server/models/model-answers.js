@@ -6,6 +6,7 @@ const AnswerSchema = new mongoose.Schema(
     answers: { type: String },
     score: { type: Number },
     activity: { type: mongoose.Schema.Types.ObjectId },
+    answeredBy:{ type: mongoose.Schema.Types.ObjectId, required:true},
   },
   { timestamps: true }
 );
