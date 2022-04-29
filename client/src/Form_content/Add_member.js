@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Dialogform from '../components/Dialogform';
 
 import {
@@ -13,12 +13,14 @@ import {
 import { ContentCopy } from '@mui/icons-material';
 import { useLocation } from 'react-router-dom';
 import useStyle from './Styles/Add_member_style';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 function Add_member({ open, close, maxWidth }) {
+  const [value, setValue] = useState('');
+  const [copy, setCopy] = useState(false);
   const location = useLocation();
   const { designs } = useStyle();
 
-    
   return (
     <div>
       <Dialogform open={open} close={close} maxWidth={maxWidth}>
@@ -91,9 +93,11 @@ function Add_member({ open, close, maxWidth }) {
                 children="Classroom Link (For Professor(s))"
               />
               <TextField
+                disabled
                 variant="standard"
+                value={value}
                 sx={designs.TextField2_Style}
-                defaultValue={location.pathname}
+                onChange={(event) => setValue(location.pathname)}
                 InputProps={{ readOnly: true }}
               />
             </Box>
@@ -106,33 +110,33 @@ function Add_member({ open, close, maxWidth }) {
                 alignItems: 'flex-end',
               }}
             >
-              <Button
-                variant="contained"
-                startIcon={<ContentCopy />}
-                sx={{
-                  border: '1px solid #0069D3',
-                  backgroundColor: 'transparent',
-                  height: 'max-content',
-                  boxShadow: 'none',
-                  color: '#0069D3',
-                  fontSize: '0.8em',
-                  fontWeight: '600',
-                  textTransform: 'Capitalize',
-                  padding: '0.3em 3em',
-                  '&: hover': {
-                    border: '1px solid #005DC3',
+              <CopyToClipboard text={value}>
+                <Button
+                  variant="contained"
+                  startIcon={<ContentCopy />}
+                  sx={{
+                    border: '1px solid #0069D3',
                     backgroundColor: 'transparent',
+                    height: 'max-content',
                     boxShadow: 'none',
-                  },
-                }}
-              >
-                Copy Link
-              </Button>
+                    color: '#0069D3',
+                    fontSize: '0.8em',
+                    fontWeight: '600',
+                    textTransform: 'Capitalize',
+                    padding: '0.3em 3em',
+                    '&: hover': {
+                      border: '1px solid #005DC3',
+                      backgroundColor: 'transparent',
+                      boxShadow: 'none',
+                    },
+                  }}
+                >
+                  Copy Link
+                </Button>
+              </CopyToClipboard>
             </Box>
           </Box>
         </Stack>
-        
-
       </Dialogform>
     </div>
   );

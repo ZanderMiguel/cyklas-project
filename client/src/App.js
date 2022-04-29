@@ -162,9 +162,10 @@ function App() {
 
               {/* Telecon */}
               <ProtectedRoutes exact path="/telecon" component={TeleconStart} />
-              <Route path="/telecon/room" component={Telecon_room} />
-
-              <Route path="/TeleconRoomV2" component={TeleconRoomV2} />
+              <Route path="/telecon/room">
+                <TeleconRoomV2 socket={socket} />
+              </Route>
+              {/* <Route path="/TeleconRoomV2" component={TeleconRoomV2} /> */}
 
               {/* Records and Classcards */}
               <ProtectedRoutes exact path="/records" component={Records} />
@@ -251,9 +252,18 @@ function App() {
               />
               <Route exact path="/Settings_main" component={Settings_main} />
               <Route exact path="/Exam_take/:quizID" component={Exam_take} />
-              <ProtectedRoutes exact path="/Exam_start/:examID" component={Exam_start} socket={socket} />
+              <ProtectedRoutes
+                exact
+                path="/Exam_start/:examID"
+                component={Exam_start}
+                socket={socket}
+              />
               <ProtectedRoutes exact path="/View_quiz" component={View_quiz} />
-              <ProtectedRoutes exact path="/View_exam/:examID" component={View_exam} />
+              <ProtectedRoutes
+                exact
+                path="/View_exam/:examID"
+                component={View_exam}
+              />
               <ProtectedRoutes exact path="/records" component={Records} />
               <Route path="/telecon/room" component={Telecon_room} />
               <Route exact path="/quizlit/join">
@@ -265,11 +275,7 @@ function App() {
               <Route exact path="/quizlit/lobby/:lobby/:name/:quizID">
                 <ToLobby socket={socket} />
               </Route>
-              <ProtectedRoutes
-
-                socket={socket}
-
-              />
+              <ProtectedRoutes socket={socket} />
 
               <Route component={Notfound} />
             </Switch>

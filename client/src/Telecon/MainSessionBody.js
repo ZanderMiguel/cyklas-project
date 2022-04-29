@@ -3,11 +3,13 @@ import { Box,
     Typography, 
     Grid, 
     Avatar,
-    IconButton
+    IconButton,
+    Tooltip
  } from "@mui/material";
  import { KeyboardVoiceOutlined } from "@mui/icons-material";
 import AvatarIcon from "../assets/ImageJaven/Avatar.png";
 import MicOffOutlinedIcon from '@mui/icons-material/MicOffOutlined';
+// import download from "../assets/ImageJaven/download.jpg";
 
 const dataMemberTiles = [
     {
@@ -78,8 +80,11 @@ function MainSessionBody() {
             return (
             <Grid item xs = {3} sx = {{ padding: "0.5em" }} key = {index}>
                 <Box sx = {{
+                position: "relative",
                 backgroundColor: "#25282E",
-                height: "9.5em",
+                // backgroundImage: `url(${download})`,
+                // backgroundSize: 'cover',
+                height: "100%",
                 width: "relative",
                 borderRadius: "0.5em",
                 display: "flex",
@@ -92,30 +97,33 @@ function MainSessionBody() {
                     {items.camera}
                     
                     <Box sx = {{
-                        width: "relative",
+                        // position: "relative",
+                        // bottom: -50,
+                        width: "auto",
                         height: "auto",
                         display: "flex",
+                        justifyContent: "center",
                         gap: "0.3em",
                         alignItems: "center"
                     }}>
                         <Typography noWrap children = {items.memberName} 
                         sx = {{
-                            backgroundColor: "#3A3E46",
                             color: "white",
                             fontSize: "0.6em",
                             fontWeight: "500",
                             height: "max-content",
-                            width: "17em",
+                            width: "14em",
                             padding: "0.5em 0.8em",
                             borderRadius: "0.3em",
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
+                            textAlign: "center",
                             "&: hover": {
                                 cursor: "default"
                             }
                         }}/>
+                    </Box>
 
+                    <Box sx = {{ position: "absolute", right: 10, bottom: 10 }}>
+                        <Tooltip title = {toggleMic ? "Mute" : "Unmute"} placement = "top">
                         <IconButton onClick={handleToggleMic}
                         sx = {
                             toggleMic === true
@@ -148,8 +156,8 @@ function MainSessionBody() {
                             )}
                             
                         </IconButton>
+                        </Tooltip>
                     </Box>
-                    
                 </Box>
             </Grid>
             )

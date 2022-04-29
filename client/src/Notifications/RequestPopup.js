@@ -7,6 +7,7 @@ import moment from 'moment';
 function RequestPopup() {
   const { designs } = useStyle();
   const [items, setItems] = React.useState(null);
+  const [toggleAccept, setToggleAccept] = React.useState(false);
 
   React.useEffect(() => {
     axios
@@ -17,7 +18,7 @@ function RequestPopup() {
         setItems(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [toggleAccept]);
 
   const handleAcceptRequest = (event) => {
     axios
@@ -28,6 +29,7 @@ function RequestPopup() {
       })
       .then((res) => {
         setItems(res.data);
+        setToggleAccept((prev) => !prev);
       })
       .catch((err) => console.log(err));
   };
