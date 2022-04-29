@@ -78,6 +78,7 @@ function MainSessionFooter() {
         padding: "0.6em 0em 0em 0em",
         borderTop: "1px solid #464646"
     }}>
+      <Tooltip title = {toggleMic? "Mute" : "Unmute"} placement = "top">
         <IconButton onClick={handleToggleMic}
         sx = {
             toggleMic === true
@@ -111,7 +112,9 @@ function MainSessionFooter() {
             )}
             
         </IconButton>
+        </Tooltip>
 
+        <Tooltip title = {!toggleCam ? "Open your Camera" : "Close your Camera"} placement = "top">
         <IconButton onClick={handleToggleCam}
         sx = {
             toggleCam === true
@@ -145,7 +148,9 @@ function MainSessionFooter() {
             )}
             
         </IconButton>
+        </Tooltip>
 
+        <Tooltip title = {!toggleScreenShare ? "Share your Screen" : "Stop Sharing your Screen"} placement = "top">
         <IconButton onClick={handleToggleScreenShare}
         sx = {
             toggleScreenShare === true
@@ -179,6 +184,7 @@ function MainSessionFooter() {
             )}
             
         </IconButton>
+        </Tooltip>
         
         <Tooltip title = "Make Groups" placement = "top">
         <IconButton onClick={handleCreateMakeGroups}

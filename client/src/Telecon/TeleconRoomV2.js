@@ -32,42 +32,44 @@ function TeleconRoomV2() {
     <Box sx = {{
         width: "100%",
         height: "100vh",
-        backgroundColor: "#21242B"
+        backgroundColor: "#21242B",
+        overflowY: "hidden",
+        overflowX: "hidden"
     }}>
-        <Grid container>
-            <Grid item xs = {8} sx = {{ height: "auto", padding: "0.5em 0.5em 0em 0.5em" }}>
-                <Box 
+        <Box sx = {{ display: "flex" }}>
+            <Box 
                 sx = {{ 
                 backgroundColor: "#171A20",
                 height: "98vh",
-                borderRadius: "0.4em"
+                borderRadius: "0.4em",
+                margin: "0.4em 0.5em 0em 0.5em"
                 }}>
                 <MainSessionHeader/>
 
                 <MainSessionBody/>
 
                 <MainSessionFooter/>
-                </Box>
-            </Grid>
+            </Box>
 
-            <Grid item xs = {4} sx = {{ height: "auto", padding: "0.5em 0em 0em 0em"}}>
-                <Box 
+            <Box 
                 sx = {{ 
                 backgroundColor: "#171A20",
                 height: "98vh",
                 borderRadius: "0.4em 0em 0em 0.4em",
-                display: "flex"
+                display: "flex",
+                margin: "0.4em 0em 0em 0em"
                 }}>
                     
                     {/* LeftContent */}
-                    <Collapse
+                    {/* <Collapse
                     orientation="horizontal"
                     in={sidedrawer}
                     sx={{
                     '& .MuiCollapse-wrapperInner': {
                         width: '25rem',
                     },
-                    }}>
+                    }}> */}
+                    <Slide direction="left" in={sidedrawer} mountOnEnter unmountOnExit>
                         
                     <Grid item xs = {10} sx = {{ height: "98vh" }}>
                     
@@ -88,14 +90,12 @@ function TeleconRoomV2() {
                     )
                     }
                     </Grid>
-                    </Collapse>
-
-                    <RightContentSideBar 
-                    setSideDrawer={setSideDrawer}
-                    setSideContent={setSideContent}/>
-                </Box>
-            </Grid>
-        </Grid>
+                    {/* </Collapse> */}
+                    </Slide>
+            </Box>
+                
+            <RightContentSideBar setSideDrawer={setSideDrawer} setSideContent={setSideContent}/>
+        </Box>
     </Box>
     </>
     

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Tooltip, IconButton } from "@mui/material";
+import { Grid, Box, Tooltip, IconButton } from "@mui/material";
 import { InfoOutlined, PeopleAltOutlined, ChatOutlined, CoPresentOutlined } from "@mui/icons-material";
 
 function RightContentSideBar({ setSideDrawer, setSideContent }) {
@@ -64,15 +64,21 @@ function RightContentSideBar({ setSideDrawer, setSideContent }) {
 
   return (
     <>
-    <Grid item xs = {2} 
+    <Box 
         sx = {{ 
-            height: "98vh", 
-            display: "flex", 
-            flexDirection: "column",
-            justifyContent: "center", 
-            alignItems: "center",
-            gap: "1em",
+            height: "98vh",
+            position: "relative",
+            right: 0,
+            top: 6,
             backgroundColor: "#2B2E34"
+        }}>
+        <Box sx = {{
+          height: "98vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "1em"
         }}>
         <Tooltip title = "Meeting Information" placement = "left">
         <IconButton onClick={handleToggleInfo} 
@@ -80,7 +86,7 @@ function RightContentSideBar({ setSideDrawer, setSideContent }) {
                 toggleInfo === true ? 
                     { 
                     borderRadius: "0em",
-                    width: "100%",
+                    width: "2.5em",
                     height: "2em",
                     borderRight: "4px solid #007FFF",
                     backgroundColor: "#34373D",
@@ -92,7 +98,7 @@ function RightContentSideBar({ setSideDrawer, setSideContent }) {
                     :
                     { 
                     borderRadius: "0em",
-                    width: "100%",
+                    width: "2.5em",
                     height: "2em",
                     borderRight: "4px solid transparent",
                     "&: hover": {
@@ -109,7 +115,7 @@ function RightContentSideBar({ setSideDrawer, setSideContent }) {
             toggleMember === true ? 
             { 
             borderRadius: "0em",
-            width: "100%",
+            width: "2.5em",
             height: "2em",
             borderRight: "4px solid #007FFF",
             backgroundColor: "#34373D",
@@ -121,7 +127,7 @@ function RightContentSideBar({ setSideDrawer, setSideContent }) {
             :
             { 
             borderRadius: "0em",
-            width: "100%",
+            width: "2.5em",
             height: "2em",
             borderRight: "4px solid transparent",
             "&: hover": {
@@ -138,7 +144,7 @@ function RightContentSideBar({ setSideDrawer, setSideContent }) {
             toggleMessage === true ? 
             { 
             borderRadius: "0em",
-            width: "100%",
+            width: "2.5em",
             height: "2em",
             borderRight: "4px solid #007FFF",
             backgroundColor: "#34373D",
@@ -150,7 +156,7 @@ function RightContentSideBar({ setSideDrawer, setSideContent }) {
             :
             { 
             borderRadius: "0em",
-            width: "100%",
+            width: "2.5em",
             height: "2em",
             borderRight: "4px solid transparent",
             "&: hover": {
@@ -167,7 +173,7 @@ function RightContentSideBar({ setSideDrawer, setSideContent }) {
             togglePresent === true ? 
             { 
             borderRadius: "0em",
-            width: "100%",
+            width: "2.5em",
             height: "2em",
             borderRight: "4px solid #007FFF",
             backgroundColor: "#34373D",
@@ -179,7 +185,7 @@ function RightContentSideBar({ setSideDrawer, setSideContent }) {
             :
             { 
             borderRadius: "0em",
-            width: "100%",
+            width: "2.5em",
             height: "2em",
             borderRight: "4px solid transparent",
             "&: hover": {
@@ -189,7 +195,8 @@ function RightContentSideBar({ setSideDrawer, setSideContent }) {
             <CoPresentOutlined sx = {{ fontSize: "0.9em", color: "#DEDEDE" }}/>
         </IconButton>
         </Tooltip>
-    </Grid>
+        </Box>
+    </Box>
     </>
   )
 }
