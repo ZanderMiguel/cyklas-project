@@ -13,7 +13,7 @@ function MainSessionHeader() {
         height: "auto",
         display: "flex",
         gap: "1em",
-        padding: "0.6em 0em 0.5em 0em",
+        padding: "0.5em 0em",
         margin: "0em 0.8em",
         borderBottom: "1px solid #464646"
         }}>

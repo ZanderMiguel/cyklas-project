@@ -162,9 +162,10 @@ function App() {
 
               {/* Telecon */}
               <ProtectedRoutes exact path="/telecon" component={TeleconStart} />
-              <Route path="/telecon/room" component={Telecon_room} />
+              
+              <Route path="/telecon/room" component={TeleconRoomV2}  />
 
-              <Route path="/TeleconRoomV2" component={TeleconRoomV2} />
+              {/* <Route path="/TeleconRoomV2" component={TeleconRoomV2} /> */}
 
               {/* Records and Classcards */}
               <ProtectedRoutes exact path="/records" component={Records} />

@@ -79,36 +79,7 @@ function RightContentSideBar({ setSideDrawer, setSideContent }) {
           justifyContent: "center",
           alignItems: "center",
           gap: "1em"
-        }}>
-        <Tooltip title = "Meeting Information" placement = "left">
-        <IconButton onClick={handleToggleInfo} 
-            sx = {
-                toggleInfo === true ? 
-                    { 
-                    borderRadius: "0em",
-                    width: "2.5em",
-                    height: "2em",
-                    borderRight: "4px solid #007FFF",
-                    backgroundColor: "#34373D",
-                    "&: hover": {
-                        borderRight: "4px solid #007FFF",
-                        backgroundColor: "#34373D",
-                    }
-                    }
-                    :
-                    { 
-                    borderRadius: "0em",
-                    width: "2.5em",
-                    height: "2em",
-                    borderRight: "4px solid transparent",
-                    "&: hover": {
-                        backgroundColor: "#34373D",
-                    }
-                    }}>
-            <InfoOutlined sx = {{ fontSize: "1em", color: "#DEDEDE" }}/>
-        </IconButton>
-        </Tooltip>
-                        
+        }}>              
         <Tooltip title = "Members" placement = "left">
         <IconButton onClick={handleToggleMember} 
         sx = {
@@ -193,6 +164,35 @@ function RightContentSideBar({ setSideDrawer, setSideContent }) {
             }
             }}>
             <CoPresentOutlined sx = {{ fontSize: "0.9em", color: "#DEDEDE" }}/>
+        </IconButton>
+        </Tooltip>
+
+        <Tooltip title = "Meeting Information" placement = "left">
+        <IconButton onClick={handleToggleInfo} 
+            sx = {
+                toggleInfo === true ? 
+                    { 
+                    borderRadius: "0em",
+                    width: "2.5em",
+                    height: "2em",
+                    borderRight: "4px solid #007FFF",
+                    backgroundColor: "#34373D",
+                    "&: hover": {
+                        borderRight: "4px solid #007FFF",
+                        backgroundColor: "#34373D",
+                    }
+                    }
+                    :
+                    { 
+                    borderRadius: "0em",
+                    width: "2.5em",
+                    height: "2em",
+                    borderRight: "4px solid transparent",
+                    "&: hover": {
+                        backgroundColor: "#34373D",
+                    }
+                    }}>
+            <InfoOutlined sx = {{ fontSize: "1em", color: "#DEDEDE" }}/>
         </IconButton>
         </Tooltip>
         </Box>

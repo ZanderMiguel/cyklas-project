@@ -22,7 +22,7 @@ import RightContent from './RightContent';
 import AvatarIcon from "../assets/ImageJaven/Avatar.png";
 import { ChatOutlined, Info, InfoOutlined, PeopleAltOutlined, CoPresentOutlined } from '@mui/icons-material';
 
-function TeleconRoomV2() {
+function TeleconRoomV2({socket}) {
   const [sidedrawer, setSideDrawer] = React.useState(false);
   const [sidecontent, setSideContent] = React.useState('');
   
@@ -82,7 +82,7 @@ function TeleconRoomV2() {
                     )
                     : 
                     sidecontent === 'MessageArea' ? (
-                        <MessageArea />
+                        <MessageArea socket={socket} />
                     )
                     : 
                     (
