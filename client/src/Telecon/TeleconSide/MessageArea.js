@@ -56,7 +56,13 @@ function MessageArea({
       style={{
         position: 'relative',
         width: '23.9rem',
+<<<<<<< Updated upstream
         height: '98vh'
+=======
+        height: '98vh',
+        border: '1px solid #464646',
+        position: 'relative',
+>>>>>>> Stashed changes
       }}
     >
       <Box
