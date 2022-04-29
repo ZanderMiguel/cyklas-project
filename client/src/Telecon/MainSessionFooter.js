@@ -1,6 +1,12 @@
-import React from 'react'
-import { Box, Typography, Button, IconButton, Tooltip } from "@mui/material";
-import { KeyboardVoiceOutlined, VideocamOffOutlined, ScreenShareOutlined, StopScreenShareOutlined, VideocamOutlined } from '@mui/icons-material';
+import React from 'react';
+import { Box, Typography, Button, IconButton, Tooltip } from '@mui/material';
+import {
+  KeyboardVoiceOutlined,
+  VideocamOffOutlined,
+  ScreenShareOutlined,
+  StopScreenShareOutlined,
+  VideocamOutlined,
+} from '@mui/icons-material';
 import { FaObjectGroup } from 'react-icons/fa';
 import { MdOutlineQuiz } from 'react-icons/md';
 import MicOffOutlinedIcon from '@mui/icons-material/MicOffOutlined';
@@ -55,7 +61,8 @@ function MainSessionFooter() {
     setOpenDialog(false);
   };
 
-  const [opendialogLeaveConference, setOpenDialogLeaveConference] = React.useState(false);
+  const [opendialogLeaveConference, setOpenDialogLeaveConference] =
+    React.useState(false);
 
   const handleCreateLeaveConference = () => {
     setOpenDialogLeaveConference(true);
@@ -67,162 +74,166 @@ function MainSessionFooter() {
 
   return (
     <>
-    {/* Main Session Footer */}
-    <Box sx = {{
-        width: "relative",
-        height: "auto",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: "1.3em",
-        padding: "0.6em 0em 0em 0em",
-        borderTop: "1px solid #464646"
-    }}>
-      <Tooltip title = {toggleMic? "Mute" : "Unmute"} placement = "top">
-        <IconButton onClick={handleToggleMic}
-        sx = {
-            toggleMic === true
-              ? {
-                border: "1px solid #007FFF",
-                height: "1.8em",
-                width: "1.8em",
-                padding: "0.3em",
-                "&: hover": {
-                    backgroundColor: "#282B31"
-                }
-              }
-              : 
-              {
-                border: "1px solid #282B31",
-                outline: "1px solid #282B31",
-                height: "1.8em",
-                width: "1.8em",
-                padding: "0.3em",
-                backgroundColor: "#282B31",
-                "&: hover": {
-                    backgroundColor: "#282B31"
-                }
-              }
-        }>
+      {/* Main Session Footer */}
+      <Box
+        sx={{
+          width: 'relative',
+          height: 'auto',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '1.3em',
+          padding: '0.6em 0em 0em 0em',
+          borderTop: '1px solid #464646',
+        }}
+      >
+        <Tooltip title={toggleMic ? 'Mute' : 'Unmute'} placement="top">
+          <IconButton
+            onClick={handleToggleMic}
+            sx={
+              toggleMic === true
+                ? {
+                    border: '1px solid #007FFF',
+                    height: '1.8em',
+                    width: '1.8em',
+                    padding: '0.3em',
+                    '&: hover': {
+                      backgroundColor: '#282B31',
+                    },
+                  }
+                : {
+                    border: '1px solid #282B31',
+                    outline: '1px solid #282B31',
+                    height: '1.8em',
+                    width: '1.8em',
+                    padding: '0.3em',
+                    backgroundColor: '#282B31',
+                    '&: hover': {
+                      backgroundColor: '#282B31',
+                    },
+                  }
+            }
+          >
             {toggleMic ? (
-            <KeyboardVoiceOutlined sx = {{ color: "#007FFF" }}/>
-            ) : 
-            (
-            <MicOffOutlinedIcon sx = {{ color: "#DEDEDE" }}/>
+              <KeyboardVoiceOutlined sx={{ color: '#007FFF' }} />
+            ) : (
+              <MicOffOutlinedIcon sx={{ color: '#DEDEDE' }} />
             )}
-            
-        </IconButton>
+          </IconButton>
         </Tooltip>
 
-        <Tooltip title = {!toggleCam ? "Open your Camera" : "Close your Camera"} placement = "top">
-        <IconButton onClick={handleToggleCam}
-        sx = {
-            toggleCam === true
-              ? {
-                border: "1px solid #007FFF",
-                height: "1.8em",
-                width: "1.8em",
-                padding: "0.3em",
-                "&: hover": {
-                    backgroundColor: "#282B31"
-                }
-              }
-              : 
-              {
-                border: "1px solid #282B31",
-                outline: "1px solid #282B31",
-                height: "1.8em",
-                width: "1.8em",
-                padding: "0.3em",
-                backgroundColor: "#282B31",
-                "&: hover": {
-                    backgroundColor: "#282B31"
-                }
-              }
-        }>
+        <Tooltip
+          title={!toggleCam ? 'Open your Camera' : 'Close your Camera'}
+          placement="top"
+        >
+          <IconButton
+            onClick={handleToggleCam}
+            sx={
+              toggleCam === true
+                ? {
+                    border: '1px solid #007FFF',
+                    height: '1.8em',
+                    width: '1.8em',
+                    padding: '0.3em',
+                    '&: hover': {
+                      backgroundColor: '#282B31',
+                    },
+                  }
+                : {
+                    border: '1px solid #282B31',
+                    outline: '1px solid #282B31',
+                    height: '1.8em',
+                    width: '1.8em',
+                    padding: '0.3em',
+                    backgroundColor: '#282B31',
+                    '&: hover': {
+                      backgroundColor: '#282B31',
+                    },
+                  }
+            }
+          >
             {toggleCam ? (
-            <VideocamOutlined sx = {{ color: "#007FFF" }}/>
-            ) : 
-            (
-            <VideocamOffOutlined sx = {{ color: "#DEDEDE" }}/>
+              <VideocamOutlined sx={{ color: '#007FFF' }} />
+            ) : (
+              <VideocamOffOutlined sx={{ color: '#DEDEDE' }} />
             )}
-            
-        </IconButton>
+          </IconButton>
         </Tooltip>
 
-        <Tooltip title = {!toggleScreenShare ? "Share your Screen" : "Stop Sharing your Screen"} placement = "top">
-        <IconButton onClick={handleToggleScreenShare}
-        sx = {
-            toggleScreenShare === true
-              ? {
-                border: "1px solid #007FFF",
-                height: "1.8em",
-                width: "1.8em",
-                padding: "0.3em",
-                "&: hover": {
-                    backgroundColor: "#282B31"
-                }
-              }
-              : 
-              {
-                border: "1px solid #282B31",
-                outline: "1px solid #282B31",
-                height: "1.8em",
-                width: "1.8em",
-                padding: "0.3em",
-                backgroundColor: "#282B31",
-                "&: hover": {
-                    backgroundColor: "#282B31"
-                }
-              }
-        }>
+        <Tooltip
+          title={
+            !toggleScreenShare
+              ? 'Share your Screen'
+              : 'Stop Sharing your Screen'
+          }
+          placement="top"
+        >
+          <IconButton
+            onClick={handleToggleScreenShare}
+            sx={
+              toggleScreenShare === true
+                ? {
+                    border: '1px solid #007FFF',
+                    height: '1.8em',
+                    width: '1.8em',
+                    padding: '0.3em',
+                    '&: hover': {
+                      backgroundColor: '#282B31',
+                    },
+                  }
+                : {
+                    border: '1px solid #282B31',
+                    outline: '1px solid #282B31',
+                    height: '1.8em',
+                    width: '1.8em',
+                    padding: '0.3em',
+                    backgroundColor: '#282B31',
+                    '&: hover': {
+                      backgroundColor: '#282B31',
+                    },
+                  }
+            }
+          >
             {toggleScreenShare ? (
-            <ScreenShareOutlined sx = {{ color: "#007FFF" }}/>
-            ) : 
-            (
-            <StopScreenShareOutlined sx = {{ color: "#DEDEDE" }}/>
+              <ScreenShareOutlined sx={{ color: '#007FFF' }} />
+            ) : (
+              <StopScreenShareOutlined sx={{ color: '#DEDEDE' }} />
             )}
-            
-        </IconButton>
+          </IconButton>
         </Tooltip>
-        
-        <Tooltip title = "Make Groups" placement = "top">
-        <IconButton onClick={handleCreateMakeGroups}
-        sx = {{
-            border: "1px solid #DEDEDE",
-            height: "1.8em",
-            width: "1.8em",
-            padding: "0.3em",
-            "&: hover": {
-                backgroundColor: "#282B31"
-            }
-        }}>
-        <FaObjectGroup style = {{ color: "#DEDEDE", fontSize: "0.8em" }}/>
-        </IconButton>
+
+        <Tooltip title="Make Groups" placement="top">
+          <IconButton
+            onClick={handleCreateMakeGroups}
+            sx={{
+              border: '1px solid #DEDEDE',
+              height: '1.8em',
+              width: '1.8em',
+              padding: '0.3em',
+              '&: hover': {
+                backgroundColor: '#282B31',
+              },
+            }}
+          >
+            <FaObjectGroup style={{ color: '#DEDEDE', fontSize: '0.8em' }} />
+          </IconButton>
         </Tooltip>
-        {opendialogMakeGroups && (
-          <Make_groups
-            open={opendialogMakeGroups}
-            close={handleCreateCloseMakeGroups}
-            maxWidth="md"
-            state={setOpenDialogMakeGroups}
-          />
-        )}
 
-        <Tooltip title = "Conduct LIVE Quiz" placement = "top">
-        <IconButton onClick={handleClickQuiz}
-        sx = {{
-            border: "1px solid #DEDEDE",
-            height: "1.8em",
-            width: "1.8em",
-            padding: "0.3em",
-            "&: hover": {
-                backgroundColor: "#282B31"
-            }
-        }}>
-
-        <MdOutlineQuiz style = {{ color: "#DEDEDE", fontSize: "0.9em" }}/>
-        </IconButton>
+        <Tooltip title="Conduct LIVE Quiz" placement="top">
+          <IconButton
+            onClick={handleClickQuiz}
+            sx={{
+              border: '1px solid #DEDEDE',
+              height: '1.8em',
+              width: '1.8em',
+              padding: '0.3em',
+              '&: hover': {
+                backgroundColor: '#282B31',
+              },
+            }}
+          >
+            <MdOutlineQuiz style={{ color: '#DEDEDE', fontSize: '0.9em' }} />
+          </IconButton>
         </Tooltip>
         <CusPopover
           open={quiz}
@@ -249,21 +260,24 @@ function MainSessionFooter() {
           />
         )}
 
-        <Button onClick = {handleCreateLeaveConference} children = "Leave Meeting" 
-        sx = {{
-            paddingRight: "3em",
-            paddingLeft: "3em",
-            fontSize: "0.8em",
-            fontWeight: "600",
-            textTransform: "Capitalize",
-            backgroundColor: "#F02D2D",
-            color: "white",
-            boxShadow: "none",
-            "&: hover": {
-                backgroundColor: "#E72727",
-                boxShadow: "none"
-            }
-        }}/>
+        <Button
+          onClick={handleCreateLeaveConference}
+          children="Leave Meeting"
+          sx={{
+            paddingRight: '3em',
+            paddingLeft: '3em',
+            fontSize: '0.8em',
+            fontWeight: '600',
+            textTransform: 'Capitalize',
+            backgroundColor: '#F02D2D',
+            color: 'white',
+            boxShadow: 'none',
+            '&: hover': {
+              backgroundColor: '#E72727',
+              boxShadow: 'none',
+            },
+          }}
+        />
         {opendialogLeaveConference && (
           <Leave_conference
             open={opendialogLeaveConference}
@@ -272,9 +286,17 @@ function MainSessionFooter() {
             state={setOpenDialogLeaveConference}
           />
         )}
-    </Box>
+        {opendialogMakeGroups && (
+          <Make_groups
+            open={opendialogMakeGroups}
+            close={handleCreateCloseMakeGroups}
+            maxWidth="md"
+            state={setOpenDialogMakeGroups}
+          />
+        )}
+      </Box>
     </>
-  )
+  );
 }
 
-export default MainSessionFooter
+export default MainSessionFooter;

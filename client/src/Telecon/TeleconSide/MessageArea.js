@@ -14,10 +14,15 @@ import {
 import { Send } from '@mui/icons-material';
 import ReactScrollableFeed from 'react-scrollable-feed';
 
-function Message_area({ socket, room, username }) {
-  const [currentMessage, setCurrentMessage] = React.useState('');
-  const [messagelist, setMessageList] = React.useState([]);
-
+function MessageArea({
+  socket,
+  room,
+  username,
+  setMessageList,
+  setCurrentMessage,
+  currentMessage,
+  messagelist,
+}) {
   const sendMessage = async () => {
     if (currentMessage !== '') {
       const messageData = {
@@ -160,4 +165,4 @@ function Message_area({ socket, room, username }) {
   );
 }
 
-export default Message_area;
+export default MessageArea;
