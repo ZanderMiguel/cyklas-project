@@ -84,7 +84,7 @@ function MainSessionBody() {
                 backgroundColor: "#25282E",
                 // backgroundImage: `url(${download})`,
                 // backgroundSize: 'cover',
-                height: "9.5em",
+                height: "100%",
                 width: "relative",
                 borderRadius: "0.5em",
                 display: "flex",
