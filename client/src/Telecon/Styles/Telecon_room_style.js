@@ -17,7 +17,7 @@ function useStyle() {
     videoContainer: {
       display: 'flex',
       width: '100%',
-      height: 'calc(100% - 80px)',
+      height: 'calc(100% - 80px)'
     },
     icon_container: {
       display: 'flex',

@@ -50,11 +50,17 @@ function Telecon_room() {
             >
               {sidecontent === 'Info' ? (
                 <Info />
-              ) : sidecontent === 'Member' ? (
+              ) 
+              : 
+              sidecontent === 'Member' ? (
                 <Member />
-              ) : sidecontent === 'Message' ? (
+              ) 
+              : 
+              sidecontent === 'Message' ? (
                 <Message_area socket={socket} />
-              ) : (
+              ) 
+              : 
+              (
                 sidecontent === 'Presentation' && <Presentation />
               )}
             </Box>

@@ -66,7 +66,6 @@ function Room_inside({ socket }) {
 
   return (
     <>
-      {}
       {isPending && (
         <Box sx={{ width: '100%' }}>
           <LinearProgress />
@@ -154,9 +153,9 @@ function Room_inside({ socket }) {
               )
             ) : JSON.parse(localStorage.userData).data.user.userType ===
               'Student' ? (
-              <Member roomdata={roomdata} />
-            ) : (
               <MemberStudents roomdata={roomdata} />
+            ) : (
+              <Member roomdata={roomdata} />
             )}
           </Container>
         </>

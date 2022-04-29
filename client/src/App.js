@@ -31,6 +31,7 @@ import Settings from './Settings/Settings';
 
 //Telecon
 import TeleconStart from './Telecon/TeleconStart';
+import TeleconRoomV2 from './Telecon/TeleconRoomV2';
 
 //Quizlit
 import QuizLit from './Quizlit/Quizlit';
@@ -162,6 +163,8 @@ function App() {
               {/* Telecon */}
               <ProtectedRoutes exact path="/telecon" component={TeleconStart} />
               <Route path="/telecon/room" component={Telecon_room} />
+
+              <Route path="/TeleconRoomV2" component={TeleconRoomV2} />
 
               {/* Records and Classcards */}
               <ProtectedRoutes exact path="/records" component={Records} />

@@ -12,6 +12,7 @@ import {
   Button,
   Paper,
 } from '@mui/material';
+import moment from 'moment';
 import { Edit, Delete } from '@mui/icons-material';
 import ActivityIcon from '../../../assets/ImageJaven/ActivityIcon.png';
 import useStyle from '../../Styles/ActivitiesAccordion_Style';
@@ -21,7 +22,7 @@ import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser from 'react-html-parser';
 import ActivityFile from '../../../components/ActivityFile';
 
-function ActivitiesAccordion({ roomID, activity}) {
+function ActivitiesAccordion({ roomID, activity }) {
   const { designs } = useStyle();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -35,11 +36,11 @@ function ActivitiesAccordion({ roomID, activity}) {
   const handleDelete = (event) => {
     event.stopPropagation();
   };
-  
+
   return (
     <>
       {activity &&
-        activity.map( (items, index) => {
+        activity.map((items, index) => {
           const {
             activityDueDate: duedate,
             activityInstruction: instruction,
@@ -47,10 +48,9 @@ function ActivitiesAccordion({ roomID, activity}) {
             activityTitle: title,
             activityType: type,
             _id: _id,
-          } = items
+          } = items;
 
           return (
-            
             <Grid key={index} item xs={12}>
               <Box className="Activity_Tiles" sx={designs.Activity_Tiles}>
                 <Accordion
@@ -135,7 +135,9 @@ function ActivitiesAccordion({ roomID, activity}) {
                             fontSize: '13px',
                           }}
                         >
-                          {duedate ? duedate : ''}
+                          {duedate
+                            ? moment(duedate).format('MMMM DD YYYY')
+                            : ''}
                         </Typography>
                       </Box>
                     </Box>
@@ -178,7 +180,7 @@ function ActivitiesAccordion({ roomID, activity}) {
                     <Button
                       sx={designs.ViewHomework_Button_Style}
                       component={Link}
-                      to={`/Rooms/${roomID}/p/${_id}`}
+                      to={`/rooms/${roomID}/p/${_id}`}
                     >
                       VIEW ACTIVITY
                     </Button>
