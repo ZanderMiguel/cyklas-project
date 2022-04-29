@@ -19,7 +19,6 @@ function CheckAnswers({ quizID }) {
             }).catch(err => console.log(err))
     }, [])
     const { designs } = useStyle()
-    console.log(quizID)
     return (
         <Box className="Quiz-sheet" sx={designs.Quiz_Sheet_Style} >
             <div>
