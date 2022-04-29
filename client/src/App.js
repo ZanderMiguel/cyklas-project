@@ -56,7 +56,6 @@ import Telecon_room from './Telecon/Telecon_room';
 import JoinQuiz from './Quizlit/TestComponents/JoinQuiz';
 import ToLobby from './Quizlit/TestComponents/ToLobby';
 import Lobby from './Quizlit/TestComponents/Lobby';
-import ROOMS_INSIDE2 from './student_side/Rooms/Rooms_inside2';
 import Notfound from './Notfound';
 // import LoadQuizlit from './Quizlit/TestComponents/LoadQuizlit';
 
@@ -252,10 +251,26 @@ function App() {
               />
               <Route exact path="/Settings_main" component={Settings_main} />
               <Route exact path="/Exam_take/:quizID" component={Exam_take} />
-              <Route exact path="/Exam_start/:examID" component={Exam_start} />
-              <Route exact path="/View_quiz" component={View_quiz} />
-              <Route exact path="/View_exam" component={View_exam} />
-              <ProtectedRoutes socket={socket} />
+              <ProtectedRoutes exact path="/Exam_start/:examID" component={Exam_start} socket={socket} />
+              <ProtectedRoutes exact path="/View_quiz" component={View_quiz} />
+              <ProtectedRoutes exact path="/View_exam/:examID" component={View_exam} />
+              <ProtectedRoutes exact path="/records" component={Records} />
+              <Route path="/telecon/room" component={Telecon_room} />
+              <Route exact path="/quizlit/join">
+                <JoinQuiz socket={socket} />
+              </Route>
+              <Route exact path="/quizlit/lobby">
+                <Lobby socket={socket} />
+              </Route>
+              <Route exact path="/quizlit/lobby/:lobby/:name/:quizID">
+                <ToLobby socket={socket} />
+              </Route>
+              <ProtectedRoutes
+
+                socket={socket}
+
+              />
+
               <Route component={Notfound} />
             </Switch>
           </Router>

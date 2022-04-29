@@ -5,20 +5,29 @@ import {
   PanoramaOutlined,
   AttachFileOutlined,
   InsertLinkOutlined,
+  HomeWork,
 } from '@mui/icons-material';
 import Dialogform from '../components/Dialogform';
 import Input from '../components/Input';
+import Datepicker from '../components/DatePicker';
+import Dropdown from '../components/Drowpdown';
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertToRaw } from 'draft-js';
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { useParams } from 'react-router-dom';
+
+const types = [
+  { value: 'Homework', label: 'Homework' },
+  { value: 'Seatwork', label: 'Seatwork' },
+  { value: 'Material', label: 'Material' },
+];
 
 function Create_activity({ open, close, setOpenDialog }) {
   const { roomID } = useParams();
   const [type, setType] = useState('');
   const [title, setTitle] = useState('');
   const [points, setPoints] = useState('');
-  const [duedate, setDueDate] = useState('');
+  const [duedate, setDueDate] = useState(null);
   // const [instruction, setInstruction] = useState('');
 
   //errorState
@@ -36,6 +45,10 @@ function Create_activity({ open, close, setOpenDialog }) {
     setEditorState(editorState);
     const state = convertToRaw(editorState.getCurrentContent());
     setConvertedState(state);
+  };
+
+  const handleType = (event) => {
+    setType(event.target.value);
   };
 
   const handleCreateActivity = () => {
@@ -65,7 +78,7 @@ function Create_activity({ open, close, setOpenDialog }) {
       axios
         .post('http://localhost:5000/activity/create', Activity)
         .then((res) => {
-          setOpenDialog(false)
+          setOpenDialog(false);
         })
         .catch((err) => {
           console.log(err);
@@ -84,7 +97,7 @@ function Create_activity({ open, close, setOpenDialog }) {
       <Grid container spacing={2} sx={{ p: '0em 2em' }}>
         <Input
           name="title"
-          inputLabel="TItle"
+          inputLabel="Title"
           autoComplete="off"
           value={title}
           autoFocus
@@ -93,7 +106,7 @@ function Create_activity({ open, close, setOpenDialog }) {
           helperText={titleerror ? 'Please enter a title' : false}
           placeholder="Enter activity title..."
         />
-        <Input
+        {/* <Input
           name="type"
           inputLabel="Type"
           autoComplete="off"
@@ -102,6 +115,15 @@ function Create_activity({ open, close, setOpenDialog }) {
           error={typeerror}
           helperText={typeerror ? 'Please select type' : false}
           onChange={(event) => setType(event.target.value)}
+          half
+        /> */}
+        <Dropdown
+          inputLabel="Type"
+          onChange={handleType}
+          options={types}
+          value={type}
+          error={typeerror}
+          typeerror="Please select type"
           half
         />
         <Input
@@ -115,7 +137,7 @@ function Create_activity({ open, close, setOpenDialog }) {
           placeholder="Set activity points"
           half
         />
-        <Input
+        {/* <Input
           name="duedate"
           inputLabel="Due Date"
           autoComplete="off"
@@ -123,7 +145,13 @@ function Create_activity({ open, close, setOpenDialog }) {
           onChange={(event) => setDueDate(event.target.value)}
           placeholder="Set due date and time for this activity"
           half
+        /> */}
+        <Datepicker
+          inputLabel="Due Date"
+          duedate={duedate}
+          setDueDate={setDueDate}
         />
+
         {/* <Input
           name="instruction"
           autoComplete="off"

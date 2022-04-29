@@ -75,7 +75,6 @@ const deleteQuizlit = async (req, res) => {
 const findQuizlit = async (req, res) => {
   try {
     const quiz = await QuizlitModel.findById(req.body.quizID.replace(':',''));
-    console.log(quiz)
     return res.json(quiz);
   } catch (err) {
     console.log(err,'bobo');

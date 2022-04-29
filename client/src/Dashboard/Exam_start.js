@@ -9,18 +9,21 @@ import {
 } from '@mui/material';
 import ExamIcon from '../assets/ImageJaven/ExamIcon.png';
 import { TimerOutlined } from '@mui/icons-material';
+import ExamTimer from './ExamComponents/ExamTimer'
 import useStyle from './Styles/Exam_start_style';
 import './Styles/Exam_start_stylesheet.css';
 import ExamMulti from './ExamComponents/ExamMulti';
 import ExamShort from './ExamComponents/ExamShort';
 import ExamCB from './ExamComponents/ExamCB';
 import ExamTF from './ExamComponents/ExamTF';
-import { useParams } from 'react-router-dom';
+import { useParams,Redirect } from 'react-router-dom';
 import axios from 'axios';
-function Exam_start() {
+function Exam_start({socket}) {
   const { designs } = useStyle();
   const { examID: quizID } = useParams();
   const [data, setData] = React.useState(null);
+  const qAnswers = React.useRef([{}])
+  const [redirect,setRedirect] = React.useState(null)
   React.useMemo(() => {
     axios
       .post('http://localhost:5000/quizlit', { quizID })
@@ -39,14 +42,7 @@ function Exam_start() {
     <Container maxWidth="md">
       <Grid container rowSpacing={1}>
         <Grid item xs={12} sx={designs.Timer_GridItem_Style}>
-          <Box className="Timer-main" sx={designs.TimerMain_Style}>
-            <Box className="Timer" sx={designs.Timer_Style}>
-              <TimerOutlined sx={designs.TimerOutlinedIcon_Style} />
-              <Typography sx={designs.Timer_Typography_Style}>
-                00h 59m 57s
-              </Typography>
-            </Box>
-          </Box>
+          {data && <ExamTimer data={data[0]} socket={socket}/>}
         </Grid>
 
         <Grid item xs={12} sx={designs.ExamName_GridItem_Style}>
@@ -74,7 +70,7 @@ function Exam_start() {
                 </Typography>
 
                 <Typography sx={designs.Date_Typography_Style}>
-                  December 12, 2021
+                  {data && data[0].dueDate}
                 </Typography>
               </Box>
 
@@ -107,7 +103,7 @@ function Exam_start() {
                 sx={designs.ExamName_GridItem_Style}
               >
                 {answerType === 'Multiple Choice' && (
-                  <ExamMulti item={item} index={index} />
+                  <ExamMulti item={item} index={index} qAnswers={qAnswers}  />
                 )}
                 {answerType === 'Short Answer' && (
                   <ExamShort item={item} index={index} />
@@ -126,8 +122,13 @@ function Exam_start() {
           <Box className="Button" sx={designs.Button_Style}>
             <Box flexGrow={1} sx={designs.BoxFlexGrow_Style} />
 
-            <Button sx={designs.SubmitExam_Button_Style}>Submit</Button>
+            <Button 
+            onClick={()=>{axios.post('http://localhost:5000/answers/create',{answersPayload:qAnswers.current}).then(res=>{
+            setRedirect(<Redirect to="/dashboard" />)  
+            console.log(res.data)}).catch(err=>console.log(err))}}
+            sx={designs.SubmitExam_Button_Style}>Submit</Button>
           </Box>
+          {redirect && redirect}
         </Grid>
       </Grid>
     </Container>

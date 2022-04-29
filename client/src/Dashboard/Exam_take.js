@@ -83,7 +83,7 @@ function Exam_take() {
                     </Typography>
 
                     <Typography sx={designs.Time_Typography_Style}>
-                      01h 00m 00s
+                      {data && data.timeLimit}
                     </Typography>
                   </Box>
                 </Grid>

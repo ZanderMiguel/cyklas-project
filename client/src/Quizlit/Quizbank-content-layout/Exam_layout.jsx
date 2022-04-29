@@ -24,7 +24,7 @@ function Exam_layout({ bank }) {
   return (
     <>
       {bank.map((item, idx) => {
-        const { title, name, date, time } = item;
+        const { title,_id } = item;
         return (
           <Box sx={designs.BoxTileContainer} key={idx}>
             <Box sx={designs.ExamContainer}>
@@ -40,23 +40,13 @@ function Exam_layout({ bank }) {
               <Box
                 sx={designs.ExamName_User_Date}
                 component={Link}
-                to="/View_exam"
+                to={`/View_exam/${_id}`}
               >
                 <Box sx={designs.ExamName}>
                   <Typography noWrap sx={designs.Exam}>
                     {title}
                   </Typography>
                 </Box>
-
-                {/* <Box sx={designs.User_Date}>
-                  <Typography noWrap sx={designs.Professor}>
-                    {name} (You)
-                  </Typography>
-
-                  <Typography noWrap sx={designs.Date}>
-                    {date} at {time}
-                  </Typography>
-                </Box> */}
               </Box>
 
               <Box sx={designs.BoxOptions}>

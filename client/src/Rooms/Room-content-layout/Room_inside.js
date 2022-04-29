@@ -24,7 +24,6 @@ function Room_inside({ socket }) {
   const [value, setValue] = useState(0);
   const [roomdata, setRoomData] = useState(null);
   const [isPending, setIsPending] = useState(true);
-  const [error, setError] = useState(null);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -32,17 +31,18 @@ function Room_inside({ socket }) {
 
   const { roomID } = useParams();
 
-  useEffect(() => {
-    axios
-      .post('http://localhost:5000/rooms/my-room', { roomID })
-      .then((res) => {
-        setRoomData(res.data);
-        setIsPending(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .post('http://localhost:5000/rooms/my-room', { roomID })
+  //     .then((res) => {
+  //       setRoomData(res.data);
+  //       console.log(res.data);
+  //       setIsPending(false);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   useEffect(() => {
     axios
@@ -56,7 +56,7 @@ function Room_inside({ socket }) {
       })
       .then((res) => {
         setRoomData(res.data);
-        console.log(res);
+        setIsPending(false);
       })
       .catch((err) => {
         console.log(err);
@@ -71,7 +71,7 @@ function Room_inside({ socket }) {
           <LinearProgress />
         </Box>
       )}
-      {roomdata && roomdata.room ? (
+      {roomdata && roomdata.room && (
         <>
           <AppBar
             position="sticky"
@@ -141,7 +141,7 @@ function Room_inside({ socket }) {
               </Container>
             </Toolbar>
           </AppBar>
-          <Container maxWidth="lg">
+          <Container maxWidth="md">
             {value === 0 ? (
               <Announce socket={socket} />
             ) : value === 1 ? (
@@ -152,16 +152,17 @@ function Room_inside({ socket }) {
                 <Activities_main roomID={roomID} />
               )
             ) : JSON.parse(localStorage.userData).data.user.userType ===
-              'Professor' ? (
-              <Member roomdata={roomdata} />
-            ) : (
+              'Student' ? (
               <MemberStudents roomdata={roomdata} />
+            ) : (
+              <Member roomdata={roomdata} />
             )}
           </Container>
         </>
-      ) : (
+      )}
+      {roomdata && !roomdata.room && (
         <center>
-          <h1> Request to join has been sent...</h1>
+          <h1>{roomdata.message}</h1>
         </center>
       )}
     </>

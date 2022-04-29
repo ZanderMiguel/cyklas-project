@@ -70,6 +70,7 @@ function Contact() {
 
           <CssTextField
             label="Enter your name"
+            autoComplete="off"
             variant="standard"
             fullWidth
             sx={{ ...style, mt: 3 }}
@@ -77,12 +78,14 @@ function Contact() {
 
           <CssTextField
             label="Enter your email address"
+            autoComplete="off"
             variant="standard"
             fullWidth
             sx={{ mt: 3 }}
           />
           <CssTextField
             label="Type your message here."
+            autoComplete="off"
             variant="standard"
             multiline
             rows={4}

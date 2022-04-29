@@ -2,8 +2,7 @@ const AnswerModel = require('../models/model-answers');
 
 const createAnswer = async (req, res) => {
   try {
-    const answer = new AnswerModel(req.body);
-    await answer.save();
+    const answer = await AnswerModel.insertMany(req.body.answersPayload)
     return res.json(answer);
   } catch (error) {
     console.log(error);

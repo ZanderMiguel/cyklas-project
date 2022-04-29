@@ -1,11 +1,14 @@
 import React from 'react';
-import {TextField, Typography, Input} from '@mui/material';
+import { TextField, Typography, Input } from '@mui/material';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import TimePicker from '@mui/lab/TimePicker';
 
-export default function BasicTimePicker({inputLabel,classtime, setClassTime}) {
-
+export default function BasicTimePicker({
+  inputLabel,
+  classtime,
+  setClassTime,
+}) {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Typography variant="body1" sx={{ ml: 1, fontWeight: 500 }}>
@@ -18,7 +21,7 @@ export default function BasicTimePicker({inputLabel,classtime, setClassTime}) {
           setClassTime(newValue);
         }}
         renderInput={(params) => (
-          <TextField {...params} fullWidth placeholder="Time" />
+          <TextField {...params} fullWidth label={false} />
         )}
       />
     </LocalizationProvider>

@@ -7,27 +7,40 @@ import moment from 'moment';
 function RequestPopup() {
   const { designs } = useStyle();
   const [items, setItems] = React.useState(null);
-  React.useMemo(() => {
+
+  React.useEffect(() => {
     axios
       .post('http://localhost:5000/requests', {
         userID: JSON.parse(localStorage.userData).data.user._id,
       })
       .then((res) => {
         setItems(res.data);
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
 
+  const handleAcceptRequest = (event) => {
+    axios
+      .post('http://localhost:5000/requests/accept', {
+        roomID: event.target.name,
+        memberID: event.target.accessKey,
+        reqID: event.target.nonce,
+      })
+      .then((res) => {
+        setItems(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
-      {items ? (
+      {items &&
+        items.length > 0 &&
         items.map((element, index) => {
           return (
             <div key={index}>
               <Box sx={designs.RequestContainer_Sub_Style}>
                 <Box sx={designs.RequestContainer_Sub2_Style}>
-                  {' '}
                   <Avatar src={element.requests.userImage} alt="" />
                 </Box>
 
@@ -88,20 +101,7 @@ function RequestPopup() {
                           backgroundColor: '#005DC3',
                         },
                       }}
-                      onClick={(e) => {
-                        console.log(e.target.nonce);
-                        axios
-                          .post('http://localhost:5000/requests/accept', {
-                            roomID: e.target.name,
-                            memberID: e.target.accessKey,
-                            reqID: e.target.nonce,
-                          })
-                          .then((res) => {
-                            setItems(res.data);
-                            console.log(res.data);
-                          })
-                          .catch((err) => console.log(err));
-                      }}
+                      onClick={(event) => handleAcceptRequest(event)}
                       name={element.room}
                       accessKey={element.requests.studentID}
                       nonce={element._id}
@@ -133,10 +133,10 @@ function RequestPopup() {
               <Divider sx={designs.RequestDivider_Style} />
             </div>
           );
-        })
-      ) : (
-        <Box sx={designs.RequestContainer_Sub4_Style}>
-          <Typography children="Have nothing to show" />
+        })}
+      {items && items.length === 0 && (
+        <Box sx={designs.RequestContainer_Sub_Style}>
+          <Typography> There is no request to show!!!!</Typography>
         </Box>
       )}
     </>

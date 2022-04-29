@@ -36,7 +36,7 @@ function Rich_text({ socket }) {
 
   const postData = React.useRef(null);
 
-  const { post, data } = usePost();
+  const { post, data, isPending } = usePost();
   const { roomID } = useParams();
   const handleAnnounce = () => {
     post('http://localhost:5000/announce/create', {
@@ -49,11 +49,13 @@ function Rich_text({ socket }) {
       rooms: [roomID],
       content: convertedState,
     });
-    if (data) {
-      setEditorState(EditorState.createEmpty());
+
+    if (!data || data) {
+      setEditorState('');
     }
+
     socket.emit('create-post');
-    
+    socket.emit('create-comment');
   };
 
   return (
