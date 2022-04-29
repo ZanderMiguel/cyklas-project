@@ -9,8 +9,6 @@ function MeetingInformation() {
       style={{
         width: '23.9rem',
         height: '98vh',
-        border: '1px solid #464646',
-        position: 'relative',
       }}
     >
       <Box
@@ -184,10 +182,6 @@ function MeetingInformation() {
 
       <Box
         sx={{
-          position: 'absolute',
-          bottom: 120,
-          left: 24,
-          right: 24,
           border: '1px solid #464646',
           width: 'relative',
           display: 'flex',
@@ -195,6 +189,7 @@ function MeetingInformation() {
           justifyContent: 'center',
           gap: '1.2em',
           padding: '0.3em 0em',
+          margin: "1.5em",
           borderRadius: '0.3em',
         }}
       >

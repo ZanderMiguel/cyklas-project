@@ -52,8 +52,7 @@ function Members() {
     <div
       style={{
         width: '23.9rem',
-        height: '98vh',
-        border: '1px solid #464646',
+        height: '98vh'
       }}
     >
       <Box
@@ -140,19 +139,41 @@ function Members() {
           }}
         />
       </Box>
-
-      <Typography
+      
+      <Box 
+      sx = {{ 
+        width: "relative",
+        height: "auto",
+        display: "flex",
+        alignItems: "center",
+        padding: "0em 1.5em",
+        margin: "1.5em 0em 0.3em 0em"
+        }}>
+        <Typography
         children="Incall"
         sx={{
           color: '#DEDEDE',
           fontSize: '0.8em',
           fontWeight: '500',
           height: 'max-content',
-          width: 'relative',
-          margin: '1.5em 1.5em 0.8em 1.5em',
+          width: 'auto',
+          flexGrow: 1,
         }}
-      />
+        />
 
+        <Typography
+          children="8"
+          sx={{
+            color: '#DEDEDE',
+            fontSize: '0.8em',
+            fontWeight: '500',
+            height: 'max-content',
+            width: 'auto',
+            textAlign: "right"
+          }}
+        />
+      </Box>
+      
       <Box
         sx={{
           width: 'relative',

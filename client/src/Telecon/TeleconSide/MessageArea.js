@@ -54,9 +54,9 @@ function MessageArea({
   return (
     <div
       style={{
+        position: 'relative',
         width: '23.9rem',
-        height: '98vh',
-        border: '1px solid #464646',
+        height: '98vh'
       }}
     >
       <Box
@@ -93,7 +93,7 @@ function MessageArea({
 
       <Box
         sx={{
-          height: '83vh',
+          height: '78vh',
           overflowY: 'auto',
         }}
       >
@@ -175,7 +175,8 @@ function MessageArea({
 
       <Box
         sx={{
-          position: 'sticky',
+          position: 'absolute',
+          bottom: '0px',
           width: '100%',
           display: 'flex',
           height: 'auto',
