@@ -82,9 +82,8 @@ function TeleconRoomV2({ socket }) {
                         width: '25rem',
                     },
                     }}> */}
-<<<<<<< Updated upstream
             <Slide direction="left" in={sidedrawer} mountOnEnter unmountOnExit>
-              <Grid item xs={10} sx={{ height: '98vh' }}>
+              <Box sx={{ height: '98vh' }}>
                 {sidecontent === 'MeetingInformation' ? (
                   <MeetingInformation />
                 ) : sidecontent === 'Members' ? (
@@ -102,7 +101,7 @@ function TeleconRoomV2({ socket }) {
                     <PresentationCriteria />
                   )
                 )}
-              </Grid>
+              </Box>
             </Slide>
           </Box>
 
@@ -110,34 +109,6 @@ function TeleconRoomV2({ socket }) {
             setSideDrawer={setSideDrawer}
             setSideContent={setSideContent}
           />
-=======
-                    <Slide direction="left" in={sidedrawer} mountOnEnter unmountOnExit>
-                        
-                    <Box sx = {{ height: "98vh" }}>
-                    
-                    {sidecontent === 'MeetingInformation' ? (
-                        <MeetingInformation/>
-                    )
-                    : 
-                    sidecontent === 'Members' ? (
-                        <Members />
-                    )
-                    : 
-                    sidecontent === 'MessageArea' ? (
-                        <MessageArea socket={socket} />
-                    )
-                    : 
-                    (
-                    sidecontent === 'PresentationCriteria' && <PresentationCriteria/>
-                    )
-                    }
-                    </Box>
-                    {/* </Collapse> */}
-                    </Slide>
-            </Box>
-                
-            <RightContentSideBar setSideDrawer={setSideDrawer} setSideContent={setSideContent}/>
->>>>>>> Stashed changes
         </Box>
       </Box>
     </>
