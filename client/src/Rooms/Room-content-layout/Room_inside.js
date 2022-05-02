@@ -19,6 +19,7 @@ import { IoNewspaperSharp } from 'react-icons/io5';
 import { HiUserGroup } from 'react-icons/hi';
 import { FaClipboardList } from 'react-icons/fa';
 import axios from 'axios';
+import RequestSent from "../../assets/ImageJaven/RequestSent.png";
 
 function Room_inside({ socket }) {
   const [value, setValue] = useState(0);
@@ -161,9 +162,36 @@ function Room_inside({ socket }) {
         </>
       )}
       {roomdata && !roomdata.room && (
-        <center>
-          <h1>{roomdata.message}</h1>
-        </center>
+        <Box sx = {{
+          width: "100%",
+          height: "85vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          flexWrap: "wrap"
+        }}>
+          <img src = {RequestSent} alt = "Request Sent"
+          style = {{
+            height: "12em",
+            marginBottom: "1.5em"
+          }}/>
+          <Typography children = "You have sent your join request."
+          sx = {{
+            fontSize: "1em",
+            fontWeight: "600",
+            color: "#3F3D56",
+            marginBottom: "0.3em"
+          }}/>
+
+          <Typography children = "Please wait until your professor accepted you to be his/ her student."
+          sx = {{
+            fontSize: "0.8em",
+            fontWeight: "500",
+            color: "#8E8E8E",
+            marginLeft: "0.8em"
+          }}/>
+        </Box>
       )}
     </>
   );

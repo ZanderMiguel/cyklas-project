@@ -86,7 +86,7 @@ function Rooms({ socket }) {
               ) : (
                 <Box sx = {{
                   width: "100%",
-                  height: "60vh",
+                  height: "75vh",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
@@ -100,7 +100,7 @@ function Rooms({ socket }) {
                   }}/>
                   <Typography children = "You have no room to show."
                   sx = {{
-                    fontSize: "0.9em",
+                    fontSize: "1em",
                     fontWeight: "600",
                     color: "#3F3D56",
                     marginLeft: "0.8em"
