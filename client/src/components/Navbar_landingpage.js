@@ -62,7 +62,7 @@ function Navbar_landingpage({ data }) {
 
   return (
     <>
-      <AppBar position="sticky" sx={{ background: 'white', padding: "0.5em 0em 0em 0em" }} elevation={0}>
+      <AppBar position="sticky" sx={{ background: '#F7F7F7', padding: "0.5em 0em 0em 0em" }} elevation={0}>
         <Container maxWidth="xl">
           <Box display="flex" alignItems="center" flexWrap="wrap">
             <Box display="flex" alignItems="center"

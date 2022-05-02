@@ -56,6 +56,7 @@ function Make_groups_recreate({ open, close, maxWidth }) {
               fontWeight: '600',
               textTransform: 'Capitalize',
               padding: '0.3em 3em',
+              boxShadow: "none",
               '&: hover': {
                 backgroundColor: '#31B13E',
               },

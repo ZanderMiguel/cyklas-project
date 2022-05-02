@@ -158,6 +158,8 @@ function Notification_viewall() {
         <Box
           sx={{
             display: 'flex',
+            alignItems: "center",
+            padding: "0em 0.5em 0em 0em"
           }}
         >
           <NotificationsActive
@@ -182,7 +184,6 @@ function Notification_viewall() {
           <Button
             startIcon={<ClearAll />}
             sx={{
-              margin: '0em 0em 0.8em 0em',
               padding: '0em 1em',
               fontSize: '0.8em',
               fontWeight: '500',

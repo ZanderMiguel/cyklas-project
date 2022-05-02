@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Typography, FormControl, Select, MenuItem } from '@mui/material';
-import virtualmeeting from '../assets/ImageJaven/Virtual Meeting 2.png';
+import virtualmeeting from '../assets/ImageJaven/Conference.png';
 import Button from '../components/Button';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import VideocamIcon from '@mui/icons-material/Videocam';
@@ -51,7 +51,7 @@ function TeleconStart() {
         justifyContent="center"
         alignItems="center"
         flexWrap="wrap"
-        gap="3rem"
+        gap="5rem"
       >
         <Box className="left" alignItems="flex-start" padding="0rem 1rem">
           <Typography
@@ -79,7 +79,7 @@ function TeleconStart() {
             <Typography
               sx={{ fontSize: '1em', fontWeight: '400', color: '#3F3D56' }}
             >
-              <span style={{ color: '#2E2C46', fontWeight: 700 }}>Create</span>{' '}
+              <span style={{ color: '#007FFF', fontWeight: 600 }}>Create</span>{' '}
               a room meeting for your class.
             </Typography>
           </Box>
@@ -97,8 +97,8 @@ function TeleconStart() {
             <Typography
               sx={{ fontSize: '1em', fontWeight: '400', color: '#3F3D56' }}
             >
-              <span style={{ color: '2E2C46', fontWeight: 700 }}>Connect</span>{' '}
-              and <span style={{ color: '2E2C46', fontWeight: 700 }}> see</span>{' '}
+              <span style={{ color: '#007FFF', fontWeight: 600 }}>Connect</span>{' '}
+              and <span style={{ color: '#007FFF', fontWeight: 600 }}> see</span>{' '}
               everyone in your class.
             </Typography>
           </Box>
@@ -117,10 +117,10 @@ function TeleconStart() {
               sx={{ fontSize: '1em', fontWeight: '400', color: '#3F3D56' }}
             >
               Have a {''}
-              <span style={{ color: '2E2C46', fontWeight: 700 }}>
+              <span style={{ color: '#007FFF', fontWeight: 600 }}>
                 safe
               </span> and {''}
-              <span style={{ color: '2E2C46', fontWeight: 700 }}>
+              <span style={{ color: '#007FFF', fontWeight: 600 }}>
                 protected
               </span>{' '}
               class meetings.
@@ -134,17 +134,15 @@ function TeleconStart() {
                 paddingTop: '0em',
               }}
             >
-              <Typography
+              <Typography children = "Select Room"
                 sx={{
                   fontWeight: '600',
                   color: '#2E2C46',
                   fontSize: '1.2em',
                   marginBottom: '0.5em',
-                  textTransform: 'uppercase',
+                  textTransform: "Uppercase"
                 }}
-              >
-                Select Room
-              </Typography>
+              />
               <Select
                 labelId="demo-simple-select-standard-label"
                 id="demo-simple-select-standard"
@@ -153,7 +151,8 @@ function TeleconStart() {
                 label="SelectRoom"
                 disableUnderline
                 sx={{
-                  border: '1px solid #C4C4C4',
+                  backgroundColor: "white",
+                  border: '1px solid #DBDBDB',
                   borderRadius: '0.3em',
                   padding: '0.7em 0.9em',
                   width: '100%',
@@ -161,7 +160,7 @@ function TeleconStart() {
                   fontWeight: '500',
                   color: '#3F3D56',
                   '&: hover': {
-                    border: '1px solid #212121',
+                    border: '1px solid #007FFF',
                   },
                 }}
               >
@@ -188,12 +187,14 @@ function TeleconStart() {
               content="Start a conference!"
               startIcon={<VideocamIcon />}
               sx={{
+                fontWeight: "600",
                 backgroundColor: '#0054A9',
                 color: 'white',
                 textDecoration: 'none',
                 borderRadius: '0.3em',
                 width: '100%',
                 margin: '0.5em 0em 0em 0em',
+                boxShadow: "none",
                 '&: hover': { backgroundColor: '#00439A' },
               }}
             />

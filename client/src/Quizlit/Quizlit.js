@@ -45,7 +45,7 @@ function Quizlit() {
 
   return (
     <>
-      <Container maxWidth="lg" sx={{ padding: '0em' }}>
+      <Container maxWidth="md" sx={{ padding: '1.5em 0em 0em 0em' }}>
         <Grid container columnSpacing={3} sx={{ margin: '0em' }}>
           <Grid item xs={2}></Grid>
 
@@ -112,6 +112,8 @@ function Quizlit() {
               sx={{
                 backgroundColor: '#007FFF',
                 color: 'white',
+                fontWeight: "600",
+                boxShadow: "none",
                 '&:hover': {
                   backgroundColor: '#0072e6',
                 },

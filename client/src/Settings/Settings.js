@@ -17,21 +17,6 @@ import { styled } from '@mui/material/styles';
 import Background15 from '../assets/ImageJaven/Background15.png';
 import Input from '../components/Input';
 
-const textfield = [
-  {
-    label: 'First Name',
-    value: 'firstname',
-    holder: 'Enter first name...',
-    default: 'Mark',
-  },
-  {
-    label: 'Last Name',
-    value: 'lastname',
-    holder: 'Enter last name...',
-    default: 'Andrei',
-  },
-];
-
 function Settings() {
   const InsertImage = styled('input')({
     display: 'none',
@@ -79,6 +64,7 @@ function Settings() {
             marginBottom: '0.8em',
             boxShadow:
               'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px',
+            borderRadius: "0.3em"
           }}
         >
           <Box
@@ -190,6 +176,8 @@ function Settings() {
             height: 'auto',
             marginBottom: '0.8em',
             boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 2px 0px',
+            backgroundColor: "white",
+            borderRadius: "0.3em"
           }}
         >
           <Box sx={{ width: 'relative', height: 'auto', padding: '1.5em 1em' }}>
@@ -217,21 +205,43 @@ function Settings() {
               />
             </Box>
 
-            {textfield.map((item, index) => (
-              <Stack key={index} sx={{ marginTop: '1em' }}>
+              <Stack>
                 <Typography
-                  children={item.label}
+                  children="First Name"
                   sx={{
                     fontWeight: '500',
                     color: '#3F3D56',
                     fontSize: '0.8em',
-                    marginBottom: '0.3em',
+                    margin: '1em 0em 0.3em 0em',
                   }}
                 />
                 <TextField
                   variant="outlined"
-                  defaultValue={item.default}
-                  placeholder={item.holder}
+                  defaultValue={JSON.parse(localStorage.userData).data.user.firstName}
+                  placeholder="Enter first name..."
+                  inputProps={{
+                    style: {
+                      height: '0.5em',
+                      fontSize: '0.9em',
+                      color: '#3F3D56',
+                      fontWeight: 500,
+                    },
+                  }}
+                />
+
+                <Typography
+                  children="Last Name"
+                  sx={{
+                    fontWeight: '500',
+                    color: '#3F3D56',
+                    fontSize: '0.8em',
+                    margin: '1em 0em 0.3em 0em',
+                  }}
+                />
+                <TextField
+                  variant="outlined"
+                  defaultValue={JSON.parse(localStorage.userData).data.user.lastName}
+                  placeholder="Enter last name..."
                   inputProps={{
                     style: {
                       height: '0.5em',
@@ -242,7 +252,6 @@ function Settings() {
                   }}
                 />
               </Stack>
-            ))}
           </Box>
         </Grid>
 
@@ -253,6 +262,8 @@ function Settings() {
             height: 'auto',
             marginBottom: '0.8em',
             boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 2px 0px',
+            backgroundColor: "white",
+            borderRadius: "0.3em"
           }}
         >
           <Box sx={{ width: 'relative', height: 'auto', padding: '1.5em 1em' }}>
@@ -303,7 +314,7 @@ function Settings() {
 
               <TextField
                 variant="outlined"
-                defaultValue="markandrei@gmail.com"
+                defaultValue={JSON.parse(localStorage.userData).data.user.emailAddress}
                 placeholder="Enter your email address..."
                 sx={{}}
                 inputProps={{

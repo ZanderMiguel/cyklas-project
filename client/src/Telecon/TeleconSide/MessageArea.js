@@ -94,41 +94,42 @@ function MessageArea({
 
       <Box
         sx={{
-          height: '83vh',
-          overflowY: 'auto',
+          height: '80vh',
+          overflowY: 'hidden',
         }}
       >
-        <Box
-          sx={{
-            width: 'relative',
-            height: 'auto',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: '1em',
-            padding: '0em 0.8em',
-            marginBottom: '1em',
-          }}
-        >
-          <img src={Message} alt="Message" style={{ height: '8em' }} />
-
-          <Typography
-            children="Messages can only be seen by people in this call and are deleted when the call ends."
-            sx={{
-              width: '23em',
-              height: 'max-content',
-              padding: '0.4em 0em',
-              textAlign: 'center',
-              color: '#DEDEDE',
-              fontSize: '0.7em',
-              fontWeight: '600',
-              borderRadius: '0.3em',
-            }}
-          />
-        </Box>
-
         <ReactScrollableFeed>
+          <Box
+            sx={{
+              width: 'relative',
+              height: 'auto',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: '1em',
+              marginBottom: '1em',
+            }}
+          >
+            <img src={Message} alt="Message" style={{ height: '8em' }} />
+
+            <Typography
+              sx={{
+                backgroundColor: "#34373D",
+                width: '100%',
+                height: 'max-content',
+                padding: '0.5em 0em',
+                textAlign: 'center',
+                color: '#DEDEDE',
+                fontSize: '0.7em',
+                fontWeight: '600'
+              }}
+            >
+              Messages are deleted when a member leave <br/>
+              or when the Host end the conference.
+            </Typography>
+          </Box>
+
           {messagelist.map((messageContent, index) => {
             return (
               <Box

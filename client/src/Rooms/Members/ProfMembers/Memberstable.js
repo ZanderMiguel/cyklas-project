@@ -13,7 +13,7 @@ import {
   ListItemText,
   Tooltip,
 } from '@mui/material';
-import { Delete } from '@mui/icons-material';
+import { Delete, DeleteOutlined, DoorFrontOutlined } from '@mui/icons-material';
 import useStyle from './Styles/People_table_style';
 
 function Memberstable({ members }) {
@@ -38,9 +38,11 @@ function Memberstable({ members }) {
                 Professor
               </Typography>
               <Box flexGrow={1} />
-              <Button variant="contained" sx={designs.Leave_Button_Style}>
-                Leave
-              </Button>
+              <Tooltip title = "Leave Room" placement = "right">
+                <IconButton>
+                  <DoorFrontOutlined/>
+                </IconButton>
+              </Tooltip>
             </Box>
             <Divider />
             <Grid item xs={12}>
@@ -81,15 +83,14 @@ function Memberstable({ members }) {
           <Box sx={designs.Student_Container_Style}>
             <Box className="container" sx={designs.Student_Container_Sub_Style}>
               <Typography sx={designs.Students_Typography_Style}>
-                Student
+                Students
               </Typography>
               <Box flexGrow={1} />
-              <Button
-                variant="contained"
-                sx={designs.RemoveAllStudents_Button_Style}
-              >
-                Remove All Students
-              </Button>
+              <Tooltip title = "Remove All Students" placement = "right">
+                <IconButton>
+                  <DeleteOutlined/>
+                </IconButton>
+              </Tooltip>
             </Box>
             <Divider />
 
@@ -116,14 +117,13 @@ function Memberstable({ members }) {
 
                               <Tooltip
                                 title="Remove this student"
-                                placement="left"
+                                placement="right"
                               >
                                 <IconButton edge="end" aria-label="delete">
-                                  <Delete />
+                                  <DeleteOutlined />
                                 </IconButton>
                               </Tooltip>
                             </ListItem>
-                            <Divider />
                           </>
                         )}
                       </div>

@@ -7,9 +7,10 @@
     width: 100%;
     border: none;
     text-align: center;
+    background-color: white;
 }
 .records-table thead tr {
-    background-color: #f3f3f3;
+    background-color: #ebebeb;
     color: #5f6166;
     font-size: 1em;
     text-align: center;

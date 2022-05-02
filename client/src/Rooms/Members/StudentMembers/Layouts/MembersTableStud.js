@@ -16,7 +16,7 @@ import useStyle from './Styles/People_table_layout_style';
 function MembersTableStud({ members }) {
   const { designs } = useStyle();
   return (
-    <Container maxWidth="md">
+    <Box sx = {{ width: "relative", height: "auto" }}>
       <Grid container rowSpacing={1}>
         <Grid item xs={12}>
           <Box className="Total" sx={designs.Total_Style}>
@@ -69,7 +69,7 @@ function MembersTableStud({ members }) {
             <Box flexGrow={1} sx={designs.BoxFlexGrow_Style} />
 
             <Typography sx={designs.TotalStud_Typography_Style}>
-              1 student
+              1 classmate
             </Typography>
           </Box>
 
@@ -113,7 +113,7 @@ function MembersTableStud({ members }) {
           </Box>
         </Grid>
       </Grid>
-    </Container>
+    </Box>
   );
 }
 

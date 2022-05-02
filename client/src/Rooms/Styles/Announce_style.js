@@ -5,12 +5,13 @@ function useStyle() {
 
   const designs = {
     Post_Style: {
+      backgroundColor: "white",
       width: '100%',
       height: 'auto',
       margin: '20px 0px',
       paddingBottom: '15px',
       border: ' 1px solid #DBDBDB',
-      borderRadius: '0.8em',
+      borderRadius: '0.3em',
     },
     User_Style: {
       padding: '7px 15px',
@@ -34,16 +35,14 @@ function useStyle() {
     },
     Date_Style: {
       display: 'flex',
-      flexWrap: 'wrap',
-      marginTop: '1px',
+      flexWrap: 'wrap'
     },
     Date_Typography_Style: {
       width: 'max-content',
       fontSize: '10px',
-      color: '#3F3D56',
+      color: '#8E8E8E',
       fontWeight: '500',
       fontStyle: 'Italic',
-      marginRight: '5px',
     },
     Slash_Typography_Style: {
       fontSize: '10px',
@@ -64,26 +63,22 @@ function useStyle() {
       height: 'relative',
     },
     Option_IconButton_Style: {
-      borderRadius: '0em',
-      height: '1.2em',
-      width: '1.2em',
+      height: '1.3em',
+      width: '1.3em',
       margin: '8px 0px',
-      '&: hover': {
-        backgroundColor: 'transparent',
-      },
     },
     EditIcon_Style: {
-      color: '#615F79',
+      color: '#707070',
       fontSize: '20px',
       '&: hover': {
         color: '#007FFF',
       },
     },
     DeleteIcon_Style: {
-      color: '#615F79',
+      color: '#707070',
       fontSize: '20px',
       '&: hover': {
-        color: '#FF3B00',
+        color: '#707070',
       },
     },
     MoreVertIcon_Style: {
@@ -106,14 +101,13 @@ function useStyle() {
       fontWeight: '500',
     },
     Divider_Style: {
-      width: 'relative',
-      margin: '0px 25px 5px 20px',
+      width: 'relative'
     },
     View_Comments_Style: {
+      backgroundColor: "#FCFCFC",
       height: 'auto',
       width: 'relative',
       paddingLeft: '20px',
-      marginBottom: '5px',
       display: 'flex',
       gap: '8px',
     },
@@ -135,7 +129,7 @@ function useStyle() {
       fontSize: '20px',
     },
     Write_Comment_Style: {
-      padding: '0px 25px 0px 15px',
+      padding: '0px 15px',
       display: 'flex',
       gap: '10px',
       width: 'relative',

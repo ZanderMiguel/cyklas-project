@@ -42,32 +42,6 @@ function MeetingInformation() {
           }}
         />
       </Box>
-      <Box
-        sx={{
-          width: 'relative',
-          height: 'auto',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '1.2em',
-          borderRadius: '0.4em',
-          padding: '0.4em 0em',
-          margin: '0.5em',
-        }}
-      >
-        <Typography
-          children="Meeting ID:"
-          sx={{
-            height: 'relative',
-            width: '70%',
-            color: '#DEDEDE',
-            fontSize: '0.8em',
-            fontWeight: '500',
-            textAlign: 'center',
-            padding: '0em 1.5em',
-            textAlign: 'Left',
-          }}
-        />
-      </Box>
 
       <Box
         sx={{
@@ -118,7 +92,7 @@ function MeetingInformation() {
         }}
       >
         <Typography
-          children="Meeting Started:"
+          children="Meeting Started at:"
           sx={{
             height: 'relative',
             width: 'auto',

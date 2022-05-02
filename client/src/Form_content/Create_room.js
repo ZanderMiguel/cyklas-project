@@ -64,7 +64,11 @@ function Create_room({ open, close, maxWidth, state, socket }) {
         close={close}
         maxWidth={maxWidth}
         btn={
-          <Button variant="contained" type="submit" form="form1">
+          <Button variant="contained" type="submit" form="form1"
+          sx = {{
+            fontWeight: '600',
+            boxShadow: "none",
+          }}>
             Submit
           </Button>
         }

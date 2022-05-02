@@ -18,7 +18,8 @@ function useStyle() {
       textTransform: 'uppercase',
     },
     Professor_Container_Style: {
-      backgroundColor: '#F6F6F6',
+      backgroundColor: 'white',
+      borderRadius: "0.3em"
     },
     Professor_Container_Sub_Style: {
       display: 'flex',
@@ -38,7 +39,8 @@ function useStyle() {
       textTransform: 'uppercase',
     },
     Student_Container_Style: {
-      backgroundColor: '#F6F6F6',
+      backgroundColor: 'white',
+      borderRadius: "0.3em"
     },
     Student_Container_Sub_Style: {
       display: 'flex',

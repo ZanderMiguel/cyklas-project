@@ -50,15 +50,17 @@ function Activities({ roomID }) {
   return (
     <>
       <Box
-        sx={{ width: '100%', display: 'flex', justifyContent: 'center', mt: 3 }}
+        sx={{ width: '100%', display: 'flex', justifyContent: 'center', paddingTop: "1em" }}
       >
         <Box flexGrow={1} />
         <Button
           startIcon={<AddCircleIcon />}
           variant="contained"
           sx={{
+            fontWeight: "600",
             backgroundColor: '#007FFF',
             color: 'white',
+            boxShadow: "none",
             '&:hover': {
               backgroundColor: '#0072e6',
             },
@@ -70,7 +72,7 @@ function Activities({ roomID }) {
         </Button>
       </Box>
       {opendialog && <Create_activity open={opendialog} close={handleClose} setOpenDialog={setOpenDialog} />}
-      <Grid container rowSpacing={2}>
+      <Grid container rowSpacing={2} sx = {{ paddingBottom: "1.5em" }}>
         <Activities_layout roomID={roomID} activity={activity}  />
       </Grid>
     </>

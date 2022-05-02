@@ -33,7 +33,7 @@ function Quiz_layout({ bank }) {
                 alt="QuizIcon"
                 style={{
                   height: '2.2em',
-                  margin: '0.3em 0.8em 0em 1.4em',
+                  margin: '0em 0.8em 0em 0em',
                 }}
               />
 
@@ -58,6 +58,8 @@ function Quiz_layout({ bank }) {
                   </Typography>
                 </Box> */}
               </Box>
+
+                <Box flexGrow = {1}/>
 
               <Box sx={designs.BoxOptions}>
                 <IconButton

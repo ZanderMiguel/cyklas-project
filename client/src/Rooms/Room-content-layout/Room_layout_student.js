@@ -146,7 +146,7 @@ function Room_layout_student({ data }) {
                   </Box>
 
                   <Box>
-                    <Tooltip title="Leave Room" placement="top-end">
+                    <Tooltip title="Leave Room" placement="right">
                       <IconButton
                         sx={{
                           marginLeft: '0.3em',
@@ -157,8 +157,8 @@ function Room_layout_student({ data }) {
                         <DoorFrontOutlined
                           sx={{
                             fontSize: '0.8em',
-                            color: '#615F79',
-                            '&: hover': { color: '#FF3B00' },
+                            color: '#707070',
+                            '&: hover': { color: '#707070' },
                           }}
                         />
                       </IconButton>
