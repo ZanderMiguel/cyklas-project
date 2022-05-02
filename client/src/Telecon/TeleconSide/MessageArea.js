@@ -33,11 +33,7 @@ function MessageArea({
         room: room,
         author: username,
         message: currentMessage,
-        time:
-          // new Date(Date.now()).getHours() +
-          // ':' +
-          // new Date(Date.now()).getMinutes(),
-          moment(Date.now()).format('LT'),
+        time: moment(Date.now()).format('LT'),
       };
 
       await socket.emit('sendMessage', messageData);
@@ -94,8 +90,8 @@ function MessageArea({
 
       <Box
         sx={{
-          height: '83vh',
-          overflowY: 'auto',
+          height: '80vh',
+          overflowY: 'hidden',
         }}
       >
         <ReactScrollableFeed>
@@ -108,7 +104,6 @@ function MessageArea({
               justifyContent: 'center',
               alignItems: 'center',
               gap: '1em',
-              padding: '0em 0.8em',
               marginBottom: '1em',
             }}
           >

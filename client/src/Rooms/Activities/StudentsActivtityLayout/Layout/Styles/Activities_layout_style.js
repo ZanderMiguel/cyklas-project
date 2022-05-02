@@ -26,8 +26,8 @@ function useStyle() {
     // },
     Accordion_Style: {
       width: '100%',
-      backgroundColor: '#F3F3F3',
-      border: 'none',
+      backgroundColor: 'white',
+      border: "1px solid #DBDBDB",
       boxShadow: 'none',
     },
     AccordionSummary_Style: {
@@ -333,15 +333,13 @@ function useStyle() {
     },
     ViewHomework_Button_Style: {
       color: '#0069D3',
-      fontWeight: 'bold',
+      fontWeight: '700',
       textTransform: 'Capitalize',
-      marginLeft: '20px',
+      padding: "0.7em 0em",
+      width: "100%",
       '&: hover': {
-        backgroundColor: '#EAEAEA',
-      },
-      [theme.breakpoints.down('sm')]: {
-        marginLeft: '15px',
-      },
+        backgroundColor: '#F0F0F0',
+      }
     },
   };
   return { designs };

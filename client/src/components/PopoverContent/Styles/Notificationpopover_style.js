@@ -5,7 +5,7 @@ const theme = useTheme()
 
 const designs = {
     RequestContainer_Style: {
-        margin: "0.8em 1em 0.8em 0em",
+        margin: "0.8em 0em 0.8em 0em",
         width: "relative",
         height: "25em",
         overflowY: "auto",
@@ -17,17 +17,15 @@ const designs = {
         gap: "0.8em"
     },
     RequestContainer_Sub2_Style: {
-        display: "flex",
-        flexGrow: 1,
     },
     RequestDivider_Style: { 
-        margin: "0.5em 0em 0.5em 3.4em"
+        margin: "0.5em 1em 0.5em 3.4em"
     },
     Divider_Style: { 
         margin: "0.5em 0em 0.5em 1.5em"
     },
     GeneralContainer_Style: {
-        margin: "0.8em 1em 0.8em 0em",
+        margin: "0.8em 0em 0.8em 0em",
         width: "relative",
         height: "25em",
         overflowY: "auto",

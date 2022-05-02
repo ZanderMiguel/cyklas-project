@@ -4,10 +4,11 @@ import Image from '../../assets/ImageJaven/Image.png';
 import '../Styles/Exam_start_stylesheet.css';
 import useStyle from '../Styles/Exam_start_style';
 
-function ExamShort({ item, index,qAnswers }) {
+function ExamShort({ item, index, qAnswers }) {
   const { designs } = useStyle();
+  React.useMemo(()=>{qAnswers.current.push({})},[])
   qAnswers.current[index]['answeredBy'] = JSON.parse(localStorage.userData).data.user._id
-  qAnswers.current[index]['questions']= item._id
+  qAnswers.current[index]['questions'] = item._id
 
   return (
     <Grid item xs={12} sx={designs.Question_GridItem_Style}>
@@ -57,6 +58,9 @@ function ExamShort({ item, index,qAnswers }) {
               rows={6}
               placeholder="Type your answer here..."
               sx={designs.ShortAnswer_Input_Style}
+              onChange={(e) => {
+                qAnswers.current[index]['answers'] = e.target.value
+              }}
             />
           </Box>
         </Box>

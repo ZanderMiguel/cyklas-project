@@ -273,10 +273,13 @@ function Records_tableClassRecords() {
                 fontWeight: '400',
                 color: '#3F3D56',
                 border: '1px solid #DBDBDB',
+                backgroundColor: "white",
+                textTransform: "Uppercase",
                 borderRadius: '0.2em',
                 padding: '0.2em 0em 0.2em 0.6em',
                 '&: hover': {
-                  border: '1px solid #212121',
+                  boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+                  transition: 'all 300ms',
                 },
               }}
             >
@@ -367,16 +370,16 @@ function Records_tableClassRecords() {
           <Box
             sx={{
               border: '1px solid #DBDBDB',
-              backgroundColor: '#FAFBFC',
+              backgroundColor: 'white',
               borderRadius: '0.3em',
-              padding: '0.2em 1em 0.2em 0.8em',
+              padding: '0.3em 1em 0.3em 0.8em',
               display: 'flex',
               gap: '0.5em',
               alignItems: 'center',
               height: 'auto',
               width: '100%',
               '&: hover': {
-                border: '1px solid #007FFF',
+                boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
                 transition: 'all 300ms',
               },
             }}
@@ -407,7 +410,7 @@ function Records_tableClassRecords() {
               sx={{
                 width: '100%',
                 backgroundColor: 'transparent',
-                fontSize: '0.9em',
+                fontSize: '0.8em',
                 fontWeight: '500',
                 color: '#3F3D56',
               }}

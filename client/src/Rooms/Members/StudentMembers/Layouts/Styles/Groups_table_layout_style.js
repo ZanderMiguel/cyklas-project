@@ -19,7 +19,8 @@ function useStyle() {
       textTransform: 'uppercase',
     },
     Group_Container_Style: {
-      backgroundColor: '#F6F6F6',
+      backgroundColor: 'white',
+      borderRadius: "0.3em"
     },
     Group_Container_Sub_Style: {
       display: 'flex',
@@ -47,10 +48,10 @@ function useStyle() {
     Accordion_Style: {
       padding: '0em 0em 0.5em 0em',
       backgroundColor: 'transparent',
-      boxShadow: 'none',
+      boxShadow: 'none'
     },
     AccordionSummary_Style: {
-      padding: '0em 1.7em 0em 1.5em',
+      padding: '0em 1.4em 0em 1.5em',
     },
     GroupName_Typography_Style: {
       width: '100%',
@@ -62,6 +63,13 @@ function useStyle() {
     List_Style: {
       padding: '0.3em 1.5em 0.3em 3.5em',
       display: 'flex',
+      alignItems: "center"
+    },
+    Member_Typography_Style: {
+      width: '100%',
+      color: '#3F3D56',
+      fontSize: '0.9em',
+      fontWeight: '500',
     },
   };
   return { designs };

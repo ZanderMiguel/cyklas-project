@@ -388,7 +388,7 @@ function Activities_layout({ roomID, activity }) {
                   </AccordionDetails>
                   <Divider />
                   <AccordionActions
-                    sx={{ justifyContent: 'flex-start', padding: '10px' }}
+                    sx={{ justifyContent: 'center', padding: '5px' }}
                   >
                     <Button
                       sx={designs.ViewHomework_Button_Style}

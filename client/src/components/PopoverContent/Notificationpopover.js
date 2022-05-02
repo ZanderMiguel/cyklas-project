@@ -18,7 +18,7 @@ function Notificationpopover({ general, request }) {
           padding: '0.8em 0em 0em 0em',
           position: 'sticky',
           top: 0,
-          width: 'relative',
+          width: '25em',
           height: 'auto',
           backgroundColor: 'white',
         }}

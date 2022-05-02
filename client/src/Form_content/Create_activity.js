@@ -224,7 +224,12 @@ function Create_activity({ open, close, setOpenDialog }) {
           <Button
             onClick={handleCreateActivity}
             variant="contained"
-            sx={{ mt: 2, mb: 2 }}
+            sx={{ 
+              fontWeight: '600',
+              boxShadow: "none",
+              mt: 2,
+              mb: 2
+             }}
           >
             Post
           </Button>

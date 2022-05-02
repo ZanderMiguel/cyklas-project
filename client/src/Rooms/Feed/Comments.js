@@ -60,7 +60,7 @@ function Comments({ postId, commentId, socket, reloadcomment }) {
                     />
 
                     <Box className="User-date" sx={designs.User_Date_Style}>
-                      <Box display="flex" alignItems="center">
+                      <Box>
                         <Typography
                           noWrap
                           sx={designs.UserName_Typography_Style}
@@ -70,14 +70,17 @@ function Comments({ postId, commentId, socket, reloadcomment }) {
 
                         <Box
                           className="date"
-                          sx={(designs.Date_Style, { ml: '0.6em' })}
+                          sx={designs.Date_Style}
                         >
                           <Typography sx={designs.Date_Typography_Style}>
                             {moment(createdAt).format('MMMM DD YYYY / h:mm a')}
                           </Typography>
                         </Box>
                       </Box>
-                      <Box className="content" fontSize="0.9rem">
+                      <Box className="content" fontSize="0.9rem" 
+                      sx = {{ 
+                        margin: "0.5em 0em"
+                      }}>
                         {content}
                       </Box>
 

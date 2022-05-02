@@ -22,6 +22,7 @@ import {
 } from '@mui/material';
 import {
   Delete,
+  DeleteOutlined,
   Inbox,
   StarBorder,
   ExpandMore,
@@ -47,6 +48,10 @@ const dataGroup = [
 function Group_table() {
   const { designs } = useStyle();
 
+  const handleDelete = (event) => {
+    event.stopPropagation();
+  };
+
   return (
     <>
       <Grid container rowSpacing={1}>
@@ -65,12 +70,11 @@ function Group_table() {
                 Groups
               </Typography>
               <Box flexGrow={1} />
-              <Button
-                variant="contained"
-                sx={designs.DeleteGroups_Button_Style}
-              >
-                Delete All Groups
-              </Button>
+              <Tooltip title = "Delete Groups" placement = "right">
+                <IconButton>
+                  <DeleteOutlined/>
+                </IconButton>
+              </Tooltip>
             </Box>
             <Divider />
 
@@ -80,6 +84,7 @@ function Group_table() {
                   <Box key={index}>
                     <Accordion key={index} sx={designs.Accordion_Style}>
                       <AccordionSummary
+                        expandIcon={<ExpandMore />}
                         sx={designs.AccordionSummary_Style}
                         aria-controls="panel1a-content"
                         id="panel1a-header"
@@ -98,9 +103,11 @@ function Group_table() {
                           {items.groupName}
                         </Typography>
 
-                        <Tooltip title="Delete this Group" placement="left">
-                          <IconButton edge="end" aria-label="delete">
-                            <Delete />
+                        <Tooltip title="Delete this Group" placement="right">
+                          <IconButton edge="end" aria-label="delete" 
+                          onClick={(event) => handleDelete(event)}
+                          sx = {{ marginRight: "0.3em" }}>
+                            <DeleteOutlined />
                           </IconButton>
                         </Tooltip>
                       </AccordionSummary>

@@ -14,7 +14,7 @@ import CusPopover from '../../components/Popover';
 import RoomOptionspopover_student from '../../components/PopoverContent/RoomOptionspopover_student';
 import { Link } from 'react-router-dom';
 import CssBasedLine from '@mui/material/CssBaseline';
-import RoomBackground8 from '../../assets/ImageJaven/RoomBackground8.png';
+import RoomBackground6 from '../../assets/ImageJaven/RoomBackground6.png';
 import axios from 'axios';
 
 function Room_layout_student({ data }) {
@@ -27,7 +27,7 @@ function Room_layout_student({ data }) {
             <Grid item xs={12} key={index}>
               <Paper
                 sx={{
-                  backgroundImage: `url(${RoomBackground8})`,
+                  backgroundImage: `url(${RoomBackground6})`,
                   backgroundSize: 'cover',
                   boxShadow: 'rgba(17, 17, 26, 0.1) 0px 1px 0px',
                   width: '100%',
@@ -146,7 +146,7 @@ function Room_layout_student({ data }) {
                   </Box>
 
                   <Box>
-                    <Tooltip title="Leave Room" placement="top-end">
+                    <Tooltip title="Leave Room" placement="right">
                       <IconButton
                         sx={{
                           marginLeft: '0.3em',
@@ -157,8 +157,8 @@ function Room_layout_student({ data }) {
                         <DoorFrontOutlined
                           sx={{
                             fontSize: '0.8em',
-                            color: '#615F79',
-                            '&: hover': { color: '#FF3B00' },
+                            color: '#707070',
+                            '&: hover': { color: '#707070' },
                           }}
                         />
                       </IconButton>

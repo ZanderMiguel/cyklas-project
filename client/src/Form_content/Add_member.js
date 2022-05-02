@@ -56,6 +56,7 @@ function Add_member({ open, close, maxWidth }) {
               fontWeight: '600',
               textTransform: 'Capitalize',
               padding: '0.3em 3em',
+              boxShadow: "none",
               '&: hover': {
                 backgroundColor: '#005DC3',
               },

@@ -25,6 +25,7 @@ function useStyle() {
       },
     },
     SearchDashboard_Style: {
+      backgroundColor: "white",
       border: '1px solid #DBDBDB',
       borderRadius: '0.3em',
       padding: '0.3em 0.8em',
@@ -34,7 +35,7 @@ function useStyle() {
       height: 'auto',
       width: '45%',
       '&: hover': {
-        border: '1px solid #007FFF',
+        boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
         transition: 'all 300ms',
       },
     },

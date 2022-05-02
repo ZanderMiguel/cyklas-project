@@ -13,7 +13,7 @@ import {
   Paper,
 } from '@mui/material';
 import moment from 'moment';
-import { Edit, Delete } from '@mui/icons-material';
+import { EditOutlined, DeleteOutlined } from '@mui/icons-material';
 import ActivityIcon from '../../../assets/ImageJaven/ActivityIcon.png';
 import useStyle from '../../Styles/ActivitiesAccordion_Style';
 import Divider from '@mui/material/Divider';
@@ -88,7 +88,7 @@ function ActivitiesAccordion({ roomID, activity }) {
                         size="small"
                         onClick={(event) => handleEdit(event)}
                       >
-                        <Edit sx={designs.Edit_Icon_Style} />
+                        <EditOutlined sx={designs.Edit_Icon_Style} />
                       </IconButton>
 
                       <IconButton
@@ -96,7 +96,7 @@ function ActivitiesAccordion({ roomID, activity }) {
                         size="small"
                         onClick={(event) => handleDelete(event)}
                       >
-                        <Delete sx={designs.Delete_Icon_Style} />
+                        <DeleteOutlined sx={designs.Delete_Icon_Style} />
                       </IconButton>
                     </Box>
                   </AccordionSummary>
@@ -175,7 +175,7 @@ function ActivitiesAccordion({ roomID, activity }) {
                   </AccordionDetails>
                   <Divider />
                   <AccordionActions
-                    sx={{ justifyContent: 'flex-start', padding: '10px' }}
+                    sx={{ justifyContent: 'center', padding: '5px' }}
                   >
                     <Button
                       sx={designs.ViewHomework_Button_Style}

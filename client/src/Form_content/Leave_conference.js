@@ -30,9 +30,9 @@ function Post_exam({ open, close, maxWidth }) {
                 fontWeight: '600',
                 textTransform: 'Capitalize',
                 padding: '0.3em 3em',
+                boxShadow: "none",
                 '&: hover': {
-                  backgroundColor: 'transparent',
-                  boxShadow: 'none',
+                  backgroundColor: 'transparent'
                 },
               }}
             >
@@ -49,6 +49,7 @@ function Post_exam({ open, close, maxWidth }) {
                 fontWeight: '600',
                 textTransform: 'Capitalize',
                 padding: '0.3em 3em',
+                boxShadow: "none",
                 '&: hover': {
                   backgroundColor: '#F02D2D',
                 },
