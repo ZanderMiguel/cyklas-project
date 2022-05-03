@@ -18,7 +18,6 @@ import useStyle from './Styles/People_table_style';
 
 function Memberstable({ members }) {
   const { designs } = useStyle();
-
   return (
     <>
       <Grid container rowSpacing={1}>
@@ -38,9 +37,9 @@ function Memberstable({ members }) {
                 Professor
               </Typography>
               <Box flexGrow={1} />
-              <Tooltip title = "Leave Room" placement = "right">
+              <Tooltip title="Leave Room" placement="right">
                 <IconButton>
-                  <DoorFrontOutlined/>
+                  <DoorFrontOutlined />
                 </IconButton>
               </Tooltip>
             </Box>
@@ -86,15 +85,20 @@ function Memberstable({ members }) {
                 Students
               </Typography>
               <Box flexGrow={1} />
-              <Tooltip title = "Remove All Students" placement = "right">
+              <Tooltip title="Remove All Students" placement="right">
                 <IconButton>
-                  <DeleteOutlined/>
+                  <DeleteOutlined />
                 </IconButton>
               </Tooltip>
             </Box>
             <Divider />
 
             <Grid item xs={12}>
+              {members && (members.userType === 'Student'.length) === 0 && (
+                <center>
+                  <h1> No one added yet</h1>
+                </center>
+              )}
               <List sx={designs.List_Style}>
                 {members &&
                   members.map((items, index) => {

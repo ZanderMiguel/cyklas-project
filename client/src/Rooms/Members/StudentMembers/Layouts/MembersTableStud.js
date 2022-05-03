@@ -16,7 +16,7 @@ import useStyle from './Styles/People_table_layout_style';
 function MembersTableStud({ members }) {
   const { designs } = useStyle();
   return (
-    <Box sx = {{ width: "relative", height: "auto" }}>
+    <Box sx={{ width: 'relative', height: 'auto' }}>
       <Grid container rowSpacing={1}>
         <Grid item xs={12}>
           <Box className="Total" sx={designs.Total_Style}>
@@ -80,7 +80,6 @@ function MembersTableStud({ members }) {
               </Typography>
             </Box>
             <Divider />
-
             <Grid item xs={12}>
               <List sx={designs.List_Style}>
                 {members &&

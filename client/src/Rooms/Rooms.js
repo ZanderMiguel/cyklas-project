@@ -9,7 +9,8 @@ import usePost from '../customHooks/usePost';
 import Button from '../components/Button';
 import Room_layout_student from './Room-content-layout/Room_layout_student';
 import { useParams } from 'react-router-dom';
-import NoRoom from "../assets/ImageJaven/NoRoom.png";
+import NoRoom from '../assets/ImageJaven/NoRoom.png';
+import { LinearProgress } from '@mui/material';
 
 function Rooms({ socket }) {
   const { roomID } = useParams();
@@ -38,24 +39,21 @@ function Rooms({ socket }) {
   }, [newRoom]);
   return (
     <>
-      <Container maxWidth="md" sx = {{ height: "auto", padding: "1.5em 0em" }}>
+      {isPending && <LinearProgress />}
+      <Container maxWidth="md" sx={{ height: 'auto', padding: '1.5em 0em' }}>
         {JSON.parse(localStorage.userData).data.user.userType ===
           'Professor' && (
           <>
-            <Grid
-              container
-              justifyContent="flex-end"
-              rowSpacing={1}
-            >
+            <Grid container justifyContent="flex-end" rowSpacing={1}>
               <Grid item>
                 <Button
                   variant="contained"
                   content="create room"
                   sx={{
-                    fontWeight: "600",
+                    fontWeight: '600',
                     backgroundColor: '#007FFF',
                     color: 'white',
-                    boxShadow: "none",
+                    boxShadow: 'none',
                     '&:hover': {
                       backgroundColor: '#0072e6',
                     },
@@ -80,31 +78,38 @@ function Rooms({ socket }) {
                 )}
               </Grid>
               {error && console.log(error)}
-              {isPending && <CircularProgress />}
+
               {data && data.length > 0 ? (
                 <Room_layout data={data} />
               ) : (
-                <Box sx = {{
-                  width: "100%",
-                  height: "75vh",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  gap: "1.5em",
-                  flexWrap: "wrap"
-                }}>
-                  <img src = {NoRoom} alt = "No Room"
-                  style = {{
-                    height: "12em"
-                  }}/>
-                  <Typography children = "You have no room to show."
-                  sx = {{
-                    fontSize: "1em",
-                    fontWeight: "600",
-                    color: "#3F3D56",
-                    marginLeft: "0.8em"
-                  }}/>
+                <Box
+                  sx={{
+                    width: '100%',
+                    height: '75vh',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    gap: '1.5em',
+                    flexWrap: 'wrap',
+                  }}
+                >
+                  <img
+                    src={NoRoom}
+                    alt="No Room"
+                    style={{
+                      height: '12em',
+                    }}
+                  />
+                  <Typography
+                    children="You have no room to show."
+                    sx={{
+                      fontSize: '1em',
+                      fontWeight: '600',
+                      color: '#3F3D56',
+                      marginLeft: '0.8em',
+                    }}
+                  />
                 </Box>
               )}
             </Grid>
@@ -125,10 +130,10 @@ function Rooms({ socket }) {
                   variant="contained"
                   content="Join room"
                   sx={{
-                    fontWeight: "600",
+                    fontWeight: '600',
                     backgroundColor: '#007FFF',
                     color: 'white',
-                    boxShadow: "none",
+                    boxShadow: 'none',
                     '&:hover': {
                       backgroundColor: '#0072e6',
                     },
@@ -150,36 +155,41 @@ function Rooms({ socket }) {
                   />
                 )}
               </Grid>
-                {error && console.log(error)}
-                {isPending && <CircularProgress />}
-                {data && data.length > 0 ? (
-                  <Room_layout_student data={data} />
-                ) : (
-                  <Box sx = {{
-                    width: "100%",
-                    height: "60vh",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    gap: "1.5em",
-                    flexWrap: "wrap"
-                  }}>
-                    <img src = {NoRoom} alt = "No Room"
-                    style = {{
-                      height: "12em"
-                    }}/>
-                    <Typography children = "You have no room to show."
-                    sx = {{
-                      fontSize: "0.9em",
-                      fontWeight: "600",
-                      color: "#3F3D56",
-                      marginLeft: "0.8em"
-                    }}/>
-                  </Box>
-                )}
+              {error && console.log(error)}
+              {data && data.length > 0 ? (
+                <Room_layout_student data={data} />
+              ) : (
+                <Box
+                  sx={{
+                    width: '100%',
+                    height: '60vh',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    gap: '1.5em',
+                    flexWrap: 'wrap',
+                  }}
+                >
+                  <img
+                    src={NoRoom}
+                    alt="No Room"
+                    style={{
+                      height: '12em',
+                    }}
+                  />
+                  <Typography
+                    children="You have no room to show."
+                    sx={{
+                      fontSize: '0.9em',
+                      fontWeight: '600',
+                      color: '#3F3D56',
+                      marginLeft: '0.8em',
+                    }}
+                  />
+                </Box>
+              )}
             </Grid>
-            
           </>
         )}
       </Container>
