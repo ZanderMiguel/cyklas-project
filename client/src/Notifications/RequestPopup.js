@@ -3,6 +3,7 @@ import { Divider, Box, Typography, Avatar, Button } from '@mui/material';
 import useStyle from '../components/PopoverContent/Styles/Notificationpopover_style';
 import axios from 'axios';
 import moment from 'moment';
+import Nodata from "../assets/ImageJaven/Nodata.png";
 
 function RequestPopup() {
   const { designs } = useStyle();
@@ -57,18 +58,34 @@ function RequestPopup() {
                   >
                     {element.requests.userName}
                   </Typography>
-
-                  <Typography
+                  
+                  <Box 
+                  sx = {{ 
+                    width: "relative",
+                    height: "auto",
+                    display: "flex",
+                    gap: "0.5em",
+                    flexWrap: "wrap"
+                  }}>
+                    <Typography children = "is requesting to join your room"
                     sx={{
                       fontSize: '0.8em',
                       fontWeight: '500',
                       color: '#64627F',
-                      width: '24.4em',
-                    }}
-                  >
-                    {`is requesting to join your room ${element.requests.RoomName}`}
-                  </Typography>
+                      width: 'auto',
+                      textTransform: "none"
+                    }}/>
 
+                    <Typography children = {`"${element.requests.RoomName}"`}
+                    sx={{
+                      fontSize: '0.8em',
+                      fontWeight: '600',
+                      color: '#64627F',
+                      width: 'auto',
+                      textTransform: "Uppercase"
+                    }}/>
+                  </Box>
+                  
                   <Typography
                     sx={{
                       fontSize: '0.7em',
@@ -137,8 +154,37 @@ function RequestPopup() {
           );
         })}
       {items && items.length === 0 && (
-        <Box sx={designs.RequestContainer_Sub_Style}>
-          <Typography> There is no request to show!!!!</Typography>
+        <Box 
+        sx = {{ 
+          display: "flex",
+          flexDirection: "column",
+          gap: "0.8em",
+          justifyContent: "center",
+          alignItems: "center"
+        }}>
+          <Box sx = {{
+            height: "7em",
+            width: "7em",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            borderRadius: "8em",
+            backgroundColor: "#F3F3F3",
+            margin: "1em 1em 0em 0em"
+          }}>
+             <img src = {Nodata} alt = "No Data" 
+            style = {{ 
+              height: "8em"
+            }}/>
+          </Box>
+         
+          <Typography children = "There is no request to show."
+          sx = {{ 
+            fontSize: "0.8em",
+            fontWeight: "600",
+            color: "#3F3D56",
+            marginRight: "1em"
+          }}/>
         </Box>
       )}
     </>

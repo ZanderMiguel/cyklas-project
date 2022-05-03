@@ -25,12 +25,12 @@ function useStyle() {
     },
     Accordion_Style: {
       width: '100%',
-      backgroundColor: '#F3F3F3',
-      border: 'none',
+      backgroundColor: 'white',
+      border: "1px solid #DBDBDB",
       boxShadow: 'none',
     },
     AccordionSummary_Style: {
-      padding: '0px 45px',
+      padding: '0em 1.5em',
     },
     Activity_Icon_Activity_Type: {
       display: 'flex',
@@ -48,11 +48,13 @@ function useStyle() {
       paddingTop: '7px',
     },
     Type_Typography: {
-      width: '80px',
+      width: '6.5em',
+      textAlign: "left",
       color: '#3F3D56',
       fontWeight: '500',
       fontSize: '13px',
       paddingTop: '7px',
+      marginRight: "1.5em",
       [theme.breakpoints.down('md')]: {
         display: 'none',
       },
@@ -113,10 +115,13 @@ function useStyle() {
       gap: '0.8em',
     },
     Edit_Icon_Style: {
-      color: '#3F3D56',
+      color: '#707070',
+      "&: hover": {
+        color: '#007FFF',
+      }
     },
     Delete_Icon_Style: {
-      color: '#3F3D56',
+      color: '#707070',
     },
     Accordion_Details_Style: {
       paddingTop: '0px',
@@ -306,15 +311,13 @@ function useStyle() {
     },
     ViewHomework_Button_Style: {
       color: '#0069D3',
-      fontWeight: 'bold',
+      fontWeight: '700',
       textTransform: 'Capitalize',
-      marginLeft: '30px',
+      padding: "0.7em 0em",
+      width: "100%",
       '&: hover': {
-        backgroundColor: '#EAEAEA',
-      },
-      [theme.breakpoints.down('sm')]: {
-        marginLeft: '15px',
-      },
+        backgroundColor: '#F0F0F0',
+      }
     },
   };
   return { designs };

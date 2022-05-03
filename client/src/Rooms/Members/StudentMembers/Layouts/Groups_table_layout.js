@@ -12,6 +12,7 @@ import {
   Accordion,
   AccordionSummary,
 } from '@mui/material';
+import { ExpandMore } from "@mui/icons-material";
 import GroupsIcon from '../../../../assets/ImageJaven/GroupsIcon.png';
 import useStyle from './Styles/Groups_table_layout_style';
 
@@ -33,7 +34,7 @@ function Groups_table_layout() {
   const { designs } = useStyle();
 
   return (
-    <Container maxWidth="md">
+    <Box sx = {{ width: "relative", height: "auto" }}>
       <Grid container rowSpacing={1}>
         <Grid item xs={12}>
           <Box className="Total" sx={designs.Total_Style}>
@@ -57,6 +58,7 @@ function Groups_table_layout() {
                 return (
                   <Accordion key={index} sx={designs.Accordion_Style}>
                     <AccordionSummary
+                      expandIcon={<ExpandMore />}
                       sx={designs.AccordionSummary_Style}
                       aria-controls="panel1a-content"
                       id="panel1a-header"
@@ -101,7 +103,7 @@ function Groups_table_layout() {
           </Box>
         </Grid>
       </Grid>
-    </Container>
+    </Box>
   );
 }
 

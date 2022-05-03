@@ -13,8 +13,10 @@ function useStyle() {
     },
     AddMember_Button_Style: {
       backgroundColor: '#007FFF',
+      fontWeight: "600",
       color: 'white',
       borderRadius: '0.3em',
+      boxShadow: "none",
       '&:hover': {
         backgroundColor: '#0072e6',
       },

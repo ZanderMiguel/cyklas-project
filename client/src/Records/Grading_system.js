@@ -1,8 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Grid, Button, Box } from '@mui/material';
-import Grading_layout from './Grading_layout';
+import NewGradingSystem from './NewGradingSystem';
+import DefaultGradingSystem from './DefaultGradingSystem';
 import Create_gradingsystem from './Create_gradingsystem';
 import axios from 'axios';
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 
 function Grading_system({ data, name, counter }) {
   const [opendialog, setOpenDialog] = useState(false);
@@ -20,18 +22,23 @@ function Grading_system({ data, name, counter }) {
   // }, []);
 
   const [GS, setGS] = useState([
-    <Grading_layout data={data} name={name} counter={counter} />,
+    <NewGradingSystem data={data} name={name} counter={counter} />,
   ]);
   return (
     <>
-      <Grid container spacing={2}>
         <Box width="100%" display="flex" marginBottom={2}>
           <Box flexGrow={1} />
-          <Box>
-            <Button onClick={() => setOpenDialog(true)} variant="contained">
-              Add Grading
-            </Button>
-          </Box>
+            
+          <Button onClick={() => setOpenDialog(true)} 
+          startIcon = {<AddCircleOutlineOutlinedIcon/>}
+          variant="contained"
+          children="Create New Grading System"
+          sx = {{
+            fontSize: "0.8em",
+            fontWeight: "600",
+            boxShadow: "none"
+          }}/>
+          
         </Box>
         {opendialog && (
           <Create_gradingsystem
@@ -45,12 +52,15 @@ function Grading_system({ data, name, counter }) {
           />
         )}
 
+        <Grid item xs = {12} sx = {{ marginBottom: "0.6em" }}>
+          <DefaultGradingSystem/>
+        </Grid>
+
         {GS.map((item, index) => (
-          <Grid item xs={12} key={index}>
+          <Grid item xs={12} key={index} sx = {{ marginBottom: "0.6em" }}>
             {item}
           </Grid>
         ))}
-      </Grid>
     </>
   );
 }

@@ -26,13 +26,12 @@ function useStyle() {
     },
     GeneralContainer_Style: {
       margin: '0.8em 0em 0.8em 0em',
-      padding: '0em 0em 0em 1em',
       width: 'relative',
       height: 'auto',
     },
     GeneralContainer_Sub_Style: {
       borderRadius: '0.3em',
-      backgroundColor: '#F6F9F6',
+      backgroundColor: 'white',
       padding: '0.5em 0.8em',
       marginBottom: '0.5em',
       width: 'relative',

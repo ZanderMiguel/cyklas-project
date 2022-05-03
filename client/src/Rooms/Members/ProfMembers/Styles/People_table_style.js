@@ -18,11 +18,13 @@ function useStyle() {
       textTransform: 'uppercase',
     },
     Professor_Container_Style: {
-      backgroundColor: '#F6F6F6',
+      backgroundColor: 'white',
+      borderRadius: "0.3em"
     },
     Professor_Container_Sub_Style: {
       display: 'flex',
-      padding: '10px',
+      alignItems: "center",
+      padding: "0.4em 0.9em 0.4em 0.9em"
     },
     Professor_Typography_Style: {
       marginLeft: 1.5,
@@ -38,11 +40,13 @@ function useStyle() {
       textTransform: 'uppercase',
     },
     Student_Container_Style: {
-      backgroundColor: '#F6F6F6',
+      backgroundColor: 'white',
+      borderRadius: "0.3em"
     },
     Student_Container_Sub_Style: {
       display: 'flex',
-      padding: '10px',
+      alignItems: "center",
+      padding: "0.4em 0.9em 0.4em 0.9em"
     },
     Students_Typography_Style: {
       marginLeft: 1.5,

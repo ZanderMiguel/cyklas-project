@@ -83,7 +83,7 @@ function TeleconRoomV2({ socket }) {
                     },
                     }}> */}
             <Slide direction="left" in={sidedrawer} mountOnEnter unmountOnExit>
-              <Box sx={{ height: '98vh', border: '1px solid #464646', }}>
+              <Box sx={{ height: '98vh' }}>
                 {sidecontent === 'MeetingInformation' ? (
                   <MeetingInformation />
                 ) : sidecontent === 'Members' ? (

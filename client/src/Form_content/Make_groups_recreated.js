@@ -138,6 +138,7 @@ function Make_groups_recreated({ open, close, maxWidth }) {
               fontWeight: '600',
               textTransform: 'Capitalize',
               padding: '0.3em 3em',
+              boxShadow: "none",
               '&: hover': {
                 backgroundColor: '#31B13E',
               },
@@ -232,6 +233,7 @@ function Make_groups_recreated({ open, close, maxWidth }) {
                     fontSize: '0.8em',
                     fontWeight: '600',
                     textTransform: 'Capitalize',
+                    boxShadow: "none",
                     '&: hover': {
                       boxShadow: 'none',
                       backgroundColor: '#007FFF',
@@ -263,6 +265,7 @@ function Make_groups_recreated({ open, close, maxWidth }) {
                     fontSize: '0.8em',
                     fontWeight: '600',
                     textTransform: 'Capitalize',
+                    boxShadow: "none",
                     '&: hover': {
                       backgroundColor: '#FCFCFC',
                       boxShadow: 'none',
@@ -368,9 +371,9 @@ function Make_groups_recreated({ open, close, maxWidth }) {
                                     width: '100%',
                                     height: 'max-content',
                                     padding: '0em',
+                                    boxShadow: "none",
                                     '&: hover': {
                                       backgroundColor: 'transparent',
-                                      boxShadow: 'none',
                                     },
                                   }}
                                 >
@@ -400,9 +403,9 @@ function Make_groups_recreated({ open, close, maxWidth }) {
                                     width: '100%',
                                     height: 'max-content',
                                     padding: '0em',
+                                    boxShadow: "none",
                                     '&: hover': {
                                       backgroundColor: 'transparent',
-                                      boxShadow: 'none',
                                     },
                                   }}
                                 >
@@ -514,6 +517,7 @@ function Make_groups_recreated({ open, close, maxWidth }) {
                     fontSize: '0.7em',
                     fontWeight: '600',
                     textTransform: 'Capitalize',
+                    boxShadow: "none",
                     '&: hover': {
                       backgroundColor: '#FAF8F9',
                       boxShadow: 'rgba(0, 0, 0, 0.05) 0px 1px 2px 0px',

@@ -105,6 +105,8 @@ function Join_room({ open, close, maxWidth }) {
                 sx={{
                   backgroundColor: '#007FFF',
                   color: 'white',
+                  fontWeight: '600',
+                  boxShadow: "none",
                   '&:hover': {
                     backgroundColor: '#0072e6',
                   },
