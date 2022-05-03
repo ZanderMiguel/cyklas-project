@@ -37,18 +37,7 @@ function ExamShort({ item, index, qAnswers }) {
 
           <Divider sx={designs.Divider_Style} />
 
-          <Box
-            className="Image-container"
-            sx={designs.Image_Container_Responsive_Style}
-          >
-            <img
-              src={Image}
-              alt="uploadedImage"
-              style={{
-                height: '5.5em',
-              }}
-            />
-          </Box>
+         
 
           <Box className="Choices" sx={designs.Choices_Style}>
             <Input
@@ -67,7 +56,7 @@ function ExamShort({ item, index, qAnswers }) {
 
         <Box className="Image-container" sx={designs.Image_Container_Style}>
           <img
-            src={`${item.media.toString()}` || Image}
+            src={item.media || Image}
             alt="uploadedImage"
             style={{
               height: '6.5em',

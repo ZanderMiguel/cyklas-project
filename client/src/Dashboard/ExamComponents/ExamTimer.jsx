@@ -14,7 +14,8 @@ function ExamTimer({ data, socket }) {
     const [tick,setTick] = React.useState(true)
     const [redirect, setRedirecct] = React.useState(null)
     React.useEffect(() => {
-        const time = data.timeLimit.replace(' minutes', ':').replace(' hours', ':').replace(' hour', ':').split(':')
+        const time = data.timeLimit.replace(' minutes', ':').replace(' hours', ':0:').replace(' hour', ':0:').split(':')
+        console.log(time)
         socket.emit('start-exam', JSON.parse(localStorage.userData).data.user._id, time)
         socket.on('timer-start', (examTime) => {
             console.log(examTime)
@@ -44,6 +45,7 @@ function ExamTimer({ data, socket }) {
         if(minutes.current <= 0 && hours.current > 0){
             hours.current--
             minutes.current = 59
+            seconds.current = 59
         }
         if(hours.current <= 0){
             hours.current = 0
