@@ -13,7 +13,7 @@ function CheckMultiple({ stdID, item, setScore, setOverAll }) {
 
     React.useMemo(() => {
         axios.post('http://localhost:5000/answers', { answeredBy: stdID, questionID: item._id }).then(res => {
-            
+
             if (res.data.length > 0) {
                 setExist(true)
                 setData(res.data)
@@ -50,7 +50,7 @@ function CheckMultiple({ stdID, item, setScore, setOverAll }) {
                         <Box flexGrow={1} sx={designs.BoxFlexGrow_Style} />
 
                         <Typography sx={designs.Points_Typography_Style}>
-                            2
+                            {item.points.replace(' points', '')}
                         </Typography>
 
                         <Typography sx={designs.PointsText_Typography_Style}>

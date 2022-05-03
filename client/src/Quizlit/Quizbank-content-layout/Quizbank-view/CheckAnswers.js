@@ -9,7 +9,7 @@ import CheckShort from './CheckShort';
 import CheckBoxes from './CheckBoxes';
 import CheckTF from './CheckTF';
 import axios from 'axios'
-function CheckAnswers({ quizID, stdID, setScore, setOverAll,stdScore }) {
+function CheckAnswers({ quizID, stdID, setScore, setOverAll,stdScore,shrtAns }) {
     const [data, setData] = React.useState(null)
     React.useEffect(() => {
         axios.post('http://localhost:5000/question', { quizID })
@@ -25,7 +25,7 @@ function CheckAnswers({ quizID, stdID, setScore, setOverAll,stdScore }) {
                 return (
                     <div key={index}>
                         {item.answerType === "Multiple Choice" && <CheckMultiple item={item} stdID={stdID} setScore={setScore} setOverAll={setOverAll} stdScore={stdScore} />}
-                        {item.answerType === "Short Answer" && <CheckShort item={item} stdID={stdID} setScore={setScore} setOverAll={setOverAll} />}
+                        {item.answerType === "Short Answer" && <CheckShort shrtAns={shrtAns} item={item} stdID={stdID} setScore={setScore} setOverAll={setOverAll} />}
                         {item.answerType === "Checkboxes" && <CheckBoxes item={item} stdID={stdID} setScore={setScore} setOverAll={setOverAll} />}
                         {item.answerType === "True or False" && <CheckTF item={item} stdID={stdID} setScore={setScore} setOverAll={setOverAll} />}
 

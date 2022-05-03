@@ -40,13 +40,13 @@ function CheckTF({ stdID, item, index, setScore, setOverAll }) {
                     <Typography sx={designs.Item_Typography_Style}>4.</Typography>
 
                     <Typography sx={designs.Item_Question_Typography_Style}>
-                        Pizza is better with Pineapple.
+                    {item.questionsContent}
                     </Typography>
 
                     <Box flexGrow={1} sx={designs.BoxFlexGrow_Style} />
 
                     <Typography sx={designs.Points_Typography_Style}>
-                        2
+                    {item.points.replace(' point', '')}
                     </Typography>
 
                     <Typography sx={designs.PointsText_Typography_Style}>

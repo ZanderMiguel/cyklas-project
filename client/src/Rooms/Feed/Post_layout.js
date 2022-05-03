@@ -13,7 +13,7 @@ import {
   InputAdornment,
   Tooltip,
   Input,
-  Button
+  Button,
 } from '@mui/material';
 import {
   Send,
@@ -148,32 +148,40 @@ function Post_layout({ data, socket, roomID, commentId }) {
                   sx={designs.AvatarComment_Style}
                 />
 
-                <Input 
-                name={_id}
-                placeholder="Write a comment..."
-                value={commentContent}
-                onChange={(event) => setCommentContent(event.target.value)}
-                onKeyPress={(event) => {event.key === 'Enter' && handleSubmitComment();}}
-                onClick={(event) => { postID.current = event.target.name;}}
-                disableUnderline
-                sx = {{
-                  border: "1px solid #DBDBDB",
-                  borderRadius: "0.3em",
-                  color: "#3F3D56",
-                  fontSize: "0.9em",
-                  padding: "0.3em 0.8em",
-                  width: "100%",
-                  "&: hover": {
-                    border: "1px solid #007FFF",
-                    transition: "all 300ms"
-                  }
-                }}/>
+                <Input
+                  name={_id}
+                  placeholder="Write a comment..."
+                  onChange={(event) => setCommentContent(event.target.value)}
+                  onKeyPress={(event) => {
+                    event.key === 'Enter' && handleSubmitComment();
+                  }}
+                  onClick={(event) => {
+                    postID.current = event.target.name;
+                  }}
+                  disableUnderline
+                  sx={{
+                    border: '1px solid #DBDBDB',
+                    borderRadius: '0.3em',
+                    color: '#3F3D56',
+                    fontSize: '0.9em',
+                    padding: '0.3em 0.8em',
+                    width: '100%',
+                    '&: hover': {
+                      border: '1px solid #007FFF',
+                      transition: 'all 300ms',
+                    },
+                  }}
+                />
 
-                <Button children = "Send" variant="contained" onClick={handleSubmitComment}
-                sx = {{
-                  fontWeight: "600",
-                  boxShadow: "none"
-                }}/>
+                <Button
+                  children="Send"
+                  variant="contained"
+                  onClick={handleSubmitComment}
+                  sx={{
+                    fontWeight: '600',
+                    boxShadow: 'none',
+                  }}
+                />
 
                 {/* <TextField
                   id="filled-basic"

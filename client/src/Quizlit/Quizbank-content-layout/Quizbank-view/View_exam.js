@@ -52,6 +52,7 @@ function View_exam() {
   const [score, setScore] = useState(0)
   const [overAll, setOverAll] = useState(0)
   const stdScore = React.useRef({})
+  const shrtAns = React.useRef({})
   const handleChangeSort = (event) => {
     setSort(event.target.value);
   };
@@ -185,7 +186,7 @@ function View_exam() {
                 {`${score} / ${overAll}`}
               </Typography>
             </Box>
-            {stdID && quizData && <CheckAnswers  stdScore={stdScore} quizID={quizData._id} stdID={stdID} setScore={setScore} setOverAll={setOverAll} />}
+            {stdID && quizData && <CheckAnswers shrtAns={shrtAns}  stdScore={stdScore} quizID={quizData._id} stdID={stdID} setScore={setScore} setOverAll={setOverAll} />}
 
           </Box>
         </Grid>
