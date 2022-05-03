@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Dialogform from '../components/Dialogform';
 import { Box, Button } from '@mui/material';
 import Input from '../components/Input';
-import Grading_layout from './Grading_layout';
+import NewGradingSystem from './NewGradingSystem';
 
 function Create_gradingsystem({ open, close, name, counter, setGS, GS, data }) {
   const [gradingname, setGradingName] = useState('');
@@ -30,7 +30,7 @@ function Create_gradingsystem({ open, close, name, counter, setGS, GS, data }) {
           onClick={() => {
             setGS([
               ...GS,
-              <Grading_layout data={data} name={name} counter={counter} />,
+              <NewGradingSystem data={data} name={name} counter={counter} />,
             ]);
             close();
           }}
