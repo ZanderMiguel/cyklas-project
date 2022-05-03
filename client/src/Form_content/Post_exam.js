@@ -192,6 +192,7 @@ function Post_exam({
       <Dialogform
         open={open}
         close={close}
+        fullWidth
         maxWidth={maxWidth}
         btn={
           <Box
@@ -246,7 +247,7 @@ function Post_exam({
                 fontWeight: '600',
                 textTransform: 'Capitalize',
                 padding: '0.3em 3em',
-                boxShadow: "none",
+                boxShadow: 'none',
                 '&: hover': {
                   backgroundColor: '#31B13E',
                 },
