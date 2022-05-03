@@ -106,13 +106,13 @@ function Dashboard_tableRoomsSchedules({ roomdata }) {
       <table className="rooms-table">
         <thead>
           <tr>
-            <th> Room ID </th>
+            {/* <th> Room ID </th> */}
             <th> Room Name </th>
             <th> Course </th>
             <th> Year and Section </th>
             <th> Class Day </th>
             <th> Class Time </th>
-            <th> Grading System </th>
+            {/* <th> Grading System </th> */}
             <th> Actions </th>
           </tr>
         </thead>
@@ -122,13 +122,13 @@ function Dashboard_tableRoomsSchedules({ roomdata }) {
             roomdata.map((items, index) => {
               return (
                 <tr key={index}>
-                  <td data-label="Room ID"> {items.roomId} </td>
+                  {/* <td data-label="Room ID"> {items.roomId} </td> */}
                   <td data-label="Room Name"> {items.RoomName} </td>
                   <td data-label="Course"> {items.Course} </td>
                   <td data-label="Year and Section">{items.yearAndSection}</td>
                   <td data-label="Class Day"> {items.ClassDays} </td>
                   <td data-label="Class Time"> {items.ClassTime} </td>
-                  <td data-label="Grading System"> {items.gradingSystem} </td>
+                  {/* <td data-label="Grading System"> {items.gradingSystem} </td> */}
                   <td data-label="">
                     <button className="edit-btn"> View </button>
                     <button className="leave-btn"> Leave </button>

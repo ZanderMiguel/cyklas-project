@@ -6,7 +6,7 @@ function useStyle() {
     },
     SearchBar_Style: {
       border: '1px solid #DBDBDB',
-      backgroundColor: '#FAFBFC',
+      backgroundColor: 'white',
       borderRadius: '0.3em',
       padding: '0.3em 1em 0.3em 0.8em',
       display: 'flex',
@@ -15,7 +15,7 @@ function useStyle() {
       height: 'auto',
       width: 'relative',
       '&: hover': {
-        border: '1px solid #007FFF',
+        boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
         transition: 'all 300ms',
       },
     },

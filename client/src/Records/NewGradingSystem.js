@@ -272,7 +272,7 @@ function NewGradingSystem({ data, name, counter }) {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              padding: "0.8em 3em 0em 0em"
+              padding: "0.8em 4em 0em 0em"
             }}>
               <img src = {NewGrade} alt = "New Grade" style = {{ height: "15em" }}/>
             </Box>
@@ -327,9 +327,8 @@ function NewGradingSystem({ data, name, counter }) {
         <AccordionActions sx = {{ paddingLeft: "1.5em", paddingRight: "1.5em" }}>
           <Button
             variant="text"
-            startIcon = {<DeleteOutlined/>}
             sx={{
-              padding: '0.4em 1em',
+              padding: '0.4em 1.5em',
               color: '#3F3D56',
               fontSize: '0.8em',
               fontWeight: '600',
@@ -345,20 +344,15 @@ function NewGradingSystem({ data, name, counter }) {
 
           <Button
             onClick={() => console.log(data.current)}
-            startIcon = {<BeenhereOutlined/>}
-            children = "Save Changes"
+            children = "Apply"
             variant="contained"
             sx={{
-              backgroundColor: "#4CAF50",
-              padding: '0.4em 1em',
+              padding: '0.4em 1.5em',
               color: 'white',
               fontSize: '0.8em',
               fontWeight: '600',
               textTransform: 'Capitalize',
-              boxShadow: 'none',
-              "&: hover": {
-                backgroundColor: "#43A047"
-              }
+              boxShadow: 'none'
             }}/>
         </AccordionActions>
       </Accordion>

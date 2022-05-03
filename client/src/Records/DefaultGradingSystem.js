@@ -216,7 +216,7 @@ function DefaultGradingSystem({ data }) {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              padding: "0.8em 3em 0em 0em"
+              padding: "0.8em 4em 0em 0em"
             }}>
               <img src = {DefaultGrade} alt = "Default Grade" style = {{ height: "15em" }}/>
             </Box>

@@ -14,6 +14,7 @@ const designs = {
         width: '100%'
     },
     EditPostContainer_Style: {
+        backgroundColor: "#6D6D6D",
         display: "flex",
         gap: "1em"
     },
@@ -23,7 +24,7 @@ const designs = {
         fontSize: "1.4em" 
     },
     EditPost_Typography_Style: {
-        color: "#3F3D56",
+        color: "white",
         fontSize: "0.8em",
         fontWeight: "500"
     },
