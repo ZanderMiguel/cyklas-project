@@ -1,6 +1,5 @@
-.records-table {
+.studentRankings-table {
     border-collapse: collapse;
-    margin: 1em 0em;
     font-size: 0.8em;
     font-weight: 400;
     color: #3F3D56;
@@ -9,82 +8,84 @@
     text-align: center;
     background-color: white;
 }
-.records-table thead tr {
+.studentRankings-table thead tr {
     background-color: #ebebeb;
     color: #5f6166;
     font-size: 1em;
     text-align: center;
 }
-.records-table thead tr th {
+.studentRankings-table thead tr th {
     font-weight: 600;
 }
-.records-table thead tr th:first-child {
+.studentRankings-table thead tr th:first-child {
     text-align: left;
     padding-left: 1.5em;
 }
-.records-table thead tr th:last-child {
+.studentRankings-table thead tr th:last-child {
     text-align: center;
 }
-.records-table th,
-.records-table td {
+.studentRankings-table th,
+.studentRankings-table td {
     padding: 1em;
 }
-.records-table tbody tr {
+.studentRankings-table tbody tr {
     border-bottom: 1px solid #DBDBDB;
 }
-.records-table tbody tr td:first-child {
+.studentRankings-table tbody tr td:first-child {
     text-align: left;
 }
-.records-table tbody tr td .student-name {
+.studentRankings-table tbody tr td .student-name {
     display: flex;
     gap: 0.8em;
     align-items: center;
 }
-.records-table tbody tr:hover {
-    cursor: pointer;
+.studentRankings-table tbody tr:hover {
     background-color: #FCFCFC;
     transition: all 300ms;
 }
-.records-table tbody tr td:first-child {
+.studentRankings-table tbody tr:last-child {
+    border-bottom: 1px solid transparent;
+}
+.studentRankings-table tbody tr td:first-child {
     color: #007FFF;
     font-weight: 500;
 }
-.records-table tfoot tr {
+.studentRankings-table tfoot tr {
     background-color: #ececec;
     color: #3F3D56;
     font-weight: 600;
     padding: 0.1em 0em;
 }
 @media (max-width: 830px) {
-    .records-table th,
-    .records-table td {
+    .studentRankings-table th,
+    .studentRankings-table td {
     padding: 0.7em;
     }
-    .records-table thead {
+    .studentRankings-table thead {
         display: none;
     }
-    .records-table tbody tr {
+    .studentRankings-table tbody tr {
         width: 100%;
     }
-    .records-table tbody tr td {
+    .studentRankings-table tbody tr td {
         display: block;
         width: 237%;
         text-align: right;
         position: relative;
     }
-    .records-table tbody tr td:first-child {
+    .studentRankings-table tbody tr td:first-child {
         display: block;
         width: 237%;
         text-align: left;
         position: relative;
     }
-    .records-table tbody tr td:last-child {
+    .studentRankings-table tbody tr td:last-child {
         display: block;
         padding-left: 1em;
         padding-right: 1em;
         border-bottom: 1px solid transparent;
     }
-    .records-table tbody tr td::before {
+    .studentRankings-table tbody tr td::before {
         content: attr(data-label);
         position: absolute;
         left: 0;
@@ -95,13 +96,13 @@
     }
 }
 @media (max-width: 455px) {
-    .records-table tbody tr td {
+    .studentRankings-table tbody tr td {
         display: block;
         width: 250%;
         text-align: right;
         position: relative;
     }
-    .records-table tbody tr td:first-child {
+    .studentRankings-table tbody tr td:first-child {
         display: block;
         width: 250%;
         text-align: left;

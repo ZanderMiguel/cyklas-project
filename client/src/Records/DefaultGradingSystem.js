@@ -252,6 +252,21 @@ function DefaultGradingSystem({ data }) {
               </Typography>
           </Box>
         </AccordionDetails>
+        <Divider />
+          <AccordionActions sx = {{ paddingLeft: "1.5em", paddingRight: "1.5em" }}>
+            <Button
+              onClick={() => console.log(data.current)}
+              children = "Apply"
+              variant="contained"
+              sx={{
+                padding: '0.4em 1.5em',
+                color: 'white',
+                fontSize: '0.8em',
+                fontWeight: '600',
+                textTransform: 'Capitalize',
+                boxShadow: 'none'
+              }}/>
+          </AccordionActions>
       </Accordion>
     </div>
   );
