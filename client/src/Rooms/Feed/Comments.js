@@ -11,7 +11,7 @@ import usePost from '../../customHooks/usePost';
 import ReactScrollableFeed from 'react-scrollable-feed';
 import axios from 'axios';
 
-function Comments({ postId, commentId, socket, reloadcomment }) {
+function Comments({ postId, commentId, socket }) {
   const { designs } = useStyles();
   const { post, data } = usePost();
 
@@ -55,7 +55,7 @@ function Comments({ postId, commentId, socket, reloadcomment }) {
                   <Box className="User" sx={designs.User_Style}>
                     <Avatar
                       alt="Remy Sharp"
-                      src={AvatarIcon}
+                      src={author.avatar}
                       sx={{ margin: '1px 0px', height: '40px', width: '40px' }}
                     />
 
@@ -68,19 +68,19 @@ function Comments({ postId, commentId, socket, reloadcomment }) {
                           {author.name}
                         </Typography>
 
-                        <Box
-                          className="date"
-                          sx={designs.Date_Style}
-                        >
+                        <Box className="date" sx={designs.Date_Style}>
                           <Typography sx={designs.Date_Typography_Style}>
                             {moment(createdAt).format('MMMM DD YYYY / h:mm a')}
                           </Typography>
                         </Box>
                       </Box>
-                      <Box className="content" fontSize="0.9rem" 
-                      sx = {{ 
-                        margin: "0.5em 0em"
-                      }}>
+                      <Box
+                        className="content"
+                        fontSize="0.9rem"
+                        sx={{
+                          margin: '0.5em 0em',
+                        }}
+                      >
                         {content}
                       </Box>
 

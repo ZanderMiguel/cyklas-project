@@ -69,7 +69,7 @@ function MembersTableStud({ members }) {
             <Box flexGrow={1} sx={designs.BoxFlexGrow_Style} />
 
             <Typography sx={designs.TotalStud_Typography_Style}>
-              1 classmate
+              1 student
             </Typography>
           </Box>
 

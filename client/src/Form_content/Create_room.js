@@ -47,6 +47,12 @@ function Create_room({ open, close, maxWidth, state, socket }) {
     };
 
     post('http://localhost:5000/rooms/create', {
+      Host: {
+        name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
+          JSON.parse(localStorage.userData).data.user.lastName
+        }`,
+        avatar: JSON.parse(localStorage.userData).data.user.image,
+      },
       userID: JSON.parse(localStorage.userData).data.user._id,
       ...room,
       members: [JSON.parse(localStorage.userData).data.user._id],
@@ -64,11 +70,15 @@ function Create_room({ open, close, maxWidth, state, socket }) {
         close={close}
         maxWidth={maxWidth}
         btn={
-          <Button variant="contained" type="submit" form="form1"
-          sx = {{
-            fontWeight: '600',
-            boxShadow: "none",
-          }}>
+          <Button
+            variant="contained"
+            type="submit"
+            form="form1"
+            sx={{
+              fontWeight: '600',
+              boxShadow: 'none',
+            }}
+          >
             Submit
           </Button>
         }

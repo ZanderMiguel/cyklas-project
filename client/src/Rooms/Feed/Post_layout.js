@@ -30,7 +30,6 @@ import ReactHtmlParser from 'react-html-parser';
 
 function Post_layout({ data, socket, roomID, commentId }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-
   const handleEdit = (event) => {};
 
   const handleDelete = (event, _id) => {
@@ -65,6 +64,7 @@ function Post_layout({ data, socket, roomID, commentId }) {
           JSON.parse(localStorage.userData).data.user.lastName
         }`,
         userID: JSON.parse(localStorage.userData).data.user._id,
+        avatar: JSON.parse(localStorage.userData).data.user.image,
       },
     });
     if (comments) {
@@ -83,7 +83,7 @@ function Post_layout({ data, socket, roomID, commentId }) {
               <Box className="User" sx={designs.User_Style}>
                 <Avatar
                   alt="Remy Sharp"
-                  src={AvatarIcon}
+                  src={author.avatar}
                   sx={designs.AvatarPost_Style}
                 />
                 <Box className="User-date" sx={designs.User_Date_Style}>
@@ -144,7 +144,7 @@ function Post_layout({ data, socket, roomID, commentId }) {
               <Box className="write-comment" sx={designs.Write_Comment_Style}>
                 <Avatar
                   alt="Remy Sharp"
-                  src={AvatarIcon}
+                  src={JSON.parse(localStorage.userData).data.user.image}
                   sx={designs.AvatarComment_Style}
                 />
 

@@ -211,7 +211,6 @@ function Navbar() {
           >
             <Notificationpopover general={general} request={request} />
           </CusPopover>
-          {/* <Notifications_viewall general={general} request={request} /> */}
           <Box
             display="flex"
             alignItems="center"

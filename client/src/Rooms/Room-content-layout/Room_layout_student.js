@@ -10,12 +10,9 @@ import {
   Tooltip,
 } from '@mui/material';
 import { DoorFrontOutlined } from '@mui/icons-material';
-import CusPopover from '../../components/Popover';
-import RoomOptionspopover_student from '../../components/PopoverContent/RoomOptionspopover_student';
 import { Link } from 'react-router-dom';
 import CssBasedLine from '@mui/material/CssBaseline';
 import RoomBackground6 from '../../assets/ImageJaven/RoomBackground6.png';
-import axios from 'axios';
 
 function Room_layout_student({ data }) {
   return (
@@ -94,7 +91,7 @@ function Room_layout_student({ data }) {
                           width: 'auto',
                         }}
                       >
-                        Room Creator
+                        {`Professor: ${item.Host.name}`}
                       </Typography>
                     </Box>
 
@@ -142,7 +139,10 @@ function Room_layout_student({ data }) {
                     alignItems="center"
                     justifyContent="center"
                   >
-                    <Avatar sx={{ width: '4rem', height: '4rem' }} />
+                    <Avatar
+                      src={item.Host.avatar}
+                      sx={{ width: '4rem', height: '4rem' }}
+                    />
                   </Box>
 
                   <Box>

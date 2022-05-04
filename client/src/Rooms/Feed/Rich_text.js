@@ -47,6 +47,7 @@ function Rich_text({ socket }) {
         name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
           JSON.parse(localStorage.userData).data.user.lastName
         } `,
+        avatar: JSON.parse(localStorage.userData).data.user.image,
       },
       rooms: [roomID],
       content: convertedState,
