@@ -190,7 +190,7 @@ function Members() {
             alignItems: 'center',
             padding: '0.2em 0.4em 0.2em 0.2em',
             margin: '0.3em 1.3em',
-            border: '1px solid #464646',
+            backgroundColor: "#22252B",
             borderRadius: '0.3em',
             // "&: hover":
             //   backgroundColor: "#282B31",
@@ -268,7 +268,7 @@ function Members() {
                 alignItems: 'center',
                 padding: '0.2em 0.4em 0.2em 0.2em',
                 margin: '0.3em 1.3em',
-                border: '1px solid #464646',
+                backgroundColor: "#22252B",
                 borderRadius: '0.3em',
                 // "&: hover":
                 //   backgroundColor: "#282B31",

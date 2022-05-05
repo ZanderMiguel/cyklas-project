@@ -19,7 +19,7 @@ function QuizlitAddpopover() {
           </Box>
         </ListItem>
         <Divider />
-        <ListItem button component={Link} to="/quizlit/createexam">
+        <ListItem button component={Link} to="/quizlit/createexamv2">
           <Box sx={designs.ExamContainer_Style}>
             {/* <ListAlt sx = {{ fontsize: "1em", color: "#007FFF"}}/> */}
             <img src={ExamIcon} style={{ height: '1.4em', width: '1.4em' }} />

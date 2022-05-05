@@ -37,6 +37,7 @@ import TeleconRoomV2 from './Telecon/TeleconRoomV2';
 import QuizLit from './Quizlit/Quizlit';
 import Quizform from './Quizlit/Quiz&ExamForm/Quizform';
 import Examform from './Quizlit/Quiz&ExamForm/Examform';
+import ExamFormV2 from './Quizlit/Quiz&ExamForm/ExamFormV2';
 
 import Livequiz_multiplechoice from './Quizlit/LiveQuiz/Livequiz_multiplechoice';
 import StudentLiveQuiz_multiplechoice from './Quizlit/LiveQuiz/StudentLiveQuiz_multiplechoice';
@@ -149,6 +150,11 @@ function App() {
                 exact
                 path="/quizlit/createexam"
                 component={Examform}
+              />
+              <ProtectedRoutes
+                exact
+                path="/quizlit/createexamv2"
+                component={ExamFormV2}
               />
               <Route exact path="/quizlit/join">
                 <JoinQuiz socket={socket} />

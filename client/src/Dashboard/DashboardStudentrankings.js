@@ -20,16 +20,16 @@ import {
 
 const dataRange = [
   {
-    value: 'This week',
-    label: 'This week',
+    value: 'THIS WEEK',
+    label: 'THIS WEEK',
   },
   {
-    value: 'This month',
-    label: 'This month',
+    value: 'THIS MONTH',
+    label: 'THIS MONTH',
   },
   {
-    value: 'This year',
-    label: 'This year',
+    value: 'THIS YEAR',
+    label: 'THIS YEAR',
   },
 ];
 
@@ -166,7 +166,7 @@ const dataRoom = [
 ];
 
 function DashboardStudentrankings() {
-  const [selectRange, setSelectRange] = useState('This week');
+  const [selectRange, setSelectRange] = useState('THIS WEEK');
   const handleChangeRange = (event) => {
     setSelectRange(event.target.value);
   };
@@ -212,6 +212,7 @@ function DashboardStudentrankings() {
                         fontSize: '0.7em',
                         fontWeight: '500',
                         color: '#007FFF',
+                        textTransform: "Uppercase"
                       }}>
                       {dataRange.map(({ value, label }) => (
                         <MenuItem key={value} value={value}>

@@ -156,7 +156,7 @@ function MeetingInformation() {
 
       <Box
         sx={{
-          border: '1px solid #464646',
+          backgroundColor: "#22252B",
           width: 'relative',
           display: 'flex',
           alignItems: 'center',

@@ -342,7 +342,7 @@ function NewGradingSystem({ data, name, counter }) {
             delete grading system
           </Button>
 
-          <Button
+          {/* <Button
             onClick={() => console.log(data.current)}
             children = "Apply"
             variant="contained"
@@ -353,7 +353,7 @@ function NewGradingSystem({ data, name, counter }) {
               fontWeight: '600',
               textTransform: 'Capitalize',
               boxShadow: 'none'
-            }}/>
+            }}/> */}
         </AccordionActions>
       </Accordion>
     </div>
