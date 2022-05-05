@@ -17,224 +17,36 @@ import {
   Select,
   MenuItem,
 } from '@mui/material';
+import axios from 'axios'
 
-const dataTable = [
-  {
-    studentAvatar: (
-      <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-    ),
-    studentName: 'Paul Rudd',
-    overallGrade: '93.2%',
-    attendance: '100',
-    activities: '96%',
-    quizzes: '99.8%',
-    recitations: '95%',
-    classPerformance: '97.1%',
-    majorExam: '96/100',
-    classStanding: (
-      <WorkspacePremium sx={{ fontSize: '1.7em', color: '#F9A826' }} />
-    ),
-  },
-  {
-    studentAvatar: (
-      <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-    ),
-    studentName: 'Tom Holland',
-    overallGrade: '90.7%',
-    attendance: '100',
-    activities: '94%',
-    quizzes: '93.2%',
-    recitations: '94%',
-    classPerformance: '96.1%',
-    majorExam: '94/100',
-    classStanding: (
-      <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-    ),
-  },
-  {
-    studentAvatar: (
-      <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-    ),
-    studentName: 'Tom Hiddleston',
-    overallGrade: '89%',
-    attendance: '100',
-    activities: '93.7%',
-    quizzes: '93.1%',
-    recitations: '93%',
-    classPerformance: '95.8%',
-    majorExam: '93/100',
-    classStanding: (
-      <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-    ),
-  },
-  {
-    studentAvatar: (
-      <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-    ),
-    studentName: 'Robert Downey Jr.',
-    overallGrade: '89.9%',
-    attendance: '100',
-    activities: '90%',
-    quizzes: '91.6%',
-    recitations: '93%',
-    classPerformance: '93.5%',
-    majorExam: '90/100',
-    classStanding: (
-      <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-    ),
-  },
-  {
-    studentAvatar: (
-      <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-    ),
-    studentName: 'Sebastian Stann',
-    overallGrade: '84%',
-    attendance: '85',
-    activities: '92.9%',
-    quizzes: '89.2%',
-    recitations: '80%',
-    classPerformance: '91.9%',
-    majorExam: '86/100',
-    classStanding: (
-      <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-    ),
-  },
-  {
-    studentAvatar: (
-      <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-    ),
-    studentName: 'Paul Rudd',
-    overallGrade: '93.2%',
-    attendance: '100',
-    activities: '96%',
-    quizzes: '99.8%',
-    recitations: '95%',
-    classPerformance: '97.1%',
-    majorExam: '96/100',
-    classStanding: (
-      <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-    ),
-  },
-  {
-    studentAvatar: (
-      <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-    ),
-    studentName: 'Tom Holland',
-    overallGrade: '90.7%',
-    attendance: '100',
-    activities: '94%',
-    quizzes: '93.2%',
-    recitations: '94%',
-    classPerformance: '96.1%',
-    majorExam: '94/100',
-    classStanding: (
-      <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-    ),
-  },
-  {
-    studentAvatar: (
-      <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-    ),
-    studentName: 'Tom Hiddleston',
-    overallGrade: '89%',
-    attendance: '100',
-    activities: '93.7%',
-    quizzes: '93.1%',
-    recitations: '93%',
-    classPerformance: '95.8%',
-    majorExam: '93/100',
-    classStanding: (
-      <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-    ),
-  },
-  {
-    studentAvatar: (
-      <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-    ),
-    studentName: 'Robert Downey Jr.',
-    overallGrade: '89.9%',
-    attendance: '100',
-    activities: '90%',
-    quizzes: '91.6%',
-    recitations: '93%',
-    classPerformance: '93.5%',
-    majorExam: '90/100',
-    classStanding: (
-      <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-    ),
-  },
-  {
-    studentAvatar: (
-      <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-    ),
-    studentName: 'Sebastian Stann',
-    overallGrade: '84%',
-    attendance: '85',
-    activities: '92.9%',
-    quizzes: '89.2%',
-    recitations: '80%',
-    classPerformance: '91.9%',
-    majorExam: '86/100',
-    classStanding: (
-      <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-    ),
-  },
-];
-
-const dataRoom = [
-  {
-    value: 'Embedded Programming',
-    label: 'Embedded Programming',
-  },
-  {
-    value: 'Art Appreciation',
-    label: 'Art Appreciation',
-  },
-  {
-    value: 'Science, Technology and Society',
-    label: 'Science, Technology and Society',
-  },
-  {
-    value: 'Software Engineering',
-    label: 'Software Engineering',
-  },
-];
-
-const dataCourseYearSection = [
-  {
-    value: 'BSCS 3A',
-    label: 'BSCS 3A',
-  },
-  {
-    value: 'BSIT 3A',
-    label: 'BSIT 3A',
-  },
-  {
-    value: 'BSIT 3A',
-    label: 'BSIT 3A',
-  },
-  {
-    value: 'BSCS 3A',
-    label: 'BSCS 3A',
-  },
-];
-
-const dataTerm = [
-  {
-    value: 'MID TERM',
-    label: 'MID TERM',
-  },
-  {
-    value: 'FINAL TERM',
-    label: 'FINAL TERM',
-  },
-];
-
-function Records_tableClassRecords() {
+function Records_tableClassRecords({ rooms }) {
   const [selectRoom, setSelectRoom] = useState('Embedded Programming');
-
+  const [members, setMembers] = useState(null)
+  const [category, setCategory] = useState(null)
+  const [records, setRecords] = useState(null)
+  const stdRecord = React.useRef([])
   const handleChangeRoom = (event) => {
     setSelectRoom(event.target.value);
+    axios.post('http://localhost:5000/records', {
+      userID: JSON.parse(localStorage.userData).data.user._id,
+      roomID: rooms[event.target.value]._id
+    }).then(res => {
+      setRecords(res.data)
+      console.log(res.data)
+    }).catch(err => console.log(err))
+    axios
+      .post('http://localhost:5000/get/members', {
+        members: rooms[event.target.value].members,
+      })
+      .then((res) => {
+        setMembers(res.data)
+        axios.post('http://localhost:5000/gradingSystem/record', { roomID: rooms[event.target.value]._id })
+          .then(res => {
+            setCategory(res.data[0].Category)
+          })
+      })
+      .catch((err) => console.log(err))
+
   };
 
   const [selectCourseYearSection, setSelectCourseYearSection] =
@@ -264,7 +76,7 @@ function Records_tableClassRecords() {
               labelId="demo-simple-select-standard-label"
               id="demo-simple-select-standard"
               value={selectRoom}
-              onChange={handleChangeRoom}
+              onChange={(event) => { handleChangeRoom(event) }}
               label="SelectRoom"
               disableUnderline
               sx={{
@@ -283,87 +95,14 @@ function Records_tableClassRecords() {
                 },
               }}
             >
-              {dataRoom.map(({ value, label }) => (
-                <MenuItem key={value} value={value}>
-                  {label}
+              {rooms && rooms.map((item, index) => (
+                <MenuItem key={item._id} value={index}>
+                  {item.RoomName}
                 </MenuItem>
               ))}
             </Select>
           </FormControl>
         </Grid>
-        {/* <Grid item md={3} sm={4} xs={12}>
-          <FormControl
-            variant="standard"
-            sx={{
-              width: '100%',
-              paddingTop: '0em',
-            }}
-          >
-            <Select
-              labelId="demo-simple-select-standard-label"
-              id="demo-simple-select-standard"
-              value={selectCourseYearSection}
-              onChange={handleChangeCourseYearSection}
-              label="SelectCourseYearSection"
-              disableUnderline
-              sx={{
-                width: '100%',
-                fontSize: '0.9em',
-                fontWeight: '400',
-                color: '#3F3D56',
-                border: '1px solid #DBDBDB',
-                borderRadius: '0.2em',
-                paddingLeft: '0.5em',
-                '&: hover': {
-                  border: '1px solid #212121',
-                },
-              }}
-            >
-              {dataCourseYearSection.map(({ value, label }) => (
-                <MenuItem key={value} value={value}>
-                  {label}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Grid> */}
-        {/* <Grid item md={3} sm={4} xs={12}>
-          <FormControl
-            variant="standard"
-            sx={{
-              width: '100%',
-              paddingTop: '0em',
-            }}
-          >
-            <Select
-              labelId="demo-simple-select-standard-label"
-              id="demo-simple-select-standard"
-              value={selectTerm}
-              onChange={handleChangeTerm}
-              label="SelectTerm"
-              disableUnderline
-              sx={{
-                width: '100%',
-                fontSize: '0.8em',
-                fontWeight: '400',
-                color: '#3F3D56',
-                border: '1px solid #DBDBDB',
-                borderRadius: '0.2em',
-                paddingLeft: '0.5em',
-                '&: hover': {
-                  border: '1px solid #212121',
-                },
-              }}
-            >
-              {dataTerm.map(({ value, label }) => (
-                <MenuItem key={value} value={value}>
-                  {label}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Grid> */}
-
         <Grid item xs={4} />
 
         <Grid item xs={4}>
@@ -423,34 +162,65 @@ function Records_tableClassRecords() {
               <tr>
                 <th> Student Name </th>
                 <th> Overall Grade </th>
-                <th> Attendance </th>
-                <th> Activities </th>
-                <th> Quizzes </th>
-                <th> Recitations </th>
-                <th> Class Performance </th>
-                <th> Major Exam </th>
+                {/*map some shit */}
+                {category && category.map((item, index) => {
+                  stdRecord.current.push({ [Object.entries(item)[0][0]]: 0 })
+                  return (
+                    <th key={index}> {Object.entries(item)[0][0]} </th>
+                  )
+                })}
                 <th> Class Standing </th>
               </tr>
             </thead>
 
             <tbody>
-              {dataTable.map(function (items, index) {
+              {records ? records.map((items, index) => {
+
                 return (
                   <tr key={index}>
                     <td>
                       <div className="student-name">
-                        {items.studentAvatar}
-                        {items.studentName}
+                        <Avatar src={items.student.image} sx={{ height: '1.5em', width: '1.5em' }} />
+                        {items.student.name}
                       </div>
                     </td>
-                    <td data-label="Overall Grade"> {items.overallGrade} </td>
-                    <td data-label="Attendance"> {items.attendance} </td>
-                    <td data-label="Activities"> {items.activities} </td>
-                    <td data-label="Quizzes"> {items.quizzes} </td>
-                    <td data-label="Recitations"> {items.recitations} </td>
-                    <td data-label="Class Performance">
-                      {' '}
-                      {items.classPerformance}{' '}
+                    <td data-label="Overall"> {items.majorExam} </td>
+                    {/*map some shit*/}
+                    {items.gradingSystem.map((item,ind)=>(<td key={ind}>{item[Object.entries(item)[0][0]]}</td>))}
+                    
+                    <td data-label="Class Standing"> {items.classStanding} </td>
+                  </tr>
+                )
+
+              }) : members && members.map(function (items, index) {
+                
+                if (items.userType === "Student" && stdRecord.current.length > 0) {
+                  axios.post('http://localhost:5000/records/create', {
+                    room: rooms[selectRoom]._id,
+                    student: {
+                      stdID: items._id,
+                      name: `${items.firstName} ${items.lastName}`,
+                      image: items.image
+                    },
+                    gradingSystem: stdRecord.current,
+                    professor: {
+                      profID: JSON.parse(localStorage.userData).data.user._id,
+                      name: `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName
+                        }`,
+                      image: JSON.parse(localStorage.userData).data.user.image
+                    }
+                  })
+                  .then(res=>{
+                    console.log(res.data)
+                  }).catch(err=>console.log(err))
+                }
+                return (
+                  <tr key={index}>
+                    <td>
+                      {items.userType === 'Student' && <div className="student-name">
+                        <Avatar src={items.image} sx={{ height: '1.5em', width: '1.5em' }} />
+                        {items.firstName} {items.lastName}
+                      </div>}
                     </td>
                     <td data-label="Major Exam"> {items.majorExam} </td>
                     <td data-label="Class Standing"> {items.classStanding} </td>

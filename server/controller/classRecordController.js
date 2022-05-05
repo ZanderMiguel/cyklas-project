@@ -37,11 +37,11 @@ const updateClassRecord = async (req, res) => {
 const displayClassRecord = async (req, res) => {
   try {
     const classRecord = await ClassRecordModel.find({
-      professor: req.body.userID,
+      "professor.profID": req.body.userID,
       room: { $elemMatch: { $eq: req.body.roomID } },
     });
     console.log('Class Record Dislayed');
-    return res.json(classRecord);
+    return res.json(classRecord.length > 0 ? classRecord : false);
   } catch (error) {
     console.log(error);
     return res.json(error);

@@ -31,6 +31,7 @@ function RequestPopup() {
       .then((res) => {
         setItems(res.data);
         setToggleAccept((prev) => !prev);
+        
       })
       .catch((err) => console.log(err));
   };

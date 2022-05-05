@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
-const methodOverride = require('method-override');
 
 const {
   createRegistrationController,
@@ -88,7 +87,6 @@ router.delete('/quizlit/delete', deleteQuizlitController);
 router.post('/quizlit', findQuizlitController);
 router.post('/myQuizlit', displayQuizlitOnQuizlit);
 router.post('/roomQuizlit', displayQuizlitOnRoom);
-const upload = require('../middleware/upload');
 const {
   createQuestionController,
   updateQuestionController,
@@ -98,11 +96,6 @@ const {
 router.post(
   '/question/create',
   bodyParser.json(),
-  upload.single('answer1'),
-  upload.single('answer2'),
-  upload.single('answer3'),
-  upload.single('answer4'),
-  upload.single('qImage'),
   createQuestionController
 );
 router.put('/question/update', bodyParser.json(), updateQuestionController);
@@ -142,24 +135,23 @@ const {
   createGradingSystem,
   updateGradingSystem,
   deleteGradingSystem,
-  displayGradingSystem,
+  displayGradingSystem,findRoomGS
 } = require('../controller/gradingSystemController');
 router.post('/gradingSystem/create', createGradingSystem);
 router.post('/gradingSystem', displayGradingSystem);
 router.put('/gradingSystem/update', updateGradingSystem);
-router.delete('gradingSystem/delete', deleteGradingSystem);
-
+router.delete('/gradingSystem/delete', deleteGradingSystem);
+router.post('/gradingSystem/record',findRoomGS)
 const {
   createClassRecord,
   deleteClassRecord,
   updateClassRecord,
-  displayClassRecord,
+  displayClassRecord
 } = require('../controller/classRecordController');
 router.post('/records/create', createClassRecord);
 router.post('/records', displayClassRecord);
 router.put('/records/update', updateClassRecord);
 router.delete('/records/delete', deleteClassRecord);
-
 const {
   createClassCard,
   displayClassCard,
