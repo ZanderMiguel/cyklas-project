@@ -216,7 +216,7 @@ function DefaultGradingSystem({ data }) {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              padding: "0.8em 3em 0em 0em"
+              padding: "0.8em 4em 0em 0em"
             }}>
               <img src = {DefaultGrade} alt = "Default Grade" style = {{ height: "15em" }}/>
             </Box>
@@ -252,6 +252,21 @@ function DefaultGradingSystem({ data }) {
               </Typography>
           </Box>
         </AccordionDetails>
+        <Divider />
+          <AccordionActions sx = {{ paddingLeft: "1.5em", paddingRight: "1.5em" }}>
+            <Button
+              onClick={() => console.log(data.current)}
+              children = "Apply"
+              variant="contained"
+              sx={{
+                padding: '0.4em 1.5em',
+                color: 'white',
+                fontSize: '0.8em',
+                fontWeight: '600',
+                textTransform: 'Capitalize',
+                boxShadow: 'none'
+              }}/>
+          </AccordionActions>
       </Accordion>
     </div>
   );

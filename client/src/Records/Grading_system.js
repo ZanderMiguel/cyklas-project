@@ -5,7 +5,7 @@ import DefaultGradingSystem from './DefaultGradingSystem';
 import Create_gradingsystem from './Create_gradingsystem';
 import axios from 'axios';
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import { IndeterminateCheckBox } from '@mui/icons-material';
+import { BeenhereOutlined } from "@mui/icons-material";
 
 function Grading_system({ data, name, counter }) {
   const [opendialog, setOpenDialog] = useState(false);
@@ -31,19 +31,36 @@ function Grading_system({ data, name, counter }) {
 
   return (
     <>
-      <Box width="100%" display="flex" marginBottom={2}>
-        <Box flexGrow={1} />
+        <Box width="100%" display="flex" marginBottom={2}>
+          <Button
+            onClick={() => console.log(data.current)}
+            startIcon = {<BeenhereOutlined/>}
+            children = "Save Changes"
+            variant="contained"
+            sx={{
+              backgroundColor: "#4CAF50",
+              padding: '0.4em 1em',
+              color: 'white',
+              fontSize: '0.8em',
+              fontWeight: '600',
+              boxShadow: 'none',
+              "&: hover": {
+                backgroundColor: "#43A047"
+              }
+            }}/>
 
-        <Button onClick={() => setOpenDialog(true)}
-          startIcon={<AddCircleOutlineOutlinedIcon />}
+          <Box flexGrow={1} />
+            
+          <Button onClick={() => setOpenDialog(true)} 
+          startIcon = {<AddCircleOutlineOutlinedIcon/>}
           variant="contained"
           children="Create New Grading System"
           sx={{
             fontSize: "0.8em",
             fontWeight: "600",
             boxShadow: "none"
-          }} />
-
+          }}/>
+      
       </Box>
       {opendialog && (
         <Create_gradingsystem

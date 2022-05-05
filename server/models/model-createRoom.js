@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const RoomsSchema = new mongoose.Schema(
   {
     _id: mongoose.Schema.Types.ObjectId,
+    Host: { type: Object, required: true },
     RoomName: { type: String, required: true },
     Course: { type: String, required: true },
     ClassDays: { type: String, required: true },

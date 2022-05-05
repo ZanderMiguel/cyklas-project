@@ -1,5 +1,7 @@
 import React from 'react';
 import './Styles/ClassCards_table_stylesheet.css';
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const dataTable = [
   {
@@ -77,15 +79,22 @@ function ClassCards_table() {
                 <td data-label="FINAL TERM Grade"> {items.finaltermGrade} </td> */}
                 <td data-label="FINAL Grade"> {items.finalGrade} </td>
                 <td data-label="Actions">
-                  {/* <button className = "evaluate-btn" id = "evaluate-Button"> Evaluate </button> */}
-                  <button
-                    className="evaluate-btn"
-                    id="evaluate-Button"
-                    disabled
-                  >
-                    {' '}
-                    Evaluate{' '}
-                  </button>
+                  <Button 
+                  // disabled
+                  component = {Link}
+                  to = "/Evaluation"
+                  variant = "contained" children = "Evaluate"
+                  sx = {{
+                    padding: "0.3em 1em",
+                    fontWeight: "600",
+                    fontSize: "0.9em",
+                    boxShadow: "none",
+                    textTransform: "Capitalize",
+                    textDecoration: "none",
+                    "&: hover": {
+                      boxShadow: "none"
+                    }
+                  }}/>
                 </td>
               </tr>
             );

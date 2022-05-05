@@ -7,7 +7,7 @@ import {
   Stack,
   IconButton,
   Divider,
-  Tooltip
+  Tooltip,
 } from '@mui/material';
 import {
   PanoramaOutlined,
@@ -47,6 +47,7 @@ function Rich_text({ socket }) {
         name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
           JSON.parse(localStorage.userData).data.user.lastName
         } `,
+        avatar: JSON.parse(localStorage.userData).data.user.image,
       },
       rooms: [roomID],
       content: convertedState,
@@ -91,49 +92,44 @@ function Rich_text({ socket }) {
           },
         }}
       />
-      
+
       <Box
         sx={{
           borderRadius: '0px 0px 4px 4px',
-        }}>
+        }}
+      >
         {/* {upload && <Box padding="0.3em 0.5em" margin="0.4em 0em">File uploaded/Image/Link</Box>} */}
-        
-        <Divider sx = {{ margin: "0em 0em 0.4em 0em" }}/>
-        <Stack direction="row" spacing={1}>
-          <Tooltip title = "Attach Image(s)" placement = "top">
-            <IconButton
-              aria-label="image"
-              size="medium"
-              sx={{
-              }}
-            >
-              <PanoramaOutlined sx = {{ fontSize: "0.8em" }}/>
-            </IconButton>
-          </Tooltip>
-          
-          <Tooltip title = "Attach File(s)" placement = "top">
-            <IconButton aria-label="file" size="medium"
-            sx = {{
-            }}>
-              <AttachFileOutlined sx = {{ fontSize: "0.8em" }}/>
-            </IconButton>
-          </Tooltip>
-          
-          <Tooltip title = "Attach Link(s)" placement = "top">
-            <IconButton aria-label="link" size="medium"
-            sx = {{
-            }}>
-              <InsertLinkOutlined sx = {{ fontSize: "0.8em" }}/>
-            </IconButton>
-          </Tooltip>
-          
-          <Box flexGrow = {1}/>
 
-          <Button variant="contained" onClick={handleAnnounce} 
-          sx = {{
-            fontWeight: "600",
-            boxShadow: "none"
-          }}>
+        <Divider sx={{ margin: '0em 0em 0.4em 0em' }} />
+        <Stack direction="row" spacing={1}>
+          <Tooltip title="Attach Image(s)" placement="top">
+            <IconButton aria-label="image" size="medium" sx={{}}>
+              <PanoramaOutlined sx={{ fontSize: '0.8em' }} />
+            </IconButton>
+          </Tooltip>
+
+          <Tooltip title="Attach File(s)" placement="top">
+            <IconButton aria-label="file" size="medium" sx={{}}>
+              <AttachFileOutlined sx={{ fontSize: '0.8em' }} />
+            </IconButton>
+          </Tooltip>
+
+          <Tooltip title="Attach Link(s)" placement="top">
+            <IconButton aria-label="link" size="medium" sx={{}}>
+              <InsertLinkOutlined sx={{ fontSize: '0.8em' }} />
+            </IconButton>
+          </Tooltip>
+
+          <Box flexGrow={1} />
+
+          <Button
+            variant="contained"
+            onClick={handleAnnounce}
+            sx={{
+              fontWeight: '600',
+              boxShadow: 'none',
+            }}
+          >
             Post
           </Button>
         </Stack>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Box, Button, Grid } from '@mui/material';
 import Create_activity from '../../../Form_content/Create_activity';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
@@ -8,8 +8,7 @@ import axios from 'axios';
 function Activities({ roomID }) {
   const [opendialog, setOpenDialog] = useState(false);
   const [activity, setActivity] = useState(null);
-  
-  
+
   const handleClickOpen = () => {
     setOpenDialog(true);
   };
@@ -50,17 +49,22 @@ function Activities({ roomID }) {
   return (
     <>
       <Box
-        sx={{ width: '100%', display: 'flex', justifyContent: 'center', paddingTop: "1em" }}
+        sx={{
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          paddingTop: '1em',
+        }}
       >
         <Box flexGrow={1} />
         <Button
           startIcon={<AddCircleIcon />}
           variant="contained"
           sx={{
-            fontWeight: "600",
+            fontWeight: '600',
             backgroundColor: '#007FFF',
             color: 'white',
-            boxShadow: "none",
+            boxShadow: 'none',
             '&:hover': {
               backgroundColor: '#0072e6',
             },
@@ -71,10 +75,23 @@ function Activities({ roomID }) {
           Create Activity
         </Button>
       </Box>
-      {opendialog && <Create_activity open={opendialog} close={handleClose} setOpenDialog={setOpenDialog} />}
-      <Grid container rowSpacing={2} sx = {{ paddingBottom: "1.5em" }}>
-        <Activities_layout roomID={roomID} activity={activity}  />
-      </Grid>
+      {opendialog && (
+        <Create_activity
+          open={opendialog}
+          close={handleClose}
+          setOpenDialog={setOpenDialog}
+        />
+      )}
+      {activity && activity.length === 0 && (
+        <center>
+          <h1> nothing to display!</h1>
+        </center>
+      )}
+      {activity && (
+        <Grid container rowSpacing={2} sx={{ paddingBottom: '1.5em' }}>
+          <Activities_layout roomID={roomID} activity={activity} />
+        </Grid>
+      )}
     </>
   );
 }

@@ -292,18 +292,18 @@ function NewGradingSystem({ index, response, data, name, counter, setRenderer, s
               })}
             </Box>
 
-            <Box flexGrow={1} />
-
-            <Box
-              sx={{
-                height: "relative",
-                width: "auto",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "0.8em 3em 0em 0em"
-              }}>
-              <img src={NewGrade} alt="New Grade" style={{ height: "15em" }} />
+            <Box flexGrow = {1}/>
+            
+            <Box 
+            sx = {{
+              height: "relative",
+              width: "auto",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "0.8em 4em 0em 0em"
+            }}>
+              <img src = {NewGrade} alt = "New Grade" style = {{ height: "15em" }}/>
             </Box>
 
           </Box>
@@ -369,7 +369,7 @@ function NewGradingSystem({ index, response, data, name, counter, setRenderer, s
             variant="text"
             startIcon={<DeleteOutlined />}
             sx={{
-              padding: '0.4em 1em',
+              padding: '0.4em 1.5em',
               color: '#3F3D56',
               fontSize: '0.8em',
               fontWeight: '600',
@@ -410,8 +410,7 @@ function NewGradingSystem({ index, response, data, name, counter, setRenderer, s
             children="Save Changes"
             variant="contained"
             sx={{
-              backgroundColor: "#4CAF50",
-              padding: '0.4em 1em',
+              padding: '0.4em 1.5em',
               color: 'white',
               fontSize: '0.8em',
               fontWeight: '600',

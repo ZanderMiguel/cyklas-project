@@ -9,7 +9,12 @@ function RoomOptionspopover_professor() {
   return (
     <Box sx = {designs.Container_Style}>
       <List component="nav" sx = {designs.Nav_Style}>
-        <ListItem button>
+        <ListItem button
+        sx = {{
+          // "&: hover": {
+          //   backgroundColor: "#828282"
+          // }
+        }}>
           <Box sx = {designs.EditRoomContainer_Style}>
             <BorderColorOutlined sx = {designs.BorderColorOutlined_Style}/>
 
@@ -17,7 +22,12 @@ function RoomOptionspopover_professor() {
           </Box>
         </ListItem>
         {/* <Divider sx = {{ margin: "0em 1em"}}/> */}
-        <ListItem button>
+        <ListItem button
+        sx = {{
+          // "&: hover": {
+          //   backgroundColor: "#828282"
+          // }
+        }}>
           <Box sx = {designs.LeaveRoomContainer_Style}>
             <DoorFrontOutlined sx = {designs.DoorFrontOutlined_Style}/>
 

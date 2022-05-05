@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Button, Typography, Avatar, Box } from '@mui/material';
+import { Grid, Button, Typography, Avatar, Box, Tooltip } from '@mui/material';
 import Dialogform from '../components/Dialogform';
 import { BrowserRouter as Router } from 'react-router-dom';
 import CusButton from '../components/Button';
@@ -145,10 +145,20 @@ function Register({ open, close, setOpenDialog, setNotif }) {
             >
               <div>
                 <label htmlFor="getFile">
+                <Tooltip title="Upload Account Picture" placement="top">
                   <Avatar
                     src={imgSrc}
-                    style={{ width: '64px', height: '64px' }}
+                    sx = {{ 
+                      width: '64px',
+                      height: '64px',
+                      '&: hover': {
+                        cursor: 'pointer',
+                        boxShadow:
+                          'rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px',
+                      }
+                    }}
                   />
+                </Tooltip>
                 </label>
                 <input
                   type="file"
@@ -174,6 +184,9 @@ function Register({ open, close, setOpenDialog, setNotif }) {
                     disableRipple
                     onClick={handleClickProf('Professor')}
                     name="userType"
+                    sx = {{
+                      border: "1px solid #007FFF"
+                    }}
                   >
                     Professor
                   </Button>
@@ -185,6 +198,9 @@ function Register({ open, close, setOpenDialog, setNotif }) {
                     disableRipple
                     onClick={handleClickStud('Student')}
                     name="userType"
+                    sx = {{
+                      border: "1px solid #007FFF"
+                    }}
                   >
                     Student
                   </Button>
