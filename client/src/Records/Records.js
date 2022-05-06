@@ -17,9 +17,19 @@ import { FolderSharedOutlined, Search, Grading } from '@mui/icons-material';
 import Records_tableClassRecords from './Records_tableClassRecords';
 import useStyle from './Styles/Records_style';
 import Grading_system from './Grading_system';
-
+import axios from 'axios'
 function Records() {
   const { designs } = useStyle();
+  const [rooms,setRooms] = React.useState(null)
+  React.useEffect(()=>{
+    axios.post('http://localhost:5000/rooms', {
+      userID: JSON.parse(localStorage.userData).data.user._id,
+    }).then(res=>{
+      console.log(res.data)
+      setRooms(res.data)
+    }).catch(err=>console.log(err))
+  },[])
+
 
   const [toggleClassRecords, setToggleClassRecords] = useState(true);
   const [toggleGradingSystem, setToggleGradingSystem] = useState(true);
@@ -166,7 +176,7 @@ function Records() {
 
             <Grid container columnSpacing={1} rowSpacing={1}>
               <Grid item xs={12}>
-                {toggleClassRecords && <Records_tableClassRecords />}
+                {rooms && toggleClassRecords && <Records_tableClassRecords rooms={rooms} />}
                 {!toggleGradingSystem && (
                   <Grading_system data={data} name={name} counter={counter} />
                 )}

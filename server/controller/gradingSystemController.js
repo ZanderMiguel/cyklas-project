@@ -24,13 +24,14 @@ const updateGradingSystem = async (req, res) => {
     return res.json(error);
   }
 };
+
 const deleteGradingSystem = async (req, res) => {
   try {
     await GradingSystemModel.findByIdAndDelete(req.body.gsID);
-    console.log('Grading system deleted');
+    
     return res.json({
       status: 'success',
-      message: 'Grading System Updated',
+      message: 'Grading System Deleted',
     });
   } catch (error) {
     console.log(error);
@@ -39,9 +40,9 @@ const deleteGradingSystem = async (req, res) => {
 };
 const displayGradingSystem = async (req, res) => {
   try {
-    const gradingSystem = GradingSystemModel.find({
+    const gradingSystem = await GradingSystemModel.find({
       userID: req.body.userID,
-    }).sort({ createdAt: -1 });
+    });
     console.log('Grading System Displayed');
     return res.json(gradingSystem);
   } catch (error) {
@@ -49,9 +50,21 @@ const displayGradingSystem = async (req, res) => {
     return res.json(error);
   }
 };
+const findRoomGS = async (req,res) => {
+  try{
+    const gradingSystem = await GradingSystemModel.find({
+      rooms: {$elemMatch:{$eq:req.body.roomID}}
+    })
+    console.log('Record Found')
+    return res.json(gradingSystem)
+  }catch(error){
+    console.log(error)
+    return res.json(error)
+  }
+}
 module.exports = {
   createGradingSystem,
   updateGradingSystem,
   deleteGradingSystem,
-  displayGradingSystem,
+  displayGradingSystem,findRoomGS
 };

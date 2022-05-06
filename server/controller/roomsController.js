@@ -1,6 +1,7 @@
 const { RoomsModel } = require('../models/model-createRoom');
 const User = require('../models/model-users');
 const mongoose = require('mongoose');
+const GradingSystemModel = require('../models/model-gradingSystem');
 
 async function createRooms(req, res) {
   try {
@@ -8,7 +9,8 @@ async function createRooms(req, res) {
 
     const addRooms = new RoomsModel({ _id: id, ...req.body });
     await addRooms.save();
-    console.log('Room Created');
+    await GradingSystemModel.updateOne({_id:req.body.gsID},{$push:{rooms:id}})
+    console.log('Room Created','Grading System Applied');
     return res.json({
       status: 'success',
       message: 'Room Created!',

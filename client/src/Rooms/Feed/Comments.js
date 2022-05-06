@@ -13,7 +13,8 @@ import axios from 'axios';
 
 function Comments({ postId, commentId, socket }) {
   const { designs } = useStyles();
-  const { post, data } = usePost();
+  const [data, setData] = useState();
+  // const { post, data } = usePost();
 
   const handleEditComment = () => {};
   const handleDeleteComment = (_id) => {
@@ -28,7 +29,30 @@ function Comments({ postId, commentId, socket }) {
   };
 
   React.useEffect(() => {
-    post('http://localhost:5000/comment', { announcement: postId });
+    let unmounted = false;
+    let source = axios.CancelToken.source();
+    axios
+      .post(
+        'http://localhost:5000/comment',
+        { announcement: postId },
+        {
+          cancelToken: source.token,
+        }
+      )
+      .then((res) => {
+        if (!unmounted) {
+          setData(res.data);
+        }
+      })
+      .catch((err) => {
+        if (!unmounted) {
+          if (axios.isCancel(err)) {
+            console.log(`request cancelled:${err.message}`);
+          } else {
+            console.log('another error happened:' + err.message);
+          }
+        }
+      });
   }, [commentId]);
   return (
     <>

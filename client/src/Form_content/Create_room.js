@@ -4,21 +4,12 @@ import Input from '../components/Input';
 import Dropdown from '../components/Drowpdown';
 import usePost from '../customHooks/usePost';
 import moment from 'moment';
-
+import axios from 'axios'
 import { Grid, Button } from '@mui/material';
 
-const gradingsystems = [
-  {
-    value: 'Default',
-    label: 'Default',
-  },
-  {
-    value: 'CreateSystem1',
-    label: 'CreateSystem1',
-  },
-];
+const gradingsystems = [];
 
-function Create_room({ open, close, maxWidth, state, socket }) {
+function Create_room({ open, close, maxWidth, state, socket, gs }) {
   const [roomname, setRoomname] = useState('');
   const [course, setCourse] = useState('');
   const [classday, setClassDay] = useState('');
@@ -28,11 +19,18 @@ function Create_room({ open, close, maxWidth, state, socket }) {
 
   const handleChangeGradingSystem = (event) => {
     setGradingSystem(event.target.value);
+    console.log(gradingsystem)
   };
   const handleTime = (event) => {
     setClassTime(event.target.value);
   };
+  React.useEffect(() => {
+    gradingsystems.splice(0, gradingsystems.length)
+    gs && gs.map(item => {
 
+      gradingsystems.push({ value: item._id, label: item.GradingName })
+    })
+  }, [])
   const { post } = usePost();
 
   const handleSubmit = (e) => {
@@ -53,12 +51,14 @@ function Create_room({ open, close, maxWidth, state, socket }) {
         }`,
         avatar: JSON.parse(localStorage.userData).data.user.image,
       },
-      userID: JSON.parse(localStorage.userData).data.user._id,
+      userID: JSON.parse(localStorage.userData).data.user._id,gsID: gradingsystem,
       ...room,
       members: [JSON.parse(localStorage.userData).data.user._id],
     });
+
     state(false);
     socket.emit('create-room');
+
   };
 
   return (
@@ -70,15 +70,11 @@ function Create_room({ open, close, maxWidth, state, socket }) {
         close={close}
         maxWidth={maxWidth}
         btn={
-          <Button
-            variant="contained"
-            type="submit"
-            form="form1"
+          <Button variant="contained" type="submit" form="form1"
             sx={{
               fontWeight: '600',
-              boxShadow: 'none',
-            }}
-          >
+              boxShadow: "none",
+            }}>
             Submit
           </Button>
         }

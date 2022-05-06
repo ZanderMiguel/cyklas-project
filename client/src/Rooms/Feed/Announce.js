@@ -20,35 +20,15 @@ function Announce({ socket }) {
   });
 
   React.useEffect(() => {
-    let unmounted = false;
-    let source = axios.CancelToken.source();
     axios
-      .post(
-        'http://localhost:5000/announce',
-        { rooms: roomID },
-        {
-          cancelToken: source.token,
-        }
-      )
+      .post('http://localhost:5000/announce', { rooms: roomID })
       .then((res) => {
-        if (!unmounted) {
-          setData(res.data);
-          socket.emit('create-comment');
-        }
+        setData(res.data);
+        socket.emit('create-comment');
       })
       .catch((e) => {
-        if (!unmounted) {
-          if (axios.isCancel(e)) {
-            console.log(`request cancelled:${e.message}`);
-          } else {
-            console.log('another error happened:' + e.message);
-          }
-        }
+        console.log(e.message);
       });
-    return () => {
-      unmounted = true;
-      source.cancel('Cancelling in cleanup');
-    };
   }, [postuuid]);
 
   return (

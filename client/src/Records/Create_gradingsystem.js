@@ -4,7 +4,7 @@ import { Box, Button } from '@mui/material';
 import Input from '../components/Input';
 import NewGradingSystem from './NewGradingSystem';
 
-function Create_gradingsystem({ open, close, name, counter, setGS, GS, data }) {
+function Create_gradingsystem({ open, close, name, counter, setGS, GS, data,setRenderer }) {
   const [gradingname, setGradingName] = useState('');
   // const handleAddGrading = () => {
   //   axios
@@ -30,7 +30,7 @@ function Create_gradingsystem({ open, close, name, counter, setGS, GS, data }) {
           onClick={() => {
             setGS([
               ...GS,
-              <NewGradingSystem data={data} name={name} counter={counter} />,
+              <NewGradingSystem data={data} name={name} counter={counter} setGS={setGS} setRenderer={setRenderer}/>,
             ]);
             close();
           }}

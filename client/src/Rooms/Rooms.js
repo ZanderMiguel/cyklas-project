@@ -10,14 +10,24 @@ import Button from '../components/Button';
 import Room_layout_student from './Room-content-layout/Room_layout_student';
 import { useParams } from 'react-router-dom';
 import NoRoom from '../assets/ImageJaven/NoRoom.png';
+import axios from 'axios';
 import { LinearProgress } from '@mui/material';
 
 function Rooms({ socket }) {
   const { roomID } = useParams();
   const [opendialog, setOpenDialog] = useState(false);
-
+  const [gs, setGs] = useState(null);
   const { post, data, error, isPending } = usePost();
-
+  React.useEffect(() => {
+    axios
+      .post('http://localhost:5000/gradingSystem', {
+        userID: JSON.parse(localStorage.userData).data.user._id,
+      })
+      .then((res) => {
+        setGs(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   const handleCreate = () => {
     setOpenDialog(true);
   };
@@ -68,6 +78,7 @@ function Rooms({ socket }) {
               <Grid item>
                 {opendialog && (
                   <Create_room
+                    gs={gs}
                     open={opendialog}
                     close={handleCreateClose}
                     maxWidth="md"
@@ -78,7 +89,7 @@ function Rooms({ socket }) {
                 )}
               </Grid>
               {error && console.log(error)}
-
+              {isPending && <CircularProgress />}
               {data && data.length > 0 ? (
                 <Room_layout data={data} />
               ) : (
@@ -119,13 +130,7 @@ function Rooms({ socket }) {
 
         {JSON.parse(localStorage.userData).data.user.userType === 'Student' && (
           <>
-            <Grid
-              container
-              justifyContent="flex-end"
-              rowSpacing={1}
-              maxHeight="100vh"
-              mt={2}
-            >
+            <Grid container justifyContent="flex-end" rowSpacing={1}>
               <Grid item>
                 <Button
                   variant="contained"
@@ -157,6 +162,7 @@ function Rooms({ socket }) {
                 )}
               </Grid>
               {error && console.log(error)}
+
               {data && data.length > 0 ? (
                 <Room_layout_student data={data} />
               ) : (
