@@ -3,7 +3,7 @@ import { Divider, Box, Typography, Avatar, Button } from '@mui/material';
 import useStyle from '../components/PopoverContent/Styles/Notificationpopover_style';
 import axios from 'axios';
 import moment from 'moment';
-import Nodata from "../assets/ImageJaven/Nodata.png";
+import Nodata from '../assets/ImageJaven/Nodata.png';
 
 function RequestPopup() {
   const { designs } = useStyle();
@@ -21,17 +21,38 @@ function RequestPopup() {
       .catch((err) => console.log(err));
   }, [toggleAccept]);
 
-  const handleAcceptRequest = (event) => {
+  const handleAcceptRequest = (event, stdImage, stdName, stdID) => {
+    axios
+      .post('http://localhost:5000/records/create', {
+        room: event.target.name,
+        student: {
+          stdID,
+          name: stdName,
+          image: stdImage,
+        },
+        gradingSystem: [],
+        professor: {
+          profID: JSON.parse(localStorage.userData).data.user._id,
+          name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
+            JSON.parse(localStorage.userData).data.user.lastName
+          }`,
+          image: JSON.parse(localStorage.userData).data.user.image,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+
     axios
       .post('http://localhost:5000/requests/accept', {
         roomID: event.target.name,
-        memberID: event.target.accessKey,
+        memberID: stdID,
         reqID: event.target.nonce,
       })
       .then((res) => {
         setItems(res.data);
         setToggleAccept((prev) => !prev);
-        
       })
       .catch((err) => console.log(err));
   };
@@ -59,34 +80,39 @@ function RequestPopup() {
                   >
                     {element.requests.userName}
                   </Typography>
-                  
-                  <Box 
-                  sx = {{ 
-                    width: "relative",
-                    height: "auto",
-                    display: "flex",
-                    gap: "0.5em",
-                    flexWrap: "wrap"
-                  }}>
-                    <Typography children = "is requesting to join your room"
-                    sx={{
-                      fontSize: '0.8em',
-                      fontWeight: '500',
-                      color: '#64627F',
-                      width: 'auto',
-                      textTransform: "none"
-                    }}/>
 
-                    <Typography children = {`"${element.requests.RoomName}"`}
+                  <Box
                     sx={{
-                      fontSize: '0.8em',
-                      fontWeight: '600',
-                      color: '#64627F',
-                      width: 'auto',
-                      textTransform: "Uppercase"
-                    }}/>
+                      width: 'relative',
+                      height: 'auto',
+                      display: 'flex',
+                      gap: '0.5em',
+                      flexWrap: 'wrap',
+                    }}
+                  >
+                    <Typography
+                      children="is requesting to join your room"
+                      sx={{
+                        fontSize: '0.8em',
+                        fontWeight: '500',
+                        color: '#64627F',
+                        width: 'auto',
+                        textTransform: 'none',
+                      }}
+                    />
+
+                    <Typography
+                      children={`"${element.requests.RoomName}"`}
+                      sx={{
+                        fontSize: '0.8em',
+                        fontWeight: '600',
+                        color: '#64627F',
+                        width: 'auto',
+                        textTransform: 'Uppercase',
+                      }}
+                    />
                   </Box>
-                  
+
                   <Typography
                     sx={{
                       fontSize: '0.7em',
@@ -121,9 +147,15 @@ function RequestPopup() {
                           backgroundColor: '#005DC3',
                         },
                       }}
-                      onClick={(event) => handleAcceptRequest(event)}
+                      onClick={(event) =>
+                        handleAcceptRequest(
+                          event,
+                          element.requests.userImage,
+                          element.requests.userName,
+                          element.requests.studentID
+                        )
+                      }
                       name={element.room}
-                      accessKey={element.requests.studentID}
                       nonce={element._id}
                     >
                       Accept
@@ -155,37 +187,45 @@ function RequestPopup() {
           );
         })}
       {items && items.length === 0 && (
-        <Box 
-        sx = {{ 
-          display: "flex",
-          flexDirection: "column",
-          gap: "0.8em",
-          justifyContent: "center",
-          alignItems: "center"
-        }}>
-          <Box sx = {{
-            height: "7em",
-            width: "7em",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: "8em",
-            backgroundColor: "#F3F3F3",
-            margin: "1em 1em 0em 0em"
-          }}>
-             <img src = {Nodata} alt = "No Data" 
-            style = {{ 
-              height: "8em"
-            }}/>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.8em',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Box
+            sx={{
+              height: '7em',
+              width: '7em',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: '8em',
+              backgroundColor: '#F3F3F3',
+              margin: '1em 1em 0em 0em',
+            }}
+          >
+            <img
+              src={Nodata}
+              alt="No Data"
+              style={{
+                height: '8em',
+              }}
+            />
           </Box>
-         
-          <Typography children = "There is no request to show."
-          sx = {{ 
-            fontSize: "0.8em",
-            fontWeight: "600",
-            color: "#3F3D56",
-            marginRight: "1em"
-          }}/>
+
+          <Typography
+            children="There is no request to show."
+            sx={{
+              fontSize: '0.8em',
+              fontWeight: '600',
+              color: '#3F3D56',
+              marginRight: '1em',
+            }}
+          />
         </Box>
       )}
     </>

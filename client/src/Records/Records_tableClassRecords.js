@@ -17,36 +17,41 @@ import {
   Select,
   MenuItem,
 } from '@mui/material';
-import axios from 'axios'
+import axios from 'axios';
 
 function Records_tableClassRecords({ rooms }) {
   const [selectRoom, setSelectRoom] = useState('Embedded Programming');
-  const [members, setMembers] = useState(null)
-  const [category, setCategory] = useState(null)
-  const [records, setRecords] = useState(null)
-  const stdRecord = React.useRef([])
+  const [members, setMembers] = useState(null);
+  const [category, setCategory] = useState(null);
+  const [records, setRecords] = useState(null);
+  const stdRecord = React.useRef([]);
   const handleChangeRoom = (event) => {
     setSelectRoom(event.target.value);
-    axios.post('http://localhost:5000/records', {
-      userID: JSON.parse(localStorage.userData).data.user._id,
-      roomID: rooms[event.target.value]._id
-    }).then(res => {
-      setRecords(res.data)
-      console.log(res.data)
-    }).catch(err => console.log(err))
+    axios
+      .post('http://localhost:5000/records', {
+        userID: JSON.parse(localStorage.userData).data.user._id,
+        roomID: rooms[event.target.value]._id,
+      })
+      .then((res) => {
+        setRecords(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
     axios
       .post('http://localhost:5000/get/members', {
         members: rooms[event.target.value].members,
       })
       .then((res) => {
-        setMembers(res.data)
-        axios.post('http://localhost:5000/gradingSystem/record', { roomID: rooms[event.target.value]._id })
-          .then(res => {
-            setCategory(res.data[0].Category)
+        setMembers(res.data);
+        axios
+          .post('http://localhost:5000/gradingSystem/record', {
+            roomID: rooms[event.target.value]._id,
           })
+          .then((res) => {
+            setCategory(res.data[0].Category);
+          });
       })
-      .catch((err) => console.log(err))
-
+      .catch((err) => console.log(err));
   };
 
   const [selectCourseYearSection, setSelectCourseYearSection] =
@@ -76,7 +81,9 @@ function Records_tableClassRecords({ rooms }) {
               labelId="demo-simple-select-standard-label"
               id="demo-simple-select-standard"
               value={selectRoom}
-              onChange={(event) => { handleChangeRoom(event) }}
+              onChange={(event) => {
+                handleChangeRoom(event);
+              }}
               label="SelectRoom"
               disableUnderline
               sx={{
@@ -85,21 +92,22 @@ function Records_tableClassRecords({ rooms }) {
                 fontWeight: '400',
                 color: '#3F3D56',
                 border: '1px solid #DBDBDB',
-                backgroundColor: "white",
-                textTransform: "Uppercase",
+                backgroundColor: 'white',
+                textTransform: 'Uppercase',
                 borderRadius: '0.2em',
                 padding: '0.2em 0em 0.2em 0.6em',
                 '&: hover': {
-                  boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+                  boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
                   transition: 'all 300ms',
                 },
               }}
             >
-              {rooms && rooms.map((item, index) => (
-                <MenuItem key={item._id} value={index}>
-                  {item.RoomName}
-                </MenuItem>
-              ))}
+              {rooms &&
+                rooms.map((item, index) => (
+                  <MenuItem key={item._id} value={index}>
+                    {item.RoomName}
+                  </MenuItem>
+                ))}
             </Select>
           </FormControl>
         </Grid>
@@ -118,7 +126,7 @@ function Records_tableClassRecords({ rooms }) {
               height: 'auto',
               width: '100%',
               '&: hover': {
-                boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+                boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
                 transition: 'all 300ms',
               },
             }}
@@ -163,70 +171,96 @@ function Records_tableClassRecords({ rooms }) {
                 <th> Student Name </th>
                 <th> Overall Grade </th>
                 {/*map some shit */}
-                {category && category.map((item, index) => {
-                  stdRecord.current.push({ [Object.entries(item)[0][0]]: 0 })
-                  return (
-                    <th key={index}> {Object.entries(item)[0][0]} </th>
-                  )
-                })}
+                {category &&
+                  category.map((item, index) => {
+                    stdRecord.current.push({ [Object.entries(item)[0][0]]: 0 });
+                    return <th key={index}> {Object.entries(item)[0][0]} </th>;
+                  })}
                 <th> Class Standing </th>
               </tr>
             </thead>
 
             <tbody>
-              {records ? records.map((items, index) => {
+              {records
+                ? records.map((items, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>
+                          <div className="student-name">
+                            <Avatar
+                              src={items.student.image}
+                              sx={{ height: '1.5em', width: '1.5em' }}
+                            />
+                            {items.student.name}
+                          </div>
+                        </td>
+                        <td data-label="Overall"> {items.majorExam} </td>
+                        {items.gradingSystem.map((item, ind) => (
+                          <td key={ind}>{item[Object.entries(item)[0][0]]}</td>
+                        ))}
 
-                return (
-                  <tr key={index}>
-                    <td>
-                      <div className="student-name">
-                        <Avatar src={items.student.image} sx={{ height: '1.5em', width: '1.5em' }} />
-                        {items.student.name}
-                      </div>
-                    </td>
-                    <td data-label="Overall"> {items.majorExam} </td>
-                    {/*map some shit*/}
-                    {items.gradingSystem.map((item,ind)=>(<td key={ind}>{item[Object.entries(item)[0][0]]}</td>))}
-                    
-                    <td data-label="Class Standing"> {items.classStanding} </td>
-                  </tr>
-                )
-
-              }) : members && members.map(function (items, index) {
-                
-                if (items.userType === "Student" && stdRecord.current.length > 0) {
-                  axios.post('http://localhost:5000/records/create', {
-                    room: rooms[selectRoom]._id,
-                    student: {
-                      stdID: items._id,
-                      name: `${items.firstName} ${items.lastName}`,
-                      image: items.image
-                    },
-                    gradingSystem: stdRecord.current,
-                    professor: {
-                      profID: JSON.parse(localStorage.userData).data.user._id,
-                      name: `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName
-                        }`,
-                      image: JSON.parse(localStorage.userData).data.user.image
-                    }
+                        <td data-label="Class Standing">
+                          {' '}
+                          {items.classStanding}{' '}
+                        </td>
+                      </tr>
+                    );
                   })
-                  .then(res=>{
-                    console.log(res.data)
-                  }).catch(err=>console.log(err))
-                }
-                return (
-                  <tr key={index}>
-                    <td>
-                      {items.userType === 'Student' && <div className="student-name">
-                        <Avatar src={items.image} sx={{ height: '1.5em', width: '1.5em' }} />
-                        {items.firstName} {items.lastName}
-                      </div>}
-                    </td>
-                    <td data-label="Major Exam"> {items.majorExam} </td>
-                    <td data-label="Class Standing"> {items.classStanding} </td>
-                  </tr>
-                );
-              })}
+                : members &&
+                  members.map(function (items, index) {
+                    if (
+                      items.userType === 'Student' &&
+                      stdRecord.current.length > 0
+                    ) {
+                      axios
+                        .post('http://localhost:5000/records/create', {
+                          room: rooms[selectRoom]._id,
+                          student: {
+                            stdID: items._id,
+                            name: `${items.firstName} ${items.lastName}`,
+                            image: items.image,
+                          },
+                          gradingSystem: stdRecord.current,
+                          professor: {
+                            profID: JSON.parse(localStorage.userData).data.user
+                              ._id,
+                            name: `${
+                              JSON.parse(localStorage.userData).data.user
+                                .firstName
+                            } ${
+                              JSON.parse(localStorage.userData).data.user
+                                .lastName
+                            }`,
+                            image: JSON.parse(localStorage.userData).data.user
+                              .image,
+                          },
+                        })
+                        .then((res) => {
+                          console.log(res.data);
+                        })
+                        .catch((err) => console.log(err));
+                    }
+                    return (
+                      <tr key={index}>
+                        <td>
+                          {items.userType === 'Student' && (
+                            <div className="student-name">
+                              <Avatar
+                                src={items.image}
+                                sx={{ height: '1.5em', width: '1.5em' }}
+                              />
+                              {items.firstName} {items.lastName}
+                            </div>
+                          )}
+                        </td>
+                        <td data-label="Major Exam"> {items.majorExam} </td>
+                        <td data-label="Class Standing">
+                          {' '}
+                          {items.classStanding}{' '}
+                        </td>
+                      </tr>
+                    );
+                  })}
             </tbody>
 
             <tfoot>
