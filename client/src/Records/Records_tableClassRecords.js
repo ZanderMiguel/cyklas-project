@@ -174,8 +174,11 @@ function Records_tableClassRecords({ rooms }) {
             </thead>
 
             <tbody>
-              {records ? records.map((items, index) => {
-
+              {records && records.map((items, index) => {
+                axios.put('http://localhost:5000/records/applyGS', { crID: items._id, gradingSystem: stdRecord.current })
+                  .then(res => {
+                    console.log(res.data)
+                  }).catch(err => console.log(err))
                 return (
                   <tr key={index}>
                     <td>
@@ -186,46 +189,12 @@ function Records_tableClassRecords({ rooms }) {
                     </td>
                     <td data-label="Overall"> {items.majorExam} </td>
                     {/*map some shit*/}
-                    {items.gradingSystem.map((item,ind)=>(<td key={ind}>{item[Object.entries(item)[0][0]]}</td>))}
-                    
+                    {items.gradingSystem.map((item, ind) => (<td key={ind}>{item[Object.entries(item)[0][0]]}</td>))}
+
                     <td data-label="Class Standing"> {items.classStanding} </td>
                   </tr>
                 )
 
-              }) : members && members.map(function (items, index) {
-                
-                if (items.userType === "Student" && stdRecord.current.length > 0) {
-                  axios.post('http://localhost:5000/records/create', {
-                    room: rooms[selectRoom]._id,
-                    student: {
-                      stdID: items._id,
-                      name: `${items.firstName} ${items.lastName}`,
-                      image: items.image
-                    },
-                    gradingSystem: stdRecord.current,
-                    professor: {
-                      profID: JSON.parse(localStorage.userData).data.user._id,
-                      name: `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName
-                        }`,
-                      image: JSON.parse(localStorage.userData).data.user.image
-                    }
-                  })
-                  .then(res=>{
-                    console.log(res.data)
-                  }).catch(err=>console.log(err))
-                }
-                return (
-                  <tr key={index}>
-                    <td>
-                      {items.userType === 'Student' && <div className="student-name">
-                        <Avatar src={items.image} sx={{ height: '1.5em', width: '1.5em' }} />
-                        {items.firstName} {items.lastName}
-                      </div>}
-                    </td>
-                    <td data-label="Major Exam"> {items.majorExam} </td>
-                    <td data-label="Class Standing"> {items.classStanding} </td>
-                  </tr>
-                );
               })}
             </tbody>
 

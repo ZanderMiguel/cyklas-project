@@ -34,6 +34,19 @@ const updateClassRecord = async (req, res) => {
     return res.json(error);
   }
 };
+const applyGradingSystem = async (req, res) => {
+  try {
+    await ClassRecordModel.findByIdAndUpdate(req.body.crID, {
+
+      gradingSystem: req.body.gradingSystem
+    })
+    console.log('Grading System Applied')
+    return res.json({ status: 'success', message: 'Grading System Updated' })
+  } catch (error) {
+    console.log(error)
+    return res.json(error)
+  }
+}
 const displayClassRecord = async (req, res) => {
   try {
     const classRecord = await ClassRecordModel.find({
@@ -51,5 +64,5 @@ module.exports = {
   createClassRecord,
   deleteClassRecord,
   updateClassRecord,
-  displayClassRecord,
+  displayClassRecord, applyGradingSystem
 };
