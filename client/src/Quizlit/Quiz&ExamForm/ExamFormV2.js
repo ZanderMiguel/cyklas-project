@@ -159,7 +159,10 @@ function ExamFormV2() {
                         height: "max-content",
                         fontSize: "1em",
                         fontWeight: "600",
-                        color: "#007FFF"
+                        color: "#007FFF",
+                        "&: hover": {
+                          cursor: "default"
+                        }
                     }}/>
 
                     <Tooltip title = "Select the answer type for this question" placement = "top">
