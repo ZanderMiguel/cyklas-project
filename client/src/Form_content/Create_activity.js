@@ -24,7 +24,7 @@ const types = [
 
 function Create_activity({ open, close, setOpenDialog }) {
   const { roomID } = useParams();
-  const [type, setType] = useState('');
+  const [category, setCategory] = useState('');
   const [title, setTitle] = useState('');
   const [points, setPoints] = useState('');
   const [duedate, setDueDate] = useState(null);
@@ -48,7 +48,7 @@ function Create_activity({ open, close, setOpenDialog }) {
   };
 
   const handleType = (event) => {
-    setType(event.target.value);
+    setCategory(event.target.value);
   };
 
   const handleCreateActivity = () => {
@@ -62,19 +62,19 @@ function Create_activity({ open, close, setOpenDialog }) {
     if (points === '') {
       setPointsError(true);
     }
-    if (type === '') {
+    if (category === '') {
       setTypeError(true);
     }
 
     const Activity = {
       activityTitle: title,
-      activityType: type,
+      activityType: category,
       activityPoints: points,
       activityDueDate: duedate,
       activityInstruction: convertedState,
       rooms: [roomID],
     };
-    if (title && points && type) {
+    if (title && points && category) {
       axios
         .post('http://localhost:5000/activity/create', Activity)
         .then((res) => {
@@ -118,10 +118,10 @@ function Create_activity({ open, close, setOpenDialog }) {
           half
         /> */}
         <Dropdown
-          inputLabel="Type"
+          inputLabel="Category"
           onChange={handleType}
           options={types}
-          value={type}
+          value={category}
           error={typeerror}
           typeerror="Please select type"
           half
@@ -224,12 +224,12 @@ function Create_activity({ open, close, setOpenDialog }) {
           <Button
             onClick={handleCreateActivity}
             variant="contained"
-            sx={{ 
+            sx={{
               fontWeight: '600',
-              boxShadow: "none",
+              boxShadow: 'none',
               mt: 2,
-              mb: 2
-             }}
+              mb: 2,
+            }}
           >
             Post
           </Button>
