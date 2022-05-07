@@ -21,7 +21,7 @@ function Grading_system({ data, name, counter }) {
         console.log(res.data);
         res.data.forEach((item, index) => {
           curGS.push(
-            <div key={index}>
+            <Grid item xs={12} key={index} sx={{ marginBottom: '0.6em' }}>
               <NewGradingSystem
                 disabled
                 data={data}
@@ -32,7 +32,7 @@ function Grading_system({ data, name, counter }) {
                 setRenderer={setRenderer}
                 setGS={setGS}
               />
-            </div>
+            </Grid>
           );
         });
 
@@ -71,14 +71,16 @@ function Grading_system({ data, name, counter }) {
         />
       )}
 
-      <Grid item xs={12} sx={{ marginBottom: '0.6em' }}>
-        {/* <DefaultGradingSystem /> */}
-      </Grid>
+      {/* <Grid item xs={12} sx={{ marginBottom: '0.6em' }}>
+        <DefaultGradingSystem />
+      </Grid> */}
 
       {GS.map((item, index) => (
-        <Grid item xs={12} key={index} sx={{ marginBottom: '0.6em' }}>
-          {item}
-        </Grid>
+        <Box marginBottom="10px">
+          <Grid item xs={12} key={index} sx={{ marginBottom: '0.6em' }}>
+            {item}
+          </Grid>
+        </Box>
       ))}
     </>
   );
