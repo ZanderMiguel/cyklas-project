@@ -15,14 +15,19 @@ function Examform() {
   const counter = React.useRef(1);
   const [opendialog2, setOpenDialog2] = useState(false);
   const questionMemo = React.useRef([{}]);
-  const [exQArray, setExQArray] = useState([
-    <Exam_Questions questionMemo={questionMemo} counter={counter.current} />,
-  ]);
+  const [exQArray, setExQArray] = useState([Exam_Questions]);
   const exam = React.useRef({});
   const handleCreate = () => {
     setOpenDialog2(true);
   };
-
+  const deleteQA = (counter) => {
+    setExQArray(
+      exQArray.filter((item, index) => {
+        setExQArray(exQArray[counter - 1] !== item);
+        console.log(exQArray[counter - 1] !== item);
+      })
+    );
+  };
   const handleCreateClose = () => {
     setOpenDialog2(false);
   };
@@ -83,10 +88,14 @@ function Examform() {
             }}
           />
         </Grid>
-        {exQArray.map((item, index) => {
+        {exQArray.map((Item, index) => {
           return (
             <Grid item xs={12} key={index}>
-              {item}
+              <Item
+                questionMemo={questionMemo}
+                counter={counter.current}
+                deleteQA={deleteQA}
+              />
             </Grid>
           );
         })}
@@ -99,13 +108,7 @@ function Examform() {
             type="submit"
             onClick={() => {
               counter.current = counter.current + 1;
-              setExQArray([
-                ...exQArray,
-                <Exam_Questions
-                  questionMemo={questionMemo}
-                  counter={counter.current}
-                />,
-              ]);
+              setExQArray([...exQArray, Exam_Questions]);
             }}
             sx={{
               fontSize: '0.8em',

@@ -31,7 +31,7 @@ import {
   Input,
 } from '@mui/material';
 
-function Exam_Questions({ counter, questionMemo }) {
+function Exam_Questions({ counter, questionMemo, examQuestions, deleteQA }) {
   const { designs } = useStyle();
   const [opendialog, setOpenDialog] = useState(false);
   const [image, setImage] = useState('');
@@ -119,6 +119,7 @@ function Exam_Questions({ counter, questionMemo }) {
                   setAnswerType={setAnswerType}
                   questionMemo={questionMemo}
                   counter={counter}
+                  deleteQA={deleteQA}
                 />
               </Box>
 

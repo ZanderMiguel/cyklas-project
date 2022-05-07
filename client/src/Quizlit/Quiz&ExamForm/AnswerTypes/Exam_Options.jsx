@@ -80,6 +80,7 @@ function Exam_Options({
   setAnswerType,
   questionMemo,
   counter,
+  deleteQA,
 }) {
   const { designs } = useStyle();
   const [selectPoints, setPoints] = useState('2 points');
@@ -90,6 +91,10 @@ function Exam_Options({
   const handleChange2 = (event) => {
     setPoints(event.target.value);
     questionMemo.current[counter - 1]['points'] = event.target.value;
+  };
+
+  const handleDeleteQuestion = (counter) => {
+    deleteQA(counter);
   };
 
   return (
@@ -167,6 +172,9 @@ function Exam_Options({
           sx={{
             height: '1.4em',
             width: '1.4em',
+          }}
+          onClick={() => {
+            handleDeleteQuestion(counter);
           }}
         >
           <DeleteOutlined sx={{ fontSize: '1em', color: '#707070' }} />
