@@ -6,65 +6,141 @@ import useStyle from '../Styles/Exam_start_style';
 
 function ExamShort({ item, index, qAnswers }) {
   const { designs } = useStyle();
-  React.useMemo(()=>{qAnswers.current.push({})},[])
-  qAnswers.current[index]['answeredBy'] = JSON.parse(localStorage.userData).data.user._id
-  qAnswers.current[index]['questions'] = item._id
+  React.useMemo(() => {
+    qAnswers.current.push({});
+  }, []);
+  qAnswers.current[index]['answeredBy'] = JSON.parse(
+    localStorage.userData
+  ).data.user._id;
+  qAnswers.current[index]['questions'] = item._id;
 
   return (
-    <Grid item xs={12} sx={designs.Question_GridItem_Style}>
-      <Box className="Type-points" sx={designs.Type_Points_Style}>
-        <Typography sx={designs.Type_Typography_Style}>Short Answer</Typography>
-
-        <Box flexGrow={1} sx={designs.BoxFlexGrow_Style} />
-
-        <Typography sx={designs.Points_Typography_Style}>2 points</Typography>
-      </Box>
-
-      <Box className="Question-body" sx={designs.Question_Body_Style}>
+    <>
+      <Box
+        className="Item-1"
+        sx={{
+          backgroundColor: 'white',
+          borderRadius: '0.3em 0.3em 0em 0em',
+          padding: '0.8em 1em',
+          marginBottom: '0.8em',
+          width: 'relative',
+          height: 'auto',
+          boxShadow: 'rgba(0, 0, 0, 0.05) 0px 1px 2px 0px',
+          '&: hover': {
+            transition: 'all 250ms',
+            boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 12px',
+            borderBottom: '4px solid #007FFF',
+          },
+        }}
+      >
         <Box
-          className="Question-container"
-          sx={designs.Question_Container_Style}
+          sx={{
+            display: 'flex',
+            gap: '1em',
+            alignItems: 'center',
+            marginBottom: '0.5em',
+          }}
         >
-          <Box className="Question" sx={designs.Question_Style}>
-            <Typography sx={designs.Item_Typography_Style}>
-              {index + 1}.
-            </Typography>
+          <Typography
+            children={`Question ${index + 1}`}
+            sx={{
+              flexGrow: '1',
+              fontSize: '1em',
+              fontWeight: '600',
+              color: '#007FFF',
+              textTransform: 'Capitalize',
+              height: 'max-content',
+            }}
+          />
 
-            <Typography sx={designs.Question_Typography_Style}>
-              {item.questionsContent}
-            </Typography>
-          </Box>
-
-          <Divider sx={designs.Divider_Style} />
-
-         
-
-          <Box className="Choices" sx={designs.Choices_Style}>
-            <Input
-              variant="standard"
-              multiline
-              fullWidth
-              rows={6}
-              placeholder="Type your answer here..."
-              sx={designs.ShortAnswer_Input_Style}
-              onChange={(e) => {
-                qAnswers.current[index]['answers'] = e.target.value
-              }}
-            />
-          </Box>
+          <Typography
+            children="Short Answer"
+            sx={{
+              fontSize: '0.7em',
+              fontWeight: '500',
+              color: '#8E8E8E',
+              textTransform: 'Uppercase',
+              height: 'max-content',
+            }}
+          />
+          <Typography
+            children={item.points}
+            sx={{
+              fontSize: '0.7em',
+              fontWeight: '500',
+              color: '#8E8E8E',
+              textTransform: 'Uppercase',
+              height: 'max-content',
+            }}
+          />
         </Box>
 
-        <Box className="Image-container" sx={designs.Image_Container_Style}>
+        <Typography
+          children={item.questionsContent}
+          sx={{
+            flexGrow: '1',
+            fontSize: '0.8em',
+            fontWeight: '600',
+            color: '#3F3D56',
+            textTransform: 'none',
+            height: 'max-content',
+            marginBottom: '0.8em',
+          }}
+        />
+
+        <Box
+          className="Image-container"
+          sx={{
+            width: 'relative',
+            height: 'relative',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginBottom: '1em',
+          }}
+        >
           <img
             src={item.media || Image}
             alt="uploadedImage"
             style={{
-              height: '6.5em',
+              width: '100%',
+              height: '300px',
+              objectFit: 'contain',
+            }}
+          />
+        </Box>
+
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            height: 'auto',
+            width: 'relative',
+            flexGrow: 1,
+            border: '1px solid #DBDBDB',
+            backgroundColor: '#FCFCFC',
+            borderRadius: '0.3em',
+            padding: '0.2em 0.7em',
+          }}
+        >
+          <Input
+            placeholder="Write your answer here..."
+            multiline
+            rows={6}
+            disableUnderline
+            onChange={(e) => {
+              qAnswers.current[index]['answers'] = e.target.value;
+            }}
+            sx={{
+              width: '100%',
+              fontSize: '0.8em',
+              fontWeight: '500',
+              color: '#3F3D56',
             }}
           />
         </Box>
       </Box>
-    </Grid>
+    </>
   );
 }
 

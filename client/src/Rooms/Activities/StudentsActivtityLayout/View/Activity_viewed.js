@@ -11,226 +11,271 @@ import {
   Button,
   Avatar,
   Tooltip,
+  Input,
 } from '@mui/material';
-import { Send, FileUploadOutlined } from '@mui/icons-material';
+import {
+  Send,
+  FileUploadOutlined,
+  BorderColorOutlined,
+  DeleteOutlineOutlined,
+} from '@mui/icons-material';
 import AvatarIcon from '../../../../assets/ImageJaven/Avatar.png';
 import Wordfile from '../../../../assets/ImageJaven/Wordfile.png';
-import useStyle from './Styles/Activity_viewed_style';
 import ActivityIcon from '../../../../assets/ImageJaven/ActivityIcon.png';
+import ReactScrollableFeed from 'react-scrollable-feed';
 
-const data = [
-  {
-    memberName: 'Paul Rudd (You)',
-    messageTime: '11:52 pm',
-    Message:
-      'Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo',
-  },
-  {
-    memberName: 'Mark Andrei',
-    messageTime: '11:53 pm',
-    Message:
-      'Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo',
-  },
-  {
-    memberName: 'Paul Rudd (You)',
-    messageTime: '11:55 pm',
-    Message:
-      'Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo',
-  },
-  {
-    memberName: 'Mark Andrei',
-    messageTime: '11:55 pm',
-    Message:
-      'Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo',
-  },
-  {
-    memberName: 'Mark Andrei',
-    messageTime: '11:57 pm',
-    Message:
-      'Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo',
-  },
-  {
-    memberName: 'Paul Rudd (You)',
-    messageTime: '11:57 pm',
-    Message:
-      'Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo',
-  },
-  {
-    memberName: 'Mark Andrei',
-    messageTime: '11:58 pm',
-    Message:
-      'Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo',
-  },
-  {
-    memberName: 'Paul Rudd (You)',
-    messageTime: '11:59 pm',
-    Message:
-      'Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo',
-  },
-  {
-    memberName: 'Mark Andrei',
-    messageTime: '11:59 pm',
-    Message:
-      'Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo',
-  },
-  {
-    memberName: 'Mark Andrei',
-    messageTime: '11:59 pm',
-    Message:
-      'Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo Lezzzzzzzgo',
-  },
-];
 function Activity_viewed() {
-  const { designs } = useStyle();
-
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <Container maxWidth="lg">
-      <Grid container rowSpacing={1} columnSpacing={1}>
-        <Grid item md={9} xs={12} sx={designs.Right_Container_GridItem_Style}>
-          <Box className="Right-container" sx={designs.Right_Container_Style}>
-            <Box className="Header" sx={designs.Header_Style}>
-              <Box className="Activity-Type" sx={designs.Activity_Type_Style}>
-                <img
-                  src={ActivityIcon}
-                  style={{
-                    height: '35px',
-                  }}
-                />
+    <Container maxWidth="md" sx={{ padding: '2em 0em' }}>
+      <Grid item xs={12}>
+        <Box
+          className="Right-container"
+          sx={{
+            width: '100%',
+            height: 'auto',
+            padding: '0.5em 0em',
+            marginBottom: '1em',
+            border: '1px solid #DBDBDB',
+            borderRadius: '0.3em',
+            backgroundColor: 'white',
+          }}
+        >
+          <Box
+            className="Header"
+            sx={{
+              padding: '0.5em 1.5em',
+              height: 'auto',
+              width: 'relative',
+              display: 'flex',
+              gap: '0.8em',
+              alignItems: 'center',
+            }}
+          >
+            <img
+              src={ActivityIcon}
+              style={{
+                height: '35px',
+              }}
+            />
 
-                <Typography sx={designs.Activity_Typography_Style}>
-                  Activity 5
+            <Typography
+              sx={{
+                height: 'max-content',
+                fontSize: '18px',
+                fontWeight: '700',
+                textTransform: 'Uppercase',
+                color: '#3F3D56',
+                width: 'auto',
+                flexGrow: 1,
+              }}
+            >
+              Activity 5
+            </Typography>
+
+            <Typography
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                height: 'relative',
+                fontSize: '12px',
+                fontWeight: '500',
+                textTransform: 'Capitalize',
+                color: '#3F3D56',
+              }}
+            >
+              Homework
+            </Typography>
+          </Box>
+
+          <Grid container sx={{ padding: '0.9em 1.5em' }}>
+            <Grid item xs={6}>
+              <Box
+                sx={{
+                  width: 'relative',
+                  height: 'max-content',
+                  display: 'flex',
+                  gap: '0.8em',
+                  marginBottom: '0.4em',
+                }}
+              >
+                <Typography
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    height: 'relative',
+                    fontSize: '12px',
+                    fontWeight: '700',
+                    textTransform: 'Capitalize',
+                    color: '#3F3D56',
+                  }}
+                >
+                  Points:
+                </Typography>
+
+                <Typography
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    height: 'relative',
+                    fontSize: '12px',
+                    fontWeight: '500',
+                    textTransform: 'Capitalize',
+                    color: '#3F3D56',
+                  }}
+                >
+                  100
                 </Typography>
               </Box>
 
-              <Typography sx={designs.ActivityType_Typography_Style}>
-                Homework
-              </Typography>
-            </Box>
-
-            <Grid container sx={{ padding: '0.9em 1.5em' }}>
-              <Grid item xs={6}>
-                <Box
-                  sx={{
-                    width: 'relative',
-                    height: 'max-content',
-                    display: 'flex',
-                    gap: '0.8em',
-                    marginBottom: '0.4em',
-                  }}
-                >
-                  <Typography sx={designs.ActivityPoints_Typography_Style}>
-                    Points:
-                  </Typography>
-
-                  <Typography sx={designs.ActivityPoints2_Typography_Style}>
-                    100
-                  </Typography>
-                </Box>
-
-                <Box
-                  sx={{
-                    width: 'relative',
-                    height: 'max-content',
-                    display: 'flex',
-                    gap: '0.8em',
-                  }}
-                >
-                  <Typography sx={designs.ActivityPoints_Typography_Style}>
-                    Due Date:
-                  </Typography>
-
-                  <Typography sx={designs.ActivityPoints2_Typography_Style}>
-                    November 07, 2020
-                  </Typography>
-                </Box>
-              </Grid>
-
-              <Grid item xs={6}>
-                <Box
-                  sx={{
-                    width: 'relative',
-                    height: 'max-content',
-                    marginBottom: '0.4em',
-                  }}
-                >
-                  <Typography sx={designs.ActivityAuthor_Typography_Style}>
-                    Mark Andrei
-                  </Typography>
-                </Box>
-
-                <Box
-                  sx={{
-                    width: 'relative',
-                    height: 'max-content',
-                  }}
-                >
-                  <Typography sx={designs.ActivityDate_Typography_Style}>
-                    posted this activity on March 18, 2020
-                  </Typography>
-                </Box>
-              </Grid>
-            </Grid>
-            <Divider sx={designs.DividerRight_Style} />
-
-            <Box
-              className="Activity-instructions"
-              sx={designs.ActivityInstructions_Style}
-            >
-              <Typography
-                sx={designs.ActivityInstructionsHead_Typography_Style}
+              <Box
+                sx={{
+                  width: 'relative',
+                  height: 'max-content',
+                  display: 'flex',
+                  gap: '0.8em',
+                }}
               >
-                First, read all directions carefully!
-              </Typography>
+                <Typography
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    height: 'relative',
+                    fontSize: '12px',
+                    fontWeight: '700',
+                    textTransform: 'Capitalize',
+                    color: '#3F3D56',
+                  }}
+                >
+                  Due Date:
+                </Typography>
 
-              <Typography sx={designs.ActivityInstructions_Typography_Style}>
-                Read all questions carefully and don't forget to answer all
-                parts of the question.
-              </Typography>
+                <Typography
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    height: 'relative',
+                    fontSize: '12px',
+                    fontWeight: '500',
+                    textTransform: 'Capitalize',
+                    color: '#3F3D56',
+                  }}
+                >
+                  November 07, 2020
+                </Typography>
+              </Box>
+            </Grid>
 
-              <Tooltip title="Click to download file" placement="top-start">
-                <Box className="Attach-file" sx={designs.AttachFile_Style}>
-                  <img
-                    src={Wordfile}
-                    style={{
-                      height: '40px',
-                    }}
-                  />
+            <Grid item xs={6}>
+              <Box
+                sx={{
+                  width: 'relative',
+                  height: 'max-content',
+                  marginBottom: '0.4em',
+                }}
+              >
+                <Typography
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    height: 'relative',
+                    fontSize: '12px',
+                    fontWeight: '700',
+                    textTransform: 'Capitalize',
+                    color: '#3F3D56',
+                  }}
+                >
+                  Mark Andrei
+                </Typography>
+              </Box>
 
-                  <Box
-                    className="Activity-filename"
-                    sx={designs.ActivityFileName_Style}
-                  >
-                    <Typography
-                      noWrap
-                      sx={designs.ActivityFileName_Typography_Style}
-                    >
-                      ACTIVITY 5.docx
-                    </Typography>
-
-                    <Typography sx={designs.DocumentFile_Typography_Style}>
-                      Document File
-                    </Typography>
-                  </Box>
-                </Box>
-              </Tooltip>
-            </Box>
-          </Box>
+              <Box
+                sx={{
+                  width: 'relative',
+                  height: 'max-content',
+                }}
+              >
+                <Typography
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    height: 'relative',
+                    fontSize: '12px',
+                    fontWeight: '500',
+                    textTransform: 'Lowercase',
+                    color: '#8E8E8E',
+                  }}
+                >
+                  posted this activity on March 18, 2020
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
+          <Divider
+            sx={{
+              width: 'relative',
+              margin: '0em 1.5em',
+            }}
+          />
 
           <Box
-            className="Student-container"
-            sx={designs.Student_Container_Style}
+            className="Activity-instructions"
+            sx={{
+              height: '13em',
+              width: 'relative',
+              margin: '0.1em 0em 0em 0em',
+              padding: '0.3em 1.5em',
+            }}
           >
-            <Typography sx={designs.UploadedFiles_Typography_Style}>
-              Your Uploaded Files
+            <Typography
+              sx={{
+                width: '100%',
+                fontSize: '0.8em',
+                fontWeight: '700',
+                textTransform: 'Uppercase',
+                color: '#3F3D56',
+                marginTop: '0.3em',
+              }}
+            >
+              First, read all directions carefully!
+            </Typography>
+
+            <Typography
+              sx={{
+                width: '100%',
+                fontSize: '0.7em',
+                fontWeight: '500',
+                color: '#3F3D56',
+                margin: '0.3em 0em 0.9em 0em',
+              }}
+            >
+              Read all questions carefully and don't forget to answer all parts
+              of the question.
             </Typography>
 
             <Tooltip title="Click to download file" placement="top-start">
-              <Box className="Attach-file" sx={designs.AttachFile_Style}>
+              <Box
+                className="Attach-file"
+                sx={{
+                  backgroundColor: 'white',
+                  margin: '0.5em 0em 0em 0em',
+                  width: '50%',
+                  padding: '0.5em 0.9em',
+                  display: 'flex',
+                  gap: '0.9em',
+                  border: '1px solid #D4D4D4',
+                  borderRadius: '0.3em',
+                  '&: hover': {
+                    cursor: 'pointer',
+                    boxShadow:
+                      'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
+                  },
+                }}
+              >
                 <img
                   src={Wordfile}
                   style={{
@@ -240,218 +285,486 @@ function Activity_viewed() {
 
                 <Box
                   className="Activity-filename"
-                  sx={designs.ActivityFileName_Style}
+                  sx={{
+                    width: 'auto',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    flexGrow: 1,
+                  }}
                 >
                   <Typography
                     noWrap
-                    sx={designs.ActivityFileName_Typography_Style}
+                    sx={{
+                      color: '#3F3D56',
+                      fontSize: '0.8em',
+                      fontWeight: '600',
+                      width: 'relative',
+                      height: 'max-content',
+                    }}
                   >
-                    ACTIVITY 5 - Paul Rudd.docx
+                    ACTIVITY 5.docx
                   </Typography>
 
-                  <Typography sx={designs.DocumentFile_Typography_Style}>
+                  <Typography
+                    sx={{
+                      color: '#3F3D56',
+                      fontSize: '0.7em',
+                      width: 'max-content',
+                      height: 'max-content',
+                    }}
+                  >
                     Document File
                   </Typography>
                 </Box>
               </Box>
             </Tooltip>
+          </Box>
+        </Box>
 
-            <Box className="Footer" sx={designs.Footer_Style}>
-              <Typography sx={designs.Status_Typography_Style}>
-                Handed-out
-              </Typography>
+        <Box
+          className="Student-container"
+          sx={{
+            height: 'auto',
+            width: 'relative',
+            marginBottom: '1em',
+            borderRadius: '0.3em 0.3em 0em 0em',
+            padding: '0.3em 1.5em 1em 1.5em',
+            backgroundColor: 'white',
+            '&: hover': {
+              boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+              borderBottom: '4px solid #007FFF',
+              transition: 'all 250ms',
+            },
+          }}
+        >
+          <Typography
+            sx={{
+              height: 'max-content',
+              fontSize: '15px',
+              fontWeight: '600',
+              textTransform: 'Uppercase',
+              color: '#6D6B85',
+              width: 'auto',
+              flexGrow: 1,
+              margin: '0.5em 0em 1em 0em',
+            }}
+          >
+            Your Uploaded Files
+          </Typography>
 
-              <Box flexGrow={1} sx={designs.BoxFlexGrow_Style} />
+          <Tooltip title="Click to download file" placement="top-start">
+            <Box
+              className="Attach-file"
+              sx={{
+                backgroundColor: 'white',
+                margin: '0.5em 0em 0em 0em',
+                width: '50%',
+                padding: '0.5em 0.9em',
+                display: 'flex',
+                gap: '0.9em',
+                border: '1px solid #D4D4D4',
+                borderRadius: '0.3em',
+                '&: hover': {
+                  cursor: 'pointer',
+                  boxShadow:
+                    'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
+                },
+              }}
+            >
+              <img
+                src={Wordfile}
+                style={{
+                  height: '40px',
+                }}
+              />
 
-              <Button
-                sx={designs.UploadFile_Button_Style}
-                startIcon={
-                  <FileUploadOutlined
-                    sx={designs.FileUploadOutlinedIcon_Style}
-                  />
-                }
+              <Box
+                className="Activity-filename"
+                sx={{
+                  width: 'auto',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  flexGrow: 1,
+                }}
               >
-                Upload File
-              </Button>
+                <Typography
+                  noWrap
+                  sx={{
+                    color: '#3F3D56',
+                    fontSize: '0.8em',
+                    fontWeight: '600',
+                    width: 'relative',
+                    height: 'max-content',
+                  }}
+                >
+                  ACTIVITY 5 - Paul Rudd.docx
+                </Typography>
 
-              {/* <Button sx={designs.UnsubmitWorks_Button_Style}>
+                <Typography
+                  sx={{
+                    color: '#3F3D56',
+                    fontSize: '0.7em',
+                    width: 'max-content',
+                    height: 'max-content',
+                  }}
+                >
+                  Document File
+                </Typography>
+              </Box>
+            </Box>
+          </Tooltip>
+
+          <Box
+            className="Footer"
+            sx={{
+              display: 'flex',
+              height: 'auto',
+              width: 'relative',
+              margin: '0.9em 0em 0em 0em',
+            }}
+          >
+            <Typography
+              sx={{
+                fontSize: '0.8em',
+                fontWeight: '700',
+                width: 'auto',
+                height: 'relative',
+                padding: '0.2em 0em 0em 0em',
+                textTransform: 'uppercase',
+                color: '#007FFF',
+              }}
+            >
+              Handed-out
+            </Typography>
+
+            <Box
+              flexGrow={1}
+              sx={{
+                height: 'relative',
+              }}
+            />
+
+            <Button
+              sx={{
+                padding: '0.2em 1em',
+                marginRight: '0.5em',
+                fontSize: '0.8em',
+                fontWeight: '600',
+                textTransform: 'Capitalize',
+                color: '#0069D3',
+                backgroundColor: 'transparent',
+              }}
+              startIcon={
+                <FileUploadOutlined
+                  sx={{
+                    color: '#0069D3',
+                  }}
+                />
+              }
+            >
+              Upload File
+            </Button>
+
+            {/* <Button sx={designs.UnsubmitWorks_Button_Style}>
                     Unsubmit works
                     </Button> */}
 
-              <Button sx={designs.Submit_Button_Style}>Submit</Button>
-            </Box>
+            <Button
+              sx={{
+                padding: '0.2em 2.5em',
+                fontSize: '0.8em',
+                fontWeight: '600',
+                textTransform: 'Capitalize',
+                color: 'white',
+                backgroundColor: '#0069D3',
+                '&: hover': {
+                  backgroundColor: '#005DC3',
+                },
+              }}
+            >
+              Submit
+            </Button>
           </Box>
-        </Grid>
+        </Box>
 
-        <Grid item xs={3} sx={designs.Left_Container_GridItem_Style}>
-          <Box className="Left-container" sx={designs.Left_Container_Style}>
-            <Typography sx={designs.MessageArea_Typography_Style}>
-              Comment Area
-            </Typography>
-
-            <Divider sx={designs.Divider_Style} />
-
-            <Box className="Message-box" sx={designs.Message_Box_Style}>
-              {data.map(function (items, index) {
-                return (
-                  <>
-                    <Box
-                      key={index}
-                      className="Members-comment"
-                      sx={designs.Members_Comment_Style}
-                    >
-                      <Avatar
-                        alt="Remy Sharp"
-                        src={AvatarIcon}
-                        sx={designs.AvatarIcon_Avatar_Style}
-                      />
-                      <Box
-                        className="Member-time"
-                        sx={designs.Member_Time_Style}
-                      >
-                        <Typography sx={designs.MemberName_Typography_Style}>
-                          {items.memberName}
-                        </Typography>
-
-                        <Typography sx={designs.MessageTime_Typography_Style}>
-                          {items.messageTime}
-                        </Typography>
-                      </Box>
-                    </Box>
-
-                    <Typography sx={designs.Message_Typography_Style}>
-                      {items.Message}
-                    </Typography>
-                  </>
-                );
-              })}
-            </Box>
-
-            <Box className="Write-comment" sx={designs.Write_Comment_Style}>
-              <Avatar
-                alt="Remy Sharp"
-                src={AvatarIcon}
-                sx={designs.AvatarIcon_Avatar_Style2}
-              />
-
-              <TextField
-                id="filled-basic"
-                placeholder="Write a comment"
-                variant="filled"
-                sx={designs.Message_TextField_Style}
-                inputProps={{
-                  style: {
-                    height: '0em',
-                    fontSize: '0.8em',
-                    fontWeight: '500',
-                    paddingBottom: '1.8em',
-                    color: '#3F3D56',
-                  },
-                }}
-                InputProps={{
-                  disableUnderline: true,
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="send"
-                        sx={designs.Send_IconButton_Style}
-                      >
-                        <Send sx={designs.SendIcon_Style} />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </Box>
-          </Box>
-        </Grid>
-
-        <Grid
-          item
-          xs={12}
-          sx={designs.Left_Container_GridItem_Responsive_Style}
+        <Box
+          className="Student-container"
+          sx={{
+            height: 'auto',
+            width: 'relative',
+            marginBottom: '1em',
+            borderRadius: '0.3em 0.3em 0em 0em',
+            padding: '0.3em 0em 1em 0em',
+            backgroundColor: 'white',
+            '&: hover': {
+              boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+              borderBottom: '4px solid #007FFF',
+              transition: 'all 250ms',
+            },
+          }}
         >
-          <Box className="Left-container" sx={designs.Left_Container_Style}>
-            <Typography sx={designs.MessageArea_Typography_Style}>
-              Comment Area
+          <Typography
+            sx={{
+              height: 'max-content',
+              fontSize: '15px',
+              fontWeight: '600',
+              textTransform: 'Uppercase',
+              color: '#6D6B85',
+              width: 'auto',
+              flexGrow: 1,
+              margin: '0.5em 0em 0em 0em',
+              padding: '0em 1.5em',
+            }}
+          >
+            Comment Area
+          </Typography>
+
+          <Typography
+            sx={{
+              height: 'max-content',
+              fontSize: '0.7em',
+              fontWeight: '500',
+              textTransform: 'none',
+              color: '#8E8E8E',
+              width: 'auto',
+              flexGrow: 1,
+              margin: '0em 0em 1.5em 0em',
+              padding: '0em 2em',
+            }}
+          >
+            Send your concerns here about the activity.
+          </Typography>
+
+          <Box
+            className="View-comments"
+            sx={{
+              borderTop: '1px solid #DBDBDB',
+              backgroundColor: '#FCFCFC',
+              height: 'auto',
+              width: 'relative',
+              padding: '0em 1.5em',
+              display: 'flex',
+              gap: '8px',
+            }}
+          >
+            <Typography
+              noWrap
+              sx={{
+                height: 'max-content',
+                width: 'max-content',
+                color: '#3F3D56',
+                fontSize: '12px',
+                padding: '1px 0px',
+                margin: '5px 0px',
+              }}
+            >
+              23
             </Typography>
+            <Typography
+              noWrap
+              sx={{
+                height: 'max-content',
+                width: 'max-content',
+                color: '#3F3D56',
+                fontSize: '12px',
+                padding: '1px 0px',
+                margin: '5px 0px',
+              }}
+            >
+              Comments
+            </Typography>
+          </Box>
+          <Box
+            className="comments-wrapper"
+            height="auto"
+            maxHeight={300}
+            overflow="auto"
+          >
+            <ReactScrollableFeed>
+              <div>
+                <Box
+                  className="User"
+                  sx={{
+                    padding: '7px 15px',
+                    gap: '13px',
+                    display: 'flex',
+                    width: 'relative',
+                    height: 'auto',
+                  }}
+                >
+                  <Avatar
+                    alt="Remy Sharp"
+                    src={AvatarIcon}
+                    sx={{
+                      margin: '1px 0px',
+                      height: '40px',
+                      width: '40px',
+                    }}
+                  />
 
-            <Divider sx={designs.Divider_Style} />
-
-            <Box className="Message-box" sx={designs.Message_Box_Style}>
-              {data.map(function (items, index) {
-                return (
-                  <>
-                    <Box
-                      key={index}
-                      className="Members-comment"
-                      sx={designs.Members_Comment_Style}
-                    >
-                      <Avatar
-                        alt="Remy Sharp"
-                        src={AvatarIcon}
-                        sx={designs.AvatarIcon_Avatar_Style}
-                      />
-                      <Box
-                        className="Member-time"
-                        sx={designs.Member_Time_Style}
+                  <Box className="User-date" sx={{ margin: '3px 0px' }}>
+                    <Box>
+                      <Typography
+                        noWrap
+                        sx={{
+                          fontSize: '14px',
+                          color: '#3F3D56',
+                          fontWeight: '600',
+                        }}
                       >
-                        <Typography sx={designs.MemberName_Typography_Style}>
-                          {items.memberName}
-                        </Typography>
+                        Eren Yeager
+                      </Typography>
 
-                        <Typography sx={designs.MessageTime_Typography_Style}>
-                          {items.messageTime}
+                      <Box
+                        className="date"
+                        sx={{
+                          display: 'flex',
+                          flexWrap: 'wrap',
+                        }}
+                      >
+                        <Typography
+                          sx={{
+                            width: 'max-content',
+                            fontSize: '10px',
+                            color: '#8E8E8E',
+                            fontWeight: '500',
+                            fontStyle: 'Italic',
+                          }}
+                        >
+                          December 04, 2021
                         </Typography>
                       </Box>
                     </Box>
+                    <Box
+                      className="content"
+                      fontSize="0.9rem"
+                      sx={{
+                        margin: '0.5em 0em',
+                      }}
+                    >
+                      ayos
+                    </Box>
 
-                    <Typography sx={designs.Message_Typography_Style}>
-                      {items.Message}
-                    </Typography>
-                  </>
-                );
-              })}
-            </Box>
-
-            <Box className="Write-comment" sx={designs.Write_Comment_Style}>
-              <Avatar
-                alt="Remy Sharp"
-                src={AvatarIcon}
-                sx={designs.AvatarIcon_Avatar_Style2}
-              />
-
-              <TextField
-                id="filled-basic"
-                placeholder="Write a comment"
-                variant="filled"
-                sx={designs.Message_TextField_Style}
-                inputProps={{
-                  style: {
-                    height: '0em',
-                    fontSize: '0.8em',
-                    fontWeight: '500',
-                    paddingBottom: '1.8em',
-                    color: '#3F3D56',
-                  },
-                }}
-                InputProps={{
-                  disableUnderline: true,
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="send"
-                        sx={designs.Send_IconButton_Style}
+                    <Box
+                      className="actions"
+                      sx={{
+                        marginTop: '0.3em',
+                        display: 'flex',
+                        gap: '1em',
+                      }}
+                    >
+                      <Box
+                        // onClick={handleEditComment}
+                        sx={{
+                          display: 'flex',
+                          gap: '0.5em',
+                          width: 'auto',
+                          height: 'auto',
+                          '&: hover': {
+                            cursor: 'pointer',
+                            textDecoration: 'underline',
+                          },
+                        }}
                       >
-                        <Send sx={designs.SendIcon_Style} />
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </Box>
+                        <BorderColorOutlined
+                          sx={{ color: '#585670', fontSize: '0.9em' }}
+                        />
+
+                        <Typography
+                          sx={{
+                            fontSize: '0.5em',
+                            fontWeight: '400',
+                            color: '#3F3D56',
+                          }}
+                        >
+                          Edit comment
+                        </Typography>
+                      </Box>
+
+                      <Divider
+                        orientation="vertical"
+                        flexItem
+                        sx={{
+                          margin: '0.2em 0em',
+                        }}
+                      />
+
+                      <Box
+                        // onClick={() => handleDeleteComment(_id)}
+                        sx={{
+                          display: 'flex',
+                          gap: '0.5em',
+                          width: 'auto',
+                          height: 'auto',
+                          '&: hover': {
+                            cursor: 'pointer',
+                            textDecoration: 'underline',
+                          },
+                        }}
+                      >
+                        <DeleteOutlineOutlined
+                          sx={{ color: '#585670', fontSize: '0.9em' }}
+                        />
+
+                        <Typography
+                          sx={{
+                            fontSize: '0.5em',
+                            fontWeight: '400',
+                            color: '#3F3D56',
+                          }}
+                        >
+                          Delete comment
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </Box>
+                </Box>
+              </div>
+            </ReactScrollableFeed>
           </Box>
-        </Grid>
+
+          <Divider sx={{ mb: 2 }} />
+
+          <Box
+            className="write-comment"
+            sx={{
+              padding: '0px 15px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              width: 'relative',
+              height: 'auto',
+            }}
+          >
+            <Avatar alt="Remy Sharp" src={AvatarIcon} />
+
+            <Input
+              placeholder="Write a comment..."
+              disableUnderline
+              sx={{
+                border: '1px solid #DBDBDB',
+                borderRadius: '0.3em',
+                color: '#3F3D56',
+                fontSize: '0.9em',
+                padding: '0.3em 0.8em',
+                width: '100%',
+                '&: hover': {
+                  border: '1px solid #007FFF',
+                  transition: 'all 300ms',
+                },
+              }}
+            />
+
+            <Button
+              children="Send"
+              variant="contained"
+              sx={{
+                fontWeight: '600',
+                boxShadow: 'none',
+              }}
+            />
+          </Box>
+        </Box>
       </Grid>
     </Container>
   );

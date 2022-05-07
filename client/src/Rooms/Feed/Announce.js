@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CssBaseline, Grid, Paper } from '@mui/material';
+import { CssBaseline, Grid, Box } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
@@ -36,9 +36,20 @@ function Announce({ socket }) {
       <CssBaseline />
       <Grid container sx={{ margin: '1em 0em' }}>
         <Grid item xs={12}>
-          <Paper sx={{ p: 2 }}>
+          <Box
+            sx={{
+              borderRadius: '0.3em 0.3em 0em 0em',
+              backgroundColor: 'white',
+              p: 2,
+              boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+              '&: hover': {
+                borderBottom: '4px solid #007FFF',
+                transition: 'all 250ms',
+              },
+            }}
+          >
             <Rich_text socket={socket} />
-          </Paper>
+          </Box>
         </Grid>
         <Grid item xs={12}>
           {data && (

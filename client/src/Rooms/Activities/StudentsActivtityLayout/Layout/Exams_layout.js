@@ -52,7 +52,7 @@ function Exams_layout() {
             <Box
               sx={designs.ExamName_User_Date}
               component={Link}
-              to="/Exam_viewed"
+              to="/ExamViewedV2"
             >
               <Typography noWrap sx={designs.Exam}>
                 {items.title}

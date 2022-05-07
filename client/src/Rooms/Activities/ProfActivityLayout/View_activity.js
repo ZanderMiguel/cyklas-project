@@ -18,6 +18,7 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Tooltip,
 } from '@mui/material';
 import AvatarIcon from '../../../assets/ImageJaven/Avatar.png';
 import Wordfile from '../../../assets/ImageJaven/Wordfile.png';
@@ -230,30 +231,32 @@ function View_activity() {
                   parts of the question.
                 </Typography>
 
-                <Box className="Attach-file" sx={designs.AttachFile_Style}>
-                  <img
-                    src={Wordfile}
-                    style={{
-                      height: '40px',
-                    }}
-                  />
+                <Tooltip title="Click to download file" placement="top-start">
+                  <Box className="Attach-file" sx={designs.AttachFile_Style}>
+                    <img
+                      src={Wordfile}
+                      style={{
+                        height: '40px',
+                      }}
+                    />
 
-                  <Box
-                    className="Activity-filename"
-                    sx={designs.ActivityFileName_Style}
-                  >
-                    <Typography
-                      noWrap
-                      sx={designs.ActivityFileName_Typography_Style}
+                    <Box
+                      className="Activity-filename"
+                      sx={designs.ActivityFileName_Style}
                     >
-                      ACTIVITY 4.docx
-                    </Typography>
+                      <Typography
+                        noWrap
+                        sx={designs.ActivityFileName_Typography_Style}
+                      >
+                        ACTIVITY 4.docx
+                      </Typography>
 
-                    <Typography sx={designs.DocumentFile_Typography_Style}>
-                      Document File
-                    </Typography>
+                      <Typography sx={designs.DocumentFile_Typography_Style}>
+                        Document File
+                      </Typography>
+                    </Box>
                   </Box>
-                </Box>
+                </Tooltip>
               </Box>
 
               <Divider sx={designs.Divider2_Style} />
@@ -334,35 +337,40 @@ function View_activity() {
                             {items.studentName}
                           </Typography>
 
-                          <Box
-                            className="Attach-file"
-                            sx={designs.AttachFile2_Style}
+                          <Tooltip
+                            title="Click to download file"
+                            placement="top-start"
                           >
-                            <img
-                              src={Wordfile}
-                              style={{
-                                height: '40px',
-                              }}
-                            />
-
                             <Box
-                              className="Activity-filename"
-                              sx={designs.ActivityFileName_Style}
+                              className="Attach-file"
+                              sx={designs.AttachFile2_Style}
                             >
-                              <Typography
-                                noWrap
-                                sx={designs.ActivityFileName_Typography_Style}
-                              >
-                                ACTIVITY 4.docx
-                              </Typography>
+                              <img
+                                src={Wordfile}
+                                style={{
+                                  height: '40px',
+                                }}
+                              />
 
-                              <Typography
-                                sx={designs.DocumentFile_Typography_Style}
+                              <Box
+                                className="Activity-filename"
+                                sx={designs.ActivityFileName_Style}
                               >
-                                Document File
-                              </Typography>
+                                <Typography
+                                  noWrap
+                                  sx={designs.ActivityFileName_Typography_Style}
+                                >
+                                  ACTIVITY 4.docx
+                                </Typography>
+
+                                <Typography
+                                  sx={designs.DocumentFile_Typography_Style}
+                                >
+                                  Document File
+                                </Typography>
+                              </Box>
                             </Box>
-                          </Box>
+                          </Tooltip>
                         </Box>
                       </Grid>
                     );
