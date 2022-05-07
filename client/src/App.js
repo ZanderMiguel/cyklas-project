@@ -37,7 +37,6 @@ import TeleconRoomV2 from './Telecon/TeleconRoomV2';
 import QuizLit from './Quizlit/Quizlit';
 import Quizform from './Quizlit/Quiz&ExamForm/Quizform';
 import Examform from './Quizlit/Quiz&ExamForm/Examform';
-import ExamFormV2 from './Quizlit/Quiz&ExamForm/ExamFormV2';
 
 import Livequiz_multiplechoice from './Quizlit/LiveQuiz/Livequiz_multiplechoice';
 import StudentLiveQuiz_multiplechoice from './Quizlit/LiveQuiz/StudentLiveQuiz_multiplechoice';
@@ -66,6 +65,7 @@ import Dashboard_main from './student_side/Dashboard/Dashboard_main';
 import axios from 'axios';
 import Quiz_viewed from './Rooms/Activities/StudentsActivtityLayout/View/Quiz_viewed';
 import Exam_viewed from './Rooms/Activities/StudentsActivtityLayout/View/Exam_viewed';
+import ExamViewedV2 from './Rooms/Activities/StudentsActivtityLayout/View/ExamViewedV2';
 import Rooms_main from './student_side/Rooms/Rooms_main';
 import Settings_main from './student_side/Settings/Settings_main';
 function App() {
@@ -151,11 +151,7 @@ function App() {
                 path="/quizlit/createexam"
                 component={Examform}
               />
-              <ProtectedRoutes
-                exact
-                path="/quizlit/createexamv2"
-                component={ExamFormV2}
-              />
+              {quizlit}
               <Route exact path="/quizlit/join">
                 <JoinQuiz socket={socket} />
               </Route>
@@ -249,6 +245,7 @@ function App() {
               />
               <Route exact path="/Quiz_viewed" component={Quiz_viewed} />
               <Route exact path="/Exam_viewed" component={Exam_viewed} />
+              <Route exact path="/ExamViewedV2" component={ExamViewedV2} />
 
               <Route
                 exact

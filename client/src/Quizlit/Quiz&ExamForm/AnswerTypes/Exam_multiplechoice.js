@@ -8,331 +8,438 @@ import {
   Box,
   Button,
   Grid,
+  Input,
+  Tooltip,
 } from '@mui/material';
-import { AddCircle, Check } from '@mui/icons-material';
+import { AddCircle, Check, CheckOutlined } from '@mui/icons-material';
 function Exam_multiplechoice({ counter, questionMemo }) {
   const { designs } = useStyle();
   const handleChange = (event) => {
     questionMemo.current[counter - 1][event.target.name] = event.target.value;
   };
 
-  const [selectCorrectAnswerA, setSelectCorrectAnswerA] = useState(true);
-  const [selectCorrectAnswerB, setSelectCorrectAnswerB] = useState(true);
-  const [selectCorrectAnswerC, setSelectCorrectAnswerC] = useState(true);
-  const [selectCorrectAnswerD, setSelectCorrectAnswerD] = useState(true);
+  const [selectCorrectAnswerA, setSelectCorrectAnswerA] = useState(false);
+  const [selectCorrectAnswerB, setSelectCorrectAnswerB] = useState(false);
+  const [selectCorrectAnswerC, setSelectCorrectAnswerC] = useState(false);
+  const [selectCorrectAnswerD, setSelectCorrectAnswerD] = useState(false);
 
   const handleClickCorrectAnswerA = () => {
     setSelectCorrectAnswerA((prev) => !prev);
-    setSelectCorrectAnswerB(true);
-    setSelectCorrectAnswerC(true);
-    setSelectCorrectAnswerD(true);
+    setSelectCorrectAnswerB(false);
+    setSelectCorrectAnswerC(false);
+    setSelectCorrectAnswerD(false);
   };
   const handleClickCorrectAnswerB = () => {
     setSelectCorrectAnswerB((prev) => !prev);
-    setSelectCorrectAnswerA(true);
-    setSelectCorrectAnswerC(true);
-    setSelectCorrectAnswerD(true);
+    setSelectCorrectAnswerA(false);
+    setSelectCorrectAnswerC(false);
+    setSelectCorrectAnswerD(false);
   };
   const handleClickCorrectAnswerC = () => {
     setSelectCorrectAnswerC((prev) => !prev);
-    setSelectCorrectAnswerA(true);
-    setSelectCorrectAnswerB(true);
-    setSelectCorrectAnswerD(true);
+    setSelectCorrectAnswerA(false);
+    setSelectCorrectAnswerB(false);
+    setSelectCorrectAnswerD(false);
   };
   const handleClickCorrectAnswerD = () => {
     setSelectCorrectAnswerD((prev) => !prev);
-    setSelectCorrectAnswerA(true);
-    setSelectCorrectAnswerB(true);
-    setSelectCorrectAnswerC(true);
+    setSelectCorrectAnswerA(false);
+    setSelectCorrectAnswerB(false);
+    setSelectCorrectAnswerC(false);
   };
   return (
     <>
-      <Grid container rowSpacing={1} sx={{ padding: '0em 2em 1.5em 2em' }}>
+      <Grid container sx={{ padding: '0.8em 0em' }}>
         <Grid item xs={12}>
-          <TextField
-            id="filled-basic"
-            placeholder="Enter Answer A..."
-            variant="filled"
-            autoComplete="off"
-            name="answer1"
-            onChange={(event) => handleChange(event)}
-            sx={designs.Answer_A_TextField_Style}
-            inputProps={{
-              style: {
-                height: '0em',
-                fontSize: '0.8em',
-                fontWeight: '600',
-                paddingLeft: '0.1em',
-                paddingRight: '0em',
-                marginBottom: '1em',
-                marginRight: '0.5em',
-                color: 'white',
-              },
-            }}
-            InputProps={{
-              disableUnderline: true,
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Box className="Exam-item" sx={designs.Exam_Item_Style2}>
-                    <Typography sx={designs.Answer_A_Typography_Style}>
-                      A.
-                    </Typography>
-                  </Box>
-                </InputAdornment>
-              ),
-              endAdornment: (
-                <InputAdornment
-                  position="end"
-                  onClick={handleClickCorrectAnswerA}
-                >
-                  {!selectCorrectAnswerA ? (
-                    <IconButton
-                      aria-label="correct-answer"
-                      sx={designs.Correct_AnswerT_IconButton_Style}
-                      onClick={() => {
-                        questionMemo.current[counter - 1]['correctAnswer'] =
-                          'answer1';
-                      }}
-                    >
-                      <Check sx={designs.CheckIconT_Style} />
-                    </IconButton>
-                  ) : (
-                    <IconButton
-                      aria-label="correct-answer"
-                      sx={designs.Correct_AnswerF_IconButton_Style}
-                      onClick={() => {
-                        questionMemo.current[counter - 1]['correctAnswer'] =
-                          'answer1';
-                      }}
-                    >
-                      <Check sx={designs.CheckIconF_Style} />
-                    </IconButton>
-                  )}
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Grid>
-
-        <Grid item xs={12}>
-          <TextField
-            id="filled-basic"
-            placeholder="Enter Answer B..."
-            variant="filled"
-            autoComplete="off"
-            name="answer2"
-            onChange={(event) => handleChange(event)}
-            sx={designs.Answer_B_TextField_Style}
-            inputProps={{
-              style: {
-                height: '0em',
-                fontSize: '0.8em',
-                fontWeight: '600',
-                paddingLeft: '0.1em',
-                paddingRight: '0em',
-                marginBottom: '1em',
-                marginRight: '0.5em',
-                color: 'white',
-              },
-            }}
-            InputProps={{
-              disableUnderline: true,
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Box className="Exam-item" sx={designs.Exam_Item_Style2}>
-                    <Typography sx={designs.Answer_B_Typography_Style}>
-                      B.
-                    </Typography>
-                  </Box>
-                </InputAdornment>
-              ),
-              endAdornment: (
-                <InputAdornment
-                  position="end"
-                  onClick={handleClickCorrectAnswerB}
-                >
-                  {!selectCorrectAnswerB ? (
-                    <IconButton
-                      aria-label="correct-answer"
-                      sx={designs.Correct_AnswerT_IconButton_Style}
-                      onClick={() => {
-                        questionMemo.current[counter - 1]['correctAnswer'] =
-                          'answer2';
-                      }}
-                    >
-                      <Check sx={designs.CheckIconT2_Style} />
-                    </IconButton>
-                  ) : (
-                    <IconButton
-                      aria-label="correct-answer"
-                      sx={designs.Correct_AnswerF_IconButton_Style}
-                      onClick={() => {
-                        questionMemo.current[counter - 1]['correctAnswer'] =
-                          'answer2';
-                      }}
-                    >
-                      <Check sx={designs.CheckIconF_Style} />
-                    </IconButton>
-                  )}
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Grid>
-
-        <Grid item xs={12}>
-          <TextField
-            id="filled-basic"
-            placeholder="Enter Answer C..."
-            variant="filled"
-            autoComplete="off"
-            name="answer3"
-            onChange={(event) => handleChange(event)}
-            sx={designs.Answer_C_TextField_Style}
-            inputProps={{
-              style: {
-                height: '0em',
-                fontSize: '0.8em',
-                fontWeight: '600',
-                paddingLeft: '0.1em',
-                paddingRight: '0em',
-                marginBottom: '1em',
-                marginRight: '0.5em',
-                color: 'white',
-              },
-            }}
-            InputProps={{
-              disableUnderline: true,
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Box className="Exam-item" sx={designs.Exam_Item_Style2}>
-                    <Typography sx={designs.Answer_C_Typography_Style}>
-                      C.
-                    </Typography>
-                  </Box>
-                </InputAdornment>
-              ),
-              endAdornment: (
-                <InputAdornment
-                  position="end"
-                  onClick={handleClickCorrectAnswerC}
-                >
-                  {!selectCorrectAnswerC ? (
-                    <IconButton
-                      aria-label="correct-answer"
-                      sx={designs.Correct_AnswerT_IconButton_Style}
-                      onClick={() => {
-                        questionMemo.current[counter - 1]['correctAnswer'] =
-                          'answer3';
-                      }}
-                    >
-                      <Check sx={designs.CheckIconT3_Style} />
-                    </IconButton>
-                  ) : (
-                    <IconButton
-                      aria-label="correct-answer"
-                      sx={designs.Correct_AnswerF_IconButton_Style}
-                      onClick={() => {
-                        questionMemo.current[counter - 1]['correctAnswer'] =
-                          'answer3';
-                      }}
-                    >
-                      <Check sx={designs.CheckIconF_Style} />
-                    </IconButton>
-                  )}
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Grid>
-
-        <Grid item xs={12}>
-          <TextField
-            id="filled-basic"
-            placeholder="Enter Answer D..."
-            variant="filled"
-            autoComplete="off"
-            name="answer4"
-            onChange={(event) => handleChange(event)}
-            sx={designs.Answer_D_TextField_Style}
-            inputProps={{
-              style: {
-                height: '0em',
-                fontSize: '0.8em',
-                fontWeight: '600',
-                paddingLeft: '0.1em',
-                paddingRight: '0em',
-                marginBottom: '1em',
-                marginRight: '0.5em',
-                color: 'white',
-              },
-            }}
-            InputProps={{
-              disableUnderline: true,
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Box className="Exam-item" sx={designs.Exam_Item_Style2}>
-                    <Typography sx={designs.Answer_D_Typography_Style}>
-                      D.
-                    </Typography>
-                  </Box>
-                </InputAdornment>
-              ),
-              endAdornment: (
-                <InputAdornment
-                  position="end"
-                  onClick={handleClickCorrectAnswerD}
-                >
-                  {!selectCorrectAnswerD ? (
-                    <IconButton
-                      aria-label="correct-answer"
-                      sx={designs.Correct_AnswerT_IconButton_Style}
-                      onClick={() => {
-                        questionMemo.current[counter - 1]['correctAnswer'] =
-                          'answer4';
-                      }}
-                    >
-                      <Check sx={designs.CheckIconT4_Style} />
-                    </IconButton>
-                  ) : (
-                    <IconButton
-                      aria-label="correct-answer"
-                      sx={designs.Correct_AnswerF_IconButton_Style}
-                      onClick={() => {
-                        questionMemo.current[counter - 1]['correctAnswer'] =
-                          'answer4';
-                      }}
-                    >
-                      <Check sx={designs.CheckIconF_Style} />
-                    </IconButton>
-                  )}
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Grid>
-
-        <Grid item xs={12}>
-          <Button
-            variant="contained"
-            startIcon={<AddCircle />}
+          <Box
             sx={{
-              height: 'relative',
-              width: '100%',
-              padding: '0.3em 0em',
-              fontSize: '0.8em',
-              fontWeight: '600',
-              textTransform: 'capitalize',
-              color: 'white',
-              boxShadow: 'none',
-              borderRadius: '0.5em',
-              '&: hover': {
-                boxShadow: 'none',
-              },
+              width: 'relative',
+              height: 'auto',
+              display: 'flex',
+              gap: '0.5em',
+              marginBottom: '0.5em',
             }}
           >
-            Add another choice
-          </Button>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                height: 'auto',
+                width: 'relative',
+                flexGrow: 1,
+                border: '1px solid #DBDBDB',
+                backgroundColor: '#FCFCFC',
+                borderRadius: '0.3em',
+                padding: '0.2em 0.7em',
+              }}
+            >
+              <Typography
+                children="A."
+                sx={{
+                  width: '2em',
+                  height: 'max-content',
+                  fontSize: '0.8em',
+                  fontWeight: '500',
+                  color: '#3F3D56',
+                  textTransform: 'Uppercase',
+                }}
+              />
+
+              <Input
+                placeholder="Enter Answer A..."
+                disableUnderline
+                name="answer1"
+                onChange={(event) => handleChange(event)}
+                sx={{
+                  width: '100%',
+                  height: 'auto',
+                  fontSize: '0.8em',
+                  fontWeight: '500',
+                  color: '#3F3D56',
+                }}
+              />
+            </Box>
+
+            <Box
+              onClick={handleClickCorrectAnswerA}
+              sx={{ borderRadius: '0.2em', height: 'auto', width: 'auto' }}
+            >
+              {!selectCorrectAnswerA ? (
+                <Tooltip
+                  title="Select this to be the correct answer"
+                  placement="right"
+                >
+                  <IconButton
+                    sx={{
+                      borderRadius: '0.2em',
+                      border: '1px solid #DBDBDB',
+                      backgroundColor: '#FCFCFC',
+                    }}
+                    onClick={() => {
+                      questionMemo.current[counter - 1]['correctAnswer'] =
+                        'answer1';
+                    }}
+                  >
+                    <CheckOutlined sx={{ fontSize: '0.7em' }} />
+                  </IconButton>
+                </Tooltip>
+              ) : (
+                <Tooltip title="Remove selection" placement="right">
+                  <IconButton
+                    sx={{
+                      borderRadius: '0.2em',
+                      border: '1px solid transparent',
+                      backgroundColor: '#007FFF',
+                      color: 'white',
+                      '&: hover': {
+                        backgroundColor: '#007FFF',
+                        color: 'white',
+                      },
+                    }}
+                    onClick={() => {
+                      questionMemo.current[counter - 1]['correctAnswer'] = '';
+                    }}
+                  >
+                    <CheckOutlined sx={{ fontSize: '0.7em' }} />
+                  </IconButton>
+                </Tooltip>
+              )}
+            </Box>
+          </Box>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Box
+            sx={{
+              width: 'relative',
+              height: 'auto',
+              display: 'flex',
+              gap: '0.5em',
+              marginBottom: '0.5em',
+            }}
+          >
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                height: 'auto',
+                width: 'relative',
+                flexGrow: 1,
+                border: '1px solid #DBDBDB',
+                backgroundColor: '#FCFCFC',
+                borderRadius: '0.3em',
+                padding: '0.2em 0.7em',
+              }}
+            >
+              <Typography
+                children="B."
+                sx={{
+                  width: '2em',
+                  height: 'max-content',
+                  fontSize: '0.8em',
+                  fontWeight: '500',
+                  color: '#3F3D56',
+                  textTransform: 'Uppercase',
+                }}
+              />
+
+              <Input
+                placeholder="Enter Answer B..."
+                disableUnderline
+                name="answer2"
+                onChange={(event) => handleChange(event)}
+                sx={{
+                  width: '100%',
+                  height: 'auto',
+                  fontSize: '0.8em',
+                  fontWeight: '500',
+                  color: '#3F3D56',
+                }}
+              />
+            </Box>
+
+            <Box
+              onClick={handleClickCorrectAnswerB}
+              sx={{ borderRadius: '0.2em', height: 'auto', width: 'auto' }}
+            >
+              {!selectCorrectAnswerB ? (
+                <Tooltip
+                  title="Select this to be the correct answer"
+                  placement="right"
+                >
+                  <IconButton
+                    sx={{
+                      borderRadius: '0.2em',
+                      border: '1px solid #DBDBDB',
+                      backgroundColor: '#FCFCFC',
+                    }}
+                    onClick={() => {
+                      questionMemo.current[counter - 1]['correctAnswer'] =
+                        'answer2';
+                    }}
+                  >
+                    <CheckOutlined sx={{ fontSize: '0.7em' }} />
+                  </IconButton>
+                </Tooltip>
+              ) : (
+                <Tooltip title="Remove selection" placement="right">
+                  <IconButton
+                    sx={{
+                      borderRadius: '0.2em',
+                      border: '1px solid transparent',
+                      backgroundColor: '#007FFF',
+                      color: 'white',
+                      '&: hover': {
+                        backgroundColor: '#007FFF',
+                        color: 'white',
+                      },
+                    }}
+                    onClick={() => {
+                      questionMemo.current[counter - 1]['correctAnswer'] = '';
+                    }}
+                  >
+                    <CheckOutlined sx={{ fontSize: '0.7em' }} />
+                  </IconButton>
+                </Tooltip>
+              )}
+            </Box>
+          </Box>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Box
+            sx={{
+              width: 'relative',
+              height: 'auto',
+              display: 'flex',
+              gap: '0.5em',
+              marginBottom: '0.5em',
+            }}
+          >
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                height: 'auto',
+                width: 'relative',
+                flexGrow: 1,
+                border: '1px solid #DBDBDB',
+                backgroundColor: '#FCFCFC',
+                borderRadius: '0.3em',
+                padding: '0.2em 0.7em',
+              }}
+            >
+              <Typography
+                children="C."
+                sx={{
+                  width: '2em',
+                  height: 'max-content',
+                  fontSize: '0.8em',
+                  fontWeight: '500',
+                  color: '#3F3D56',
+                  textTransform: 'Uppercase',
+                }}
+              />
+
+              <Input
+                placeholder="Enter Answer C..."
+                disableUnderline
+                name="answer3"
+                onChange={(event) => handleChange(event)}
+                sx={{
+                  width: '100%',
+                  height: 'auto',
+                  fontSize: '0.8em',
+                  fontWeight: '500',
+                  color: '#3F3D56',
+                }}
+              />
+            </Box>
+
+            <Box
+              onClick={handleClickCorrectAnswerC}
+              sx={{ borderRadius: '0.2em', height: 'auto', width: 'auto' }}
+            >
+              {!selectCorrectAnswerC ? (
+                <Tooltip
+                  title="Select this to be the correct answer"
+                  placement="right"
+                >
+                  <IconButton
+                    sx={{
+                      borderRadius: '0.2em',
+                      border: '1px solid #DBDBDB',
+                      backgroundColor: '#FCFCFC',
+                    }}
+                    onClick={() => {
+                      questionMemo.current[counter - 1]['correctAnswer'] =
+                        'answer3';
+                    }}
+                  >
+                    <CheckOutlined sx={{ fontSize: '0.7em' }} />
+                  </IconButton>
+                </Tooltip>
+              ) : (
+                <Tooltip title="Remove selection" placement="right">
+                  <IconButton
+                    sx={{
+                      borderRadius: '0.2em',
+                      border: '1px solid transparent',
+                      backgroundColor: '#007FFF',
+                      color: 'white',
+                      '&: hover': {
+                        backgroundColor: '#007FFF',
+                        color: 'white',
+                      },
+                    }}
+                    onClick={() => {
+                      questionMemo.current[counter - 1]['correctAnswer'] = '';
+                    }}
+                  >
+                    <CheckOutlined sx={{ fontSize: '0.7em' }} />
+                  </IconButton>
+                </Tooltip>
+              )}
+            </Box>
+          </Box>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Box
+            sx={{
+              width: 'relative',
+              height: 'auto',
+              display: 'flex',
+              gap: '0.5em',
+              marginBottom: '0.5em',
+            }}
+          >
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                height: 'auto',
+                width: 'relative',
+                flexGrow: 1,
+                border: '1px solid #DBDBDB',
+                backgroundColor: '#FCFCFC',
+                borderRadius: '0.3em',
+                padding: '0.2em 0.7em',
+              }}
+            >
+              <Typography
+                children="D."
+                sx={{
+                  width: '2em',
+                  height: 'max-content',
+                  fontSize: '0.8em',
+                  fontWeight: '500',
+                  color: '#3F3D56',
+                  textTransform: 'Uppercase',
+                }}
+              />
+
+              <Input
+                placeholder="Enter Answer D..."
+                disableUnderline
+                name="answer4"
+                onChange={(event) => handleChange(event)}
+                sx={{
+                  width: '100%',
+                  height: 'auto',
+                  fontSize: '0.8em',
+                  fontWeight: '500',
+                  color: '#3F3D56',
+                }}
+              />
+            </Box>
+
+            <Box
+              onClick={handleClickCorrectAnswerD}
+              sx={{ borderRadius: '0.2em', height: 'auto', width: 'auto' }}
+            >
+              {!selectCorrectAnswerD ? (
+                <Tooltip
+                  title="Select this to be the correct answer"
+                  placement="right"
+                >
+                  <IconButton
+                    sx={{
+                      borderRadius: '0.2em',
+                      border: '1px solid #DBDBDB',
+                      backgroundColor: '#FCFCFC',
+                    }}
+                    onClick={() => {
+                      questionMemo.current[counter - 1]['correctAnswer'] =
+                        'answer4';
+                    }}
+                  >
+                    <CheckOutlined sx={{ fontSize: '0.7em' }} />
+                  </IconButton>
+                </Tooltip>
+              ) : (
+                <Tooltip title="Remove selection" placement="right">
+                  <IconButton
+                    sx={{
+                      borderRadius: '0.2em',
+                      border: '1px solid transparent',
+                      backgroundColor: '#007FFF',
+                      color: 'white',
+                      '&: hover': {
+                        backgroundColor: '#007FFF',
+                        color: 'white',
+                      },
+                    }}
+                    onClick={() => {
+                      questionMemo.current[counter - 1]['correctAnswer'] = '';
+                    }}
+                  >
+                    <CheckOutlined sx={{ fontSize: '0.7em' }} />
+                  </IconButton>
+                </Tooltip>
+              )}
+            </Box>
+          </Box>
         </Grid>
       </Grid>
     </>

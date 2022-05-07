@@ -5,13 +5,17 @@ function useStyle() {
 
   const designs = {
     Post_Style: {
-      backgroundColor: "white",
+      backgroundColor: 'white',
       width: '100%',
       height: 'auto',
       margin: '20px 0px',
       paddingBottom: '15px',
-      border: ' 1px solid #DBDBDB',
-      borderRadius: '0.3em',
+      borderRadius: '0.3em 0.3em 0em 0em',
+      '&: hover': {
+        boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+        borderBottom: '4px solid #007FFF',
+        transition: 'all 250ms',
+      },
     },
     User_Style: {
       padding: '7px 15px',
@@ -35,7 +39,7 @@ function useStyle() {
     },
     Date_Style: {
       display: 'flex',
-      flexWrap: 'wrap'
+      flexWrap: 'wrap',
     },
     Date_Typography_Style: {
       width: 'max-content',
@@ -101,10 +105,10 @@ function useStyle() {
       fontWeight: '500',
     },
     Divider_Style: {
-      width: 'relative'
+      width: 'relative',
     },
     View_Comments_Style: {
-      backgroundColor: "#FCFCFC",
+      backgroundColor: '#FCFCFC',
       height: 'auto',
       width: 'relative',
       paddingLeft: '20px',
@@ -172,13 +176,13 @@ function useStyle() {
     // Schoolworktiles_layout
     BoxTileContainer: {
       className: 'Tiles1',
-      width: '100%',
+      width: 'relative',
       height: 'auto',
-      marginBottom: '0.6em',
-      padding: '0.5em 0em',
+      margin: '0em 4.5em 1em 4.5em',
+      padding: '0.5em 1em',
       display: 'flex',
       border: ' 1px solid #DBDBDB',
-      borderRadius: '0.8em',
+      borderRadius: '0.3em',
       '&: hover': {
         boxShadow:
           'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
@@ -188,11 +192,13 @@ function useStyle() {
       className: 'Activity-container',
       display: 'flex',
       width: '100%',
+      gap: '0.8em',
     },
     ActivityName_User_Date: {
       className: 'Activity-name-User-date',
-      height: 'max-content',
-      margin: '0.3em 0em 0.3em 0em',
+      height: 'relative',
+      display: 'flex',
+      alignItems: 'center',
       flexGrow: 1,
       '&: hover': {
         cursor: 'pointer',
@@ -212,7 +218,10 @@ function useStyle() {
     // },
     Activity: {
       fontSize: '0.9em',
-      width: '25em',
+      // width: '25em',
+      width: 'auto',
+      flexGrow: 1,
+      height: 'relative',
       fontWeight: '600',
       textTransform: 'Uppercase',
       color: '#3F3D56',

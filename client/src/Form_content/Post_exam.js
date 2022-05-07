@@ -85,7 +85,7 @@ function Post_exam({
   const { designs } = useStyle();
 
   const [selectRoom, setSelectRoom] = useState('');
-  const [gsData,setGSData] = useState(null)
+  const [gsData, setGSData] = useState(null);
   const handleChangeRoom = (event) => {
     setSelectRoom(event.target.value);
   };
@@ -105,7 +105,6 @@ function Post_exam({
   const [selectTerm, setSelectTerm] = useState('');
 
   const handleChangeTerm = (event) => {
-
     setSelectTerm(event.target.value);
   };
 
@@ -125,8 +124,9 @@ function Post_exam({
       .post('http://localhost:5000/quizlit/create', {
         author: {
           userID: JSON.parse(localStorage.userData).data.user._id,
-          name: `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName
-            } `,
+          name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
+            JSON.parse(localStorage.userData).data.user.lastName
+          } `,
         },
         rooms: [roomId.current],
         dueDate: 'unavailable',
@@ -322,11 +322,16 @@ function Post_exam({
                         accessKey={value._id}
                         onClick={(e) => {
                           roomId.current = e.target.accessKey;
-                          axios.post('http://localhost:5000/gradingSystem/record', { roomID: e.target.accessKey })
-                          .then(res=>{
-                            setGSData(res.data[0].Category)
-                            console.log(res.data)
-                          }).catch(err=>console.log(err))
+                          axios
+                            .post(
+                              'http://localhost:5000/gradingSystem/record',
+                              { roomID: e.target.accessKey }
+                            )
+                            .then((res) => {
+                              setGSData(res.data[0].Category);
+                              console.log(res.data);
+                            })
+                            .catch((err) => console.log(err));
                         }}
                       >
                         {value.RoomName}
@@ -477,11 +482,12 @@ function Post_exam({
                     },
                   }}
                 >
-                  {gsData && gsData.map((item,index) => (
-                    <MenuItem key={index} value={Object.entries(item)[0][1]}>
-                      {Object.entries(item)[0][0]}
-                    </MenuItem>
-                  ))}
+                  {gsData &&
+                    gsData.map((item, index) => (
+                      <MenuItem key={index} value={Object.entries(item)[0][0]}>
+                        {Object.entries(item)[0][0]}
+                      </MenuItem>
+                    ))}
                 </Select>
               </FormControl>
 

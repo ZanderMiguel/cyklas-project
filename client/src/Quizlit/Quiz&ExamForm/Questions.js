@@ -108,7 +108,7 @@ function Questions({ counter, questionMemo }) {
                     className="Quiz-question-image-sub"
                     sx={designs.Quiz_Question_Image_Sub_Style}
                   >
-                    {image != '' ? (
+                    {image !== '' ? (
                       <>
                         <Box
                           width="80%"

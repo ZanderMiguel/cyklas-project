@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Box, Button, Grid } from '@mui/material';
+import { Box, Button, Grid, Typography } from '@mui/material';
 import Create_activity from '../../../Form_content/Create_activity';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Activities_layout from './Activities_layout';
 import axios from 'axios';
+import NoActivities from '../../../assets/ImageJaven/NoActivities.png';
 
 function Activities({ roomID }) {
   const [opendialog, setOpenDialog] = useState(false);
@@ -83,9 +84,45 @@ function Activities({ roomID }) {
         />
       )}
       {activity && activity.length === 0 && (
-        <center>
-          <h1> nothing to display!</h1>
-        </center>
+        <Box
+          sx={{
+            width: '100%',
+            height: '70vh',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+          }}
+        >
+          <img
+            src={NoActivities}
+            alt="No Activities"
+            style={{
+              height: '13em',
+              margin: '0em 2.5em 1.5em 0em',
+            }}
+          />
+          <Typography
+            children="You did not post any activities."
+            sx={{
+              fontSize: '1em',
+              fontWeight: '600',
+              color: '#3F3D56',
+              marginBottom: '0.3em',
+            }}
+          />
+
+          <Typography
+            children="Start creating activities for your student to work on."
+            sx={{
+              fontSize: '0.8em',
+              fontWeight: '500',
+              color: '#8E8E8E',
+              marginLeft: '0.8em',
+            }}
+          />
+        </Box>
       )}
       {activity && (
         <Grid container rowSpacing={2} sx={{ paddingBottom: '1.5em' }}>
