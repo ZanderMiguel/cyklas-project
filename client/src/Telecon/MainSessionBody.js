@@ -11,107 +11,68 @@ import AvatarIcon from "../assets/ImageJaven/Avatar.png";
 import MicOffOutlinedIcon from '@mui/icons-material/MicOffOutlined';
 // import download from "../assets/ImageJaven/download.jpg";
 
-const dataMemberTiles = [
-    {
-        camera: <Avatar alt="Remy Sharp" src={AvatarIcon} sx={{ height: "5em", width: "5em" }} />,
-        memberName: "Paul Rudd (You)"
-    },/* {
-        camera: <Avatar alt="Remy Sharp" src={AvatarIcon} sx={{ height: "5em", width: "5em" }} />,
-        memberName: "Tom Holland"
-    },
-    {
-        camera: <Avatar alt="Remy Sharp" src={AvatarIcon} sx={{ height: "5em", width: "5em" }} />,
-        memberName: "Tom Hiddleston"
-    },
-    {
-        camera: <Avatar alt="Remy Sharp" src={AvatarIcon} sx={{ height: "5em", width: "5em" }} />,
-        memberName: "Robert Downey Jr."
-    },
-    {
-        camera: <Avatar alt="Remy Sharp" src={AvatarIcon} sx={{ height: "5em", width: "5em" }} />,
-        memberName: "Sebastian Stan"
-    },
-    {
-        camera: <Avatar alt="Remy Sharp" src={AvatarIcon} sx={{ height: "5em", width: "5em" }} />,
-        memberName: "Mark Ruffalo"
-    },
-    {
-        camera: <Avatar alt="Remy Sharp" src={AvatarIcon} sx={{ height: "5em", width: "5em" }} />,
-        memberName: "Elizabeth Olsen"
-    },
-    {
-        camera: <Avatar alt="Remy Sharp" src={AvatarIcon} sx={{ height: "5em", width: "5em" }} />,
-        memberName: "Josh Brolin"
-    },
-    {
-        camera: <Avatar alt="Remy Sharp" src={AvatarIcon} sx={{ height: "5em", width: "5em" }} />,
-        memberName: "Elizabeth Olsen"
-    },
-    {
-        camera: <Avatar alt="Remy Sharp" src={AvatarIcon} sx={{ height: "5em", width: "5em" }} />,
-        memberName: "Josh Brolin"
-    },
-    {
-        camera: <Avatar alt="Remy Sharp" src={AvatarIcon} sx={{ height: "5em", width: "5em" }} />,
-        memberName: "Mark Ruffalo"
-    } */
-    
-];
 
-function MainSessionBody() {
+function MainSessionBody({ socket }) {
     const [toggleMic, setToggleMic] = React.useState(false);
     const layout = React.useRef(null)
     const [tileWidth, setTileWidth] = React.useState(null)
-    React.useEffect(()=>{layout.current && setTileWidth(layout.current.childNodes.length >= 36 ? 7 : layout.current.childNodes.length >= 25 ? 6 : layout.current.childNodes.length >= 16 ? 5 : layout.current.childNodes.length >= 9 ? 4 : layout.current.childNodes.length >= 4 ? 3 : 2)
 
-    layout.current && layout.current.childNodes.forEach((item, idx) => {
 
-        /* console.log(layout.current.childNodes.length)
-        item.style.setProperty('width', `calc(100%/${tileWidth})`)
-        item.style.setProperty('height', `calc(100%/${tileWidth})`)
-        item.style.setProperty('border', `solid 2px white`) */
+    const [members, setMembers] = React.useState([{
+        camera: JSON.parse(localStorage.userData).data.user.image,
+        memberName: `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName
+        }`
+    }])
+    React.useEffect(() => {
+        layout.current && setTileWidth(layout.current.childNodes.length >= 36 ? 7 : layout.current.childNodes.length >= 25 ? 6 : layout.current.childNodes.length >= 16 ? 5 : layout.current.childNodes.length >= 9 ? 4 : layout.current.childNodes.length >= 4 ? 3 : 2)
 
-    })},[])
+
+        socket.on('join-others', (username, avatar) => {
+            setMembers([...members, { camera: avatar, memberName: username }])
+            console.log('someone joined')
+        })
+    }, [])
 
     const handleToggleMic = () => {
         setToggleMic((prev) => !prev);
     };
     return (
-        <div style={{width: '100%', height: '100%'}}>
+        <>
             {/* Main Session Body */}
-            <div 
+            <div
                 style={{
-                    width: "100%",
-                    height: "100%",
+                    width: `100%`,
+                    height: "78vh"
                     //overflowY: "auto",
                     //padding: "0em 0.4em",
-                    display: 'flex',
+                    , display: 'flex', gap: '0.8em',
                     flexWrap: 'wrap',
                     justifyContent: 'center',
-                    alignItems: 'center',
-                    //flexGrow: 1
+
+                    whiteSpace: 'break-spaces',
+
                 }}
                 ref={layout}
             >
 
-                {dataMemberTiles.map(function (items, index) {
+                {members.map(function (items, index) {
                     return (
-                        <div key={index}>
+                        <div key={index} style={{ minWidth: `calc(85%/${tileWidth})`, height: `calc(${layout.current && layout.current}/${tileWidth})` }}>
                             <Box sx={{
                                 position: "relative",
                                 backgroundColor: "#25282E",
                                 // backgroundImage: `url(${download})`,
                                 // backgroundSize: 'cover',
                                 height: "100%",
-                                width: "100%",
+                                width: "relative",
                                 borderRadius: "0.5em",
                                 display: "flex",
-                                
                                 justifyContent: "center",
                                 alignItems: "center",
+                                flexDirection: 'column'
                             }}>
-
-                                {items.camera}
+                                <Avatar alt="Remy Sharp" src={items.camera} sx={{ height: "5em", width: "5em" }} />
+                                    
 
                                 <Box sx={{
                                     // position: "relative",
@@ -126,7 +87,7 @@ function MainSessionBody() {
                                     <Typography noWrap children={items.memberName}
                                         sx={{
                                             color: "white",
-                                            fontSize: "0.6em",
+                                            fontSize: "1em",
                                             fontWeight: "500",
                                             height: "max-content",
                                             width: "14em",
@@ -181,7 +142,7 @@ function MainSessionBody() {
                 })}
 
             </div>
-        </div>
+        </>
     )
 }
 

@@ -46,11 +46,12 @@ app.use(express.static('public'));
 app.use(router);
 let quizLobby = {};
 io.on('connection', (socket) => {
-  socket.on('joinroom', (roomID, username) => {
+  socket.on('joinroom', (roomID, username,avatar) => {
     socket.join(roomID);
     console.log(
       `User with ID: ${socket.id} joined room: ${roomID} username: ${username}`
     );
+    socket.to(roomID).emit('join-others',username,avatar)
   });
 
   socket.on('sendMessage', (data) => {

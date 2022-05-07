@@ -20,6 +20,8 @@ import MeetingInformation from './MeetingInformation';
 import Members from './Members';
 import MessageArea from './TeleconSide/MessageArea';
 import PresentationCriteria from './PresentationCriteria';
+import { useParams } from 'react-router-dom'
+
 import RightContent from './RightContent';
 import AvatarIcon from '../assets/ImageJaven/Avatar.png';
 import {
@@ -35,7 +37,12 @@ function TeleconRoomV2({ socket }) {
   const [sidecontent, setSideContent] = React.useState('');
   const [currentMessage, setCurrentMessage] = React.useState('');
   const [messagelist, setMessageList] = React.useState([]);
-  console.log('bobo amp')
+  const { teleRoom } = useParams()
+  const name = `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName
+  }`
+  const avatar = JSON.parse(localStorage.userData).data.user.image
+  socket.emit('joinroom', teleRoom, name,avatar)
+  console.log(teleRoom)
   return (
     <>
       <CssBaseline />
@@ -48,19 +55,19 @@ function TeleconRoomV2({ socket }) {
           overflowX: 'hidden',
         }}
       >
-        <Box sx={{ display: 'flex',width: '100%', border: '2px solid white' }}>
+        <Box sx={{ display: 'flex',width: '100%',}}>
           <Box
             sx={{
               backgroundColor: '#171A20',
               height: '98vh',
               borderRadius: '0.4em',
               margin: '0.4em 0.5em 0em 0.5em',
-              width: '100%', border: '2px solid white'
+              width: '100%',whiteSpace: 'pre'
             }}
           >
             <MainSessionHeader />
 
-            <MainSessionBody />
+            <MainSessionBody socket={socket} />
 
             <MainSessionFooter />
           </Box>
