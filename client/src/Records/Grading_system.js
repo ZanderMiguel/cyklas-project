@@ -5,7 +5,7 @@ import DefaultGradingSystem from './DefaultGradingSystem';
 import Create_gradingsystem from './Create_gradingsystem';
 import axios from 'axios';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import { BeenhereOutlined } from '@mui/icons-material';
+import { BeenhereOutlined, CheckCircleOutlined } from '@mui/icons-material';
 
 function Grading_system({ data, name, counter }) {
   const [opendialog, setOpenDialog] = useState(false);
@@ -44,7 +44,7 @@ function Grading_system({ data, name, counter }) {
   return (
     <>
         <Box width="100%" display="flex" gap = "0.8em" marginBottom={2}>
-          <Box flexGrow={1} />
+          {/* <Box flexGrow={1} />
             
           <Button onClick={() => setOpenDialog(true)} 
           startIcon = {<AddCircleOutlineOutlinedIcon/>}
@@ -71,7 +71,7 @@ function Grading_system({ data, name, counter }) {
               "&: hover": {
                 backgroundColor: "#43A047"
               }
-            }}/>
+            }}/> */}
 
         <Box flexGrow={1} />
 
