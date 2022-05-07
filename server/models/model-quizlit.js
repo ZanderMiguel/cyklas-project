@@ -11,7 +11,8 @@ const QuizlitSchema = new mongoose.Schema(
     dueDate: {type: String},
     timeLimit: {type: String},
     students: { type: String},
-    instruction: {type:String}
+    instruction: {type:String},
+    gsCategory: {type: String, require: true}
   },
   { timestamps: true }
 );

@@ -25,6 +25,7 @@ function Records_tableClassRecords({ rooms }) {
   const [category, setCategory] = useState(null);
   const [records, setRecords] = useState(null);
   const stdRecord = React.useRef([]);
+  const [overall,setOverall] = useState(null)
   const handleChangeRoom = (event) => {
     setSelectRoom(event.target.value);
     axios
@@ -48,6 +49,17 @@ function Records_tableClassRecords({ rooms }) {
             roomID: rooms[event.target.value]._id,
           })
           .then((res) => {
+            console.log(res.data[0].Category)
+            axios.post('http://localhost:5000/records/overall', {
+              category: res.data[0].Category,
+              roomID: rooms[event.target.value]._id,
+              userID: JSON.parse(localStorage.userData).data.user._id
+            })
+              .then(res => {
+                stdRecord.current = []
+                setOverall(res.data)
+                
+              }).catch(err => console.log(err))
             setCategory(res.data[0].Category);
           });
       })
@@ -181,14 +193,14 @@ function Records_tableClassRecords({ rooms }) {
             </thead>
 
             <tbody>
-              {records && records.map((items, index) => {
-                if (items.gradingSystem.length < 1) {
+              {records && overall && records.map((items, index) => {
+                if (items.gradingSystem.length === 0) {
                   axios.put('http://localhost:5000/records/applyGS', { crID: items._id, gradingSystem: stdRecord.current })
-                  .then(res => {
-                    console.log(res.data)
-                  }).catch(err => console.log(err))
+                    .then(res => {
+                      console.log(res.data)
+                    }).catch(err => console.log(err))
                 }
-
+                
                 return (
                   <tr key={index}>
                     <td>
@@ -197,7 +209,7 @@ function Records_tableClassRecords({ rooms }) {
                         {items.student.name}
                       </div>
                     </td>
-                    <td data-label="Overall"> {items.majorExam} </td>
+                    <td data-label="Overall"> {Math.round(overall[items.student.stdID])} </td>
                     {/*map some shit*/}
                     {items.gradingSystem.map((item, ind) => (<td key={ind}>{item[Object.entries(item)[0][0]]}</td>))}
 

@@ -12,14 +12,14 @@ import useStyle from '../../Styles/View_exam_style';
 
 import axios from 'axios'
 
-function SelectRoom({setData}) {
+function SelectRoom({setData,dataRoom,setDataRoom}) {
     const { designs } = useStyle()
     const [selectRoom, setRoom] = useState('');
     const handleChangeRoom = (event) => {
         setRoom(event.target.value);
         
     };
-    const [dataRoom,setDataRoom] = React.useState(null)
+    
     React.useMemo(() => {
         axios.post('http://localhost:5000/rooms', {
             userID: JSON.parse(localStorage.userData).data.user._id,

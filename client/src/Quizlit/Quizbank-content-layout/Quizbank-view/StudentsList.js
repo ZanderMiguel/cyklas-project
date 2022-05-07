@@ -7,18 +7,33 @@ import {
 } from '@mui/material';
 import '../../Styles/View_quiz_stylesheet.css';
 import useStyle from '../../Styles/View_exam_style';
-function StudentsList({ items, setStdID}) {
+function StudentsList({ items, setStdID, scores }) {
     const { designs } = useStyle()
     return (
         <Box sx={designs.Student_Box_Style}
             onClick={() => {
 
                 setStdID(items._id)
-                
+
 
             }}
         >
-            <Checkbox sx={designs.Student_Checkbox_Style} />
+            {document.getElementById(`${items._id}`)?.innerHTML !== 'Missing' && <Checkbox sx={designs.Student_Checkbox_Style}
+                onChange={(e) => {
+
+                    if (e.target.checked === true) {
+                        scores.current.push({ stdID: items._id, score: document.getElementById(`${items._id}`).innerHTML.replace('%', '') })
+                        
+                        console.log(scores.current.filter((value)=>{
+                            return value.stdID 
+                          }))
+                    }if(e.target.checked === false){
+                        scores.current = scores.current.filter((value)=>{
+                            return value.stdID !== items._id
+                          })
+                    }
+                }}
+            />}
             <Avatar
                 alt="Remy Sharp"
                 src={items.image}
@@ -43,7 +58,7 @@ function StudentsList({ items, setStdID}) {
             <Typography
                 id={items._id}
                 sx={designs.StudentScore_Typography_Style}>
-               
+
             </Typography>
         </Box>
     )

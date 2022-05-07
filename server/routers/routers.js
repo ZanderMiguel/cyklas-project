@@ -146,13 +146,15 @@ const {
   createClassRecord,
   deleteClassRecord,
   updateClassRecord,
-  displayClassRecord,applyGradingSystem
+  displayClassRecord,applyGradingSystem,countActivity,getOverall
 } = require('../controller/classRecordController');
 router.post('/records/create', createClassRecord);
 router.post('/records', displayClassRecord);
 router.put('/records/update', updateClassRecord);
 router.delete('/records/delete', deleteClassRecord);
 router.put('/records/applyGS',applyGradingSystem)
+router.post('/records/return-grade',countActivity)
+router.post('/records/overall',getOverall)
 const {
   createClassCard,
   displayClassCard,

@@ -53,6 +53,8 @@ function View_exam() {
   const [overAll, setOverAll] = useState(0)
   const stdScore = React.useRef({})
   const shrtAns = React.useRef({})
+  const [dataRoom,setDataRoom] = React.useState(null)
+  const scores = React.useRef([])
   const handleChangeSort = (event) => {
     setSort(event.target.value);
   };
@@ -67,7 +69,6 @@ function View_exam() {
   React.useMemo(()=>{
     setScore(0)
     setOverAll(0)
-    console.log('tanginamo')
   },[stdID])
   document.getElementById(`${stdID}`) && (document.getElementById(`${stdID}`).innerHTML = `${Math.round((score / overAll) * 100)}%`.replace('NaN%', 'Missing'))
   
@@ -75,9 +76,18 @@ function View_exam() {
     <Container maxWidth="lg">
       <Grid container columnSpacing={1}>
         <Grid item xs={4} sx={{ margin: '0.5em 0em' }}>
-          <Button sx={designs.Return_Button_Style}>Return</Button>
+          <Button 
+          onClick={()=>{
+            axios.post('http://localhost:5000/records/return-grade',{
+              roomID: dataRoom[0]._id,
+              userID:JSON.parse(localStorage.userData).data.user._id,
+              examID,
+              scores: scores.current, stdID
+          }).then(res=>console.log(res.data)).catch(err=>console.log(err))
+          }}
+          sx={designs.Return_Button_Style}>Return</Button>
         </Grid>
-        <SelectRoom setData={setData} />
+        <SelectRoom setData={setData} dataRoom={dataRoom} setDataRoom={setDataRoom} />
         <Grid item xs={4} sx={{ paddingRight: '0.8em' }}>
           <Box className="Student-list" sx={designs.Student_List_Style}>
             <Box className="Sort-container" sx={designs.Sort_Container_Style}>
@@ -124,7 +134,7 @@ function View_exam() {
             >
               {data && data.map(function (items, index) {
                 return (
-                  <div key={index}><StudentsList items={items} setStdID={setStdID}/></div>
+                  <div key={index}><StudentsList scores={scores} items={items} setStdID={setStdID}/></div>
 
                 );
               })}

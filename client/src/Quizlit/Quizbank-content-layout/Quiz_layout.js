@@ -47,16 +47,6 @@ function Quiz_layout({ bank }) {
                     {title}
                   </Typography>
                 </Box>
-
-                {/* <Box sx={designs.User_Date}>
-                  <Typography noWrap sx={designs.Professor}>
-                    {author.name} (You)
-                  </Typography>
-
-                  <Typography noWrap sx={designs.Date}>
-                    {createdAt} at {createdAt}
-                  </Typography>
-                </Box> */}
               </Box>
 
                 <Box flexGrow = {1}/>

@@ -137,6 +137,7 @@ function Post_exam({
         quizType: 'Exam',
         graded: false,
         type,
+        gsCategory:selectTerm
       })
       .then((res) => {
         questionMemo.current.forEach((item) => {
@@ -455,7 +456,7 @@ function Post_exam({
                     textTransform: 'Capitalize',
                   }}
                 >
-                  Select Term
+                  Select Category
                 </InputLabel>
 
                 <Select
@@ -478,7 +479,7 @@ function Post_exam({
                   }}
                 >
                   {gsData && gsData.map((item,index) => (
-                    <MenuItem key={index} value={Object.entries(item)[0][1]}>
+                    <MenuItem key={index} value={Object.entries(item)[0][0]}>
                       {Object.entries(item)[0][0]}
                     </MenuItem>
                   ))}
