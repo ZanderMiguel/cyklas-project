@@ -48,13 +48,14 @@ function TeleconRoomV2({ socket }) {
           overflowX: 'hidden',
         }}
       >
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex',width: '100%', border: '2px solid white' }}>
           <Box
             sx={{
               backgroundColor: '#171A20',
               height: '98vh',
               borderRadius: '0.4em',
               margin: '0.4em 0.5em 0em 0.5em',
+              width: '100%', border: '2px solid white'
             }}
           >
             <MainSessionHeader />

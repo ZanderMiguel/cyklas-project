@@ -18,12 +18,13 @@ const {
   createActivityController,
   displayActivityController,
   deleteActivityController,
-  updateActivityController,
+  updateActivityController,findActivity
 } = require('../controller/createActivityController');
 router.post('/activity/create', createActivityController);
 router.post('/activity', displayActivityController);
 router.delete('/actiity/delete/:id', deleteActivityController);
 router.put('/activity/update/:id', updateActivityController);
+router.post('/activity/get',findActivity)
 
 const {
   createRoomController,

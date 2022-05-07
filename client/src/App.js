@@ -57,6 +57,7 @@ import JoinQuiz from './Quizlit/TestComponents/JoinQuiz';
 import ToLobby from './Quizlit/TestComponents/ToLobby';
 import Lobby from './Quizlit/TestComponents/Lobby';
 import Notfound from './Notfound';
+import TeleconLanding from './pages-landing/TeleconLanding';
 // import LoadQuizlit from './Quizlit/TestComponents/LoadQuizlit';
 
 // Student Side
@@ -164,7 +165,10 @@ function App() {
 
               {/* Telecon */}
               <ProtectedRoutes exact path="/telecon" component={TeleconStart} />
-              <Route path="/telecon/room">
+              <Route path="/telecon-setup">
+                <TeleconLanding socket={socket} />
+              </Route>
+              <Route path="/telecon/:teleRoom">
                 <TeleconRoomV2 socket={socket} />
               </Route>
               {/* <Route path="/TeleconRoomV2" component={TeleconRoomV2} /> */}
