@@ -65,6 +65,7 @@ import Dashboard_main from './student_side/Dashboard/Dashboard_main';
 import axios from 'axios';
 import Quiz_viewed from './Rooms/Activities/StudentsActivtityLayout/View/Quiz_viewed';
 import Exam_viewed from './Rooms/Activities/StudentsActivtityLayout/View/Exam_viewed';
+import ExamViewedV2 from './Rooms/Activities/StudentsActivtityLayout/View/ExamViewedV2';
 import Rooms_main from './student_side/Rooms/Rooms_main';
 import Settings_main from './student_side/Settings/Settings_main';
 function App() {
@@ -150,6 +151,7 @@ function App() {
                 path="/quizlit/createexam"
                 component={Examform}
               />
+              {quizlit}
               <Route exact path="/quizlit/join">
                 <JoinQuiz socket={socket} />
               </Route>
@@ -243,6 +245,7 @@ function App() {
               />
               <Route exact path="/Quiz_viewed" component={Quiz_viewed} />
               <Route exact path="/Exam_viewed" component={Exam_viewed} />
+              <Route exact path="/ExamViewedV2" component={ExamViewedV2} />
 
               <Route
                 exact

@@ -35,7 +35,7 @@ function TeleconRoomV2({ socket }) {
   const [sidecontent, setSideContent] = React.useState('');
   const [currentMessage, setCurrentMessage] = React.useState('');
   const [messagelist, setMessageList] = React.useState([]);
-
+  console.log('bobo amp')
   return (
     <>
       <CssBaseline />

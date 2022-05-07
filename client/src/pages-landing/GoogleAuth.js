@@ -5,7 +5,7 @@ import Button from '../components/Button';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import Register from '../Form_content/Register';
-import SelectUserType from '../components/Modals/SelectUserType';
+import SelectUserType from '../Form_content/SelectUsertype';
 function GoogleAuth() {
   const history = useHistory();
   const [state, setState] = React.useState(false);

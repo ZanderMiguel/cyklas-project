@@ -252,7 +252,7 @@ function DefaultGradingSystem({ data }) {
               </Typography>
           </Box>
         </AccordionDetails>
-        <Divider />
+        {/* <Divider />
           <AccordionActions sx = {{ paddingLeft: "1.5em", paddingRight: "1.5em" }}>
             <Button
               onClick={() => console.log(data.current)}
@@ -266,7 +266,7 @@ function DefaultGradingSystem({ data }) {
                 textTransform: 'Capitalize',
                 boxShadow: 'none'
               }}/>
-          </AccordionActions>
+          </AccordionActions> */}
       </Accordion>
     </div>
   );
