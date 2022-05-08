@@ -1,95 +1,205 @@
 import React, { useState } from 'react';
-import { Box, Typography, IconButton, Grid } from '@mui/material';
-import { Check } from '@mui/icons-material';
+import { Box, Typography, IconButton, Grid, Tooltip } from '@mui/material';
+import { Check, CheckOutlined } from '@mui/icons-material';
 import useStyle from './Styles/Exam_trueorfalse_style';
 
 function Exam_trueorfalse({ questionMemo, counter }) {
   const { designs } = useStyle();
   questionMemo.current[counter - 1]['answer1'] = 'True';
   questionMemo.current[counter - 1]['answer2'] = 'False';
-  const [selectCorrectAnswerTrue, setSelectCorrectAnswerTrue] = useState(true);
+  const [selectCorrectAnswerTrue, setSelectCorrectAnswerTrue] = useState(false);
   const [selectCorrectAnswerFalse, setSelectCorrectAnswerFalse] =
-    useState(true);
+    useState(false);
 
   const handleClickCorrectAnswerTrue = () => {
     setSelectCorrectAnswerTrue((prev) => !prev);
-    setSelectCorrectAnswerFalse(true);
+    setSelectCorrectAnswerFalse(false);
     questionMemo.current[counter - 1]['correctAnswer'] = 'answer1';
   };
   const handleClickCorrectAnswerFalse = () => {
     setSelectCorrectAnswerFalse((prev) => !prev);
-    setSelectCorrectAnswerTrue(true);
+    setSelectCorrectAnswerTrue(false);
     questionMemo.current[counter - 1]['correctAnswer'] = 'answer2';
   };
 
   return (
     <>
-      <Grid container rowSpacing={1} sx={{ padding: '0em 2em 1.5em 2em' }}>
+      <Grid container sx={{ padding: '0.8em 0em' }}>
         <Grid item xs={12}>
-          <Box className="answer-true" sx={designs.Answer_True_Style}>
-            <Box className="Quiz-item" sx={designs.Quiz_Item_Style}>
-              <Typography sx={designs.Quiz_Item_Typography_Style}>
-                A.
-              </Typography>
-            </Box>
-            <Typography sx={designs.Answer_Style}>True</Typography>
+          <Box
+            sx={{
+              width: 'relative',
+              height: 'auto',
+              display: 'flex',
+              gap: '0.5em',
+              marginBottom: '0.5em',
+            }}
+          >
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                height: 'auto',
+                width: 'relative',
+                flexGrow: 1,
+                border: '1px solid #DBDBDB',
+                backgroundColor: '#FCFCFC',
+                borderRadius: '0.3em',
+                padding: '0.2em 0.7em',
+              }}
+            >
+              <Typography
+                children="A."
+                sx={{
+                  width: '2em',
+                  height: 'max-content',
+                  fontSize: '0.8em',
+                  fontWeight: '500',
+                  color: '#3F3D56',
+                  textTransform: 'Uppercase',
+                }}
+              />
 
-            <Box flexGrow={1} height="relative" />
+              <Typography
+                children="True"
+                sx={{
+                  width: 'auto',
+                  flexGrow: 1,
+                  height: 'max-content',
+                  fontSize: '0.8em',
+                  fontWeight: '500',
+                  color: '#3F3D56',
+                  textTransform: 'Capitalize',
+                }}
+              />
+            </Box>
 
             <Box
-              className="Correct-answer-button-container"
               onClick={handleClickCorrectAnswerTrue}
-              sx={{ height: 'auto', width: 'auto' }}
+              sx={{ borderRadius: '0.2em', height: 'auto', width: 'auto' }}
             >
               {!selectCorrectAnswerTrue ? (
-                <IconButton
-                  aria-label="correct-answer"
-                  sx={designs.Correct_AnswerT_IconButton_Style}
+                <Tooltip
+                  title="Select this to be the correct answer"
+                  placement="right"
                 >
-                  <Check sx={designs.CheckIconT_Style} />
-                </IconButton>
+                  <IconButton
+                    sx={{
+                      borderRadius: '0.2em',
+                      border: '1px solid #DBDBDB',
+                      backgroundColor: '#FCFCFC',
+                    }}
+                  >
+                    <CheckOutlined sx={{ fontSize: '0.7em' }} />
+                  </IconButton>
+                </Tooltip>
               ) : (
-                <IconButton
-                  aria-label="correct-answer"
-                  sx={designs.Correct_AnswerF_IconButton_Style}
-                >
-                  <Check sx={designs.CheckIconF_Style} />
-                </IconButton>
+                <Tooltip title="Remove selection" placement="right">
+                  <IconButton
+                    sx={{
+                      borderRadius: '0.2em',
+                      border: '1px solid transparent',
+                      backgroundColor: '#007FFF',
+                      color: 'white',
+                      '&: hover': {
+                        backgroundColor: '#007FFF',
+                        color: 'white',
+                      },
+                    }}
+                  >
+                    <CheckOutlined sx={{ fontSize: '0.7em' }} />
+                  </IconButton>
+                </Tooltip>
               )}
             </Box>
           </Box>
         </Grid>
 
         <Grid item xs={12}>
-          <Box className="answer-false" sx={designs.Answer_False_Style}>
-            <Box className="Quiz-item" sx={designs.Quiz_Item_Style}>
-              <Typography sx={designs.Quiz_Item_Typography_Style2}>
-                B.
-              </Typography>
-            </Box>
-            <Typography sx={designs.Answer_Style}>False</Typography>
+          <Box
+            sx={{
+              width: 'relative',
+              height: 'auto',
+              display: 'flex',
+              gap: '0.5em',
+              marginBottom: '0.5em',
+            }}
+          >
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                height: 'auto',
+                width: 'relative',
+                flexGrow: 1,
+                border: '1px solid #DBDBDB',
+                backgroundColor: '#FCFCFC',
+                borderRadius: '0.3em',
+                padding: '0.2em 0.7em',
+              }}
+            >
+              <Typography
+                children="B."
+                sx={{
+                  width: '2em',
+                  height: 'max-content',
+                  fontSize: '0.8em',
+                  fontWeight: '500',
+                  color: '#3F3D56',
+                  textTransform: 'Uppercase',
+                }}
+              />
 
-            <Box flexGrow={1} height="relative" />
+              <Typography
+                children="False"
+                sx={{
+                  width: 'auto',
+                  flexGrow: 1,
+                  height: 'max-content',
+                  fontSize: '0.8em',
+                  fontWeight: '500',
+                  color: '#3F3D56',
+                  textTransform: 'Capitalize',
+                }}
+              />
+            </Box>
 
             <Box
-              className="Correct-answer-button-container"
               onClick={handleClickCorrectAnswerFalse}
-              sx={{ height: 'auto', width: 'auto' }}
+              sx={{ borderRadius: '0.2em', height: 'auto', width: 'auto' }}
             >
               {!selectCorrectAnswerFalse ? (
-                <IconButton
-                  aria-label="correct-answer"
-                  sx={designs.Correct_AnswerT_IconButton_Style}
+                <Tooltip
+                  title="Select this to be the correct answer"
+                  placement="right"
                 >
-                  <Check sx={designs.CheckIconT2_Style} />
-                </IconButton>
+                  <IconButton
+                    sx={{
+                      borderRadius: '0.2em',
+                      border: '1px solid #DBDBDB',
+                      backgroundColor: '#FCFCFC',
+                    }}
+                  >
+                    <CheckOutlined sx={{ fontSize: '0.7em' }} />
+                  </IconButton>
+                </Tooltip>
               ) : (
-                <IconButton
-                  aria-label="correct-answer"
-                  sx={designs.Correct_AnswerF_IconButton_Style}
-                >
-                  <Check sx={designs.CheckIconF_Style} />
-                </IconButton>
+                <Tooltip title="Remove selection" placement="right">
+                  <IconButton
+                    sx={{
+                      borderRadius: '0.2em',
+                      border: '1px solid transparent',
+                      backgroundColor: '#007FFF',
+                      color: 'white',
+                      '&: hover': {
+                        backgroundColor: '#007FFF',
+                        color: 'white',
+                      },
+                    }}
+                  >
+                    <CheckOutlined sx={{ fontSize: '0.7em' }} />
+                  </IconButton>
+                </Tooltip>
               )}
             </Box>
           </Box>

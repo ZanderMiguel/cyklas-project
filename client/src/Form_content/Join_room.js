@@ -86,7 +86,7 @@ function Join_room({ open, close, maxWidth }) {
                 width: 'auto',
                 height: 'max-content',
                 color: '#3F3D56',
-                fontSize: '0.7em',
+                fontSize: '0.8em',
                 fontWeight: '400',
                 margin: '0.3em 0em 2em 0em',
               }}
@@ -139,7 +139,7 @@ function Join_room({ open, close, maxWidth }) {
                 width: 'auto',
                 height: 'max-content',
                 color: '#3F3D56',
-                fontSize: '0.7em',
+                fontSize: '0.8em',
                 fontWeight: '400',
                 margin: '0.3em 0em 2em 0em',
               }}

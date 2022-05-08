@@ -5,7 +5,7 @@ import EXAM_TRUEORFALSE from './Exam_trueorfalse';
 import EXAM_CHECKBOXES from './Exam_checkboxes';
 import EXAM_ENUMERATION from './Exam_enumeration';
 import EXAM_SHORTANSWER from './Exam_shortanswer';
-import IMAGE_GIF from '../Image_GIF';
+import Image_GIF from '../Image_GIF';
 import ExamQuestionOptionspopover from '../../../components/PopoverContent/ExamQuestionOptionspopover';
 import CusPopover from '../../../components/Popover';
 import EXAM_OPTIONS from './Exam_Options';
@@ -13,6 +13,8 @@ import {
   AddCircle,
   MoreVert,
   PhotoSizeSelectActualOutlined,
+  DeleteOutlined,
+  ImageOutlined,
 } from '@mui/icons-material';
 import {
   Typography,
@@ -22,8 +24,14 @@ import {
   Box,
   Button,
   Grid,
+  Tooltip,
+  FormControl,
+  Select,
+  MenuItem,
+  Input,
 } from '@mui/material';
-function Exam_Questions({ counter, questionMemo }) {
+
+function Exam_Questions({ counter, questionMemo, examQuestions, deleteQA }) {
   const { designs } = useStyle();
   const [opendialog, setOpenDialog] = useState(false);
   const [image, setImage] = useState('');
@@ -33,6 +41,7 @@ function Exam_Questions({ counter, questionMemo }) {
       points: '2 point',
     };
   }, [counter, questionMemo]);
+
   const [selectAnswerType, setAnswerType] = useState('Multiple Choice');
 
   const handleChange = (event) => {
@@ -40,7 +49,6 @@ function Exam_Questions({ counter, questionMemo }) {
 
     questionMemo.current[counter - 1][event.target.name] = event.target.value;
   };
-  console.log(questionMemo.current);
   const handleSubmit = (event) => {
     event.preventDefault();
   };
@@ -59,206 +67,199 @@ function Exam_Questions({ counter, questionMemo }) {
   return (
     <form key={counter} onSubmit={handleSubmit} id="quizform">
       <Grid container rowSpacing={1}>
-        <Box
-          className="Exam-options-responsive"
-          sx={designs.Exam_Options_Responsive_Style}
-        >
-          <IconButton
-            aria-label="options"
-            onClick={handleClickNotif}
-            sx={designs.Exam_Options_IconButton_Style}
-          >
-            <MoreVert sx={designs.MoreVertIcon_Style} />
-          </IconButton>
-
-          <CusPopover
-            open={notif}
-            anchorEl={anchorEl}
-            onClose={handleCloseNotif}
-          >
-            <ExamQuestionOptionspopover />
-          </CusPopover>
-        </Box>
         <Grid item xs={12}>
-          <Box className="Exam-container" sx={designs.Exam_Container_Style}>
-            <Box
-              className="Exam-container-sub"
-              sx={designs.Exam_Container_Sub_Style}
+          <Box
+            className="Exam-question"
+            sx={{
+              width: '100%',
+              height: 'auto',
+              backgroundColor: 'White',
+            }}
+          >
+            <Grid
+              item
+              xs={12}
+              sx={{
+                marginBottom: '0.8em',
+                backgroundColor: 'white',
+                borderRadius: '0.3em 0.3em 0em 0em',
+                padding: '0.6em 0.8em 0.8em 1.1em',
+                '&: hover': {
+                  transition: 'all 250ms',
+                  boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 12px',
+                  borderBottom: '4px solid #007FFF',
+                },
+              }}
             >
-              <Box className="Exam-question" sx={designs.Exam_Question_Style}>
-                <Box
-                  className="Exam-question-sub"
-                  sx={designs.Exam_Question_Sub_Style}
-                >
-                  <TextField
-                    id="filled-basic"
-                    placeholder="Enter exam question here..."
-                    variant="filled"
-                    autoComplete="off"
-                    sx={designs.Exam_Question_TextField_Style}
-                    inputProps={{
-                      style: {
-                        height: '0em',
-                        fontSize: '0.8em',
-                        paddingLeft: '0.2em',
-                        paddingRight: '0.4em',
-                        marginBottom: '1.2em',
-                        color: 'white',
-                      },
-                    }}
-                    InputProps={{
-                      disableUnderline: true,
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <Box
-                            className="Exam-item"
-                            sx={designs.Exam_Item_Style}
-                          >
-                            <Typography sx={designs.Exam_Item_Typography_Style}>
-                              {counter}
-                            </Typography>
-                          </Box>
-                        </InputAdornment>
-                      ),
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton
-                            aria-label="attach-image"
-                            onClick={() => setOpenDialog(true)}
-                            sx={{
-                              height: '2em',
-                              width: '2em',
-                              marginRight: '0.5em',
-                              borderRadius: '0em',
-                            }}
-                          >
-                            <PhotoSizeSelectActualOutlined
-                              sx={{
-                                color: 'White',
-                                fontSize: '30px',
-                              }}
-                            />
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                    name={`questionsContent`}
-                    onChange={(event) => handleChange(event)}
-                  />
-                </Box>
-                <Box
-                  className="Exam-question-image"
-                  sx={designs.Exam_Question_Image_Style}
-                >
-                  <Box
-                    className="Exam-question-image-sub"
-                    sx={designs.Exam_Question_Image_Sub_Style}
-                  >
-                    {image !== '' ? (
-                      <>
-                        <Box
-                          width="80%"
-                          display="flex"
-                          justifyContent="center"
-                          alignItems="center"
-                        >
-                          <img
-                            src={image}
-                            alt=""
-                            width="100%"
-                            height="300px"
-                            style={{
-                              padding: '0.7em 0em 0em 1em',
-                              objectFit: 'contain',
-                            }}
-                          />
-                        </Box>
-                        <Button
-                          variant="contained"
-                          onClick={() => setImage('')}
-                        >
-                          remove
-                        </Button>
-                      </>
-                    ) : (
-                      <Box
-                        width="80%"
-                        height="300px"
-                        justifyContent="center"
-                        alignItems="center"
-                      >
-                        <Button
-                          variant="contained"
-                          startIcon={
-                            <AddCircle
-                              style={{
-                                marginRight: '0.2em',
-                                fontSize: '2em',
-                                color: '#716F87',
-                              }}
-                            />
-                          }
-                          sx={designs.Insert_Image_Button_Style}
-                          onClick={() => setOpenDialog(true)}
-                        >
-                          Insert an image or GIF associated to this question.
-                        </Button>
-                      </Box>
-                    )}
-                  </Box>
-                </Box>
-
-                {selectAnswerType === 'Multiple Choice' && (
-                  <EXAM_MULTIPLECHOICE
-                    questionMemo={questionMemo}
-                    counter={counter}
-                  />
-                )}
-                {selectAnswerType === 'True or False' && (
-                  <EXAM_TRUEORFALSE
-                    questionMemo={questionMemo}
-                    counter={counter}
-                  />
-                )}
-                {selectAnswerType === 'Checkboxes' && (
-                  <EXAM_CHECKBOXES
-                    questionMemo={questionMemo}
-                    counter={counter}
-                  />
-                )}
-                {selectAnswerType === 'Enumeration' && (
-                  <EXAM_ENUMERATION
-                    questionMemo={questionMemo}
-                    counter={counter}
-                  />
-                )}
-                {selectAnswerType === 'Short Answer' && (
-                  <EXAM_SHORTANSWER
-                    questionMemo={questionMemo}
-                    counter={counter}
-                  />
-                )}
-              </Box>
-              {opendialog && (
-                <IMAGE_GIF
-                  open={opendialog}
-                  close={() => setOpenDialog(false)}
-                  maxWidth="lg"
-                  setImage={setImage}
-                  questionMemo={questionMemo}
-                  counter={counter}
+              <Box
+                sx={{
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.8em',
+                  marginBottom: '0.2em',
+                }}
+              >
+                <Typography
+                  children={`Question ${counter}`}
+                  sx={{
+                    width: 'auto',
+                    flexGrow: 1,
+                    height: 'max-content',
+                    fontSize: '1em',
+                    fontWeight: '600',
+                    color: '#007FFF',
+                    '&: hover': {
+                      cursor: 'default',
+                    },
+                  }}
                 />
-              )}
-              {
                 <EXAM_OPTIONS
                   selectAnswerType={selectAnswerType}
                   setAnswerType={setAnswerType}
                   questionMemo={questionMemo}
                   counter={counter}
+                  deleteQA={deleteQA}
                 />
-              }
-            </Box>
+              </Box>
+
+              <Box
+                sx={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'flex',
+                  gap: '0.5em',
+                  alignItems: 'center',
+                  marginBottom: '0.3em',
+                }}
+              >
+                <Input
+                  placeholder="Enter exam question here..."
+                  fullWidth
+                  disableUnderline
+                  name={`questionsContent`}
+                  onChange={(event) => handleChange(event)}
+                  sx={{
+                    width: 'auto',
+                    flexGrow: 1,
+                    height: 'auto',
+                    fontSize: '0.8em',
+                    fontWeight: '600',
+                    color: '#3F3D56',
+                  }}
+                ></Input>
+
+                <Tooltip
+                  title="Attach an image or GIF that associates to this question"
+                  placement="right"
+                >
+                  <IconButton
+                    sx={{
+                      height: '1.4em',
+                      width: '1.4em',
+                    }}
+                    onClick={() => setOpenDialog(true)}
+                  >
+                    <ImageOutlined sx={{ fontSize: '1em', color: '#707070' }} />
+                  </IconButton>
+                </Tooltip>
+                {opendialog && (
+                  <Image_GIF
+                    open={opendialog}
+                    close={() => setOpenDialog(false)}
+                    maxWidth="lg"
+                    setImage={setImage}
+                    questionMemo={questionMemo}
+                    counter={counter}
+                  />
+                )}
+              </Box>
+
+              <Box
+                className="Exam-question-image"
+                sx={designs.Exam_Question_Image_Style}
+              >
+                <Box
+                  className="Exam-question-image-sub"
+                  sx={{
+                    width: 'relative',
+                    height: 'auto',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0.5em',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  {image !== '' && (
+                    <>
+                      <Box
+                        width="relative"
+                        display="flex"
+                        justifyContent="center"
+                        alignItems="center"
+                      >
+                        <img
+                          src={image}
+                          alt=""
+                          width="100%"
+                          height="300px"
+                          style={{
+                            objectFit: 'contain',
+                          }}
+                        />
+                      </Box>
+                      <Button variant="contained" onClick={() => setImage('')}>
+                        remove
+                      </Button>
+                    </>
+                  )}
+                </Box>
+              </Box>
+
+              {selectAnswerType === 'Multiple Choice' && (
+                <EXAM_MULTIPLECHOICE
+                  questionMemo={questionMemo}
+                  counter={counter}
+                />
+              )}
+              {selectAnswerType === 'True or False' && (
+                <EXAM_TRUEORFALSE
+                  questionMemo={questionMemo}
+                  counter={counter}
+                />
+              )}
+              {selectAnswerType === 'Checkboxes' && (
+                <EXAM_CHECKBOXES
+                  questionMemo={questionMemo}
+                  counter={counter}
+                />
+              )}
+              {selectAnswerType === 'Enumeration' && (
+                <EXAM_ENUMERATION
+                  questionMemo={questionMemo}
+                  counter={counter}
+                />
+              )}
+              {selectAnswerType === 'Short Answer' && (
+                <EXAM_SHORTANSWER
+                  questionMemo={questionMemo}
+                  counter={counter}
+                />
+              )}
+            </Grid>
           </Box>
+
+          {opendialog && (
+            <Image_GIF
+              open={opendialog}
+              close={() => setOpenDialog(false)}
+              maxWidth="lg"
+              setImage={setImage}
+              questionMemo={questionMemo}
+              counter={counter}
+            />
+          )}
         </Grid>
       </Grid>
     </form>
