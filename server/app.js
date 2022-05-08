@@ -46,12 +46,19 @@ app.use(express.static('public'));
 app.use(router);
 let quizLobby = {};
 io.on('connection', (socket) => {
-  socket.on('joinroom', (roomID, username,avatar) => {
+  socket.on('joinroom', (roomID, members) => {
     socket.join(roomID);
-    console.log(
-      `User with ID: ${socket.id} joined room: ${roomID} username: ${username}`
-    );
-    socket.to(roomID).emit('join-others',username,avatar)
+    
+    socket.to(roomID).emit('join-others',members,socket.id)
+    socket.on('render',()=>{
+      socket.to(roomID).emit('rendered',members)
+    })
+    socket.on('disconnect',()=>{
+      socket.to(roomID).emit('user-disconnected',socket.id)
+    })
+    socket.on('remove-disconnected',()=>{
+      socket.to(roomID).emit('tile-removed')
+    })
   });
 
   socket.on('sendMessage', (data) => {

@@ -21,7 +21,7 @@ import Members from './Members';
 import MessageArea from './TeleconSide/MessageArea';
 import PresentationCriteria from './PresentationCriteria';
 import { useParams } from 'react-router-dom'
-
+import _ from 'lodash'
 import RightContent from './RightContent';
 import AvatarIcon from '../assets/ImageJaven/Avatar.png';
 import {
@@ -38,11 +38,27 @@ function TeleconRoomV2({ socket }) {
   const [currentMessage, setCurrentMessage] = React.useState('');
   const [messagelist, setMessageList] = React.useState([]);
   const { teleRoom } = useParams()
-  const name = `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName
-  }`
-  const avatar = JSON.parse(localStorage.userData).data.user.image
-  socket.emit('joinroom', teleRoom, name,avatar)
-  console.log(teleRoom)
+  const [renderer, setRenderer] = React.useState(false)
+  const [members, setMembers] = React.useState([{
+    camera: JSON.parse(localStorage.userData).data.user.image,
+    memberName: `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName
+      }`,
+    id: JSON.parse(localStorage.userData).data.user._id
+  }])
+
+  React.useMemo(() => {
+    socket.emit('joinroom', teleRoom, members)
+  }, [renderer])
+  socket.once('rendered', (newMember) => {
+    setMembers(_.uniqBy([...newMember, {
+      camera: JSON.parse(localStorage.userData).data.user.image,
+      memberName: `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName
+        }`,
+      id: JSON.parse(localStorage.userData).data.user._id
+    }],item=>item.id))
+    setRenderer(prev => !prev)
+  })
+  socket.once('tile-removed', () => setRenderer(prev => !prev))
   return (
     <>
       <CssBaseline />
@@ -55,19 +71,19 @@ function TeleconRoomV2({ socket }) {
           overflowX: 'hidden',
         }}
       >
-        <Box sx={{ display: 'flex',width: '100%',}}>
+        <Box sx={{ display: 'flex', width: '100%', }}>
           <Box
             sx={{
               backgroundColor: '#171A20',
               height: '98vh',
               borderRadius: '0.4em',
               margin: '0.4em 0.5em 0em 0.5em',
-              width: '100%',whiteSpace: 'pre'
+              width: '100%', whiteSpace: 'pre'
             }}
           >
             <MainSessionHeader />
 
-            <MainSessionBody socket={socket} />
+            <MainSessionBody renderer={renderer} socket={socket} members={members} setMembers={setMembers} />
 
             <MainSessionFooter />
           </Box>
@@ -81,15 +97,6 @@ function TeleconRoomV2({ socket }) {
               margin: '0.4em 0em 0em 0em',
             }}
           >
-            {/* LeftContent */}
-            {/* <Collapse
-                    orientation="horizontal"
-                    in={sidedrawer}
-                    sx={{
-                    '& .MuiCollapse-wrapperInner': {
-                        width: '25rem',
-                    },
-                    }}> */}
             <Slide direction="left" in={sidedrawer} mountOnEnter unmountOnExit>
               <Box sx={{ height: '98vh' }}>
                 {sidecontent === 'MeetingInformation' ? (

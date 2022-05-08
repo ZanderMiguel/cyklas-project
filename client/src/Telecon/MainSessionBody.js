@@ -12,27 +12,35 @@ import MicOffOutlinedIcon from '@mui/icons-material/MicOffOutlined';
 // import download from "../assets/ImageJaven/download.jpg";
 
 
-function MainSessionBody({ socket }) {
+function MainSessionBody({ renderer,socket, members, setMembers }) {
     const [toggleMic, setToggleMic] = React.useState(false);
     const layout = React.useRef(null)
     const [tileWidth, setTileWidth] = React.useState(null)
+    
 
-
-    const [members, setMembers] = React.useState([{
-        camera: JSON.parse(localStorage.userData).data.user.image,
-        memberName: `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName
-        }`
-    }])
     React.useEffect(() => {
         layout.current && setTileWidth(layout.current.childNodes.length >= 36 ? 7 : layout.current.childNodes.length >= 25 ? 6 : layout.current.childNodes.length >= 16 ? 5 : layout.current.childNodes.length >= 9 ? 4 : layout.current.childNodes.length >= 4 ? 3 : 2)
 
 
-        socket.on('join-others', (username, avatar) => {
-            setMembers([...members, { camera: avatar, memberName: username }])
+        socket.once('join-others', (newMember, id) => {
+            
+            setMembers([...newMember, {
+                camera: JSON.parse(localStorage.userData).data.user.image,
+                memberName: `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName
+                    }`,
+                id: id
+            }])
             console.log('someone joined')
+            socket.emit('render')
         })
     }, [])
-
+    socket.on('user-disconnected', (id) => {
+        setMembers(members.filter(item => {
+            return item.id === id
+        }))
+        //document.querySelector(`#${id}`).remove()
+        socket.emit('remove-disconnected')
+    })
     const handleToggleMic = () => {
         setToggleMic((prev) => !prev);
     };
@@ -57,7 +65,7 @@ function MainSessionBody({ socket }) {
 
                 {members.map(function (items, index) {
                     return (
-                        <div key={index} style={{ minWidth: `calc(85%/${tileWidth})`, height: `calc(${layout.current && layout.current}/${tileWidth})` }}>
+                        <div id={items.id} key={items.id+index} style={{ minWidth: `calc(85%/${tileWidth})`, height: `calc(${layout.current && layout.current}/${tileWidth})` }}>
                             <Box sx={{
                                 position: "relative",
                                 backgroundColor: "#25282E",
@@ -72,7 +80,7 @@ function MainSessionBody({ socket }) {
                                 flexDirection: 'column'
                             }}>
                                 <Avatar alt="Remy Sharp" src={items.camera} sx={{ height: "5em", width: "5em" }} />
-                                    
+
 
                                 <Box sx={{
                                     // position: "relative",
