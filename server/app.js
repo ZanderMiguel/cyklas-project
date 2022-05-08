@@ -48,26 +48,24 @@ let quizLobby = {};
 io.on('connection', (socket) => {
   socket.on('joinroom', (roomID, members) => {
     socket.join(roomID);
-    
-    socket.to(roomID).emit('join-others',members,socket.id)
-    socket.on('render',()=>{
-      socket.to(roomID).emit('rendered',members)
-    })
-    socket.on('disconnect',()=>{
-      socket.to(roomID).emit('user-disconnected',socket.id)
-    })
-    socket.on('remove-disconnected',()=>{
-      socket.to(roomID).emit('tile-removed')
-    })
+    console.log('bonak has joined');
+    socket.to(roomID).emit('join-others', members, socket.id);
+    socket.once('render', () => {
+      socket.to(roomID).emit('rendered', members);
+    });
+    socket.once('disconnect', () => {
+      socket.to(roomID).emit('user-disconnected', socket.id);
+    });
+    socket.once('remove-disconnected', () => {
+      console.log('tanginamo');
+      socket.to(roomID).emit('tile-removed');
+    });
   });
 
   socket.on('sendMessage', (data) => {
     socket.to(data.room).emit('receive_message', data);
   });
 
-  socket.on('disconnect', () => {
-    console.log('User Disconnected', socket.id);
-  });
   socket.on('create-room', () => {
     socket.emit('room-created', v4());
   });

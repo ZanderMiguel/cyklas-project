@@ -1,6 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Grid, Box, Button, Stack, IconButton } from '@mui/material';
+import {
+  Grid,
+  Box,
+  Button,
+  Stack,
+  IconButton,
+  Typography,
+  Select,
+  MenuItem,
+  FormHelperText,
+  FormControl,
+} from '@mui/material';
 import {
   PanoramaOutlined,
   AttachFileOutlined,
@@ -24,7 +35,8 @@ const types = [
 
 function Create_activity({ open, close, setOpenDialog }) {
   const { roomID } = useParams();
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('');
   const [title, setTitle] = useState('');
   const [points, setPoints] = useState('');
   const [duedate, setDueDate] = useState(null);
@@ -62,19 +74,19 @@ function Create_activity({ open, close, setOpenDialog }) {
     if (points === '') {
       setPointsError(true);
     }
-    if (category === '') {
+    if (selectedCategory === '') {
       setTypeError(true);
     }
 
     const Activity = {
       activityTitle: title,
-      activityType: category,
+      activityType: selectedCategory,
       activityPoints: points,
       activityDueDate: duedate,
       activityInstruction: convertedState,
       rooms: [roomID],
     };
-    if (title && points && category) {
+    if (title && points && selectedCategory) {
       axios
         .post('http://localhost:5000/activity/create', Activity)
         .then((res) => {
@@ -85,6 +97,15 @@ function Create_activity({ open, close, setOpenDialog }) {
         });
     }
   };
+
+  useEffect(() => {
+    axios
+      .post('http://localhost:5000/gradingSystem/record', {
+        roomID: roomID,
+      })
+      .then((res) => setCategory(res.data[0].Category))
+      .catch((err) => console.log(err.message));
+  }, []);
 
   return (
     <Dialogform
@@ -117,15 +138,38 @@ function Create_activity({ open, close, setOpenDialog }) {
           onChange={(event) => setType(event.target.value)}
           half
         /> */}
-        <Dropdown
+
+        {/* <Dropdown
           inputLabel="Category"
           onChange={handleType}
-          options={types}
+          options={category}
           value={category}
           error={typeerror}
           typeerror="Please select type"
           half
-        />
+        /> */}
+        <Grid item xs={12} sm={6}>
+          <FormControl error={typeerror} fullWidth>
+            <Typography variant="body1" sx={{ ml: 1, mb: 1, fontWeight: 500 }}>
+              Category
+            </Typography>
+
+            <Select
+              value={selectedCategory}
+              onChange={(event) => setSelectedCategory(event.target.value)}
+            >
+              {category &&
+                category.map((item, index) => (
+                  <MenuItem key={index} value={Object.entries(item)[0][0]}>
+                    {Object.entries(item)[0][0]}
+                  </MenuItem>
+                ))}
+            </Select>
+            {typeerror ? (
+              <FormHelperText> Please select Category</FormHelperText>
+            ) : null}
+          </FormControl>
+        </Grid>
         <Input
           name="points"
           inputLabel="Points"

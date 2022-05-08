@@ -52,7 +52,7 @@ function Members() {
     <div
       style={{
         width: '23.9rem',
-        height: '98vh'
+        height: '98vh',
       }}
     >
       <Box
@@ -139,26 +139,27 @@ function Members() {
           }}
         />
       </Box>
-      
-      <Box 
-      sx = {{ 
-        width: "relative",
-        height: "auto",
-        display: "flex",
-        alignItems: "center",
-        padding: "0em 1.5em",
-        margin: "1.5em 0em 0.3em 0em"
-        }}>
-        <Typography
-        children="Incall"
+
+      <Box
         sx={{
-          color: '#DEDEDE',
-          fontSize: '0.8em',
-          fontWeight: '500',
-          height: 'max-content',
-          width: 'auto',
-          flexGrow: 1,
+          width: 'relative',
+          height: 'auto',
+          display: 'flex',
+          alignItems: 'center',
+          padding: '0em 1.5em',
+          margin: '1.5em 0em 0.3em 0em',
         }}
+      >
+        <Typography
+          children="Incall"
+          sx={{
+            color: '#DEDEDE',
+            fontSize: '0.8em',
+            fontWeight: '500',
+            height: 'max-content',
+            width: 'auto',
+            flexGrow: 1,
+          }}
         />
 
         <Typography
@@ -169,11 +170,11 @@ function Members() {
             fontWeight: '500',
             height: 'max-content',
             width: 'auto',
-            textAlign: "right"
+            textAlign: 'right',
           }}
         />
       </Box>
-      
+
       <Box
         sx={{
           width: 'relative',
@@ -190,7 +191,7 @@ function Members() {
             alignItems: 'center',
             padding: '0.2em 0.4em 0.2em 0.2em',
             margin: '0.3em 1.3em',
-            backgroundColor: "#22252B",
+            backgroundColor: '#22252B',
             borderRadius: '0.3em',
             // "&: hover":
             //   backgroundColor: "#282B31",
@@ -260,6 +261,7 @@ function Members() {
         {dataMember.map(function (items, index) {
           return (
             <Box
+              key={index}
               sx={{
                 width: 'relative',
                 height: 'auto',
@@ -268,7 +270,7 @@ function Members() {
                 alignItems: 'center',
                 padding: '0.2em 0.4em 0.2em 0.2em',
                 margin: '0.3em 1.3em',
-                backgroundColor: "#22252B",
+                backgroundColor: '#22252B',
                 borderRadius: '0.3em',
                 // "&: hover":
                 //   backgroundColor: "#282B31",

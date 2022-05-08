@@ -300,10 +300,9 @@ function useStyle() {
     },
     UploadedFilesContainer_Style: {
       marginTop: '5px',
-      height: '80%',
+      height: 'auto',
       width: 'relative',
       padding: '5px 40px 5px 40px',
-      overflowY: 'auto',
       [theme.breakpoints.down('sm')]: {
         padding: '5px 15px',
       },

@@ -89,39 +89,47 @@ function Rooms({ socket }) {
                 )}
               </Grid>
               {error && console.log(error)}
-              {isPending && <CircularProgress />}
               {data && data.length > 0 ? (
                 <Room_layout data={data} />
               ) : (
-                <Box sx = {{
-                  width: "100%",
-                  height: "75vh",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexWrap: "wrap"
-                }}>
-                  <img src = {NoRoom} alt = "No Room"
-                  style = {{
-                    height: "12em",
-                    marginBottom: "1.5em"
-                  }}/>
-                  <Typography children = "You have no room."
-                  sx = {{
-                    fontSize: "1em",
-                    fontWeight: "600",
-                    color: "#3F3D56",
-                    marginBottom: "0.3em"
-                  }}/>
-        
-                  <Typography children = "Create your very first room now for your class to start."
-                  sx = {{
-                    fontSize: "0.8em",
-                    fontWeight: "500",
-                    color: "#8E8E8E",
-                    marginLeft: "0.8em"
-                  }}/>
+                <Box
+                  sx={{
+                    width: '100%',
+                    height: '75vh',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flexWrap: 'wrap',
+                  }}
+                >
+                  <img
+                    src={NoRoom}
+                    alt="No Room"
+                    style={{
+                      height: '12em',
+                      marginBottom: '1.5em',
+                    }}
+                  />
+                  <Typography
+                    children="You have no room."
+                    sx={{
+                      fontSize: '1em',
+                      fontWeight: '600',
+                      color: '#3F3D56',
+                      marginBottom: '0.3em',
+                    }}
+                  />
+
+                  <Typography
+                    children="Create your very first room now for your class to start."
+                    sx={{
+                      fontSize: '0.8em',
+                      fontWeight: '500',
+                      color: '#8E8E8E',
+                      marginLeft: '0.8em',
+                    }}
+                  />
                 </Box>
               )}
             </Grid>
@@ -166,35 +174,44 @@ function Rooms({ socket }) {
               {data && data.length > 0 ? (
                 <Room_layout_student data={data} />
               ) : (
-                <Box sx = {{
-                  width: "100%",
-                  height: "70vh",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexWrap: "wrap"
-                }}>
-                  <img src = {NoRoom} alt = "No Room"
-                  style = {{
-                    height: "12em",
-                    marginBottom: "1.5em"
-                  }}/>
-                  <Typography children = "You have no room."
-                  sx = {{
-                    fontSize: "1em",
-                    fontWeight: "600",
-                    color: "#3F3D56",
-                    marginBottom: "0.3em"
-                  }}/>
-        
-                  <Typography children = "Start joining a room now to be part of a class."
-                  sx = {{
-                    fontSize: "0.8em",
-                    fontWeight: "500",
-                    color: "#8E8E8E",
-                    marginLeft: "0.8em"
-                  }}/>
+                <Box
+                  sx={{
+                    width: '100%',
+                    height: '70vh',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flexWrap: 'wrap',
+                  }}
+                >
+                  <img
+                    src={NoRoom}
+                    alt="No Room"
+                    style={{
+                      height: '12em',
+                      marginBottom: '1.5em',
+                    }}
+                  />
+                  <Typography
+                    children="You have no room."
+                    sx={{
+                      fontSize: '1em',
+                      fontWeight: '600',
+                      color: '#3F3D56',
+                      marginBottom: '0.3em',
+                    }}
+                  />
+
+                  <Typography
+                    children="Start joining a room now to be part of a class."
+                    sx={{
+                      fontSize: '0.8em',
+                      fontWeight: '500',
+                      color: '#8E8E8E',
+                      marginLeft: '0.8em',
+                    }}
+                  />
                 </Box>
               )}
             </Grid>

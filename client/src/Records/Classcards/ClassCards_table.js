@@ -1,7 +1,7 @@
 import React from 'react';
 import './Styles/ClassCards_table_stylesheet.css';
-import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const dataTable = [
   {
@@ -54,47 +54,44 @@ const dataTable = [
   },
 ];
 
-function ClassCards_table() {
+function ClassCards_table({ roomsdata }) {
   return (
     <>
       <table className="classcards-table">
         <thead>
           <tr>
-            {/* <th> Room ID </th> */}
-            <th> Room Name </th>
-            {/* <th> MIDTERM Grade </th>
-            <th> FINAL TERM Grade </th> */}
-            <th> FINAL Grade </th>
-            <th> Actions </th>
+            <th> ROOM NAME </th>
+            <th> FINAL GRADE </th>
+            <th> ACTIONS</th>
           </tr>
         </thead>
 
         <tbody>
           {dataTable.map(function (items, index) {
+            console.log(items.finalGrade);
             return (
               <tr key={index}>
-                {/* <td data-label="Room ID"> {items.roomID} </td> */}
                 <td data-label="Room Name"> {items.roomName} </td>
-                {/* <td data-label="MIDTERM Grade"> {items.midtermGrade} </td>
-                <td data-label="FINAL TERM Grade"> {items.finaltermGrade} </td> */}
                 <td data-label="FINAL Grade"> {items.finalGrade} </td>
                 <td data-label="Actions">
-                  <Button 
-                  // disabled
-                  component = {Link}
-                  to = "/Evaluation"
-                  variant = "contained" children = "Evaluate"
-                  sx = {{
-                    padding: "0.3em 1em",
-                    fontWeight: "600",
-                    fontSize: "0.9em",
-                    boxShadow: "none",
-                    textTransform: "Capitalize",
-                    textDecoration: "none",
-                    "&: hover": {
-                      boxShadow: "none"
-                    }
-                  }}/>
+                  <Button
+                    // disabled
+                    component={Link}
+                    to="/Evaluation"
+                    variant="contained"
+                    children="Evaluate"
+                    sx={{
+                      padding: '0.3em 1em',
+                      fontWeight: '600',
+                      fontSize: '0.9em',
+                      boxShadow: 'none',
+                      textTransform: 'Capitalize',
+                      textDecoration: 'none',
+                      '&: hover': {
+                        boxShadow: 'none',
+                      },
+                    }}
+                  />
                 </td>
               </tr>
             );

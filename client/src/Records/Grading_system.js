@@ -76,8 +76,8 @@ function Grading_system({ data, name, counter }) {
       </Grid> */}
 
       {GS.map((item, index) => (
-        <Box marginBottom="10px">
-          <Grid item xs={12} key={index} sx={{ marginBottom: '0.6em' }}>
+        <Box marginBottom="10px" key={index}>
+          <Grid item xs={12} sx={{ marginBottom: '0.6em' }}>
             {item}
           </Grid>
         </Box>
