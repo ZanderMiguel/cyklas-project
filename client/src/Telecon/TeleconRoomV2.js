@@ -16,27 +16,16 @@ import MainSessionHeader from './MainSessionHeader';
 import MainSessionBody from './MainSessionBody';
 import MainSessionFooter from './MainSessionFooter';
 import RightContentSideBar from './RightContentSideBar';
+import MessageArea from './TeleconSide/MessageArea'
 import MeetingInformation from './MeetingInformation';
 import Members from './Members';
-import MessageArea from './TeleconSide/MessageArea';
 import PresentationCriteria from './PresentationCriteria';
 import { useParams } from 'react-router-dom'
-
-import RightContent from './RightContent';
-import AvatarIcon from '../assets/ImageJaven/Avatar.png';
-import {
-  ChatOutlined,
-  Info,
-  InfoOutlined,
-  PeopleAltOutlined,
-  CoPresentOutlined,
-} from '@mui/icons-material';
 
 function TeleconRoomV2({ socket }) {
   const [sidedrawer, setSideDrawer] = React.useState(false);
   const [sidecontent, setSideContent] = React.useState('');
-  const [currentMessage, setCurrentMessage] = React.useState('');
-  const [messagelist, setMessageList] = React.useState([]);
+  const messagelist = React.useRef([])
   const { teleRoom } = useParams()
   const name = `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName
   }`
@@ -81,15 +70,6 @@ function TeleconRoomV2({ socket }) {
               margin: '0.4em 0em 0em 0em',
             }}
           >
-            {/* LeftContent */}
-            {/* <Collapse
-                    orientation="horizontal"
-                    in={sidedrawer}
-                    sx={{
-                    '& .MuiCollapse-wrapperInner': {
-                        width: '25rem',
-                    },
-                    }}> */}
             <Slide direction="left" in={sidedrawer} mountOnEnter unmountOnExit>
               <Box sx={{ height: '98vh' }}>
                 {sidecontent === 'MeetingInformation' ? (
@@ -99,9 +79,7 @@ function TeleconRoomV2({ socket }) {
                 ) : sidecontent === 'MessageArea' ? (
                   <MessageArea
                     messagelist={messagelist}
-                    currentMessage={currentMessage}
-                    setCurrentMessage={setCurrentMessage}
-                    setMessageList={setMessageList}
+                    teleRoom={teleRoom}
                     socket={socket}
                   />
                 ) : (

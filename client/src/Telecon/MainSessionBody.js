@@ -144,6 +144,6 @@ function MainSessionBody({ socket }) {
             </div>
         </>
     )
-}
+        }
 
 export default MainSessionBody

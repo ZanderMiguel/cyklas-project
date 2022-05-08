@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Container,
   Grid,
@@ -15,8 +15,8 @@ import { Send } from '@mui/icons-material';
 import ReactScrollableFeed from 'react-scrollable-feed';
 
 function MessageArea({ socket, room, username }) {
-  const [currentMessage, setCurrentMessage] = React.useState('');
-  const [messagelist, setMessageList] = React.useState([]);
+  const [currentMessage, setCurrentMessage] = useState('');
+  const [messagelist, setMessageList] = useState([]);
 
   const sendMessage = async () => {
     if (currentMessage !== '') {
@@ -66,6 +66,7 @@ function MessageArea({ socket, room, username }) {
             >
               <ReactScrollableFeed>
                 {messagelist.map((messageContent, index) => {
+                  console.log(messageContent)
                   return (
                     <Box key={index} display="flex" justifyContent="flex-start">
                       <Paper
