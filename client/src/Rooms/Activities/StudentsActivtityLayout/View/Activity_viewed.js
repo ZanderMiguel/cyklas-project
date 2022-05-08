@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import {
   Container,
   Grid,
@@ -23,12 +25,26 @@ import AvatarIcon from '../../../../assets/ImageJaven/Avatar.png';
 import Wordfile from '../../../../assets/ImageJaven/Wordfile.png';
 import ActivityIcon from '../../../../assets/ImageJaven/ActivityIcon.png';
 import ReactScrollableFeed from 'react-scrollable-feed';
+import moment from 'moment';
+import draftToHtml from 'draftjs-to-html';
+import ReactHtmlParser from 'react-html-parser';
 
 function Activity_viewed() {
-  const [value, setValue] = React.useState(0);
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  const [activityView, setActivityView] = useState(null);
+  const { activityID } = useParams();
+
+  React.useEffect(() => {
+    axios
+      .post('http://localhost:5000/activity/get', { activityID })
+      .then((res) => {
+        setActivityView(res.data);
+      })
+      .catch((err) => console.log(err.message));
+  }, []);
+
+  useEffect(() => {
+    console.log(activityView);
+  }, []);
 
   return (
     <Container maxWidth="md" sx={{ padding: '2em 0em' }}>
@@ -74,7 +90,7 @@ function Activity_viewed() {
                 flexGrow: 1,
               }}
             >
-              Activity 5
+              {activityView && activityView.activityTitle}
             </Typography>
 
             <Typography
@@ -88,7 +104,7 @@ function Activity_viewed() {
                 color: '#3F3D56',
               }}
             >
-              Homework
+              {activityView && activityView.activityType}
             </Typography>
           </Box>
 
@@ -128,7 +144,7 @@ function Activity_viewed() {
                     color: '#3F3D56',
                   }}
                 >
-                  100
+                  {activityView && activityView.activityPoints}
                 </Typography>
               </Box>
 
@@ -165,7 +181,8 @@ function Activity_viewed() {
                     color: '#3F3D56',
                   }}
                 >
-                  November 07, 2020
+                  {activityView &&
+                    moment(activityView.activityDueDate).format('LL')}
                 </Typography>
               </Box>
             </Grid>
@@ -231,31 +248,36 @@ function Activity_viewed() {
               padding: '0.3em 1.5em',
             }}
           >
-            <Typography
-              sx={{
-                width: '100%',
-                fontSize: '0.8em',
-                fontWeight: '700',
-                textTransform: 'Uppercase',
-                color: '#3F3D56',
-                marginTop: '0.3em',
-              }}
-            >
-              First, read all directions carefully!
-            </Typography>
+            {activityView && activityView.activityInstruction ? (
+              <>
+                <Typography
+                  sx={{
+                    width: '100%',
+                    fontSize: '0.8em',
+                    fontWeight: '700',
+                    textTransform: 'Uppercase',
+                    color: '#3F3D56',
+                    marginTop: '0.3em',
+                  }}
+                >
+                  Instruction
+                </Typography>
 
-            <Typography
-              sx={{
-                width: '100%',
-                fontSize: '0.7em',
-                fontWeight: '500',
-                color: '#3F3D56',
-                margin: '0.3em 0em 0.9em 0em',
-              }}
-            >
-              Read all questions carefully and don't forget to answer all parts
-              of the question.
-            </Typography>
+                <Typography
+                  sx={{
+                    width: '100%',
+                    fontSize: '0.7em',
+                    fontWeight: '500',
+                    color: '#3F3D56',
+                    margin: '0.3em 0em 0.9em 0em',
+                  }}
+                >
+                  {ReactHtmlParser(
+                    draftToHtml(activityView.activityInstruction)
+                  )}
+                </Typography>
+              </>
+            ) : null}
 
             <Tooltip title="Click to download file" placement="top-start">
               <Box

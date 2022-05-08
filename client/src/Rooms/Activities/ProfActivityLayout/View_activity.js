@@ -19,13 +19,24 @@ import {
   Select,
   MenuItem,
   Tooltip,
+  Input,
 } from '@mui/material';
+import moment from 'moment';
+import draftToHtml from 'draftjs-to-html';
+import ReactHtmlParser from 'react-html-parser';
 import AvatarIcon from '../../../assets/ImageJaven/Avatar.png';
 import Wordfile from '../../../assets/ImageJaven/Wordfile.png';
-import { KeyboardArrowDown, Send } from '@mui/icons-material';
+import {
+  KeyboardArrowDown,
+  Send,
+  BorderColorOutlined,
+  DeleteOutlineOutlined,
+} from '@mui/icons-material';
 import useStyle from '../../Styles/View_activity_style';
 import '../../Styles/View_activity_style.css';
 import ActivityIcon from '../../../assets/ImageJaven/ActivityIcon.png';
+import axios from 'axios';
+import ReactScrollableFeed from 'react-scrollable-feed';
 
 const sortOptions = [
   {
@@ -89,9 +100,20 @@ function View_activity() {
   const { designs } = useStyle();
   const { roomID, activityID } = useParams();
   const [selectSort, setSort] = useState('');
+  const [activityView, setActivityView] = useState(null);
   const handleChangeSort = (event) => {
     setSort(event.target.value);
   };
+
+  React.useEffect(() => {
+    axios
+      .post('http://localhost:5000/activity/get', { activityID })
+      .then((res) => {
+        setActivityView(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err.message));
+  }, []);
 
   return (
     <Container maxWidth="lg">
@@ -132,8 +154,7 @@ function View_activity() {
                 >
                   {dataSort.map(({ value, label }) => (
                     <MenuItem key={value} value={value}>
-                      {' '}
-                      {label}{' '}
+                      {label}
                     </MenuItem>
                   ))}
                 </Select>
@@ -197,11 +218,11 @@ function View_activity() {
                 />
 
                 <Typography noWrap sx={designs.Activity_Typography_Style}>
-                  Activity 4
+                  {activityView && activityView.activityTitle}
                 </Typography>
 
                 <Typography noWrap sx={designs.ActivityType_Typography_Style}>
-                  Activity
+                  {activityView && activityView.activityType}
                 </Typography>
               </Box>
 
@@ -213,7 +234,8 @@ function View_activity() {
                   Due Date:
                 </Typography>
                 <Typography sx={designs.ActivityDueDate2_Typography_Style}>
-                  March 18, 2021
+                  {activityView &&
+                    moment(activityView.activityDueDate).format('LL')}
                 </Typography>
               </Box>
 
@@ -221,15 +243,18 @@ function View_activity() {
                 className="Activity-instructions"
                 sx={designs.ActivityInstructions_Style}
               >
-                <Typography
-                  sx={designs.ActivityInstructionsHead_Typography_Style}
-                >
-                  First, read all directions carefully!
-                </Typography>
-                <Typography sx={designs.ActivityInstructions_Typography_Style}>
-                  Read all questions carefully and don't forget to answer all
-                  parts of the question.
-                </Typography>
+                {activityView && activityView.activityInstruction ? (
+                  <>
+                    <Typography
+                      sx={designs.ActivityInstructionsHead_Typography_Style}
+                    >
+                      Instructions
+                    </Typography>
+                    {ReactHtmlParser(
+                      draftToHtml(activityView.activityInstruction)
+                    )}
+                  </>
+                ) : null}
 
                 <Tooltip title="Click to download file" placement="top-start">
                   <Box className="Attach-file" sx={designs.AttachFile_Style}>
@@ -259,53 +284,232 @@ function View_activity() {
                 </Tooltip>
               </Box>
 
-              <Divider sx={designs.Divider2_Style} />
-
-              <Box className="View-comments" sx={designs.ViewComments_Style}>
-                <Typography noWrap sx={designs.ViewComments_Typography_Style}>
-                  View comments
-                </Typography>
-                <IconButton
-                  aria-label="dropdown"
-                  sx={designs.IconButtonDropdown_Style}
+              <Box
+                className="View-comments"
+                sx={{
+                  borderTop: '1px solid #DBDBDB',
+                  backgroundColor: '#FCFCFC',
+                  height: 'auto',
+                  width: 'relative',
+                  padding: '0em 1.5em',
+                  display: 'flex',
+                  gap: '8px',
+                }}
+              >
+                <Typography
+                  noWrap
+                  sx={{
+                    height: 'max-content',
+                    width: 'max-content',
+                    color: '#3F3D56',
+                    fontSize: '12px',
+                    padding: '1px 0px',
+                    margin: '5px 0px',
+                  }}
                 >
-                  <KeyboardArrowDown sx={designs.DropdownIcon_Style} />
-                </IconButton>
+                  23
+                </Typography>
+                <Typography
+                  noWrap
+                  sx={{
+                    height: 'max-content',
+                    width: 'max-content',
+                    color: '#3F3D56',
+                    fontSize: '12px',
+                    padding: '1px 0px',
+                    margin: '5px 0px',
+                  }}
+                >
+                  Comments
+                </Typography>
               </Box>
-              <Box className="Write-comment" sx={designs.WriteComment_Style}>
-                <Avatar
-                  alt="Remy Sharp"
-                  src={AvatarIcon}
-                  sx={designs.UserAvatar_Style}
+              <Box
+                className="comments-wrapper"
+                height="auto"
+                maxHeight={300}
+                overflow="auto"
+              >
+                <ReactScrollableFeed>
+                  <div>
+                    <Box
+                      className="User"
+                      sx={{
+                        padding: '7px 15px',
+                        gap: '13px',
+                        display: 'flex',
+                        width: 'relative',
+                        height: 'auto',
+                      }}
+                    >
+                      <Avatar
+                        alt="Remy Sharp"
+                        src={AvatarIcon}
+                        sx={{
+                          margin: '1px 0px',
+                          height: '40px',
+                          width: '40px',
+                        }}
+                      />
+
+                      <Box className="User-date" sx={{ margin: '3px 0px' }}>
+                        <Box>
+                          <Typography
+                            noWrap
+                            sx={{
+                              fontSize: '14px',
+                              color: '#3F3D56',
+                              fontWeight: '600',
+                            }}
+                          >
+                            Eren Yeager
+                          </Typography>
+
+                          <Box
+                            className="date"
+                            sx={{
+                              display: 'flex',
+                              flexWrap: 'wrap',
+                            }}
+                          >
+                            <Typography
+                              sx={{
+                                width: 'max-content',
+                                fontSize: '10px',
+                                color: '#8E8E8E',
+                                fontWeight: '500',
+                                fontStyle: 'Italic',
+                              }}
+                            >
+                              December 04, 2021
+                            </Typography>
+                          </Box>
+                        </Box>
+                        <Box
+                          className="content"
+                          fontSize="0.9rem"
+                          sx={{
+                            margin: '0.5em 0em',
+                          }}
+                        >
+                          ayos
+                        </Box>
+
+                        <Box
+                          className="actions"
+                          sx={{
+                            marginTop: '0.3em',
+                            display: 'flex',
+                            gap: '1em',
+                          }}
+                        >
+                          <Box
+                            // onClick={handleEditComment}
+                            sx={{
+                              display: 'flex',
+                              gap: '0.5em',
+                              width: 'auto',
+                              height: 'auto',
+                              '&: hover': {
+                                cursor: 'pointer',
+                                textDecoration: 'underline',
+                              },
+                            }}
+                          >
+                            <BorderColorOutlined
+                              sx={{ color: '#585670', fontSize: '0.9em' }}
+                            />
+
+                            <Typography
+                              sx={{
+                                fontSize: '0.5em',
+                                fontWeight: '400',
+                                color: '#3F3D56',
+                              }}
+                            >
+                              Edit comment
+                            </Typography>
+                          </Box>
+
+                          <Divider
+                            orientation="vertical"
+                            flexItem
+                            sx={{
+                              margin: '0.2em 0em',
+                            }}
+                          />
+
+                          <Box
+                            // onClick={() => handleDeleteComment(_id)}
+                            sx={{
+                              display: 'flex',
+                              gap: '0.5em',
+                              width: 'auto',
+                              height: 'auto',
+                              '&: hover': {
+                                cursor: 'pointer',
+                                textDecoration: 'underline',
+                              },
+                            }}
+                          >
+                            <DeleteOutlineOutlined
+                              sx={{ color: '#585670', fontSize: '0.9em' }}
+                            />
+
+                            <Typography
+                              sx={{
+                                fontSize: '0.5em',
+                                fontWeight: '400',
+                                color: '#3F3D56',
+                              }}
+                            >
+                              Delete comment
+                            </Typography>
+                          </Box>
+                        </Box>
+                      </Box>
+                    </Box>
+                  </div>
+                </ReactScrollableFeed>
+              </Box>
+
+              <Divider sx={{ mb: 2 }} />
+
+              <Box
+                className="write-comment"
+                sx={{
+                  padding: '0px 15px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '10px',
+                  width: 'relative',
+                  height: 'auto',
+                }}
+              >
+                <Avatar alt="Remy Sharp" src={AvatarIcon} />
+
+                <Input
+                  placeholder="Write a comment..."
+                  disableUnderline
+                  sx={{
+                    border: '1px solid #DBDBDB',
+                    borderRadius: '0.3em',
+                    color: '#3F3D56',
+                    fontSize: '0.9em',
+                    padding: '0.3em 0.8em',
+                    width: '100%',
+                    '&: hover': {
+                      border: '1px solid #007FFF',
+                      transition: 'all 300ms',
+                    },
+                  }}
                 />
 
-                <TextField
-                  id="filled-basic"
-                  placeholder="Write a comment..."
-                  variant="filled"
-                  sx={designs.Comment_TextField_Style}
-                  inputProps={{
-                    style: {
-                      height: '0px',
-                      fontSize: '0.9em',
-                      paddingBottom: '20px',
-                    },
-                  }} // font size of input text
-                  InputLabelProps={{
-                    style: { fontSize: '13px', color: '#8E8E8E' },
-                  }} // font size of input label
-                  InputProps={{
-                    disableUnderline: true, // pantanggal ng bottom outline
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="send"
-                          sx={designs.IconButtonSend_Style}
-                        >
-                          <Send sx={designs.SendIcon_Style} />
-                        </IconButton>
-                      </InputAdornment>
-                    ),
+                <Button
+                  children="Send"
+                  variant="contained"
+                  sx={{
+                    fontWeight: '600',
+                    boxShadow: 'none',
                   }}
                 />
               </Box>

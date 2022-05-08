@@ -57,8 +57,6 @@ function SelectRoom({setData,dataRoom,setDataRoom}) {
                                 axios.post('http://localhost:5000/get/members',{members:value.members})
                                 .then(res=>setData(res.data))
                                 .catch(err=>console.log(err))
-                                
-                                console.log(value.members)
                             }}
                             key={index} value={value.RoomName}>
                                 {value.RoomName}

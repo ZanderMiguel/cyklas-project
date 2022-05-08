@@ -4,7 +4,7 @@ import Input from '../components/Input';
 import Dropdown from '../components/Drowpdown';
 import usePost from '../customHooks/usePost';
 import moment from 'moment';
-import axios from 'axios'
+import axios from 'axios';
 import { Grid, Button } from '@mui/material';
 
 const gradingsystems = [];
@@ -15,26 +15,39 @@ function Create_room({ open, close, maxWidth, state, socket, gs }) {
   const [classday, setClassDay] = useState('');
   const [yearAndSection, setYearandsection] = useState('');
   const [classtime, setClassTime] = useState('');
-  const [gradingsystem, setGradingSystem] = useState('Default');
+  const [gradingsystem, setGradingSystem] = useState('');
+
+  const [roomnameError, setRoomnameError] = useState(false);
+  const [gradingsystemError, setGradingSystemError] = useState(false);
 
   const handleChangeGradingSystem = (event) => {
     setGradingSystem(event.target.value);
-    console.log(gradingsystem)
   };
   const handleTime = (event) => {
     setClassTime(event.target.value);
   };
   React.useEffect(() => {
-    gradingsystems.splice(0, gradingsystems.length)
-    gs && gs.map(item => {
+    gradingsystems.splice(0, gradingsystems.length);
+    gs &&
+      gs.map((item) => {
+        gradingsystems.push({ value: item._id, label: item.GradingName });
+      });
+  }, []);
 
-      gradingsystems.push({ value: item._id, label: item.GradingName })
-    })
-  }, [])
   const { post } = usePost();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setRoomnameError(false);
+    setGradingSystemError(false);
+
+    if (roomname === '') {
+      setRoomnameError(true);
+    }
+    if (gradingsystem === '') {
+      setGradingSystemError(true);
+    }
+
     const room = {
       RoomName: roomname,
       Course: course,
@@ -44,21 +57,22 @@ function Create_room({ open, close, maxWidth, state, socket, gs }) {
       GradingSystem: gradingsystem,
     };
 
-    post('http://localhost:5000/rooms/create', {
-      Host: {
-        name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
-          JSON.parse(localStorage.userData).data.user.lastName
-        }`,
-        avatar: JSON.parse(localStorage.userData).data.user.image,
-      },
-      userID: JSON.parse(localStorage.userData).data.user._id,gsID: gradingsystem,
-      ...room,
-      members: [JSON.parse(localStorage.userData).data.user._id],
-    });
-
+    if (roomname && gradingsystem) {
+      post('http://localhost:5000/rooms/create', {
+        Host: {
+          name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
+            JSON.parse(localStorage.userData).data.user.lastName
+          }`,
+          avatar: JSON.parse(localStorage.userData).data.user.image,
+        },
+        userID: JSON.parse(localStorage.userData).data.user._id,
+        gsID: gradingsystem,
+        ...room,
+        members: [JSON.parse(localStorage.userData).data.user._id],
+      });
+    }
     state(false);
     socket.emit('create-room');
-
   };
 
   return (
@@ -70,11 +84,15 @@ function Create_room({ open, close, maxWidth, state, socket, gs }) {
         close={close}
         maxWidth={maxWidth}
         btn={
-          <Button variant="contained" type="submit" form="form1"
+          <Button
+            variant="contained"
+            type="submit"
+            form="form1"
             sx={{
               fontWeight: '600',
-              boxShadow: "none",
-            }}>
+              boxShadow: 'none',
+            }}
+          >
             Submit
           </Button>
         }
@@ -86,9 +104,10 @@ function Create_room({ open, close, maxWidth, state, socket, gs }) {
               placeholder="Enter room name..."
               autoComplete="off"
               value={roomname}
+              error={roomnameError}
               onChange={(e) => setRoomname(e.target.value)}
+              helperText={roomnameError ? 'Please enter Room name' : false}
               autoFocus
-              required
               half
             />
             <Input
@@ -96,7 +115,6 @@ function Create_room({ open, close, maxWidth, state, socket, gs }) {
               placeholder="Enter course..."
               autoComplete="off"
               value={course}
-              required
               onChange={(e) => setCourse(e.target.value)}
               half
             />
@@ -105,7 +123,6 @@ function Create_room({ open, close, maxWidth, state, socket, gs }) {
               placeholder="Enter class day..."
               autoComplete="off"
               value={classday}
-              required
               onChange={(e) => setClassDay(e.target.value)}
               half
             />
@@ -114,14 +131,12 @@ function Create_room({ open, close, maxWidth, state, socket, gs }) {
               placeholder="Enter year and section..."
               autoComplete="off"
               value={yearAndSection}
-              required
               onChange={(e) => setYearandsection(e.target.value)}
               half
             />
             <Input
               inputLabel="Class time"
               autoComplete="off"
-              required
               value={classtime}
               onChange={handleTime}
               type="time"
@@ -131,7 +146,8 @@ function Create_room({ open, close, maxWidth, state, socket, gs }) {
               inputLabel="Grading System"
               autoComplete="off"
               value={gradingsystem}
-              required
+              error={gradingsystemError}
+              typeerror="Please select grading system. If doesnt have one make sure to create in RECORDS tab."
               onChange={handleChangeGradingSystem}
               options={gradingsystems}
               half

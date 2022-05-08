@@ -1,16 +1,6 @@
 import React from 'react';
 import Dialogform from '../components/Dialogform';
-import {
-  Grid,
-  Box,
-  Typography,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-} from '@mui/material';
-import { CallEnd } from '@mui/icons-material';
+import { Grid, Box, Typography, Paper } from '@mui/material';
 import Professor from '../assets/ImageJaven/Professor.png';
 import Student from '../assets/ImageJaven/Student.png';
 import { useHistory } from 'react-router-dom';
@@ -24,7 +14,7 @@ function SelectUsertype({ open, close, maxWidth, signIn, googleData }) {
       ),
       usertypeName: 'Professor',
       usertypeDescription:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+        'This user type can create rooms, invite members or students, can modify categories for grading system. It also have the access to conduct instant video conferencing and live quizzes.',
       onClick: () => {
         signIn({ userType: 'Professor', ...googleData.current });
         close();
@@ -38,7 +28,7 @@ function SelectUsertype({ open, close, maxWidth, signIn, googleData }) {
       ),
       usertypeName: 'Student',
       usertypeDescription:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+        'This usertype can partake with actvities inside rooms that joined in. It can also join instant video conference and participate with the live quizzes.',
       onClick: () => {
         signIn({ userType: 'Student', ...googleData.current });
         close();
@@ -153,6 +143,20 @@ function SelectUsertype({ open, close, maxWidth, signIn, googleData }) {
             );
           })}
         </Grid>
+        <Paper
+          elevation={1}
+          sx={{
+            padding: '0.5em',
+            margin: '0.8em',
+            fontSize: '0.9em',
+            fontWeight: 600,
+            color: 'whitesmoke',
+            backgroundColor: '#ef5350',
+          }}
+        >
+          NOTE: AFTER SELECTING A USERTYPE YOU MUST CONTINUE WITH GOOGLE AGAIN
+          AND USE THIS EMAIL ADDRESS TO PROCEED
+        </Paper>
       </Dialogform>
     </div>
   );

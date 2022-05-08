@@ -268,7 +268,7 @@ function App() {
               <ProtectedRoutes exact path="/View_quiz" component={View_quiz} />
               <ProtectedRoutes
                 exact
-                path="/View_exam/:examID"
+                path="/quizlit/view_exam/:examID"
                 component={View_exam}
               />
               <ProtectedRoutes exact path="/records" component={Records} />
