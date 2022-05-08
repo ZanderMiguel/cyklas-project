@@ -124,8 +124,8 @@ function Activity_viewed() {
                     display: 'flex',
                     alignItems: 'center',
                     height: 'relative',
-                    fontSize: '12px',
-                    fontWeight: '700',
+                    fontSize: '0.8em',
+                    fontWeight: '600',
                     textTransform: 'Capitalize',
                     color: '#3F3D56',
                   }}
@@ -138,7 +138,7 @@ function Activity_viewed() {
                     display: 'flex',
                     alignItems: 'center',
                     height: 'relative',
-                    fontSize: '12px',
+                    fontSize: '0.8em',
                     fontWeight: '500',
                     textTransform: 'Capitalize',
                     color: '#3F3D56',
@@ -161,8 +161,8 @@ function Activity_viewed() {
                     display: 'flex',
                     alignItems: 'center',
                     height: 'relative',
-                    fontSize: '12px',
-                    fontWeight: '700',
+                    fontSize: '0.8em',
+                    fontWeight: '600',
                     textTransform: 'Capitalize',
                     color: '#3F3D56',
                   }}
@@ -175,7 +175,7 @@ function Activity_viewed() {
                     display: 'flex',
                     alignItems: 'center',
                     height: 'relative',
-                    fontSize: '12px',
+                    fontSize: '0.8em',
                     fontWeight: '500',
                     textTransform: 'Capitalize',
                     color: '#3F3D56',
@@ -187,7 +187,7 @@ function Activity_viewed() {
               </Box>
             </Grid>
 
-            <Grid item xs={6}>
+            {/* <Grid item xs={6}>
               <Box
                 sx={{
                   width: 'relative',
@@ -200,7 +200,7 @@ function Activity_viewed() {
                     display: 'flex',
                     alignItems: 'center',
                     height: 'relative',
-                    fontSize: '12px',
+                    fontSize: '0.8em',
                     fontWeight: '700',
                     textTransform: 'Capitalize',
                     color: '#3F3D56',
@@ -221,7 +221,7 @@ function Activity_viewed() {
                     display: 'flex',
                     alignItems: 'center',
                     height: 'relative',
-                    fontSize: '12px',
+                    fontSize: '0.8em',
                     fontWeight: '500',
                     textTransform: 'Lowercase',
                     color: '#8E8E8E',
@@ -230,7 +230,7 @@ function Activity_viewed() {
                   posted this activity on March 18, 2020
                 </Typography>
               </Box>
-            </Grid>
+            </Grid> */}
           </Grid>
           <Divider
             sx={{
@@ -253,23 +253,24 @@ function Activity_viewed() {
                 <Typography
                   sx={{
                     width: '100%',
-                    fontSize: '0.8em',
-                    fontWeight: '700',
+                    fontSize: '0.9em',
+                    fontWeight: '600',
                     textTransform: 'Uppercase',
                     color: '#3F3D56',
-                    marginTop: '0.3em',
+                    marginTop: '0.3em'
                   }}
                 >
-                  Instruction
+                  Instructions:
                 </Typography>
 
                 <Typography
                   sx={{
                     width: '100%',
-                    fontSize: '0.7em',
+                    fontSize: '0.8em',
                     fontWeight: '500',
+                    textTransform: 'none',
                     color: '#3F3D56',
-                    margin: '0.3em 0em 0.9em 0em',
+                    marginBottom: "0.5em"
                   }}
                 >
                   {ReactHtmlParser(

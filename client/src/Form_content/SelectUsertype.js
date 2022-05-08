@@ -4,6 +4,7 @@ import { Grid, Box, Typography, Paper } from '@mui/material';
 import Professor from '../assets/ImageJaven/Professor.png';
 import Student from '../assets/ImageJaven/Student.png';
 import { useHistory } from 'react-router-dom';
+import { Announcement } from "@mui/icons-material";
 
 function SelectUsertype({ open, close, maxWidth, signIn, googleData }) {
   const history = useHistory();
@@ -14,7 +15,7 @@ function SelectUsertype({ open, close, maxWidth, signIn, googleData }) {
       ),
       usertypeName: 'Professor',
       usertypeDescription:
-        'This user type can create rooms, invite members or students, can modify categories for grading system. It also have the access to conduct instant video conferencing and live quizzes.',
+        'can create rooms, invite members or students, can modify categories for grading system. A professor also have the access to conduct instant video conferencing and live quizzes.',
       onClick: () => {
         signIn({ userType: 'Professor', ...googleData.current });
         close();
@@ -28,7 +29,7 @@ function SelectUsertype({ open, close, maxWidth, signIn, googleData }) {
       ),
       usertypeName: 'Student',
       usertypeDescription:
-        'This usertype can partake with actvities inside rooms that joined in. It can also join instant video conference and participate with the live quizzes.',
+        'can partake with actvities inside rooms that joined in, can also join instant video conference and participate with the live quizzes.',
       onClick: () => {
         signIn({ userType: 'Student', ...googleData.current });
         close();
@@ -143,20 +144,31 @@ function SelectUsertype({ open, close, maxWidth, signIn, googleData }) {
             );
           })}
         </Grid>
-        <Paper
-          elevation={1}
-          sx={{
-            padding: '0.5em',
-            margin: '0.8em',
-            fontSize: '0.9em',
-            fontWeight: 600,
-            color: 'whitesmoke',
-            backgroundColor: '#ef5350',
-          }}
-        >
-          NOTE: AFTER SELECTING A USERTYPE YOU MUST CONTINUE WITH GOOGLE AGAIN
-          AND USE THIS EMAIL ADDRESS TO PROCEED
-        </Paper>
+
+        <Box
+        sx = {{
+          display: "flex",
+          gap: "0.5em",
+          width: "relative",
+          height: "auto",
+          border: "2px solid #DBDBDB",
+          borderRadius: "0.3em",
+          margin: "0.5em 2em",
+          padding: "0.5em"
+        }}>
+          <Announcement sx = {{ color: "#FB9C12" }}/>
+
+          <Typography children = "NOTE: &nbsp; AFTER SELECTING A USERTYPE YOU MUST CONTINUE WITH GOOGLE AGAIN
+          AND USE THIS EMAIL ADDRESS TO PROCEED"
+          sx = {{
+            color: "#FB9C12",
+            fontSize: "0.8em",
+            fontWeight: "600",
+            height: "relative",
+            display: "flex",
+            alignItems: "center"
+          }}/>
+        </Box>
       </Dialogform>
     </div>
   );

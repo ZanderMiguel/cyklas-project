@@ -7,8 +7,10 @@ import {
   ListItem,
   Button,
   Divider,
+  Tooltip
 } from '@mui/material';
 import Livequiz_queue from '../../Form_content/Livequiz_queue';
+import { Link } from "react-router-dom";
 
 function QuizPopover() {
   const [quizzes, setQuizzes] = useState(null);
@@ -35,22 +37,58 @@ function QuizPopover() {
   };
 
   return (
-    <Box height="15em" width="20em">
+    <Box height="15em" width="20em" padding = "0.5em">
       {quizzes &&
         quizzes.map((items, index) => {
           return (
-            <List>
-              <ListItem>
-                <Box display="flex" width="100%">
-                  <Typography>{items.title}</Typography>
-                  <Box flexGrow={1} />
-                  <Button variant="contained" onClick={handleStartQuiz}>
-                    Start
-                  </Button>
+            <>
+                <Box key = {index}
+                sx = {{
+                  display:"flex", 
+                  width:"100%",
+                  backgroundColor: "white", 
+                  alignItems: "center",
+                  padding: "0.5em 0.8em",
+                  border: "1px solid #DBDBDB",
+                  borderRadius: "0.3em",
+                  marginBottom: "0.3em",
+                  "&: hover": {
+                    transition: "all 250ms",
+                    boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 12px',
+                  }
+                }}>
+
+                  <Tooltip title = {items.title} placement = "left">
+                  <Typography noWrap children = {items.title}
+                  sx = {{
+                    fontSize: "0.9em",
+                    fontWeight: "600",
+                    color: "#3F3D56",
+                    width: "11.5em",
+                    height: "max-content",
+                    textTransform: "Uppercase",
+                    "&: hover": {
+                      cursor: "default"
+                    }
+                  }}/>
+                  </Tooltip>
+
+                  <Box flexGrow = {1}/>
+
+                  <Button variant="contained"
+                  // onClick={handleStartQuiz}
+                  component={Link}
+                  to="/LiveQuiz"
+                  target="_blank"
+                  children = "Start Quiz"
+                  sx = {{
+                    fontSize: "0.8em",
+                    fontWeight: "600",
+                    color: "white",
+                    textTransform: "Capitalize"
+                  }}/>
                 </Box>
-              </ListItem>
-              <Divider />
-            </List>
+            </>
           );
         })}
       {opendialog && (

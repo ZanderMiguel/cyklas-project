@@ -32,6 +32,8 @@ import Settings from './Settings/Settings';
 //Telecon
 import TeleconStart from './Telecon/TeleconStart';
 import TeleconRoomV2 from './Telecon/TeleconRoomV2';
+import LiveQuiz from "./Telecon/LiveQuiz";
+import LivequizQuestion from "./Telecon/LivequizQuestion";
 
 //Quizlit
 import QuizLit from './Quizlit/Quizlit';
@@ -171,6 +173,10 @@ function App() {
               <Route path="/telecon/:teleRoom">
                 <TeleconRoomV2 socket={socket} />
               </Route>
+
+              <Route path="/LiveQuiz" component = {LiveQuiz}/>
+              <Route path="/LivequizQuestion" component = {LivequizQuestion}/>
+
               {/* <Route path="/TeleconRoomV2" component={TeleconRoomV2} /> */}
 
               {/* Records and Classcards */}
