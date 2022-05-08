@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import Navbar from './Navbar_Inside';
 import { CssBaseline } from '@mui/material';
-import ROOMS_INSIDE2 from '../student_side/Rooms/Rooms_inside2';
 import Room_inside from '../Rooms/Room-content-layout/Room_inside';
 
 function ProtectedRoutes({
@@ -19,7 +18,6 @@ function ProtectedRoutes({
     <>
       <CssBaseline />
       {localStorage.token && <Navbar />}
-
       {Component ? (
         <Route
           {...attrib}

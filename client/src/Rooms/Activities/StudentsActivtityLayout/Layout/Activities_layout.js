@@ -178,21 +178,12 @@ function Activities_layout({ roomID, activity }) {
                       <Grid container columnSpacing={1} rowSpacing={1}>
                         <Grid item xs={6}>
                           <ActivityFile />
-                          {/* <Paper sx={{ width: '100%' }}>
-                            Every Files uploaded file goes here
-                          </Paper> */}
                         </Grid>
                         <Grid item xs={6}>
                           <ActivityFile />
-                          {/* <Paper sx={{ width: '100%' }}>
-                            Every Files uploaded file goes here
-                          </Paper> */}
                         </Grid>
                         <Grid item xs={6}>
                           <ActivityFile />
-                          {/* <Paper sx={{ width: '100%' }}>
-                            Every Files uploaded file goes here
-                          </Paper> */}
                         </Grid>
                       </Grid>
                     </Box>
