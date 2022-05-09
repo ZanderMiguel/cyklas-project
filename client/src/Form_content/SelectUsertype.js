@@ -1,19 +1,10 @@
 import React from 'react';
 import Dialogform from '../components/Dialogform';
-import {
-  Grid,
-  Box,
-  Typography,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-} from '@mui/material';
-import { CallEnd } from '@mui/icons-material';
+import { Grid, Box, Typography, Paper } from '@mui/material';
 import Professor from '../assets/ImageJaven/Professor.png';
 import Student from '../assets/ImageJaven/Student.png';
 import { useHistory } from 'react-router-dom';
+import { Announcement } from "@mui/icons-material";
 
 function SelectUsertype({ open, close, maxWidth, signIn, googleData }) {
   const history = useHistory();
@@ -24,7 +15,7 @@ function SelectUsertype({ open, close, maxWidth, signIn, googleData }) {
       ),
       usertypeName: 'Professor',
       usertypeDescription:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+        'can create rooms, invite members or students, can modify categories for grading system. A professor also have the access to conduct instant video conferencing and live quizzes.',
       onClick: () => {
         signIn({ userType: 'Professor', ...googleData.current });
         close();
@@ -38,7 +29,7 @@ function SelectUsertype({ open, close, maxWidth, signIn, googleData }) {
       ),
       usertypeName: 'Student',
       usertypeDescription:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+        'can partake with actvities inside rooms that joined in, can also join instant video conference and participate with the live quizzes.',
       onClick: () => {
         signIn({ userType: 'Student', ...googleData.current });
         close();
@@ -153,6 +144,31 @@ function SelectUsertype({ open, close, maxWidth, signIn, googleData }) {
             );
           })}
         </Grid>
+
+        <Box
+        sx = {{
+          display: "flex",
+          gap: "0.5em",
+          width: "relative",
+          height: "auto",
+          border: "2px solid #DBDBDB",
+          borderRadius: "0.3em",
+          margin: "0.5em 2em",
+          padding: "0.5em"
+        }}>
+          <Announcement sx = {{ color: "#FB9C12" }}/>
+
+          <Typography children = "NOTE: &nbsp; AFTER SELECTING A USERTYPE YOU MUST CONTINUE WITH GOOGLE AGAIN
+          AND USE THIS EMAIL ADDRESS TO PROCEED"
+          sx = {{
+            color: "#FB9C12",
+            fontSize: "0.8em",
+            fontWeight: "600",
+            height: "relative",
+            display: "flex",
+            alignItems: "center"
+          }}/>
+        </Box>
       </Dialogform>
     </div>
   );

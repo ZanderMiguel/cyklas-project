@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
-
 const {
   createRegistrationController,
   displayRegistrationController,
@@ -13,32 +12,21 @@ router.post('/getUser', displayRegistrationController);
 router.delete('/register/:id', deleteRegistrationController);
 router.post('/login', userLogInController);
 
-
-const {
-  createActivityController,
-  displayActivityController,
-  deleteActivityController,
-  updateActivityController,findActivity
-} = require('../controller/createActivityController');
-router.post('/activity/create', createActivityController);
-router.post('/activity', displayActivityController);
-router.delete('/actiity/delete/:id', deleteActivityController);
-router.put('/activity/update/:id', updateActivityController);
-router.post('/activity/get',findActivity)
-
+//router.post('/activity/submit', multiparty, uploadNewFile, submitActivity);
 const {
   createRoomController,
   displayRoomController,
   deleteRoomController,
   updateRoomController,
-  findRoom,getMembersData
+  findRoom,
+  getMembersData,
 } = require('../controller/roomsController');
 router.post('/rooms/create', createRoomController);
 router.post('/rooms', displayRoomController);
 router.delete('/rooms/delete', deleteRoomController);
 router.put('/rooms/update', updateRoomController);
 router.post('/rooms/my-room', findRoom);
-router.post('/get/members',getMembersData)
+router.post('/get/members', getMembersData);
 const {
   createFeedController,
   displayFeedController,
@@ -94,11 +82,7 @@ const {
   deleteQuestionController,
   findQuestionController,
 } = require('../controller/questionsController');
-router.post(
-  '/question/create',
-  bodyParser.json(),
-  createQuestionController
-);
+router.post('/question/create', bodyParser.json(), createQuestionController);
 router.put('/question/update', bodyParser.json(), updateQuestionController);
 router.delete('/question/delete', bodyParser.json(), deleteQuestionController);
 router.post('/question', bodyParser.json(), findQuestionController);
@@ -136,26 +120,30 @@ const {
   createGradingSystem,
   updateGradingSystem,
   deleteGradingSystem,
-  displayGradingSystem,findRoomGS
+  displayGradingSystem,
+  findRoomGS,
 } = require('../controller/gradingSystemController');
 router.post('/gradingSystem/create', createGradingSystem);
 router.post('/gradingSystem', displayGradingSystem);
 router.put('/gradingSystem/update', updateGradingSystem);
 router.delete('/gradingSystem/delete', deleteGradingSystem);
-router.post('/gradingSystem/record',findRoomGS)
+router.post('/gradingSystem/record', findRoomGS);
 const {
   createClassRecord,
   deleteClassRecord,
   updateClassRecord,
-  displayClassRecord,applyGradingSystem,countActivity,getOverall
+  displayClassRecord,
+  applyGradingSystem,
+  countActivity,
+  getOverall,
 } = require('../controller/classRecordController');
 router.post('/records/create', createClassRecord);
 router.post('/records', displayClassRecord);
 router.put('/records/update', updateClassRecord);
 router.delete('/records/delete', deleteClassRecord);
-router.put('/records/applyGS',applyGradingSystem)
-router.post('/records/return-grade',countActivity)
-router.post('/records/overall',getOverall)
+router.put('/records/applyGS', applyGradingSystem);
+router.post('/records/return-grade', countActivity);
+router.post('/records/overall', getOverall);
 const {
   createClassCard,
   displayClassCard,

@@ -7,7 +7,7 @@ import Divider from '@mui/material/Divider';
 import axios from 'axios';
 
 function Join_room({ open, close, maxWidth }) {
-  const [joinId, setJoinId] = React.useState(null);
+  const [joinId, setJoinId] = React.useState('');
 
   const handleJoinRoom = () => {
     axios
@@ -16,8 +16,8 @@ function Join_room({ open, close, maxWidth }) {
         userName: `${JSON.parse(localStorage.userData).data.user.firstName} ${
           JSON.parse(localStorage.userData).data.user.lastName
         }`,
-        room: { joinId },
         userImage: JSON.parse(localStorage.userData).data.user.image,
+        joinId,
       })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
@@ -77,6 +77,7 @@ function Join_room({ open, close, maxWidth }) {
               fullWidth
               value={joinId}
               onChange={(event) => setJoinId(event.target.value)}
+              autoComplete="off"
               variant="outlined"
               size="small"
               placeholder="Enter room id..."
@@ -106,7 +107,7 @@ function Join_room({ open, close, maxWidth }) {
                   backgroundColor: '#007FFF',
                   color: 'white',
                   fontWeight: '600',
-                  boxShadow: "none",
+                  boxShadow: 'none',
                   '&:hover': {
                     backgroundColor: '#0072e6',
                   },

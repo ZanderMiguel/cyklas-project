@@ -16,12 +16,12 @@ import MainSessionHeader from './MainSessionHeader';
 import MainSessionBody from './MainSessionBody';
 import MainSessionFooter from './MainSessionFooter';
 import RightContentSideBar from './RightContentSideBar';
+import MessageArea from './TeleconSide/MessageArea';
 import MeetingInformation from './MeetingInformation';
 import Members from './Members';
-import MessageArea from './TeleconSide/MessageArea';
 import PresentationCriteria from './PresentationCriteria';
-import { useParams } from 'react-router-dom'
-import _ from 'lodash'
+import { useParams } from 'react-router-dom';
+import _ from 'lodash';
 import RightContent from './RightContent';
 import AvatarIcon from '../assets/ImageJaven/Avatar.png';
 import {
@@ -35,30 +35,24 @@ import {
 function TeleconRoomV2({ socket }) {
   const [sidedrawer, setSideDrawer] = React.useState(false);
   const [sidecontent, setSideContent] = React.useState('');
-  const [currentMessage, setCurrentMessage] = React.useState('');
-  const [messagelist, setMessageList] = React.useState([]);
-  const { teleRoom } = useParams()
-  const [renderer, setRenderer] = React.useState(false)
-  const [members, setMembers] = React.useState([{
-    camera: JSON.parse(localStorage.userData).data.user.image,
-    memberName: `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName
-      }`,
-    id: JSON.parse(localStorage.userData).data.user._id
-  }])
-
-  React.useMemo(() => {
-    socket.emit('joinroom', teleRoom, members)
-  }, [renderer])
-  socket.once('rendered', (newMember) => {
-    setMembers(_.uniqBy([...newMember, {
+  const messagelist = React.useRef([]);
+  const [renderer, setRenderer] = React.useState(false);
+  const [members, setMembers] = React.useState([
+    {
       camera: JSON.parse(localStorage.userData).data.user.image,
-      memberName: `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName
-        }`,
-      id: JSON.parse(localStorage.userData).data.user._id
-    }],item=>item.id))
-    setRenderer(prev => !prev)
-  })
-  socket.once('tile-removed', () => setRenderer(prev => !prev))
+      memberName: `${JSON.parse(localStorage.userData).data.user.firstName} ${
+        JSON.parse(localStorage.userData).data.user.lastName
+      }`,
+      id: JSON.parse(localStorage.userData).data.user._id,
+    },
+  ]);
+  const { teleRoom } = useParams();
+  const name = `${JSON.parse(localStorage.userData).data.user.firstName} ${
+    JSON.parse(localStorage.userData).data.user.lastName
+  }`;
+  const avatar = JSON.parse(localStorage.userData).data.user.image;
+  socket.emit('joinroom', teleRoom, name, avatar);
+  console.log(teleRoom);
   return (
     <>
       <CssBaseline />
@@ -71,19 +65,25 @@ function TeleconRoomV2({ socket }) {
           overflowX: 'hidden',
         }}
       >
-        <Box sx={{ display: 'flex', width: '100%', }}>
+        <Box sx={{ display: 'flex', width: '100%' }}>
           <Box
             sx={{
               backgroundColor: '#171A20',
               height: '98vh',
               borderRadius: '0.4em',
               margin: '0.4em 0.5em 0em 0.5em',
-              width: '100%', whiteSpace: 'pre'
+              width: '100%',
+              whiteSpace: 'pre',
             }}
           >
             <MainSessionHeader />
 
-            <MainSessionBody renderer={renderer} socket={socket} members={members} setMembers={setMembers} />
+            <MainSessionBody
+              setRenderer={setRenderer}
+              socket={socket}
+              members={members}
+              setMembers={setMembers}
+            />
 
             <MainSessionFooter />
           </Box>
@@ -106,9 +106,7 @@ function TeleconRoomV2({ socket }) {
                 ) : sidecontent === 'MessageArea' ? (
                   <MessageArea
                     messagelist={messagelist}
-                    currentMessage={currentMessage}
-                    setCurrentMessage={setCurrentMessage}
-                    setMessageList={setMessageList}
+                    teleRoom={teleRoom}
                     socket={socket}
                   />
                 ) : (

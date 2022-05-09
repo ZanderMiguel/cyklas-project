@@ -30,7 +30,6 @@ function VideoPanel({ socket, muted, onCam }) {
     host: '/',
     port: '3002',
   });
-  const { teleRoom } = useParams();
   myPeer.on('open', (id) => {
     // socket.emit('join-room', teleRoom, id);
   });

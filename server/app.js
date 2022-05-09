@@ -3,27 +3,37 @@ const express = require('express');
 const app = express();
 const { v4 } = require('uuid');
 const grid = require('gridfs-stream');
+const methodOverride = require('method-override');
+const multer = require('multer');
+const { GridFsStorage } = require('multer-gridfs-storage');
+const path = require('path');
+const createError = require('http-errors');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const crypto = require('crypto');
 
 const io = require('socket.io')(3001, {
   cors: {
     origin: ['http://localhost:3000'],
   },
 });
-
 const cors = require('cors');
 const router = require('./routers/routers');
+const imageRouter = require('./routers/imageRouter');
+const fileRouter = require('./routers/FileRouter');
 const mongoose = require('mongoose');
-let gfs;
 const startAndConnectToDb = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
+    let gfs;
     const conn = mongoose.createConnection(process.env.MONGODB_URI);
     conn.once('open', () => {
-      gfs = grid(conn.db, mongoose.mongo);
-      gfs.collection('uploads');
+      gfs = new mongoose.mongo.GridFSBucket(conn.db, {
+        bucketName: 'uploads',
+      });
     });
     await app.listen(process.env.PORT, () => {
       console.log(
@@ -38,36 +48,33 @@ const startAndConnectToDb = async () => {
 //middlewares
 app.use(cors());
 app.use(express.json());
-startAndConnectToDb();
+
 app.use(express.static('public'));
 
 //routers
 
 app.use(router);
 let quizLobby = {};
+//let teleMembers = {};
 io.on('connection', (socket) => {
-  socket.on('joinroom', (roomID, members) => {
+  socket.on('joinroom', (roomID, members, socketID) => {
     socket.join(roomID);
-    
-    socket.to(roomID).emit('join-others',members,socket.id)
-    socket.on('render',()=>{
-      socket.to(roomID).emit('rendered',members)
-    })
-    socket.on('disconnect',()=>{
-      socket.to(roomID).emit('user-disconnected',socket.id)
-    })
-    socket.on('remove-disconnected',()=>{
-      socket.to(roomID).emit('tile-removed')
-    })
+    socket.to(roomID).emit('user-connected', socketID);
+
+    socket.to(roomID).emit('join-others', members, socketID, roomID);
+    socket.on('disconnect', () => {
+      socket.to(roomID).emit('user-disconnected', socketID);
+    });
+  });
+
+  socket.on('render', (members, id, roomID) => {
+    socket.to(roomID).emit('rendered', members, id, roomID);
   });
 
   socket.on('sendMessage', (data) => {
     socket.to(data.room).emit('receive_message', data);
   });
 
-  socket.on('disconnect', () => {
-    console.log('User Disconnected', socket.id);
-  });
   socket.on('create-room', () => {
     socket.emit('room-created', v4());
   });
@@ -141,6 +148,30 @@ io.on('connection', (socket) => {
   });
 });
 
+//Create storage engine
+
+const storage = new GridFsStorage({
+  url: process.env.MONGODB_URI,
+  file: (req, file) => {
+    return new Promise((resolve, reject) => {
+      crypto.randomBytes(16, (err, buf) => {
+        if (err) {
+          return reject(err);
+        }
+        const filename = buf.toString('hex') + path.extname(file.originalname);
+        const fileInfo = {
+          filename: filename,
+          bucketName: 'uploads',
+        };
+        resolve(fileInfo);
+      });
+    });
+  },
+});
+const upload = multer({ storage });
+app.use('/', imageRouter(upload));
+app.use('/', fileRouter(upload));
+startAndConnectToDb();
 //socket.io events
 // io.on('connection', (socket) => {
 //   socket.on('join-room', (roomId, userId) => {

@@ -12,10 +12,10 @@ function MemTile({ socket, muted, onCam, myPeer }) {
   const myVidContainer = React.useRef(myVidRatio);
 
   // const peers = {};
-  // socket.on('user-disconnected', (userId) => {
-  //   if (peers[userId]) peers[userId].close();
-  //   child()
-  // });
+  socket.on('user-disconnected', (userId) => {
+    if (peers[userId]) peers[userId].close();
+    child();
+  });
 
   const myVideo = document.createElement('video');
   const myVid = React.useRef(myVideo);
@@ -108,14 +108,14 @@ function MemTile({ socket, muted, onCam, myPeer }) {
             addVideoStream(video, userVideoStream, vidRatio, child);
           });
         });
-      //   socket.on('user-connected', (userId) => {
-      //     // When user is connected,
-      //     connectToNewUser(userId, stream); // we will automatically call them
-      //     console.log(userId);
-      //     /* setOffTiles([...offTiles,<OffCamTile />])
-      //     child() */
-      //   });
-      // });
+        //   socket.on('user-connected', (userId) => {
+        //     // When user is connected,
+        //     connectToNewUser(userId, stream); // we will automatically call them
+        //     console.log(userId);
+        //     /* setOffTiles([...offTiles,<OffCamTile />])
+        //     child() */
+        //   });
+      });
   }, [Object.keys(peers).length]);
   //Displaying video stream
   function addVideoStream(video, stream, vidRatio, child) {

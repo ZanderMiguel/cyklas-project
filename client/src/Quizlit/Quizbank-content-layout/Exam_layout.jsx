@@ -40,7 +40,7 @@ function Exam_layout({ bank }) {
               <Box
                 sx={designs.ExamName_User_Date}
                 component={Link}
-                to={`/View_exam/${_id}`}
+                to={`/quizlit/view_exam/${_id}`}
               >
                 <Box sx={designs.ExamName}>
                   <Typography noWrap sx={designs.Exam}>

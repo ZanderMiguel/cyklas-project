@@ -16,9 +16,7 @@ import useStyle from './Styles/Add_member_style';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 function Add_member({ open, close, maxWidth }) {
-  const [value, setValue] = useState('');
   const [copy, setCopy] = useState(false);
-  const location = useLocation();
   const { designs } = useStyle();
 
   return (
@@ -56,7 +54,7 @@ function Add_member({ open, close, maxWidth }) {
               fontWeight: '600',
               textTransform: 'Capitalize',
               padding: '0.3em 3em',
-              boxShadow: "none",
+              boxShadow: 'none',
               '&: hover': {
                 backgroundColor: '#005DC3',
               },
@@ -94,12 +92,11 @@ function Add_member({ open, close, maxWidth }) {
                 children="Classroom Link (For Professor(s))"
               />
               <TextField
-                disabled
                 variant="standard"
-                value={value}
+                disabled
                 sx={designs.TextField2_Style}
-                onChange={(event) => setValue(location.pathname)}
-                InputProps={{ readOnly: true }}
+                defaultValue={window.location.href}
+                // InputProps={{ readOnly: true }}
               />
             </Box>
 
@@ -111,7 +108,12 @@ function Add_member({ open, close, maxWidth }) {
                 alignItems: 'flex-end',
               }}
             >
-              <CopyToClipboard text={value}>
+              <CopyToClipboard
+                text={window.location.href}
+                onCopy={() => {
+                  setCopy(true);
+                }}
+              >
                 <Button
                   variant="contained"
                   startIcon={<ContentCopy />}

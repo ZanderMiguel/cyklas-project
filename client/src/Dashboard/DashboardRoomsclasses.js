@@ -64,9 +64,9 @@ function DashboardRoomsclasses({ roomdata }) {
             </tr>
           </thead>
 
-          <tbody>
-            {roomdata && roomdata.length > 0 ? (
-              roomdata.map((items, index) => {
+          {roomdata && roomdata.lenght > 0 ? (
+            <tbody>
+              {roomdata.map((items, index) => {
                 return (
                   <tr key={index}>
                     <td> {items.RoomName} </td>
@@ -116,13 +116,11 @@ function DashboardRoomsclasses({ roomdata }) {
                     </td>
                   </tr>
                 );
-              })
-            ) : (
-              <center>
-                <h1> No rooms</h1>
-              </center>
-            )}
-          </tbody>
+              })}
+            </tbody>
+          ) : (
+            <h1>No room</h1>
+          )}
         </table>
       </Grid>
     </>

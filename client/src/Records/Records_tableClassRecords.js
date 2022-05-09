@@ -35,7 +35,6 @@ function Records_tableClassRecords({ rooms }) {
       })
       .then((res) => {
         setRecords(res.data);
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
     axios
@@ -49,7 +48,6 @@ function Records_tableClassRecords({ rooms }) {
             roomID: rooms[event.target.value]._id,
           })
           .then((res) => {
-            console.log(res.data[0].Category)
             axios.post('http://localhost:5000/records/overall', {
               category: res.data[0].Category,
               roomID: rooms[event.target.value]._id,
@@ -196,9 +194,7 @@ function Records_tableClassRecords({ rooms }) {
               {records && overall && records.map((items, index) => {
                 if (items.gradingSystem.length === 0) {
                   axios.put('http://localhost:5000/records/applyGS', { crID: items._id, gradingSystem: stdRecord.current })
-                    .then(res => {
-                      console.log(res.data)
-                    }).catch(err => console.log(err))
+                    .then(res => {}).catch(err => console.log(err))
                 }
                 
                 return (
