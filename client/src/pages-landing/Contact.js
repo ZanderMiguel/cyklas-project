@@ -61,7 +61,7 @@ function Contact() {
               color: '#3F3D56',
             }}
           >
-            Send us a message
+            Send us a message to Cyklas page
           </Typography>
           <Typography sx={{ ...style, color: '#007FFF' }} variant="h6">
             Got a question? We'd love to hear from you. <br />
