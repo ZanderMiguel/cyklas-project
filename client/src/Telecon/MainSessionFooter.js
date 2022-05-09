@@ -15,6 +15,7 @@ import CusPopover from '../components/Popover';
 import QuizPopover from '../components/PopoverContent/QuizPopover';
 import Livequiz_queue from '../Form_content/Livequiz_queue';
 import Leave_conference from '../Form_content/Leave_conference';
+import JoinQuiz from '../Form_content/JoinQuiz';
 
 function MainSessionFooter() {
   const [toggleMic, setToggleMic] = React.useState(false);
@@ -60,6 +61,17 @@ function MainSessionFooter() {
   const handleCreateClose = () => {
     setOpenDialog(false);
   };
+
+  // const [opendialogJoinQuiz, setOpenDialogJoinQuiz] =
+  //   React.useState(false);
+
+  // const handleCreateJoinQuiz = () => {
+  //   setOpenDialogJoinQuiz(true);
+  // };
+
+  // const handleCreateCloseJoinQuiz = () => {
+  //   setOpenDialogJoinQuiz(false);
+  // };
 
   const [opendialogLeaveConference, setOpenDialogLeaveConference] =
     React.useState(false);
@@ -222,6 +234,7 @@ function MainSessionFooter() {
         <Tooltip title="Conduct LIVE Quiz" placement="top">
           <IconButton
             onClick={handleClickQuiz}
+            // onClick={handleCreateJoinQuiz}
             sx={{
               border: '1px solid #DEDEDE',
               height: '1.8em',
@@ -235,6 +248,16 @@ function MainSessionFooter() {
             <MdOutlineQuiz style={{ color: '#DEDEDE', fontSize: '0.9em' }} />
           </IconButton>
         </Tooltip>
+
+        {/* {opendialogJoinQuiz && (
+          <JoinQuiz
+            open={opendialogJoinQuiz}
+            close={handleCreateCloseJoinQuiz}
+            maxWidth="sm"
+            state={setOpenDialogJoinQuiz}
+          />
+          )} */}
+
         <CusPopover
           open={quiz}
           anchorEl={anchorEl}
