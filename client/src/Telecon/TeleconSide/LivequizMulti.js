@@ -1,16 +1,8 @@
 import React from 'react'
-import { CssBaseline, Box, Typography, Button, Grid, Container, Backdrop } from "@mui/material";
-import Background89 from "../assets/ImageJaven/Background89.png";
-import hqdefault from "../assets/ImageJaven/hqdefault.jpg";
-import { TimerOutlined } from "@mui/icons-material";
-import QuestionResult from "./QuestionResult";
-import LivequizMulti from "./TeleconSide/LivequizMulti";
-import LivequizImagemulti from "./TeleconSide/LivequizImagemulti";
-import LivequizTF from "./TeleconSide/LivequizTF";
-import LivequizSA from "./TeleconSide/LivequizSA";
+import { Box, Grid, Backdrop, Typography } from "@mui/material";
+import QuestionResult from "../QuestionResult";
 
-function LivequizQuestion() {
-
+function LivequizMulti() {
 const [open, setOpen] = React.useState(false);
   const handleClose = () => {
     setOpen(false);
@@ -165,134 +157,26 @@ const [open, setOpen] = React.useState(false);
 
   return (
     <>
-    <CssBaseline/>
-    <Box
-    sx = {{
-        width: "100%",
-        height: "100vh",
-        backgroundImage: `url(${Background89})`,
-        backgroundSize: 'cover',
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center"
-    }}>
-        
-            
-
-        <Container maxWidth = "md"
-        sx = {{
-            background: "rgba(37, 40, 46, 0.8)",
-            borderRadius: "0.5em",
-            height: "85vh",
-            padding: "0em 1.5em 2em 1.5em",
-            boxShadow: "rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center"
-        }}>
-            <Box
+    {dataChoices.map(function(items, index) {
+        return (
+            <Box key = {index}
             sx = {{
-          position: 'relative',
-          top: -30,
-          borderRadius: "0.8em",
-          zIndex: 1,
-          background: "rgba(36, 37, 73)",
-          boxShadow: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px",
-                padding: "0.8em",
-                width: "25%",
-                height: "auto",
-                display: "flex",
-                gap: "0.8em",
-                alignItems: "center",
-                justifyContent: "center"
+                width: "100%",
+                height: "auto"
             }}>
-                <Box
-        className="Timer"
-        sx={{
-          display: 'flex',
-          gap: '0.5em',
-          width: 'auto',
-          height: 'max-content',
-        }}
-      >
-        <TimerOutlined
-          sx={{
-            color: 'white',
-            fontSize: '2em',
-          }}
-        />
-        <Typography
-          sx={{
-            color: 'white',
-            fontSize: '1.2em',
-            fontWeight: '600',
-            marginTop: '0.1em',
-            height: 'max-content',
-            width: 'auto',
-          }}
-        >
-            00:00:00
-        </Typography>
-      </Box>
+            {items.choice}
             </Box>
-
-            <Typography children = "Question 1 / 4"
-            sx = {{
-                color: "#DEDEDE",
-                fontSize: "0.8em",
-                fontWeight: "500",
-                textTransform: "Uppercase",
-                width: "relative",
-                height: "max-content",
-                textAlign: "center",
-                marginBottom: "0.5em"
-            }}/>
-
-            <Typography children = "Sino ang unang taong nakatapak tapak?"
-            sx = {{
-                color: "white",
-                fontSize: "1.5em",
-                fontWeight: "600",
-                textTransform: "sino",
-                width: "relative",
-                height: "max-content",
-                textAlign: "center",
-                marginBottom: "1em",
-            }}/>
-
-            {/* <Box
-            sx = {{
-                width: "relative",
-                border: "1px solid black",
-                height: "auto",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                marginBottom: "0.5em"
-            }}>
-                <img src = {hqdefault} alt = "Sample Image" style = {{ height: "150px", width: "100%", objectFit: "contain" }}/>
-            </Box> */}
-            <Container maxWidth = "sm"
-            sx = {{
-                width: "relative",
-                height: "60vh",
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.5em",
-                justifyContent: "center",
-                alignItems: "center"
-            }}> 
-                {/* <LivequizMulti/> */}
-                <LivequizImagemulti/>
-                {/* <LivequizTF/> */}
-                {/* <LivequizSA/> */}
-            </Container>
-        </Container>
-    </Box>
-    </>
+        )
+    })}
+    <Backdrop
+sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+open={open}
+onClick={handleClose}
+>
+<QuestionResult/>
+</Backdrop>
+</>
   )
 }
 
-export default LivequizQuestion
+export default LivequizMulti
