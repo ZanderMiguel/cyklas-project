@@ -18,7 +18,6 @@ function Grading_system({ data, name, counter }) {
       })
       .then((res) => {
         const curGS = [];
-        console.log(res.data);
         res.data.forEach((item, index) => {
           curGS.push(
             <Grid item xs={12} key={index} sx={{ marginBottom: '0.6em' }}>

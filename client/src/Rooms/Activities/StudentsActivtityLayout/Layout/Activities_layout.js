@@ -19,6 +19,7 @@ import Divider from '@mui/material/Divider';
 import { Link } from 'react-router-dom';
 import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser from 'react-html-parser';
+import moment from 'moment'
 import ActivityFile from '../../../../components/ActivityFile';
 
 const data = [
@@ -79,197 +80,7 @@ function Activities_layout({ roomID, activity }) {
 
   return (
     <>
-      {/* {activity &&
-        activity.map((items, index) => {
-          return (
-            <Box
-              key={index}
-              className="Activity_Tiles"
-              sx={designs.Activity_Tiles}
-            >
-              <Accordion
-                expanded={expanded === `${items.Activity}`}
-                onChange={handleChange(`${items.Activity}`)}
-                sx={designs.Accordion_Style}
-              >
-                <AccordionSummary
-                  aria-controls={items.Activity}
-                  id={items.Activity}
-                  sx={designs.AccordionSummary_Style}
-                >
-                  <Box
-                    className="Activity_Icon_Activity_Type"
-                    sx={designs.Activity_Icon_Activity_Type}
-                  >
-                    <img
-                      src={ActivityIcon}
-                      style={{
-                        height: '30px',
-                        margin: '4px 15px 0px 0px',
-                      }}
-                    />
-
-                    <Box
-                      className="Activity_Information"
-                      sx={designs.Activity_Information_Style}
-                    >
-                      <Typography noWrap sx={designs.Activity_Typography}>
-                        {items.Activity}
-                      </Typography>
-
-                      <Typography noWrap sx={designs.Type_Typography}>
-                        {items.Type}
-                      </Typography>
-
-                      <Typography noWrap sx={designs.Due_Date}>
-                        Due Date:
-                      </Typography>
-
-                      <Typography noWrap sx={designs.Date}>
-                        {items.DueDate}
-                      </Typography>
-
-                      <Box className="Seperator" sx={designs.Seperator}></Box>
-
-                      <Typography noWrap sx={designs.Time}>
-                        {items.DueTime}
-                      </Typography>
-
-                      <Typography noWrap sx={designs.Status}>
-                        {items.Status}
-                      </Typography>
-
-                      <Circle sx={designs.StatusIcon_Style} />
-                    </Box>
-                  </Box>
-
-                  <Box sx={{ flexGrow: 1 }} />
-                </AccordionSummary>
-                <AccordionDetails sx={designs.Accordion_Details_Style}>
-                  <Box
-                    className="Button-container"
-                    sx={designs.Button_Container_Style}
-                  >
-                    <Box
-                      className="Button-flexGrow"
-                      sx={designs.Button_FlexGrow}
-                    />
-                  </Box>
-
-                  <Box
-                    className="Activity-details"
-                    sx={designs.Activity_Details_Style}
-                  >
-                    <Box
-                      className="Type_Due_Date"
-                      sx={designs.Type_Due_Date_Style}
-                    >
-                      <Box className="Type">
-                        <Typography sx={designs.Type_Responsive_Typography}>
-                          Homework
-                        </Typography>
-                      </Box>
-
-                      <Box className="Due_Date" sx={designs.DueDate_Responsive}>
-                        <Typography sx={designs.DueDate_Responsive_Typography}>
-                          Due Date:
-                        </Typography>
-
-                        <Typography sx={designs.Date_Responsive_Typography}>
-                          December 05, 2021
-                        </Typography>
-
-                        <Box className="Seperator" sx={designs.SeperatorV} />
-
-                        <Typography noWrap sx={designs.Responsive_Time}>
-                          5:00 pm
-                        </Typography>
-                      </Box>
-                    </Box>
-
-                    <Box sx={designs.Empty_Box_FlexGrow} />
-
-                    <Box sx={designs.Empty_Box_FlexGrow2} />
-
-                    <Box
-                      className="Points_Postedby"
-                      sx={designs.Points_Postedby_Style}
-                    >
-                      <Box className="Points" sx={designs.Points}>
-                        <Typography sx={designs.Points_Typography}>
-                          Points:
-                        </Typography>
-
-                        <Typography sx={designs.Points_Value_Typography}>
-                          {items.PointsValue}
-                        </Typography>
-                      </Box>
-
-                      <Box className="Postedby" sx={designs.Postedby_Style}>
-                        <Typography sx={designs.Postedby_Typography}>
-                          {items.PostedBy}
-                        </Typography>
-
-                        <Typography sx={designs.Date_Posted_Typography}>
-                          {items.PostedTime}
-                        </Typography>
-                      </Box>
-                    </Box>
-                  </Box>
-
-                  <Divider sx={designs.Divider1} />
-
-                  <Box
-                    className="Activity-details2"
-                    sx={designs.Activity_Details2_Style}
-                  >
-                    <Typography sx={designs.Instructions_Typography}>
-                      {items.InstructionsHead}
-                    </Typography>
-
-                    <Typography sx={designs.Instructions2_Typography}>
-                      {items.Instructions}
-                    </Typography>
-
-                    <Box className="Attach-file" sx={designs.Attach_File_Style}>
-                      <Box className="Icon">
-                        <img
-                          src={Wordfile}
-                          style={{
-                            height: '40px',
-                          }}
-                        />
-                      </Box>
-
-                      <Box className="Activity-filename" marginTop="1px">
-                        <Typography
-                          noWrap
-                          sx={designs.Activity_FileName_Typography}
-                        >
-                          {items.ActivityFile}
-                        </Typography>
-
-                        <Typography sx={designs.DocumentFile_Typography}>
-                          Document File
-                        </Typography>
-                      </Box>
-                    </Box>
-                  </Box>
-
-                  <Divider sx={designs.Divider2} />
-
-                  <Button
-                    sx={designs.ViewHomework_Button_Style}
-                    component={Link}
-                    to="/Activity_viewed"
-                  >
-                    View Homework
-                  </Button>
-                </AccordionDetails>
-              </Accordion>
-            </Box>
-          );
-        })} */}
+      
       {activity &&
         activity.map(function (items, index) {
           const {
@@ -346,7 +157,7 @@ function Activities_layout({ roomID, activity }) {
                             fontSize: '13px',
                           }}
                         >
-                          {duedate ? duedate : ''}
+                          {duedate ? moment(duedate).format('LL') : ''}
                         </Typography>
                       </Box>
                     </Box>
@@ -367,21 +178,12 @@ function Activities_layout({ roomID, activity }) {
                       <Grid container columnSpacing={1} rowSpacing={1}>
                         <Grid item xs={6}>
                           <ActivityFile />
-                          {/* <Paper sx={{ width: '100%' }}>
-                            Every Files uploaded file goes here
-                          </Paper> */}
                         </Grid>
                         <Grid item xs={6}>
                           <ActivityFile />
-                          {/* <Paper sx={{ width: '100%' }}>
-                            Every Files uploaded file goes here
-                          </Paper> */}
                         </Grid>
                         <Grid item xs={6}>
                           <ActivityFile />
-                          {/* <Paper sx={{ width: '100%' }}>
-                            Every Files uploaded file goes here
-                          </Paper> */}
                         </Grid>
                       </Grid>
                     </Box>

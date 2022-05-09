@@ -20,33 +20,35 @@ import Message from '../../assets/ImageJaven/Message.png';
 
 function MessageArea({
   socket,
-  room,
+  teleRoom,
   username,
-  setMessageList,
-  setCurrentMessage,
-  currentMessage,
   messagelist,
 }) {
+  const [currentMessage, setCurrentMessage] = React.useState('')
+  const [renderer, setRenderer] = React.useState(true)
+
   const sendMessage = async () => {
     if (currentMessage !== '') {
       const messageData = {
-        room: room,
-        author: username,
+        room: teleRoom,
+        author: JSON.parse(localStorage.userData).data.user.firstName,
+        avatar: JSON.parse(localStorage.userData).data.user.image,
         message: currentMessage,
         time: moment(Date.now()).format('LT'),
       };
 
       await socket.emit('sendMessage', messageData);
-      setMessageList((list) => [...list, messageData]);
+      messagelist.current = [...messagelist.current, messageData];
       setCurrentMessage('');
     }
   };
 
   React.useEffect(() => {
-    socket.on('receive_message', (data) => {
-      setMessageList((list) => [...list, data]);
+    socket.once('receive_message', (data) => {
+      messagelist.current = [...messagelist.current,data];
+      setRenderer((prev)=> !prev)
     });
-  }, [socket]);
+  }, [renderer]);
 
   return (
     <div
@@ -123,7 +125,7 @@ function MessageArea({
               }}
             />
           </Box>
-          {messagelist.map((messageContent, index) => {
+          {messagelist.current.map((messageContent, index) => {
             return (
               <Box
                 key={index}
@@ -143,7 +145,7 @@ function MessageArea({
                 >
                   <Avatar
                     alt="userAvatar"
-                    src={JSON.parse(localStorage.userData).data.user.image}
+                    src={messageContent.avatar}
                     sx={{ height: '1.6em', width: '1.6em' }}
                   />
                   <Typography
@@ -156,7 +158,7 @@ function MessageArea({
                     }}
                     noWrap
                   >
-                    {JSON.parse(localStorage.userData).data.user.firstName}
+                   {messageContent.author}
                   </Typography>
 
                   <Box flexGrow={1} />
@@ -230,8 +232,8 @@ function MessageArea({
               },
             },
           }}
-          onChange={(e) => {
-            setCurrentMessage(e.target.value);
+          onChange={(event) => {
+            setCurrentMessage(event.target.value);
           }}
           onKeyPress={(event) => {
             event.key === 'Enter' && sendMessage();

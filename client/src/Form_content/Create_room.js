@@ -108,6 +108,7 @@ function Create_room({ open, close, maxWidth, state, socket, gs }) {
               onChange={(e) => setRoomname(e.target.value)}
               helperText={roomnameError ? 'Please enter Room name' : false}
               autoFocus
+              required
               half
             />
             <Input
@@ -145,6 +146,7 @@ function Create_room({ open, close, maxWidth, state, socket, gs }) {
             <Dropdown
               inputLabel="Grading System"
               autoComplete="off"
+              required
               value={gradingsystem}
               error={gradingsystemError}
               typeerror="Please select grading system. If doesnt have one make sure to create in RECORDS tab."

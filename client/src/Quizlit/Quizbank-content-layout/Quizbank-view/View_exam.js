@@ -120,8 +120,7 @@ function View_exam() {
                 >
                   {dataSort.map(({ value, label }) => (
                     <MenuItem key={value} value={value}>
-                      {' '}
-                      {label}{' '}
+                      {label}
                     </MenuItem>
                   ))}
                 </Select>
@@ -175,7 +174,7 @@ function View_exam() {
                 }}
               >
                 <Typography
-                  children={`${quizData && quizData.author.name} (You)`}
+                  children={`${quizData && quizData.author.name}`}
                   sx={{
                     color: '#3F3D56',
                     fontSize: '0.8em',

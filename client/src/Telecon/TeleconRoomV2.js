@@ -16,9 +16,9 @@ import MainSessionHeader from './MainSessionHeader';
 import MainSessionBody from './MainSessionBody';
 import MainSessionFooter from './MainSessionFooter';
 import RightContentSideBar from './RightContentSideBar';
+import MessageArea from './TeleconSide/MessageArea'
 import MeetingInformation from './MeetingInformation';
 import Members from './Members';
-import MessageArea from './TeleconSide/MessageArea';
 import PresentationCriteria from './PresentationCriteria';
 import { useParams } from 'react-router-dom';
 import _ from 'lodash';
@@ -35,10 +35,8 @@ import {
 function TeleconRoomV2({ socket }) {
   const [sidedrawer, setSideDrawer] = React.useState(false);
   const [sidecontent, setSideContent] = React.useState('');
-  const [currentMessage, setCurrentMessage] = React.useState('');
-  const [messagelist, setMessageList] = React.useState([]);
-  const { teleRoom } = useParams();
-  const [renderer, setRenderer] = React.useState(false);
+  const messagelist = React.useRef([])
+  const [renderer, setRenderer] = React.useState(false)
   const [members, setMembers] = React.useState([
     {
       camera: JSON.parse(localStorage.userData).data.user.image,
@@ -48,35 +46,12 @@ function TeleconRoomV2({ socket }) {
       id: JSON.parse(localStorage.userData).data.user._id,
     },
   ]);
-
-  React.useMemo(() => {
-    socket.emit('joinroom', teleRoom, members);
-  }, []);
-  React.useEffect(() => {
-    socket.once('rendered', (newMember) => {
-      setMembers(
-        _.uniqBy(
-          [
-            ...newMember,
-            {
-              camera: JSON.parse(localStorage.userData).data.user.image,
-              memberName: `${
-                JSON.parse(localStorage.userData).data.user.firstName
-              } ${JSON.parse(localStorage.userData).data.user.lastName}`,
-              id: JSON.parse(localStorage.userData).data.user._id,
-            },
-          ],
-          (item) => item.id
-        )
-      );
-
-      setRenderer((prev) => !prev);
-    });
-  }, [renderer]);
-  /* socket.on('tile-removed', () => {
-    console.log(members);
-    setRenderer((prev) => !prev);
-  }); */
+  const { teleRoom } = useParams()
+  const name = `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName
+  }`
+  const avatar = JSON.parse(localStorage.userData).data.user.image
+  socket.emit('joinroom', teleRoom, name,avatar)
+  console.log(teleRoom)
   return (
     <>
       <CssBaseline />
@@ -130,9 +105,7 @@ function TeleconRoomV2({ socket }) {
                 ) : sidecontent === 'MessageArea' ? (
                   <MessageArea
                     messagelist={messagelist}
-                    currentMessage={currentMessage}
-                    setCurrentMessage={setCurrentMessage}
-                    setMessageList={setMessageList}
+                    teleRoom={teleRoom}
                     socket={socket}
                   />
                 ) : (

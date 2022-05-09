@@ -60,7 +60,7 @@ function Schoolworktiles_layout({ content, roomID }) {
                   <Box
                     sx={designs.ActivityName_User_Date}
                     onClick={() => {
-                      setRedirect(<Redirect to={`/Exam_take/:${data._id}`} />);
+                      setRedirect(<Redirect to={JSON.parse(localStorage.userData).data.user.userType === 'Student' ? `/Exam_take/${data._id}` : `/quizlit/view_exam/${data._id}`} />);
                     }}
                   >
                     {redirect && redirect}

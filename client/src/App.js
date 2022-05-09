@@ -8,6 +8,7 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom';
+import axios from 'axios';
 //Landing Page
 import Navbar_landingpage from './components/Navbar_landingpage';
 import Forgot_password from './pages-landing/Forgot_password';
@@ -20,6 +21,8 @@ import Room_inside from './Rooms/Room-content-layout/Room_inside';
 import View_activity from './Rooms/Activities/ProfActivityLayout/View_activity';
 import Activities_main from './Rooms/Activities/StudentsActivtityLayout/Activities_main';
 import Activity_viewed from './Rooms/Activities/StudentsActivtityLayout/View/Activity_viewed';
+import ExamViewedV2 from './Rooms/Activities/StudentsActivtityLayout/View/ExamViewedV2';
+
 
 //Records & Classcards
 import Records from './Records/Records';
@@ -41,20 +44,19 @@ import Quizform from './Quizlit/Quiz&ExamForm/Quizform';
 import Examform from './Quizlit/Quiz&ExamForm/Examform';
 
 import Livequiz_multiplechoice from './Quizlit/LiveQuiz/Livequiz_multiplechoice';
-import StudentLiveQuiz_multiplechoice from './Quizlit/LiveQuiz/StudentLiveQuiz_multiplechoice';
-import Livequiz_correctanswer from './Quizlit/LiveQuiz/Livequiz_correctanswer';
-import Livequiz_wronganswer from './Quizlit/LiveQuiz/Livequiz_wronganswer';
-import Student_rankings from './Quizlit/LiveQuiz/Student_rankings';
-import Student_activities from './Dashboard/Student_activities';
-import Student_viewactivity from './Dashboard/Student_viewactivity';
-import Student_viewexam from './Dashboard/Student_viewexam';
-import Student_viewquiz from './Dashboard/Student_viewquiz';
+// import StudentLiveQuiz_multiplechoice from './Quizlit/LiveQuiz/StudentLiveQuiz_multiplechoice';
+// import Livequiz_correctanswer from './Quizlit/LiveQuiz/Livequiz_correctanswer';
+// import Livequiz_wronganswer from './Quizlit/LiveQuiz/Livequiz_wronganswer';
+// import Student_rankings from './Quizlit/LiveQuiz/Student_rankings';
+// import Student_activities from './Dashboard/Student_activities';
+// import Student_viewactivity from './Dashboard/Student_viewactivity';
+// import Student_viewexam from './Dashboard/Student_viewexam';
+// import Student_viewquiz from './Dashboard/Student_viewquiz';
 import Notifications_viewall from './Notifications/Notifications_viewall';
 import Exam_take from './Dashboard/Exam_take';
 import Exam_start from './Dashboard/Exam_start';
 import View_quiz from './Quizlit/Quizbank-content-layout/Quizbank-view/View_quiz';
 import View_exam from './Quizlit/Quizbank-content-layout/Quizbank-view/View_exam';
-import Telecon_room from './Telecon/Telecon_room';
 import JoinQuiz from './Quizlit/TestComponents/JoinQuiz';
 import ToLobby from './Quizlit/TestComponents/ToLobby';
 import Lobby from './Quizlit/TestComponents/Lobby';
@@ -63,14 +65,10 @@ import TeleconLanding from './pages-landing/TeleconLanding';
 // import LoadQuizlit from './Quizlit/TestComponents/LoadQuizlit';
 
 // Student Side
-
 import Dashboard_main from './student_side/Dashboard/Dashboard_main';
-import axios from 'axios';
-import Quiz_viewed from './Rooms/Activities/StudentsActivtityLayout/View/Quiz_viewed';
-import Exam_viewed from './Rooms/Activities/StudentsActivtityLayout/View/Exam_viewed';
-import ExamViewedV2 from './Rooms/Activities/StudentsActivtityLayout/View/ExamViewedV2';
-import Rooms_main from './student_side/Rooms/Rooms_main';
-import Settings_main from './student_side/Settings/Settings_main';
+
+
+
 function App() {
   const theme = createTheme({
     typography: {
@@ -191,49 +189,6 @@ function App() {
               <ProtectedRoutes exact path="/settings" component={Settings} />
 
               {/* Javen Routes */}
-              <ProtectedRoutes
-                exact
-                path="/StudentLiveQuiz_multiplechoice"
-                component={StudentLiveQuiz_multiplechoice}
-              />
-              <ProtectedRoutes
-                exact
-                path="/Livequiz_correctanswer"
-                component={Livequiz_correctanswer}
-                socket={socket}
-              />
-              <ProtectedRoutes
-                exact
-                path="/Livequiz_wronganswer"
-                component={Livequiz_wronganswer}
-                socket={socket}
-              />
-              <ProtectedRoutes
-                exact
-                path="/student_rankings"
-                component={Student_rankings}
-                socket={socket}
-              />
-              <Route
-                exact
-                path="/Student_activities"
-                component={Student_activities}
-              />
-              <Route
-                exact
-                path="/Student_viewactivity"
-                component={Student_viewactivity}
-              />
-              <Route
-                exact
-                path="/Student_viewexam"
-                component={Student_viewexam}
-              />
-              <Route
-                exact
-                path="/Student_viewquiz"
-                component={Student_viewquiz}
-              />
               <Route
                 exact
                 path="/Notifications_viewall"
@@ -243,27 +198,7 @@ function App() {
               {/* Student Side */}
               <Route exact path="/Evaluation" component={Evaluation} />
               <Route exact path="/Dashboard_main" component={Dashboard_main} />
-              <Route
-                exact
-                path="/Activities_main"
-                component={Activities_main}
-              />
-              <Route
-                exact
-                path="/Activity_viewed"
-                component={Activity_viewed}
-              />
-              <Route exact path="/Quiz_viewed" component={Quiz_viewed} />
-              <Route exact path="/Exam_viewed" component={Exam_viewed} />
               <Route exact path="/ExamViewedV2" component={ExamViewedV2} />
-
-              <Route
-                exact
-                path="/Rooms_main"
-                component={Rooms_main}
-                socket={socket}
-              />
-              <Route exact path="/Settings_main" component={Settings_main} />
               <Route exact path="/Exam_take/:quizID" component={Exam_take} />
               <ProtectedRoutes
                 exact
@@ -274,11 +209,9 @@ function App() {
               <ProtectedRoutes exact path="/View_quiz" component={View_quiz} />
               <ProtectedRoutes
                 exact
-                path="/View_exam/:examID"
+                path="/quizlit/view_exam/:examID"
                 component={View_exam}
               />
-              <ProtectedRoutes exact path="/records" component={Records} />
-              <Route path="/telecon/room" component={Telecon_room} />
               <Route exact path="/quizlit/join">
                 <JoinQuiz socket={socket} />
               </Route>
