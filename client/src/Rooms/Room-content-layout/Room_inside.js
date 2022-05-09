@@ -43,7 +43,6 @@ function Room_inside({ socket }) {
         userImage: JSON.parse(localStorage.userData).data.user.image,
       })
       .then((res) => {
-        console.log(res);
         setRoomData(res.data);
         setIsPending(false);
       })

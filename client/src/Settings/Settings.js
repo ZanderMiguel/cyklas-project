@@ -54,8 +54,8 @@ function Settings() {
     setMyApi(myApi.set([e.target.name], e.target.value));
   };
   return (
-    <Container maxWidth="lg">
-      <Grid container sx={{ margin: '0.5em 0em' }}>
+    <Container maxWidth="md" sx = {{ padding: "2em 0em"}}>
+      <Grid container>
         <Grid
           item
           xs={12}
@@ -177,7 +177,12 @@ function Settings() {
             marginBottom: '0.8em',
             boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 2px 0px',
             backgroundColor: "white",
-            borderRadius: "0.3em"
+            borderRadius: "0.3em 0.3em 0em 0em",
+            '&: hover': {
+              transition: 'all 250ms',
+              boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 12px',
+              borderBottom: '4px solid #007FFF',
+            },
           }}
         >
           <Box sx={{ width: 'relative', height: 'auto', padding: '1.5em 1em' }}>
@@ -263,7 +268,12 @@ function Settings() {
             marginBottom: '0.8em',
             boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 2px 0px',
             backgroundColor: "white",
-            borderRadius: "0.3em"
+            borderRadius: "0.3em 0.3em 0em 0em",
+            '&: hover': {
+              transition: 'all 250ms',
+              boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 12px',
+              borderBottom: '4px solid #007FFF',
+            },
           }}
         >
           <Box sx={{ width: 'relative', height: 'auto', padding: '1.5em 1em' }}>

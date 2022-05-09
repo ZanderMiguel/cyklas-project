@@ -10,6 +10,7 @@ function useStyle() {
       height: 'auto',
       margin: '20px 0px',
       paddingBottom: '15px',
+      border: "1px solid #DBDBDB",
       borderRadius: '0.3em 0.3em 0em 0em',
       '&: hover': {
         boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
