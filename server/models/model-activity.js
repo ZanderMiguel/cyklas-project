@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const ActivitySchema = new mongoose.Schema(
   {
-    author: { type: mongoose.Schema.Types.ObjectId },
+    author: { type: Object, required: true },
     activityTopic: { type: String },
     activityTitle: { type: String, required: true },
     activityType: { type: String, required: true },

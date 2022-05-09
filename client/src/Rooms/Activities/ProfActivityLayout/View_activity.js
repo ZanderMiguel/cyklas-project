@@ -37,6 +37,7 @@ import '../../Styles/View_activity_style.css';
 import ActivityIcon from '../../../assets/ImageJaven/ActivityIcon.png';
 import axios from 'axios';
 import ReactScrollableFeed from 'react-scrollable-feed';
+import StudentList from './components/StudentList';
 
 const sortOptions = [
   {
@@ -71,7 +72,6 @@ const dataSort = [
     label: 'Graded',
   },
 ];
-
 const data = [
   {
     studentName: 'Paul Rudd',
@@ -94,7 +94,6 @@ const data = [
     score: '100/100',
   },
 ];
-
 function View_activity() {
   const [view, setView] = React.useState(false);
   const { designs } = useStyle();
@@ -167,37 +166,7 @@ function View_activity() {
               className="Student-container"
               sx={designs.Student_Container_Style}
             >
-              {data.map(function (items, index) {
-                return (
-                  <Box key={index} sx={designs.Student_Box_Style}>
-                    <Checkbox sx={designs.Student_Checkbox_Style} />
-                    <Avatar
-                      alt="Remy Sharp"
-                      src={AvatarIcon}
-                      sx={designs.Student_Avatar_Style}
-                    />
-                    <Typography
-                      noWrap
-                      sx={{
-                        height: 'max-content',
-                        width: '47%',
-                        textTransform: 'Capitalize',
-                        textAlign: 'Left',
-                        fontSize: '13px',
-                        fontWeight: '500',
-                        color: '#3F3D56',
-                        margin: '10px 0px 10px 0px',
-                      }}
-                    >
-                      {items.studentName}
-                    </Typography>
-                    <Box flexGrow={1} height="relative" width="relative" />
-                    <Typography sx={designs.StudentScore_Typography_Style}>
-                      {items.score}
-                    </Typography>
-                  </Box>
-                );
-              })}
+              <StudentList data={data} />
             </Box>
           </Box>
         </Grid>

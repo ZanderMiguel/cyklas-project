@@ -34,7 +34,7 @@ const displayActivity = async (req, res) => {
     });
   }
 };
-const findActivity = async(req,res) => {
+const findActivity = async (req, res) => {
   try {
     const activity = await Activity.findById(req.body.activityID);
     console.log('activity found!');
@@ -45,8 +45,8 @@ const findActivity = async(req,res) => {
       status: 'error',
       message: error,
     });
-}
-}
+  }
+};
 const deleteActivity = async (req, res) => {
   try {
     await Activity.findByIdAndDelete(req.params.id);
@@ -75,9 +75,20 @@ const updateActivity = async (req, res) => {
   }
 };
 
+const submitActivity = async (req, res) => {
+  try {
+    return res.json('Success');
+  } catch (err) {
+    console.log(err);
+    return res.json(err);
+  }
+};
+
 module.exports = {
   createActivityController: createActivity,
   displayActivityController: displayActivity,
   deleteActivityController: deleteActivity,
-  updateActivityController: updateActivity,findActivity
+  updateActivityController: updateActivity,
+  findActivity,
+  submitActivity,
 };

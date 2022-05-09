@@ -1,16 +1,21 @@
 import React from 'react';
-import { Box, Typography, Avatar, IconButton, Tooltip } from '@mui/material';
-import { KeyboardVoiceOutlined } from '@mui/icons-material';
-import AvatarIcon from '../assets/ImageJaven/Avatar.png';
-import MicOffOutlinedIcon from '@mui/icons-material/MicOffOutlined';
-// import download from "../assets/ImageJaven/download.jpg";
+
+import OffCamera from './OffCamera';
 import _ from 'lodash';
-function MainSessionBody({ setRenderer, socket, members, setMembers }) {
+import OnCamera from './OnCamera';
+function MainSessionBody({
+  setRenderer,
+  renderer,
+  socket,
+  members,
+  myPeer,
+  socketID,
+}) {
   const [toggleMic, setToggleMic] = React.useState(false);
   const layout = React.useRef(null);
   const [tileWidth, setTileWidth] = React.useState(null);
 
-  React.useEffect(() => {
+  React.useMemo(() => {
     layout.current &&
       setTileWidth(
         layout.current.childNodes.length >= 36
@@ -26,35 +31,27 @@ function MainSessionBody({ setRenderer, socket, members, setMembers }) {
           : 2
       );
 
-    socket.once('join-others', (newMember, id) => {
-      console.log('bonak');
-      setMembers([
-        ...newMember,
-        {
-          camera: JSON.parse(localStorage.userData).data.user.image,
-          memberName: `${
-            JSON.parse(localStorage.userData).data.user.firstName
-          } ${JSON.parse(localStorage.userData).data.user.lastName}`,
-          id: id,
-        },
-      ]);
+    socket.once('join-others', (newMember, id, roomID) => {
+      members.current = _.uniqBy(
+        [...newMember, ...members.current],
+        (item) => item.stdID
+      );
+
       console.log('someone joined');
-      socket.emit('render');
+      socket.emit(
+        'render',
+        _.uniqBy([...newMember, ...members.current], (item) => item.stdID),
+        id,
+        roomID
+      );
+      setRenderer((prev) => !prev);
     });
-  }, [members.length]);
+  }, []);
   socket.on('user-disconnected', (id) => {
-    setMembers(
-      _.uniqBy(
-        members.filter((item) => {
-          console.log({ bobo: item.id, tanga: id });
-          return item.id === id;
-        }),
-        (item) => item.id
-      )
-    );
+    console.log(members.current);
+    members.current = members.current.filter((item) => item.id !== id);
     setRenderer((prev) => !prev);
     //document.querySelector(`#${id}`).remove()
-    //socket.emit('remove-disconnected');
   });
   const handleToggleMic = () => {
     setToggleMic((prev) => !prev);
@@ -77,116 +74,25 @@ function MainSessionBody({ setRenderer, socket, members, setMembers }) {
         }}
         ref={layout}
       >
-        {members.map(function (items, index) {
-          return (
-            <div
-              id={items.id}
-              key={items.id + index}
-              style={{
-                minWidth: `calc(85%/${tileWidth})`,
-                height: `calc(${
-                  layout.current && layout.current
-                }/${tileWidth})`,
-              }}
-            >
-              <Box
-                sx={{
-                  position: 'relative',
-                  backgroundColor: '#25282E',
-                  // backgroundImage: `url(${download})`,
-                  // backgroundSize: 'cover',
-                  height: '100%',
-                  width: 'relative',
-                  borderRadius: '0.5em',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  flexDirection: 'column',
-                }}
-              >
-                <Avatar
-                  alt="Remy Sharp"
-                  src={items.camera}
-                  sx={{ height: '5em', width: '5em' }}
-                />
-
-                <Box
-                  sx={{
-                    // position: "relative",
-                    // bottom: -50,
-                    width: 'auto',
-                    height: 'auto',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    //gap: "0.3em",
-                    alignItems: 'center',
-                  }}
-                >
-                  <Typography
-                    noWrap
-                    children={items.memberName}
-                    sx={{
-                      color: 'white',
-                      fontSize: '1em',
-                      fontWeight: '500',
-                      height: 'max-content',
-                      width: '14em',
-                      padding: '0.5em 0.8em',
-                      borderRadius: '0.3em',
-                      textAlign: 'center',
-                      '&: hover': {
-                        cursor: 'default',
-                      },
-                    }}
-                  />
-                </Box>
-
-                <Box sx={{ position: 'absolute', right: 10, bottom: 10 }}>
-                  <Tooltip
-                    title={toggleMic ? 'Mute' : 'Unmute'}
-                    placement="top"
-                  >
-                    <IconButton
-                      onClick={handleToggleMic}
-                      sx={
-                        toggleMic === true
-                          ? {
-                              border: '1px solid #007FFF',
-                              height: '1em',
-                              width: '1em',
-                              padding: '0.3em',
-                              '&: hover': {
-                                backgroundColor: '#282B31',
-                              },
-                            }
-                          : {
-                              border: '1px solid #3A3E46',
-                              height: '1em',
-                              width: '1em',
-                              padding: '0.3em',
-                              backgroundColor: '#3A3E46',
-                              '&: hover': {
-                                backgroundColor: '#3A3E46',
-                              },
-                            }
-                      }
-                    >
-                      {toggleMic ? (
-                        <KeyboardVoiceOutlined
-                          sx={{ fontSize: '0.7em', color: '#007FFF' }}
-                        />
-                      ) : (
-                        <MicOffOutlinedIcon
-                          sx={{ fontSize: '0.7em', color: '#DEDEDE' }}
-                        />
-                      )}
-                    </IconButton>
-                  </Tooltip>
-                </Box>
-              </Box>
-            </div>
-          );
-        })}
+        {/* <OffCamera
+          layout={layout}
+          members={members}
+          toggleMid={toggleMic}
+          tileWidth={tileWidth}
+          handleToggleMic={handleToggleMic}
+          myPeer={myPeer}
+        /> */}
+        <OnCamera
+          layout={layout}
+          members={members}
+          toggleMic={toggleMic}
+          tileWidth={tileWidth}
+          handleToggleMic={handleToggleMic}
+          myPeer={myPeer}
+          socket={socket}
+          renderer={renderer}
+          socketID={socketID}
+        />
       </div>
     </>
   );
