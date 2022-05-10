@@ -125,6 +125,7 @@ const createActivityComment = async (req, res) => {
         $push: { activityComments: [{ ...req.body.commentObj, commentID }] },
       }
     );
+    return res.json('Activity Comment')
   } catch (error) {
     console.log(error);
     return res.json(error);

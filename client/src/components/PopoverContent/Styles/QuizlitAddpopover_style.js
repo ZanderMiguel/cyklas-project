@@ -7,8 +7,8 @@ const designs = {
     Container_Style: {
         width: "auto",
         height: "max-content",
-        padding: "0em 0.5em",
-        backgroundColor: "#FEFEFE"
+        padding: "0em",
+        backgroundColor: "white"
     },
     Nav_Style: { 
         width: '100%' 

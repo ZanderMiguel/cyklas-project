@@ -134,7 +134,7 @@ function Register({ open, close, setOpenDialog, setNotif }) {
   return (
     <>
       <Router>
-        <Dialogform divider title="Register here" open={open} close={close}>
+        <Dialogform divider title="Register" open={open} close={close}>
           <Box sx={{ pr: '2em', pl: '2em', pb: '2em', pt: '0em' }}>
             <Grid
               container

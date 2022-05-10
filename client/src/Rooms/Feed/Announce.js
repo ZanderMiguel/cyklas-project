@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { CssBaseline, Grid, Box } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-
+import TeleconPostedTile from "../../Telecon/components/TeleconPostedTile";
 import Post_layout from './Post_layout';
 import Rich_text from './Rich_text';
 
@@ -60,6 +60,7 @@ function Announce({ socket }) {
               commentId={commentId}
             />
           )}
+          <TeleconPostedTile/>
         </Grid>
       </Grid>
     </>

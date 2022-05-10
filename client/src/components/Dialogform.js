@@ -46,8 +46,13 @@ function Dialogform({
           </IconButton>
         </Grid>
         {divider && (
-          <DialogTitle sx={{ pl: '2em', pr: '2em', pt: '0.5em', pb: '1em' }}>
-            <Divider textAlign="left">{title}</Divider>
+          <DialogTitle sx={{
+          fontWeight: "600",
+          fontSize: "1.2em",
+          color: "#3F3D56",
+          padding: "0.5em 1.2em",
+          marginBottom: "0.5em" }}>
+            {title}
           </DialogTitle>
         )}
         <DialogContent sx={{ padding: '0em', height: 'auto' }}>

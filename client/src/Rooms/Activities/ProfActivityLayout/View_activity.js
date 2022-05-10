@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { io } from 'socket.io-client';
 import {
   Box,
   Typography,
@@ -25,18 +26,15 @@ import FileDownload from 'js-file-download';
 import moment from 'moment';
 import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser from 'react-html-parser';
-import AvatarIcon from '../../../assets/ImageJaven/Avatar.png';
 import Wordfile from '../../../assets/ImageJaven/Wordfile.png';
-import {
-  BorderColorOutlined,
-  DeleteOutlineOutlined,
-} from '@mui/icons-material';
 import useStyle from '../../Styles/View_activity_style';
 import '../../Styles/View_activity_style.css';
 import ActivityIcon from '../../../assets/ImageJaven/ActivityIcon.png';
 import axios from 'axios';
-import ReactScrollableFeed from 'react-scrollable-feed';
 import StudentList from './components/StudentList';
+import CommentArea from '../CommentArea';
+
+
 
 const dataSort = [
   {
@@ -78,6 +76,8 @@ const data = [
     score: '100/100',
   },
 ];
+
+const socket = io.connect('http://localhost:3001');
 function View_activity() {
   const [view, setView] = React.useState(false);
   const { designs } = useStyle();
@@ -85,41 +85,24 @@ function View_activity() {
   const [selectSort, setSort] = useState('');
   const [activityView, setActivityView] = useState(null);
   const [submitData, setSubmitData] = useState(null);
+  const [commentId, setCommentId] = useState(null);
   const handleChangeSort = (event) => {
     setSort(event.target.value);
   };
 
-  const [activityComment, setActivityComment] = useState('');
+  socket.on('post-comment', (uuid) => {
+    setCommentId(uuid);
+  });
 
   React.useEffect(() => {
     axios
       .post('http://localhost:5000/activity/get', { activityID })
       .then((res) => {
         setActivityView({ ...res.data.activity, ...res.data.myFile });
-        console.log({ ...res.data.activity, ...res.data.myFile });
       })
       .catch((err) => console.log(err.message));
   }, []);
 
-  const handleComment = () => {
-    axios
-      .put('http://localhost:5000/activity/create/comment', {
-        activityID,
-        commentObj: {
-          author: {
-            name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
-              JSON.parse(localStorage.userData).data.user.lastName
-            }`,
-            userID: JSON.parse(localStorage.userData).data.user._id,
-            avatar: JSON.parse(localStorage.userData).data.user.image,
-          },
-          content: activityComment,
-          commentDate: Date.now(),
-        },
-      })
-      .then((res) => setActivityComment(''))
-      .catch((err) => console.log(err));
-  };
 
   return (
     <Container maxWidth="lg" sx={{ padding: '0.5em 0em' }}>
@@ -320,6 +303,59 @@ function View_activity() {
                   </Typography>
                 </Box>
               </Grid>
+
+              <Grid item xs = {6}>
+              <Box
+                  sx={{
+                    width: 'relative',
+                    height: 'max-content',
+                    display: 'flex',
+                    alignItems: "center",
+                    gap: '0.8em',
+                    justifyContent: "flex-end"
+                  }}
+                > 
+                  <Typography children = "Score:"
+                  sx = {{
+                    display: 'flex',
+                      alignItems: 'center',
+                      height: 'relative',
+                      fontSize: '0.8em',
+                      fontWeight: '500',
+                      textTransform: 'Uppercase',
+                      color: '#3F3D56',
+                  }}/>
+                  <TextField
+              autoComplete="off"
+              size="small"
+              variant="standard"
+              inputProps={{
+                style: {
+                  width: '3em',
+                  height: '1em',
+                  fontSize: '0.9em',
+                  color: '#007FFF',
+                  fontWeight: 600,
+                  textAlign: 'center',
+                },
+              }}
+            />
+
+                  <Typography
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      height: 'relative',
+                      fontSize: '0.8em',
+                      fontWeight: '600',
+                      textTransform: 'Capitalize',
+                      color: '#3F3D56',
+                    }}
+                  >
+                    / 100
+                  </Typography>
+                </Box>
+              </Grid>
             </Grid>
             <Divider
               sx={{
@@ -486,7 +522,15 @@ function View_activity() {
               },
             }}
           >
-            <Typography
+            <Box
+            sx = {{
+              width: "relative",
+              height: "auto",
+              display: "flex",
+              alignItems: "center",
+              margin: "0.5em 0em 1em 0em"
+            }}>
+              <Typography
               sx={{
                 height: 'max-content',
                 fontSize: '15px',
@@ -495,11 +539,24 @@ function View_activity() {
                 color: '#6D6B85',
                 width: 'auto',
                 flexGrow: 1,
-                margin: '0.5em 0em 1em 0em',
               }}
             >
               Student's Uploaded Files
             </Typography>
+
+            <Typography
+              sx={{
+                height: 'max-content',
+                fontSize: '15px',
+                fontWeight: '700',
+                textTransform: 'Uppercase',
+                color: '#007FFF',
+                width: 'auto',
+              }}
+            >
+              handed-out
+            </Typography>
+            </Box>
 
             {submitData?.length > 0 &&
               submitData[0].media.map((item, index) => {
@@ -572,288 +629,7 @@ function View_activity() {
                 );
               })}
           </Box>
-
-          <Box
-            className="Student-container"
-            sx={{
-              height: 'auto',
-              width: 'relative',
-              marginBottom: '1em',
-              borderRadius: '0.3em 0.3em 0em 0em',
-              padding: '0.3em 0em 1em 0em',
-              backgroundColor: 'white',
-              '&: hover': {
-                boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
-                borderBottom: '4px solid #007FFF',
-                transition: 'all 250ms',
-              },
-            }}
-          >
-            <Typography
-              sx={{
-                height: 'max-content',
-                fontSize: '15px',
-                fontWeight: '600',
-                textTransform: 'Uppercase',
-                color: '#6D6B85',
-                width: 'auto',
-                flexGrow: 1,
-                margin: '0.5em 0em 0em 0em',
-                padding: '0em 1.5em',
-              }}
-            >
-              Comment Area
-            </Typography>
-
-            <Typography
-              sx={{
-                height: 'max-content',
-                fontSize: '0.7em',
-                fontWeight: '500',
-                textTransform: 'none',
-                color: '#8E8E8E',
-                width: 'auto',
-                flexGrow: 1,
-                margin: '0em 0em 1.5em 0em',
-                padding: '0em 2em',
-              }}
-            >
-              See your student's concerns about the activity.
-            </Typography>
-
-            <Box
-              className="View-comments"
-              sx={{
-                borderTop: '1px solid #DBDBDB',
-                backgroundColor: '#FCFCFC',
-                height: 'auto',
-                width: 'relative',
-                padding: '0em 1.5em',
-                display: 'flex',
-                gap: '8px',
-              }}
-            >
-              <Typography
-                noWrap
-                sx={{
-                  height: 'max-content',
-                  width: 'max-content',
-                  color: '#3F3D56',
-                  fontSize: '12px',
-                  padding: '1px 0px',
-                  margin: '5px 0px',
-                }}
-              >
-                23
-              </Typography>
-              <Typography
-                noWrap
-                sx={{
-                  height: 'max-content',
-                  width: 'max-content',
-                  color: '#3F3D56',
-                  fontSize: '12px',
-                  padding: '1px 0px',
-                  margin: '5px 0px',
-                }}
-              >
-                Comments
-              </Typography>
-            </Box>
-            <Box
-              className="comments-wrapper"
-              height="auto"
-              maxHeight={300}
-              overflow="auto"
-            >
-              <ReactScrollableFeed>
-                <div>
-                  <Box
-                    className="User"
-                    sx={{
-                      padding: '7px 15px',
-                      gap: '13px',
-                      display: 'flex',
-                      width: 'relative',
-                      height: 'auto',
-                    }}
-                  >
-                    <Avatar
-                      alt="Remy Sharp"
-                      src={AvatarIcon}
-                      sx={{
-                        margin: '1px 0px',
-                        height: '40px',
-                        width: '40px',
-                      }}
-                    />
-
-                    <Box className="User-date" sx={{ margin: '3px 0px' }}>
-                      <Box>
-                        <Typography
-                          noWrap
-                          sx={{
-                            fontSize: '14px',
-                            color: '#3F3D56',
-                            fontWeight: '600',
-                          }}
-                        >
-                          Eren Yeager
-                        </Typography>
-
-                        <Box
-                          className="date"
-                          sx={{
-                            display: 'flex',
-                            flexWrap: 'wrap',
-                          }}
-                        >
-                          <Typography
-                            sx={{
-                              width: 'max-content',
-                              fontSize: '10px',
-                              color: '#8E8E8E',
-                              fontWeight: '500',
-                              fontStyle: 'Italic',
-                            }}
-                          >
-                            December 04, 2021
-                          </Typography>
-                        </Box>
-                      </Box>
-                      <Box
-                        className="content"
-                        fontSize="0.9rem"
-                        sx={{
-                          margin: '0.5em 0em',
-                        }}
-                      >
-                        ayos
-                      </Box>
-
-                      <Box
-                        className="actions"
-                        sx={{
-                          marginTop: '0.3em',
-                          display: 'flex',
-                          gap: '1em',
-                        }}
-                      >
-                        <Box
-                          // onClick={handleEditComment}
-                          sx={{
-                            display: 'flex',
-                            gap: '0.5em',
-                            width: 'auto',
-                            height: 'auto',
-                            '&: hover': {
-                              cursor: 'pointer',
-                              textDecoration: 'underline',
-                            },
-                          }}
-                        >
-                          <BorderColorOutlined
-                            sx={{ color: '#585670', fontSize: '0.9em' }}
-                          />
-
-                          <Typography
-                            sx={{
-                              fontSize: '0.5em',
-                              fontWeight: '400',
-                              color: '#3F3D56',
-                            }}
-                          >
-                            Edit comment
-                          </Typography>
-                        </Box>
-
-                        <Divider
-                          orientation="vertical"
-                          flexItem
-                          sx={{
-                            margin: '0.2em 0em',
-                          }}
-                        />
-
-                        <Box
-                          // onClick={() => handleDeleteComment(_id)}
-                          sx={{
-                            display: 'flex',
-                            gap: '0.5em',
-                            width: 'auto',
-                            height: 'auto',
-                            '&: hover': {
-                              cursor: 'pointer',
-                              textDecoration: 'underline',
-                            },
-                          }}
-                        >
-                          <DeleteOutlineOutlined
-                            sx={{ color: '#585670', fontSize: '0.9em' }}
-                          />
-
-                          <Typography
-                            sx={{
-                              fontSize: '0.5em',
-                              fontWeight: '400',
-                              color: '#3F3D56',
-                            }}
-                          >
-                            Delete comment
-                          </Typography>
-                        </Box>
-                      </Box>
-                    </Box>
-                  </Box>
-                </div>
-              </ReactScrollableFeed>
-            </Box>
-
-            <Divider sx={{ mb: 2 }} />
-
-            <Box
-              className="write-comment"
-              sx={{
-                padding: '0px 15px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '10px',
-                width: 'relative',
-                height: 'auto',
-              }}
-            >
-              <Avatar alt="Remy Sharp" src={AvatarIcon} />
-
-              <Input
-                placeholder="Write a comment..."
-                disableUnderline
-                value={activityComment}
-                onChange={(event) => setActivityComment(event.target.value)}
-                sx={{
-                  border: '1px solid #DBDBDB',
-                  borderRadius: '0.3em',
-                  color: '#3F3D56',
-                  fontSize: '0.9em',
-                  padding: '0.3em 0.8em',
-                  width: '100%',
-                  '&: hover': {
-                    border: '1px solid #007FFF',
-                    transition: 'all 300ms',
-                  },
-                }}
-              />
-
-              <Button
-                children="Send"
-                onClick={handleComment}
-                variant="contained"
-                sx={{
-                  fontWeight: '600',
-                  boxShadow: 'none',
-                }}
-              />
-            </Box>
-          </Box>
+        <CommentArea socket={socket} activityID={activityID} commentId={commentId}/>
         </Grid>
       </Grid>
     </Container>
