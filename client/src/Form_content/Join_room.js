@@ -1,27 +1,18 @@
 import React from 'react';
+import {Redirect, useLocation} from 'react-router-dom'
 import Dialogform from '../components/Dialogform';
 import Input from '../components/Input';
 import CusButton from '../components/Button';
 import { Grid, Typography, Avatar, Box } from '@mui/material';
 import Divider from '@mui/material/Divider';
-import axios from 'axios';
+
 
 function Join_room({ open, close, maxWidth }) {
+  const location = useLocation()
   const [joinId, setJoinId] = React.useState('');
+  const [joinIdError, setJoinIdError] = React.useState(false)
+  const [redirect, setRedirect] = React.useState(null)
 
-  const handleJoinRoom = () => {
-    axios
-      .post('http://localhost:5000/requests/to-join', {
-        userID: JSON.parse(localStorage.userData).data.user._id,
-        userName: `${JSON.parse(localStorage.userData).data.user.firstName} ${
-          JSON.parse(localStorage.userData).data.user.lastName
-        }`,
-        userImage: JSON.parse(localStorage.userData).data.user.image,
-        joinId,
-      })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-  };
   return (
     <div>
       <Dialogform open={open} close={close} maxWidth={maxWidth}>
@@ -81,6 +72,8 @@ function Join_room({ open, close, maxWidth }) {
               variant="outlined"
               size="small"
               placeholder="Enter room id..."
+              error={joinIdError}
+              helperText={joinIdError ? 'Please insert an ID ...' : false}
             />
             <Typography
               sx={{
@@ -102,7 +95,12 @@ function Join_room({ open, close, maxWidth }) {
               <CusButton
                 variant="contained"
                 content="join room"
-                onClick={handleJoinRoom}
+                onClick={()=>{
+                  setJoinIdError(false)
+                  if (joinId === ''){setJoinIdError(true)}
+                  if(joinId) {
+                    setRedirect(<Redirect to={`${location.pathname}/${joinId}`}/>)
+                  }}}
                 sx={{
                   backgroundColor: '#007FFF',
                   color: 'white',
@@ -150,6 +148,7 @@ function Join_room({ open, close, maxWidth }) {
           </Grid>
         </Grid>
       </Dialogform>
+      {redirect && redirect}
     </div>
   );
 }

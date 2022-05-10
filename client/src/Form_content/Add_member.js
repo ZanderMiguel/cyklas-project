@@ -16,8 +16,12 @@ import useStyle from './Styles/Add_member_style';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 function Add_member({ open, close, maxWidth }) {
+  const location = useLocation()
   const [copy, setCopy] = useState(false);
   const { designs } = useStyle();
+
+
+  
 
   return (
     <div>
@@ -95,7 +99,7 @@ function Add_member({ open, close, maxWidth }) {
                 variant="standard"
                 disabled
                 sx={designs.TextField2_Style}
-                defaultValue={window.location.href}
+                defaultValue={location.pathname.replace('/rooms/','')}
                 // InputProps={{ readOnly: true }}
               />
             </Box>
@@ -109,7 +113,7 @@ function Add_member({ open, close, maxWidth }) {
               }}
             >
               <CopyToClipboard
-                text={window.location.href}
+                text={location.pathname.replace('/rooms/','')}
                 onCopy={() => {
                   setCopy(true);
                 }}
