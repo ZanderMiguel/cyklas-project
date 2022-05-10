@@ -21,6 +21,7 @@ import {
   BorderColorOutlined,
   DeleteOutlineOutlined,
 } from '@mui/icons-material';
+import FileDownload from 'js-file-download';
 import AvatarIcon from '../../../../assets/ImageJaven/Avatar.png';
 import Wordfile from '../../../../assets/ImageJaven/Wordfile.png';
 import ActivityIcon from '../../../../assets/ImageJaven/ActivityIcon.png';
@@ -38,7 +39,8 @@ function Activity_viewed() {
     axios
       .post('http://localhost:5000/activity/get', { activityID })
       .then((res) => {
-        setActivityView(res.data.activity);
+        setActivityView({ ...res.data.activity, ...res.data.myFile });
+        console.log(res.data);
         axios
           .post('http://localhost:5000/activity/get/submit', {
             activityID,
@@ -50,10 +52,6 @@ function Activity_viewed() {
           .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err.message));
-  }, []);
-
-  useEffect(() => {
-    console.log(activityView);
   }, []);
 
   return (
@@ -242,67 +240,101 @@ function Activity_viewed() {
             </>
           ) : null}
 
-          <Tooltip title="Click to download file" placement="top-start">
-            <Box
-              className="Attach-file"
-              sx={{
-                backgroundColor: 'white',
-                margin: '0.5em 0em 0em 0em',
-                width: '50%',
-                padding: '0.5em 0.9em',
-                display: 'flex',
-                gap: '0.9em',
-                border: '1px solid #D4D4D4',
-                borderRadius: '0.3em',
-                '&: hover': {
-                  cursor: 'pointer',
-                  boxShadow:
-                    'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
-                },
-              }}
-            >
-              <img
-                src={Wordfile}
-                style={{
-                  height: '40px',
-                }}
-              />
-
-              <Box
-                className="Activity-filename"
-                sx={{
-                  width: 'auto',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  flexGrow: 1,
-                }}
-              >
-                <Typography
-                  noWrap
-                  sx={{
-                    color: '#3F3D56',
-                    fontSize: '0.8em',
-                    fontWeight: '600',
-                    width: 'relative',
-                    height: 'max-content',
-                  }}
+          {activityView &&
+            activityView.media.map((item, index) => {
+              return (
+                <Tooltip
+                  key={index}
+                  title="Click to download file"
+                  placement="top-start"
                 >
-                  ACTIVITY 5.docx
-                </Typography>
+                  <Box
+                    onClick={async () => {
+                      //tanginamo
+                      //window.open(`http://localhost:5000/activity/download/${activityView[index].file.filename}/${activityView[index].file.contentType}`, '_blank').focus();
+                      axios
+                        .get(
+                          `http://localhost:5000/activity/download/${activityView[index].file.filename}`,
+                          {
+                            responseType: 'blob',
+                          }
+                        )
+                        .then((res) => {
+                          FileDownload(
+                            res.data,
+                            activityView[index].file.filename
+                          );
+                        });
+                    }}
+                    className="Attach-file"
+                    sx={{
+                      backgroundColor: 'white',
+                      margin: '0.5em 0em 0em 0em',
+                      width: '50%',
+                      padding: '0.5em 0.9em',
+                      display: 'flex',
+                      gap: '0.9em',
+                      border: '1px solid #D4D4D4',
+                      borderRadius: '0.3em',
+                      '&: hover': {
+                        cursor: 'pointer',
+                        boxShadow:
+                          'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
+                      },
+                    }}
+                  >
+                    <img
+                      src={Wordfile}
+                      style={{
+                        height: '40px',
+                      }}
+                    />
 
-                <Typography
-                  sx={{
-                    color: '#3F3D56',
-                    fontSize: '0.7em',
-                    width: 'max-content',
-                    height: 'max-content',
-                  }}
-                >
-                  Document File
-                </Typography>
-              </Box>
-            </Box>
-          </Tooltip>
+                    <Box
+                      className="Activity-filename"
+                      sx={{
+                        width: 'auto',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        flexGrow: 1,
+                      }}
+                    >
+                      <Typography
+                        noWrap
+                        sx={{
+                          color: '#3F3D56',
+                          fontSize: '0.8em',
+                          fontWeight: '600',
+                          width: 'relative',
+                          height: 'max-content',
+                        }}
+                      >
+                        {item}
+                      </Typography>
+
+                      <Typography
+                        sx={{
+                          color: '#3F3D56',
+                          fontSize: '0.7em',
+                          width: 'max-content',
+                          height: 'max-content',
+                        }}
+                      >
+                        {item.includes('.docx')
+                          ? 'WORD FILE'
+                          : item.includes('.xml')
+                          ? 'EXCEL FILE'
+                          : item.includes('.ppt')
+                          ? 'POWERPOINT FILE'
+                          : item.includes('.pdf')
+                          ? 'PDF FILE'
+                          : 'FILE'}
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Tooltip>
+              );
+            })}
         </Box>
       </Box>
 
