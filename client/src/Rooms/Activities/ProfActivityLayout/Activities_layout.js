@@ -6,11 +6,9 @@ import {
   AccordionSummary,
   AccordionActions,
   IconButton,
-  Container,
   Grid,
   Box,
   Button,
-  Paper,
 } from '@mui/material';
 import moment from 'moment';
 import { EditOutlined, DeleteOutlined } from '@mui/icons-material';
@@ -48,6 +46,7 @@ function ActivitiesAccordion({ roomID, activity }) {
             activityTitle: title,
             activityType: type,
             _id: _id,
+            media,
           } = items;
 
           return (
@@ -152,24 +151,13 @@ function ActivitiesAccordion({ roomID, activity }) {
                     </Box>
                     <Box sx={{ padding: '0em 2.8em' }}>
                       <Grid container spacing={1}>
-                        <Grid item xs={6}>
-                          <ActivityFile />
-                          {/* <Paper sx={{ width: '100%' }}>
-                            Every Files uploaded file goes here
-                          </Paper> */}
-                        </Grid>
-                        <Grid item xs={6}>
-                          <ActivityFile />
-                          {/* <Paper sx={{ width: '100%' }}>
-                            Every Files uploaded file goes here
-                          </Paper> */}
-                        </Grid>
-                        <Grid item xs={6}>
-                          <ActivityFile />
-                          {/* <Paper sx={{ width: '100%' }}>
-                            Every Files uploaded file goes here
-                          </Paper> */}
-                        </Grid>
+                        {media.map((item) => {
+                          return (
+                            <Grid item xs={6}>
+                              <ActivityFile item={item} />
+                            </Grid>
+                          );
+                        })}
                       </Grid>
                     </Box>
                   </AccordionDetails>

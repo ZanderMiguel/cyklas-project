@@ -1,14 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
 import { Typography, Box, Button, Tooltip } from '@mui/material';
 import { FileUploadOutlined } from '@mui/icons-material';
 import Wordfile from '../../../../assets/ImageJaven/Wordfile.png';
-import { fs } from 'fs';
-function UploadFileTile() {
+function UploadFileTile({ submits, activityID }) {
   const [uploadFile, setUploadFile] = React.useState([]);
-  const reader = new FileReader();
-  const fileBytes = [];
   return (
     <Box
       className="Student-container"
@@ -40,11 +36,11 @@ function UploadFileTile() {
       >
         Your Uploaded Files
       </Typography>
-      {uploadFile &&
-        uploadFile.map((item, key) => {
+      {submits &&
+        submits?.[0]?.media.map((item, index) => {
           return (
             <Tooltip
-              key={key}
+              key={index}
               title="Click to download file"
               placement="top-start"
             >
@@ -103,14 +99,100 @@ function UploadFileTile() {
                       height: 'max-content',
                     }}
                   >
-                    Document File
+                    {item?.includes('.docx')
+                      ? 'WORD FILE'
+                      : item?.includes('.xls')
+                      ? 'EXCEL FILE'
+                      : item?.includes('.ppt') || item?.includes('.pptx')
+                      ? 'POWER POINT'
+                      : item?.includes('.pdf')
+                      ? 'PDF FILE'
+                      : 'FILE'}
                   </Typography>
                 </Box>
               </Box>
             </Tooltip>
           );
         })}
+      {uploadFile &&
+        uploadFile.map((item, key) => {
+          return (
+            <Tooltip
+              key={key}
+              title="Click to download file"
+              placement="top-start"
+            >
+              <Box
+                className="Attach-file"
+                sx={{
+                  backgroundColor: 'white',
+                  margin: '0.5em 0em 0em 0em',
+                  width: '50%',
+                  padding: '0.5em 0.9em',
+                  display: 'flex',
+                  gap: '0.9em',
+                  border: '1px solid #D4D4D4',
+                  borderRadius: '0.3em',
+                  '&: hover': {
+                    cursor: 'pointer',
+                    boxShadow:
+                      'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
+                  },
+                }}
+              >
+                <img
+                  src={Wordfile}
+                  style={{
+                    height: '40px',
+                  }}
+                />
 
+                <Box
+                  className="Activity-filename"
+                  sx={{
+                    width: 'auto',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    flexGrow: 1,
+                  }}
+                >
+                  <Typography
+                    noWrap
+                    sx={{
+                      color: '#3F3D56',
+                      fontSize: '0.8em',
+                      fontWeight: '600',
+                      width: 'relative',
+                      height: 'max-content',
+                    }}
+                  >
+                    {item.fileName}
+                  </Typography>
+
+                  <Typography
+                    sx={{
+                      color: '#3F3D56',
+                      fontSize: '0.7em',
+                      width: 'max-content',
+                      height: 'max-content',
+                    }}
+                  >
+                    {item.fileName?.includes('.docx')
+                      ? 'WORD FILE'
+                      : item.fileName?.includes('.xls')
+                      ? 'EXCEL FILE'
+                      : item.fileName?.includes('.ppt') ||
+                        item?.includes('.pptx')
+                      ? 'POWER POINT'
+                      : item.fileName?.includes('.pdf')
+                      ? 'PDF FILE'
+                      : 'FILE'}
+                  </Typography>
+                </Box>
+              </Box>
+            </Tooltip>
+          );
+        })}
       <Box
         className="Footer"
         sx={{
@@ -131,7 +213,7 @@ function UploadFileTile() {
             color: '#007FFF',
           }}
         >
-          Handed-out
+          {submits?.length > 0 ? submits[0].activityStatus : 'Handed-Out'}
         </Typography>
 
         <Box
@@ -166,32 +248,13 @@ function UploadFileTile() {
           id="uploadFile"
           style={{ display: 'none' }}
           onChange={(event) => {
-            /* const formData = new FormData();
-            formData.append('media', event.target.files[0]);
-            formData.append('filaName', event.target.files[0].name);
-            formData.append('author', {
-              name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
-                JSON.parse(localStorage.userData).data.user.lastName
-              }`,
-              userID: JSON.parse(localStorage.userData).data.user._id,
-              avatar: JSON.parse(localStorage.userData).data.user.image,
-            });
-            formData.append('activityTopic', 'OBOB');
-            formData.append('activityTitle', 'Ka');
-            formData.append('activityType', 'Talaga');
-            formData.append('activityPoints', '23');
-            formData.append('activityDueDate', '12/12/2929');
-            formData.append('activityInstruction', 'Wala naman');
-            formData.append('rooms', ['62783b190d840f1fb3bedb5e']);
-            axios
-              .post('http://localhost:5000/activity/create', formData, {
-                headers: {
-                  'Content-Type': 'multipart/form-data',
-                },
-              })
-              .then((res) => console.log(res.data))
-              .catch((err) => console.log(err));
-            setUploadFile([...uploadFile, event.target.files[0].name]); */
+            setUploadFile([
+              ...uploadFile,
+              {
+                fileName: event.target.files[0].name,
+                file: event.target.files[0],
+              },
+            ]);
           }}
         />
         <Button
@@ -205,6 +268,34 @@ function UploadFileTile() {
             '&: hover': {
               backgroundColor: '#005DC3',
             },
+          }}
+          onClick={() => {
+            const formData = new FormData();
+
+            uploadFile.forEach((item) => {
+              formData.append('file', item.file);
+              formData.append('media', item.fileName);
+            });
+            formData.append('activityID', activityID); //tanga
+            formData.append(
+              'submittedBy',
+              JSON.stringify({
+                name: `${
+                  JSON.parse(localStorage.userData).data.user.firstName
+                } ${JSON.parse(localStorage.userData).data.user.lastName}`,
+                userID: JSON.parse(localStorage.userData).data.user._id,
+                avatar: JSON.parse(localStorage.userData).data.user.image,
+              })
+            );
+            formData.append('activityStatus', 'Submitted');
+            axios
+              .post('http://localhost:5000/activity/submit', formData, {
+                headers: {
+                  'Content-Type': 'multipart/form-data',
+                },
+              })
+              .then((res) => console.log(res.data))
+              .catch((err) => console.log(err));
           }}
         >
           Submit

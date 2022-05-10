@@ -74,15 +74,15 @@ function MainSessionBody({
         }}
         ref={layout}
       >
-        {/* <OffCamera
+        <OffCamera
           layout={layout}
           members={members}
           toggleMid={toggleMic}
           tileWidth={tileWidth}
           handleToggleMic={handleToggleMic}
           myPeer={myPeer}
-        /> */}
-        <OnCamera
+        />
+        {/*  <OnCamera
           layout={layout}
           members={members}
           toggleMic={toggleMic}
@@ -92,7 +92,7 @@ function MainSessionBody({
           socket={socket}
           renderer={renderer}
           socketID={socketID}
-        />
+        /> */}
       </div>
     </>
   );

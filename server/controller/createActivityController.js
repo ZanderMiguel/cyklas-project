@@ -1,10 +1,8 @@
 const Activity = require('../models/model-activity');
-const mongoose = require('mongoose')
-const fs = require('fs')
-const path = require('path')
-const URL = require('url')
+const mongoose = require('mongoose');
+const fs = require('fs');
 require('dotenv').config();
-let gfs
+let gfs;
 const openDB = async () => {
   await mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
@@ -15,10 +13,10 @@ const openDB = async () => {
   conn.once('open', () => {
     gfs = new mongoose.mongo.GridFSBucket(conn.db, {
       bucketName: 'uploads',
-    })
-  })
-}
-openDB()
+    });
+  });
+};
+openDB();
 async function createActivity(req, res) {
   try {
     const addActivity = new Activity(req.body);
@@ -59,34 +57,25 @@ const findActivity = async (req, res) => {
     const activity = await Activity.findById(req.body.activityID);
     console.log('activity found!');
 
-
-
     gfs.find().toArray((err, files) => {
-
       if (!files[0] || files.length === 0) {
-        return "No files available"
+        return 'No files available';
       }
-      const myFile = []
+      const myFile = [];
 
       files.forEach((item) => {
-        activity.media.forEach(clientFile => {
+        activity.media.forEach((clientFile) => {
           if (clientFile === item.filename.split(`_split_`)[0]) {
-
-
-            myFile.push({ file: item })
-            gfs.openDownloadStream(item._id).
-              pipe(fs.createWriteStream(`./files/${item.filename}`));
-
-
+            myFile.push({ file: item });
+            gfs
+              .openDownloadStream(item._id)
+              .pipe(fs.createWriteStream(`./files/${item.filename}`));
           }
-        })
-
-
-      })
+        });
+      });
 
       return res.json({ activity, myFile });
     });
-
   } catch (error) {
     console.log(error);
     return res.json({
@@ -94,20 +83,10 @@ const findActivity = async (req, res) => {
       message: error,
     });
   }
-
-
 };
 const downloadFileByClick = async (req, res) => {
-  
-  /* fs.readFile(path.resolve(`./files/${req.params.file}`),(err,content)=>{
-    res.writeHead(200,{
-      "Content-type": `application/${req.params.type}`
-    })
-    
-    res.end(content)
-  }) */
-  res.download(`./files/${req.params.file}`)
-}
+  res.download(`./files/${req.params.file}`);
+};
 const deleteActivity = async (req, res) => {
   try {
     await Activity.findByIdAndDelete(req.params.id);
@@ -135,21 +114,27 @@ const updateActivity = async (req, res) => {
     });
   }
 };
-
-const submitActivity = async (req, res) => {
+const createActivityComment = async (req, res) => {
   try {
-    return res.json('Success');
-  } catch (err) {
-    console.log(err);
-    return res.json(err);
+    await Activity.updateMany(
+      {
+        _id: req.body.activityID,
+      },
+      {
+        $push: { activityComments: [req.body.commentObj] },
+      }
+    );
+  } catch (error) {
+    console.log(error);
+    return res.json(error);
   }
 };
-
 module.exports = {
   createActivityController: createActivity,
   displayActivityController: displayActivity,
   deleteActivityController: deleteActivity,
   updateActivityController: updateActivity,
   findActivity,
-  submitActivity, downloadFileByClick
+  downloadFileByClick,
+  createActivityComment,
 };

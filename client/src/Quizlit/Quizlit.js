@@ -177,21 +177,21 @@ function Quizlit() {
           </Grid>
           <Grid item md={10} xs={12} sx={{ marginTop: '0.8em' }}>
             {value === 0
-              ? data && (
+              ? data && data.length > 0 ? (
                   <Quiz_layout
                     bank={data.filter((item) => {
                       return item.quizType === 'Quiz';
                     })}
                   />
-                )
-              : value === 1 &&
-                data && (
+                ) : ( <h1> No quiz</h1>) :
+              value === 1 &&
+                data && data.length > 0 ? (
                   <Exam_layout
                     bank={data.filter((item) => {
                       return item.quizType === 'Exam';
                     })}
                   />
-                )}
+                ) : (<h1> No Exams yet</h1>)}
           </Grid>
         </Grid>
       </Container>
