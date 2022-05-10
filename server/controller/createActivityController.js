@@ -1,6 +1,8 @@
 const Activity = require('../models/model-activity');
 const mongoose = require('mongoose')
 const fs = require('fs')
+const path = require('path')
+const URL = require('url')
 require('dotenv').config();
 let gfs
 const openDB = async () => {
@@ -51,12 +53,7 @@ const displayActivity = async (req, res) => {
     });
   }
 };
-const findFile = async (filename) => {
-  const myFiles = []
 
-
-
-}
 const findActivity = async (req, res) => {
   try {
     const activity = await Activity.findById(req.body.activityID);
@@ -74,14 +71,19 @@ const findActivity = async (req, res) => {
       files.forEach((item) => {
         activity.media.forEach(clientFile => {
           if (clientFile === item.filename.split(`_split_`)[0]) {
+
+
             myFile.push({ file: item })
             gfs.openDownloadStream(item._id).
-              pipe(fs.createWriteStream('./outputFile'));
+              pipe(fs.createWriteStream(`./files/${item.filename}`));
+
+
           }
         })
 
 
       })
+
       return res.json({ activity, myFile });
     });
 
@@ -95,6 +97,17 @@ const findActivity = async (req, res) => {
 
 
 };
+const downloadFileByClick = async (req, res) => {
+  
+  /* fs.readFile(path.resolve(`./files/${req.params.file}`),(err,content)=>{
+    res.writeHead(200,{
+      "Content-type": `application/${req.params.type}`
+    })
+    
+    res.end(content)
+  }) */
+  res.download(`./files/${req.params.file}`)
+}
 const deleteActivity = async (req, res) => {
   try {
     await Activity.findByIdAndDelete(req.params.id);
@@ -138,5 +151,5 @@ module.exports = {
   deleteActivityController: deleteActivity,
   updateActivityController: updateActivity,
   findActivity,
-  submitActivity,
+  submitActivity, downloadFileByClick
 };

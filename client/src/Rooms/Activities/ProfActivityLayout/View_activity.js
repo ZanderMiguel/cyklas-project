@@ -21,6 +21,7 @@ import {
   Tooltip,
   Input,
 } from '@mui/material';
+import FileDownload from 'js-file-download'
 import moment from 'moment';
 import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser from 'react-html-parser';
@@ -108,8 +109,8 @@ function View_activity() {
     axios
       .post('http://localhost:5000/activity/get', { activityID })
       .then((res) => {
-        setActivityView({...res.data.activity,...res.data.myFile});
-        console.log({...res.data.activity,...res.data.myFile});
+        setActivityView({ ...res.data.activity, ...res.data.myFile });
+        console.log({ ...res.data.activity, ...res.data.myFile });
       })
       .catch((err) => console.log(err.message));
   }, []);
@@ -358,10 +359,20 @@ function View_activity() {
                 </>
               ) : null}
 
-              {activityView && activityView.media.map(item => {
+              {activityView && activityView.media.map((item, index) => {
                 return (
                   <Tooltip title="Click to download file" placement="top-start">
                     <Box
+                      onClick={async () => {
+                        //tanginamo
+                        //window.open(`http://localhost:5000/activity/download/${activityView[index].file.filename}/${activityView[index].file.contentType}`, '_blank').focus();
+                        axios.get(`http://localhost:5000/activity/download/${activityView[index].file.filename}`,{
+                          responseType: 'blob'
+                        })
+                        .then(res=>{
+                          FileDownload(res.data,activityView[index].file.filename)
+                        })
+                      }}
                       className="Attach-file"
                       sx={{
                         backgroundColor: 'white',
@@ -416,7 +427,7 @@ function View_activity() {
                             height: 'max-content',
                           }}
                         >
-                          {item.includes('.docx')?'WORD FILE':item.includes('.xml')?'EXCEL FILE':item.includes('.ppt')?"POWERPOINT FILE":item.includes('.pdf')?"PDF FILE":"FILE"}
+                          {item.includes('.docx') ? 'WORD FILE' : item.includes('.xml') ? 'EXCEL FILE' : item.includes('.ppt') ? "POWERPOINT FILE" : item.includes('.pdf') ? "PDF FILE" : "FILE"}
                         </Typography>
                       </Box>
                     </Box>

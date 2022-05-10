@@ -7,7 +7,7 @@ const {
   deleteActivityController,
   updateActivityController,
   findActivity,
-  submitActivity,
+  submitActivity,downloadFileByClick
 } = require('../controller/createActivityController');
 module.exports = (upload) => {
   fileRouter.post(
@@ -19,5 +19,6 @@ module.exports = (upload) => {
   fileRouter.delete('/actiity/delete/:id', deleteActivityController);
   fileRouter.put('/activity/update/:id', updateActivityController);
   fileRouter.post('/activity/get', findActivity);
+  fileRouter.get('/activity/download/:file',downloadFileByClick)
   return fileRouter;
 };

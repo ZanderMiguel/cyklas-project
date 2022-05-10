@@ -47,7 +47,12 @@ app.use(express.json());
 app.use(express.static('public'));
 
 //routers
-
+/* app.get('/activity/download/:path',(req,res)=>{
+  res.attachment(path.resolve(`./files/${req.params.path}`))
+  
+  console.log(req.params.path)
+  res.send()
+}) */
 app.use(router);
 let quizLobby = {};
 //let teleMembers = {};
