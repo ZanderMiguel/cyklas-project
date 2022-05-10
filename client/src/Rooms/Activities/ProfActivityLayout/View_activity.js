@@ -357,7 +357,7 @@ function View_activity() {
             <Box
               className="Activity-instructions"
               sx={{
-                height: '13em',
+                height: 'auto',
                 width: 'relative',
                 margin: '0.1em 0em 0em 0em',
                 padding: '0.3em 1.5em',
@@ -405,8 +405,6 @@ function View_activity() {
                     >
                       <Box
                         onClick={async () => {
-                          //tanginamo
-                          //window.open(`http://localhost:5000/activity/download/${activityView[index].file.filename}/${activityView[index].file.contentType}`, '_blank').focus();
                           axios
                             .get(
                               `http://localhost:5000/activity/download/${activityView[index].file.filename}`,

@@ -13,8 +13,6 @@ import {
   PanoramaOutlined,
   AttachFileOutlined,
   InsertLinkOutlined,
-  FormatBold,
-  FormatItalic,
 } from '@mui/icons-material';
 import usePost from '../../customHooks/usePost';
 import { useParams } from 'react-router-dom';
@@ -61,6 +59,10 @@ function Rich_text({ socket }) {
     socket.emit('create-comment');
   };
 
+  const [uploadFile, setUploadFile] = React.useState([
+    { fileName: "File uploaded/image/link" },
+  ]);
+  
   return (
     <>
       <Editor
@@ -101,24 +103,74 @@ function Rich_text({ socket }) {
         {/* {upload && <Box padding="0.3em 0.5em" margin="0.4em 0em">File uploaded/Image/Link</Box>} */}
 
         <Divider sx={{ margin: '0em 0em 0.4em 0em' }} />
-        <Stack direction="row" spacing={1}>
-          <Tooltip title="Attach Image(s)" placement="top">
-            <IconButton aria-label="image" size="medium" sx={{}}>
-              <PanoramaOutlined sx={{ fontSize: '0.8em' }} />
-            </IconButton>
-          </Tooltip>
+          <Stack direction="row" spacing={1} sx={{ padding: "0.5em 0em" }}>
+              {/* <IconButton
+                aria-label="image"
+                size="medium"
+                sx={{
+                  marginLeft: '10px',
+                }}
+              >
+                <PanoramaOutlined />
+              </IconButton> */}
+              <label htmlFor="uploadFile">
+                <Tooltip title="Attach a file" placement="top">
+                  <Box
+                    sx={{
+                      padding: "0.5em",
+                      borderRadius: "5em",
+                      display: "flex",
+                      alignItems: "center",
+                      "&: hover": {
+                        cursor: "pointer",
+                        transition: "all 250ms",
+                        backgroundColor: "#E7E7E7",
+                      },
+                    }}
+                  >
+                    <AttachFileOutlined
+                      sx={{ color: "#707070", fontSize: "1.5em" }}
+                    />
+                  </Box>
+                </Tooltip>
+              </label>
+              <input
+                type="file"
+                name="stdUpload"
+                id="uploadFile"
+                style={{ display: "none" }}
+                onChange={(event) => {
+                  setUploadFile([
+                    ...uploadFile,
+                    {
+                      fileName: event.target.files[0].name,
+                      file: event.target.files[0],
+                    },
+                  ]);
+                }}
+              />
+              {/* <label htmlFor="uploadFile"  > */}
+              <Tooltip title="Attach a link" placement="top">
+                <Box
+                  sx={{
+                    padding: "0.5em",
+                    borderRadius: "5em",
+                    display: "flex",
+                    alignItems: "center",
+                    "&: hover": {
+                      cursor: "pointer",
+                      transition: "all 250ms",
+                      backgroundColor: "#E7E7E7",
+                    },
+                  }}
+                >
+                  <InsertLinkOutlined
+                    sx={{ color: "#707070", fontSize: "1.5em" }}
+                  />
+                </Box>
+              </Tooltip>
 
-          <Tooltip title="Attach File(s)" placement="top">
-            <IconButton aria-label="file" size="medium" sx={{}}>
-              <AttachFileOutlined sx={{ fontSize: '0.8em' }} />
-            </IconButton>
-          </Tooltip>
-
-          <Tooltip title="Attach Link(s)" placement="top">
-            <IconButton aria-label="link" size="medium" sx={{}}>
-              <InsertLinkOutlined sx={{ fontSize: '0.8em' }} />
-            </IconButton>
-          </Tooltip>
+              {/* </label> */}
 
           <Box flexGrow={1} />
 
