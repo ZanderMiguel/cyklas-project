@@ -130,6 +130,18 @@ const createActivityComment = async (req, res) => {
     return res.json(error);
   }
 };
+const displayActivityComment = async (req, res) => {
+  try {
+    const comments = await Activity.findById(req.body.activityID).sort({
+      createdAt: -1,
+    });
+    console.log('commented on an activity');
+    return res.json(comments.activityComments);
+  } catch (error) {
+    console.log(error);
+    return res.json(error);
+  }
+};
 module.exports = {
   createActivityController: createActivity,
   displayActivityController: displayActivity,
@@ -138,4 +150,5 @@ module.exports = {
   findActivity,
   downloadFileByClick,
   createActivityComment,
+  displayActivityComment,
 };

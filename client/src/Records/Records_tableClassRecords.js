@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Avatar } from '@mui/material';
-import AvatarIcon from '../assets/ImageJaven/Avatar.png';
+import NoRecords from '../assets/ImageJaven/NoRecords.png';
 import './Styles/Records_tableClassRecords_stylesheet.css';
 import { WorkspacePremium, Search } from '@mui/icons-material';
 import {
@@ -213,7 +213,46 @@ function Records_tableClassRecords({ rooms }) {
                   </tr>
                 )
 
-              }) : (<h1>hatdog</h1>)}
+              }) : (
+                <Box
+          sx={{
+            width: '220%',
+            height: '70vh',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexWrap: 'wrap'
+          }}
+        >
+          <img
+            src={NoRecords}
+            alt="No Records"
+            style={{
+              height: '17em',
+              margin: '0em 0em 1.5em 0em',
+            }}
+          />
+          <Typography
+            children="You did not have any records from your students yet."
+            sx={{
+              fontSize: '1.2em',
+              fontWeight: '600',
+              color: '#3F3D56',
+              marginBottom: '0.3em',
+            }}
+          />
+
+          <Typography
+            children="Please check/ return any classworks of your students."
+            sx={{
+              fontSize: '1em',
+              fontWeight: '500',
+              color: '#8E8E8E',
+            }}
+          />
+        </Box>
+              )}
             </tbody>
 
             <tfoot>
