@@ -36,16 +36,19 @@ function Create_room({ open, close, maxWidth, state, socket, gs }) {
 
   const { post, data } = usePost();
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setRoomnameError(false);
+    setGradingSystemError(false);
 
-const handleSubmit = (event) => {
-  event.preventDefault()
-  setRoomnameError(false)
-  setGradingSystemError(false)
+    {
+      roomname === '' && setRoomnameError(true);
+    }
+    {
+      gradingsystem === '' && setGradingSystemError(true);
+    }
 
- {roomname === '' && setRoomnameError(true)}
- {gradingsystem === ''&& setGradingSystemError(true)}
-
- const room = {
+    const room = {
       RoomName: roomname,
       Course: course,
       ClassDays: classday,
@@ -55,26 +58,29 @@ const handleSubmit = (event) => {
     };
 
     if (roomname && gradingsystem) {
-      axios.post('http://localhost:5000/rooms/create', {
-        Host: {
-          name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
-            JSON.parse(localStorage.userData).data.user.lastName
-          }`,
-          avatar: JSON.parse(localStorage.userData).data.user.image,
-        },
-        userID: JSON.parse(localStorage.userData).data.user._id,
-        gsID: gradingsystem,
-        ...room,
-        members: [JSON.parse(localStorage.userData).data.user._id],
-      }).then(res => {
-        console.log(res.data)
-        if (res.data.status === 'success') {
-          state(false)
-        }
-      }).catch(err => console.log(err.message));
+      axios
+        .post('http://localhost:5000/rooms/create', {
+          Host: {
+            name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
+              JSON.parse(localStorage.userData).data.user.lastName
+            }`,
+            avatar: JSON.parse(localStorage.userData).data.user.image,
+          },
+          userID: JSON.parse(localStorage.userData).data.user._id,
+          gsID: gradingsystem,
+          ...room,
+          members: [JSON.parse(localStorage.userData).data.user._id],
+        })
+        .then((res) => {
+          console.log(res.data);
+          if (res.data.status === 'success') {
+            state(false);
+          }
+        })
+        .catch((err) => console.log(err.message));
     }
     socket.emit('create-room');
-}
+  };
 
   return (
     <>
@@ -105,7 +111,6 @@ const handleSubmit = (event) => {
               inputLabel="Room Name"
               placeholder="Enter room name..."
               autoComplete="off"
-              required
               value={roomname}
               onChange={(e) => setRoomname(e.target.value)}
               half
@@ -145,7 +150,6 @@ const handleSubmit = (event) => {
               type="time"
               half
               required
-
             />
             <Dropdown
               inputLabel="Grading System"

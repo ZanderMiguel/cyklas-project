@@ -1,9 +1,9 @@
-import React from 'react'
-import { Box, Grid, Backdrop, Typography } from "@mui/material";
-import QuestionResult from "../QuestionResult";
+import React from 'react';
+import { Box, Grid, Backdrop, Typography } from '@mui/material';
+import QuestionResult from '../QuestionResult';
 
-function LivequizSA({dataChoices}) {
-const [open, setOpen] = React.useState(false);
+function LivequizSA() {
+  const [open, setOpen] = React.useState(false);
   const handleClose = () => {
     setOpen(false);
   };
@@ -13,7 +13,7 @@ const [open, setOpen] = React.useState(false);
 
   return (
     <>
-    {dataChoices && dataChoices.map(function(items, index) {
+      {/* {dataChoices.map(function(items, index) {
         return (
             <Box key = {index}
             sx = {{
@@ -23,16 +23,16 @@ const [open, setOpen] = React.useState(false);
             {items.choice}
             </Box>
         )
-    })}
-    <Backdrop
-sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-open={open}
-onClick={handleClose}
->
-<QuestionResult/>
-</Backdrop>
-</>
-  )
+    })} */}
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+        onClick={handleClose}
+      >
+        <QuestionResult />
+      </Backdrop>
+    </>
+  );
 }
 
-export default LivequizSA
+export default LivequizSA;
