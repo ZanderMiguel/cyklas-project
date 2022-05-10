@@ -11,6 +11,7 @@ import {
   MenuItem,
   FormHelperText,
   FormControl,
+  Tooltip
 } from '@mui/material';
 import {
   PanoramaOutlined,
@@ -262,8 +263,8 @@ function Create_activity({ open, close, setOpenDialog }) {
           >
             <Box padding="10px">{uploadFile.map(item => 
               item.fileName.replace('File uploaded/image/link', ''))}</Box>
-            <Stack direction="row" spacing={2}>
-              <IconButton
+            <Stack direction="row" spacing={1} sx = {{ padding: "0.5em" }}>
+              {/* <IconButton
                 aria-label="image"
                 size="medium"
                 sx={{
@@ -271,9 +272,25 @@ function Create_activity({ open, close, setOpenDialog }) {
                 }}
               >
                 <PanoramaOutlined />
-              </IconButton>
+              </IconButton> */}
               <label htmlFor="uploadFile"  >
-                <AttachFileOutlined size="medium" />
+                <Tooltip title = "Attach a file" placement = "top">
+                <Box
+                sx = {{
+                  padding: "0.5em",
+                  borderRadius: "5em",
+                  display: "flex",
+                  alignItems: "center",
+                  "&: hover": {
+                    cursor: "pointer",
+                    transition: "all 250ms",
+                    backgroundColor: "#E7E7E7"
+                  }
+                }}>
+                  <AttachFileOutlined sx = {{ color: "#707070", fontSize: "1.5em" }} />
+                </Box>
+                </Tooltip>
+
               </label>
               <input
                 type="file"
@@ -288,9 +305,25 @@ function Create_activity({ open, close, setOpenDialog }) {
                   }]);
                 }}
               />
-              <IconButton aria-label="link" size="medium">
-                <InsertLinkOutlined />
-              </IconButton>
+              {/* <label htmlFor="uploadFile"  > */}
+                <Tooltip title = "Attach a link" placement = "top">
+                <Box
+                sx = {{
+                  padding: "0.5em",
+                  borderRadius: "5em",
+                  display: "flex",
+                  alignItems: "center",
+                  "&: hover": {
+                    cursor: "pointer",
+                    transition: "all 250ms",
+                    backgroundColor: "#E7E7E7"
+                  }
+                }}>
+                  <InsertLinkOutlined sx = {{ color: "#707070", fontSize: "1.5em" }} />
+                </Box>
+                </Tooltip>
+                
+              {/* </label> */}
             </Stack>
           </Box>
         </Grid>
