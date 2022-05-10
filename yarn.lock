@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-draftjs-to-html@^0.9.1:
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/draftjs-to-html/-/draftjs-to-html-0.9.1.tgz#1c870fbb588d2390204cb4d0ee7e04ad0c709969"
-  integrity sha512-fFstE6+IayaVFBEvaFt/wN8vdj8FsTRzij7dy7LI9QIwf5LgfHFi9zSpvCg+feJ2tbYVqHxUkjcibwpsTpgFVQ==
+file-viewer@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/file-viewer/-/file-viewer-1.2.0.tgz#5d3f80127afd9148885eb49b9a51c85fff2c95d6"
+  integrity sha512-Fst8qoay+qZVv0K9VPh+QGHyv8r32IM1OxRlempzjZDoembuqNQTycnCSOiaPIjHW53wE/XzAEIfD5BdY9OwpQ==

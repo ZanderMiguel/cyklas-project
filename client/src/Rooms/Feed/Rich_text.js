@@ -13,8 +13,6 @@ import {
   PanoramaOutlined,
   AttachFileOutlined,
   InsertLinkOutlined,
-  FormatBold,
-  FormatItalic,
 } from '@mui/icons-material';
 import usePost from '../../customHooks/usePost';
 import { useParams } from 'react-router-dom';
@@ -102,17 +100,13 @@ function Rich_text({ socket }) {
 
         <Divider sx={{ margin: '0em 0em 0.4em 0em' }} />
         <Stack direction="row" spacing={1}>
-          <Tooltip title="Attach Image(s)" placement="top">
-            <IconButton aria-label="image" size="medium" sx={{}}>
-              <PanoramaOutlined sx={{ fontSize: '0.8em' }} />
-            </IconButton>
-          </Tooltip>
 
-          <Tooltip title="Attach File(s)" placement="top">
-            <IconButton aria-label="file" size="medium" sx={{}}>
-              <AttachFileOutlined sx={{ fontSize: '0.8em' }} />
-            </IconButton>
-          </Tooltip>
+          {/* <Tooltip title="Attach File(s)" placement="top">
+             <IconButton aria-label="file" size="medium" sx={{}}>
+               <AttachFileOutlined sx={{ fontSize: '0.8em' }} />
+             </IconButton>
+          </Tooltip> */}
+          
 
           <Tooltip title="Attach Link(s)" placement="top">
             <IconButton aria-label="link" size="medium" sx={{}}>

@@ -1,12 +1,23 @@
 import React from 'react';
 import { Box, Typography, Tooltip } from '@mui/material';
 import Wordfile from '../assets/ImageJaven/Wordfile.png';
+import Backdrop from './Backdrop';
+
 
 function ActivityFile({ item }) {
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleToggle = () => {
+    setOpen(!open);
+  };
+
   return (
     <>
-      <Tooltip title="Click to download file" placement="top-start">
+      <Tooltip  title="Click to download file" placement="top-start">
         <Box
+          onClick={handleToggle}
           className="Attach-file"
           sx={{
             backgroundColor: 'white',
@@ -75,6 +86,7 @@ function ActivityFile({ item }) {
           </Box>
         </Box>
       </Tooltip>
+      <Backdrop open={open} close={handleClose}/>
     </>
   );
 }
