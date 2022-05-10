@@ -166,7 +166,7 @@ function UploadFileTile() {
           id="uploadFile"
           style={{ display: 'none' }}
           onChange={(event) => {
-            const formData = new FormData();
+            /* const formData = new FormData();
             formData.append('media', event.target.files[0]);
             formData.append('filaName', event.target.files[0].name);
             formData.append('author', {
@@ -191,7 +191,7 @@ function UploadFileTile() {
               })
               .then((res) => console.log(res.data))
               .catch((err) => console.log(err));
-            setUploadFile([...uploadFile, event.target.files[0].name]);
+            setUploadFile([...uploadFile, event.target.files[0].name]); */
           }}
         />
         <Button

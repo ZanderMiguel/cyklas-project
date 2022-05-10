@@ -12,7 +12,7 @@ const {
 module.exports = (upload) => {
   fileRouter.post(
     '/activity/create',
-    upload.single('media'),
+    upload.array('file', 999),
     createActivityController
   );
   fileRouter.post('/activity', displayActivityController);
