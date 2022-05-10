@@ -314,7 +314,17 @@ function View_activity() {
                     gap: '0.8em',
                     justifyContent: "flex-end"
                   }}
-                >
+                > 
+                  <Typography children = "Score:"
+                  sx = {{
+                    display: 'flex',
+                      alignItems: 'center',
+                      height: 'relative',
+                      fontSize: '0.8em',
+                      fontWeight: '500',
+                      textTransform: 'Uppercase',
+                      color: '#3F3D56',
+                  }}/>
                   <TextField
               autoComplete="off"
               size="small"
@@ -337,7 +347,7 @@ function View_activity() {
                       alignItems: 'center',
                       height: 'relative',
                       fontSize: '0.8em',
-                      fontWeight: '500',
+                      fontWeight: '600',
                       textTransform: 'Capitalize',
                       color: '#3F3D56',
                     }}
@@ -512,7 +522,15 @@ function View_activity() {
               },
             }}
           >
-            <Typography
+            <Box
+            sx = {{
+              width: "relative",
+              height: "auto",
+              display: "flex",
+              alignItems: "center",
+              margin: "0.5em 0em 1em 0em"
+            }}>
+              <Typography
               sx={{
                 height: 'max-content',
                 fontSize: '15px',
@@ -521,11 +539,24 @@ function View_activity() {
                 color: '#6D6B85',
                 width: 'auto',
                 flexGrow: 1,
-                margin: '0.5em 0em 1em 0em',
               }}
             >
               Student's Uploaded Files
             </Typography>
+
+            <Typography
+              sx={{
+                height: 'max-content',
+                fontSize: '15px',
+                fontWeight: '700',
+                textTransform: 'Uppercase',
+                color: '#007FFF',
+                width: 'auto',
+              }}
+            >
+              handed-out
+            </Typography>
+            </Box>
 
             {submitData?.length > 0 &&
               submitData[0].media.map((item, index) => {

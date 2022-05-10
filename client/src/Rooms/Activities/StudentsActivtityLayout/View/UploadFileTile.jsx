@@ -22,20 +22,41 @@ function UploadFileTile({ submits, activityID }) {
         },
       }}
     >
-      <Typography
-        sx={{
-          height: 'max-content',
-          fontSize: '15px',
-          fontWeight: '600',
-          textTransform: 'Uppercase',
-          color: '#6D6B85',
-          width: 'auto',
-          flexGrow: 1,
-          margin: '0.5em 0em 1em 0em',
-        }}
-      >
-        Your Uploaded Files
-      </Typography>
+      <Box
+            sx = {{
+              width: "relative",
+              height: "auto",
+              display: "flex",
+              alignItems: "center",
+              margin: "0.5em 0em 1em 0em"
+            }}>
+              <Typography
+              sx={{
+                height: 'max-content',
+                fontSize: '15px',
+                fontWeight: '600',
+                textTransform: 'Uppercase',
+                color: '#6D6B85',
+                width: 'auto',
+                flexGrow: 1,
+              }}
+            >
+              Your Uploaded Files
+            </Typography>
+
+            <Typography
+              sx={{
+                height: 'max-content',
+                fontSize: '15px',
+                fontWeight: '700',
+                textTransform: 'Uppercase',
+                color: '#007FFF',
+                width: 'auto',
+              }}
+            >
+              {submits?.length > 0 ? submits[0].activityStatus : 'Handed-Out'}
+            </Typography>
+            </Box>
       {submits &&
         submits?.[0]?.media.map((item, index) => {
           return (
@@ -202,7 +223,7 @@ function UploadFileTile({ submits, activityID }) {
           margin: '0.9em 0em 0em 0em',
         }}
       >
-        <Typography
+        {/* <Typography
           sx={{
             fontSize: '0.8em',
             fontWeight: '700',
@@ -214,7 +235,7 @@ function UploadFileTile({ submits, activityID }) {
           }}
         >
           {submits?.length > 0 ? submits[0].activityStatus : 'Handed-Out'}
-        </Typography>
+        </Typography> */}
 
         <Box
           flexGrow={1}
@@ -225,13 +246,18 @@ function UploadFileTile({ submits, activityID }) {
         <label htmlFor="uploadFile">
           <Box
             sx={{
-              padding: '0.2em 1em',
-              marginRight: '0.5em',
-              fontSize: '0.8em',
-              fontWeight: '600',
-              textTransform: 'Capitalize',
-              color: '#0069D3',
-              backgroundColor: 'transparent',
+              display: "flex",
+              alignItems: "center",
+              marginRight: "0.5em",
+              padding: "0.3em 0.8em",
+              backgroundColor: "transparent",
+              border: "1px solid transparent",
+              borderRadius: "0.3em",
+              "&: hover": {
+                cursor: "pointer",
+                transition: "all 250ms",
+                border: "1px solid #0069D3"
+              }
             }}
           >
             <FileUploadOutlined
@@ -239,7 +265,14 @@ function UploadFileTile({ submits, activityID }) {
                 color: '#0069D3',
               }}
             />
-            Upload File
+            <Typography children = "Upload File"
+            sx = {{
+              padding: '0.2em 1em',
+              fontSize: '0.8em',
+              fontWeight: '600',
+              textTransform: 'Capitalize',
+              color: '#0069D3',
+            }}/>
           </Box>
         </label>
         <input

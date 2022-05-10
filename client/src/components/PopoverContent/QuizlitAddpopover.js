@@ -18,7 +18,6 @@ function QuizlitAddpopover() {
             <Typography sx={designs.Quiz_Typography_Style}>Quiz</Typography>
           </Box>
         </ListItem>
-        <Divider />
         <ListItem button component={Link} to="/quizlit/createexam">
           <Box sx={designs.ExamContainer_Style}>
             {/* <ListAlt sx = {{ fontsize: "1em", color: "#007FFF"}}/> */}
