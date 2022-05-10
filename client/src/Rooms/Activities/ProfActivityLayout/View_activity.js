@@ -33,9 +33,6 @@ import ActivityIcon from '../../../assets/ImageJaven/ActivityIcon.png';
 import axios from 'axios';
 import StudentList from './components/StudentList';
 import CommentArea from '../CommentArea';
-
-
-
 const dataSort = [
   {
     value: 'First Name',
@@ -54,28 +51,6 @@ const dataSort = [
     label: 'Graded',
   },
 ];
-const data = [
-  {
-    studentName: 'Paul Rudd',
-    score: '100/100',
-  },
-  {
-    studentName: 'Tom Hiddleston',
-    score: '100/100',
-  },
-  {
-    studentName: 'Tom Holland',
-    score: '100/100',
-  },
-  {
-    studentName: 'Sebastian Stan',
-    score: '100/100',
-  },
-  {
-    studentName: 'Robert Downey Jr.',
-    score: '100/100',
-  },
-];
 
 const socket = io.connect('http://localhost:3001');
 function View_activity() {
@@ -86,6 +61,8 @@ function View_activity() {
   const [activityView, setActivityView] = useState(null);
   const [submitData, setSubmitData] = useState(null);
   const [commentId, setCommentId] = useState(null);
+  const [score, setScore] = useState({});
+  const [studentID, setStudentID] = React.useState({});
   const handleChangeSort = (event) => {
     setSort(event.target.value);
   };
@@ -102,7 +79,6 @@ function View_activity() {
       })
       .catch((err) => console.log(err.message));
   }, []);
-
 
   return (
     <Container maxWidth="lg" sx={{ padding: '0.5em 0em' }}>
@@ -157,8 +133,9 @@ function View_activity() {
               sx={designs.Student_Container_Style}
             >
               <StudentList
-                submitData={submitData}
-                data={data}
+                score={score}
+                activityView={activityView}
+                setStudentID={setStudentID}
                 setSubmitData={setSubmitData}
               />
             </Box>
@@ -304,42 +281,55 @@ function View_activity() {
                 </Box>
               </Grid>
 
-              <Grid item xs = {6}>
-              <Box
+              <Grid item xs={6}>
+                <Box
                   sx={{
                     width: 'relative',
                     height: 'max-content',
                     display: 'flex',
-                    alignItems: "center",
+                    alignItems: 'center',
                     gap: '0.8em',
-                    justifyContent: "flex-end"
+                    justifyContent: 'flex-end',
                   }}
-                > 
-                  <Typography children = "Score:"
-                  sx = {{
-                    display: 'flex',
+                >
+                  <Typography
+                    children="Score:"
+                    sx={{
+                      display: 'flex',
                       alignItems: 'center',
                       height: 'relative',
                       fontSize: '0.8em',
                       fontWeight: '500',
                       textTransform: 'Uppercase',
                       color: '#3F3D56',
-                  }}/>
+                    }}
+                  />
                   <TextField
-              autoComplete="off"
-              size="small"
-              variant="standard"
-              inputProps={{
-                style: {
-                  width: '3em',
-                  height: '1em',
-                  fontSize: '0.9em',
-                  color: '#007FFF',
-                  fontWeight: 600,
-                  textAlign: 'center',
-                },
-              }}
-            />
+                    id="activityScore"
+                    onChange={(e) => {
+                      setScore({
+                        ...score,
+                        [studentID]:
+                          activityView &&
+                          activityView.activityPoints < e.target.value
+                            ? activityView.activityPoints
+                            : e.target.value,
+                      }); //tanga
+                    }}
+                    autoComplete="off"
+                    size="small"
+                    variant="standard"
+                    inputProps={{
+                      style: {
+                        width: '3em',
+                        height: '1em',
+                        fontSize: '0.9em',
+                        color: '#007FFF',
+                        fontWeight: 600,
+                        textAlign: 'center',
+                      },
+                    }}
+                  />
 
                   <Typography
                     sx={{
@@ -352,7 +342,7 @@ function View_activity() {
                       color: '#3F3D56',
                     }}
                   >
-                    / 100
+                    / {activityView && activityView.activityPoints}
                   </Typography>
                 </Box>
               </Grid>
@@ -436,10 +426,10 @@ function View_activity() {
                           backgroundColor: 'white',
                           margin: '0.5em 0em 0em 0em',
                           width: '50%',
-                          height: "auto",
+                          height: 'auto',
                           padding: '0.5em 0.9em',
                           display: 'flex',
-                          alignItems: "center", 
+                          alignItems: 'center',
                           gap: '0.9em',
                           border: '1px solid #D4D4D4',
                           borderRadius: '0.3em',
@@ -474,7 +464,7 @@ function View_activity() {
                               width: 'auto',
                               flexGrow: 1,
                               height: 'auto',
-                              wordBreak: "break-all"
+                              wordBreak: 'break-all',
                             }}
                           >
                             {item}
@@ -523,39 +513,40 @@ function View_activity() {
             }}
           >
             <Box
-            sx = {{
-              width: "relative",
-              height: "auto",
-              display: "flex",
-              alignItems: "center",
-              margin: "0.5em 0em 1em 0em"
-            }}>
+              sx={{
+                width: 'relative',
+                height: 'auto',
+                display: 'flex',
+                alignItems: 'center',
+                margin: '0.5em 0em 1em 0em',
+              }}
+            >
               <Typography
-              sx={{
-                height: 'max-content',
-                fontSize: '15px',
-                fontWeight: '600',
-                textTransform: 'Uppercase',
-                color: '#6D6B85',
-                width: 'auto',
-                flexGrow: 1,
-              }}
-            >
-              Student's Uploaded Files
-            </Typography>
+                sx={{
+                  height: 'max-content',
+                  fontSize: '15px',
+                  fontWeight: '600',
+                  textTransform: 'Uppercase',
+                  color: '#6D6B85',
+                  width: 'auto',
+                  flexGrow: 1,
+                }}
+              >
+                Student's Uploaded Files
+              </Typography>
 
-            <Typography
-              sx={{
-                height: 'max-content',
-                fontSize: '15px',
-                fontWeight: '700',
-                textTransform: 'Uppercase',
-                color: '#007FFF',
-                width: 'auto',
-              }}
-            >
-              handed-out
-            </Typography>
+              <Typography
+                sx={{
+                  height: 'max-content',
+                  fontSize: '15px',
+                  fontWeight: '700',
+                  textTransform: 'Uppercase',
+                  color: '#007FFF',
+                  width: 'auto',
+                }}
+              >
+                handed-out
+              </Typography>
             </Box>
 
             {submitData?.length > 0 &&
@@ -629,7 +620,11 @@ function View_activity() {
                 );
               })}
           </Box>
-        <CommentArea socket={socket} activityID={activityID} commentId={commentId}/>
+          <CommentArea
+            socket={socket}
+            activityID={activityID}
+            commentId={commentId}
+          />
         </Grid>
       </Grid>
     </Container>
