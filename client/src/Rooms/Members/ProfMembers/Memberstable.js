@@ -13,17 +13,18 @@ import {
   ListItemText,
   Tooltip,
 } from '@mui/material';
-import { Delete, DeleteOutlined, DoorFrontOutlined } from '@mui/icons-material';
+import { DeleteOutlined, DoorFrontOutlined } from '@mui/icons-material';
 import useStyle from './Styles/People_table_style';
-
-function Memberstable({ members }) {
+import axios from 'axios';
+import { useParams, Redirect } from 'react-router-dom';
+function Memberstable({ members, setRefresher }) {
   const { designs } = useStyle();
+  const { roomID } = useParams();
   return (
     <>
       <Grid container rowSpacing={1}>
         <Grid item xs={12}>
-          <Box className="Total" sx={designs.Total_Style}>
-          </Box>
+          <Box className="Total" sx={designs.Total_Style}></Box>
           <Box sx={designs.Professor_Container_Style}>
             <Box
               className="container"
@@ -34,7 +35,20 @@ function Memberstable({ members }) {
               </Typography>
               <Box flexGrow={1} />
               <Tooltip title="Leave Room" placement="right">
-                <IconButton>
+                <IconButton
+                  onClick={() => {
+                    axios
+                      .put('http://localhost:5000/room/leave', {
+                        roomID,
+                        userID: JSON.parse(localStorage.userData).data.user._id,
+                      })
+                      .then((res) => {
+                        setRefresher(<Redirect to="/rooms" />);
+                        console.log(res.data);
+                      })
+                      .catch((err) => console.log(err));
+                  }}
+                >
                   <DoorFrontOutlined />
                 </IconButton>
               </Tooltip>
@@ -71,7 +85,7 @@ function Memberstable({ members }) {
             <Box flexGrow={1} sx={designs.BoxFlexGrow_Style} />
 
             <Typography sx={designs.TotalStud_Typography_Style}>
-              5 Students
+              {members && members.length - 1 + ` Student(s)`}
             </Typography>
           </Box>
 

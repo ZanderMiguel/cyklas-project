@@ -116,12 +116,13 @@ const updateActivity = async (req, res) => {
 };
 const createActivityComment = async (req, res) => {
   try {
+    const commentID = mongoose.Types.ObjectId();
     await Activity.updateMany(
       {
         _id: req.body.activityID,
       },
       {
-        $push: { activityComments: [req.body.commentObj] },
+        $push: { activityComments: [{ ...req.body.commentObj, commentID }] },
       }
     );
   } catch (error) {
@@ -141,6 +142,23 @@ const displayActivityComment = async (req, res) => {
     return res.json(error);
   }
 };
+const deleteController = async (req, res) => {
+  try {
+    const activity = await Activity.findById(req.body.activityID);
+    activity?.activityComments?.forEach(async (item, index) => {
+      if (item.commentID === req.body.commentID) {
+        await Activityl.findByIdAndUpdate(req.body.activityID, {
+          $pull: { activityComments: activity.activityComments[index] },
+        });
+      }
+    });
+    console.log('comment deleted');
+    return res.json({ message: 'comment deleted', status: 'success' });
+  } catch (error) {
+    console.log(error);
+    return res.json(error);
+  }
+};
 module.exports = {
   createActivityController: createActivity,
   displayActivityController: displayActivity,
@@ -150,4 +168,5 @@ module.exports = {
   downloadFileByClick,
   createActivityComment,
   displayActivityComment,
+  deleteController,
 };

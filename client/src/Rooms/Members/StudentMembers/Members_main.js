@@ -6,10 +6,11 @@ import MembersTableStud from './Layouts/MembersTableStud';
 import Group_table_layout from './Layouts/Groups_table_layout';
 import useStyle from './Styles/Members_main_style';
 import LeaveRoom from '../../../components/Modals/LeaveRoom';
-
+import { useParams } from 'react-router-dom';
 function Members_main({ roomdata }) {
+  const { roomID } = useParams();
   const { designs } = useStyle();
-
+  const [refresher, setRefresher] = useState(false);
   const [opendialog, setOpenDialog] = useState(false);
   const [members, setMembers] = useState(null);
   const handleClose = () => {
@@ -38,10 +39,18 @@ function Members_main({ roomdata }) {
           >
             Leave Room
           </Button>
-          {opendialog && <LeaveRoom open={opendialog} close={handleClose} />}
+          {opendialog && (
+            <LeaveRoom
+              roomID={roomID}
+              setRefresher={setRefresher}
+              open={opendialog}
+              close={handleClose}
+            />
+          )}
         </Box>
         <MembersTableStud members={members} />
         <Group_table_layout />
+        {refresher && refresher}
       </Box>
     </>
   );

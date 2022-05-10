@@ -7,27 +7,9 @@ import VideocamIcon from '@mui/icons-material/Videocam';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const dataRoom = [
-  {
-    value: 'Web Development 1',
-    label: 'Web Development 1',
-  },
-  {
-    value: 'Art Appreciation',
-    label: 'Art Appreciation',
-  },
-  {
-    value: 'Science, Technology and Society',
-    label: 'Science, Technology and Society',
-  },
-  {
-    value: 'Software Engineering',
-    label: 'Software Engineering',
-  },
-];
-
 function TeleconStart() {
   const [selectRoom, setSelectRoom] = useState('');
+  const [roomData, setRoomData] = useState(null);
   const handleChangeRoom = (event) => {
     setSelectRoom(event.target.value);
   };
@@ -37,7 +19,8 @@ function TeleconStart() {
         userID: JSON.parse(localStorage.userData).data.user._id,
       })
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
+        setRoomData(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -98,7 +81,8 @@ function TeleconStart() {
               sx={{ fontSize: '1em', fontWeight: '400', color: '#3F3D56' }}
             >
               <span style={{ color: '#007FFF', fontWeight: 600 }}>Connect</span>{' '}
-              and <span style={{ color: '#007FFF', fontWeight: 600 }}> see</span>{' '}
+              and{' '}
+              <span style={{ color: '#007FFF', fontWeight: 600 }}> see</span>{' '}
               everyone in your class.
             </Typography>
           </Box>
@@ -119,7 +103,8 @@ function TeleconStart() {
               Have a {''}
               <span style={{ color: '#007FFF', fontWeight: 600 }}>
                 safe
-              </span> and {''}
+              </span>{' '}
+              and {''}
               <span style={{ color: '#007FFF', fontWeight: 600 }}>
                 protected
               </span>{' '}
@@ -134,13 +119,14 @@ function TeleconStart() {
                 paddingTop: '0em',
               }}
             >
-              <Typography children = "Select Room"
+              <Typography
+                children="Select Room"
                 sx={{
                   fontWeight: '600',
                   color: '#2E2C46',
                   fontSize: '1.2em',
                   marginBottom: '0.5em',
-                  textTransform: "Uppercase"
+                  textTransform: 'Uppercase',
                 }}
               />
               <Select
@@ -151,7 +137,7 @@ function TeleconStart() {
                 label="SelectRoom"
                 disableUnderline
                 sx={{
-                  backgroundColor: "white",
+                  backgroundColor: 'white',
                   border: '1px solid #DBDBDB',
                   borderRadius: '0.3em',
                   padding: '0.7em 0.9em',
@@ -164,11 +150,12 @@ function TeleconStart() {
                   },
                 }}
               >
-                {dataRoom.map(({ value, label }) => (
-                  <MenuItem key={label} value={value}>
-                    {label}
-                  </MenuItem>
-                ))}
+                {roomData &&
+                  roomData.map((item, index) => (
+                    <MenuItem key={index} value={item._id}>
+                      {item.RoomName}
+                    </MenuItem>
+                  ))}
               </Select>
             </FormControl>
           </Box>
@@ -187,14 +174,14 @@ function TeleconStart() {
               content="Start a conference!"
               startIcon={<VideocamIcon />}
               sx={{
-                fontWeight: "600",
+                fontWeight: '600',
                 backgroundColor: '#0054A9',
                 color: 'white',
                 textDecoration: 'none',
                 borderRadius: '0.3em',
                 width: '100%',
                 margin: '0.5em 0em 0em 0em',
-                boxShadow: "none",
+                boxShadow: 'none',
                 '&: hover': { backgroundColor: '#00439A' },
               }}
             />
