@@ -115,7 +115,15 @@ function View_activity() {
         console.log({ ...res.data.activity, ...res.data.myFile });
       })
       .catch((err) => console.log(err.message));
+
+
+      axios.post('http://localhost:5000/activity/get/comment', {activityID}).then((res) => {
+      
+      })
+      .catch((err) => console.log(err.message));
   }, []);
+
+
 
   const handleComment = ()=> {
     axios.put('http://localhost:5000/activity/create/comment', {
