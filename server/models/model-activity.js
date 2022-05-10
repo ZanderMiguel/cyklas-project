@@ -9,6 +9,7 @@ const ActivitySchema = new mongoose.Schema(
     activityPoints: { type: Number, required: true },
     activityDueDate: { type: Date },
     activityInstruction: { type: Object },
+    activityComments: [{ type: Object }],
     media: [{ type: String }],
     rooms: [mongoose.Schema.Types.ObjectId],
   },
