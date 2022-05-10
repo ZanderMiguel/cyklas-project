@@ -130,7 +130,7 @@ function View_activity() {
   }
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" sx = {{ padding: "0.5em 0em" }}>
       <Grid container columnSpacing={1}>
         <Grid item xs={4}>
           <Button sx={designs.Return_Button_Style}>Return</Button>
@@ -541,10 +541,12 @@ function View_activity() {
                     noWrap
                     sx={{
                       color: '#3F3D56',
-                      fontSize: '0.8em',
-                      fontWeight: '600',
-                      width: 'relative',
-                      height: 'max-content',
+                            fontSize: '0.8em',
+                            fontWeight: '600',
+                            width: 'auto',
+                            flexGrow: 1,
+                            wordBreak: "break-all",
+                            height: 'auto',
                     }}
                   >
                     ACTIVITY 5 - Paul Rudd.docx
@@ -610,7 +612,7 @@ function View_activity() {
                 padding: '0em 2em',
               }}
             >
-              See your students' concerns about the activity.
+              See your student's concerns about the activity.
             </Typography>
 
             <Box

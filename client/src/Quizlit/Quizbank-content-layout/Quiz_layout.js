@@ -60,7 +60,7 @@ function Quiz_layout({ bank }) {
                 </IconButton>
 
                 <CusPopover
-                  PaperProps={{ elevation: 0 }}
+                  PaperProps={{ elevation: 1 }}
                   open={account}
                   anchorEl={anchorEl}
                   onClose={handleCloseOption}
