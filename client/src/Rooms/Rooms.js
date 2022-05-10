@@ -170,7 +170,6 @@ function Rooms({ socket }) {
                 )}
               </Grid>
               {error && console.log(error)}
-
               {data && data.length > 0 ? (
                 <Room_layout_student data={data} />
               ) : (

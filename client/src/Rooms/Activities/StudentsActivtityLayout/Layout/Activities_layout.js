@@ -37,6 +37,7 @@ function Activities_layout({ roomID, activity }) {
             activityPoints: points,
             activityTitle: title,
             activityType: type,
+            media,
           } = items;
           return (
             <Grid key={index} item xs={12}>
@@ -124,15 +125,13 @@ function Activities_layout({ roomID, activity }) {
                       }}
                     >
                       <Grid container columnSpacing={1} rowSpacing={1}>
-                        <Grid item xs={6}>
-                          <ActivityFile />
-                        </Grid>
-                        <Grid item xs={6}>
-                          <ActivityFile />
-                        </Grid>
-                        <Grid item xs={6}>
-                          <ActivityFile />
-                        </Grid>
+                        {media.map((item, index) => {
+                          return (
+                            <Grid item xs={6}>
+                              <ActivityFile item={item} />
+                            </Grid>
+                          );
+                        })}
                       </Grid>
                     </Box>
                   </AccordionDetails>

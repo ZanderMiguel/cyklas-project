@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography, Tooltip } from '@mui/material';
 import Wordfile from '../assets/ImageJaven/Wordfile.png';
 
-function ActivityFile() {
+function ActivityFile({ item }) {
   return (
     <>
       <Tooltip title="Click to download file" placement="top-start">
@@ -49,7 +49,7 @@ function ActivityFile() {
                 height: 'max-content',
               }}
             >
-              ACTIVITY 5 - Paul Rudd.docx
+              {item}
             </Typography>
 
             <Typography
@@ -60,7 +60,15 @@ function ActivityFile() {
                 height: 'max-content',
               }}
             >
-              Document File
+              {item?.includes('.docx')
+                ? 'WORD FILE'
+                : item?.includes('.xls')
+                ? 'EXCEL FILE'
+                : item?.includes('.ppt') || item?.includes('.pptx')
+                ? 'POWER POINT'
+                : item?.includes('.pdf')
+                ? 'PDF FILE'
+                : 'FILE'}
             </Typography>
           </Box>
         </Box>
