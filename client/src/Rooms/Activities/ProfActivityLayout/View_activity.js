@@ -171,7 +171,7 @@ function View_activity() {
             sx={{
               width: '100%',
               height: 'auto',
-              padding: '0.5em 0em',
+              padding: '0.5em 0em 1em 0em',
               marginBottom: '1em',
               border: '1px solid #DBDBDB',
               borderRadius: '0.3em',
@@ -433,7 +433,7 @@ function View_activity() {
                         sx={{
                           backgroundColor: 'white',
                           margin: '0.5em 0em 0em 0em',
-                          width: '50%',
+                          width: '100%',
                           height: "auto",
                           padding: '0.5em 0.9em',
                           display: 'flex',
@@ -569,7 +569,7 @@ function View_activity() {
                       sx={{
                         backgroundColor: 'white',
                         margin: '0.5em 0em 0em 0em',
-                        width: '50%',
+                        width: '100%',
                         padding: '0.5em 0.9em',
                         display: 'flex',
                         gap: '0.9em',

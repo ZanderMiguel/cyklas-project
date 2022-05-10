@@ -70,10 +70,12 @@ function UploadFileTile({ submits, activityID }) {
                 sx={{
                   backgroundColor: 'white',
                   margin: '0.5em 0em 0em 0em',
-                  width: '50%',
+                  width: '100%',
                   padding: '0.5em 0.9em',
                   display: 'flex',
                   gap: '0.9em',
+                  height: "auto",
+                  alignItems: "center",
                   border: '1px solid #D4D4D4',
                   borderRadius: '0.3em',
                   '&: hover': {
@@ -100,13 +102,14 @@ function UploadFileTile({ submits, activityID }) {
                   }}
                 >
                   <Typography
-                    noWrap
                     sx={{
                       color: '#3F3D56',
                       fontSize: '0.8em',
                       fontWeight: '600',
-                      width: 'relative',
-                      height: 'max-content',
+                      width: 'auto',
+                      flexGrow: 1,
+                      height: 'auto',
+
                     }}
                   >
                     {item}
@@ -148,10 +151,12 @@ function UploadFileTile({ submits, activityID }) {
                 sx={{
                   backgroundColor: 'white',
                   margin: '0.5em 0em 0em 0em',
-                  width: '50%',
+                  width: '100%',
                   padding: '0.5em 0.9em',
                   display: 'flex',
                   gap: '0.9em',
+                  alignItems: "center",
+
                   border: '1px solid #D4D4D4',
                   borderRadius: '0.3em',
                   '&: hover': {
@@ -178,13 +183,13 @@ function UploadFileTile({ submits, activityID }) {
                   }}
                 >
                   <Typography
-                    noWrap
                     sx={{
                       color: '#3F3D56',
                       fontSize: '0.8em',
                       fontWeight: '600',
-                      width: 'relative',
-                      height: 'max-content',
+                      width: 'auto',
+                      flexGrow: 1,
+                      height: 'auto',
                     }}
                   >
                     {item.fileName}
