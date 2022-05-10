@@ -105,6 +105,8 @@ function View_activity() {
     setSort(event.target.value);
   };
 
+  const [activityComment, setActivityComment] = useState('')
+
   React.useEffect(() => {
     axios
       .post('http://localhost:5000/activity/get', { activityID })
@@ -114,6 +116,18 @@ function View_activity() {
       })
       .catch((err) => console.log(err.message));
   }, []);
+
+  const handleComment = ()=> {
+    axios.put('http://localhost:5000/activity/create/comment', {
+    activityID,  
+    commentObj: {author: { 
+      name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
+      JSON.parse(localStorage.userData).data.user.lastName}`,
+    userID: JSON.parse(localStorage.userData).data.user._id,
+    avatar: JSON.parse(localStorage.userData).data.user.image}, content: activityComment , commentDate: Date.now()} }).then((res)=> setActivityComment('')).catch(err=> console.log(err))
+
+    
+  }
 
   return (
     <Container maxWidth="lg">
@@ -805,6 +819,8 @@ function View_activity() {
               <Input
                 placeholder="Write a comment..."
                 disableUnderline
+                value={activityComment}
+                onChange={(event)=> setActivityComment(event.target.value)}
                 sx={{
                   border: '1px solid #DBDBDB',
                   borderRadius: '0.3em',
@@ -821,6 +837,7 @@ function View_activity() {
 
               <Button
                 children="Send"
+                onClick={handleComment}
                 variant="contained"
                 sx={{
                   fontWeight: '600',
