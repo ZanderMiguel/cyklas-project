@@ -6,15 +6,12 @@ import {
   DeleteOutlineOutlined,
 } from '@mui/icons-material';
 import useStyles from '../Styles/Announce_style';
-import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
-import usePost from '../../customHooks/usePost';
 import ReactScrollableFeed from 'react-scrollable-feed';
 import axios from 'axios';
 
 function Comments({ postId, commentId, socket }) {
   const { designs } = useStyles();
   const [data, setData] = useState();
-  // const { post, data } = usePost();
 
   const handleEditComment = () => {};
   const handleDeleteComment = (_id) => {
