@@ -2,15 +2,18 @@ const { RoomsModel } = require('../models/model-createRoom');
 const User = require('../models/model-users');
 const mongoose = require('mongoose');
 const GradingSystemModel = require('../models/model-gradingSystem');
-
+const ClassRecordModel = require('../models/model-classRecords');
 async function createRooms(req, res) {
   try {
     const id = mongoose.Types.ObjectId();
 
     const addRooms = new RoomsModel({ _id: id, ...req.body });
     await addRooms.save();
-    await GradingSystemModel.updateOne({_id:req.body.gsID},{$push:{rooms:id}})
-    console.log('Room Created','Grading System Applied');
+    await GradingSystemModel.updateOne(
+      { _id: req.body.gsID },
+      { $push: { rooms: id } }
+    );
+    console.log('Room Created', 'Grading System Applied');
     return res.json({
       status: 'success',
       message: 'Room Created!',
@@ -65,21 +68,43 @@ const updateRooms = async (req, res) => {
     return res.json(error);
   }
 };
-const getMembersData = async(req,res)=>{
-  try{
+const getMembersData = async (req, res) => {
+  try {
     const members = await User.find({
-      _id: {$in: req.body.members}
-    })
-    return res.json(members)
-  }catch(error){
-    console.log(error)
-    return res.json(error)
+      _id: { $in: req.body.members },
+    });
+    return res.json(members);
+  } catch (error) {
+    console.log(error);
+    return res.json(error);
   }
-}
+};
+const leaveRoom = async (req, res) => {
+  try {
+    await RoomsModel.findByIdAndUpdate(req.body.roomID, {
+      $pull: {
+        members: req.body.userID,
+      },
+    });
+    await ClassRecordModel.updateMany(
+      { room: { $elemMatch: { $eq: req.body.roomID } } },
+      {
+        $pull: { room: req.body.roomID },
+      }
+    );
+    console.log('Student left the room');
+    return res.json({ message: 'Student left the room', status: 'success' });
+  } catch (error) {
+    console.log(error);
+    return res.json(error);
+  }
+};
 module.exports = {
   createRoomController: createRooms,
   displayRoomController: displayRooms,
   deleteRoomController: deleteRooms,
   updateRoomController: updateRooms,
-  findRoom,getMembersData
+  findRoom,
+  getMembersData,
+  leaveRoom,
 };

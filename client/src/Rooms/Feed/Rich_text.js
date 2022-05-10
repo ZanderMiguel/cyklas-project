@@ -13,8 +13,6 @@ import {
   PanoramaOutlined,
   AttachFileOutlined,
   InsertLinkOutlined,
-  FormatBold,
-  FormatItalic,
 } from '@mui/icons-material';
 import usePost from '../../customHooks/usePost';
 import { useParams } from 'react-router-dom';

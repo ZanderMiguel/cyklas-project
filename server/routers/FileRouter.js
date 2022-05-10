@@ -10,6 +10,7 @@ const {
   downloadFileByClick,
   createActivityComment,
   displayActivityComment,
+  deleteController,
 } = require('../controller/createActivityController');
 
 const {
@@ -30,6 +31,7 @@ module.exports = (upload) => {
   fileRouter.get('/activity/download/:file', downloadFileByClick);
   fileRouter.put('/activity/create/comment', createActivityComment);
   fileRouter.post('/activity/get/comment', displayActivityComment);
+  fileRouter.put('/activity/delete/comment', deleteController);
 
   fileRouter.post(
     '/activity/submit',

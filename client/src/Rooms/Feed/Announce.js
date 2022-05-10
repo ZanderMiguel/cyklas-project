@@ -5,6 +5,7 @@ import axios from 'axios';
 import TeleconPostedTile from "../../Telecon/components/TeleconPostedTile";
 import Post_layout from './Post_layout';
 import Rich_text from './Rich_text';
+import ActivityFile from '../../components/ActivityFile'
 
 function Announce({ socket }) {
   const { roomID } = useParams();
@@ -60,7 +61,6 @@ function Announce({ socket }) {
               commentId={commentId}
             />
           )}
-          <TeleconPostedTile/>
         </Grid>
       </Grid>
     </>

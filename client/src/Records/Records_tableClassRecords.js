@@ -25,7 +25,7 @@ function Records_tableClassRecords({ rooms }) {
   const [category, setCategory] = useState(null);
   const [records, setRecords] = useState(null);
   const stdRecord = React.useRef([]);
-  const [overall,setOverall] = useState(null)
+  const [overall, setOverall] = useState(null);
   const handleChangeRoom = (event) => {
     setSelectRoom(event.target.value);
     axios
@@ -48,16 +48,17 @@ function Records_tableClassRecords({ rooms }) {
             roomID: rooms[event.target.value]._id,
           })
           .then((res) => {
-            axios.post('http://localhost:5000/records/overall', {
-              category: res.data[0].Category,
-              roomID: rooms[event.target.value]._id,
-              userID: JSON.parse(localStorage.userData).data.user._id
-            })
-              .then(res => {
-                stdRecord.current = []
-                setOverall(res.data)
-                
-              }).catch(err => console.log(err))
+            axios
+              .post('http://localhost:5000/records/overall', {
+                category: res.data[0].Category,
+                roomID: rooms[event.target.value]._id,
+                userID: JSON.parse(localStorage.userData).data.user._id,
+              })
+              .then((res) => {
+                stdRecord.current = [];
+                setOverall(res.data);
+              })
+              .catch((err) => console.log(err));
             setCategory(res.data[0].Category);
           });
       })
@@ -191,67 +192,84 @@ function Records_tableClassRecords({ rooms }) {
             </thead>
 
             <tbody>
-              {records && overall && records > 0 ? records.map((items, index) => {
-                if (items.gradingSystem.length === 0) {
-                  axios.put('http://localhost:5000/records/applyGS', { crID: items._id, gradingSystem: stdRecord.current })
-                    .then(res => {}).catch(err => console.log(err))
-                }
-                
-                return (
-                  <tr key={index}>
-                    <td>
-                      <div className="student-name">
-                        <Avatar src={items.student.image} sx={{ height: '1.5em', width: '1.5em' }} />
-                        {items.student.name}
-                      </div>
-                    </td>
-                    <td data-label="Overall"> {Math.round(overall[items.student.stdID])} </td>
-                    {/*map some shit*/}
-                    {items.gradingSystem.map((item, ind) => (<td key={ind}>{item[Object.entries(item)[0][0]]}</td>))}
+              {records && overall && records.length > 0 ? (
+                records.map((items, index) => {
+                  if (items.gradingSystem.length === 0) {
+                    axios
+                      .put('http://localhost:5000/records/applyGS', {
+                        crID: items._id,
+                        gradingSystem: stdRecord.current,
+                      })
+                      .then((res) => {})
+                      .catch((err) => console.log(err));
+                  }
 
-                    <td data-label="Class Standing"> {items.classStanding} </td>
-                  </tr>
-                )
+                  return (
+                    <tr key={index}>
+                      <td>
+                        <div className="student-name">
+                          <Avatar
+                            src={items.student.image}
+                            sx={{ height: '1.5em', width: '1.5em' }}
+                          />
+                          {items.student.name}
+                        </div>
+                      </td>
+                      <td data-label="Overall">
+                        {' '}
+                        {Math.round(overall[items.student.stdID])}{' '}
+                      </td>
+                      {/*map some shit*/}
+                      {items.gradingSystem.map((item, ind) => (
+                        <td key={ind}>{item[Object.entries(item)[0][0]]}</td>
+                      ))}
 
-              }) : (
+                      <td data-label="Class Standing">
+                        {' '}
+                        {items.classStanding}{' '}
+                      </td>
+                    </tr>
+                  );
+                })
+              ) : (
                 <Box
-          sx={{
-            width: '220%',
-            height: '70vh',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexWrap: 'wrap'
-          }}
-        >
-          <img
-            src={NoRecords}
-            alt="No Records"
-            style={{
-              height: '17em',
-              margin: '0em 0em 1.5em 0em',
-            }}
-          />
-          <Typography
-            children="You did not have any records from your students yet."
-            sx={{
-              fontSize: '1.2em',
-              fontWeight: '600',
-              color: '#3F3D56',
-              marginBottom: '0.3em',
-            }}
-          />
+                  sx={{
+                    width: '220%',
+                    height: '70vh',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flexWrap: 'wrap',
+                  }}
+                >
+                  <img
+                    src={NoRecords}
+                    alt="No Records"
+                    style={{
+                      height: '17em',
+                      margin: '0em 0em 1.5em 0em',
+                    }}
+                  />
+                  <Typography
+                    children="You did not have any records from your students yet."
+                    sx={{
+                      fontSize: '1.2em',
+                      fontWeight: '600',
+                      color: '#3F3D56',
+                      marginBottom: '0.3em',
+                    }}
+                  />
 
-          <Typography
-            children="Please check/ return any classworks of your students."
-            sx={{
-              fontSize: '1em',
-              fontWeight: '500',
-              color: '#8E8E8E',
-            }}
-          />
-        </Box>
+                  <Typography
+                    children="Please check/ return any classworks of your students."
+                    sx={{
+                      fontSize: '1em',
+                      fontWeight: '500',
+                      color: '#8E8E8E',
+                    }}
+                  />
+                </Box>
               )}
             </tbody>
 

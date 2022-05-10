@@ -6,7 +6,7 @@ import useStyle from '../../../Styles/View_activity_style';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-function StudentList({ setSubmitData, submitData }) {
+function StudentList({ setSubmitData, setStudentID, score, activityView }) {
   const { designs } = useStyle();
   const { roomID, activityID } = useParams();
   const [data, setData] = React.useState(null);
@@ -33,6 +33,7 @@ function StudentList({ setSubmitData, submitData }) {
                 key={index}
                 sx={designs.Student_Box_Style}
                 onClick={() => {
+                  setStudentID(items._id);
                   axios
                     .post('http://localhost:5000/activity/get/submit', {
                       activityID,
@@ -43,6 +44,8 @@ function StudentList({ setSubmitData, submitData }) {
                       setSubmitData(res.data.activity);
                     })
                     .catch((err) => console.log(err));
+                  document.querySelector('#activityScore').value =
+                    score[items._id] || 0;
                 }}
               >
                 <Checkbox sx={designs.Student_Checkbox_Style} />
@@ -68,7 +71,8 @@ function StudentList({ setSubmitData, submitData }) {
                 </Typography>
                 <Box flexGrow={1} height="relative" width="relative" />
                 <Typography sx={designs.StudentScore_Typography_Style}>
-                  40/40
+                  {score[items._id]} /{' '}
+                  {activityView && activityView.activityPoints}
                 </Typography>
               </Box>
             );

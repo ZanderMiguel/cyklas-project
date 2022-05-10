@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import {
   Grid,
   Box,
@@ -12,39 +12,39 @@ import {
   FormHelperText,
   FormControl,
   Tooltip,
-} from "@mui/material";
+} from '@mui/material';
 import {
   PanoramaOutlined,
   AttachFileOutlined,
   InsertLinkOutlined,
   HomeWork,
-} from "@mui/icons-material";
-import Dialogform from "../components/Dialogform";
-import Input from "../components/Input";
-import Datepicker from "../components/DatePicker";
-import Dropdown from "../components/Drowpdown";
-import { Editor } from "react-draft-wysiwyg";
-import { EditorState, convertToRaw } from "draft-js";
-import "../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { useParams } from "react-router-dom";
-import useStyle from "../Quizlit/Styles/Quiz_style";
-import Wordfile from "../assets/ImageJaven/Wordfile.png";
+} from '@mui/icons-material';
+import Dialogform from '../components/Dialogform';
+import Input from '../components/Input';
+import Datepicker from '../components/DatePicker';
+import Dropdown from '../components/Drowpdown';
+import { Editor } from 'react-draft-wysiwyg';
+import { EditorState, convertToRaw } from 'draft-js';
+import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { useParams } from 'react-router-dom';
+import useStyle from '../Quizlit/Styles/Quiz_style';
+import Wordfile from '../assets/ImageJaven/Wordfile.png';
 
 const types = [
-  { value: "Homework", label: "Homework" },
-  { value: "Seatwork", label: "Seatwork" },
-  { value: "Material", label: "Material" },
+  { value: 'Homework', label: 'Homework' },
+  { value: 'Seatwork', label: 'Seatwork' },
+  { value: 'Material', label: 'Material' },
 ];
 
 function Create_activity({ item, open, close, setOpenDialog }) {
   const [uploadFile, setUploadFile] = React.useState([
-    { fileName: "File uploaded/image/link" },
+    { fileName: 'File uploaded/image/link' },
   ]);
   const { roomID } = useParams();
   const [category, setCategory] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [title, setTitle] = useState("");
-  const [points, setPoints] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [title, setTitle] = useState('');
+  const [points, setPoints] = useState('');
   const [duedate, setDueDate] = useState(null);
   // const [instruction, setInstruction] = useState('');
 
@@ -74,26 +74,26 @@ function Create_activity({ item, open, close, setOpenDialog }) {
     setPointsError(false);
     setTypeError(false);
 
-    if (title === "") {
+    if (title === '') {
       setTitleError(true);
     }
-    if (points === "") {
+    if (points === '') {
       setPointsError(true);
     }
-    if (selectedCategory === "") {
+    if (selectedCategory === '') {
       setTypeError(true);
     }
 
     const formData = new FormData();
     uploadFile.forEach((item) => {
-      if (item.fileName !== "File uploaded/image/link") {
-        formData.append("file", item.file);
-        formData.append("filaName", item.fileName);
-        formData.append("media", item.fileName);
+      if (item.fileName !== 'File uploaded/image/link') {
+        formData.append('file', item.file);
+        formData.append('filaName', item.fileName);
+        formData.append('media', item.fileName);
       }
     });
     formData.append(
-      "author",
+      'author',
       JSON.stringify({
         name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
           JSON.parse(localStorage.userData).data.user.lastName
@@ -102,23 +102,23 @@ function Create_activity({ item, open, close, setOpenDialog }) {
         avatar: JSON.parse(localStorage.userData).data.user.image,
       })
     );
-    formData.append("activityTitle", title);
-    formData.append("activityType", selectedCategory);
-    formData.append("activityPoints", points);
-    formData.append("activityDueDate", duedate);
-    formData.append("activityInstruction", JSON.stringify(convertedState));
-    formData.append("rooms", [roomID]);
+    formData.append('activityTitle', title);
+    formData.append('activityType', selectedCategory);
+    formData.append('activityPoints', points);
+    formData.append('activityDueDate', duedate);
+    formData.append('activityInstruction', JSON.stringify(convertedState));
+    formData.append('rooms', [roomID]);
     axios
-      .post("http://localhost:5000/activity/create", formData, {
+      .post('http://localhost:5000/activity/create', formData, {
         headers: {
-          "Content-Type": "multipart/form-data",
+          'Content-Type': 'multipart/form-data',
         },
       })
       .then((res) => {
         console.log(res.data);
         setUploadFile([
           ...uploadFile,
-          { fileName: "File uploaded/image/link" },
+          { fileName: 'File uploaded/image/link' },
         ]);
         close();
       })
@@ -127,7 +127,7 @@ function Create_activity({ item, open, close, setOpenDialog }) {
 
   useEffect(() => {
     axios
-      .post("http://localhost:5000/gradingSystem/record", {
+      .post('http://localhost:5000/gradingSystem/record', {
         roomID: roomID,
       })
       .then((res) => setCategory(res.data[0].Category))
@@ -144,7 +144,7 @@ function Create_activity({ item, open, close, setOpenDialog }) {
       close={close}
       maxWidth="md"
     >
-      <Grid container spacing={2} sx={{ p: "0em 2em" }}>
+      <Grid container spacing={2} sx={{ p: '0em 2em' }}>
         <Input
           name="title"
           inputLabel="Title"
@@ -153,30 +153,9 @@ function Create_activity({ item, open, close, setOpenDialog }) {
           autoFocus
           onChange={(event) => setTitle(event.target.value)}
           error={titleerror}
-          helperText={titleerror ? "Please enter a title" : false}
+          helperText={titleerror ? 'Please enter a title' : false}
           placeholder="Enter activity title..."
         />
-        {/* <Input
-          name="type"
-          inputLabel="Type"
-          autoComplete="off"
-          placeholder="Homework"
-          value={type}
-          error={typeerror}
-          helperText={typeerror ? 'Please select type' : false}
-          onChange={(event) => setType(event.target.value)}
-          half
-        /> */}
-
-        {/* <Dropdown
-          inputLabel="Category"
-          onChange={handleType}
-          options={category}
-          value={category}
-          error={typeerror}
-          typeerror="Please select type"
-          half
-        /> */}
         <Grid item xs={12} sm={6}>
           <FormControl error={typeerror} fullWidth>
             <Typography variant="body1" sx={{ ml: 1, mb: 1, fontWeight: 500 }}>
@@ -205,7 +184,7 @@ function Create_activity({ item, open, close, setOpenDialog }) {
           autoComplete="off"
           value={points}
           error={pointserror}
-          helperText={pointserror ? "Please enter points" : false}
+          helperText={pointserror ? 'Please enter points' : false}
           onChange={(event) => setPoints(event.target.value)}
           placeholder="Set activity points"
           half
@@ -245,111 +224,115 @@ function Create_activity({ item, open, close, setOpenDialog }) {
             editorClassName="editor-class"
             toolbarClassName="toolbar-class"
             toolbar={{
-              options: ["inline", "list", "textAlign"],
+              options: ['inline', 'list', 'textAlign'],
               inline: {
-                className: "inline-class",
-                options: ["bold", "italic", "underline"],
-                bold: { className: "BOLD-CLASS" },
+                className: 'inline-class',
+                options: ['bold', 'italic', 'underline'],
+                bold: { className: 'BOLD-CLASS' },
               },
               list: {
                 inDropdown: false,
                 className: undefined,
                 dropdownClassName: undefined,
-                options: ["unordered", "ordered"],
+                options: ['unordered', 'ordered'],
               },
               textAlign: {
                 inDropdown: false,
                 className: undefined,
                 component: undefined,
                 dropdownClassName: undefined,
-                options: ["left", "center", "right", "justify"],
+                options: ['left', 'center', 'right', 'justify'],
               },
             }}
           />
           <Box
             sx={{
-              backgroundColor: "rgba(0, 0, 0, 0.06)",
-              borderRadius: "0px 0px 4px 4px",
+              backgroundColor: 'rgba(0, 0, 0, 0.06)',
+              borderRadius: '0px 0px 4px 4px',
             }}
           >
-            {uploadFile.map((item, index) =>{
-              if(index !== 0){
-            return(
-              <Box
-          className="Attach-file"
-          sx={{
-            backgroundColor: 'white',
-            width: '100%',
-            height: "auto",
-            padding: '0.5em 0.9em',
-            display: 'flex',
-            alignItems: "center",
-            gap: '0.9em',
-            border: '1px solid #D4D4D4',
-            borderRadius: '0.3em',
-            '&: hover': {
-              cursor: 'pointer',
-              boxShadow:
-                'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
-            },
-          }}
-        >
-          <img
-            src={Wordfile}
-            style={{
-              height: '40px',
-            }}
-          />
+            {uploadFile &&
+              uploadFile.map((item, index) => {
+                if (index !== 0) {
+                  return (
+                    <Box
+                      className="Attach-file"
+                      sx={{
+                        backgroundColor: 'white',
+                        width: '100%',
+                        height: 'auto',
+                        padding: '0.5em 0.9em',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.9em',
+                        border: '1px solid #D4D4D4',
+                        borderRadius: '0.3em',
+                        '&: hover': {
+                          cursor: 'pointer',
+                          boxShadow:
+                            'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
+                        },
+                      }}
+                    >
+                      <img
+                        src={Wordfile}
+                        style={{
+                          height: '40px',
+                        }}
+                      />
 
-          <Box
-            className="Activity-filename"
-            sx={{
-              width: 'auto',
-              display: 'flex',
-              flexDirection: 'column',
-              flexGrow: 1,
-            }}
-          >
-            <Typography
-              sx={{
-                color: '#3F3D56',
-                fontSize: '0.8em',
-                fontWeight: '600',
-                width: 'relative',
-                height: 'auto',
-                flexGrow: 1
-              }}
-            >
-              {item.fileName.replace("File uploaded/image/link", "")}
-            </Typography>
+                      <Box
+                        className="Activity-filename"
+                        sx={{
+                          width: 'auto',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          flexGrow: 1,
+                        }}
+                      >
+                        <Typography
+                          sx={{
+                            color: '#3F3D56',
+                            fontSize: '0.8em',
+                            fontWeight: '600',
+                            width: 'relative',
+                            height: 'auto',
+                            flexGrow: 1,
+                          }}
+                        >
+                          {item?.fileName.replace(
+                            'File uploaded/image/link',
+                            ''
+                          )}
+                        </Typography>
 
-            <Typography
-              sx={{
-                color: '#3F3D56',
-                fontSize: '0.7em',
-                width: 'max-content',
-                height: 'max-content',
-              }}
-            >
-              {item?.includes('.docx')
-                ? 'WORD FILE'
-                : item?.includes('.xls')
-                ? 'EXCEL FILE'
-                : item?.includes('.ppt') || item?.includes('.pptx')
-                ? 'POWER POINT'
-                : item?.includes('.pdf')
-                ? 'PDF FILE'
-                : 'FILE'}
-            </Typography>
-          </Box>
-        </Box>
-            )}
-              }
-            )}
+                        <Typography
+                          sx={{
+                            color: '#3F3D56',
+                            fontSize: '0.7em',
+                            width: 'max-content',
+                            height: 'max-content',
+                          }}
+                        >
+                          {item?.fileName?.includes('.docx')
+                            ? 'WORD FILE'
+                            : item?.fileName?.includes('.xls')
+                            ? 'EXCEL.fileName FILE'
+                            : item?.includes('.ppt') || item?.includes('.pptx')
+                            ? 'POWER POINT'
+                            : item?.includes('.pdf')
+                            ? 'PDF FILE'
+                            : 'FILE'}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  );
+                }
+              })}
 
             {/* <Box padding="10px">{uploadFile.map(item => 
               item.fileName.replace('File uploaded/image/link', ''))}</Box> */}
-            <Stack direction="row" spacing={1} sx={{ padding: "0.5em" }}>
+            <Stack direction="row" spacing={1} sx={{ padding: '0.5em' }}>
               {/* <IconButton
                 aria-label="image"
                 size="medium"
@@ -363,19 +346,19 @@ function Create_activity({ item, open, close, setOpenDialog }) {
                 <Tooltip title="Attach a file" placement="top">
                   <Box
                     sx={{
-                      padding: "0.5em",
-                      borderRadius: "5em",
-                      display: "flex",
-                      alignItems: "center",
-                      "&: hover": {
-                        cursor: "pointer",
-                        transition: "all 250ms",
-                        backgroundColor: "#E7E7E7",
+                      padding: '0.5em',
+                      borderRadius: '5em',
+                      display: 'flex',
+                      alignItems: 'center',
+                      '&: hover': {
+                        cursor: 'pointer',
+                        transition: 'all 250ms',
+                        backgroundColor: '#E7E7E7',
                       },
                     }}
                   >
                     <AttachFileOutlined
-                      sx={{ color: "#707070", fontSize: "1.5em" }}
+                      sx={{ color: '#707070', fontSize: '1.5em' }}
                     />
                   </Box>
                 </Tooltip>
@@ -384,7 +367,7 @@ function Create_activity({ item, open, close, setOpenDialog }) {
                 type="file"
                 name="stdUpload"
                 id="uploadFile"
-                style={{ display: "none" }}
+                style={{ display: 'none' }}
                 onChange={(event) => {
                   setUploadFile([
                     ...uploadFile,
@@ -399,19 +382,19 @@ function Create_activity({ item, open, close, setOpenDialog }) {
               <Tooltip title="Attach a link" placement="top">
                 <Box
                   sx={{
-                    padding: "0.5em",
-                    borderRadius: "5em",
-                    display: "flex",
-                    alignItems: "center",
-                    "&: hover": {
-                      cursor: "pointer",
-                      transition: "all 250ms",
-                      backgroundColor: "#E7E7E7",
+                    padding: '0.5em',
+                    borderRadius: '5em',
+                    display: 'flex',
+                    alignItems: 'center',
+                    '&: hover': {
+                      cursor: 'pointer',
+                      transition: 'all 250ms',
+                      backgroundColor: '#E7E7E7',
                     },
                   }}
                 >
                   <InsertLinkOutlined
-                    sx={{ color: "#707070", fontSize: "1.5em" }}
+                    sx={{ color: '#707070', fontSize: '1.5em' }}
                   />
                 </Box>
               </Tooltip>
@@ -426,8 +409,8 @@ function Create_activity({ item, open, close, setOpenDialog }) {
             onClick={handleCreateActivity}
             variant="contained"
             sx={{
-              fontWeight: "600",
-              boxShadow: "none",
+              fontWeight: '600',
+              boxShadow: 'none',
               mt: 2,
               mb: 2,
             }}

@@ -12,7 +12,7 @@ function Member({ roomdata }) {
 
   const [opendialog, setOpenDialog] = useState(false);
   const [members, setMembers] = useState(null);
-
+  const [refresher, setRefresher] = useState(false);
   const handleCreate = () => {
     setOpenDialog(true);
   };
@@ -28,7 +28,7 @@ function Member({ roomdata }) {
       })
       .then((res) => setMembers(res.data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [refresher]);
 
   return (
     <>
@@ -52,8 +52,9 @@ function Member({ roomdata }) {
             />
           )}
         </Box>
-        <Memberstable members={members} />
+        <Memberstable members={members} setRefresher={setRefresher} />
         <Group_table />
+        {refresher && refresher}
       </Box>
     </>
   );
