@@ -6,9 +6,9 @@ import useStyle from '../../../Styles/View_activity_style';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-function StudentList() {
+function StudentList({ setSubmitData, submitData }) {
   const { designs } = useStyle();
-  const { roomID } = useParams();
+  const { roomID, activityID } = useParams();
   const [data, setData] = React.useState(null);
   React.useEffect(() => {
     axios
@@ -27,35 +27,52 @@ function StudentList() {
     <>
       {data &&
         data.map(function (items, index) {
-          return (
-            <Box key={index} sx={designs.Student_Box_Style}>
-              <Checkbox sx={designs.Student_Checkbox_Style} />
-              <Avatar
-                alt="Remy Sharp"
-                src={AvatarIcon}
-                sx={designs.Student_Avatar_Style}
-              />
-              <Typography
-                noWrap
-                sx={{
-                  height: 'max-content',
-                  width: '47%',
-                  textTransform: 'Capitalize',
-                  textAlign: 'Left',
-                  fontSize: '13px',
-                  fontWeight: '500',
-                  color: '#3F3D56',
-                  margin: '10px 0px 10px 0px',
+          if (items.userType === 'Student') {
+            return (
+              <Box
+                key={index}
+                sx={designs.Student_Box_Style}
+                onClick={() => {
+                  axios
+                    .post('http://localhost:5000/activity/get/submit', {
+                      activityID,
+                      stdID: items._id,
+                    })
+                    .then((res) => {
+                      console.log(res.data);
+                      setSubmitData(res.data.activity);
+                    })
+                    .catch((err) => console.log(err));
                 }}
               >
-                {items.firstName} {items.lastName}
-              </Typography>
-              <Box flexGrow={1} height="relative" width="relative" />
-              <Typography sx={designs.StudentScore_Typography_Style}>
-                40/40
-              </Typography>
-            </Box>
-          );
+                <Checkbox sx={designs.Student_Checkbox_Style} />
+                <Avatar
+                  alt="Remy Sharp"
+                  src={items.image}
+                  sx={designs.Student_Avatar_Style}
+                />
+                <Typography
+                  noWrap
+                  sx={{
+                    height: 'max-content',
+                    width: '47%',
+                    textTransform: 'Capitalize',
+                    textAlign: 'Left',
+                    fontSize: '13px',
+                    fontWeight: '500',
+                    color: '#3F3D56',
+                    margin: '10px 0px 10px 0px',
+                  }}
+                >
+                  {items.firstName} {items.lastName}
+                </Typography>
+                <Box flexGrow={1} height="relative" width="relative" />
+                <Typography sx={designs.StudentScore_Typography_Style}>
+                  40/40
+                </Typography>
+              </Box>
+            );
+          }
         })}
     </>
   );
