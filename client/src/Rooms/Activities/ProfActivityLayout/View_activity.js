@@ -390,8 +390,10 @@ function View_activity() {
                           backgroundColor: 'white',
                           margin: '0.5em 0em 0em 0em',
                           width: '50%',
+                          height: "auto",
                           padding: '0.5em 0.9em',
                           display: 'flex',
+                          alignItems: "center", 
                           gap: '0.9em',
                           border: '1px solid #D4D4D4',
                           borderRadius: '0.3em',
@@ -419,13 +421,14 @@ function View_activity() {
                           }}
                         >
                           <Typography
-                            noWrap
                             sx={{
                               color: '#3F3D56',
                               fontSize: '0.8em',
                               fontWeight: '600',
-                              width: 'relative',
-                              height: 'max-content',
+                              width: 'auto',
+                              flexGrow: 1,
+                              height: 'auto',
+                              wordBreak: "break-all"
                             }}
                           >
                             {item}

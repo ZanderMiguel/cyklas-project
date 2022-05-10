@@ -11,8 +11,11 @@ import useStyle from './Styles/Quizlit_style';
 import CusPopover from '../components/Popover';
 import QuizlitAddpopover from '../components/PopoverContent/QuizlitAddpopover';
 import axios from 'axios';
+import Box from "@mui/material/Box";
 import { AddCircleOutlineOutlined } from '@mui/icons-material';
 import Button from '../components/Button';
+import NoQuizzes from "../assets/ImageJaven/NoQuizzes.png";
+import NoExams from "../assets/ImageJaven/NoExams.png";
 
 function Quizlit() {
   const { designs } = useStyle();
@@ -183,7 +186,47 @@ function Quizlit() {
                       return item.quizType === 'Quiz';
                     })}
                   />
-                ) : ( <h1> No quiz</h1>) :
+                ) : (
+                  <Box
+          sx={{
+            width: '100%',
+            height: '70vh',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+          }}
+        >
+          <img
+            src={NoQuizzes}
+            alt="No Quizzes"
+            style={{
+              height: '13em',
+              margin: '0em 0em 1.5em 0em',
+            }}
+          />
+          <Typography
+            children="You did not create any Quizzes."
+            sx={{
+              fontSize: '1em',
+              fontWeight: '600',
+              color: '#3F3D56',
+              marginBottom: '0.3em',
+            }}
+          />
+
+          <Typography
+            children="Start creating quizzes now for your class."
+            sx={{
+              fontSize: '0.8em',
+              fontWeight: '500',
+              color: '#8E8E8E',
+              marginLeft: '0.8em',
+            }}
+          />
+        </Box>
+                ) :
               value === 1 &&
                 data && data.length > 0 ? (
                   <Exam_layout
@@ -191,7 +234,47 @@ function Quizlit() {
                       return item.quizType === 'Exam';
                     })}
                   />
-                ) : (<h1> No Exams yet</h1>)}
+                ) : (
+                  <Box
+          sx={{
+            width: '100%',
+            height: '70vh',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+          }}
+        >
+          <img
+            src={NoExams}
+            alt="No Exams"
+            style={{
+              height: '13em',
+              margin: '0em 0em 1.5em 0em',
+            }}
+          />
+          <Typography
+            children="You did not create any Exams."
+            sx={{
+              fontSize: '1em',
+              fontWeight: '600',
+              color: '#3F3D56',
+              marginBottom: '0.3em',
+            }}
+          />
+
+          <Typography
+            children="Start creating exams now for your students to take."
+            sx={{
+              fontSize: '0.8em',
+              fontWeight: '500',
+              color: '#8E8E8E',
+              marginLeft: '0.8em',
+            }}
+          />
+        </Box>
+                )}
           </Grid>
         </Grid>
       </Container>
