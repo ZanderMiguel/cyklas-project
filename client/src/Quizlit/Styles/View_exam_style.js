@@ -110,7 +110,7 @@ function useStyle() {
         display: "flex"
     },
     FormControlRoom_Style: {
-        width: '35%',
+        width: '50%',
         paddingTop: "0em",
         marginRight: "0.5em",
         borderBottom: "1px solid #DBDBDB"

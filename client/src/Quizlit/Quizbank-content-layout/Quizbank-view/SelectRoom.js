@@ -49,7 +49,21 @@ function SelectRoom({setData,dataRoom,setDataRoom}) {
                         onChange={handleChangeRoom}
                         label="SelectRoom"
                         disableUnderline
-                        sx={designs.SelectRoom_Style}
+                        sx={{
+                            width: '100%',
+                fontSize: '0.9em',
+                fontWeight: '400',
+                color: '#3F3D56',
+                border: '1px solid #DBDBDB',
+                backgroundColor: 'white',
+                textTransform: 'Uppercase',
+                borderRadius: '0.2em',
+                padding: '0.2em 0em 0.2em 0.6em',
+                '&: hover': {
+                  boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+                  transition: 'all 300ms',
+                },
+                        }}
                     >
                         {dataRoom && dataRoom.map((value,index) => (
                             <MenuItem 
