@@ -162,6 +162,7 @@ function View_exam() {
                 alignItems: 'center',
                 padding: '0.5em 0.8em 0.5em 0.5em',
                 marginBottom: '0.5em',
+                backgroundColor: "white"
               }}
             >
               <Avatar src={AvatarIcon} alt="Avatar" />
@@ -174,7 +175,8 @@ function View_exam() {
                 }}
               >
                 <Typography
-                  children={`${quizData && quizData.author.name}`}
+                  children = "Armin Arlert"
+                  // children={`${quizData && quizData.author.name}`}
                   sx={{
                     color: '#3F3D56',
                     fontSize: '0.8em',
@@ -186,10 +188,11 @@ function View_exam() {
                 />
 
                 <Typography
-                  children={`created this exam on ${
-                    quizData &&
-                    moment(quizData.createdAt).format('MMMM DD YYYY / h:mm a')
-                  }`}
+                  children = "submitted this exam on May 10, 2022 / 5:02 PM"
+                  // children={`created this exam on ${
+                  //   quizData &&
+                  //   moment(quizData.createdAt).format('MMMM DD YYYY / h:mm a')
+                  // }`}
                   sx={{
                     color: '#8E8E8E',
                     fontSize: '0.7em',

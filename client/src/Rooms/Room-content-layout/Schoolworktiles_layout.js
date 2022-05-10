@@ -38,7 +38,7 @@ function Schoolworktiles_layout({ content, roomID }) {
     <>
       {data && (
         <>
-          <Grid item xs={12} sx={{ marginTop: '2em' }}>
+          <Grid item xs={12} sx={{ padding: '1em 0em' }}>
             <Tooltip title="Open exam" placement="top-start">
               <Box sx={designs.BoxTileContainer}>
                 <Box sx={designs.ActivityContainer}>

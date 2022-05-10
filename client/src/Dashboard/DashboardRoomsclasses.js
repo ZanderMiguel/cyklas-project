@@ -6,7 +6,7 @@ import { Star, Search } from '@mui/icons-material';
 import { Container, Grid, Typography, Button, Box } from '@mui/material';
 
 function DashboardRoomsclasses({ roomdata }) {
-  console.log(roomdata);
+  console.log(roomdata)
   return (
     <>
       <Box
@@ -64,9 +64,10 @@ function DashboardRoomsclasses({ roomdata }) {
             </tr>
           </thead>
 
-          {roomdata && roomdata.lenght > 0 ? (
+          {roomdata && roomdata.length > 0 ? (
             <tbody>
               {roomdata.map((items, index) => {
+                console.log(items)
                 return (
                   <tr key={index}>
                     <td> {items.RoomName} </td>
@@ -119,7 +120,7 @@ function DashboardRoomsclasses({ roomdata }) {
               })}
             </tbody>
           ) : (
-            <h1>No room</h1>
+            <tbody><tr><td><Typography variant='h4' sx={{fontWeight: 500}}>No room</Typography></td></tr></tbody>
           )}
         </table>
       </Grid>

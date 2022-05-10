@@ -19,14 +19,7 @@ function MembersTableStud({ members }) {
     <Box sx={{ width: 'relative', height: 'auto' }}>
       <Grid container rowSpacing={1}>
         <Grid item xs={12}>
-          <Box className="Total" sx={designs.Total_Style}>
-            <Box flexGrow={1} sx={designs.BoxFlexGrow_Style} />
-
-            <Typography sx={designs.TotalProf_Typography_Style}>
-              1 Professor
-            </Typography>
-          </Box>
-
+          <Box className="Total" sx={designs.Total_Style}/>
           <Box sx={designs.Professor_Container_Style}>
             <Box
               className="container"

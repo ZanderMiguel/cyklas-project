@@ -260,7 +260,8 @@ function Create_activity({ open, close, setOpenDialog }) {
               borderRadius: '0px 0px 4px 4px',
             }}
           >
-            <Box padding="10px">{uploadFile.map(item => item.fileName.replace('File uploaded/image/link', ''))}</Box>
+            <Box padding="10px">{uploadFile.map(item => 
+              item.fileName.replace('File uploaded/image/link', ''))}</Box>
             <Stack direction="row" spacing={2}>
               <IconButton
                 aria-label="image"

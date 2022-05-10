@@ -7,7 +7,7 @@ const designs = {
     Container_Style: {
         width: "auto",
         height: "max-content",
-        backgroundColor: "#F6F6F6",
+        backgroundColor: "white",
         boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 1px"
     },
     Nav_Style: { 
