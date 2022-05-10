@@ -24,8 +24,9 @@ function Room_layout_student({ data }) {
             <Grid item xs={12} key={index}>
               <Paper
                 sx={{
-                  backgroundImage: `url(${RoomBackground6})`,
-                  backgroundSize: 'cover',
+                  backgroundColor: '#007FFF',
+                  // backgroundImage: `url(${RoomBackground6})`,
+                  // backgroundSize: 'cover',
                   boxShadow: 'rgba(17, 17, 26, 0.1) 0px 1px 0px',
                   width: '100%',
                   padding: '17px 17px 17px 35px',
@@ -51,7 +52,8 @@ function Room_layout_student({ data }) {
                       sx={{
                         fontSize: '1.5em',
                         fontWeight: 600,
-                        color: '#3F3D56',
+                        color: 'white',
+                        // color: '#3F3D56',
                         textTransform: 'Uppercase',
                         textDecoration: 'none',
                         width: 'relative',
@@ -72,7 +74,8 @@ function Room_layout_student({ data }) {
                         sx={{
                           fontSize: '1em',
                           fontWeight: 500,
-                          color: '#3F3D56',
+                          color: 'white',
+                          // color: '#3F3D56',
                           width: 'auto',
                           textTransform: 'uppercase',
                           marginBottom: '1rem',
@@ -87,7 +90,8 @@ function Room_layout_student({ data }) {
                         sx={{
                           fontSize: '1em',
                           fontWeight: 500,
-                          color: '#3F3D56',
+                          color: 'white',
+                          // color: '#3F3D56',
                           width: 'auto',
                         }}
                       >
@@ -108,7 +112,8 @@ function Room_layout_student({ data }) {
                           width: '7em',
                           fontSize: '0.8em',
                           fontWeight: '500',
-                          color: '#8C8C8C',
+                          // color: '#8C8C8C',
+                          color: '#DEDEDE',
                           textTransform: 'Capitalize',
                         }}
                       >
@@ -124,7 +129,8 @@ function Room_layout_student({ data }) {
                           width: '5em',
                           fontSize: '0.8em',
                           fontWeight: '500',
-                          color: '#8C8C8C',
+                          // color: '#8C8C8C',
+                          color: '#DEDEDE',
                           textTransform: 'Uppercase',
                         }}
                       >
