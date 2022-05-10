@@ -34,6 +34,7 @@ const types = [
 ];
 
 function Create_activity({ open, close, setOpenDialog }) {
+  const [uploadFile, setUploadFile] = React.useState([{ fileName: 'File uploaded/image/link' }]);
   const { roomID } = useParams();
   const [category, setCategory] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -78,24 +79,40 @@ function Create_activity({ open, close, setOpenDialog }) {
       setTypeError(true);
     }
 
-    const Activity = {
-      activityTitle: title,
-      activityType: selectedCategory,
-      activityPoints: points,
-      activityDueDate: duedate,
-      activityInstruction: convertedState,
-      rooms: [roomID],
-    };
-    if (title && points && selectedCategory) {
-      axios
-        .post('http://localhost:5000/activity/create', Activity)
-        .then((res) => {
-          setOpenDialog(false);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+    const formData = new FormData();
+    uploadFile.forEach(item => {
+      if (item.fileName !== "File uploaded/image/link") {
+        formData.append('file', item.file);
+        formData.append('filaName', item.fileName);
+        formData.append('media', item.fileName);
+      }
+    })
+    formData.append('author', JSON.stringify({
+      name: `${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName
+        }`,
+      userID: JSON.parse(localStorage.userData).data.user._id,
+      avatar: JSON.parse(localStorage.userData).data.user.image,
+    }));
+    formData.append('activityTitle', title);
+    formData.append('activityType', selectedCategory);
+    formData.append('activityPoints', points);
+    formData.append('activityDueDate', duedate);
+    formData.append('activityInstruction', JSON.stringify(convertedState));
+    formData.append('rooms', [roomID]);
+    axios
+      .post('http://localhost:5000/activity/create', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then((res) => {
+        console.log(res.data)
+        setUploadFile([...uploadFile, { fileName: 'File uploaded/image/link' }])
+        close()
+      })
+      .catch((err) => console.log(err));
+
+
   };
 
   useEffect(() => {
@@ -243,7 +260,7 @@ function Create_activity({ open, close, setOpenDialog }) {
               borderRadius: '0px 0px 4px 4px',
             }}
           >
-            <Box padding="10px">File uploaded/Image/Link</Box>
+            <Box padding="10px">{uploadFile.map(item => item.fileName.replace('File uploaded/image/link', ''))}</Box>
             <Stack direction="row" spacing={2}>
               <IconButton
                 aria-label="image"
@@ -254,9 +271,22 @@ function Create_activity({ open, close, setOpenDialog }) {
               >
                 <PanoramaOutlined />
               </IconButton>
-              <IconButton aria-label="file" size="medium">
-                <AttachFileOutlined />
-              </IconButton>
+              <label htmlFor="uploadFile"  >
+                <AttachFileOutlined size="medium" />
+              </label>
+              <input
+                type="file"
+                name="stdUpload"
+                id="uploadFile"
+                style={{ display: 'none' }}
+                onChange={(event) => {
+
+                  setUploadFile([...uploadFile, {
+                    fileName: event.target.files[0].name,
+                    file: event.target.files[0]
+                  }]);
+                }}
+              />
               <IconButton aria-label="link" size="medium">
                 <InsertLinkOutlined />
               </IconButton>

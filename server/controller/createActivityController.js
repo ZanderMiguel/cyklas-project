@@ -1,5 +1,24 @@
 const Activity = require('../models/model-activity');
+const mongoose = require('mongoose')
+const fs = require('fs')
+const path = require('path')
+const URL = require('url')
+require('dotenv').config();
+let gfs
+const openDB = async () => {
+  await mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
 
+  const conn = mongoose.createConnection(process.env.MONGODB_URI);
+  conn.once('open', () => {
+    gfs = new mongoose.mongo.GridFSBucket(conn.db, {
+      bucketName: 'uploads',
+    })
+  })
+}
+openDB()
 async function createActivity(req, res) {
   try {
     const addActivity = new Activity(req.body);
@@ -34,11 +53,40 @@ const displayActivity = async (req, res) => {
     });
   }
 };
+
 const findActivity = async (req, res) => {
   try {
     const activity = await Activity.findById(req.body.activityID);
     console.log('activity found!');
-    return res.json(activity);
+
+
+
+    gfs.find().toArray((err, files) => {
+
+      if (!files[0] || files.length === 0) {
+        return "No files available"
+      }
+      const myFile = []
+
+      files.forEach((item) => {
+        activity.media.forEach(clientFile => {
+          if (clientFile === item.filename.split(`_split_`)[0]) {
+
+
+            myFile.push({ file: item })
+            gfs.openDownloadStream(item._id).
+              pipe(fs.createWriteStream(`./files/${item.filename}`));
+
+
+          }
+        })
+
+
+      })
+
+      return res.json({ activity, myFile });
+    });
+
   } catch (error) {
     console.log(error);
     return res.json({
@@ -46,7 +94,20 @@ const findActivity = async (req, res) => {
       message: error,
     });
   }
+
+
 };
+const downloadFileByClick = async (req, res) => {
+  
+  /* fs.readFile(path.resolve(`./files/${req.params.file}`),(err,content)=>{
+    res.writeHead(200,{
+      "Content-type": `application/${req.params.type}`
+    })
+    
+    res.end(content)
+  }) */
+  res.download(`./files/${req.params.file}`)
+}
 const deleteActivity = async (req, res) => {
   try {
     await Activity.findByIdAndDelete(req.params.id);
@@ -90,5 +151,5 @@ module.exports = {
   deleteActivityController: deleteActivity,
   updateActivityController: updateActivity,
   findActivity,
-  submitActivity,
+  submitActivity, downloadFileByClick
 };

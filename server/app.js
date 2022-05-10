@@ -2,16 +2,10 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const { v4 } = require('uuid');
-const grid = require('gridfs-stream');
-const methodOverride = require('method-override');
 const multer = require('multer');
 const { GridFsStorage } = require('multer-gridfs-storage');
-const path = require('path');
-const createError = require('http-errors');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
 const crypto = require('crypto');
-
+const path = require('path')
 const io = require('socket.io')(3001, {
   cors: {
     origin: ['http://localhost:3000'],
@@ -22,13 +16,14 @@ const router = require('./routers/routers');
 const imageRouter = require('./routers/imageRouter');
 const fileRouter = require('./routers/FileRouter');
 const mongoose = require('mongoose');
+let gfs;
 const startAndConnectToDb = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    let gfs;
+    
     const conn = mongoose.createConnection(process.env.MONGODB_URI);
     conn.once('open', () => {
       gfs = new mongoose.mongo.GridFSBucket(conn.db, {
@@ -52,7 +47,12 @@ app.use(express.json());
 app.use(express.static('public'));
 
 //routers
-
+/* app.get('/activity/download/:path',(req,res)=>{
+  res.attachment(path.resolve(`./files/${req.params.path}`))
+  
+  console.log(req.params.path)
+  res.send()
+}) */
 app.use(router);
 let quizLobby = {};
 //let teleMembers = {};
@@ -158,7 +158,7 @@ const storage = new GridFsStorage({
         if (err) {
           return reject(err);
         }
-        const filename = buf.toString('hex') + path.extname(file.originalname);
+        const filename = file.originalname + '_split_' + buf.toString('hex') + path.extname(file.originalname);
         const fileInfo = {
           filename: filename,
           bucketName: 'uploads',

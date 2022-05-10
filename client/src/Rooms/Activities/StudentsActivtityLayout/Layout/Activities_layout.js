@@ -10,13 +10,13 @@ import {
   Button,
   Paper,
 } from '@mui/material';
-import moment from 'moment';
 import ActivityIcon from '../../../../assets/ImageJaven/ActivityIcon.png';
 import useStyle from './Styles/Activities_layout_style';
 import Divider from '@mui/material/Divider';
 import { Link } from 'react-router-dom';
 import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser from 'react-html-parser';
+import moment from 'moment';
 import ActivityFile from '../../../../components/ActivityFile';
 
 function Activities_layout({ roomID, activity }) {
