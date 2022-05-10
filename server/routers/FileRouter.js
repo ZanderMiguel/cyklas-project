@@ -9,6 +9,7 @@ const {
   findActivity,
   downloadFileByClick,
   createActivityComment,
+  displayActivityComment,
 } = require('../controller/createActivityController');
 
 const {
@@ -28,6 +29,7 @@ module.exports = (upload) => {
   fileRouter.post('/activity/get', findActivity);
   fileRouter.get('/activity/download/:file', downloadFileByClick);
   fileRouter.put('/activity/create/comment', createActivityComment);
+  fileRouter.post('/activity/get/comment', displayActivityComment);
 
   fileRouter.post(
     '/activity/submit',

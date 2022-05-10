@@ -6,6 +6,7 @@ const ActivitySubmitsSchema = new mongoose.Schema(
     submittedBy: { type: Object, required: true },
     activityStatus: { type: String, required: true },
     stdID: { type: mongoose.Schema.Types.ObjectId },
+    activityScore: { type: String },
   },
   { timestamps: true }
 );

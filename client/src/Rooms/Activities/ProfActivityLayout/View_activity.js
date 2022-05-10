@@ -28,8 +28,6 @@ import ReactHtmlParser from 'react-html-parser';
 import AvatarIcon from '../../../assets/ImageJaven/Avatar.png';
 import Wordfile from '../../../assets/ImageJaven/Wordfile.png';
 import {
-  KeyboardArrowDown,
-  Send,
   BorderColorOutlined,
   DeleteOutlineOutlined,
 } from '@mui/icons-material';
@@ -39,21 +37,6 @@ import ActivityIcon from '../../../assets/ImageJaven/ActivityIcon.png';
 import axios from 'axios';
 import ReactScrollableFeed from 'react-scrollable-feed';
 import StudentList from './components/StudentList';
-
-const sortOptions = [
-  {
-    label: 'First name',
-  },
-  {
-    label: 'Last name',
-  },
-  {
-    label: 'Submitted',
-  },
-  {
-    label: 'Missing',
-  },
-];
 
 const dataSort = [
   {
@@ -101,6 +84,7 @@ function View_activity() {
   const { roomID, activityID } = useParams();
   const [selectSort, setSort] = useState('');
   const [activityView, setActivityView] = useState(null);
+  const [submitData, setSubmitData] = useState(null);
   const handleChangeSort = (event) => {
     setSort(event.target.value);
   };
@@ -167,7 +151,11 @@ function View_activity() {
               className="Student-container"
               sx={designs.Student_Container_Style}
             >
-              <StudentList data={data} />
+              <StudentList
+                submitData={submitData}
+                data={data}
+                setSubmitData={setSubmitData}
+              />
             </Box>
           </Box>
         </Grid>
@@ -488,67 +476,76 @@ function View_activity() {
               Student's Uploaded Files
             </Typography>
 
-            <Tooltip title="Click to download file" placement="top-start">
-              <Box
-                className="Attach-file"
-                sx={{
-                  backgroundColor: 'white',
-                  margin: '0.5em 0em 0em 0em',
-                  width: '50%',
-                  padding: '0.5em 0.9em',
-                  display: 'flex',
-                  gap: '0.9em',
-                  border: '1px solid #D4D4D4',
-                  borderRadius: '0.3em',
-                  '&: hover': {
-                    cursor: 'pointer',
-                    boxShadow:
-                      'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
-                  },
-                }}
-              >
-                <img
-                  src={Wordfile}
-                  style={{
-                    height: '40px',
-                  }}
-                />
-
-                <Box
-                  className="Activity-filename"
-                  sx={{
-                    width: 'auto',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    flexGrow: 1,
-                  }}
-                >
-                  <Typography
-                    noWrap
-                    sx={{
-                      color: '#3F3D56',
-                      fontSize: '0.8em',
-                      fontWeight: '600',
-                      width: 'relative',
-                      height: 'max-content',
-                    }}
+            {submitData?.length > 0 &&
+              submitData[0].media.map((item, index) => {
+                return (
+                  <Tooltip
+                    key={index}
+                    title="Click to download file"
+                    placement="top-start"
                   >
-                    ACTIVITY 5 - Paul Rudd.docx
-                  </Typography>
+                    <Box
+                      className="Attach-file"
+                      sx={{
+                        backgroundColor: 'white',
+                        margin: '0.5em 0em 0em 0em',
+                        width: '50%',
+                        padding: '0.5em 0.9em',
+                        display: 'flex',
+                        gap: '0.9em',
+                        border: '1px solid #D4D4D4',
+                        borderRadius: '0.3em',
+                        '&: hover': {
+                          cursor: 'pointer',
+                          boxShadow:
+                            'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
+                        },
+                      }}
+                    >
+                      <img
+                        src={Wordfile}
+                        style={{
+                          height: '40px',
+                        }}
+                      />
 
-                  <Typography
-                    sx={{
-                      color: '#3F3D56',
-                      fontSize: '0.7em',
-                      width: 'max-content',
-                      height: 'max-content',
-                    }}
-                  >
-                    Document File
-                  </Typography>
-                </Box>
-              </Box>
-            </Tooltip>
+                      <Box
+                        className="Activity-filename"
+                        sx={{
+                          width: 'auto',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          flexGrow: 1,
+                        }}
+                      >
+                        <Typography
+                          noWrap
+                          sx={{
+                            color: '#3F3D56',
+                            fontSize: '0.8em',
+                            fontWeight: '600',
+                            width: 'relative',
+                            height: 'max-content',
+                          }}
+                        >
+                          {item}
+                        </Typography>
+
+                        <Typography
+                          sx={{
+                            color: '#3F3D56',
+                            fontSize: '0.7em',
+                            width: 'max-content',
+                            height: 'max-content',
+                          }}
+                        >
+                          Document File
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </Tooltip>
+                );
+              })}
           </Box>
 
           <Box
