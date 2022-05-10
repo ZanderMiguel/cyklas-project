@@ -320,6 +320,49 @@ function View_activity() {
                   </Typography>
                 </Box>
               </Grid>
+
+              <Grid item xs = {6}>
+              <Box
+                  sx={{
+                    width: 'relative',
+                    height: 'max-content',
+                    display: 'flex',
+                    alignItems: "center",
+                    gap: '0.8em',
+                    justifyContent: "flex-end"
+                  }}
+                >
+                  <TextField
+              autoComplete="off"
+              size="small"
+              variant="standard"
+              inputProps={{
+                style: {
+                  width: '3em',
+                  height: '1em',
+                  fontSize: '0.9em',
+                  color: '#007FFF',
+                  fontWeight: 600,
+                  textAlign: 'center',
+                },
+              }}
+            />
+
+                  <Typography
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      height: 'relative',
+                      fontSize: '0.8em',
+                      fontWeight: '500',
+                      textTransform: 'Capitalize',
+                      color: '#3F3D56',
+                    }}
+                  >
+                    / 100
+                  </Typography>
+                </Box>
+              </Grid>
             </Grid>
             <Divider
               sx={{

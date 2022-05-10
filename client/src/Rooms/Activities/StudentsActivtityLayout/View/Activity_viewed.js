@@ -55,6 +55,7 @@ function Activity_viewed() {
   }, []);
 
   return (
+    <Container maxWidth = "md"  sx = {{ padding: "2em 0em" }}>
     <Grid item xs={12}>
       <Box
         className="Right-container"
@@ -274,6 +275,8 @@ function Activity_viewed() {
                       padding: '0.5em 0.9em',
                       display: 'flex',
                       gap: '0.9em',
+                      height: "auto",
+                      alignItems: "center",
                       border: '1px solid #D4D4D4',
                       borderRadius: '0.3em',
                       '&: hover': {
@@ -300,13 +303,13 @@ function Activity_viewed() {
                       }}
                     >
                       <Typography
-                        noWrap
                         sx={{
                           color: '#3F3D56',
                           fontSize: '0.8em',
                           fontWeight: '600',
-                          width: 'relative',
-                          height: 'max-content',
+                          width: 'auto',
+                          flexGrow: 1,
+                          height: 'auto',
                         }}
                       >
                         {item}
@@ -619,6 +622,7 @@ function Activity_viewed() {
         </Box>
       </Box>
     </Grid>
+    </Container>
   );
 }
 

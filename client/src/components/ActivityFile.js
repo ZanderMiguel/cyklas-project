@@ -11,8 +11,10 @@ function ActivityFile({ item }) {
           sx={{
             backgroundColor: 'white',
             width: '100%',
+            height: "auto",
             padding: '0.5em 0.9em',
             display: 'flex',
+            alignItems: "center",
             gap: '0.9em',
             border: '1px solid #D4D4D4',
             borderRadius: '0.3em',
@@ -40,13 +42,13 @@ function ActivityFile({ item }) {
             }}
           >
             <Typography
-              noWrap
               sx={{
                 color: '#3F3D56',
                 fontSize: '0.8em',
                 fontWeight: '600',
                 width: 'relative',
-                height: 'max-content',
+                height: 'auto',
+                flexGrow: 1
               }}
             >
               {item}
