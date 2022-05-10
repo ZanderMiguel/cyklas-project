@@ -21,7 +21,7 @@ import {
   Tooltip,
   Input,
 } from '@mui/material';
-import FileDownload from 'js-file-download'
+import FileDownload from 'js-file-download';
 import moment from 'moment';
 import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser from 'react-html-parser';
@@ -336,7 +336,7 @@ function View_activity() {
                       fontWeight: '600',
                       textTransform: 'Uppercase',
                       color: '#3F3D56',
-                      marginTop: '0.3em'
+                      marginTop: '0.3em',
                     }}
                   >
                     Instructions:
@@ -349,7 +349,7 @@ function View_activity() {
                       fontWeight: '500',
                       textTransform: 'none',
                       color: '#3F3D56',
-                      marginBottom: "0.5em"
+                      marginBottom: '0.5em',
                     }}
                   >
                     {ReactHtmlParser(
@@ -359,81 +359,101 @@ function View_activity() {
                 </>
               ) : null}
 
-              {activityView && activityView.media.map((item, index) => {
-                return (
-                  <Tooltip title="Click to download file" placement="top-start">
-                    <Box
-                      onClick={async () => {
-                        //tanginamo
-                        //window.open(`http://localhost:5000/activity/download/${activityView[index].file.filename}/${activityView[index].file.contentType}`, '_blank').focus();
-                        axios.get(`http://localhost:5000/activity/download/${activityView[index].file.filename}`,{
-                          responseType: 'blob'
-                        })
-                        .then(res=>{
-                          FileDownload(res.data,activityView[index].file.filename)
-                        })
-                      }}
-                      className="Attach-file"
-                      sx={{
-                        backgroundColor: 'white',
-                        margin: '0.5em 0em 0em 0em',
-                        width: '50%',
-                        padding: '0.5em 0.9em',
-                        display: 'flex',
-                        gap: '0.9em',
-                        border: '1px solid #D4D4D4',
-                        borderRadius: '0.3em',
-                        '&: hover': {
-                          cursor: 'pointer',
-                          boxShadow:
-                            'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
-                        },
-                      }}
+              {activityView &&
+                activityView.media.map((item, index) => {
+                  return (
+                    <Tooltip
+                      key={index}
+                      title="Click to download file"
+                      placement="top-start"
                     >
-                      <img
-                        src={Wordfile}
-                        style={{
-                          height: '40px',
-                        }}
-                      />
-
                       <Box
-                        className="Activity-filename"
+                        onClick={async () => {
+                          //tanginamo
+                          //window.open(`http://localhost:5000/activity/download/${activityView[index].file.filename}/${activityView[index].file.contentType}`, '_blank').focus();
+                          axios
+                            .get(
+                              `http://localhost:5000/activity/download/${activityView[index].file.filename}`,
+                              {
+                                responseType: 'blob',
+                              }
+                            )
+                            .then((res) => {
+                              FileDownload(
+                                res.data,
+                                activityView[index].file.filename
+                              );
+                            });
+                        }}
+                        className="Attach-file"
                         sx={{
-                          width: 'auto',
+                          backgroundColor: 'white',
+                          margin: '0.5em 0em 0em 0em',
+                          width: '50%',
+                          padding: '0.5em 0.9em',
                           display: 'flex',
-                          flexDirection: 'column',
-                          flexGrow: 1,
+                          gap: '0.9em',
+                          border: '1px solid #D4D4D4',
+                          borderRadius: '0.3em',
+                          '&: hover': {
+                            cursor: 'pointer',
+                            boxShadow:
+                              'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
+                          },
                         }}
                       >
-                        <Typography
-                          noWrap
-                          sx={{
-                            color: '#3F3D56',
-                            fontSize: '0.8em',
-                            fontWeight: '600',
-                            width: 'relative',
-                            height: 'max-content',
+                        <img
+                          src={Wordfile}
+                          style={{
+                            height: '40px',
                           }}
-                        >
-                          {item}
-                        </Typography>
+                        />
 
-                        <Typography
+                        <Box
+                          className="Activity-filename"
                           sx={{
-                            color: '#3F3D56',
-                            fontSize: '0.7em',
-                            width: 'max-content',
-                            height: 'max-content',
+                            width: 'auto',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            flexGrow: 1,
                           }}
                         >
-                          {item.includes('.docx') ? 'WORD FILE' : item.includes('.xml') ? 'EXCEL FILE' : item.includes('.ppt') ? "POWERPOINT FILE" : item.includes('.pdf') ? "PDF FILE" : "FILE"}
-                        </Typography>
+                          <Typography
+                            noWrap
+                            sx={{
+                              color: '#3F3D56',
+                              fontSize: '0.8em',
+                              fontWeight: '600',
+                              width: 'relative',
+                              height: 'max-content',
+                            }}
+                          >
+                            {item}
+                          </Typography>
+
+                          <Typography
+                            sx={{
+                              color: '#3F3D56',
+                              fontSize: '0.7em',
+                              width: 'max-content',
+                              height: 'max-content',
+                            }}
+                          >
+                            {item.includes('.docx')
+                              ? 'WORD FILE'
+                              : item.includes('.xml')
+                              ? 'EXCEL FILE'
+                              : item.includes('.ppt')
+                              ? 'POWERPOINT FILE'
+                              : item.includes('.pdf')
+                              ? 'PDF FILE'
+                              : 'FILE'}
+                          </Typography>
+                        </Box>
                       </Box>
-                    </Box>
-                  </Tooltip>
-                )
-              })}
+                    </Tooltip>
+                  );
+                })}
             </Box>
           </Box>
 
@@ -529,8 +549,6 @@ function View_activity() {
                 </Box>
               </Box>
             </Tooltip>
-
-
           </Box>
 
           <Box
@@ -811,9 +829,6 @@ function View_activity() {
               />
             </Box>
           </Box>
-
-
-
         </Grid>
       </Grid>
     </Container>
