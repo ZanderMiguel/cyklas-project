@@ -19,6 +19,10 @@ import {
   InsertLinkOutlined,
   HomeWork,
 } from '@mui/icons-material';
+import Wordfile from '../assets/ImageJaven/Wordfile.png';
+import Pdffile from '../assets/ImageJaven/Pdffile.png';
+import Excelfile from '../assets/ImageJaven/Excelfile.png';
+import Powerpointfile from '../assets/ImageJaven/Powerpointfile.png';
 import Dialogform from '../components/Dialogform';
 import Input from '../components/Input';
 import Datepicker from '../components/DatePicker';
@@ -28,7 +32,6 @@ import { EditorState, convertToRaw } from 'draft-js';
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { useParams } from 'react-router-dom';
 import useStyle from '../Quizlit/Styles/Quiz_style';
-import Wordfile from '../assets/ImageJaven/Wordfile.png';
 
 function Create_activity({ item, open, close, setOpenDialog }) {
   const [uploadFile, setUploadFile] = React.useState([
@@ -217,6 +220,7 @@ function Create_activity({ item, open, close, setOpenDialog }) {
           />
           <Box
             sx={{
+              padding: '0.5em 0.7em',
               backgroundColor: 'rgba(0, 0, 0, 0.06)',
               borderRadius: '0px 0px 4px 4px',
             }}
@@ -228,6 +232,7 @@ function Create_activity({ item, open, close, setOpenDialog }) {
                     <Box
                       className="Attach-file"
                       sx={{
+                        marginBottom: '0.5em',
                         backgroundColor: 'white',
                         width: '100%',
                         height: 'auto',
@@ -245,7 +250,16 @@ function Create_activity({ item, open, close, setOpenDialog }) {
                       }}
                     >
                       <img
-                        src={Wordfile}
+                        src={
+                          item?.fileName.includes('.docx')
+                            ? Wordfile
+                            : item?.fileName.includes('.xls')
+                            ? Excelfile
+                            : item?.fileName.includes('.ppt') ||
+                              item?.fileName.includes('.pptx')
+                            ? Powerpointfile
+                            : item?.fileName.includes('.pdf') && Pdffile
+                        }
                         style={{
                           height: '40px',
                         }}
@@ -300,19 +314,7 @@ function Create_activity({ item, open, close, setOpenDialog }) {
                   );
                 }
               })}
-
-            {/* <Box padding="10px">{uploadFile.map(item => 
-              item.fileName.replace('File uploaded/image/link', ''))}</Box> */}
             <Stack direction="row" spacing={1} sx={{ padding: '0.5em' }}>
-              {/* <IconButton
-                aria-label="image"
-                size="medium"
-                sx={{
-                  marginLeft: '10px',
-                }}
-              >
-                <PanoramaOutlined />
-              </IconButton> */}
               <label htmlFor="uploadFile">
                 <Tooltip title="Attach a file" placement="top">
                   <Box

@@ -26,7 +26,10 @@ import FileDownload from 'js-file-download';
 import moment from 'moment';
 import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser from 'react-html-parser';
-import Wordfile from '../../../assets/ImageJaven/Wordfile.png';
+import Wordfile from '../../../assets/ImageJaven/Wordfile.png'
+import Pdffile from '../../../assets/ImageJaven/Pdffile.png'
+import Excelfile from '../../../assets/ImageJaven/Excelfile.png'
+import Powerpointfile from '../../../assets/ImageJaven/Powerpointfile.png' 
 import useStyle from '../../Styles/View_activity_style';
 import '../../Styles/View_activity_style.css';
 import ActivityIcon from '../../../assets/ImageJaven/ActivityIcon.png';
@@ -166,7 +169,7 @@ function View_activity({ socket }) {
             sx={{
               width: '100%',
               height: 'auto',
-              padding: '0.5em 0em',
+              padding: '0.5em 0em 1em 0em',
               marginBottom: '1em',
               border: '1px solid #DBDBDB',
               borderRadius: '0.3em',
@@ -441,8 +444,8 @@ function View_activity({ socket }) {
                         sx={{
                           backgroundColor: 'white',
                           margin: '0.5em 0em 0em 0em',
-                          width: '50%',
-                          height: 'auto',
+                          width: '100%',
+                          height: "auto",
                           padding: '0.5em 0.9em',
                           display: 'flex',
                           alignItems: 'center',
@@ -457,7 +460,14 @@ function View_activity({ socket }) {
                         }}
                       >
                         <img
-                          src={Wordfile}
+                          src={item?.includes('.docx')
+                          ? Wordfile
+                          : item?.includes('.xls')
+                          ? Excelfile
+                          : item?.includes('.ppt') || item?.includes('.pptx')
+                          ? Powerpointfile
+                          : item?.includes('.pdf')
+                          && Pdffile}
                           style={{
                             height: '40px',
                           }}
@@ -582,7 +592,7 @@ function View_activity({ socket }) {
                       sx={{
                         backgroundColor: 'white',
                         margin: '0.5em 0em 0em 0em',
-                        width: '50%',
+                        width: '100%',
                         padding: '0.5em 0.9em',
                         display: 'flex',
                         gap: '0.9em',

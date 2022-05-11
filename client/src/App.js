@@ -36,6 +36,7 @@ import TeleconStart from './Telecon/TeleconStart';
 import TeleconRoomV2 from './Telecon/TeleconRoomV2';
 import LiveQuiz from './Telecon/LiveQuiz';
 import LivequizQuestion from './Telecon/LivequizQuestion';
+import LivequizStudentrankings from './Telecon/LivequizStudentrankings';
 
 //Quizlit
 import QuizLit from './Quizlit/Quizlit';
@@ -172,6 +173,10 @@ function App() {
 
               <Route path="/LiveQuiz" component={LiveQuiz} />
               <Route path="/LivequizQuestion" component={LivequizQuestion} />
+              <Route
+                path="/LivequizStudentrankings"
+                component={LivequizStudentrankings}
+              />
 
               {/* <Route path="/TeleconRoomV2" component={TeleconRoomV2} /> */}
 

@@ -117,7 +117,7 @@ function Activities_layout({ roomID, activity }) {
                       <Typography sx={designs.Instructions_Typography}>
                         {instruction ? 'Instructions: ' : ''}
                       </Typography>
-                      <Box>{ReactHtmlParser(draftToHtml(instruction))}</Box>
+                      <Box>{ReactHtmlParser(draftToHtml(JSON.parse(instruction)))}</Box>
                     </Box>
                     <Box
                       sx={{
@@ -127,7 +127,7 @@ function Activities_layout({ roomID, activity }) {
                       <Grid container columnSpacing={1} rowSpacing={1}>
                         {media.map((item, index) => {
                           return (
-                            <Grid item xs={6}>
+                            <Grid item xs={12} key = {index}>
                               <ActivityFile item={item} />
                             </Grid>
                           );

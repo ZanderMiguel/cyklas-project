@@ -1,7 +1,11 @@
 import React from 'react';
-import { Box, Typography, Tooltip } from '@mui/material';
-import Wordfile from '../assets/ImageJaven/Wordfile.png';
+import { Box, Typography, Tooltip } from '@mui/material'
 import Backdrop from './Backdrop';
+import Wordfile from '../assets/ImageJaven/Wordfile.png'
+import Pdffile from '../assets/ImageJaven/Pdffile.png'
+import Excelfile from '../assets/ImageJaven/Excelfile.png'
+import Powerpointfile from '../assets/ImageJaven/Powerpointfile.png' 
+
 
 
 function ActivityFile({ item }) {
@@ -37,7 +41,15 @@ function ActivityFile({ item }) {
           }}
         >
           <img
-            src={Wordfile}
+            src={
+              item?.includes('.docx')
+            ? Wordfile
+            : item?.includes('.xls')
+            ? Excelfile
+            : item?.includes('.ppt') || item?.includes('.pptx')
+            ? Powerpointfile
+            : item?.includes('.pdf')
+            && Pdffile}
             style={{
               height: '40px',
             }}
@@ -86,7 +98,7 @@ function ActivityFile({ item }) {
           </Box>
         </Box>
       </Tooltip>
-      <Backdrop open={open} close={handleClose}/>
+      {/* <Backdrop open={open} close={handleClose}/> */}
     </>
   );
 }
