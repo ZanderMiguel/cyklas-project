@@ -52,8 +52,7 @@ const dataSort = [
   },
 ];
 
-const socket = io.connect('http://localhost:3001');
-function View_activity() {
+function View_activity({ socket }) {
   const [view, setView] = React.useState(false);
   const { designs } = useStyle();
   const { roomID, activityID } = useParams();
@@ -63,6 +62,7 @@ function View_activity() {
   const [commentId, setCommentId] = useState(null);
   const [score, setScore] = useState({});
   const [studentID, setStudentID] = React.useState({});
+  const scores = React.useRef([]);
   const handleChangeSort = (event) => {
     setSort(event.target.value);
   };
@@ -84,7 +84,23 @@ function View_activity() {
     <Container maxWidth="lg" sx={{ padding: '0.5em 0em' }}>
       <Grid container columnSpacing={1}>
         <Grid item xs={4}>
-          <Button sx={designs.Return_Button_Style}>Return</Button>
+          <Button
+            onClick={() => {
+              axios
+                .post('http://localhost:5000/records/activity/return', {
+                  roomID,
+                  userID: JSON.parse(localStorage.userData).data.user._id,
+                  scores: scores.current,
+                  category: activityView.activityType,
+                  maxPoints: activityView.activityPoints,
+                })
+                .then((res) => console.log(res.data))
+                .catch((err) => console.log(err));
+            }}
+            sx={designs.Return_Button_Style}
+          >
+            Return
+          </Button>
         </Grid>
 
         <Grid item xs={8} />
@@ -133,10 +149,12 @@ function View_activity() {
               sx={designs.Student_Container_Style}
             >
               <StudentList
+                scores={scores}
                 score={score}
                 activityView={activityView}
                 setStudentID={setStudentID}
                 setSubmitData={setSubmitData}
+                submitData={submitData}
               />
             </Box>
           </Box>
@@ -389,7 +407,7 @@ function View_activity() {
                     }}
                   >
                     {ReactHtmlParser(
-                      draftToHtml(activityView.activityInstruction)
+                      draftToHtml(JSON.parse(activityView.activityInstruction))
                     )}
                   </Typography>
                 </>
@@ -543,12 +561,16 @@ function View_activity() {
                   width: 'auto',
                 }}
               >
-                handed-out
+                {submitData && submitData?.length < 0
+                  ? 'Handed-Out'
+                  : submitData?.length > 0
+                  ? 'Submitted'
+                  : 'Missing'}
               </Typography>
             </Box>
 
-            {submitData?.length > 0 &&
-              submitData[0].media.map((item, index) => {
+            {submitData &&
+              submitData?.[0]?.media.map((item, index) => {
                 return (
                   <Tooltip
                     key={index}

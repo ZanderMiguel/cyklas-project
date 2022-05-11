@@ -27,7 +27,8 @@
   "devDependencies": {},
   "scripts": {
     "start": "nodemon app",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku_poshbuild": "NPM_CONFIG_PRODUCTION=false npm install --preifx client && npm run build --prefix client"
   },
   "keywords": [],
   "author": "",

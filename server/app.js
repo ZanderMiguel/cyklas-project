@@ -5,7 +5,7 @@ const { v4 } = require('uuid');
 const multer = require('multer');
 const { GridFsStorage } = require('multer-gridfs-storage');
 const crypto = require('crypto');
-const path = require('path')
+const path = require('path');
 const io = require('socket.io')(3001, {
   cors: {
     origin: ['http://localhost:3000'],
@@ -13,7 +13,6 @@ const io = require('socket.io')(3001, {
 });
 const cors = require('cors');
 const router = require('./routers/routers');
-const imageRouter = require('./routers/imageRouter');
 const fileRouter = require('./routers/FileRouter');
 const mongoose = require('mongoose');
 let gfs;
@@ -23,7 +22,7 @@ const startAndConnectToDb = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    
+
     const conn = mongoose.createConnection(process.env.MONGODB_URI);
     conn.once('open', () => {
       gfs = new mongoose.mongo.GridFSBucket(conn.db, {
@@ -158,7 +157,11 @@ const storage = new GridFsStorage({
         if (err) {
           return reject(err);
         }
-        const filename = file.originalname + '_split_' + buf.toString('hex') + path.extname(file.originalname);
+        const filename =
+          file.originalname +
+          '_split_' +
+          buf.toString('hex') +
+          path.extname(file.originalname);
         const fileInfo = {
           filename: filename,
           bucketName: 'uploads',
@@ -169,8 +172,16 @@ const storage = new GridFsStorage({
   },
 });
 const upload = multer({ storage });
-app.use('/', imageRouter(upload));
 app.use('/', fileRouter(upload));
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('cilent/build'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__, dirname, 'client', 'build', 'index.html'));
+  });
+}
+
 startAndConnectToDb();
 //socket.io events
 // io.on('connection', (socket) => {

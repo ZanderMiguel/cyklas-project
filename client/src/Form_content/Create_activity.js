@@ -30,12 +30,6 @@ import { useParams } from 'react-router-dom';
 import useStyle from '../Quizlit/Styles/Quiz_style';
 import Wordfile from '../assets/ImageJaven/Wordfile.png';
 
-const types = [
-  { value: 'Homework', label: 'Homework' },
-  { value: 'Seatwork', label: 'Seatwork' },
-  { value: 'Material', label: 'Material' },
-];
-
 function Create_activity({ item, open, close, setOpenDialog }) {
   const [uploadFile, setUploadFile] = React.useState([
     { fileName: 'File uploaded/image/link' },
@@ -133,9 +127,6 @@ function Create_activity({ item, open, close, setOpenDialog }) {
       .then((res) => setCategory(res.data[0].Category))
       .catch((err) => console.log(err.message));
   }, []);
-
-  const { designs } = useStyle();
-
   return (
     <Dialogform
       title="Create Activity"
@@ -189,32 +180,11 @@ function Create_activity({ item, open, close, setOpenDialog }) {
           placeholder="Set activity points"
           half
         />
-        {/* <Input
-          name="duedate"
-          inputLabel="Due Date"
-          autoComplete="off"
-          value={duedate}
-          onChange={(event) => setDueDate(event.target.value)}
-          placeholder="Set due date and time for this activity"
-          half
-        /> */}
         <Datepicker
           inputLabel="Due Date"
           duedate={duedate}
           setDueDate={setDueDate}
         />
-
-        {/* <Input
-          name="instruction"
-          autoComplete="off"
-          multiline
-          rows={6}
-          variant="outlined"
-          inputLabel="Instruction"
-          value={instruction}
-          onChange={(event) => setInstruction(event.target.value)}
-          placeholder="Enter activity instruction..."
-        /> */}
         <Grid item xs={12}>
           <Editor
             editorState={editorState}
@@ -317,10 +287,11 @@ function Create_activity({ item, open, close, setOpenDialog }) {
                           {item?.fileName?.includes('.docx')
                             ? 'WORD FILE'
                             : item?.fileName?.includes('.xls')
-                            ? 'EXCEL.fileName FILE'
-                            : item?.includes('.ppt') || item?.includes('.pptx')
+                            ? 'EXCEL FILE'
+                            : item?.fileName?.includes('.ppt') ||
+                              item?.fileName?.includes('.pptx')
                             ? 'POWER POINT'
-                            : item?.includes('.pdf')
+                            : item.fileName.includes('.pdf')
                             ? 'PDF FILE'
                             : 'FILE'}
                         </Typography>

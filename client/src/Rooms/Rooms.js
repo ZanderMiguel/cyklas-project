@@ -90,7 +90,7 @@ function Rooms({ socket }) {
               </Grid>
               {error && console.log(error)}
               {data && data.length > 0 ? (
-                <Room_layout data={data} />
+                <Room_layout data={data} socket={socket} />
               ) : (
                 <Box
                   sx={{

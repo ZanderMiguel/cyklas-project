@@ -23,7 +23,6 @@ import Activities_main from './Rooms/Activities/StudentsActivtityLayout/Activiti
 import Activity_viewed from './Rooms/Activities/StudentsActivtityLayout/View/Activity_viewed';
 import ExamViewedV2 from './Rooms/Activities/StudentsActivtityLayout/View/ExamViewedV2';
 
-
 //Records & Classcards
 import Records from './Records/Records';
 import ClassCards_main from './Records/Classcards/ClassCards_main';
@@ -35,8 +34,8 @@ import Settings from './Settings/Settings';
 //Telecon
 import TeleconStart from './Telecon/TeleconStart';
 import TeleconRoomV2 from './Telecon/TeleconRoomV2';
-import LiveQuiz from "./Telecon/LiveQuiz";
-import LivequizQuestion from "./Telecon/LivequizQuestion";
+import LiveQuiz from './Telecon/LiveQuiz';
+import LivequizQuestion from './Telecon/LivequizQuestion';
 
 //Quizlit
 import QuizLit from './Quizlit/Quizlit';
@@ -66,8 +65,6 @@ import TeleconLanding from './pages-landing/TeleconLanding';
 
 // Student Side
 import Dashboard_main from './student_side/Dashboard/Dashboard_main';
-
-
 
 function App() {
   const theme = createTheme({
@@ -134,6 +131,7 @@ function App() {
                 exact
                 path="/rooms/:roomID/p/:activityID"
                 component={View_activity}
+                socket={socket}
               />
               <ProtectedRoutes
                 exact
@@ -172,8 +170,8 @@ function App() {
                 <TeleconRoomV2 socket={socket} />
               </Route>
 
-              <Route path="/LiveQuiz" component = {LiveQuiz}/>
-              <Route path="/LivequizQuestion" component = {LivequizQuestion}/>
+              <Route path="/LiveQuiz" component={LiveQuiz} />
+              <Route path="/LivequizQuestion" component={LivequizQuestion} />
 
               {/* <Route path="/TeleconRoomV2" component={TeleconRoomV2} /> */}
 
