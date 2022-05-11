@@ -19,6 +19,10 @@ import {
   InsertLinkOutlined,
   HomeWork,
 } from '@mui/icons-material';
+import Wordfile from '../assets/ImageJaven/Wordfile.png'
+import Pdffile from '../assets/ImageJaven/Pdffile.png'
+import Excelfile from '../assets/ImageJaven/Excelfile.png'
+import Powerpointfile from '../assets/ImageJaven/Powerpointfile.png' 
 import Dialogform from '../components/Dialogform';
 import Input from '../components/Input';
 import Datepicker from '../components/DatePicker';
@@ -28,7 +32,7 @@ import { EditorState, convertToRaw } from 'draft-js';
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { useParams } from 'react-router-dom';
 import useStyle from '../Quizlit/Styles/Quiz_style';
-import Wordfile from '../assets/ImageJaven/Wordfile.png';
+
 
 const types = [
   { value: 'Homework', label: 'Homework' },
@@ -189,32 +193,11 @@ function Create_activity({ item, open, close, setOpenDialog }) {
           placeholder="Set activity points"
           half
         />
-        {/* <Input
-          name="duedate"
-          inputLabel="Due Date"
-          autoComplete="off"
-          value={duedate}
-          onChange={(event) => setDueDate(event.target.value)}
-          placeholder="Set due date and time for this activity"
-          half
-        /> */}
         <Datepicker
           inputLabel="Due Date"
           duedate={duedate}
           setDueDate={setDueDate}
         />
-
-        {/* <Input
-          name="instruction"
-          autoComplete="off"
-          multiline
-          rows={6}
-          variant="outlined"
-          inputLabel="Instruction"
-          value={instruction}
-          onChange={(event) => setInstruction(event.target.value)}
-          placeholder="Enter activity instruction..."
-        /> */}
         <Grid item xs={12}>
           <Editor
             editorState={editorState}
@@ -275,7 +258,15 @@ function Create_activity({ item, open, close, setOpenDialog }) {
                       }}
                     >
                       <img
-                        src={Wordfile}
+                        src={ 
+                          item?.fileName.includes('.docx')
+                        ? Wordfile
+                        : item?.fileName.includes('.xls')
+                        ? Excelfile
+                        : item?.fileName.includes('.ppt') || item?.fileName.includes('.pptx')
+                        ? Powerpointfile
+                        : item?.fileName.includes('.pdf')
+                        && Pdffile}
                         style={{
                           height: '40px',
                         }}
@@ -318,9 +309,9 @@ function Create_activity({ item, open, close, setOpenDialog }) {
                             ? 'WORD FILE'
                             : item?.fileName?.includes('.xls')
                             ? 'EXCEL.fileName FILE'
-                            : item?.includes('.ppt') || item?.includes('.pptx')
+                            : item?.fileName.includes('.ppt') || item?.fileName.includes('.pptx')
                             ? 'POWER POINT'
-                            : item?.includes('.pdf')
+                            : item?.fileName.includes('.pdf')
                             ? 'PDF FILE'
                             : 'FILE'}
                         </Typography>
@@ -329,19 +320,7 @@ function Create_activity({ item, open, close, setOpenDialog }) {
                   );
                 }
               })}
-
-            {/* <Box padding="10px">{uploadFile.map(item => 
-              item.fileName.replace('File uploaded/image/link', ''))}</Box> */}
             <Stack direction="row" spacing={1} sx={{ padding: '0.5em' }}>
-              {/* <IconButton
-                aria-label="image"
-                size="medium"
-                sx={{
-                  marginLeft: '10px',
-                }}
-              >
-                <PanoramaOutlined />
-              </IconButton> */}
               <label htmlFor="uploadFile">
                 <Tooltip title="Attach a file" placement="top">
                   <Box

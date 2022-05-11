@@ -1,7 +1,8 @@
 import React from 'react';
-import { Box, Typography, Tooltip } from '@mui/material';
-import Wordfile from '../assets/ImageJaven/Wordfile.png';
+import { Box, Typography, Tooltip } from '@mui/material'
 import Backdrop from './Backdrop';
+import Wordfile from '../assets/ImageJaven/Wordfile.png'
+
 
 
 function ActivityFile({ item }) {
@@ -86,7 +87,7 @@ function ActivityFile({ item }) {
           </Box>
         </Box>
       </Tooltip>
-      <Backdrop open={open} close={handleClose}/>
+      {/* <Backdrop open={open} close={handleClose}/> */}
     </>
   );
 }
