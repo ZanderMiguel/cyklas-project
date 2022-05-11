@@ -152,7 +152,7 @@ function ActivitiesAccordion({ roomID, activity, setDeleteRender }) {
                       </Typography>
                       <Box>{ReactHtmlParser(draftToHtml(JSON.parse(instruction)))}</Box>
                     </Box>
-                    <Box sx={{ padding: '0em 2.8em' }}>
+                    <Box sx={{ padding: '0.8em 2.8em' }}>
                       <Grid container spacing={1}>
                         {media.map((item) => {
                           return (

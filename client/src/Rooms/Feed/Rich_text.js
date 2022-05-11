@@ -108,6 +108,7 @@ function Rich_text({ socket }) {
       >
         <Box
             sx={{
+              padding: "0.5em 0.7em",
               backgroundColor: 'rgba(0, 0, 0, 0.06)',
               borderRadius: '0px 0px 4px 4px',
             }}
@@ -119,6 +120,7 @@ function Rich_text({ socket }) {
                     <Box
                       className="Attach-file"
                       sx={{
+                        marginBottom: "0.5em",
                         backgroundColor: 'white',
                         width: '100%',
                         height: 'auto',
