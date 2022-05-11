@@ -278,16 +278,13 @@ const [open, setOpen] = React.useState(false);
             sx = {{
                 width: "relative",
                 height: "60vh",
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.5em",
-                justifyContent: "center",
-                alignItems: "center"
             }}> 
-                {/* <LivequizMulti/> */}
-                <LivequizImagemulti/>
-                {/* <LivequizTF/> */}
-                {/* <LivequizSA/> */}
+                <Grid item xs = {12} sx = {{ width: "100%" }}>
+                    <LivequizMulti/>
+                    {/* <LivequizImagemulti/> */}
+                    {/* <LivequizTF/> */}
+                    {/* <LivequizSA/> */}
+                </Grid>
             </Container>
         </Container>
     </Box>
