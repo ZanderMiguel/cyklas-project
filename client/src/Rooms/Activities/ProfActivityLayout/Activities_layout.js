@@ -11,16 +11,18 @@ import {
   Button,
 } from '@mui/material';
 import moment from 'moment';
+import axios from 'axios'
 import { EditOutlined, DeleteOutlined } from '@mui/icons-material';
-import ActivityIcon from '../../../assets/ImageJaven/ActivityIcon.png';
 import useStyle from '../../Styles/ActivitiesAccordion_Style';
 import Divider from '@mui/material/Divider';
 import { Link } from 'react-router-dom';
 import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser from 'react-html-parser';
+import ActivityIcon from '../../../assets/ImageJaven/ActivityIcon.png'
 import ActivityFile from '../../../components/ActivityFile';
 
-function ActivitiesAccordion({ roomID, activity }) {
+
+function ActivitiesAccordion({ roomID, activity, setDeleteRender }) {
   const { designs } = useStyle();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -31,8 +33,9 @@ function ActivitiesAccordion({ roomID, activity }) {
   const handleEdit = (event) => {
     event.stopPropagation();
   };
-  const handleDelete = (event) => {
-    event.stopPropagation();
+  const handleDelete = (event, _id) => {
+    event.stopPropagation()
+    axios.delete('http://localhost:5000/activity/delete', {data: {id: _id}}).then(res=> setDeleteRender(prev=>!prev)).catch(err=>console.log(err))
   };
 
   return (
@@ -64,7 +67,7 @@ function ActivitiesAccordion({ roomID, activity }) {
                   >
                     <Box display="flex" alignItem="center" width="100%">
                       <img
-                        src={ActivityIcon}
+                        src={ ActivityIcon}
                         style={{
                           height: '30px',
                           margin: '4px 15px 0px 0px',
@@ -93,7 +96,7 @@ function ActivitiesAccordion({ roomID, activity }) {
                       <IconButton
                         aria-label="delete"
                         size="small"
-                        onClick={(event) => handleDelete(event)}
+                        onClick={(event) => handleDelete(event, _id)}
                       >
                         <DeleteOutlined sx={designs.Delete_Icon_Style} />
                       </IconButton>
@@ -147,13 +150,13 @@ function ActivitiesAccordion({ roomID, activity }) {
                       <Typography sx={designs.Instructions_Typography}>
                         {instruction ? 'Instructions: ' : ''}
                       </Typography>
-                      <Box>{ReactHtmlParser(draftToHtml(instruction))}</Box>
+                      <Box>{ReactHtmlParser(draftToHtml(JSON.parse(instruction)))}</Box>
                     </Box>
                     <Box sx={{ padding: '0em 2.8em' }}>
                       <Grid container spacing={1}>
                         {media.map((item) => {
                           return (
-                            <Grid item xs={12}>
+                            <Grid item key={index} xs={12}>
                               <ActivityFile item={item} />
                             </Grid>
                           );

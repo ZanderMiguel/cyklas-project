@@ -2,7 +2,11 @@ import React from 'react';
 import axios from 'axios';
 import { Typography, Box, Button, Tooltip } from '@mui/material';
 import { FileUploadOutlined } from '@mui/icons-material';
-import Wordfile from '../../../../assets/ImageJaven/Wordfile.png';
+import Wordfile from '../../../../assets/ImageJaven/Wordfile.png'
+import Pdffile from '../../../../assets/ImageJaven/Pdffile.png'
+import Excelfile from '../../../../assets/ImageJaven/Excelfile.png'
+import Powerpointfile from '../../../../assets/ImageJaven/Powerpointfile.png' 
+
 function UploadFileTile({ submits, activityID }) {
   const [uploadFile, setUploadFile] = React.useState([]);
   return (
@@ -167,7 +171,14 @@ function UploadFileTile({ submits, activityID }) {
                 }}
               >
                 <img
-                  src={Wordfile}
+                  src={item?.fileName.includes('.docx')
+                  ? Wordfile
+                  : item?.fileName.includes('.xls')
+                  ? Excelfile
+                  : item?.fileName.includes('.ppt') || item?.fileName.includes('.pptx')
+                  ? Powerpointfile
+                  : item?.fileName.includes('.pdf')
+                  && Pdffile}
                   style={{
                     height: '40px',
                   }}

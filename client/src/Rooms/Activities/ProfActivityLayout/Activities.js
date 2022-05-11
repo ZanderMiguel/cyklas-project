@@ -8,6 +8,7 @@ import NoActivities from '../../../assets/ImageJaven/NoActivities.png';
 
 function Activities({ roomID }) {
   const [opendialog, setOpenDialog] = useState(false);
+  const [deleteRender, setDeleteRender] = useState(false)
   const [activity, setActivity] = useState(null);
 
   const handleClickOpen = () => {
@@ -46,7 +47,7 @@ function Activities({ roomID }) {
       unmounted = true;
       source.cancel('Cancelling in cleanup');
     };
-  }, [opendialog]);
+  }, [opendialog, deleteRender]);
   return (
     <>
       <Box
@@ -126,7 +127,7 @@ function Activities({ roomID }) {
       )}
       {activity && (
         <Grid container rowSpacing={2} sx={{ paddingBottom: '1.5em' }}>
-          <Activities_layout roomID={roomID} activity={activity} />
+          <Activities_layout roomID={roomID} activity={activity} setDeleteRender={setDeleteRender} />
         </Grid>
       )}
     </>

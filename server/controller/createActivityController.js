@@ -89,9 +89,9 @@ const downloadFileByClick = async (req, res) => {
 };
 const deleteActivity = async (req, res) => {
   try {
-    await Activity.findByIdAndDelete(req.params.id);
-    console.log(req.params.id);
-    return res.json({ redirect: '/' });
+    await Activity.findByIdAndDelete(req.body.id);
+    console.log(req.body.id);
+    return res.json('succesfully deleted activity');
   } catch (error) {
     console.log('Something went wrong!');
     return res.json({

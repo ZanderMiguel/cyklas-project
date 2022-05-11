@@ -117,7 +117,7 @@ function Activities_layout({ roomID, activity }) {
                       <Typography sx={designs.Instructions_Typography}>
                         {instruction ? 'Instructions: ' : ''}
                       </Typography>
-                      <Box>{ReactHtmlParser(draftToHtml(instruction))}</Box>
+                      <Box>{ReactHtmlParser(draftToHtml(JSON.parse(instruction)))}</Box>
                     </Box>
                     <Box
                       sx={{

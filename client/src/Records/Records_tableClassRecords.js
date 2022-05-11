@@ -283,7 +283,7 @@ function Records_tableClassRecords({ rooms }) {
                 <td> </td>
                 <td> </td>
                 <td> Total Students: </td>
-                <td data-label="Total Students"> 5 </td>
+                <td data-label="Total Students"> {`${records.length}`} </td>
               </tr>
             </tfoot>
           </table>

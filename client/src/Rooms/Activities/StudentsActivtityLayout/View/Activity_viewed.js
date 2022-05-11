@@ -12,7 +12,10 @@ import {
 } from '@mui/material';
 import CommentArea from '../../CommentArea'
 import FileDownload from 'js-file-download';
-import Wordfile from '../../../../assets/ImageJaven/Wordfile.png';
+import Wordfile from '../../../../assets/ImageJaven/Wordfile.png'
+import Pdffile from '../../../../assets/ImageJaven/Pdffile.png'
+import Excelfile from '../../../../assets/ImageJaven/Excelfile.png'
+import Powerpointfile from '../../../../assets/ImageJaven/Powerpointfile.png' 
 import ActivityIcon from '../../../../assets/ImageJaven/ActivityIcon.png';
 import moment from 'moment';
 import draftToHtml from 'draftjs-to-html';
@@ -232,7 +235,7 @@ function Activity_viewed() {
                   marginBottom: '0.5em',
                 }}
               >
-                {ReactHtmlParser(draftToHtml(activityView.activityInstruction))}
+                {ReactHtmlParser(draftToHtml(JSON.parse(activityView.activityInstruction)))}
               </Typography>
             </>
           ) : null}
@@ -283,7 +286,14 @@ function Activity_viewed() {
                     }}
                   >
                     <img
-                      src={Wordfile}
+                      src={item?.includes('.docx')
+                      ? Wordfile
+                      : item?.includes('.xls')
+                      ? Excelfile
+                      : item?.includes('.ppt') || item?.includes('.pptx')
+                      ? Powerpointfile
+                      : item?.includes('.pdf')
+                      && Pdffile}
                       style={{
                         height: '40px',
                       }}

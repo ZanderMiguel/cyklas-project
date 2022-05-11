@@ -26,7 +26,10 @@ import FileDownload from 'js-file-download';
 import moment from 'moment';
 import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser from 'react-html-parser';
-import Wordfile from '../../../assets/ImageJaven/Wordfile.png';
+import Wordfile from '../../../assets/ImageJaven/Wordfile.png'
+import Pdffile from '../../../assets/ImageJaven/Pdffile.png'
+import Excelfile from '../../../assets/ImageJaven/Excelfile.png'
+import Powerpointfile from '../../../assets/ImageJaven/Powerpointfile.png' 
 import useStyle from '../../Styles/View_activity_style';
 import '../../Styles/View_activity_style.css';
 import ActivityIcon from '../../../assets/ImageJaven/ActivityIcon.png';
@@ -389,7 +392,7 @@ function View_activity() {
                     }}
                   >
                     {ReactHtmlParser(
-                      draftToHtml(activityView.activityInstruction)
+                      draftToHtml(JSON.parse(activityView.activityInstruction))
                     )}
                   </Typography>
                 </>
@@ -439,7 +442,14 @@ function View_activity() {
                         }}
                       >
                         <img
-                          src={Wordfile}
+                          src={item?.includes('.docx')
+                          ? Wordfile
+                          : item?.includes('.xls')
+                          ? Excelfile
+                          : item?.includes('.ppt') || item?.includes('.pptx')
+                          ? Powerpointfile
+                          : item?.includes('.pdf')
+                          && Pdffile}
                           style={{
                             height: '40px',
                           }}
