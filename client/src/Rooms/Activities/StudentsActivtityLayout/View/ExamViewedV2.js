@@ -60,9 +60,12 @@ function ExamViewedV2() {
           xs={12}
           sx={{
             display: 'flex',
-            gap: '0.5em',
-            alignItems: 'center',
-            marginBottom: '0.8em',
+                gap: '0.5em',
+                alignItems: 'center',
+                padding: '0.5em 1.1em 0.5em 0.9em',
+                marginBottom: '0.5em',
+                backgroundColor: "white",
+                borderRadius: "0.3em"
           }}
         >
           <Avatar src={AvatarIcon} alt="Avatar" />
@@ -75,7 +78,7 @@ function ExamViewedV2() {
             }}
           >
             <Typography
-              children="Mark Andrei"
+              children="Armin Arlert"
               sx={{
                 color: '#3F3D56',
                 fontSize: '0.8em',
@@ -87,7 +90,7 @@ function ExamViewedV2() {
             />
 
             <Typography
-              children="returned this exam on December 04, 2021"
+              children="submitted this exam on December 04, 2021"
               sx={{
                 color: '#8E8E8E',
                 fontSize: '0.7em',
@@ -109,7 +112,7 @@ function ExamViewedV2() {
             }}
           >
             <Typography
-              children="Score:"
+              children=" Your Score:"
               sx={{
                 color: '#8E8E8E',
                 fontSize: '0.8em',

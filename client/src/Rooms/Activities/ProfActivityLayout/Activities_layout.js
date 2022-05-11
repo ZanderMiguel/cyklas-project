@@ -153,7 +153,7 @@ function ActivitiesAccordion({ roomID, activity }) {
                       <Grid container spacing={1}>
                         {media.map((item) => {
                           return (
-                            <Grid item xs={6}>
+                            <Grid item xs={12}>
                               <ActivityFile item={item} />
                             </Grid>
                           );

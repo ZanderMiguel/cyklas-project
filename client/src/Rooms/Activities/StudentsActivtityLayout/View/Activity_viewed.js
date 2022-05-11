@@ -58,7 +58,7 @@ function Activity_viewed() {
         sx={{
           width: '100%',
           height: 'auto',
-          padding: '0.5em 0em',
+          padding: '0.5em 0em 1em 0em',
           marginBottom: '1em',
           border: '1px solid #DBDBDB',
           borderRadius: '0.3em',
@@ -201,7 +201,7 @@ function Activity_viewed() {
         <Box
           className="Activity-instructions"
           sx={{
-            height: '13em',
+            height: 'auto',
             width: 'relative',
             margin: '0.1em 0em 0em 0em',
             padding: '0.3em 1.5em',
@@ -267,7 +267,7 @@ function Activity_viewed() {
                     sx={{
                       backgroundColor: 'white',
                       margin: '0.5em 0em 0em 0em',
-                      width: '50%',
+                      width: '100%',
                       padding: '0.5em 0.9em',
                       display: 'flex',
                       gap: '0.9em',
