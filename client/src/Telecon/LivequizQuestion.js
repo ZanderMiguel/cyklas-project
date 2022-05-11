@@ -8,6 +8,7 @@ import LivequizMulti from "./TeleconSide/LivequizMulti";
 import LivequizImagemulti from "./TeleconSide/LivequizImagemulti";
 import LivequizTF from "./TeleconSide/LivequizTF";
 import LivequizSA from "./TeleconSide/LivequizSA";
+import LivequizTimer from "./TeleconSide/LivequizTimer";
 
 function LivequizQuestion() {
 
@@ -18,150 +19,6 @@ const [open, setOpen] = React.useState(false);
   const handleToggle = () => {
     setOpen(!open);
   };
-
-  const dataChoices = [
-    {
-        choice: <Grid item xs = {12} onClick={handleToggle}
-        sx = {{
-            display: "flex",
-            alignItems: "center",
-            padding: "0.8em 1.2em",
-            backgroundColor: "#7223F3",
-            borderRadius: "0.5em",
-            width: "100%",
-            "&: hover": {
-                cursor: "pointer",
-                transition: "all 250ms",
-                backgroundColor: "#6719E7"
-            }
-        }}>
-            <Typography children = "A."
-                sx = {{ 
-                color: "white",
-                fontSize: "0.9em",
-                fontWeight: "600",
-                width: "2em",
-                height: "max-content"
-                }}/>
-
-            <Typography children = "Blank Answer"
-                sx = {{
-                color: "white",
-                fontSize: "0.9em",
-                fontWeight: "600", 
-                width: "auto",
-                flexGrow: 1,
-                height: "max-content"
-                }}/>
-        </Grid>
-    },
-    {
-        choice: <Grid item xs = {12} onClick={handleToggle}
-        sx = {{
-            display: "flex",
-            alignItems: "center",
-            padding: "0.8em 1.2em",
-            backgroundColor: "#EA4848",
-            borderRadius: "0.5em",
-            width: "100%",
-            "&: hover": {
-                cursor: "pointer",
-                transition: "all 250ms",
-                backgroundColor: "#DE3E3E",
-                boxShadow: "rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px"
-            }
-        }}>
-            <Typography children = "B."
-                sx = {{ 
-                color: "white",
-                fontSize: "0.9em",
-                fontWeight: "600",
-                width: "2em",
-                height: "max-content"
-                }}/>
-
-            <Typography children = "Blank Answer"
-                sx = {{
-                color: "white",
-                fontSize: "0.9em",
-                fontWeight: "600", 
-                width: "auto",
-                flexGrow: 1,
-                height: "max-content"
-                }}/>
-        </Grid>
-    },
-    {
-        choice: <Grid item xs = {12} onClick={handleToggle}
-        sx = {{
-            display: "flex",
-            alignItems: "center",
-            padding: "0.8em 1.2em",
-            backgroundColor: "#66C34E",
-            borderRadius: "0.5em",
-            width: "100%",
-            "&: hover": {
-                cursor: "pointer",
-                transition: "all 250ms",
-                backgroundColor: "#62BC4C"
-            }
-        }}>
-            <Typography children = "C."
-                sx = {{ 
-                color: "white",
-                fontSize: "0.9em",
-                fontWeight: "600",
-                width: "2em",
-                height: "max-content"
-                }}/>
-
-            <Typography children = "Blank Answer"
-                sx = {{
-                color: "white",
-                fontSize: "0.9em",
-                fontWeight: "600", 
-                width: "auto",
-                flexGrow: 1,
-                height: "max-content"
-                }}/>
-        </Grid>
-    },
-    {
-        choice: <Grid item xs = {12} onClick={handleToggle}
-        sx = {{
-            display: "flex",
-            alignItems: "center",
-            padding: "0.8em 1.2em",
-            backgroundColor: "#E3A649",
-            borderRadius: "0.5em",
-            width: "100%",
-            "&: hover": {
-                cursor: "pointer",
-                transition: "all 250ms",
-                backgroundColor: "#DBA047"
-            }
-        }}>
-            <Typography children = "D."
-                sx = {{ 
-                color: "white",
-                fontSize: "0.9em",
-                fontWeight: "600",
-                width: "2em",
-                height: "max-content"
-                }}/>
-
-            <Typography children = "Blank Answer"
-                sx = {{
-                color: "white",
-                fontSize: "0.9em",
-                fontWeight: "600", 
-                width: "auto",
-                flexGrow: 1,
-                height: "max-content"
-                }}/>
-        </Grid>
-    }
-];
 
   return (
     <>
@@ -177,68 +34,33 @@ const [open, setOpen] = React.useState(false);
         justifyContent: "center",
         alignItems: "center"
     }}>
-        
-            
-
-        <Container maxWidth = "md"
+    
+    
+                <LivequizTimer/>
+        <Box
         sx = {{
+            width: "65%",
             background: "rgba(37, 40, 46, 0.8)",
             borderRadius: "0.5em",
             height: "85vh",
-            padding: "0em 1.5em 2em 1.5em",
-            boxShadow: "rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center"
+            padding: "2em 1.5em",
+            boxShadow: "rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px"
         }}>
+        
+        <Box
+        sx = {{
+            width: 'relative',
+            height: "100%",
+            overflowY: "auto",
+        }}>
+            
+
             <Box
             sx = {{
-          position: 'relative',
-          top: -30,
-          borderRadius: "0.8em",
-          zIndex: 1,
-          background: "rgba(36, 37, 73)",
-          boxShadow: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px",
-                padding: "0.8em",
-                width: "25%",
-                height: "auto",
-                display: "flex",
-                gap: "0.8em",
-                alignItems: "center",
-                justifyContent: "center"
+                width: "relative",
+                height: "100%",
             }}>
-                <Box
-        className="Timer"
-        sx={{
-          display: 'flex',
-          gap: '0.5em',
-          width: 'auto',
-          height: 'max-content',
-        }}
-      >
-        <TimerOutlined
-          sx={{
-            color: 'white',
-            fontSize: '2em',
-          }}
-        />
-        <Typography
-          sx={{
-            color: 'white',
-            fontSize: '1.2em',
-            fontWeight: '600',
-            marginTop: '0.1em',
-            height: 'max-content',
-            width: 'auto',
-          }}
-        >
-            00:00:00
-        </Typography>
-      </Box>
-            </Box>
-
-            <Typography children = "Question 1 / 4"
+                <Typography children = "Question 1 / 4"
             sx = {{
                 color: "#DEDEDE",
                 fontSize: "0.8em",
@@ -253,19 +75,19 @@ const [open, setOpen] = React.useState(false);
             <Typography children = "Sino ang unang taong nakatapak tapak?"
             sx = {{
                 color: "white",
-                fontSize: "1.5em",
+                fontSize: "1.2em",
                 fontWeight: "600",
                 textTransform: "sino",
                 width: "relative",
                 height: "max-content",
                 textAlign: "center",
+                padding: "0em 1em",
                 marginBottom: "1em",
             }}/>
 
             {/* <Box
             sx = {{
                 width: "relative",
-                border: "1px solid black",
                 height: "auto",
                 display: "flex",
                 alignItems: "center",
@@ -274,10 +96,16 @@ const [open, setOpen] = React.useState(false);
             }}>
                 <img src = {hqdefault} alt = "Sample Image" style = {{ height: "150px", width: "100%", objectFit: "contain" }}/>
             </Box> */}
-            <Container maxWidth = "sm"
+
+            <Box
             sx = {{
                 width: "relative",
-                height: "60vh",
+                height: "auto",
+                padding: "0em 2em",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexWrap: "wrap"
             }}> 
                 <Grid item xs = {12} sx = {{ width: "100%" }}>
                     <LivequizMulti/>
@@ -285,8 +113,11 @@ const [open, setOpen] = React.useState(false);
                     {/* <LivequizTF/> */}
                     {/* <LivequizSA/> */}
                 </Grid>
-            </Container>
-        </Container>
+            </Box>
+            </Box>
+            
+        </Box>
+        </Box>
     </Box>
     </>
   )
