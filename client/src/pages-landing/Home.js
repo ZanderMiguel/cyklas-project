@@ -46,7 +46,10 @@ function Home() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post('http://localhost:5000/login', Object.fromEntries(myApi))
+      .post(
+        'https://murmuring-basin-16459.herokuapp.com/login',
+        Object.fromEntries(myApi)
+      )
       .then((response) => {
         if (response.data.status === 'error') {
           setNotif(
@@ -89,46 +92,48 @@ function Home() {
             flexWrap="wrap"
             gap="11em"
             height="100vh"
-            marginTop = "4em"
+            marginTop="4em"
           >
             <Box className="left">
               <Typography
                 variant="h4"
                 sx={{
-                  width: "60%",
+                  width: '60%',
                   fontWeight: 'bold',
-                  color: '#3F3D56'
+                  color: '#3F3D56',
                 }}
               >
                 Can't go to school? <br />
                 No problem! We can <br />
                 bring school to you.
               </Typography>
-              <Typography children = "The best Website for Virtual Class"
+              <Typography
+                children="The best Website for Virtual Class"
                 sx={{
-                  fontSize: "0.8em",
-                  fontWeight: "500",
-                  textTransform: "Uppercase",
-                  textAlign: "center",
+                  fontSize: '0.8em',
+                  fontWeight: '500',
+                  textTransform: 'Uppercase',
+                  textAlign: 'center',
                   color: '#626170',
-                  margin: "0.8em 0em",
-                  width: "60%",
-                  padding: "0.2em 0em",
-                  backgroundColor: "white"
-                }}/>
+                  margin: '0.8em 0em',
+                  width: '60%',
+                  padding: '0.2em 0em',
+                  backgroundColor: 'white',
+                }}
+              />
 
               {isMatch ? null : (
                 <Button
                   content="Create your account now"
                   variant="contained"
                   sx={{
-                    margin: "0.8em 0em",
-                    padding: "0.5em 0em",
-                    width: "60%",
-                    boxShadow: "none",
+                    margin: '0.8em 0em',
+                    padding: '0.5em 0em',
+                    width: '60%',
+                    boxShadow: 'none',
                     backgroundColor: '#007FFF',
                     color: 'white',
-                    fontWeight: "600",
+                    fontWeight: '600',
                     borderRadius: '0.3em',
                     '&:hover': {
                       backgroundColor: '#0072e6',
@@ -212,20 +217,21 @@ function Home() {
                       fullWidth
                       variant="contained"
                       borderRadius="10px"
-                      children = "login"
+                      children="login"
                       type="submit"
                       sx={{
                         backgroundColor: '#007FFF',
-                        fontSize: "0.9em",
-                        fontWeight: "600",
+                        fontSize: '0.9em',
+                        fontWeight: '600',
                         color: 'white',
                         borderRadius: '0.3em',
-                        boxShadow: "none",
+                        boxShadow: 'none',
                         marginBottom: '0em',
                         '&:hover': {
                           backgroundColor: '#0072e6',
                         },
-                      }}/>
+                      }}
+                    />
                   </Grid>
                   <Grid item xs={12}>
                     {isMatch ? (

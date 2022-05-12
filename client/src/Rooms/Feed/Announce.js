@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { CssBaseline, Grid, Box } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import TeleconPostedTile from "../../Telecon/components/TeleconPostedTile";
+import TeleconPostedTile from '../../Telecon/components/TeleconPostedTile';
 import Post_layout from './Post_layout';
 import Rich_text from './Rich_text';
-import ActivityFile from '../../components/ActivityFile'
+import ActivityFile from '../../components/ActivityFile';
 
 function Announce({ socket }) {
   const { roomID } = useParams();
@@ -22,7 +22,9 @@ function Announce({ socket }) {
 
   React.useEffect(() => {
     axios
-      .post('http://localhost:5000/announce', { rooms: roomID })
+      .post('https://murmuring-basin-16459.herokuapp.com/announce', {
+        rooms: roomID,
+      })
       .then((res) => {
         setData(res.data);
         socket.emit('create-comment');

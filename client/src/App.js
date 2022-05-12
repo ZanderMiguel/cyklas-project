@@ -104,7 +104,7 @@ function App() {
       />
     );
   });
-  axios.post('http://localhost:5000/rooms');
+  axios.post('https://murmuring-basin-16459.herokuapp.com/rooms');
   return (
     <>
       {

@@ -20,7 +20,7 @@ function Rooms({ socket }) {
   const { post, data, error, isPending } = usePost();
   React.useEffect(() => {
     axios
-      .post('http://localhost:5000/gradingSystem', {
+      .post('https://murmuring-basin-16459.herokuapp.com/gradingSystem', {
         userID: JSON.parse(localStorage.userData).data.user._id,
       })
       .then((res) => {
@@ -43,7 +43,7 @@ function Rooms({ socket }) {
   });
 
   React.useMemo(() => {
-    post('http://localhost:5000/rooms', {
+    post('https://murmuring-basin-16459.herokuapp.com/rooms', {
       userID: JSON.parse(localStorage.userData).data.user._id,
     });
   }, [newRoom]);

@@ -26,10 +26,10 @@ import FileDownload from 'js-file-download';
 import moment from 'moment';
 import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser from 'react-html-parser';
-import Wordfile from '../../../assets/ImageJaven/Wordfile.png'
-import Pdffile from '../../../assets/ImageJaven/Pdffile.png'
-import Excelfile from '../../../assets/ImageJaven/Excelfile.png'
-import Powerpointfile from '../../../assets/ImageJaven/Powerpointfile.png' 
+import Wordfile from '../../../assets/ImageJaven/Wordfile.png';
+import Pdffile from '../../../assets/ImageJaven/Pdffile.png';
+import Excelfile from '../../../assets/ImageJaven/Excelfile.png';
+import Powerpointfile from '../../../assets/ImageJaven/Powerpointfile.png';
 import useStyle from '../../Styles/View_activity_style';
 import '../../Styles/View_activity_style.css';
 import ActivityIcon from '../../../assets/ImageJaven/ActivityIcon.png';
@@ -76,7 +76,9 @@ function View_activity({ socket }) {
 
   React.useEffect(() => {
     axios
-      .post('http://localhost:5000/activity/get', { activityID })
+      .post('https://murmuring-basin-16459.herokuapp.com/activity/get', {
+        activityID,
+      })
       .then((res) => {
         setActivityView({ ...res.data.activity, ...res.data.myFile });
       })
@@ -90,13 +92,16 @@ function View_activity({ socket }) {
           <Button
             onClick={() => {
               axios
-                .post('http://localhost:5000/records/activity/return', {
-                  roomID,
-                  userID: JSON.parse(localStorage.userData).data.user._id,
-                  scores: scores.current,
-                  category: activityView.activityType,
-                  maxPoints: activityView.activityPoints,
-                })
+                .post(
+                  'https://murmuring-basin-16459.herokuapp.com/records/activity/return',
+                  {
+                    roomID,
+                    userID: JSON.parse(localStorage.userData).data.user._id,
+                    scores: scores.current,
+                    category: activityView.activityType,
+                    maxPoints: activityView.activityPoints,
+                  }
+                )
                 .then((res) => console.log(res.data))
                 .catch((err) => console.log(err));
             }}
@@ -428,7 +433,7 @@ function View_activity({ socket }) {
                         onClick={async () => {
                           axios
                             .get(
-                              `http://localhost:5000/activity/download/${activityView[index].file.filename}`,
+                              `https://murmuring-basin-16459.herokuapp.com/activity/download/${activityView[index].file.filename}`,
                               {
                                 responseType: 'blob',
                               }
@@ -445,7 +450,7 @@ function View_activity({ socket }) {
                           backgroundColor: 'white',
                           margin: '0.5em 0em 0em 0em',
                           width: '100%',
-                          height: "auto",
+                          height: 'auto',
                           padding: '0.5em 0.9em',
                           display: 'flex',
                           alignItems: 'center',
@@ -460,14 +465,16 @@ function View_activity({ socket }) {
                         }}
                       >
                         <img
-                          src={item?.includes('.docx')
-                          ? Wordfile
-                          : item?.includes('.xls')
-                          ? Excelfile
-                          : item?.includes('.ppt') || item?.includes('.pptx')
-                          ? Powerpointfile
-                          : item?.includes('.pdf')
-                          && Pdffile}
+                          src={
+                            item?.includes('.docx')
+                              ? Wordfile
+                              : item?.includes('.xls')
+                              ? Excelfile
+                              : item?.includes('.ppt') ||
+                                item?.includes('.pptx')
+                              ? Powerpointfile
+                              : item?.includes('.pdf') && Pdffile
+                          }
                           style={{
                             height: '40px',
                           }}

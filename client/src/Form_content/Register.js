@@ -94,7 +94,10 @@ function Register({ open, close, setOpenDialog, setNotif }) {
       };
 
       axios
-        .post('http://localhost:5000/register', userRegister)
+        .post(
+          'https://murmuring-basin-16459.herokuapp.com/register',
+          userRegister
+        )
         .then(() => {
           setNotif(
             toast.success('Registered Successfully!', {
@@ -145,20 +148,20 @@ function Register({ open, close, setOpenDialog, setNotif }) {
             >
               <div>
                 <label htmlFor="getFile">
-                <Tooltip title="Upload Account Picture" placement="top">
-                  <Avatar
-                    src={imgSrc}
-                    sx = {{ 
-                      width: '64px',
-                      height: '64px',
-                      '&: hover': {
-                        cursor: 'pointer',
-                        boxShadow:
-                          'rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px',
-                      }
-                    }}
-                  />
-                </Tooltip>
+                  <Tooltip title="Upload Account Picture" placement="top">
+                    <Avatar
+                      src={imgSrc}
+                      sx={{
+                        width: '64px',
+                        height: '64px',
+                        '&: hover': {
+                          cursor: 'pointer',
+                          boxShadow:
+                            'rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px',
+                        },
+                      }}
+                    />
+                  </Tooltip>
                 </label>
                 <input
                   type="file"
@@ -184,8 +187,8 @@ function Register({ open, close, setOpenDialog, setNotif }) {
                     disableRipple
                     onClick={handleClickProf('Professor')}
                     name="userType"
-                    sx = {{
-                      border: "1px solid #007FFF"
+                    sx={{
+                      border: '1px solid #007FFF',
                     }}
                   >
                     Professor
@@ -198,8 +201,8 @@ function Register({ open, close, setOpenDialog, setNotif }) {
                     disableRipple
                     onClick={handleClickStud('Student')}
                     name="userType"
-                    sx = {{
-                      border: "1px solid #007FFF"
+                    sx={{
+                      border: '1px solid #007FFF',
                     }}
                   >
                     Student
@@ -315,8 +318,8 @@ function Register({ open, close, setOpenDialog, setNotif }) {
                     sx={{
                       backgroundColor: '#007FFF',
                       color: 'white',
-                      fontWeight: "600",
-                      boxShadow: "none",
+                      fontWeight: '600',
+                      boxShadow: 'none',
                       '&:hover': {
                         backgroundColor: '#0072e6',
                       },

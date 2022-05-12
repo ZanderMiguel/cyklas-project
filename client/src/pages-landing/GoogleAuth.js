@@ -13,12 +13,12 @@ function GoogleAuth() {
 
   const signIn = (googleAuth) => {
     axios
-      .post('http://localhost:5000/register', googleAuth)
+      .post('https://murmuring-basin-16459.herokuapp.com/register', googleAuth)
       .then((response) => {
         console.log(response.data.emailAddress);
         if (response.data.existing) {
           axios
-            .post('http://localhost:5000/login', {
+            .post('https://murmuring-basin-16459.herokuapp.com/login', {
               token: response.data.token,
               ...googleAuth,
             })
@@ -57,7 +57,7 @@ function GoogleAuth() {
   return (
     <div>
       <GoogleLogin
-        clientId="579265708499-7ii87q3j1lhihqbuu20224o4mofhstme.apps.googleusercontent.com"
+        clientId="930424170460-f72q7k7skda2ndgm3jrem20vbcc34780.apps.googleusercontent.com"
         render={(renderProps) => (
           <Button
             variant="outlined"

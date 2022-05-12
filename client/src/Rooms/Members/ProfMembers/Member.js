@@ -23,7 +23,7 @@ function Member({ roomdata }) {
 
   React.useEffect(() => {
     axios
-      .post('http://localhost:5000/get/members', {
+      .post('https://murmuring-basin-16459.herokuapp.com/get/members', {
         members: roomdata.room.members,
       })
       .then((res) => setMembers(res.data))

@@ -5,7 +5,7 @@ function ToLobby({ socket }) {
   const { lobby, name, quizID } = useParams();
   React.useMemo(() => {
     axios
-      .post('http://localhost:5000/question', { quizID })
+      .post('https://murmuring-basin-16459.herokuapp.com/question', { quizID })
       .then((res) => {
         socket.emit('join-quizLobby', lobby, name, res.data);
       })

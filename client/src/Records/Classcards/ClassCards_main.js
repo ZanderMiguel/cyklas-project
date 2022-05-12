@@ -11,7 +11,7 @@ function ClassCards_main() {
 
   React.useEffect(() => {
     axios
-      .post('http://localhost:5000/rooms', {
+      .post('https://murmuring-basin-16459.herokuapp.com/rooms', {
         userID: JSON.parse(localStorage.userData).data.user._id,
       })
       .then((res) => setRoomsData(res.data))

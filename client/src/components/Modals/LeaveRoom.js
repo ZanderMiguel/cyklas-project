@@ -15,7 +15,7 @@ function LeaveRoom({ open, close, setRefresher, roomID }) {
             variant="contained"
             onClick={() => {
               axios
-                .put('http://localhost:5000/room/leave', {
+                .put('https://murmuring-basin-16459.herokuapp.com/room/leave', {
                   roomID,
                   userID: JSON.parse(localStorage.userData).data.user._id,
                 })
