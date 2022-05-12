@@ -4,7 +4,6 @@ import Google from '../assets/Rectangle 134.svg';
 import Button from '../components/Button';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import Register from '../Form_content/Register';
 import SelectUserType from '../Form_content/SelectUsertype';
 function GoogleAuth() {
   const history = useHistory();
@@ -50,14 +49,13 @@ function GoogleAuth() {
     signIn(googleAuth);
   };
   const googleFailure = (error) => {
-    console.log(error);
-    console.log('Google Sign In was unsucessful. Try again later');
+    console.log('error');
   };
 
   return (
     <div>
       <GoogleLogin
-        clientId="930424170460-f72q7k7skda2ndgm3jrem20vbcc34780.apps.googleusercontent.com"
+        clientId="13670802182-jvq0ldcdghpq85qgr1pu15uh4v74o082.apps.googleusercontent.com"
         render={(renderProps) => (
           <Button
             variant="outlined"
@@ -72,7 +70,7 @@ function GoogleAuth() {
         )}
         onSuccess={googleSuccess}
         onFailure={googleFailure}
-        cookiePolicy="single_host_origin"
+        cookiePolicy={'single_host_origin'}
       />
       {state && (
         <SelectUserType

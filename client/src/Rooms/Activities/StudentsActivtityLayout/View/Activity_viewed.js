@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { io } from 'socket.io-client';
 import {
   Container,
   Grid,
@@ -22,9 +21,7 @@ import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser from 'react-html-parser';
 import UploadFileTile from './UploadFileTile';
 
-const socket = io.connect('http://localhost:3001');
-
-function Activity_viewed() {
+function Activity_viewed({ socket }) {
   const [activityView, setActivityView] = useState(null);
   const { activityID } = useParams();
   const [submits, setSubmits] = useState(null);

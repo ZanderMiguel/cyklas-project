@@ -60,7 +60,10 @@ const displaySubmittedActivity = async (req, res) => {
 
       files.forEach((item) => {
         activity?.media?.[0].forEach((clientFile) => {
-          if (clientFile === item.filename.split(`_split_`)[0]) {
+          if (
+            clientFile.replace(' ', '') ===
+            item.filename.split(`_split_`)[0].replace(' ', '')
+          ) {
             myFile.push({ file: item });
             gfs
               .openDownloadStream(item._id)

@@ -21,7 +21,7 @@ import ReactHtmlParser from 'react-html-parser';
 import ActivityIcon from '../../../assets/ImageJaven/ActivityIcon.png';
 import ActivityFile from '../../../components/ActivityFile';
 
-function ActivitiesAccordion({ roomID, activity, setDeleteRender }) {
+function ActivitiesAccordion({ roomID, activity, setDeleteRender, socket }) {
   const { designs } = useStyle();
   const [expanded, setExpanded] = React.useState(false);
 

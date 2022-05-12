@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { io } from 'socket.io-client';
 import {
   Box,
   Typography,

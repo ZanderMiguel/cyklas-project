@@ -91,8 +91,11 @@ function App() {
     },
   });
 
-  const socket = io.connect('http://localhost:3001');
+  const socket = io('https://murmuring-basin-16459.herokuapp.com:65334');
   const [quizlit, setQuizlit] = React.useState(null);
+  socket.on('connect_error', (err) => {
+    console.log(`connect_error due to ${err.message}`);
+  });
   socket.on('joined-quizLobby', (lobby, quizLobby, questionArray) => {
     setQuizlit(
       <ProtectedRoutes

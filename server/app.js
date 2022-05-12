@@ -6,9 +6,11 @@ const multer = require('multer');
 const { GridFsStorage } = require('multer-gridfs-storage');
 const crypto = require('crypto');
 const path = require('path');
-const io = require('socket.io')(3001, {
+
+const io = require('socket.io')(process.env.SOCKET, {
   cors: {
     origin: ['https://cyklas.tech'],
+    transports: ['websocket'],
   },
 });
 const cors = require('cors');
@@ -44,20 +46,12 @@ const startAndConnectToDb = async () => {
     console.log(err);
   }
 };
-console.log(process.env.MONGODB_URI);
+console.log(process.env.SOCKET);
 //middlewares
 app.use(cors());
 app.use(express.json());
 
 app.use(express.static('public'));
-
-//routers
-/* app.get('/activity/download/:path',(req,res)=>{
-  res.attachment(path.resolve(`./files/${req.params.path}`))
-  
-  console.log(req.params.path)
-  res.send()
-}) */
 app.use(router);
 let quizLobby = {};
 //let teleMembers = {};
@@ -166,7 +160,7 @@ const storage = new GridFsStorage({
           return reject(err);
         }
         const filename =
-          file.originalname +
+          file.originalname.replace(' ', '') +
           '_split_' +
           buf.toString('hex') +
           path.extname(file.originalname);

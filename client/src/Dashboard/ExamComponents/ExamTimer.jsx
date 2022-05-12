@@ -11,29 +11,29 @@ function ExamTimer({ data, socket }) {
   const [tick, setTick] = React.useState(true);
   const [redirect, setRedirecct] = React.useState(null);
   React.useEffect(() => {
-    const time = data.timeLimit
-      .replace(' minutes', ':')
-      .replace(' hours', ':0:')
-      .replace(' hour', ':0:')
-      .split(':');
+    const [time, setTime] = React.useState(
+      data.timeLimit
+        .replace(' minutes', ':')
+        .replace(' hours', ':0:')
+        .replace(' hour', ':0:')
+        .split(':')
+    );
     console.log(time);
     socket.emit(
       'start-exam',
       JSON.parse(localStorage.userData).data.user._id,
       time
     );
-    socket.on('timer-start', (examTime) => {
-      console.log(examTime);
-      if (examTime.length === 2) {
-        seconds.current = examTime[1];
-        minutes.current = examTime[0];
-      }
-      if (examTime.length === 3) {
-        seconds.current = examTime[2];
-        minutes.current = examTime[1];
-        hours.current = examTime[0];
-      }
-    });
+
+    if (examTime.length === 2) {
+      seconds.current = examTime[1];
+      minutes.current = examTime[0];
+    }
+    if (examTime.length === 3) {
+      seconds.current = examTime[2];
+      minutes.current = examTime[1];
+      hours.current = examTime[0];
+    }
   }, []);
   const clock = setTimeout(() => {
     if (seconds.current <= 0 && minutes.current <= 0 && hours.current <= 0) {
