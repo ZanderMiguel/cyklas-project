@@ -18,11 +18,10 @@ function Rooms({ socket }) {
   const [opendialog, setOpenDialog] = useState(false);
   const [gs, setGs] = useState(null);
   const { post, data, error, isPending } = usePost();
-  
-  React.useEffect( () =>
-  {
+
+  React.useEffect(() => {
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/gradingSystem', {
+      .post('http://localhost:5000/gradingSystem', {
         userID: JSON.parse(localStorage.userData).data.user._id,
       })
       .then((res) => {
@@ -45,7 +44,7 @@ function Rooms({ socket }) {
   });
 
   React.useMemo(() => {
-    post('https://murmuring-basin-16459.herokuapp.com/rooms', {
+    post('http://localhost:5000/rooms', {
       userID: JSON.parse(localStorage.userData).data.user._id,
     });
   }, [newRoom]);
@@ -91,10 +90,9 @@ function Rooms({ socket }) {
                 )}
               </Grid>
               {error && console.log(error)}
-              {data && data.length > 0 && (
-                <Room_layout data={data} />
-              )}
-               {data && data.length === 0 && (<Box
+              {data && data.length > 0 && <Room_layout data={data} />}
+              {data && data.length === 0 && (
+                <Box
                   sx={{
                     width: '100%',
                     height: '75vh',
@@ -132,7 +130,8 @@ function Rooms({ socket }) {
                       marginLeft: '0.8em',
                     }}
                   />
-                </Box>)}
+                </Box>
+              )}
             </Grid>
           </>
         )}

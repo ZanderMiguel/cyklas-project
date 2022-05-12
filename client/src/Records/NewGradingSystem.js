@@ -466,12 +466,9 @@ function NewGradingSystem({
             name={response && response._id}
             onClick={(event) => {
               axios
-                .delete(
-                  'https://murmuring-basin-16459.herokuapp.com/gradingSystem/delete',
-                  {
-                    data: { gsID: event.target.name },
-                  }
-                )
+                .delete('http://localhost:5000/gradingSystem/delete', {
+                  data: { gsID: event.target.name },
+                })
                 .then((res) => {
                   setGS([]);
                   setRenderer((prev) => !prev);
@@ -512,15 +509,12 @@ function NewGradingSystem({
                 });
 
                 axios
-                  .post(
-                    'https://murmuring-basin-16459.herokuapp.com/gradingSystem/create',
-                    {
-                      Category: ifDeleted,
-                      GradingName: document.querySelector(`#gName${counter}`)
-                        .textContent,
-                      userID: JSON.parse(localStorage.userData).data.user._id,
-                    }
-                  )
+                  .post('http://localhost:5000/gradingSystem/create', {
+                    Category: ifDeleted,
+                    GradingName: document.querySelector(`#gName${counter}`)
+                      .textContent,
+                    userID: JSON.parse(localStorage.userData).data.user._id,
+                  })
                   .then((res) => {
                     setGS([]);
                     setRenderer((prev) => !prev);

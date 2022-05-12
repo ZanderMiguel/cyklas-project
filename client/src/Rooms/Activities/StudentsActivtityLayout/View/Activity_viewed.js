@@ -33,20 +33,17 @@ function Activity_viewed({ socket }) {
 
   React.useEffect(() => {
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/activity/get', {
+      .post('http://localhost:5000/activity/get', {
         activityID,
       })
       .then((res) => {
         setActivityView({ ...res.data.activity, ...res.data.myFile });
         console.log(res.data);
         axios
-          .post(
-            'https://murmuring-basin-16459.herokuapp.com/activity/get/submit',
-            {
-              activityID,
-              stdID: JSON.parse(localStorage.userData).data.user._id,
-            }
-          )
+          .post('http://localhost:5000/activity/get/submit', {
+            activityID,
+            stdID: JSON.parse(localStorage.userData).data.user._id,
+          })
           .then((res) => {
             setSubmits(res.data.activity);
           })
@@ -255,10 +252,10 @@ function Activity_viewed({ socket }) {
                     <Box
                       onClick={async () => {
                         //tanginamo
-                        //window.open(`https://murmuring-basin-16459.herokuapp.com/activity/download/${activityView[index].file.filename}/${activityView[index].file.contentType}`, '_blank').focus();
+                        //window.open(`http://localhost:5000/activity/download/${activityView[index].file.filename}/${activityView[index].file.contentType}`, '_blank').focus();
                         axios
                           .get(
-                            `https://murmuring-basin-16459.herokuapp.com/activity/download/${activityView[index].file.filename}`,
+                            `http://localhost:5000/activity/download/${activityView[index].file.filename}`,
                             {
                               responseType: 'blob',
                             }

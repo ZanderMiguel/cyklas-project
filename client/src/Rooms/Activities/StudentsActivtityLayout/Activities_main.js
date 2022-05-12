@@ -17,7 +17,7 @@ function Activities_main({ roomID, socket }) {
 
   useEffect(() => {
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/activity', { roomID })
+      .post('http://localhost:5000/activity', { roomID })
       .then((res) => setActivity(res.data))
       .catch((err) => console.log(err));
   }, []);

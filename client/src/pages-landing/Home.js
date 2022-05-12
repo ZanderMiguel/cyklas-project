@@ -46,12 +46,9 @@ function Home() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsPending(true)
+    setIsPending(true);
     axios
-      .post(
-        'https://murmuring-basin-16459.herokuapp.com/login',
-        Object.fromEntries(myApi)
-      )
+      .post('http://localhost:5000/login', Object.fromEntries(myApi))
       .then((response) => {
         if (response.data.status === 'error') {
           setNotif(
@@ -59,12 +56,12 @@ function Home() {
               position: toast.POSITION.TOP_CENTER,
             })
           );
-        setIsPending(false)
+          setIsPending(false);
         } else {
           response.data.token &&
             localStorage.setItem('token', response.data.token);
-          localStorage.setItem( 'userData', JSON.stringify( response.data ) );
-         setIsPending(false)
+          localStorage.setItem('userData', JSON.stringify(response.data));
+          setIsPending(false);
         }
 
         setMyApi(new Map());
@@ -216,28 +213,31 @@ function Home() {
                     </Typography>
                   </Grid>
                   <Grid item xs={12}>
-                   {!isPending ? <Button
-                      fullWidth
-                      variant="contained"
-                      borderRadius="10px"
-                      children="login"
-                      type="submit"
-                      sx={{
-                        backgroundColor: '#007FFF',
-                        fontSize: '0.9em',
-                        fontWeight: '600',
-                        color: 'white',
-                        borderRadius: '0.3em',
-                        boxShadow: 'none',
-                        marginBottom: '0em',
-                        '&:hover': {
-                          backgroundColor: '#0072e6',
-                        },
-                        }} /> :
-                        <LoadingButton loading fullWidth variant="contained">
+                    {!isPending ? (
+                      <Button
+                        fullWidth
+                        variant="contained"
+                        borderRadius="10px"
+                        children="login"
+                        type="submit"
+                        sx={{
+                          backgroundColor: '#007FFF',
+                          fontSize: '0.9em',
+                          fontWeight: '600',
+                          color: 'white',
+                          borderRadius: '0.3em',
+                          boxShadow: 'none',
+                          marginBottom: '0em',
+                          '&:hover': {
+                            backgroundColor: '#0072e6',
+                          },
+                        }}
+                      />
+                    ) : (
+                      <LoadingButton loading fullWidth variant="contained">
                         Submit
                       </LoadingButton>
-                      }
+                    )}
                   </Grid>
                   <Grid item xs={12}>
                     {isMatch ? (

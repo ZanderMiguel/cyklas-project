@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import Navbar from './Navbar_Inside';
 import { CssBaseline } from '@mui/material';
+import Room_inside from '../Rooms/Room-content-layout/Room_inside';
 
 function ProtectedRoutes({
   component: Component,
@@ -15,9 +16,9 @@ function ProtectedRoutes({
   console.log();
   return (
     <>
-      <CssBaseline /> 
+      <CssBaseline />
       {localStorage.token && <Navbar />}
-      
+      {Component ? (
         <Route
           {...attrib}
           render={() => {
@@ -38,7 +39,35 @@ function ProtectedRoutes({
             );
           }}
         />
-      
+      ) : localStorage.userData ? (
+        JSON.parse(localStorage.userData).data.user.userType === 'Professor' ? (
+          <Route
+            exact
+            path="/rooms/:roomID"
+            render={() => {
+              return localStorage.token !== undefined ? (
+                <Room_inside socket={socket} />
+              ) : (
+                <Redirect to="/" />
+              );
+            }}
+          />
+        ) : (
+          <Route
+            exact
+            path="/rooms/:roomID"
+            render={() =>
+              localStorage.token !== undefined ? (
+                <Room_inside socket={socket} />
+              ) : (
+                <Redirect to="/" />
+              )
+            }
+          />
+        )
+      ) : (
+        <Redirect to="/" />
+      )}
     </>
   );
 }

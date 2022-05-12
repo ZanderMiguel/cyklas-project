@@ -14,7 +14,7 @@ function CheckBoxes({ stdID, item, index, setScore, setOverAll }) {
   const [checkState4, setCheckState4] = React.useState(false);
   React.useMemo(() => {
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/answers', {
+      .post('http://localhost:5000/answers', {
         answeredBy: stdID,
         questionID: item._id,
       })

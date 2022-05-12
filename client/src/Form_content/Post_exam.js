@@ -121,7 +121,7 @@ function Post_exam({
   const handleClickSave = (type) => {
     const questionPayload = [];
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/quizlit/create', {
+      .post('http://localhost:5000/quizlit/create', {
         author: {
           userID: JSON.parse(localStorage.userData).data.user._id,
           name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
@@ -162,7 +162,7 @@ function Post_exam({
           });
         });
         axios
-          .post('https://murmuring-basin-16459.herokuapp.com/question/create', {
+          .post('http://localhost:5000/question/create', {
             questionPayload,
           })
           .then((res) => {
@@ -182,7 +182,7 @@ function Post_exam({
   const [dataRoom, setDataRoom] = React.useState(null);
   React.useMemo(() => {
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/rooms', {
+      .post('http://localhost:5000/rooms', {
         userID: JSON.parse(localStorage.userData).data.user._id,
       })
       .then((res) => {
@@ -327,7 +327,7 @@ function Post_exam({
                           roomId.current = e.target.accessKey;
                           axios
                             .post(
-                              'https://murmuring-basin-16459.herokuapp.com/gradingSystem/record',
+                              'http://localhost:5000/gradingSystem/record',
                               { roomID: e.target.accessKey }
                             )
                             .then((res) => {

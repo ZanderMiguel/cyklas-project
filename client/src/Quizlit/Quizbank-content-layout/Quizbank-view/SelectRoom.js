@@ -21,7 +21,7 @@ function SelectRoom({ setData, dataRoom, setDataRoom }) {
 
   React.useMemo(() => {
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/rooms', {
+      .post('http://localhost:5000/rooms', {
         userID: JSON.parse(localStorage.userData).data.user._id,
       })
       .then((res) => {
@@ -71,10 +71,9 @@ function SelectRoom({ setData, dataRoom, setDataRoom }) {
                 <MenuItem
                   onClick={() => {
                     axios
-                      .post(
-                        'https://murmuring-basin-16459.herokuapp.com/get/members',
-                        { members: value.members }
-                      )
+                      .post('http://localhost:5000/get/members', {
+                        members: value.members,
+                      })
                       .then((res) => setData(res.data))
                       .catch((err) => console.log(err));
                   }}

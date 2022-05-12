@@ -75,7 +75,7 @@ function View_activity({ socket }) {
 
   React.useEffect(() => {
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/activity/get', {
+      .post('http://localhost:5000/activity/get', {
         activityID,
       })
       .then((res) => {
@@ -91,16 +91,13 @@ function View_activity({ socket }) {
           <Button
             onClick={() => {
               axios
-                .post(
-                  'https://murmuring-basin-16459.herokuapp.com/records/activity/return',
-                  {
-                    roomID,
-                    userID: JSON.parse(localStorage.userData).data.user._id,
-                    scores: scores.current,
-                    category: activityView.activityType,
-                    maxPoints: activityView.activityPoints,
-                  }
-                )
+                .post('http://localhost:5000/records/activity/return', {
+                  roomID,
+                  userID: JSON.parse(localStorage.userData).data.user._id,
+                  scores: scores.current,
+                  category: activityView.activityType,
+                  maxPoints: activityView.activityPoints,
+                })
                 .then((res) => console.log(res.data))
                 .catch((err) => console.log(err));
             }}
@@ -432,7 +429,7 @@ function View_activity({ socket }) {
                         onClick={async () => {
                           axios
                             .get(
-                              `https://murmuring-basin-16459.herokuapp.com/activity/download/${activityView[index].file.filename}`,
+                              `http://localhost:5000/activity/download/${activityView[index].file.filename}`,
                               {
                                 responseType: 'blob',
                               }

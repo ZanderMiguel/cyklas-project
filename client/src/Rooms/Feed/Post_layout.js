@@ -34,7 +34,7 @@ function Post_layout({ data, socket, roomID, commentId }) {
 
   const handleDelete = (event, _id) => {
     axios
-      .delete('https://murmuring-basin-16459.herokuapp.com/announce/delete', {
+      .delete('http://localhost:5000/announce/delete', {
         data: { announceID: _id },
       })
       .then((res) => {
@@ -56,7 +56,7 @@ function Post_layout({ data, socket, roomID, commentId }) {
   const { post, data: comments } = usePost();
 
   const handleSubmitComment = () => {
-    post('https://murmuring-basin-16459.herokuapp.com/comment/create', {
+    post('http://localhost:5000/comment/create', {
       announcement: postID.current,
       content: commentContent,
       author: {

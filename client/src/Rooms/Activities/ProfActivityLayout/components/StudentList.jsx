@@ -20,12 +20,12 @@ function StudentList({
   const [data, setData] = React.useState(null);
   React.useEffect(() => {
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/rooms/my-room', {
+      .post('http://localhost:5000/rooms/my-room', {
         roomID,
       })
       .then((res) => {
         axios
-          .post('https://murmuring-basin-16459.herokuapp.com/get/members', {
+          .post('http://localhost:5000/get/members', {
             members: res.data.members,
           })
           .then((res) => setData(res.data))
@@ -45,13 +45,10 @@ function StudentList({
                 onClick={() => {
                   setStudentID(items._id);
                   axios
-                    .post(
-                      'https://murmuring-basin-16459.herokuapp.com/activity/get/submit',
-                      {
-                        activityID,
-                        stdID: items._id,
-                      }
-                    )
+                    .post('http://localhost:5000/activity/get/submit', {
+                      activityID,
+                      stdID: items._id,
+                    })
                     .then((res) => {
                       setSubmitData(res.data.activity);
                       console.log(res.data.activity);
