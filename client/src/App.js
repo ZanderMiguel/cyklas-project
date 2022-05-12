@@ -80,12 +80,9 @@ function App() {
   });
 
   const socket = io.connect('http://localhost:3001');
-  console.log(socket);
 
   const [quizlit, setQuizlit] = React.useState(null);
-  socket.on('connect_error', (err) => {
-    console.log(`connect_error due to ${err.message}`);
-  });
+
   socket.on('joined-quizLobby', (lobby, quizLobby, questionArray) => {
     setQuizlit(
       <ProtectedRoutes
