@@ -5,6 +5,7 @@ import axios from 'axios';
 import './Styles/Landingpage.css';
 import Input from '../components/Input';
 import Button from '../components/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 import {
   Typography,
   Box,
@@ -25,7 +26,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const style = { fontFamily: 'Poppins', marginTop: 1 };
 
 function Home() {
-  const [isPending, setIsPending] = useState(true);
+  const [isPending, setIsPending] = useState(false);
   const [opendialog, setOpenDialog] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [notif, setNotif] = useState(null);
@@ -45,6 +46,7 @@ function Home() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsPending(true)
     axios
       .post('http://localhost:5000/login', Object.fromEntries(myApi))
       .then((response) => {
@@ -54,10 +56,12 @@ function Home() {
               position: toast.POSITION.TOP_CENTER,
             })
           );
+        setIsPending(false)
         } else {
           response.data.token &&
             localStorage.setItem('token', response.data.token);
-          localStorage.setItem('userData', JSON.stringify(response.data));
+          localStorage.setItem( 'userData', JSON.stringify( response.data ) );
+         setIsPending(false)
         }
 
         setMyApi(new Map());
@@ -207,8 +211,7 @@ function Home() {
                     </Typography>
                   </Grid>
                   <Grid item xs={12}>
-                    <Button
-                      disabled={isPending ? false : true}
+                   {!isPending ? <Button
                       fullWidth
                       variant="contained"
                       borderRadius="10px"
@@ -225,7 +228,11 @@ function Home() {
                         '&:hover': {
                           backgroundColor: '#0072e6',
                         },
-                      }}/>
+                        }} /> :
+                        <LoadingButton loading fullWidth variant="contained">
+                        Submit
+                      </LoadingButton>
+                      }
                   </Grid>
                   <Grid item xs={12}>
                     {isMatch ? (

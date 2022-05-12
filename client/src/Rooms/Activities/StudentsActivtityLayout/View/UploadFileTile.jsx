@@ -214,14 +214,14 @@ function UploadFileTile({ submits, activityID }) {
                       height: 'max-content',
                     }}
                   >
-                    {item.fileName?.includes('.docx')
+                    {item?.fileName.includes('.docx')
                       ? 'WORD FILE'
-                      : item.fileName?.includes('.xls')
+                      : item?.fileName.includes('.xls')
                       ? 'EXCEL FILE'
-                      : item.fileName?.includes('.ppt') ||
-                        item?.includes('.pptx')
+                      : item?.fileName.includes('.ppt') ||
+                        item?.fileName.includes('.pptx')
                       ? 'POWER POINT'
-                      : item.fileName?.includes('.pdf')
+                      : item?.fileName.includes('.pdf')
                       ? 'PDF FILE'
                       : 'FILE'}
                   </Typography>

@@ -18,6 +18,8 @@ import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser from 'react-html-parser';
 import moment from 'moment';
 import ActivityFile from '../../../../components/ActivityFile';
+import NoActivities from '../../../../assets/ImageJaven/NoActivities.png';
+
 
 function Activities_layout({ roomID, activity }) {
   const { designs } = useStyle();
@@ -29,6 +31,47 @@ function Activities_layout({ roomID, activity }) {
 
   return (
     <>
+      {activity && activity.length === 0 && (
+        <Box
+          sx={{
+            width: '100%',
+            height: '70vh',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+          }}
+        >
+          <img
+            src={NoActivities}
+            alt="No Activities"
+            style={{
+              height: '13em',
+              margin: '0em 2.5em 1.5em 0em',
+            }}
+          />
+          <Typography
+            children="You did not post any activities."
+            sx={{
+              fontSize: '1em',
+              fontWeight: '600',
+              color: '#3F3D56',
+              marginBottom: '0.3em',
+            }}
+          />
+
+          <Typography
+            children="Start creating activities for your student to work on."
+            sx={{
+              fontSize: '0.8em',
+              fontWeight: '500',
+              color: '#8E8E8E',
+              marginLeft: '0.8em',
+            }}
+          />
+        </Box>
+      )}
       {activity &&
         activity.map(function (items, index) {
           const {

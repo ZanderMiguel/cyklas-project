@@ -53,7 +53,7 @@ function Member({ roomdata }) {
           )}
         </Box>
         <Memberstable members={members} setRefresher={setRefresher} />
-        <Group_table />
+        {/* <Group_table /> */}
         {refresher && refresher}
       </Box>
     </>

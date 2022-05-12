@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Grid, Button, Typography, Avatar, Box, Tooltip } from '@mui/material';
+import LoadingButton from '@mui/lab/LoadingButton';
 import Dialogform from '../components/Dialogform';
 import { BrowserRouter as Router } from 'react-router-dom';
 import CusButton from '../components/Button';
@@ -8,18 +9,9 @@ import Input from '../components/Input';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-// const genders = [
-//   {
-//     value: 'Male',
-//     label: 'Male',
-//   },
-//   {
-//     value: 'Female',
-//     label: 'Female',
-//   },
-// ];
 
 function Register({ open, close, setOpenDialog, setNotif }) {
+  const [isPending, setIsPending] = useState(false)
   const [toggleprof, setToggleProf] = useState('text');
   const [togglestud, setToggleStud] = useState('text');
   const [imgSrc, setImgSrc] = useState(null);
@@ -32,6 +24,7 @@ function Register({ open, close, setOpenDialog, setNotif }) {
   const [showPassword, setShowPassword] = useState(false);
 
   //error States
+  const [imgSrcError,setImgSrcError ] = useState(false)
   const [usertypeError, setUserTypeError] = useState(false);
   const [firstnameError, setFirstNameError] = useState(false);
   const [lastnameError, setLastNameError] = useState(false);
@@ -43,13 +36,19 @@ function Register({ open, close, setOpenDialog, setNotif }) {
     setShowPassword((prevShowPassword) => !prevShowPassword);
 
   const handleSubmit = (e) => {
-    e.preventDefault(false);
+    e.preventDefault();
+    setIsPending(true)
+    setImgSrcError(false)
     setUserTypeError(false);
     setFirstNameError(false);
     setLastNameError(false);
     setEmailAddressError(false);
     setPasswordError(false);
-    setConfirmPasswordError(false);
+    setConfirmPasswordError( false );
+    
+    if ( imgSrc === null ) { 
+      setImgSrcError(true)
+    }
 
     if (usertype === '') {
       setUserTypeError(true);
@@ -77,6 +76,7 @@ function Register({ open, close, setOpenDialog, setNotif }) {
     }
 
     if (
+      imgSrc !== null &&
       usertype &&
       firstname &&
       lastname &&
@@ -95,7 +95,14 @@ function Register({ open, close, setOpenDialog, setNotif }) {
 
       axios
         .post('http://localhost:5000/register', userRegister)
-        .then(() => {
+        .then( ( res ) =>
+        {
+          if (res)
+          {
+            setOpenDialog( false )
+            setIsPending(false)
+          }
+
           setNotif(
             toast.success('Registered Successfully!', {
               position: toast.POSITION.TOP_CENTER,
@@ -104,10 +111,11 @@ function Register({ open, close, setOpenDialog, setNotif }) {
               closeOnClick: true,
             })
           );
-          setOpenDialog(false);
+         
         })
         .catch((err) => {
-          console.log(err.message);
+          setOpenDialog( true )
+          setIsPending(false) 
           setNotif(
             toast.error(`${err}`, {
               position: toast.POSITION.TOP_CENTER,
@@ -268,15 +276,6 @@ function Register({ open, close, setOpenDialog, setNotif }) {
                   }
                   onChange={(event) => setEmailAddress(event.target.value)}
                 />
-                {/* <Drowpdown
-                  label="Gender"
-                  inputLabel="Gender"
-                  name="gender"
-                  value={gender}
-                  onChange={(e) => setGender(e.target.value)}
-                  options={genders}
-                  half
-                /> */}
                 <Input
                   name="password"
                   placeholder="Password*"
@@ -306,7 +305,7 @@ function Register({ open, close, setOpenDialog, setNotif }) {
                   onChange={(event) => setConfirmPassword(event.target.value)}
                 />
                 <Grid item xs={12}>
-                  <CusButton
+                  {!isPending ? <CusButton
                     content="Create Account"
                     fullWidth
                     variant="contained"
@@ -321,7 +320,10 @@ function Register({ open, close, setOpenDialog, setNotif }) {
                         backgroundColor: '#0072e6',
                       },
                     }}
-                  />
+                  /> :
+                  <LoadingButton loading fullWidth variant="outlined">
+                  Submit
+                </LoadingButton>}
                 </Grid>
               </Grid>
             </form>

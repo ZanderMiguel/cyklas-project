@@ -57,7 +57,9 @@ function GoogleAuth() {
   return (
     <div>
       <GoogleLogin
-        clientId="579265708499-7ii87q3j1lhihqbuu20224o4mofhstme.apps.googleusercontent.com"
+        clientId="13670802182-jvq0ldcdghpq85qgr1pu15uh4v74o082.apps.googleusercontent.com"
+
+        // clientId="579265708499-7ii87q3j1lhihqbuu20224o4mofhstme.apps.googleusercontent.com"
         render={(renderProps) => (
           <Button
             variant="outlined"

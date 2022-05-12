@@ -5,7 +5,7 @@ import Dropdown from '../components/Drowpdown';
 import usePost from '../customHooks/usePost';
 import moment from 'moment';
 import axios from 'axios';
-import { Grid, Button } from '@mui/material';
+import { Grid, Button, Typography } from '@mui/material';
 
 const gradingsystems = [];
 
@@ -104,6 +104,7 @@ function Create_room({ open, close, maxWidth, state, socket, gs }) {
           </Button>
         }
       >
+        <Typography sx={{ml: '2em', p: 0 , fontColor: 'gray', fontSize: '0.8em'}}>{`NOTE: Before creating a room you must have a grading system. Go to RECORDS > Grading System`} </Typography>
         <form onSubmit={handleSubmit} id="form1">
           <Grid container spacing={2} sx={{ padding: 2, overflow: 'auto' }}>
             <Input

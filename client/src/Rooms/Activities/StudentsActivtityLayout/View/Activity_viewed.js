@@ -329,13 +329,13 @@ function Activity_viewed() {
                           height: 'max-content',
                         }}
                       >
-                        {item.includes('.docx')
+                        {item?.includes('.docx')
                           ? 'WORD FILE'
-                          : item.includes('.xml')
+                          : item?.includes('.xml')
                           ? 'EXCEL FILE'
-                          : item.includes('.ppt')
+                          : item?.includes('.ppt')
                           ? 'POWERPOINT FILE'
-                          : item.includes('.pdf')
+                          : item?.includes('.pdf')
                           ? 'PDF FILE'
                           : 'FILE'}
                       </Typography>
