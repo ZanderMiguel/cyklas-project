@@ -4,11 +4,20 @@ import { Box, Button } from '@mui/material';
 import Input from '../components/Input';
 import NewGradingSystem from './NewGradingSystem';
 
-function Create_gradingsystem({ open, close, name, counter, setGS, GS, data,setRenderer }) {
+function Create_gradingsystem({
+  open,
+  close,
+  name,
+  counter,
+  setGS,
+  GS,
+  data,
+  setRenderer,
+}) {
   const [gradingname, setGradingName] = useState('');
   // const handleAddGrading = () => {
   //   axios
-  //     .post('http://localhost:5000/gradingSystem/create', {
+  //     .post('https://murmuring-basin-16459.herokuapp.com/gradingSystem/create', {
   //       GradingName: gradingname,
   //     })
   //     .then((res) => console.log(res))
@@ -30,7 +39,13 @@ function Create_gradingsystem({ open, close, name, counter, setGS, GS, data,setR
           onClick={() => {
             setGS([
               ...GS,
-              <NewGradingSystem data={data} name={name} counter={counter} setGS={setGS} setRenderer={setRenderer}/>,
+              <NewGradingSystem
+                data={data}
+                name={name}
+                counter={counter}
+                setGS={setGS}
+                setRenderer={setRenderer}
+              />,
             ]);
             close();
           }}

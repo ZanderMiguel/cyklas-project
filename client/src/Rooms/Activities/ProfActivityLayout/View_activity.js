@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { io } from 'socket.io-client';
 import {
   Box,
   Typography,
@@ -26,10 +25,10 @@ import FileDownload from 'js-file-download';
 import moment from 'moment';
 import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser from 'react-html-parser';
-import Wordfile from '../../../assets/ImageJaven/Wordfile.png'
-import Pdffile from '../../../assets/ImageJaven/Pdffile.png'
-import Excelfile from '../../../assets/ImageJaven/Excelfile.png'
-import Powerpointfile from '../../../assets/ImageJaven/Powerpointfile.png' 
+import Wordfile from '../../../assets/ImageJaven/Wordfile.png';
+import Pdffile from '../../../assets/ImageJaven/Pdffile.png';
+import Excelfile from '../../../assets/ImageJaven/Excelfile.png';
+import Powerpointfile from '../../../assets/ImageJaven/Powerpointfile.png';
 import useStyle from '../../Styles/View_activity_style';
 import '../../Styles/View_activity_style.css';
 import ActivityIcon from '../../../assets/ImageJaven/ActivityIcon.png';
@@ -55,8 +54,7 @@ const dataSort = [
   },
 ];
 
-const socket = io.connect('http://localhost:3001');
-function View_activity() {
+function View_activity({ socket }) {
   const [view, setView] = React.useState(false);
   const { designs } = useStyle();
   const { roomID, activityID } = useParams();
@@ -66,6 +64,7 @@ function View_activity() {
   const [commentId, setCommentId] = useState(null);
   const [score, setScore] = useState({});
   const [studentID, setStudentID] = React.useState({});
+  const scores = React.useRef([]);
   const handleChangeSort = (event) => {
     setSort(event.target.value);
   };
@@ -76,7 +75,9 @@ function View_activity() {
 
   React.useEffect(() => {
     axios
-      .post('http://localhost:5000/activity/get', { activityID })
+      .post('https://murmuring-basin-16459.herokuapp.com/activity/get', {
+        activityID,
+      })
       .then((res) => {
         setActivityView({ ...res.data.activity, ...res.data.myFile });
       })
@@ -87,7 +88,26 @@ function View_activity() {
     <Container maxWidth="lg" sx={{ padding: '0.5em 0em' }}>
       <Grid container columnSpacing={1}>
         <Grid item xs={4}>
-          <Button sx={designs.Return_Button_Style}>Return</Button>
+          <Button
+            onClick={() => {
+              axios
+                .post(
+                  'https://murmuring-basin-16459.herokuapp.com/records/activity/return',
+                  {
+                    roomID,
+                    userID: JSON.parse(localStorage.userData).data.user._id,
+                    scores: scores.current,
+                    category: activityView.activityType,
+                    maxPoints: activityView.activityPoints,
+                  }
+                )
+                .then((res) => console.log(res.data))
+                .catch((err) => console.log(err));
+            }}
+            sx={designs.Return_Button_Style}
+          >
+            Return
+          </Button>
         </Grid>
 
         <Grid item xs={8} />
@@ -136,10 +156,12 @@ function View_activity() {
               sx={designs.Student_Container_Style}
             >
               <StudentList
+                scores={scores}
                 score={score}
                 activityView={activityView}
                 setStudentID={setStudentID}
                 setSubmitData={setSubmitData}
+                submitData={submitData}
               />
             </Box>
           </Box>
@@ -410,7 +432,7 @@ function View_activity() {
                         onClick={async () => {
                           axios
                             .get(
-                              `http://localhost:5000/activity/download/${activityView[index].file.filename}`,
+                              `https://murmuring-basin-16459.herokuapp.com/activity/download/${activityView[index].file.filename}`,
                               {
                                 responseType: 'blob',
                               }
@@ -427,7 +449,7 @@ function View_activity() {
                           backgroundColor: 'white',
                           margin: '0.5em 0em 0em 0em',
                           width: '100%',
-                          height: "auto",
+                          height: 'auto',
                           padding: '0.5em 0.9em',
                           display: 'flex',
                           alignItems: 'center',
@@ -442,14 +464,16 @@ function View_activity() {
                         }}
                       >
                         <img
-                          src={item?.includes('.docx')
-                          ? Wordfile
-                          : item?.includes('.xls')
-                          ? Excelfile
-                          : item?.includes('.ppt') || item?.includes('.pptx')
-                          ? Powerpointfile
-                          : item?.includes('.pdf')
-                          && Pdffile}
+                          src={
+                            item?.includes('.docx')
+                              ? Wordfile
+                              : item?.includes('.xls')
+                              ? Excelfile
+                              : item?.includes('.ppt') ||
+                                item?.includes('.pptx')
+                              ? Powerpointfile
+                              : item?.includes('.pdf') && Pdffile
+                          }
                           style={{
                             height: '40px',
                           }}
@@ -553,12 +577,16 @@ function View_activity() {
                   width: 'auto',
                 }}
               >
-                handed-out
+                {submitData && submitData?.length < 0
+                  ? 'Handed-Out'
+                  : submitData?.length > 0
+                  ? 'Submitted'
+                  : 'Missing'}
               </Typography>
             </Box>
 
-            {submitData?.length > 0 &&
-              submitData[0].media.map((item, index) => {
+            {submitData &&
+              submitData?.[0]?.media.map((item, index) => {
                 return (
                   <Tooltip
                     key={index}

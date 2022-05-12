@@ -2,10 +2,10 @@ import React from 'react';
 import axios from 'axios';
 import { Typography, Box, Button, Tooltip } from '@mui/material';
 import { FileUploadOutlined } from '@mui/icons-material';
-import Wordfile from '../../../../assets/ImageJaven/Wordfile.png'
-import Pdffile from '../../../../assets/ImageJaven/Pdffile.png'
-import Excelfile from '../../../../assets/ImageJaven/Excelfile.png'
-import Powerpointfile from '../../../../assets/ImageJaven/Powerpointfile.png' 
+import Wordfile from '../../../../assets/ImageJaven/Wordfile.png';
+import Pdffile from '../../../../assets/ImageJaven/Pdffile.png';
+import Excelfile from '../../../../assets/ImageJaven/Excelfile.png';
+import Powerpointfile from '../../../../assets/ImageJaven/Powerpointfile.png';
 
 function UploadFileTile({ submits, activityID }) {
   const [uploadFile, setUploadFile] = React.useState([]);
@@ -27,40 +27,41 @@ function UploadFileTile({ submits, activityID }) {
       }}
     >
       <Box
-            sx = {{
-              width: "relative",
-              height: "auto",
-              display: "flex",
-              alignItems: "center",
-              margin: "0.5em 0em 1em 0em"
-            }}>
-              <Typography
-              sx={{
-                height: 'max-content',
-                fontSize: '15px',
-                fontWeight: '600',
-                textTransform: 'Uppercase',
-                color: '#6D6B85',
-                width: 'auto',
-                flexGrow: 1,
-              }}
-            >
-              Your Uploaded Files
-            </Typography>
+        sx={{
+          width: 'relative',
+          height: 'auto',
+          display: 'flex',
+          alignItems: 'center',
+          margin: '0.5em 0em 1em 0em',
+        }}
+      >
+        <Typography
+          sx={{
+            height: 'max-content',
+            fontSize: '15px',
+            fontWeight: '600',
+            textTransform: 'Uppercase',
+            color: '#6D6B85',
+            width: 'auto',
+            flexGrow: 1,
+          }}
+        >
+          Your Uploaded Files
+        </Typography>
 
-            <Typography
-              sx={{
-                height: 'max-content',
-                fontSize: '15px',
-                fontWeight: '700',
-                textTransform: 'Uppercase',
-                color: '#007FFF',
-                width: 'auto',
-              }}
-            >
-              {submits?.length > 0 ? submits[0].activityStatus : 'Handed-Out'}
-            </Typography>
-            </Box>
+        <Typography
+          sx={{
+            height: 'max-content',
+            fontSize: '15px',
+            fontWeight: '700',
+            textTransform: 'Uppercase',
+            color: '#007FFF',
+            width: 'auto',
+          }}
+        >
+          {submits?.length > 0 ? submits[0].activityStatus : 'Handed-Out'}
+        </Typography>
+      </Box>
       {submits &&
         submits?.[0]?.media.map((item, index) => {
           return (
@@ -78,8 +79,8 @@ function UploadFileTile({ submits, activityID }) {
                   padding: '0.5em 0.9em',
                   display: 'flex',
                   gap: '0.9em',
-                  height: "auto",
-                  alignItems: "center",
+                  height: 'auto',
+                  alignItems: 'center',
                   border: '1px solid #D4D4D4',
                   borderRadius: '0.3em',
                   '&: hover': {
@@ -113,7 +114,6 @@ function UploadFileTile({ submits, activityID }) {
                       width: 'auto',
                       flexGrow: 1,
                       height: 'auto',
-
                     }}
                   >
                     {item}
@@ -159,7 +159,7 @@ function UploadFileTile({ submits, activityID }) {
                   padding: '0.5em 0.9em',
                   display: 'flex',
                   gap: '0.9em',
-                  alignItems: "center",
+                  alignItems: 'center',
 
                   border: '1px solid #D4D4D4',
                   borderRadius: '0.3em',
@@ -171,14 +171,16 @@ function UploadFileTile({ submits, activityID }) {
                 }}
               >
                 <img
-                  src={item?.fileName.includes('.docx')
-                  ? Wordfile
-                  : item?.fileName.includes('.xls')
-                  ? Excelfile
-                  : item?.fileName.includes('.ppt') || item?.fileName.includes('.pptx')
-                  ? Powerpointfile
-                  : item?.fileName.includes('.pdf')
-                  && Pdffile}
+                  src={
+                    item?.fileName.includes('.docx')
+                      ? Wordfile
+                      : item?.fileName.includes('.xls')
+                      ? Excelfile
+                      : item?.fileName.includes('.ppt') ||
+                        item?.fileName.includes('.pptx')
+                      ? Powerpointfile
+                      : item?.fileName.includes('.pdf') && Pdffile
+                  }
                   style={{
                     height: '40px',
                   }}
@@ -262,18 +264,18 @@ function UploadFileTile({ submits, activityID }) {
         <label htmlFor="uploadFile">
           <Box
             sx={{
-              display: "flex",
-              alignItems: "center",
-              marginRight: "0.5em",
-              padding: "0.3em 0.8em",
-              backgroundColor: "transparent",
-              border: "1px solid transparent",
-              borderRadius: "0.3em",
-              "&: hover": {
-                cursor: "pointer",
-                transition: "all 250ms",
-                border: "1px solid #0069D3"
-              }
+              display: 'flex',
+              alignItems: 'center',
+              marginRight: '0.5em',
+              padding: '0.3em 0.8em',
+              backgroundColor: 'transparent',
+              border: '1px solid transparent',
+              borderRadius: '0.3em',
+              '&: hover': {
+                cursor: 'pointer',
+                transition: 'all 250ms',
+                border: '1px solid #0069D3',
+              },
             }}
           >
             <FileUploadOutlined
@@ -281,14 +283,16 @@ function UploadFileTile({ submits, activityID }) {
                 color: '#0069D3',
               }}
             />
-            <Typography children = "Upload File"
-            sx = {{
-              padding: '0.2em 1em',
-              fontSize: '0.8em',
-              fontWeight: '600',
-              textTransform: 'Capitalize',
-              color: '#0069D3',
-            }}/>
+            <Typography
+              children="Upload File"
+              sx={{
+                padding: '0.2em 1em',
+                fontSize: '0.8em',
+                fontWeight: '600',
+                textTransform: 'Capitalize',
+                color: '#0069D3',
+              }}
+            />
           </Box>
         </label>
         <input
@@ -338,11 +342,15 @@ function UploadFileTile({ submits, activityID }) {
             );
             formData.append('activityStatus', 'Submitted');
             axios
-              .post('http://localhost:5000/activity/submit', formData, {
-                headers: {
-                  'Content-Type': 'multipart/form-data',
-                },
-              })
+              .post(
+                'https://murmuring-basin-16459.herokuapp.com/activity/submit',
+                formData,
+                {
+                  headers: {
+                    'Content-Type': 'multipart/form-data',
+                  },
+                }
+              )
               .then((res) => console.log(res.data))
               .catch((err) => console.log(err));
           }}

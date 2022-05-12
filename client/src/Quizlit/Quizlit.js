@@ -11,11 +11,11 @@ import useStyle from './Styles/Quizlit_style';
 import CusPopover from '../components/Popover';
 import QuizlitAddpopover from '../components/PopoverContent/QuizlitAddpopover';
 import axios from 'axios';
-import Box from "@mui/material/Box";
+import Box from '@mui/material/Box';
 import { AddCircleOutlineOutlined } from '@mui/icons-material';
 import Button from '../components/Button';
-import NoQuizzes from "../assets/ImageJaven/NoQuizzes.png";
-import NoExams from "../assets/ImageJaven/NoExams.png";
+import NoQuizzes from '../assets/ImageJaven/NoQuizzes.png';
+import NoExams from '../assets/ImageJaven/NoExams.png';
 
 function Quizlit() {
   const { designs } = useStyle();
@@ -35,7 +35,7 @@ function Quizlit() {
   const [data, setData] = React.useState(null);
   React.useEffect(() => {
     axios
-      .post('http://localhost:5000/myQuizlit', {
+      .post('https://murmuring-basin-16459.herokuapp.com/myQuizlit', {
         userID: JSON.parse(localStorage.userData).data.user._id,
       })
       .then((res) => {
@@ -115,8 +115,8 @@ function Quizlit() {
               sx={{
                 backgroundColor: '#007FFF',
                 color: 'white',
-                fontWeight: "600",
-                boxShadow: "none",
+                fontWeight: '600',
+                boxShadow: 'none',
                 '&:hover': {
                   backgroundColor: '#0072e6',
                 },
@@ -179,102 +179,101 @@ function Quizlit() {
             </Tabs>
           </Grid>
           <Grid item md={10} xs={12} sx={{ marginTop: '0.8em' }}>
-            {value === 0
-              ? data && data.length > 0 ? (
-                  <Quiz_layout
-                    bank={data.filter((item) => {
-                      return item.quizType === 'Quiz';
-                    })}
+            {value === 0 ? (
+              data && data.length > 0 ? (
+                <Quiz_layout
+                  bank={data.filter((item) => {
+                    return item.quizType === 'Quiz';
+                  })}
+                />
+              ) : (
+                <Box
+                  sx={{
+                    width: '100%',
+                    height: '70vh',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flexWrap: 'wrap',
+                  }}
+                >
+                  <img
+                    src={NoQuizzes}
+                    alt="No Quizzes"
+                    style={{
+                      height: '13em',
+                      margin: '0em 0em 1.5em 0em',
+                    }}
                   />
-                ) : (
-                  <Box
-          sx={{
-            width: '100%',
-            height: '70vh',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-          }}
-        >
-          <img
-            src={NoQuizzes}
-            alt="No Quizzes"
-            style={{
-              height: '13em',
-              margin: '0em 0em 1.5em 0em',
-            }}
-          />
-          <Typography
-            children="You did not create any Quizzes."
-            sx={{
-              fontSize: '1em',
-              fontWeight: '600',
-              color: '#3F3D56',
-              marginBottom: '0.3em',
-            }}
-          />
-
-          <Typography
-            children="Start creating quizzes now for your class."
-            sx={{
-              fontSize: '0.8em',
-              fontWeight: '500',
-              color: '#8E8E8E',
-              marginLeft: '0.8em',
-            }}
-          />
-        </Box>
-                ) :
-              value === 1 &&
-                data && data.length > 0 ? (
-                  <Exam_layout
-                    bank={data.filter((item) => {
-                      return item.quizType === 'Exam';
-                    })}
+                  <Typography
+                    children="You did not create any Quizzes."
+                    sx={{
+                      fontSize: '1em',
+                      fontWeight: '600',
+                      color: '#3F3D56',
+                      marginBottom: '0.3em',
+                    }}
                   />
-                ) : (
-                  <Box
-          sx={{
-            width: '100%',
-            height: '70vh',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-          }}
-        >
-          <img
-            src={NoExams}
-            alt="No Exams"
-            style={{
-              height: '13em',
-              margin: '0em 0em 1.5em 0em',
-            }}
-          />
-          <Typography
-            children="You did not create any Exams."
-            sx={{
-              fontSize: '1em',
-              fontWeight: '600',
-              color: '#3F3D56',
-              marginBottom: '0.3em',
-            }}
-          />
 
-          <Typography
-            children="Start creating exams now for your students to take."
-            sx={{
-              fontSize: '0.8em',
-              fontWeight: '500',
-              color: '#8E8E8E',
-              marginLeft: '0.8em',
-            }}
-          />
-        </Box>
-                )}
+                  <Typography
+                    children="Start creating quizzes now for your class."
+                    sx={{
+                      fontSize: '0.8em',
+                      fontWeight: '500',
+                      color: '#8E8E8E',
+                      marginLeft: '0.8em',
+                    }}
+                  />
+                </Box>
+              )
+            ) : value === 1 && data && data.length > 0 ? (
+              <Exam_layout
+                bank={data.filter((item) => {
+                  return item.quizType === 'Exam';
+                })}
+              />
+            ) : (
+              <Box
+                sx={{
+                  width: '100%',
+                  height: '70vh',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flexWrap: 'wrap',
+                }}
+              >
+                <img
+                  src={NoExams}
+                  alt="No Exams"
+                  style={{
+                    height: '13em',
+                    margin: '0em 0em 1.5em 0em',
+                  }}
+                />
+                <Typography
+                  children="You did not create any Exams."
+                  sx={{
+                    fontSize: '1em',
+                    fontWeight: '600',
+                    color: '#3F3D56',
+                    marginBottom: '0.3em',
+                  }}
+                />
+
+                <Typography
+                  children="Start creating exams now for your students to take."
+                  sx={{
+                    fontSize: '0.8em',
+                    fontWeight: '500',
+                    color: '#8E8E8E',
+                    marginLeft: '0.8em',
+                  }}
+                />
+              </Box>
+            )}
           </Grid>
         </Grid>
       </Container>

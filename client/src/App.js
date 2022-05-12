@@ -21,7 +21,6 @@ import Activity_viewed from './Rooms/Activities/StudentsActivtityLayout/View/Act
 import ExamViewedV2 from './Rooms/Activities/StudentsActivtityLayout/View/ExamViewedV2';
 import Room_inside from './Rooms/Room-content-layout/Room_inside';
 
-
 //Records & Classcards
 import Records from './Records/Records';
 import ClassCards_main from './Records/Classcards/ClassCards_main';
@@ -33,9 +32,9 @@ import Settings from './Settings/Settings';
 //Telecon
 import TeleconStart from './Telecon/TeleconStart';
 import TeleconRoomV2 from './Telecon/TeleconRoomV2';
-import LiveQuiz from "./Telecon/LiveQuiz";
-import LivequizQuestion from "./Telecon/LivequizQuestion";
-import LivequizStudentrankings from "./Telecon/LivequizStudentrankings";
+import LiveQuiz from './Telecon/LiveQuiz';
+import LivequizQuestion from './Telecon/LivequizQuestion';
+import LivequizStudentrankings from './Telecon/LivequizStudentrankings';
 
 //Quizlit
 import QuizLit from './Quizlit/Quizlit';
@@ -55,8 +54,6 @@ import TeleconLanding from './pages-landing/TeleconLanding';
 
 // Student Side
 import Dashboard_main from './student_side/Dashboard/Dashboard_main';
-
-
 
 function App() {
   const theme = createTheme({
@@ -82,8 +79,13 @@ function App() {
     },
   });
 
-  const socket = io.connect('http://localhost:3001');
+  const socket = io( 'https://murmuring-basin-16459.herokuapp.com:65334' );
+  console.log(socket)
+
   const [quizlit, setQuizlit] = React.useState(null);
+  socket.on('connect_error', (err) => {
+    console.log(`connect_error due to ${err.message}`);
+  });
   socket.on('joined-quizLobby', (lobby, quizLobby, questionArray) => {
     setQuizlit(
       <ProtectedRoutes
@@ -95,7 +97,7 @@ function App() {
       />
     );
   });
-  axios.post('http://localhost:5000/rooms');
+  axios.post('https://murmuring-basin-16459.herokuapp.com/rooms');
   return (
     <>
       {
@@ -129,6 +131,7 @@ function App() {
                 exact
                 path="/rooms/:roomID/p/:activityID"
                 component={View_activity}
+                socket={socket}
               />
               <ProtectedRoutes
                 exact
@@ -167,9 +170,12 @@ function App() {
                 <TeleconRoomV2 socket={socket} />
               </Route>
 
-              <Route path="/LiveQuiz" component = {LiveQuiz}/>
-              <Route path="/LivequizQuestion" component = {LivequizQuestion}/>
-              <Route path="/LivequizStudentrankings" component = {LivequizStudentrankings}/>
+              <Route path="/LiveQuiz" component={LiveQuiz} />
+              <Route path="/LivequizQuestion" component={LivequizQuestion} />
+              <Route
+                path="/LivequizStudentrankings"
+                component={LivequizStudentrankings}
+              />
 
               {/* <Route path="/TeleconRoomV2" component={TeleconRoomV2} /> */}
 

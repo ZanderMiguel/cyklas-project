@@ -10,7 +10,7 @@ function CheckMultiple({ stdID, item, setScore, setOverAll }) {
 
   React.useMemo(() => {
     axios
-      .post('http://localhost:5000/answers', {
+      .post('https://murmuring-basin-16459.herokuapp.com/answers', {
         answeredBy: stdID,
         questionID: item._id,
       })

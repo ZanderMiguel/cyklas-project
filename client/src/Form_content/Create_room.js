@@ -59,7 +59,7 @@ function Create_room({ open, close, maxWidth, state, socket, gs }) {
 
     if (roomname && gradingsystem) {
       axios
-        .post('http://localhost:5000/rooms/create', {
+        .post('https://murmuring-basin-16459.herokuapp.com/rooms/create', {
           Host: {
             name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
               JSON.parse(localStorage.userData).data.user.lastName

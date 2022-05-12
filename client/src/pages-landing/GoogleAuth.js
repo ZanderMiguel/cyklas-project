@@ -4,7 +4,6 @@ import Google from '../assets/Rectangle 134.svg';
 import Button from '../components/Button';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import Register from '../Form_content/Register';
 import SelectUserType from '../Form_content/SelectUsertype';
 function GoogleAuth() {
   const history = useHistory();
@@ -13,12 +12,12 @@ function GoogleAuth() {
 
   const signIn = (googleAuth) => {
     axios
-      .post('http://localhost:5000/register', googleAuth)
+      .post('https://murmuring-basin-16459.herokuapp.com/register', googleAuth)
       .then((response) => {
         console.log(response.data.emailAddress);
         if (response.data.existing) {
           axios
-            .post('http://localhost:5000/login', {
+            .post('https://murmuring-basin-16459.herokuapp.com/login', {
               token: response.data.token,
               ...googleAuth,
             })
@@ -50,16 +49,13 @@ function GoogleAuth() {
     signIn(googleAuth);
   };
   const googleFailure = (error) => {
-    console.log(error);
-    console.log('Google Sign In was unsucessful. Try again later');
+    console.log('error');
   };
 
   return (
     <div>
       <GoogleLogin
         clientId="13670802182-jvq0ldcdghpq85qgr1pu15uh4v74o082.apps.googleusercontent.com"
-
-        // clientId="579265708499-7ii87q3j1lhihqbuu20224o4mofhstme.apps.googleusercontent.com"
         render={(renderProps) => (
           <Button
             variant="outlined"
@@ -74,7 +70,7 @@ function GoogleAuth() {
         )}
         onSuccess={googleSuccess}
         onFailure={googleFailure}
-        cookiePolicy="single_host_origin"
+        cookiePolicy={'single_host_origin'}
       />
       {state && (
         <SelectUserType

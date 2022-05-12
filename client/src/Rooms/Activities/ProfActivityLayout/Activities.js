@@ -6,9 +6,9 @@ import Activities_layout from './Activities_layout';
 import axios from 'axios';
 import NoActivities from '../../../assets/ImageJaven/NoActivities.png';
 
-function Activities({ roomID }) {
+function Activities({ roomID, socket }) {
   const [opendialog, setOpenDialog] = useState(false);
-  const [deleteRender, setDeleteRender] = useState(false)
+  const [deleteRender, setDeleteRender] = useState(false);
   const [activity, setActivity] = useState(null);
 
   const handleClickOpen = () => {
@@ -23,7 +23,7 @@ function Activities({ roomID }) {
     let source = axios.CancelToken.source();
     axios
       .post(
-        'http://localhost:5000/activity',
+        'https://murmuring-basin-16459.herokuapp.com/activity',
         { roomID },
         {
           cancelToken: source.token,
@@ -127,7 +127,12 @@ function Activities({ roomID }) {
       )}
       {activity && (
         <Grid container rowSpacing={2} sx={{ paddingBottom: '1.5em' }}>
-          <Activities_layout roomID={roomID} activity={activity} setDeleteRender={setDeleteRender} />
+          <Activities_layout
+            roomID={roomID}
+            activity={activity}
+            setDeleteRender={setDeleteRender}
+            socket={socket}
+          />
         </Grid>
       )}
     </>

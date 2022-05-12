@@ -19,7 +19,7 @@ function CheckAnswers({
   const [data, setData] = React.useState(null);
   React.useEffect(() => {
     axios
-      .post('http://localhost:5000/question', { quizID })
+      .post('https://murmuring-basin-16459.herokuapp.com/question', { quizID })
       .then((res) => {
         setData(res.data);
       })

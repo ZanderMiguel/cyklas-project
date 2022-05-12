@@ -8,7 +8,6 @@ import {
   Grid,
   Box,
   Button,
-  Paper,
 } from '@mui/material';
 import ActivityIcon from '../../../../assets/ImageJaven/ActivityIcon.png';
 import useStyle from './Styles/Activities_layout_style';
@@ -21,7 +20,7 @@ import ActivityFile from '../../../../components/ActivityFile';
 import NoActivities from '../../../../assets/ImageJaven/NoActivities.png';
 
 
-function Activities_layout({ roomID, activity }) {
+function Activities_layout({ roomID, activity, socket }) {
   const { designs } = useStyle();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -160,7 +159,9 @@ function Activities_layout({ roomID, activity }) {
                       <Typography sx={designs.Instructions_Typography}>
                         {instruction ? 'Instructions: ' : ''}
                       </Typography>
-                      <Box>{ReactHtmlParser(draftToHtml(JSON.parse(instruction)))}</Box>
+                      <Box>
+                        {ReactHtmlParser(draftToHtml(JSON.parse(instruction)))}
+                      </Box>
                     </Box>
                     <Box
                       sx={{
@@ -170,7 +171,7 @@ function Activities_layout({ roomID, activity }) {
                       <Grid container columnSpacing={1} rowSpacing={1}>
                         {media.map((item, index) => {
                           return (
-                            <Grid item xs={12} key = {index}>
+                            <Grid item xs={12} key={index}>
                               <ActivityFile item={item} />
                             </Grid>
                           );

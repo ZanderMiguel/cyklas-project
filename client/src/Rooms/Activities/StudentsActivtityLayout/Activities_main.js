@@ -6,7 +6,7 @@ import Quizzes_layout from './Layout/Quizzes_layout';
 import Exams_layout from './Layout/Exams_layout';
 import axios from 'axios';
 
-function Activities_main({ roomID }) {
+function Activities_main({ roomID, socket }) {
   const { designs } = useStyle();
   const [value, setValue] = useState(0);
   const [activity, setActivity] = useState(null);
@@ -17,7 +17,7 @@ function Activities_main({ roomID }) {
 
   useEffect(() => {
     axios
-      .post('http://localhost:5000/activity', { roomID })
+      .post('https://murmuring-basin-16459.herokuapp.com/activity', { roomID })
       .then((res) => setActivity(res.data))
       .catch((err) => console.log(err));
   }, []);
@@ -130,7 +130,11 @@ function Activities_main({ roomID }) {
             }}
           >
             {value === 0 ? (
-              <Activities_layout activity={activity} roomID={roomID} />
+              <Activities_layout
+                activity={activity}
+                roomID={roomID}
+                socket={socket}
+              />
             ) : value === 1 ? (
               <Quizzes_layout />
             ) : (
