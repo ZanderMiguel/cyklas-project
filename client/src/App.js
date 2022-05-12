@@ -132,6 +132,7 @@ function App() {
               />
               <ProtectedRoutes
                 exact
+                socket={socket}
                 path="/rooms/:roomID/s/:activityID"
                 component={Activity_viewed}
               />
