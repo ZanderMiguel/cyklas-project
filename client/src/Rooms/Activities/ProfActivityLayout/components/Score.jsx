@@ -5,7 +5,9 @@ function Score({ score, activityView, items, designs, submitData }) {
   console.log(submitData);
   return (
     <>
-      {submitData && submitData[0].activityStatus === 'Graded' ? (
+      {submitData &&
+      submitData.length > 0 &&
+      submitData[0].activityStatus === 'Graded' ? (
         <Typography sx={designs.StudentScore_Typography_Style}>
           {submitData[0].activityScore}
         </Typography>

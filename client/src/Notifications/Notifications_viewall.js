@@ -140,7 +140,7 @@ function Notification_viewall() {
   const [value, setValue] = React.useState(0);
   // const [data, setData] = React.useState(null);
   React.useMemo(() => {
-    axios.post('http://localhost:5000/');
+    axios.post('https://murmuring-basin-16459.herokuapp.com/');
   }, []);
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -158,8 +158,8 @@ function Notification_viewall() {
         <Box
           sx={{
             display: 'flex',
-            alignItems: "center",
-            padding: "0em 0.5em 0em 0em"
+            alignItems: 'center',
+            padding: '0em 0.5em 0em 0em',
           }}
         >
           <NotificationsActive

@@ -6,9 +6,11 @@ const multer = require('multer');
 const { GridFsStorage } = require('multer-gridfs-storage');
 const crypto = require('crypto');
 const path = require('path');
-const io = require('socket.io')(3001, {
+
+const io = require('socket.io')(process.env.SOCKET, {
   cors: {
-    origin: ['http://localhost:3000'],
+    origin: ['https://cyklas.tech'],
+    transports: ['websocket'],
   },
 });
 const cors = require('cors');
@@ -18,18 +20,24 @@ const mongoose = require('mongoose');
 let gfs;
 const startAndConnectToDb = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(
+      process.env.MONGODB_URI ||
+        'mongodb+srv://reypanerz:pantheonq1w2e3@learningmonggodb.jhlar.mongodb.net/Classes?retryWrites=true&w=majority',
+      {
+        useUnifiedTopology: true,
+      }
+    );
 
-    const conn = mongoose.createConnection(process.env.MONGODB_URI);
+    const conn = mongoose.createConnection(
+      process.env.MONGODB_URI ||
+        'mongodb+srv://reypanerz:pantheonq1w2e3@learningmonggodb.jhlar.mongodb.net/Classes?retryWrites=true&w=majority'
+    );
     conn.once('open', () => {
       gfs = new mongoose.mongo.GridFSBucket(conn.db, {
         bucketName: 'uploads',
       });
     });
-    await app.listen(process.env.PORT, () => {
+    await app.listen(process.env.PORT || 5000, () => {
       console.log(
         `Server is running on port ${process.env.PORT}\nConnected to Database!`
       );
@@ -38,20 +46,12 @@ const startAndConnectToDb = async () => {
     console.log(err);
   }
 };
-
+console.log(process.env.SOCKET);
 //middlewares
 app.use(cors());
 app.use(express.json());
 
 app.use(express.static('public'));
-
-//routers
-/* app.get('/activity/download/:path',(req,res)=>{
-  res.attachment(path.resolve(`./files/${req.params.path}`))
-  
-  console.log(req.params.path)
-  res.send()
-}) */
 app.use(router);
 let quizLobby = {};
 //let teleMembers = {};
@@ -150,7 +150,9 @@ io.on('connection', (socket) => {
 //Create storage engine
 
 const storage = new GridFsStorage({
-  url: process.env.MONGODB_URI,
+  url:
+    process.env.MONGODB_URI ||
+    'mongodb+srv://reypanerz:pantheonq1w2e3@learningmonggodb.jhlar.mongodb.net/Classes?retryWrites=true&w=majority',
   file: (req, file) => {
     return new Promise((resolve, reject) => {
       crypto.randomBytes(16, (err, buf) => {
@@ -158,7 +160,7 @@ const storage = new GridFsStorage({
           return reject(err);
         }
         const filename =
-          file.originalname +
+          file.originalname.replace(' ', '') +
           '_split_' +
           buf.toString('hex') +
           path.extname(file.originalname);
@@ -174,13 +176,13 @@ const storage = new GridFsStorage({
 const upload = multer({ storage });
 app.use('/', fileRouter(upload));
 
-if (process.env.NODE_ENV === 'production') {
+/* if (process.env.NODE_ENV === 'production') {
   app.use(express.static('cilent/build'));
 
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__, dirname, 'client', 'build', 'index.html'));
   });
-}
+} */
 
 startAndConnectToDb();
 //socket.io events

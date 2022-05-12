@@ -27,7 +27,9 @@ function Schoolworktiles_layout({ content, roomID }) {
   const [data, setData] = React.useState(null);
   React.useMemo(() => {
     axios
-      .post('http://localhost:5000/quizlit', { quizID: content })
+      .post('https://murmuring-basin-16459.herokuapp.com/quizlit', {
+        quizID: content,
+      })
       .then((res) => {
         setData(res.data);
         console.log(res.data);
@@ -60,7 +62,16 @@ function Schoolworktiles_layout({ content, roomID }) {
                   <Box
                     sx={designs.ActivityName_User_Date}
                     onClick={() => {
-                      setRedirect(<Redirect to={JSON.parse(localStorage.userData).data.user.userType === 'Student' ? `/Exam_take/${data._id}` : `/quizlit/view_exam/${data._id}`} />);
+                      setRedirect(
+                        <Redirect
+                          to={
+                            JSON.parse(localStorage.userData).data.user
+                              .userType === 'Student'
+                              ? `/Exam_take/${data._id}`
+                              : `/quizlit/view_exam/${data._id}`
+                          }
+                        />
+                      );
                     }}
                   >
                     {redirect && redirect}

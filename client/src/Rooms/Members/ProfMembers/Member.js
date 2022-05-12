@@ -23,7 +23,7 @@ function Member({ roomdata }) {
 
   React.useEffect(() => {
     axios
-      .post('http://localhost:5000/get/members', {
+      .post('https://murmuring-basin-16459.herokuapp.com/get/members', {
         members: roomdata.room.members,
       })
       .then((res) => setMembers(res.data))
@@ -53,7 +53,7 @@ function Member({ roomdata }) {
           )}
         </Box>
         <Memberstable members={members} setRefresher={setRefresher} />
-        <Group_table />
+        {/* <Group_table /> */}
         {refresher && refresher}
       </Box>
     </>

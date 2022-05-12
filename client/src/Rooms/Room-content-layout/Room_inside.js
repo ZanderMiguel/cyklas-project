@@ -34,7 +34,7 @@ function Room_inside({ socket }) {
 
   useEffect(() => {
     axios
-      .post('http://localhost:5000/requests/to-join', {
+      .post('https://murmuring-basin-16459.herokuapp.com/requests/to-join', {
         userID: JSON.parse(localStorage.userData).data.user._id,
         userName: `${JSON.parse(localStorage.userData).data.user.firstName} ${
           JSON.parse(localStorage.userData).data.user.lastName
@@ -135,9 +135,9 @@ function Room_inside({ socket }) {
             ) : value === 1 ? (
               JSON.parse(localStorage.userData).data.user.userType ===
               'Professor' ? (
-                <Activities roomID={roomID} />
+                <Activities roomID={roomID} socket={socket} />
               ) : (
-                <Activities_main roomID={roomID} />
+                <Activities_main roomID={roomID} socket={socket} />
               )
             ) : JSON.parse(localStorage.userData).data.user.userType ===
               'Student' ? (

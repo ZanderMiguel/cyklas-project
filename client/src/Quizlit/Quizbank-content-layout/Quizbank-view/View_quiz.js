@@ -99,24 +99,6 @@ const dataRoom = [
   },
 ];
 
-// const dataCourseYearSec = [
-//   {
-//     value: 'BSCS 2A',
-//     label: 'BSCS 2A',
-//   },
-//   {
-//     value: 'BSCS 3A',
-//     label: 'BSCS 3A',
-//   },
-//   {
-//     value: 'BSIT 3A',
-//     label: 'BSIT 3A',
-//   },
-//   {
-//     value: 'BSCS 4A',
-//     label: 'BSCS 4A',
-//   },
-// ];
 
 function View_quiz() {
   // const [view, setView] = React.useState(false);
@@ -136,11 +118,7 @@ function View_quiz() {
     setRoom(event.target.value);
   };
 
-  // const [selectCourseYearSec, setCourseYearSec] = useState('');
 
-  // const handleChangeCourseYearSec = (event) => {
-  //   setCourseYearSec(event.target.value);
-  // };
 
   return (
     <Container maxWidth="lg">

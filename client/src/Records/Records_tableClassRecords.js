@@ -29,7 +29,7 @@ function Records_tableClassRecords({ rooms }) {
   const handleChangeRoom = (event) => {
     setSelectRoom(event.target.value);
     axios
-      .post('http://localhost:5000/records', {
+      .post('https://murmuring-basin-16459.herokuapp.com/records', {
         userID: JSON.parse(localStorage.userData).data.user._id,
         roomID: rooms[event.target.value]._id,
       })
@@ -38,22 +38,28 @@ function Records_tableClassRecords({ rooms }) {
       })
       .catch((err) => console.log(err));
     axios
-      .post('http://localhost:5000/get/members', {
+      .post('https://murmuring-basin-16459.herokuapp.com/get/members', {
         members: rooms[event.target.value].members,
       })
       .then((res) => {
         setMembers(res.data);
         axios
-          .post('http://localhost:5000/gradingSystem/record', {
-            roomID: rooms[event.target.value]._id,
-          })
+          .post(
+            'https://murmuring-basin-16459.herokuapp.com/gradingSystem/record',
+            {
+              roomID: rooms[event.target.value]._id,
+            }
+          )
           .then((res) => {
             axios
-              .post('http://localhost:5000/records/overall', {
-                category: res.data[0].Category,
-                roomID: rooms[event.target.value]._id,
-                userID: JSON.parse(localStorage.userData).data.user._id,
-              })
+              .post(
+                'https://murmuring-basin-16459.herokuapp.com/records/overall',
+                {
+                  category: res.data[0].Category,
+                  roomID: rooms[event.target.value]._id,
+                  userID: JSON.parse(localStorage.userData).data.user._id,
+                }
+              )
               .then((res) => {
                 stdRecord.current = [];
                 setOverall(res.data);
@@ -187,7 +193,7 @@ function Records_tableClassRecords({ rooms }) {
                     stdRecord.current.push({ [Object.entries(item)[0][0]]: 0 });
                     return <th key={index}> {Object.entries(item)[0][0]} </th>;
                   })}
-                <th> Class Standing </th>
+                <th> Action </th>
               </tr>
             </thead>
 
@@ -196,10 +202,13 @@ function Records_tableClassRecords({ rooms }) {
                 records.map((items, index) => {
                   if (items.gradingSystem.length === 0) {
                     axios
-                      .put('http://localhost:5000/records/applyGS', {
-                        crID: items._id,
-                        gradingSystem: stdRecord.current,
-                      })
+                      .put(
+                        'https://murmuring-basin-16459.herokuapp.com/records/applyGS',
+                        {
+                          crID: items._id,
+                          gradingSystem: stdRecord.current,
+                        }
+                      )
                       .then((res) => {})
                       .catch((err) => console.log(err));
                   }

@@ -38,112 +38,112 @@ const dataTable = [
     studentAvatar: (
       <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
     ),
-    studentName: 'Paul Rudd',
-    course: 'BSCS',
+   studentName: 'Paul Rudd',
+    // course: 'BSCS',
     yearSection: '3A',
-    classStanding: (
-      <WorkspacePremium sx={{ fontSize: '1.7em', color: '#F9A826' }} />
-    ),
+    // classStanding: (
+    //   <WorkspacePremium sx={{ fontSize: '1.7em', color: '#F9A826' }} />
+    // ),
   },
   {
     studentAvatar: (
       <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
     ),
     studentName: 'Tom Holland',
-    course: 'BSCS',
+    // course: 'BSCS',
     yearSection: '3A',
-    classStanding: (
-      <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-    ),
+    // classStanding: (
+    //    <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
+    // ),
   },
   {
     studentAvatar: (
       <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
     ),
     studentName: 'Tom Hiddleston',
-    course: 'BSCS',
+    // course: 'BSCS',
     yearSection: '3A',
-    classStanding: (
-      <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-    ),
+    // classStanding: (
+    //   <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
+    // ),
   },
   {
     studentAvatar: (
       <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
     ),
     studentName: 'Robert Downey Jr.',
-    course: 'BSCS',
+    // course: 'BSCS',
     yearSection: '3A',
-    classStanding: (
-      <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-    ),
+    // classStanding: (
+    //   <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
+    // ),
   },
-  {
-    studentAvatar: (
-      <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-    ),
-    studentName: 'Sebastian Stann',
-    course: 'BSCS',
-    yearSection: '3A',
-    classStanding: (
-      <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-    ),
-  },
-  {
-    studentAvatar: (
-      <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-    ),
-    studentName: 'Paul Rudd',
-    course: 'BSCS',
-    yearSection: '3A',
-    classStanding: (
-      <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-    ),
-  },
-  {
-    studentAvatar: (
-      <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-    ),
-    studentName: 'Tom Holland',
-    course: 'BSCS',
-    yearSection: '3A',
-    classStanding: (
-      <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-    ),
-  },
-  {
-    studentAvatar: (
-      <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-    ),
-    studentName: 'Tom Hiddleston',
-    course: 'BSCS',
-    yearSection: '3A',
-    classStanding: (
-      <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-    ),
-  },
-  {
-    studentAvatar: (
-      <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-    ),
-    studentName: 'Robert Downey Jr.',
-    course: 'BSCS',
-    yearSection: '3A',
-    classStanding: (
-      <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-    ),
-  },
-  {
-    studentAvatar: (
-      <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-    ),
-    studentName: 'Sebastian Stann',
-    course: 'BSCS',
-    yearSection: '3A',
-    classStanding: (
-      <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-    ),
-  },
+  // {
+  //   studentAvatar: (
+  //     <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
+  //   ),
+  //   studentName: 'Sebastian Stann',
+  //   // course: 'BSCS',
+  //   yearSection: '3A',
+  //   // classStanding: (
+  //   //   // <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
+  //   // ),
+  // },
+  // {
+  //   studentAvatar: (
+  //     <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
+  //   ),
+  //   studentName: 'Paul Rudd',
+  //   // course: 'BSCS',
+  //   yearSection: '3A',
+  //   // classStanding: (
+  //   //   <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
+  //   // ),
+  // },
+  // {
+  //   studentAvatar: (
+  //     <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
+  //   ),
+  //   studentName: 'Tom Holland',
+  //   // course: 'BSCS',
+  //   yearSection: '3A',
+  //   // classStanding: (
+  //   //   <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
+  //   // ),
+  // },
+  // {
+  //   studentAvatar: (
+  //     <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
+  //   ),
+  //   studentName: 'Tom Hiddleston',
+  //   // course: 'BSCS',
+  //   yearSection: '3A',
+  //   // classStanding: (
+  //   //   <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
+  //   // ),
+  // },
+  // {
+  //   studentAvatar: (
+  //     <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
+  //   ),
+  //   studentName: 'Robert Downey Jr.',
+  //   // course: 'BSCS',
+  //   yearSection: '3A',
+  //   // classStanding: (
+  //   //   <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
+  //   // ),
+  // },
+  // {
+  //   studentAvatar: (
+  //     <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
+  //   ),
+  //   studentName: 'Sebastian Stann',
+  //   // course: 'BSCS',
+  //   yearSection: '3A',
+  //   // classStanding: (
+  //   //   <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
+  //   // ),
+  // },
 ];
 
 const dataRoom = [
@@ -229,9 +229,7 @@ function DashboardStudentrankings() {
             <thead>
               <tr>
                 <th> Student Name </th>
-                <th> Course </th>
-                <th> Year and Section </th>
-                <th> Class Standing </th>
+                <th> Rank </th>
               </tr>
             </thead>
 
@@ -245,9 +243,9 @@ function DashboardStudentrankings() {
                         {items.studentName}
                       </div>
                     </td>
-                    <td data-label="Class Performance"> {items.course} </td>
+                    {/* <td data-label="Class Performance"> {items.course} </td> */}
                     <td data-label="Major Exam"> {items.yearSection} </td>
-                    <td data-label="Class Standing"> {items.classStanding} </td>
+                    {/* <td data-label="Class Standing"> {items.classStanding} </td> */}
                   </tr>
                 );
               })}

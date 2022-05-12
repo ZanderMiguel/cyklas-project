@@ -18,12 +18,14 @@ function Exam_take() {
   const [items, setItems] = React.useState(null);
   React.useMemo(() => {
     axios
-      .post('http://localhost:5000/quizlit', { quizID })
+      .post('https://murmuring-basin-16459.herokuapp.com/quizlit', { quizID })
       .then((res) => {
         console.log(res.data);
         setData(res.data);
         axios
-          .post('http://localhost:5000/question', { quizID })
+          .post('https://murmuring-basin-16459.herokuapp.com/question', {
+            quizID,
+          })
           .then((response) => {
             setItems(response.data);
           })

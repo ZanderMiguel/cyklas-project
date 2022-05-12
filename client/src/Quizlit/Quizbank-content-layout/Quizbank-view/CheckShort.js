@@ -45,7 +45,7 @@ function CheckShort({ stdID, item, setScore, setOverAll, shrtAns }) {
 
   React.useMemo(() => {
     axios
-      .post('http://localhost:5000/answers', {
+      .post('https://murmuring-basin-16459.herokuapp.com/answers', {
         answeredBy: stdID,
         questionID: item._id,
       })
