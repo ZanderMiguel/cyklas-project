@@ -79,7 +79,7 @@ function App() {
     },
   });
 
-  const socket = io('http://localhost:3001');
+  const socket = io.connect('http://localhost:3001');
   console.log(socket);
 
   const [quizlit, setQuizlit] = React.useState(null);
