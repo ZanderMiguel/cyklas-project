@@ -62,7 +62,7 @@ function View_exam() {
   };
   React.useMemo(() => {
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/quizlit', {
+      .post('http://localhost:5000/quizlit', {
         quizID: examID,
       })
       .then((res) => {
@@ -86,16 +86,13 @@ function View_exam() {
           <Button
             onClick={() => {
               axios
-                .post(
-                  'https://murmuring-basin-16459.herokuapp.com/records/return-grade',
-                  {
-                    roomID: dataRoom[0]._id,
-                    userID: JSON.parse(localStorage.userData).data.user._id,
-                    examID,
-                    scores: scores.current,
-                    stdID,
-                  }
-                )
+                .post('http://localhost:5000/records/return-grade', {
+                  roomID: dataRoom[0]._id,
+                  userID: JSON.parse(localStorage.userData).data.user._id,
+                  examID,
+                  scores: scores.current,
+                  stdID,
+                })
                 .then((res) => console.log(res.data))
                 .catch((err) => console.log(err));
             }}

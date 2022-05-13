@@ -71,6 +71,7 @@ const countActivity = async (req, res) => {
       room: { $elemMatch: { $eq: req.body.roomID } },
       'student.stdID': req.body.stdID,
     });
+    console.log(recordData);
     const activityCategory = await QuizlitModel.findById(req.body.examID);
     const activityCount = await QuizlitModel.find({
       gsCategory: activityCategory.gsCategory,

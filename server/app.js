@@ -7,10 +7,9 @@ const { GridFsStorage } = require('multer-gridfs-storage');
 const crypto = require('crypto');
 const path = require('path');
 
-const io = require('socket.io')(process.env.SOCKET, {
+const io = require('socket.io')(3001, {
   cors: {
-    origin: ['https://cyklas.tech'],
-    transports: ['websocket'],
+    origin: ['http://localhost:3000'],
   },
 });
 const cors = require('cors');
@@ -21,8 +20,7 @@ let gfs;
 const startAndConnectToDb = async () => {
   try {
     await mongoose.connect(
-      process.env.MONGODB_URI ||
-        'mongodb+srv://reypanerz:pantheonq1w2e3@learningmonggodb.jhlar.mongodb.net/Classes?retryWrites=true&w=majority',
+      'mongodb+srv://reypanerz:pantheonq1w2e3@learningmonggodb.jhlar.mongodb.net/Classes?retryWrites=true&w=majority',
       {
         useUnifiedTopology: true,
       }

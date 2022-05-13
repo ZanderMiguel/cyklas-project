@@ -17,7 +17,7 @@ function Create_gradingsystem({
   const [gradingname, setGradingName] = useState('');
   // const handleAddGrading = () => {
   //   axios
-  //     .post('https://murmuring-basin-16459.herokuapp.com/gradingSystem/create', {
+  //     .post('http://localhost:5000/gradingSystem/create', {
   //       GradingName: gradingname,
   //     })
   //     .then((res) => console.log(res))

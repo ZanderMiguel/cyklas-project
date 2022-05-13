@@ -26,10 +26,10 @@ function Exam_start({ socket }) {
   const [redirect, setRedirect] = React.useState(null);
   React.useMemo(() => {
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/quizlit', { quizID })
+      .post('http://localhost:5000/quizlit', { quizID })
       .then((response) => {
         axios
-          .post('https://murmuring-basin-16459.herokuapp.com/question', {
+          .post('http://localhost:5000/question', {
             quizID,
           })
           .then((res) => {
@@ -171,12 +171,9 @@ function Exam_start({ socket }) {
           <Button
             onClick={() => {
               axios
-                .post(
-                  'https://murmuring-basin-16459.herokuapp.com/answers/create',
-                  {
-                    answersPayload: qAnswers.current,
-                  }
-                )
+                .post('http://localhost:5000/answers/create', {
+                  answersPayload: qAnswers.current,
+                })
                 .then((res) => {
                   console.log(res.data);
                   setRedirect(<Redirect to="/dashboard" />);

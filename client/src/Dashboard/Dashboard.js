@@ -12,7 +12,7 @@ function Dashboard() {
 
   React.useEffect(() => {
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/rooms', {
+      .post('http://localhost:5000/rooms', {
         userID: JSON.parse(localStorage.userData).data.user._id,
       })
       .then((res) => setRoom(res.data))

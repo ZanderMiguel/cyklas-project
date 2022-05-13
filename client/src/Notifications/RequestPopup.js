@@ -12,7 +12,7 @@ function RequestPopup() {
 
   React.useEffect(() => {
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/requests', {
+      .post('http://localhost:5000/requests', {
         userID: JSON.parse(localStorage.userData).data.user._id,
       })
       .then((res) => {
@@ -23,7 +23,7 @@ function RequestPopup() {
 
   const handleAcceptRequest = (event, stdImage, stdName, stdID) => {
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/records/create', {
+      .post('http://localhost:5000/records/create', {
         room: event.target.name,
         student: {
           stdID,
@@ -45,7 +45,7 @@ function RequestPopup() {
       .catch((err) => console.log(err));
 
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/requests/accept', {
+      .post('http://localhost:5000/requests/accept', {
         roomID: event.target.name,
         memberID: stdID,
         reqID: event.target.nonce,

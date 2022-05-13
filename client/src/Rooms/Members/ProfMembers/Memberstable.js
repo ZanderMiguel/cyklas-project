@@ -38,14 +38,10 @@ function Memberstable({ members, setRefresher }) {
                 <IconButton
                   onClick={() => {
                     axios
-                      .put(
-                        'https://murmuring-basin-16459.herokuapp.com/room/leave',
-                        {
-                          roomID,
-                          userID: JSON.parse(localStorage.userData).data.user
-                            ._id,
-                        }
-                      )
+                      .put('http://localhost:5000/room/leave', {
+                        roomID,
+                        userID: JSON.parse(localStorage.userData).data.user._id,
+                      })
                       .then((res) => {
                         setRefresher(<Redirect to="/rooms" />);
                         console.log(res.data);

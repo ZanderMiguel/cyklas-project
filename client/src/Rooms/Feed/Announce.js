@@ -22,7 +22,7 @@ function Announce({ socket }) {
 
   React.useEffect(() => {
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/announce', {
+      .post('http://localhost:5000/announce', {
         rooms: roomID,
       })
       .then((res) => {

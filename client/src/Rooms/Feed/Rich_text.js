@@ -44,7 +44,7 @@ function Rich_text({ socket }) {
   const { post, data, isPending } = usePost();
   const { roomID } = useParams();
   const handleAnnounce = () => {
-    post('https://murmuring-basin-16459.herokuapp.com/announce/create', {
+    post('http://localhost:5000/announce/create', {
       author: {
         userID: JSON.parse(localStorage.userData).data.user._id,
         name: `${JSON.parse(localStorage.userData).data.user.firstName} ${

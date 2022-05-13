@@ -106,15 +106,11 @@ function Create_activity({ item, open, close, setOpenDialog }) {
     formData.append('activityInstruction', JSON.stringify(convertedState));
     formData.append('rooms', [roomID]);
     axios
-      .post(
-        'https://murmuring-basin-16459.herokuapp.com/activity/create',
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        }
-      )
+      .post('http://localhost:5000/activity/create', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
       .then((res) => {
         console.log(res.data);
         setUploadFile([
@@ -128,12 +124,9 @@ function Create_activity({ item, open, close, setOpenDialog }) {
 
   useEffect(() => {
     axios
-      .post(
-        'https://murmuring-basin-16459.herokuapp.com/gradingSystem/record',
-        {
-          roomID: roomID,
-        }
-      )
+      .post('http://localhost:5000/gradingSystem/record', {
+        roomID: roomID,
+      })
       .then((res) => setCategory(res.data[0].Category))
       .catch((err) => console.log(err.message));
   }, []);

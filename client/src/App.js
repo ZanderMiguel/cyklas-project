@@ -79,8 +79,8 @@ function App() {
     },
   });
 
-  const socket = io( 'https://murmuring-basin-16459.herokuapp.com:65334' );
-  console.log(socket)
+  const socket = io.connect('http://localhost:3001');
+  console.log(socket);
 
   const [quizlit, setQuizlit] = React.useState(null);
   socket.on('connect_error', (err) => {
@@ -97,7 +97,7 @@ function App() {
       />
     );
   });
-  axios.post('https://murmuring-basin-16459.herokuapp.com/rooms');
+  axios.post('http://localhost:5000/rooms');
   return (
     <>
       {
@@ -121,11 +121,11 @@ function App() {
                 socket={socket}
               />
               <ProtectedRoutes
-              exact
-              path="/rooms/:roomID"
-              component={Room_inside}
-              socket={socket}
-               />
+                exact
+                path="/rooms/:roomID"
+                component={Room_inside}
+                socket={socket}
+              />
 
               <ProtectedRoutes
                 exact

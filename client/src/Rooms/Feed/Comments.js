@@ -16,7 +16,7 @@ function Comments({ postId, commentId, socket }) {
   const handleEditComment = () => {};
   const handleDeleteComment = (_id) => {
     axios
-      .delete('https://murmuring-basin-16459.herokuapp.com/comment/delete', {
+      .delete('http://localhost:5000/comment/delete', {
         data: { commentID: _id },
       })
       .then(() => {
@@ -30,7 +30,7 @@ function Comments({ postId, commentId, socket }) {
     let source = axios.CancelToken.source();
     axios
       .post(
-        'https://murmuring-basin-16459.herokuapp.com/comment',
+        'http://localhost:5000/comment',
         { announcement: postId },
         {
           cancelToken: source.token,

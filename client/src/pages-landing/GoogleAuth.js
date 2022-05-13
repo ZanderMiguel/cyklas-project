@@ -12,12 +12,12 @@ function GoogleAuth() {
 
   const signIn = (googleAuth) => {
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/register', googleAuth)
+      .post('http://localhost:5000/register', googleAuth)
       .then((response) => {
         console.log(response.data.emailAddress);
         if (response.data.existing) {
           axios
-            .post('https://murmuring-basin-16459.herokuapp.com/login', {
+            .post('http://localhost:5000/login', {
               token: response.data.token,
               ...googleAuth,
             })

@@ -19,7 +19,7 @@ function Members_main({ roomdata }) {
 
   useEffect(() => {
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/get/members', {
+      .post('http://localhost:5000/get/members', {
         members: roomdata.room.members,
       })
       .then((res) => setMembers(res.data))

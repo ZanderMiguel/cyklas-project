@@ -35,7 +35,7 @@ function ActivitiesAccordion({ roomID, activity, setDeleteRender, socket }) {
   const handleDelete = (event, _id) => {
     event.stopPropagation();
     axios
-      .delete('https://murmuring-basin-16459.herokuapp.com/activity/delete', {
+      .delete('http://localhost:5000/activity/delete', {
         data: { id: _id },
       })
       .then((res) => setDeleteRender((prev) => !prev))

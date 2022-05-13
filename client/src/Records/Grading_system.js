@@ -13,7 +13,7 @@ function Grading_system({ data, name, counter }) {
   const [renderer, setRenderer] = useState(false);
   React.useEffect(() => {
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/gradingSystem', {
+      .post('http://localhost:5000/gradingSystem', {
         userID: JSON.parse(localStorage.userData).data.user._id,
       })
       .then((res) => {

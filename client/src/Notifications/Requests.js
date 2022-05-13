@@ -10,7 +10,7 @@ function Requests() {
 
   React.useEffect(() => {
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/requests', {
+      .post('http://localhost:5000/requests', {
         userID: JSON.parse(localStorage.userData).data.user._id,
       })
       .then((res) => {
