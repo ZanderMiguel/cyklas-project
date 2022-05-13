@@ -94,6 +94,10 @@ const findActivity = async (req, res) => {
 const downloadFileByClick = async (req, res) => {
   res.download(`./files/${req.params.file}`);
 };
+const previewFileByClick = async (req, res) => {
+  return res.json('preview');
+};
+
 const deleteActivity = async (req, res) => {
   try {
     await Activity.findByIdAndDelete(req.body.id);
@@ -174,6 +178,7 @@ module.exports = {
   updateActivityController: updateActivity,
   findActivity,
   downloadFileByClick,
+  previewFileByClick,
   createActivityComment,
   displayActivityComment,
   deleteController,

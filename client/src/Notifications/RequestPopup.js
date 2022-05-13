@@ -5,9 +5,8 @@ import axios from 'axios';
 import moment from 'moment';
 import Nodata from '../assets/ImageJaven/Nodata.png';
 
-function RequestPopup() {
+function RequestPopup({ items, setItems }) {
   const { designs } = useStyle();
-  const [items, setItems] = React.useState(null);
   const [toggleAccept, setToggleAccept] = React.useState(false);
 
   React.useEffect(() => {

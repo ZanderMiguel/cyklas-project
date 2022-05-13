@@ -4,7 +4,7 @@ import { Divider, Box, Typography, Tabs, Tab, Button } from '@mui/material';
 import { Circle, NotificationsActive } from '@mui/icons-material';
 import useStyle from './Styles/Notificationpopover_style';
 import RequestPopup from '../../Notifications/RequestPopup';
-function Notificationpopover({ general, request }) {
+function Notificationpopover({ general, items, setItems }) {
   const { designs } = useStyle();
   const [value, setValue] = React.useState(0);
 
@@ -76,7 +76,7 @@ function Notificationpopover({ general, request }) {
 
       {value === 1 && (
         <Box sx={designs.RequestContainer_Style}>
-          <RequestPopup />
+          <RequestPopup items={items} setItems={setItems} />
         </Box>
       )}
 
@@ -94,7 +94,6 @@ function Notificationpopover({ general, request }) {
                         fontSize: '0.7em',
                       }}
                     />
-                    {/* <Box sx = {designs.GeneralContainer_Sub2_Style}> {items.avatar}</Box> */}
                     <Box>
                       <Typography
                         sx={{

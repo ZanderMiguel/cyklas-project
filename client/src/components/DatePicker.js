@@ -8,7 +8,7 @@ import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import Stack from '@mui/material/Stack';
 
-function Datepicker({ inputLabel, half, duedate, setDueDate }) {
+function Datepicker({ inputLabel, half, duedate, setDueDate, styled }) {
   return (
     <Grid item xs={12} sm={half ? 6 : 12}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -21,7 +21,13 @@ function Datepicker({ inputLabel, half, duedate, setDueDate }) {
             setDueDate(newValue);
           }}
           renderInput={(params) => (
-            <TextField autoComplete="off" disabled fullWidth {...params} />
+            <TextField
+              autoComplete="off"
+              disabled
+              fullWidth
+              variant={styled}
+              {...params}
+            />
           )}
         />
       </LocalizationProvider>

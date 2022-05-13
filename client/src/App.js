@@ -19,10 +19,7 @@ import Rooms from './Rooms/Rooms';
 import View_activity from './Rooms/Activities/ProfActivityLayout/View_activity';
 import Activity_viewed from './Rooms/Activities/StudentsActivtityLayout/View/Activity_viewed';
 import ExamViewedV2 from './Rooms/Activities/StudentsActivtityLayout/View/ExamViewedV2';
-<<<<<<< Updated upstream
 import Room_inside from './Rooms/Room-content-layout/Room_inside';
-=======
->>>>>>> Stashed changes
 
 //Records & Classcards
 import Records from './Records/Records';
@@ -37,10 +34,7 @@ import TeleconStart from './Telecon/TeleconStart';
 import TeleconRoomV2 from './Telecon/TeleconRoomV2';
 import LiveQuiz from './Telecon/LiveQuiz';
 import LivequizQuestion from './Telecon/LivequizQuestion';
-<<<<<<< Updated upstream
 import LivequizStudentrankings from './Telecon/LivequizStudentrankings';
-=======
->>>>>>> Stashed changes
 
 //Quizlit
 import QuizLit from './Quizlit/Quizlit';
@@ -142,6 +136,7 @@ function App() {
                 path="/rooms/:roomID/s/:activityID"
                 component={Activity_viewed}
               />
+
               {/* Quizlit */}
               <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
               <ProtectedRoutes
@@ -176,16 +171,10 @@ function App() {
 
               <Route path="/LiveQuiz" component={LiveQuiz} />
               <Route path="/LivequizQuestion" component={LivequizQuestion} />
-<<<<<<< Updated upstream
               <Route
                 path="/LivequizStudentrankings"
                 component={LivequizStudentrankings}
               />
-=======
->>>>>>> Stashed changes
-
-              {/* <Route path="/TeleconRoomV2" component={TeleconRoomV2} /> */}
-
               {/* Records and Classcards */}
               <ProtectedRoutes exact path="/records" component={Records} />
               <ProtectedRoutes
@@ -221,9 +210,6 @@ function App() {
                 path="/quizlit/view_exam/:examID"
                 component={View_exam}
               />
-              <Route exact path="/quizlit/join">
-                <JoinQuiz socket={socket} />
-              </Route>
               <Route exact path="/quizlit/lobby">
                 <Lobby socket={socket} />
               </Route>

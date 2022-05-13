@@ -9,16 +9,16 @@ import ActivityFile from '../../components/ActivityFile';
 
 function Announce({ socket }) {
   const { roomID } = useParams();
-  const [postuuid, setPostUuid] = useState(null);
   const [data, setData] = useState(null);
-  const [commentId, setCommentId] = useState(null);
+  const [postRender, setPostRender] = useState(false);
+  const [commentRender, setCommentRender] = useState(false);
 
-  socket.on('post-created', (uuid) => {
-    setPostUuid(uuid);
-  });
-  socket.on('post-comment', (uuid) => {
-    setCommentId(uuid);
-  });
+  // socket.on('post-created', (uuid) => {
+  //   setPostUuid(uuid);
+  // });
+  // socket.on('post-comment', (uuid) => {
+  //   setCommentId(uuid);
+  // });
 
   React.useEffect(() => {
     axios
@@ -32,7 +32,7 @@ function Announce({ socket }) {
       .catch((e) => {
         console.log(e.message);
       });
-  }, [postuuid]);
+  }, [postRender]);
 
   return (
     <>
@@ -51,7 +51,7 @@ function Announce({ socket }) {
               },
             }}
           >
-            <Rich_text socket={socket} />
+            <Rich_text socket={socket} setPostRender={setPostRender} />
           </Box>
         </Grid>
         <Grid item xs={12}>
@@ -60,7 +60,9 @@ function Announce({ socket }) {
               data={data}
               socket={socket}
               roomID={roomID}
-              commentId={commentId}
+              setCommentRender={setCommentRender}
+              setPostRender={setPostRender}
+              commentRender={commentRender}
             />
           )}
         </Grid>

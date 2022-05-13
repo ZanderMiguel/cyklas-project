@@ -28,17 +28,27 @@ import axios from 'axios';
 import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser from 'react-html-parser';
 
-function Post_layout({ data, socket, roomID, commentId }) {
+function Post_layout({
+  data,
+  socket,
+  roomID,
+  setCommentRender,
+  setPostRender,
+  commentRender,
+}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const handleEdit = (event) => {};
+  const [commentContent, setCommentContent] = useState('');
+  const postID = useRef(null);
+  const { designs } = useStyles();
 
+  const handleEdit = (event) => {};
   const handleDelete = (event, _id) => {
     axios
       .delete('http://localhost:5000/announce/delete', {
         data: { announceID: _id },
       })
       .then((res) => {
-        socket.emit('create-post');
+        setPostRender((prev) => !prev);
       })
       .catch((error) => {
         console.log(error);
@@ -48,10 +58,6 @@ function Post_layout({ data, socket, roomID, commentId }) {
     setAnchorEl(null);
   };
   const account = Boolean(anchorEl);
-
-  const [commentContent, setCommentContent] = useState('');
-  const postID = useRef(null);
-  const { designs } = useStyles();
 
   const { post, data: comments } = usePost();
 
@@ -70,7 +76,7 @@ function Post_layout({ data, socket, roomID, commentId }) {
     if (comments) {
       setCommentContent('');
     }
-    socket.emit('create-comment');
+    setCommentRender((prev) => !prev);
   };
 
   return (
@@ -138,7 +144,12 @@ function Post_layout({ data, socket, roomID, commentId }) {
 
               <Divider sx={designs.Divider_Style} />
 
-              <Comments postId={_id} commentId={commentId} socket={socket} />
+              <Comments
+                postId={_id}
+                setCommentRender={setCommentRender}
+                socket={socket}
+                commentRender={commentRender}
+              />
 
               <Divider sx={{ mb: 2 }} />
               <Box className="write-comment" sx={designs.Write_Comment_Style}>

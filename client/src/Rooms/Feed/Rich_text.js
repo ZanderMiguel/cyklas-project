@@ -26,7 +26,7 @@ import { EditorState, convertToRaw } from 'draft-js';
 import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './Rich_text.css';
 
-function Rich_text({ socket }) {
+function Rich_text({ setPostRender }) {
   const [upload, setUpload] = React.useState('true');
   const [editorState, setEditorState] = React.useState(
     EditorState.createEmpty()
@@ -59,9 +59,9 @@ function Rich_text({ socket }) {
     if (!data || data) {
       setEditorState('');
     }
-
-    socket.emit('create-post');
-    socket.emit('create-comment');
+    setPostRender((prev) => !prev);
+    // socket.emit('create-post');
+    // socket.emit('create-comment');
   };
 
   const [uploadFile, setUploadFile] = React.useState([
