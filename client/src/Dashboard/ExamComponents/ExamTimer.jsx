@@ -22,16 +22,18 @@ function ExamTimer({ data, socket }) {
       JSON.parse(localStorage.userData).data.user._id,
       time
     );
-
-    if (examTime.length === 2) {
-      seconds.current = examTime[1];
-      minutes.current = examTime[0];
-    }
-    if (examTime.length === 3) {
-      seconds.current = examTime[2];
-      minutes.current = examTime[1];
-      hours.current = examTime[0];
-    }
+    socket.on('timer-start', (examTime) => {
+      console.log(examTime);
+      if (examTime.length === 2) {
+        seconds.current = examTime[1];
+        minutes.current = examTime[0];
+      }
+      if (examTime.length === 3) {
+        seconds.current = examTime[2];
+        minutes.current = examTime[1];
+        hours.current = examTime[0];
+      }
+    });
   }, []);
   const clock = setTimeout(() => {
     if (seconds.current <= 0 && minutes.current <= 0 && hours.current <= 0) {
