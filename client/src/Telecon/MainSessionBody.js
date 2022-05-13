@@ -13,7 +13,7 @@ function MainSessionBody({
 }) {
   const [toggleMic, setToggleMic] = React.useState(false);
   const layout = React.useRef(null);
-  const [tileWidth, setTileWidth] = React.useState(null);
+  const [tileWidth, setTileWidth] = React.useState(1);
 
   React.useMemo(() => {
     layout.current &&

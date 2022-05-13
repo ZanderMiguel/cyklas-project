@@ -73,6 +73,7 @@ const findActivity = async (req, res) => {
       files.forEach((item) => {
         activity.media.forEach((clientFile) => {
           if (clientFile === item.filename.split(`_split_`)[0]) {
+            console.log(clientFile === item.filename.split(`_split_`)[0]);
             myFile.push({ file: item });
             gfs
               .openDownloadStream(item._id)
@@ -92,6 +93,7 @@ const findActivity = async (req, res) => {
   }
 };
 const downloadFileByClick = async (req, res) => {
+  console.log(req.params.file);
   res.download(`./files/${req.params.file}`);
 };
 const deleteActivity = async (req, res) => {

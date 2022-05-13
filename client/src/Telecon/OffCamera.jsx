@@ -11,6 +11,7 @@ function OffCamera({
   handleToggleMic,
   myPeer,
 }) {
+  console.log(layout.current);
   return (
     <>
       {members.current.map(function (items) {

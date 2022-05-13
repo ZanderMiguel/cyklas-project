@@ -15,7 +15,7 @@ function TelRender({ socket, socketID, myPeer }) {
   const [sidedrawer, setSideDrawer] = React.useState(false);
   const [sidecontent, setSideContent] = React.useState('');
   const [currentMessage, setCurrentMessage] = React.useState('');
-  const [messagelist, setMessageList] = React.useState([]);
+  const messagelist = React.useRef([]);
   const { teleRoom } = useParams();
   const [renderer, setRenderer] = React.useState(false);
   const members = React.useRef([
@@ -98,7 +98,6 @@ function TelRender({ socket, socketID, myPeer }) {
                     messagelist={messagelist}
                     currentMessage={currentMessage}
                     setCurrentMessage={setCurrentMessage}
-                    setMessageList={setMessageList}
                     socket={socket}
                   />
                 ) : (

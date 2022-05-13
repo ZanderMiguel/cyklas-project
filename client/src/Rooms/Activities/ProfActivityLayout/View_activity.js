@@ -79,6 +79,7 @@ function View_activity({ socket }) {
         activityID,
       })
       .then((res) => {
+        console.log({ ...res.data.activity, ...res.data.myFile });
         setActivityView({ ...res.data.activity, ...res.data.myFile });
       })
       .catch((err) => console.log(err.message));
