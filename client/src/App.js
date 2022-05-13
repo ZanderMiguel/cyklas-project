@@ -137,6 +137,7 @@ function App() {
                 exact
                 path="/rooms/:roomID/s/:activityID"
                 component={Activity_viewed}
+                socket={socket}
               />
               {/* Quizlit */}
               <ProtectedRoutes exact path="/quizlit" component={QuizLit} />

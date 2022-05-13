@@ -336,7 +336,7 @@ function View_activity({ socket }) {
                           activityView.activityPoints < e.target.value
                             ? activityView.activityPoints
                             : e.target.value,
-                      }); //tanga
+                      });
                     }}
                     autoComplete="off"
                     size="small"
@@ -426,7 +426,7 @@ function View_activity({ socket }) {
                       placement="top-start"
                     >
                       <Box
-                        onClick={async () => {
+                        onClick={() => {
                           axios
                             .get(
                               `http://localhost:5000/activity/download/${activityView[index].file.filename}`,
