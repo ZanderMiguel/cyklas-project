@@ -17,12 +17,35 @@ import Manual from './Makegroups_model/Manual';
 import SavedGroups from './Makegroups_model/SavedGroups';
 import MAKE_GROUPS_NOTSTARTED from './Make_groups_notstarted';
 
-function Make_groups({ open, close, maxWidth }) {
+function Make_groups({
+  open,
+  close,
+  maxWidth,
+  members,
+  socket,
+  teleRoom,
+  setRedirect,
+}) {
+  const groups = React.useRef([]);
   const [radioGroup, setRadioGroup] = useState('Automate');
 
   const [opendialogCreateGroups, setOpenDialogCreateGroups] = useState(false);
 
   const handleCreateCreateGroups = () => {
+    let i = 0;
+    let max = 0;
+    while (i < members.current.length) {
+      if (max === parseInt(document.querySelector('#groupNumber').value)) {
+        i = 0;
+      }
+      groups.current[i] = groups.current[i]
+        ? [...groups.current[i], { ...members.current[max] }]
+        : [{ ...members.current[max] }];
+      if (max === members.current.length - 1) break;
+      i++;
+      max++;
+    }
+    console.log(groups.current);
     setOpenDialogCreateGroups(true);
   };
 
@@ -54,7 +77,7 @@ function Make_groups({ open, close, maxWidth }) {
               fontWeight: '600',
               textTransform: 'Capitalize',
               padding: '0.3em 3em',
-              boxShadow: "none",
+              boxShadow: 'none',
               '&: hover': {
                 backgroundColor: '#31B13E',
               },
@@ -66,10 +89,14 @@ function Make_groups({ open, close, maxWidth }) {
       >
         {opendialogCreateGroups && (
           <MAKE_GROUPS_NOTSTARTED
+            setRedirect={setRedirect}
+            socket={socket}
+            teleRoom={teleRoom}
             open={opendialogCreateGroups}
             close={handleCreateCloseCreateGroups}
             maxWidth="md"
             state={setOpenDialogCreateGroups}
+            groups={groups}
           />
         )}
 
@@ -193,7 +220,7 @@ function Make_groups({ open, close, maxWidth }) {
           </Grid>
 
           <Grid item xs={12} sx={{ marginTop: '2em' }}>
-            {radioGroup === 'Automate' && <Automate />}
+            {radioGroup === 'Automate' && <Automate members={members} />}
 
             {radioGroup === 'Manual' && <Manual />}
 

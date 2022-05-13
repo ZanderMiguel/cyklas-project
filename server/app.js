@@ -63,7 +63,9 @@ io.on('connection', (socket) => {
       socket.to(roomID).emit('user-disconnected', socketID);
     });
   });
-
+  socket.on('groupInit', (roomID, groups) => {
+    socket.to(roomID).emit('groupCollapse', groups, roomID);
+  });
   socket.on('render', (members, id, roomID) => {
     socket.to(roomID).emit('rendered', members, id, roomID);
   });

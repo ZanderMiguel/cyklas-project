@@ -9,12 +9,14 @@ import MeetingInformation from './MeetingInformation';
 import Members from './Members';
 import MessageArea from './TeleconSide/MessageArea';
 import PresentationCriteria from './PresentationCriteria';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import _ from 'lodash';
+
 function TelRender({ socket, socketID, myPeer }) {
+  const [redirect, setRedirect] = React.useState(null);
+
   const [sidedrawer, setSideDrawer] = React.useState(false);
   const [sidecontent, setSideContent] = React.useState('');
-  const [currentMessage, setCurrentMessage] = React.useState('');
   const messagelist = React.useRef([]);
   const { teleRoom } = useParams();
   const [renderer, setRenderer] = React.useState(false);
@@ -64,7 +66,7 @@ function TelRender({ socket, socketID, myPeer }) {
               whiteSpace: 'pre',
             }}
           >
-            <MainSessionHeader />
+            <MainSessionHeader members={members} />
 
             <MainSessionBody
               myPeer={myPeer}
@@ -75,7 +77,12 @@ function TelRender({ socket, socketID, myPeer }) {
               socketID={socketID}
             />
 
-            <MainSessionFooter />
+            <MainSessionFooter
+              members={members}
+              socket={socket}
+              teleRoom={teleRoom}
+              setRedirect={setRedirect}
+            />
           </Box>
 
           <Box
@@ -92,13 +99,12 @@ function TelRender({ socket, socketID, myPeer }) {
                 {sidecontent === 'MeetingInformation' ? (
                   <MeetingInformation />
                 ) : sidecontent === 'Members' ? (
-                  <Members />
+                  <Members members={members} />
                 ) : sidecontent === 'MessageArea' ? (
                   <MessageArea
                     messagelist={messagelist}
-                    currentMessage={currentMessage}
-                    setCurrentMessage={setCurrentMessage}
                     socket={socket}
+                    teleRoom={teleRoom}
                   />
                 ) : (
                   sidecontent === 'PresentationCriteria' && (
@@ -115,6 +121,7 @@ function TelRender({ socket, socketID, myPeer }) {
           />
         </Box>
       </Box>
+      {redirect && redirect}
     </>
   );
 }

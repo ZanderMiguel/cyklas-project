@@ -11,7 +11,6 @@ function OffCamera({
   handleToggleMic,
   myPeer,
 }) {
-  console.log(layout.current);
   return (
     <>
       {members.current.map(function (items) {
@@ -20,8 +19,10 @@ function OffCamera({
             id={items.id}
             key={items.id + items.stdID}
             style={{
-              minWidth: `calc(85%/${tileWidth})`,
-              height: `calc(${layout.current && layout.current}/${tileWidth})`,
+              minWidth: `calc(85%/${tileWidth.current})`,
+              height: `calc(${layout.current && layout.current.clientHeight}/${
+                tileWidth.current
+              })`,
             }}
           >
             <Box
@@ -40,7 +41,7 @@ function OffCamera({
               }}
             >
               <Avatar
-                alt="Remy Sharp"
+                alt={items.memberName[0].toUpperCase()}
                 src={items.camera}
                 sx={{ height: '5em', width: '5em' }}
               />
