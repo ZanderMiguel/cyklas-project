@@ -21,7 +21,7 @@ function TeleconRoomV2({ socket }) {
       items.forEach((student) => {
         if (student.stdID === JSON.parse(localStorage.userData).data.user._id) {
           setRedirect(
-            <Redirect to={`/telecon-setup/${roomID}group${index}`} />
+            <Redirect to={`/telecon-group/${roomID}group${index}`} />
           );
         }
       })

@@ -17,6 +17,21 @@ import { Check, PeopleAlt } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
 function LiveQuiz({ members, roomID, socket }) {
+  let [entered, setEntered] = React.useState([]);
+  socket.on('joined-lobby', (stdID, roomID) => {
+    console.log('tanga');
+    setEntered([...entered, stdID]);
+  });
+
+  socket.emit(
+    'enter-lobby',
+    JSON.parse(localStorage.userData).data.user._id,
+    roomID
+  );
+
+  socket.on('test', (s) => {
+    console.log(s);
+  });
   return (
     <>
       <CssBaseline />
@@ -88,11 +103,13 @@ function LiveQuiz({ members, roomID, socket }) {
           </Box>
 
           <Button
-            onClick={() => {}}
+            onClick={() => {
+              socket.emit('testing', 'tanginamo', roomID);
+            }}
             variant="contained"
             children="Start Quiz"
-            component={Link}
-            to="/LivequizQuestion"
+            /* component={Link}
+            to="/LivequizQuestion" */
             sx={{
               textTransform: 'Capitalize',
               fontSize: '0.9em',
@@ -160,11 +177,10 @@ function LiveQuiz({ members, roomID, socket }) {
           </Box>
           {members.members.map(function (items, index) {
             return (
-              <>
+              <div key={index}>
                 <Grid
                   item
                   xs={12}
-                  key={index}
                   sx={{
                     background: 'rgba(37, 40, 46, 0.8)',
                     borderRadius: '0.3em',
@@ -217,13 +233,20 @@ function LiveQuiz({ members, roomID, socket }) {
                           height: 'max-content',
                         }}
                       >
-                        Absent
+                        {JSON.parse(localStorage.userData).data.user._id ===
+                          items.stdID && 'Ready'}
+                        {entered.includes(items.stdID)
+                          ? JSON.parse(localStorage.userData).data.user._id ===
+                            items.stdID
+                            ? ''
+                            : 'Ready'
+                          : 'Absent'}
                       </Typography>
                     </Box>
                   </Box>
                 </Grid>
                 <Divider />
-              </>
+              </div>
             );
           })}
         </Container>

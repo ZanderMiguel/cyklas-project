@@ -57,7 +57,7 @@ const dataStudents = [
   },
 ];
 
-function Livequiz_queue({ open, close, maxWidth, members }) {
+function Livequiz_queue({ open, close, maxWidth, socket, teleRoom }) {
   return (
     <div>
       <Dialogform
@@ -66,6 +66,9 @@ function Livequiz_queue({ open, close, maxWidth, members }) {
         maxWidth={maxWidth}
         btn={
           <Button
+            onClick={() => {
+              window.open(`/LiveQuiz/${teleRoom}`);
+            }}
             variant="contained"
             startIcon={<Extension />}
             sx={{

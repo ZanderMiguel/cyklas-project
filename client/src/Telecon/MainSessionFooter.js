@@ -77,7 +77,9 @@ function MainSessionFooter({ members, socket, teleRoom }) {
       setOpenDialog(open);
     }
   });
-
+  socket.on('joined-lobby', (stdID, roomID) => {
+    console.log('tanga');
+  });
   return (
     <>
       {/* Main Session Footer */}
@@ -267,6 +269,8 @@ function MainSessionFooter({ members, socket, teleRoom }) {
 
         {opendialog && (
           <Livequiz_queue
+            teleRoom={teleRoom}
+            socket={socket}
             open={opendialog}
             close={handleCreateClose}
             maxWidth="sm"

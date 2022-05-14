@@ -45,7 +45,6 @@ const startAndConnectToDb = async () => {
     console.log(err);
   }
 };
-console.log(process.env.SOCKET);
 //middlewares
 app.use(cors());
 app.use(express.json());
@@ -84,7 +83,13 @@ io.on('connection', (socket) => {
   socket.once('quizLobby', (roomID) => {
     socket.emit('quizInit', quizLobby[roomID], roomID);
   });
-
+  socket.on('enter-lobby', (stdID, roomID) => {
+    console.log('inamos');
+    socket.to(roomID).emit('joined-lobby', stdID, roomID);
+  });
+  socket.on('testing', (s, roomID) => {
+    socket.emit('test', s);
+  });
   socket.on('create-room', () => {
     socket.emit('room-created', v4());
   });

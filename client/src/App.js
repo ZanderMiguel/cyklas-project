@@ -153,15 +153,17 @@ function App() {
 
               {/* Telecon */}
               <ProtectedRoutes exact path="/telecon" component={TeleconStart} />
+
               <Route path="/telecon-setup">
                 <TeleconLanding socket={socket} />
+              </Route>
+              <Route path="/telecon-group/:group?">
+                <TeleconGroup socket={socket} />
               </Route>
               <Route path="/LiveQuiz/:roomID">
                 <LiveQuizSetup socket={socket} />
               </Route>
-              <Route path="/telecon-setup/:group?">
-                <TeleconGroup socket={socket} />
-              </Route>
+
               <Route path="/telecon/:teleRoom">
                 <TeleconRoomV2 socket={socket} />
               </Route>

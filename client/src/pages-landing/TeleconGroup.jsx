@@ -2,11 +2,12 @@ import React from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 function TeleconGroup() {
   const { group } = useParams();
-  console.log(group);
+  //const win = window.open(`/telecon/${group}`);
+
   return (
-    <div>
-      <h1>tanga</h1>
-    </div>
+    <>
+      <Redirect to={`/telecon/${group}`} />
+    </>
   );
 }
 
