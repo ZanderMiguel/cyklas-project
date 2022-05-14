@@ -6,6 +6,9 @@ import Wordfile from '../../../../assets/ImageJaven/Wordfile.png';
 import Pdffile from '../../../../assets/ImageJaven/Pdffile.png';
 import Excelfile from '../../../../assets/ImageJaven/Excelfile.png';
 import Powerpointfile from '../../../../assets/ImageJaven/Powerpointfile.png';
+import Imagee from '../../../../assets/ImageJaven/Imagee.png';
+import Videoo from '../../../../assets/ImageJaven/Videoo.png';
+import Filee from '../../../../assets/ImageJaven/Filee.png';
 
 function UploadFileTile({ submits, activityID, duedate }) {
   const [uploadFile, setUploadFile] = React.useState( [] );
@@ -96,19 +99,21 @@ function UploadFileTile({ submits, activityID, duedate }) {
                 }}
               >
                 <img
-                  src={
-                    item?.includes('.docx')
-                      ? Wordfile
-                      : item?.includes('.xls')
-                      ? Excelfile
-                      : item?.includes('.ppt') || item?.includes('.pptx')
-                      ? Powerpointfile
-                      : item?.includes('.pdf') && Pdffile
-                  }
-                  style={{
-                    height: '40px',
-                  }}
-                />
+                      src={
+                        item?.includes('.docx') ? Wordfile
+                          : item?.includes('.xls') ? Excelfile
+                          : item?.includes('.jpg') ||
+                            item?.includes('.png') ? Imagee
+                          : item?.includes('.mp4') ? Videoo
+                          : item?.includes('.ppt') ||
+                            item?.includes('.pptx') ? Powerpointfile
+                          : item?.includes('.pdf') ? Pdffile
+                          : item?.includes('.txt') && Filee
+                      }
+                      style={{
+                        height: '40px',
+                      }}
+                    />
 
                 <Box
                   className="Activity-filename"
@@ -140,15 +145,15 @@ function UploadFileTile({ submits, activityID, duedate }) {
                       height: 'max-content',
                     }}
                   >
-                    {item?.includes('.docx')
-                      ? 'WORD FILE'
-                      : item?.includes('.xls')
-                      ? 'EXCEL FILE'
-                      : item?.includes('.ppt') || item?.includes('.pptx')
-                      ? 'POWER POINT'
-                      : item?.includes('.pdf')
-                      ? 'PDF FILE'
-                      : 'FILE'}
+                    {item?.includes('.docx') ? 'WORD FILE'
+                          : item?.includes('.xls') ? 'EXCEL FILE'
+                          : item?.includes('.mp4') ? 'VIDEO FILE'
+                          : item?.includes('.jpg') ||
+                            item?.includes('.png') ? 'IMAGE FILE'
+                          : item?.includes('.ppt') ||
+                            item?.includes('.pptx') ? 'POWER POINT FILE'
+                          : item?.includes('.pdf') ? 'PDF FILE'
+                          : item?.includes('.txt') && 'FILE' }
                   </Typography>
                 </Box>
               </Box>

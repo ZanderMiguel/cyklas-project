@@ -52,7 +52,7 @@ function Quizzes_layout() {
             <Box
               sx={designs.QuizName_User_Date}
               component={Link}
-              to="Quiz_viewed"
+              to="/QuizViewedV2"
             >
               <Typography noWrap sx={designs.Quiz}>
                 {items.title}

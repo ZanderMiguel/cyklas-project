@@ -3,10 +3,12 @@ import { Container, Grid } from '@mui/material';
 import axios from 'axios';
 import DashboardSearchbar from './DashboardSearchbar';
 import DashboardStatistics from './DashboardStatistics';
+import DashboardStatisticsStudent from './DashboardStatisticsStudent';
 import DashboardStudentrankings from './DashboardStudentrankings';
 import DashboardProfessorratings from './DashboardProfessorratings';
 import DashboardRoomsclasses from './DashboardRoomsclasses';
 import Dashboard_main from '../student_side/Dashboard/Dashboard_main';
+import DashboardStatisticsV2 from './DashboardStatisticsV2';
 
 function Dashboard() {
   const [roomdata, setRoom] = useState( null );
@@ -39,7 +41,14 @@ function Dashboard() {
           columnSpacing={1}
           sx={{ marginBottom: '1em' }}
         >
-          <DashboardStatistics allActivity={ allActivity}/>
+          {JSON.parse(localStorage.userData).data.user.userType === 'Professor' ? (
+            // <DashboardStatistics />
+            <DashboardStatisticsV2 />
+          )
+          :
+          (
+            <DashboardStatisticsStudent />
+          )}
         </Grid>
         <Grid item xs={12} sx={{ marginBottom: '1em' }}>
           <DashboardRoomsclasses roomdata={roomdata} />
