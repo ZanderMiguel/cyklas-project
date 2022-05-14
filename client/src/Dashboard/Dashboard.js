@@ -8,6 +8,7 @@ import DashboardStudentrankings from './DashboardStudentrankings';
 import DashboardProfessorratings from './DashboardProfessorratings';
 import DashboardRoomsclasses from './DashboardRoomsclasses';
 import Dashboard_main from '../student_side/Dashboard/Dashboard_main';
+import DashboardStatisticsV2 from './DashboardStatisticsV2';
 
 function Dashboard() {
   const [roomdata, setRoom] = useState(null);
@@ -40,7 +41,8 @@ function Dashboard() {
           sx={{ marginBottom: '1em' }}
         >
           {JSON.parse(localStorage.userData).data.user.userType === 'Professor' ? (
-            <DashboardStatistics />
+            // <DashboardStatistics />
+            <DashboardStatisticsV2 />
           )
           :
           (
