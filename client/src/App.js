@@ -54,6 +54,7 @@ import TeleconLanding from './pages-landing/TeleconLanding';
 
 // Student Side
 import Dashboard_main from './student_side/Dashboard/Dashboard_main';
+import TeleconGroup from './pages-landing/TeleconGroup';
 
 function App() {
   const theme = createTheme({
@@ -167,6 +168,9 @@ function App() {
               <Route path="/telecon-setup">
                 <TeleconLanding socket={socket} />
               </Route>
+              <Route path="/telecon-setup/:group?">
+                <TeleconGroup socket={socket} />
+              </Route>
               <Route path="/telecon/:teleRoom">
                 <TeleconRoomV2 socket={socket} />
               </Route>
@@ -177,10 +181,6 @@ function App() {
                 path="/LivequizStudentrankings"
                 component={LivequizStudentrankings}
               />
-
-              {/* <Route path="/TeleconRoomV2" component={TeleconRoomV2} /> */}
-
-              {/* Records and Classcards */}
               <ProtectedRoutes exact path="/records" component={Records} />
               <ProtectedRoutes
                 exact

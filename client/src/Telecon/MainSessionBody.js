@@ -34,12 +34,12 @@ function MainSessionBody({
       (document.querySelector('#memberCount').innerHTML =
         layout.current?.childNodes?.length || 1);
     socket.once('join-others', (newMember, id, roomID) => {
+      setRenderer((prev) => !prev);
       members.current = _.uniqBy(
         [...newMember, ...members.current],
         (item) => item.stdID
       );
 
-      console.log('someone joined');
       socket.emit(
         'render',
         _.uniqBy([...newMember, ...members.current], (item) => item.stdID),
@@ -51,21 +51,17 @@ function MainSessionBody({
   socket.once('user-disconnected', (id) => {
     console.log(members.current);
     members.current = members.current.filter((item) => item.id !== id);
-    setRenderer((prev) => !prev);
-    //document.querySelector(`#${id}`).remove()
   });
   const handleToggleMic = () => {
     setToggleMic((prev) => !prev);
   };
+
   return (
     <>
-      {/* Main Session Body */}
       <div
         style={{
           width: `100%`,
           height: '78vh',
-          //overflowY: "auto",
-          //padding: "0em 0.4em",
           display: 'flex',
           gap: '0.8em',
           flexWrap: 'wrap',
@@ -75,6 +71,7 @@ function MainSessionBody({
         ref={layout}
       >
         <OffCamera
+          socket={socket}
           layout={layout}
           members={members}
           toggleMid={toggleMic}

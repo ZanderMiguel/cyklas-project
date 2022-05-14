@@ -10,6 +10,7 @@ function OffCamera({
   tileWidth,
   handleToggleMic,
   myPeer,
+  socket,
 }) {
   return (
     <>
@@ -29,8 +30,6 @@ function OffCamera({
               sx={{
                 position: 'relative',
                 backgroundColor: '#25282E',
-                // backgroundImage: `url(${download})`,
-                // backgroundSize: 'cover',
                 height: '100%',
                 width: 'relative',
                 borderRadius: '0.5em',
