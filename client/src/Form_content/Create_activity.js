@@ -107,7 +107,7 @@ function Create_activity({ item, open, close, setOpenDialog }) {
     formData.append('rooms', [roomID]);
     axios
       .post(
-        'https://murmuring-basin-16459.herokuapp.com/activity/create',
+        'http://localhost:5000/activity/create',
         formData,
         {
           headers: {
@@ -129,7 +129,7 @@ function Create_activity({ item, open, close, setOpenDialog }) {
   useEffect(() => {
     axios
       .post(
-        'https://murmuring-basin-16459.herokuapp.com/gradingSystem/record',
+        'http://localhost:5000/gradingSystem/record',
         {
           roomID: roomID,
         }

@@ -79,7 +79,9 @@ function App() {
     },
   });
 
-  const socket = io( 'https://murmuring-basin-16459.herokuapp.com:65334' );
+  const socket = io( 'http://localhost:3001' );
+
+  
   console.log(socket)
 
   const [quizlit, setQuizlit] = React.useState(null);
@@ -97,7 +99,7 @@ function App() {
       />
     );
   });
-  axios.post('https://murmuring-basin-16459.herokuapp.com/rooms');
+  axios.post('http://localhost:5000/rooms');
   return (
     <>
       {
@@ -199,7 +201,7 @@ function App() {
 
               {/* Student Side */}
               <Route exact path="/Evaluation" component={Evaluation} />
-              {/* <Route exact path="/Dashboard_main" component={Dashboard_main} /> */}
+              <Route exact path="/Dashboard_main" component={Dashboard_main} />
               <Route exact path="/ExamViewedV2" component={ExamViewedV2} />
               <Route exact path="/Exam_take/:quizID" component={Exam_take} />
               <ProtectedRoutes

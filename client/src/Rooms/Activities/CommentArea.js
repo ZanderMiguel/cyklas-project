@@ -17,7 +17,7 @@ function CommentArea({ socket, commentId, activityID }) {
   useEffect(() => {
     axios
       .post(
-        'https://murmuring-basin-16459.herokuapp.com/activity/get/comment',
+        'http://localhost:5000/activity/get/comment',
         { activityID }
       )
       .then((res) => {
@@ -30,7 +30,7 @@ function CommentArea({ socket, commentId, activityID }) {
     if (commentContent !== '') {
       axios
         .put(
-          'https://murmuring-basin-16459.herokuapp.com/activity/create/comment',
+          'http://localhost:5000/activity/create/comment',
           {
             activityID,
             commentObj: {

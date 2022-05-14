@@ -22,7 +22,7 @@ function Rooms({ socket }) {
   React.useEffect( () =>
   {
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/gradingSystem', {
+      .post('http://localhost:5000/gradingSystem', {
         userID: JSON.parse(localStorage.userData).data.user._id,
       })
       .then((res) => {
@@ -45,7 +45,7 @@ function Rooms({ socket }) {
   });
 
   React.useMemo(() => {
-    post('https://murmuring-basin-16459.herokuapp.com/rooms', {
+    post('http://localhost:5000/rooms', {
       userID: JSON.parse(localStorage.userData).data.user._id,
     });
   }, [newRoom]);

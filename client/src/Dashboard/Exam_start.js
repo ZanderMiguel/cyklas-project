@@ -26,15 +26,16 @@ function Exam_start({ socket }) {
   const [redirect, setRedirect] = React.useState(null);
   React.useMemo(() => {
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/quizlit', { quizID })
+      .post('http://localhost:5000/quizlit', { quizID })
       .then((response) => {
         axios
-          .post('https://murmuring-basin-16459.herokuapp.com/question', {
+          .post('http://localhost:5000/question', {
             quizID,
           })
           .then((res) => {
-            setData([response.data, res.data]);
-            console.log([response.data, res.data]);
+            // setData([response.data, res.data]);
+            // console.log([response.data, res.data]);
+            console.log(res)
           })
           .catch((err) => console.log(err));
       })
@@ -172,7 +173,7 @@ function Exam_start({ socket }) {
             onClick={() => {
               axios
                 .post(
-                  'https://murmuring-basin-16459.herokuapp.com/answers/create',
+                  'http://localhost:5000/answers/create',
                   {
                     answersPayload: qAnswers.current,
                   }

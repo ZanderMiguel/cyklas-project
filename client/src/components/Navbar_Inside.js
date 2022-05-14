@@ -23,6 +23,7 @@ import AvatarIcon from '../assets/ImageJaven/Avatar.png';
 import { useTheme } from '@mui/material/styles';
 import { PostAdd } from '@mui/icons-material';
 import { useLocation } from 'react-router-dom';
+import axios from 'axios'
 
 const request = [
   {
@@ -137,6 +138,21 @@ function Navbar() {
   const theme = useTheme();
   const location = useLocation();
 
+  const [items, setItems] = React.useState(null);
+  const [toggleAccept, setToggleAccept] = React.useState(false);
+
+
+  React.useEffect(() => {
+    axios
+      .post('http://localhost:5000/requests', {
+        userID: JSON.parse(localStorage.userData).data.user._id,
+      })
+      .then((res) => {
+        setItems(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, [toggleAccept]);
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorEl1, setAnchorEl1] = React.useState(null);
 
@@ -197,7 +213,7 @@ function Navbar() {
           </Typography>
           <IconButton size="small" onClick={handleClickNotif}>
             <Badge
-              variant={general.length > 0 || request.length > 0 ? 'dot' : null}
+              variant={items && items.length > 0 ? 'dot' : null}
               color="primary"
               overlap="circular"
             >
@@ -209,7 +225,7 @@ function Navbar() {
             anchorEl={anchorEl}
             onClose={handleCloseNotif}
           >
-            <Notificationpopover general={general} request={request} />
+            <Notificationpopover general={general} request={request} items={items} setToggleAccept={setToggleAccept} setItems={ setItems}/>
           </CusPopover>
           <Box
             display="flex"

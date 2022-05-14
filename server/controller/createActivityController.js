@@ -1,4 +1,4 @@
-const Activity = require('../models/model-activity');
+const Activity = require( '../models/model-activity' );
 const mongoose = require('mongoose');
 const fs = require('fs');
 require('dotenv').config();
@@ -73,7 +73,7 @@ const findActivity = async (req, res) => {
       files.forEach((item) => {
         activity.media.forEach((clientFile) => {
           if (clientFile === item.filename.split(`_split_`)[0]) {
-            myFile.push({ file: item });
+            myFile.push( { file: item } );
             gfs
               .openDownloadStream(item._id)
               .pipe(fs.createWriteStream(`./files/${item.filename}`));
@@ -91,9 +91,17 @@ const findActivity = async (req, res) => {
     });
   }
 };
-const downloadFileByClick = async (req, res) => {
+const downloadFileByClick = async ( req, res ) =>
+{
   res.download(`./files/${req.params.file}`);
 };
+
+const previewFileByClick = async ( req, res ) =>
+{
+  console.log( res )
+  return res.json('Preview')
+};
+
 const deleteActivity = async (req, res) => {
   try {
     await Activity.findByIdAndDelete(req.body.id);
@@ -107,6 +115,7 @@ const deleteActivity = async (req, res) => {
     });
   }
 };
+
 
 const updateActivity = async (req, res) => {
   try {
@@ -174,6 +183,7 @@ module.exports = {
   updateActivityController: updateActivity,
   findActivity,
   downloadFileByClick,
+  previewFileByClick,
   createActivityComment,
   displayActivityComment,
   deleteController,

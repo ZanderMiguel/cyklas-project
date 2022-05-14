@@ -7,10 +7,9 @@ const { GridFsStorage } = require('multer-gridfs-storage');
 const crypto = require('crypto');
 const path = require('path');
 
-const io = require('socket.io')(process.env.SOCKET, {
+const io = require('socket.io')(3001, {
   cors: {
-    origin: ['https://cyklas.tech'],
-    transports: ['websocket'],
+    origin: ['http://localhost:3000']
   },
 });
 const cors = require('cors');

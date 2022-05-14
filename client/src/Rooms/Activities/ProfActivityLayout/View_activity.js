@@ -65,17 +65,21 @@ function View_activity({ socket }) {
   const [score, setScore] = useState({});
   const [studentID, setStudentID] = React.useState({});
   const scores = React.useRef([]);
-  const handleChangeSort = (event) => {
+  
+  
+  
+  const handleChangeSort = ( event ) =>
+  {
     setSort(event.target.value);
   };
 
-  socket.on('post-comment', (uuid) => {
-    setCommentId(uuid);
-  });
+  // socket.on('post-comment', (uuid) => {
+  //   setCommentId(uuid);
+  // });
 
   React.useEffect(() => {
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/activity/get', {
+      .post('http://localhost:5000/activity/get', {
         activityID,
       })
       .then((res) => {
@@ -92,7 +96,7 @@ function View_activity({ socket }) {
             onClick={() => {
               axios
                 .post(
-                  'https://murmuring-basin-16459.herokuapp.com/records/activity/return',
+                  'http://localhost:5000/records/activity/return',
                   {
                     roomID,
                     userID: JSON.parse(localStorage.userData).data.user._id,
@@ -432,7 +436,7 @@ function View_activity({ socket }) {
                         onClick={async () => {
                           axios
                             .get(
-                              `https://murmuring-basin-16459.herokuapp.com/activity/download/${activityView[index].file.filename}`,
+                              `http://localhost:5000/activity/download/${activityView[index].file.filename}`,
                               {
                                 responseType: 'blob',
                               }
@@ -610,6 +614,7 @@ function View_activity({ socket }) {
                             'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
                         },
                       }}
+                      onClick={ ()=> alert('awit') }
                     >
                       <img
                         src={Wordfile}

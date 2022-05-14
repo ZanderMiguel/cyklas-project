@@ -39,7 +39,7 @@ function Memberstable({ members, setRefresher }) {
                   onClick={() => {
                     axios
                       .put(
-                        'https://murmuring-basin-16459.herokuapp.com/room/leave',
+                        'http://localhost:5000/room/leave',
                         {
                           roomID,
                           userID: JSON.parse(localStorage.userData).data.user

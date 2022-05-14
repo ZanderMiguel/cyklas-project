@@ -140,7 +140,7 @@ function Notification_viewall() {
   const [value, setValue] = React.useState(0);
   // const [data, setData] = React.useState(null);
   React.useMemo(() => {
-    axios.post('https://murmuring-basin-16459.herokuapp.com/');
+    axios.post('http://localhost:5000/');
   }, []);
   const handleChange = (event, newValue) => {
     setValue(newValue);

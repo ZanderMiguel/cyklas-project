@@ -29,7 +29,7 @@ function Records_tableClassRecords({ rooms }) {
   const handleChangeRoom = (event) => {
     setSelectRoom(event.target.value);
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/records', {
+      .post('http://localhost:5000/records', {
         userID: JSON.parse(localStorage.userData).data.user._id,
         roomID: rooms[event.target.value]._id,
       })
@@ -38,14 +38,14 @@ function Records_tableClassRecords({ rooms }) {
       })
       .catch((err) => console.log(err));
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/get/members', {
+      .post('http://localhost:5000/get/members', {
         members: rooms[event.target.value].members,
       })
       .then((res) => {
         setMembers(res.data);
         axios
           .post(
-            'https://murmuring-basin-16459.herokuapp.com/gradingSystem/record',
+            'http://localhost:5000/gradingSystem/record',
             {
               roomID: rooms[event.target.value]._id,
             }
@@ -53,7 +53,7 @@ function Records_tableClassRecords({ rooms }) {
           .then((res) => {
             axios
               .post(
-                'https://murmuring-basin-16459.herokuapp.com/records/overall',
+                'http://localhost:5000/records/overall',
                 {
                   category: res.data[0].Category,
                   roomID: rooms[event.target.value]._id,
@@ -203,7 +203,7 @@ function Records_tableClassRecords({ rooms }) {
                   if (items.gradingSystem.length === 0) {
                     axios
                       .put(
-                        'https://murmuring-basin-16459.herokuapp.com/records/applyGS',
+                        'http://localhost:5000/records/applyGS',
                         {
                           crID: items._id,
                           gradingSystem: stdRecord.current,

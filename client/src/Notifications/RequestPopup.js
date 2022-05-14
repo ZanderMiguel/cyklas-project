@@ -5,25 +5,25 @@ import axios from 'axios';
 import moment from 'moment';
 import Nodata from '../assets/ImageJaven/Nodata.png';
 
-function RequestPopup() {
+function RequestPopup( { items, setToggleAccept,setItems} ) {
   const { designs } = useStyle();
-  const [items, setItems] = React.useState(null);
-  const [toggleAccept, setToggleAccept] = React.useState(false);
+  // const [items, setItems] = React.useState(null);
+  // const [toggleAccept, setToggleAccept] = React.useState(false);
 
-  React.useEffect(() => {
-    axios
-      .post('https://murmuring-basin-16459.herokuapp.com/requests', {
-        userID: JSON.parse(localStorage.userData).data.user._id,
-      })
-      .then((res) => {
-        setItems(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, [toggleAccept]);
+  // React.useEffect(() => {
+  //   axios
+  //     .post('http://localhost:5000/requests', {
+  //       userID: JSON.parse(localStorage.userData).data.user._id,
+  //     })
+  //     .then((res) => {
+  //       setItems(res.data);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, [toggleAccept]);
 
   const handleAcceptRequest = (event, stdImage, stdName, stdID) => {
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/records/create', {
+      .post('http://localhost:5000/records/create', {
         room: event.target.name,
         student: {
           stdID,
@@ -45,7 +45,7 @@ function RequestPopup() {
       .catch((err) => console.log(err));
 
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/requests/accept', {
+      .post('http://localhost:5000/requests/accept', {
         roomID: event.target.name,
         memberID: stdID,
         reqID: event.target.nonce,

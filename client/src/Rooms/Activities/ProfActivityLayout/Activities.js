@@ -23,7 +23,7 @@ function Activities({ roomID, socket }) {
     let source = axios.CancelToken.source();
     axios
       .post(
-        'https://murmuring-basin-16459.herokuapp.com/activity',
+        'http://localhost:5000/activity',
         { roomID },
         {
           cancelToken: source.token,
