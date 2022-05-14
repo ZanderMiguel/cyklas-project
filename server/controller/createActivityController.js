@@ -4,12 +4,19 @@ const fs = require('fs');
 require('dotenv').config();
 let gfs;
 const openDB = async () => {
-  await mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  await mongoose.connect(
+    process.env.MONGODB_URI ||
+      'mongodb+srv://reypanerz:pantheonq1w2e3@learningmonggodb.jhlar.mongodb.net/Classes?retryWrites=true&w=majority',
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  );
 
-  const conn = mongoose.createConnection(process.env.MONGODB_URI);
+  const conn = mongoose.createConnection(
+    process.env.MONGODB_URI ||
+      'mongodb+srv://reypanerz:pantheonq1w2e3@learningmonggodb.jhlar.mongodb.net/Classes?retryWrites=true&w=majority'
+  );
   conn.once('open', () => {
     gfs = new mongoose.mongo.GridFSBucket(conn.db, {
       bucketName: 'uploads',
@@ -87,6 +94,10 @@ const findActivity = async (req, res) => {
 const downloadFileByClick = async (req, res) => {
   res.download(`./files/${req.params.file}`);
 };
+const previewFileByClick = async (req, res) => {
+  return res.json('preview');
+};
+
 const deleteActivity = async (req, res) => {
   try {
     await Activity.findByIdAndDelete(req.body.id);
@@ -125,7 +136,7 @@ const createActivityComment = async (req, res) => {
         $push: { activityComments: [{ ...req.body.commentObj, commentID }] },
       }
     );
-    return res.json('Activity Comment')
+    return res.json('Activity Comment');
   } catch (error) {
     console.log(error);
     return res.json(error);
@@ -167,6 +178,7 @@ module.exports = {
   updateActivityController: updateActivity,
   findActivity,
   downloadFileByClick,
+  previewFileByClick,
   createActivityComment,
   displayActivityComment,
   deleteController,

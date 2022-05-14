@@ -23,7 +23,7 @@ const [open, setOpen] = React.useState(false);
             borderRadius: "0.5em",
             width: "relative",
             "&: hover": {
-                margin: "0em",
+                margin: "0.5em 0em",
                 cursor: "pointer",
                 transition: "all 250ms"
             }

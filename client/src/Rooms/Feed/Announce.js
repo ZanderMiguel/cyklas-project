@@ -2,27 +2,29 @@ import React, { useState } from 'react';
 import { CssBaseline, Grid, Box } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import TeleconPostedTile from "../../Telecon/components/TeleconPostedTile";
+import TeleconPostedTile from '../../Telecon/components/TeleconPostedTile';
 import Post_layout from './Post_layout';
 import Rich_text from './Rich_text';
-import ActivityFile from '../../components/ActivityFile'
+import ActivityFile from '../../components/ActivityFile';
 
 function Announce({ socket }) {
   const { roomID } = useParams();
-  const [postuuid, setPostUuid] = useState(null);
   const [data, setData] = useState(null);
-  const [commentId, setCommentId] = useState(null);
+  const [postRender, setPostRender] = useState(false);
+  const [commentRender, setCommentRender] = useState(false);
 
-  socket.on('post-created', (uuid) => {
-    setPostUuid(uuid);
-  });
-  socket.on('post-comment', (uuid) => {
-    setCommentId(uuid);
-  });
+  // socket.on('post-created', (uuid) => {
+  //   setPostUuid(uuid);
+  // });
+  // socket.on('post-comment', (uuid) => {
+  //   setCommentId(uuid);
+  // });
 
   React.useEffect(() => {
     axios
-      .post('http://localhost:5000/announce', { rooms: roomID })
+      .post('http://localhost:5000/announce', {
+        rooms: roomID,
+      })
       .then((res) => {
         setData(res.data);
         socket.emit('create-comment');
@@ -30,7 +32,7 @@ function Announce({ socket }) {
       .catch((e) => {
         console.log(e.message);
       });
-  }, [postuuid]);
+  }, [postRender]);
 
   return (
     <>
@@ -49,7 +51,7 @@ function Announce({ socket }) {
               },
             }}
           >
-            <Rich_text socket={socket} />
+            <Rich_text socket={socket} setPostRender={setPostRender} />
           </Box>
         </Grid>
         <Grid item xs={12}>
@@ -58,7 +60,9 @@ function Announce({ socket }) {
               data={data}
               socket={socket}
               roomID={roomID}
-              commentId={commentId}
+              setCommentRender={setCommentRender}
+              setPostRender={setPostRender}
+              commentRender={commentRender}
             />
           )}
         </Grid>

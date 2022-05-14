@@ -158,8 +158,8 @@ function Notification_viewall() {
         <Box
           sx={{
             display: 'flex',
-            alignItems: "center",
-            padding: "0em 0.5em 0em 0em"
+            alignItems: 'center',
+            padding: '0em 0.5em 0em 0em',
           }}
         >
           <NotificationsActive

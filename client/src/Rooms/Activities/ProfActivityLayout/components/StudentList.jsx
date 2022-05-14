@@ -5,14 +5,24 @@ import '../../../Styles/View_activity_style.css';
 import useStyle from '../../../Styles/View_activity_style';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import Score from './Score';
 
-function StudentList({ setSubmitData, setStudentID, score, activityView }) {
+function StudentList({
+  setSubmitData,
+  setStudentID,
+  score,
+  activityView,
+  submitData,
+  scores,
+}) {
   const { designs } = useStyle();
   const { roomID, activityID } = useParams();
   const [data, setData] = React.useState(null);
   React.useEffect(() => {
     axios
-      .post('http://localhost:5000/rooms/my-room', { roomID })
+      .post('http://localhost:5000/rooms/my-room', {
+        roomID,
+      })
       .then((res) => {
         axios
           .post('http://localhost:5000/get/members', {
@@ -40,15 +50,38 @@ function StudentList({ setSubmitData, setStudentID, score, activityView }) {
                       stdID: items._id,
                     })
                     .then((res) => {
-                      console.log(res.data);
                       setSubmitData(res.data.activity);
+                      console.log(res.data.activity);
                     })
                     .catch((err) => console.log(err));
                   document.querySelector('#activityScore').value =
                     score[items._id] || 0;
                 }}
               >
-                <Checkbox sx={designs.Student_Checkbox_Style} />
+                {submitData && submitData?.[0]?.activityStatus !== 'Graded' && (
+                  <Checkbox
+                    sx={designs.Student_Checkbox_Style}
+                    onChange={(e) => {
+                      if (e.target.checked === true) {
+                        scores.current.push({
+                          stdID: items._id,
+                          score: score[items._id] || 0,
+                        });
+
+                        console.log(
+                          scores.current.filter((value) => {
+                            return value.stdID;
+                          })
+                        );
+                      }
+                      if (e.target.checked === false) {
+                        scores.current = scores.current.filter((value) => {
+                          return value.stdID !== items._id;
+                        });
+                      }
+                    }}
+                  />
+                )}
                 <Avatar
                   alt="Remy Sharp"
                   src={items.image}
@@ -70,10 +103,14 @@ function StudentList({ setSubmitData, setStudentID, score, activityView }) {
                   {items.firstName} {items.lastName}
                 </Typography>
                 <Box flexGrow={1} height="relative" width="relative" />
-                <Typography sx={designs.StudentScore_Typography_Style}>
-                  {score[items._id]} /{' '}
-                  {activityView && activityView.activityPoints}
-                </Typography>
+
+                <Score
+                  submitData={submitData}
+                  score={score}
+                  activityView={activityView}
+                  items={items}
+                  designs={designs}
+                />
               </Box>
             );
           }

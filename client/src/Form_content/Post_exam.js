@@ -13,6 +13,7 @@ import {
   Checkbox,
 } from '@mui/material';
 import { Save } from '@mui/icons-material';
+import Datepicker from '../components/DatePicker';
 import ExamIconButton from '../assets/ImageJaven/ExamIconButton.png';
 import useStyle from './Styles/Post_exam_style';
 import axios from 'axios';
@@ -85,6 +86,7 @@ function Post_exam({
   const { designs } = useStyle();
 
   const [selectRoom, setSelectRoom] = useState('');
+  const [duedate, setDueDate] = useState(null);
   const [gsData, setGSData] = useState(null);
   const handleChangeRoom = (event) => {
     setSelectRoom(event.target.value);
@@ -137,7 +139,7 @@ function Post_exam({
         quizType: 'Exam',
         graded: false,
         type,
-        gsCategory:selectTerm
+        gsCategory: selectTerm,
       })
       .then((res) => {
         questionMemo.current.forEach((item) => {
@@ -162,7 +164,9 @@ function Post_exam({
           });
         });
         axios
-          .post('http://localhost:5000/question/create', { questionPayload })
+          .post('http://localhost:5000/question/create', {
+            questionPayload,
+          })
           .then((res) => {
             console.log(questionPayload);
             questionMemo.current = [{}];
@@ -237,7 +241,7 @@ function Post_exam({
               startIcon={
                 <img
                   src={ExamIconButton}
-                  alt=""
+                  alt="examicon"
                   style={{ height: '0.7em', width: '0.7em' }}
                 />
               }
@@ -393,7 +397,7 @@ function Post_exam({
               </Select>
             </FormControl>
 
-            <FormControl
+            {/* <FormControl
               variant="standard"
               sx={{
                 width: '100%',
@@ -433,6 +437,53 @@ function Post_exam({
                 }}
               >
                 {dataStudent.map(({ value, label }) => (
+                  <MenuItem key={value} value={value}>
+                    {' '}
+                    {label}{' '}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl> */}
+            <FormControl
+              variant="standard"
+              sx={{
+                width: '100%',
+                paddingTop: '0em',
+                marginBottom: '0.8em',
+              }}
+            >
+              <InputLabel
+                id="demo-simple-select-standard-label"
+                sx={{
+                  fontSize: '0.9em',
+                  fontWeight: '500',
+                  color: '#3F3D56',
+                  textTransform: 'Capitalize',
+                }}
+              >
+                Set Time Limit
+              </InputLabel>
+
+              <Select
+                labelId="demo-simple-select-standard-label"
+                id="demo-simple-select-standard"
+                value={selectTimeLimit}
+                onChange={handleChangeTimeLimit}
+                label="SelectTimeLimit"
+                disableUnderline
+                sx={{
+                  width: '100%',
+                  fontSize: '0.9em',
+                  fontWeight: '500',
+                  color: '#3F3D56',
+                  borderBottom: '1px solid #DBDBDB',
+                  '&: hover': {
+                    borderBottom: '1px solid #007FFF',
+                    transition: 'all 300ms',
+                  },
+                }}
+              >
+                {dataTimeLimit.map(({ value, label }) => (
                   <MenuItem key={value} value={value}>
                     {' '}
                     {label}{' '}
@@ -491,7 +542,7 @@ function Post_exam({
                     ))}
                 </Select>
               </FormControl>
-
+              {/* 
               <FormControl
                 variant="standard"
                 sx={{
@@ -510,7 +561,7 @@ function Post_exam({
                   }}
                 >
                   Set Due Date
-                </InputLabel>
+                </InputLabel>styled
 
                 <Select
                   labelId="demo-simple-select-standard-label"
@@ -538,55 +589,14 @@ function Post_exam({
                     </MenuItem>
                   ))}
                 </Select>
-              </FormControl>
+              </FormControl> */}
 
-              <FormControl
-                variant="standard"
-                sx={{
-                  width: '100%',
-                  paddingTop: '0em',
-                  marginBottom: '0.8em',
-                }}
-              >
-                <InputLabel
-                  id="demo-simple-select-standard-label"
-                  sx={{
-                    fontSize: '0.9em',
-                    fontWeight: '500',
-                    color: '#3F3D56',
-                    textTransform: 'Capitalize',
-                  }}
-                >
-                  Set Time Limit
-                </InputLabel>
-
-                <Select
-                  labelId="demo-simple-select-standard-label"
-                  id="demo-simple-select-standard"
-                  value={selectTimeLimit}
-                  onChange={handleChangeTimeLimit}
-                  label="SelectTimeLimit"
-                  disableUnderline
-                  sx={{
-                    width: '100%',
-                    fontSize: '0.9em',
-                    fontWeight: '500',
-                    color: '#3F3D56',
-                    borderBottom: '1px solid #DBDBDB',
-                    '&: hover': {
-                      borderBottom: '1px solid #007FFF',
-                      transition: 'all 300ms',
-                    },
-                  }}
-                >
-                  {dataTimeLimit.map(({ value, label }) => (
-                    <MenuItem key={value} value={value}>
-                      {' '}
-                      {label}{' '}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
+              <Datepicker
+                styled="standard"
+                inputLabel="Due Date"
+                duedate={duedate}
+                setDueDate={setDueDate}
+              />
             </Box>
           </Grid>
 

@@ -49,7 +49,7 @@ function Members_main({ roomdata }) {
           )}
         </Box>
         <MembersTableStud members={members} />
-        <Group_table_layout />
+        {/* <Group_table_layout /> */}
         {refresher && refresher}
       </Box>
     </>

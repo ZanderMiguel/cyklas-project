@@ -4,7 +4,7 @@ import { io } from 'socket.io-client';
 import { Collapse } from '@mui/material';
 import useStyles from './Styles/Telecon_room_style';
 
-const socket = io.connect('http://localhost:3001');
+//const socket = io.connect('http://localhost:3001');
 
 function Telecon_room() {
   const { designs } = useStyles();
@@ -13,12 +13,12 @@ function Telecon_room() {
   const [username, setUsername] = useState('');
   const [room, setRoom] = useState('');
 
-  const handleUser = () => {
+  /*   const handleUser = () => {
     if (username !== '' && room !== '') {
       socket.emit('joinroom', room, username);
     }
   };
-
+ */
   return (
     <>
       <CssBaseline />

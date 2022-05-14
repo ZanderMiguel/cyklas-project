@@ -1,6 +1,10 @@
-import React from 'react'
-import { Grid, Box, Typography } from "@mui/material";
-import { SchoolOutlined, PostAdd, AssignmentOutlined } from "@mui/icons-material";
+import React from 'react';
+import { Grid, Box, Typography } from '@mui/material';
+import {
+  SchoolOutlined,
+  PostAdd,
+  AssignmentOutlined,
+} from '@mui/icons-material';
 
 const dataStats = [
   {
@@ -31,7 +35,7 @@ const dataStats = [
           width: 'relative',
           margin: '0.5em 0em 0em 0em',
           padding: '0.4em',
-          backgroundColor: '#F0F0F0'
+          backgroundColor: '#F0F0F0',
         }}
       >
         <Typography
@@ -211,63 +215,65 @@ const dataStats = [
 function DashboardStatistics() {
   return (
     <>
-    {dataStats.map(function (items, index) {
+      {dataStats.map(function (items, index) {
         return (
           <Grid key={index} item sm={4} xs={12} sx={{ height: 'max-content' }}>
             <Box
               sx={{
-              width: 'relative',
-              height: 'auto',
-              padding: '0.7em 0em 0em 0em',
-              backgroundColor: 'white',
-            //   boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px',
-              }}>
-                <Box
-                  sx={{
+                width: 'relative',
+                height: 'auto',
+                padding: '0.7em 0em 0em 0em',
+                backgroundColor: 'white',
+                //   boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px',
+              }}
+            >
+              <Box
+                sx={{
                   display: 'flex',
                   gap: '1em',
                   width: 'relative',
                   margin: '0em 0.8em',
-                  }}>
-                    <Box sx={{ height: 'auto', width: 'auto' }}>
-                      {items.icon}
-                    </Box>
+                }}
+              >
+                <Box sx={{ height: 'auto', width: 'auto' }}>{items.icon}</Box>
 
-                    <Box sx={{ height: 'auto', width: 'relative' }}>
-                      <Typography
-                        sx={{
-                          color: '#8E8E8E',
-                          fontSize: '0.8em',
-                          fontWeight: '500',
-                          width: 'auto',
-                          height: 'auto',
-                          textTransform: 'Capitalize',
-                        }}>
-                        {items.label}
-                      </Typography>
+                <Box sx={{ height: 'auto', width: 'relative' }}>
+                  <Typography
+                    sx={{
+                      color: '#8E8E8E',
+                      fontSize: '0.8em',
+                      fontWeight: '500',
+                      width: 'auto',
+                      height: 'auto',
+                      textTransform: 'Capitalize',
+                    }}
+                  >
+                    {items.label}
+                  </Typography>
 
-                      <Typography
-                        noWrap
-                        sx={{
-                          color: '#615F79',
-                          fontSize: '1.8em',
-                          fontWeight: '600',
-                          width: 'relative',
-                          height: 'auto',
-                          wordBreak: 'break-all',
-                          textTransform: 'Uppercase',
-                        }}>
-                        {items.total}
-                      </Typography>
-                    </Box>
-                  </Box>
-                  {items.update}
+                  <Typography
+                    noWrap
+                    sx={{
+                      color: '#615F79',
+                      fontSize: '1.8em',
+                      fontWeight: '600',
+                      width: 'relative',
+                      height: 'auto',
+                      wordBreak: 'break-all',
+                      textTransform: 'Uppercase',
+                    }}
+                  >
+                    {items.total}
+                  </Typography>
+                </Box>
+              </Box>
+              {items.update}
             </Box>
           </Grid>
-    );
-    })}
+        );
+      })}
     </>
-  )
+  );
 }
 
-export default DashboardStatistics
+export default DashboardStatistics;

@@ -24,56 +24,6 @@ import { useTheme } from '@mui/material/styles';
 import { PostAdd } from '@mui/icons-material';
 import { useLocation } from 'react-router-dom';
 
-const request = [
-  {
-    avatar: <Avatar src={AvatarIcon} />,
-    user: 'Zander Miguel',
-    action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
-    dateTime: 'December 25, 2024 at 9:05 AM',
-  },
-  {
-    avatar: <Avatar src={AvatarIcon} />,
-    user: 'Mang Pandesal',
-    action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
-    dateTime: 'December 25, 2024 at 9:05 AM',
-  },
-  {
-    avatar: <Avatar src={AvatarIcon} />,
-    user: 'Verb',
-    action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
-    dateTime: 'December 25, 2024 at 9:05 AM',
-  },
-  {
-    avatar: <Avatar src={AvatarIcon} />,
-    user: 'Isko',
-    action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
-    dateTime: 'December 25, 2024 at 9:05 AM',
-  },
-  {
-    avatar: <Avatar src={AvatarIcon} />,
-    user: 'Yorme',
-    action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
-    dateTime: 'December 25, 2024 at 9:05 AM',
-  },
-  {
-    avatar: <Avatar src={AvatarIcon} />,
-    user: 'Bossing',
-    action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
-    dateTime: 'December 25, 2024 at 9:05 AM',
-  },
-  {
-    avatar: <Avatar src={AvatarIcon} />,
-    user: 'Allan',
-    action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
-    dateTime: 'December 25, 2024 at 9:05 AM',
-  },
-  {
-    avatar: <Avatar src={AvatarIcon} />,
-    user: 'Wally',
-    action: 'is requesting to join your room "SOFTWARE ENGINEERING 2".',
-    dateTime: 'December 25, 2024 at 9:05 AM',
-  },
-];
 const general = [
   {
     avatar: <Avatar src={AvatarIcon} />,
@@ -136,6 +86,7 @@ const general = [
 function Navbar() {
   const theme = useTheme();
   const location = useLocation();
+  const [items, setItems] = React.useState(null);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorEl1, setAnchorEl1] = React.useState(null);
@@ -156,9 +107,7 @@ function Navbar() {
     setAnchorEl1(null);
   };
   const notif = Boolean(anchorEl);
-
   const account = Boolean(anchorEl1);
-  const badgeDot = React.useRef(null);
 
   return (
     <>
@@ -197,7 +146,7 @@ function Navbar() {
           </Typography>
           <IconButton size="small" onClick={handleClickNotif}>
             <Badge
-              variant={general.length > 0 || request.length > 0 ? 'dot' : null}
+              variant={items && items.length > 0 ? 'dot' : null}
               color="primary"
               overlap="circular"
             >
@@ -209,7 +158,11 @@ function Navbar() {
             anchorEl={anchorEl}
             onClose={handleCloseNotif}
           >
-            <Notificationpopover general={general} request={request} />
+            <Notificationpopover
+              general={general}
+              items={items}
+              setItems={setItems}
+            />
           </CusPopover>
           <Box
             display="flex"

@@ -11,16 +11,15 @@ import {
   Button,
 } from '@mui/material';
 import moment from 'moment';
-import axios from 'axios'
+import axios from 'axios';
 import { EditOutlined, DeleteOutlined } from '@mui/icons-material';
 import useStyle from '../../Styles/ActivitiesAccordion_Style';
 import Divider from '@mui/material/Divider';
 import { Link } from 'react-router-dom';
 import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser from 'react-html-parser';
-import ActivityIcon from '../../../assets/ImageJaven/ActivityIcon.png'
+import ActivityIcon from '../../../assets/ImageJaven/ActivityIcon.png';
 import ActivityFile from '../../../components/ActivityFile';
-
 
 function ActivitiesAccordion({ roomID, activity, setDeleteRender }) {
   const { designs } = useStyle();
@@ -34,8 +33,13 @@ function ActivitiesAccordion({ roomID, activity, setDeleteRender }) {
     event.stopPropagation();
   };
   const handleDelete = (event, _id) => {
-    event.stopPropagation()
-    axios.delete('http://localhost:5000/activity/delete', {data: {id: _id}}).then(res=> setDeleteRender(prev=>!prev)).catch(err=>console.log(err))
+    event.stopPropagation();
+    axios
+      .delete('http://localhost:5000/activity/delete', {
+        data: { id: _id },
+      })
+      .then((res) => setDeleteRender((prev) => !prev))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -67,7 +71,7 @@ function ActivitiesAccordion({ roomID, activity, setDeleteRender }) {
                   >
                     <Box display="flex" alignItem="center" width="100%">
                       <img
-                        src={ ActivityIcon}
+                        src={ActivityIcon}
                         style={{
                           height: '30px',
                           margin: '4px 15px 0px 0px',
@@ -85,13 +89,13 @@ function ActivitiesAccordion({ roomID, activity, setDeleteRender }) {
                       className="Button-container-sub"
                       sx={designs.Button_Container_Sub}
                     >
-                      <IconButton
+                      {/* <IconButton
                         aria-label="edit"
                         size="small"
                         onClick={(event) => handleEdit(event)}
                       >
                         <EditOutlined sx={designs.Edit_Icon_Style} />
-                      </IconButton>
+                      </IconButton> */}
 
                       <IconButton
                         aria-label="delete"
@@ -150,7 +154,9 @@ function ActivitiesAccordion({ roomID, activity, setDeleteRender }) {
                       <Typography sx={designs.Instructions_Typography}>
                         {instruction ? 'Instructions: ' : ''}
                       </Typography>
-                      <Box>{ReactHtmlParser(draftToHtml(JSON.parse(instruction)))}</Box>
+                      <Box>
+                        {ReactHtmlParser(draftToHtml(JSON.parse(instruction)))}
+                      </Box>
                     </Box>
                     <Box sx={{ padding: '0.8em 2.8em' }}>
                       <Grid container spacing={1}>

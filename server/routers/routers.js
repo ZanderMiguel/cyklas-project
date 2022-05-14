@@ -138,6 +138,7 @@ const {
   applyGradingSystem,
   countActivity,
   getOverall,
+  recordActivity,
 } = require('../controller/classRecordController');
 router.post('/records/create', createClassRecord);
 router.post('/records', displayClassRecord);
@@ -146,6 +147,7 @@ router.delete('/records/delete', deleteClassRecord);
 router.put('/records/applyGS', applyGradingSystem);
 router.post('/records/return-grade', countActivity);
 router.post('/records/overall', getOverall);
+router.post('/records/activity/return', recordActivity);
 const {
   createClassCard,
   displayClassCard,

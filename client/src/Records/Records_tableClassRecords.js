@@ -187,7 +187,7 @@ function Records_tableClassRecords({ rooms }) {
                     stdRecord.current.push({ [Object.entries(item)[0][0]]: 0 });
                     return <th key={index}> {Object.entries(item)[0][0]} </th>;
                   })}
-                <th> Class Standing </th>
+                <th> Action </th>
               </tr>
             </thead>
 
@@ -283,7 +283,7 @@ function Records_tableClassRecords({ rooms }) {
                 <td> </td>
                 <td> </td>
                 <td> Total Students: </td>
-                <td data-label="Total Students"> {`${records.length}`} </td>
+                <td data-label="Total Students"> 5 </td>
               </tr>
             </tfoot>
           </table>

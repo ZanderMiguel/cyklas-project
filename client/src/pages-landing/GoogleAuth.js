@@ -1,10 +1,9 @@
 import React from 'react';
-import { GoogleLogin } from 'react-google-login';
+import GoogleLogin from 'react-google-login';
 import Google from '../assets/Rectangle 134.svg';
 import Button from '../components/Button';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import Register from '../Form_content/Register';
 import SelectUserType from '../Form_content/SelectUsertype';
 function GoogleAuth() {
   const history = useHistory();
@@ -39,7 +38,7 @@ function GoogleAuth() {
         console.log(err);
       });
   };
-  const googleSuccess = async (res) => {
+  const googleSuccess = (res) => {
     const googleAuth = {
       firstName: res.profileObj.givenName,
       lastName: res.profileObj.familyName,
@@ -50,14 +49,13 @@ function GoogleAuth() {
     signIn(googleAuth);
   };
   const googleFailure = (error) => {
-    console.log(error);
-    console.log('Google Sign In was unsucessful. Try again later');
+    console.log('error');
   };
 
   return (
     <div>
       <GoogleLogin
-        clientId="579265708499-7ii87q3j1lhihqbuu20224o4mofhstme.apps.googleusercontent.com"
+        clientId="13670802182-ik5bgipp4un43kv140qom4pjavgovlqj.apps.googleusercontent.com"
         render={(renderProps) => (
           <Button
             variant="outlined"
@@ -72,16 +70,16 @@ function GoogleAuth() {
         )}
         onSuccess={googleSuccess}
         onFailure={googleFailure}
-        cookiePolicy="single_host_origin"
+        cookiePolicy={'single_host_origin'}
       />
-      {state && (
+      {/* {state && (
         <SelectUserType
           open={state}
           close={() => setState(false)}
           signIn={signIn}
           googleData={googleData}
         />
-      )}
+      )} */}
     </div>
   );
 }

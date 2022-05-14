@@ -29,7 +29,9 @@ function Exam_start({ socket }) {
       .post('http://localhost:5000/quizlit', { quizID })
       .then((response) => {
         axios
-          .post('http://localhost:5000/question', { quizID })
+          .post('http://localhost:5000/question', {
+            quizID,
+          })
           .then((res) => {
             setData([response.data, res.data]);
             console.log([response.data, res.data]);

@@ -135,9 +135,9 @@ function Room_inside({ socket }) {
             ) : value === 1 ? (
               JSON.parse(localStorage.userData).data.user.userType ===
               'Professor' ? (
-                <Activities roomID={roomID} />
+                <Activities roomID={roomID} socket={socket} />
               ) : (
-                <Activities_main roomID={roomID} />
+                <Activities_main roomID={roomID} socket={socket} />
               )
             ) : JSON.parse(localStorage.userData).data.user.userType ===
               'Student' ? (

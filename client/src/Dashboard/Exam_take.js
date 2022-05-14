@@ -23,7 +23,9 @@ function Exam_take() {
         console.log(res.data);
         setData(res.data);
         axios
-          .post('http://localhost:5000/question', { quizID })
+          .post('http://localhost:5000/question', {
+            quizID,
+          })
           .then((response) => {
             setItems(response.data);
           })

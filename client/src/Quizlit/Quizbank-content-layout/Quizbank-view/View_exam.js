@@ -47,49 +47,65 @@ const dataSort = [
 function View_exam() {
   const { designs } = useStyle();
   const [selectSort, setSort] = useState('');
-  const [data, setData] = useState(null)
-  const { examID } = useParams()
-  const [quizData, setQuizData] = useState(null)
-  const [stdID, setStdID] = useState(null)
-  const [score, setScore] = useState(0)
-  const [overAll, setOverAll] = useState(0)
-  const stdScore = React.useRef({})
-  const shrtAns = React.useRef({})
-  const [dataRoom,setDataRoom] = React.useState(null)
-  const scores = React.useRef([])
+  const [data, setData] = useState(null);
+  const { examID } = useParams();
+  const [quizData, setQuizData] = useState(null);
+  const [stdID, setStdID] = useState(null);
+  const [score, setScore] = useState(0);
+  const [overAll, setOverAll] = useState(0);
+  const stdScore = React.useRef({});
+  const shrtAns = React.useRef({});
+  const [dataRoom, setDataRoom] = React.useState(null);
+  const scores = React.useRef([]);
   const handleChangeSort = (event) => {
     setSort(event.target.value);
   };
   React.useMemo(() => {
     axios
-      .post('http://localhost:5000/quizlit', { quizID: examID })
+      .post('http://localhost:5000/quizlit', {
+        quizID: examID,
+      })
       .then((res) => {
         setQuizData(res.data);
       })
-      .catch(err => console.log(err))
-  }, [])
-  React.useMemo(()=>{
-    setScore(0)
-    setOverAll(0)
-  },[stdID])
-  document.getElementById(`${stdID}`) && (document.getElementById(`${stdID}`).innerHTML = `${Math.round((score / overAll) * 100)}%`.replace('NaN%', 'Missing'))
-  
+      .catch((err) => console.log(err));
+  }, []);
+  React.useMemo(() => {
+    setScore(0);
+    setOverAll(0);
+  }, [stdID]);
+  document.getElementById(`${stdID}`) &&
+    (document.getElementById(`${stdID}`).innerHTML = `${Math.round(
+      (score / overAll) * 100
+    )}%`.replace('NaN%', 'Missing'));
+
   return (
     <Container maxWidth="lg">
       <Grid container columnSpacing={1}>
         <Grid item xs={4} sx={{ margin: '0.5em 0em' }}>
-          <Button 
-          onClick={()=>{
-            axios.post('http://localhost:5000/records/return-grade',{
-              roomID: dataRoom[0]._id,
-              userID:JSON.parse(localStorage.userData).data.user._id,
-              examID,
-              scores: scores.current, stdID
-          }).then(res=>console.log(res.data)).catch(err=>console.log(err))
-          }}
-          sx={designs.Return_Button_Style}>Return</Button>
+          <Button
+            onClick={() => {
+              axios
+                .post('http://localhost:5000/records/return-grade', {
+                  roomID: dataRoom[0]._id,
+                  userID: JSON.parse(localStorage.userData).data.user._id,
+                  examID,
+                  scores: scores.current,
+                  stdID,
+                })
+                .then((res) => console.log(res.data))
+                .catch((err) => console.log(err));
+            }}
+            sx={designs.Return_Button_Style}
+          >
+            Return
+          </Button>
         </Grid>
-        <SelectRoom setData={setData} dataRoom={dataRoom} setDataRoom={setDataRoom} />
+        <SelectRoom
+          setData={setData}
+          dataRoom={dataRoom}
+          setDataRoom={setDataRoom}
+        />
         <Grid item xs={4} sx={{ paddingRight: '0.8em' }}>
           <Box className="Student-list" sx={designs.Student_List_Style}>
             <Box className="Sort-container" sx={designs.Sort_Container_Style}>
@@ -133,12 +149,18 @@ function View_exam() {
               className="Student-container"
               sx={designs.Student_Container_Style}
             >
-              {data && data.map(function (items, index) {
-                return (
-                  <div key={index}><StudentsList scores={scores} items={items} setStdID={setStdID}/></div>
-
-                );
-              })}
+              {data &&
+                data.map(function (items, index) {
+                  return (
+                    <div key={index}>
+                      <StudentsList
+                        scores={scores}
+                        items={items}
+                        setStdID={setStdID}
+                      />
+                    </div>
+                  );
+                })}
             </Box>
           </Box>
         </Grid>
@@ -162,7 +184,7 @@ function View_exam() {
                 alignItems: 'center',
                 padding: '0.5em 0.8em 0.5em 0.5em',
                 marginBottom: '0.5em',
-                backgroundColor: "white"
+                backgroundColor: 'white',
               }}
             >
               <Avatar src={AvatarIcon} alt="Avatar" />
@@ -175,7 +197,7 @@ function View_exam() {
                 }}
               >
                 <Typography
-                  children = "Armin Arlert"
+                  children="Armin Arlert"
                   // children={`${quizData && quizData.author.name}`}
                   sx={{
                     color: '#3F3D56',
@@ -188,7 +210,7 @@ function View_exam() {
                 />
 
                 <Typography
-                  children = "submitted this exam on May 10, 2022 / 5:02 PM"
+                  children="submitted this exam on May 10, 2022 / 5:02 PM"
                   // children={`created this exam on ${
                   //   quizData &&
                   //   moment(quizData.createdAt).format('MMMM DD YYYY / h:mm a')

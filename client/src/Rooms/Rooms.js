@@ -18,6 +18,7 @@ function Rooms({ socket }) {
   const [opendialog, setOpenDialog] = useState(false);
   const [gs, setGs] = useState(null);
   const { post, data, error, isPending } = usePost();
+
   React.useEffect(() => {
     axios
       .post('http://localhost:5000/gradingSystem', {
@@ -89,9 +90,8 @@ function Rooms({ socket }) {
                 )}
               </Grid>
               {error && console.log(error)}
-              {data && data.length > 0 ? (
-                <Room_layout data={data} />
-              ) : (
+              {data && data.length > 0 && <Room_layout data={data} />}
+              {data && data.length === 0 && (
                 <Box
                   sx={{
                     width: '100%',

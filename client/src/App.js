@@ -12,17 +12,15 @@ import axios from 'axios';
 //Landing Page
 import Navbar_landingpage from './components/Navbar_landingpage';
 import Forgot_password from './pages-landing/Forgot_password';
-
 //Dashboard
 import Dashboard from './Dashboard/Dashboard';
 //Rooms
 import Rooms from './Rooms/Rooms';
-import Room_inside from './Rooms/Room-content-layout/Room_inside';
 import View_activity from './Rooms/Activities/ProfActivityLayout/View_activity';
-import Activities_main from './Rooms/Activities/StudentsActivtityLayout/Activities_main';
 import Activity_viewed from './Rooms/Activities/StudentsActivtityLayout/View/Activity_viewed';
 import ExamViewedV2 from './Rooms/Activities/StudentsActivtityLayout/View/ExamViewedV2';
 import QuizViewedV2 from './Rooms/Activities/StudentsActivtityLayout/View/QuizViewedV2/QuizViewedV2';
+import Room_inside from './Rooms/Room-content-layout/Room_inside';
 
 //Records & Classcards
 import Records from './Records/Records';
@@ -43,16 +41,7 @@ import LivequizStudentrankings from "./Telecon/LIVE QUIZ/LivequizStudentrankings
 import QuizLit from './Quizlit/Quizlit';
 import Quizform from './Quizlit/Quiz&ExamForm/Quizform';
 import Examform from './Quizlit/Quiz&ExamForm/Examform';
-
 import Livequiz_multiplechoice from './Quizlit/LiveQuiz/Livequiz_multiplechoice';
-// import StudentLiveQuiz_multiplechoice from './Quizlit/LiveQuiz/StudentLiveQuiz_multiplechoice';
-// import Livequiz_correctanswer from './Quizlit/LiveQuiz/Livequiz_correctanswer';
-// import Livequiz_wronganswer from './Quizlit/LiveQuiz/Livequiz_wronganswer';
-// import Student_rankings from './Quizlit/LiveQuiz/Student_rankings';
-// import Student_activities from './Dashboard/Student_activities';
-// import Student_viewactivity from './Dashboard/Student_viewactivity';
-// import Student_viewexam from './Dashboard/Student_viewexam';
-// import Student_viewquiz from './Dashboard/Student_viewquiz';
 import Notifications_viewall from './Notifications/Notifications_viewall';
 import Exam_take from './Dashboard/Exam_take';
 import Exam_start from './Dashboard/Exam_start';
@@ -64,12 +53,9 @@ import ToLobby from './Quizlit/TestComponents/ToLobby';
 import Lobby from './Quizlit/TestComponents/Lobby';
 import Notfound from './Notfound';
 import TeleconLanding from './pages-landing/TeleconLanding';
-// import LoadQuizlit from './Quizlit/TestComponents/LoadQuizlit';
 
 // Student Side
 import Dashboard_main from './student_side/Dashboard/Dashboard_main';
-
-
 
 function App() {
   const theme = createTheme({
@@ -96,7 +82,9 @@ function App() {
   });
 
   const socket = io.connect('http://localhost:3001');
+
   const [quizlit, setQuizlit] = React.useState(null);
+
   socket.on('joined-quizLobby', (lobby, quizLobby, questionArray) => {
     setQuizlit(
       <ProtectedRoutes
@@ -131,17 +119,26 @@ function App() {
                 component={Rooms}
                 socket={socket}
               />
+              <ProtectedRoutes
+                exact
+                path="/rooms/:roomID"
+                component={Room_inside}
+                socket={socket}
+              />
 
               <ProtectedRoutes
                 exact
                 path="/rooms/:roomID/p/:activityID"
                 component={View_activity}
+                socket={socket}
               />
               <ProtectedRoutes
                 exact
+                socket={socket}
                 path="/rooms/:roomID/s/:activityID"
                 component={Activity_viewed}
               />
+
               {/* Quizlit */}
               <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
               <ProtectedRoutes
@@ -200,7 +197,7 @@ function App() {
 
               {/* Student Side */}
               <Route exact path="/Evaluation" component={Evaluation} />
-              <Route exact path="/Dashboard_main" component={Dashboard_main} />
+              {/* <Route exact path="/Dashboard_main" component={Dashboard_main} /> */}
               <Route exact path="/ExamViewedV2" component={ExamViewedV2} />
               <Route exact path="/QuizViewedV2" component={QuizViewedV2} />
               <Route exact path="/Exam_take/:quizID" component={Exam_take} />
@@ -217,9 +214,6 @@ function App() {
                 path="/quizlit/view_exam/:examID"
                 component={View_exam}
               />
-              <Route exact path="/quizlit/join">
-                <JoinQuiz socket={socket} />
-              </Route>
               <Route exact path="/quizlit/lobby">
                 <Lobby socket={socket} />
               </Route>
