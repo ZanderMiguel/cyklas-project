@@ -73,9 +73,9 @@ function View_activity({ socket }) {
     setSort(event.target.value);
   };
 
-  // socket.on('post-comment', (uuid) => {
-  //   setCommentId(uuid);
-  // });
+  socket.on('post-comment', (uuid) => {
+    setCommentId(uuid);
+  });
 
   React.useEffect(() => {
     axios

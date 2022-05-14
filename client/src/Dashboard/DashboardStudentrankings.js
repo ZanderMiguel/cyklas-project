@@ -20,8 +20,8 @@ import {
 
 const dataRange = [
   {
-    value: 'THIS WEEK',
-    label: 'THIS WEEK',
+    value: "ROOM NAME",
+    label: "ROOM NAME",
   },
   {
     value: 'THIS MONTH',
@@ -39,111 +39,34 @@ const dataTable = [
       <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
     ),
    studentName: 'Paul Rudd',
-    // course: 'BSCS',
     yearSection: '3A',
-    // classStanding: (
-    //   <WorkspacePremium sx={{ fontSize: '1.7em', color: '#F9A826' }} />
-    // ),
   },
   {
     studentAvatar: (
       <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
     ),
     studentName: 'Tom Holland',
-    // course: 'BSCS',
     yearSection: '3A',
-    // classStanding: (
-    //    <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-    // ),
+   
   },
   {
     studentAvatar: (
       <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
     ),
     studentName: 'Tom Hiddleston',
-    // course: 'BSCS',
+ 
     yearSection: '3A',
-    // classStanding: (
-    //   <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-    // ),
+ 
   },
   {
     studentAvatar: (
       <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
     ),
     studentName: 'Robert Downey Jr.',
-    // course: 'BSCS',
     yearSection: '3A',
-    // classStanding: (
-    //   <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-    // ),
+  
   },
-  // {
-  //   studentAvatar: (
-  //     <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-  //   ),
-  //   studentName: 'Sebastian Stann',
-  //   // course: 'BSCS',
-  //   yearSection: '3A',
-  //   // classStanding: (
-  //   //   // <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-  //   // ),
-  // },
-  // {
-  //   studentAvatar: (
-  //     <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-  //   ),
-  //   studentName: 'Paul Rudd',
-  //   // course: 'BSCS',
-  //   yearSection: '3A',
-  //   // classStanding: (
-  //   //   <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-  //   // ),
-  // },
-  // {
-  //   studentAvatar: (
-  //     <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-  //   ),
-  //   studentName: 'Tom Holland',
-  //   // course: 'BSCS',
-  //   yearSection: '3A',
-  //   // classStanding: (
-  //   //   <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-  //   // ),
-  // },
-  // {
-  //   studentAvatar: (
-  //     <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-  //   ),
-  //   studentName: 'Tom Hiddleston',
-  //   // course: 'BSCS',
-  //   yearSection: '3A',
-  //   // classStanding: (
-  //   //   <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-  //   // ),
-  // },
-  // {
-  //   studentAvatar: (
-  //     <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-  //   ),
-  //   studentName: 'Robert Downey Jr.',
-  //   // course: 'BSCS',
-  //   yearSection: '3A',
-  //   // classStanding: (
-  //   //   <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-  //   // ),
-  // },
-  // {
-  //   studentAvatar: (
-  //     <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-  //   ),
-  //   studentName: 'Sebastian Stann',
-  //   // course: 'BSCS',
-  //   yearSection: '3A',
-  //   // classStanding: (
-  //   //   <WorkspacePremium sx={{ fontSize: '1.7em', color: '#8584A6' }} />
-  //   // ),
-  // },
+ 
 ];
 
 const dataRoom = [

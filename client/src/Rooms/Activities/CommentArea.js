@@ -147,6 +147,7 @@ function CommentArea({ socket, commentId, activityID }) {
         <ReactScrollableFeed>
           {activityComment &&
             activityComment.map((items, index) => {
+              console.log( activityComment )
               return (
                 <div key={index}>
                   <Box
@@ -212,7 +213,7 @@ function CommentArea({ socket, commentId, activityID }) {
                         {items.content}
                       </Box>
 
-                      <Box
+                     {JSON.parse(localStorage.userData).data.user._id === items.author.userID && <> <Box
                         className="actions"
                         sx={{
                           marginTop: '0.3em',
@@ -282,6 +283,7 @@ function CommentArea({ socket, commentId, activityID }) {
                           </Typography>
                         </Box>
                       </Box>
+                      </>}
                     </Box>
                   </Box>
                 </div>
