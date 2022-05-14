@@ -17,9 +17,13 @@ import { DeleteOutlined, DoorFrontOutlined } from '@mui/icons-material';
 import useStyle from './Styles/People_table_style';
 import axios from 'axios';
 import { useParams, Redirect } from 'react-router-dom';
+
+
 function Memberstable({ members, setRefresher }) {
   const { designs } = useStyle();
   const { roomID } = useParams();
+  console.log( members )
+  
   return (
     <>
       <Grid container rowSpacing={1}>

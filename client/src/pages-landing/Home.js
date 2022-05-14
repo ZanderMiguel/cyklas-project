@@ -47,7 +47,6 @@ function Home() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsPending(true);
     axios
       .post('http://localhost:5000/login', Object.fromEntries(myApi))
       .then((response) => {

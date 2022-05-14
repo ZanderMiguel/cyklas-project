@@ -26,7 +26,10 @@ function Member({ roomdata }) {
       .post('http://localhost:5000/get/members', {
         members: roomdata.room.members,
       })
-      .then((res) => setMembers(res.data))
+      .then((res) => {
+        console.log(res.data)
+        setMembers( res.data )
+      } )
       .catch((err) => console.log(err));
   }, [refresher]);
 

@@ -19,7 +19,11 @@ function Dashboard() {
       })
       .then((res) => setRoom(res.data))
       .catch((err) => console.log(err));
+
+    axios.post( 'http://localhost:5000/activity/get-handedout', { userID: JSON.parse( localStorage.userData ).data.user._id } ).then( ( res ) => { console.log(res)} ).catch(err => 
+    console.log(err))
   }, []);
+
 
   return (
     <>

@@ -11,7 +11,15 @@ import Videoo from '../../../../assets/ImageJaven/Videoo.png';
 import Filee from '../../../../assets/ImageJaven/Filee.png';
 
 function UploadFileTile({ submits, activityID }) {
-  const [uploadFile, setUploadFile] = React.useState([]);
+  const [uploadFile, setUploadFile] = React.useState( [] );
+  
+  
+  const handledelete = (index) =>
+  { 
+    const values = [...uploadFile];
+    values.splice(index, 1);
+    setUploadFile(values);
+  }
   return (
     <Box
       className="Student-container"
@@ -209,6 +217,7 @@ function UploadFileTile({ submits, activityID }) {
                   }}
                 >
                   <Typography
+                    onClick={(index)=> handledelete(index)}
                     sx={{
                       color: '#3F3D56',
                       fontSize: '0.8em',
@@ -337,6 +346,7 @@ function UploadFileTile({ submits, activityID }) {
           }}
           onClick={() => {
             const formData = new FormData();
+            
 
             uploadFile.forEach((item) => {
               formData.append('file', item.file);
@@ -355,15 +365,11 @@ function UploadFileTile({ submits, activityID }) {
             );
             formData.append('activityStatus', 'Submitted');
             axios
-              .post(
-                'http://localhost:5000/activity/submit',
-                formData,
-                {
-                  headers: {
-                    'Content-Type': 'multipart/form-data',
-                  },
-                }
-              )
+              .post('http://localhost:5000/activity/submit', formData, {
+                headers: {
+                  'Content-Type': 'multipart/form-data',
+                },
+              })
               .then((res) => console.log(res.data))
               .catch((err) => console.log(err));
           }}

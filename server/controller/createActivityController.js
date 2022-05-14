@@ -42,12 +42,15 @@ async function createActivity(req, res) {
     });
   }
 }
-
+const getActivity = async (req) => {
+  const activity = await Activity.find({
+    rooms: req.body.roomID.replace(':', ''),
+  }).sort({ createdAt: -1 });
+  return activity;
+};
 const displayActivity = async (req, res) => {
   try {
-    const activity = await Activity.find({
-      rooms: req.body.roomID.replace(':', ''),
-    }).sort({ createdAt: -1 });
+    const activity = await getActivity(req);
     console.log('activity posted!');
     return res.json(activity);
   } catch (error) {
@@ -184,4 +187,5 @@ module.exports = {
   createActivityComment,
   displayActivityComment,
   deleteController,
+  getActivity,
 };

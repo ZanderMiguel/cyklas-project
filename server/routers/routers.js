@@ -21,6 +21,7 @@ const {
   findRoom,
   getMembersData,
   leaveRoom,
+  getAllStudents,
 } = require('../controller/roomsController');
 router.post('/rooms/create', createRoomController);
 router.post('/rooms', displayRoomController);
@@ -29,6 +30,7 @@ router.put('/rooms/update', updateRoomController);
 router.post('/rooms/my-room', findRoom);
 router.post('/get/members', getMembersData);
 router.put('/room/leave', leaveRoom);
+router.post('/room/get/student-length', getAllStudents);
 const {
   createFeedController,
   displayFeedController,

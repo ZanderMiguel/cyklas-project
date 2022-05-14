@@ -40,7 +40,6 @@ function Quizzes_layout() {
       {data.map((items, index) => {
         return (
           <Box sx={designs.BoxTileContainer} key={index}>
-            {/* <Box sx={designs.QuizContainer}> */}
             <img
               src={QuizIcon}
               alt="QuizIcon"
@@ -58,19 +57,7 @@ function Quizzes_layout() {
               <Typography noWrap sx={designs.Quiz}>
                 {items.title}
               </Typography>
-
-              {/* <Box sx={designs.User_Date}>
-                  <Typography noWrap sx={designs.Professor}>
-                    {items.name}
-                  </Typography>
-
-                  <Typography noWrap sx={designs.Date2}>
-                    returned this quiz on {items.date} at {items.time}
-                  </Typography>
-                </Box> */}
             </Box>
-
-            {/* <Box flexGrow={1} sx={designs.BoxFlexGrow_Style} /> */}
 
             <Box className="points-score" sx={designs.Points_Score_Style}>
               <Typography noWrap sx={designs.Points_Style}>

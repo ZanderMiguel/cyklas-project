@@ -39,7 +39,15 @@ import useStyle from '../Quizlit/Styles/Quiz_style';
 function Create_activity({ item, open, close, setOpenDialog }) {
   const [uploadFile, setUploadFile] = React.useState([
     { fileName: 'File uploaded/image/link' },
-  ]);
+  ] );
+  
+  
+  const handledelete = (index) =>
+  { 
+    const values = [...uploadFile];
+    values.splice(index, 1);
+    setUploadFile(values);
+  }
   const { roomID } = useParams();
   const [category, setCategory] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -279,6 +287,7 @@ function Create_activity({ item, open, close, setOpenDialog }) {
                         }}
                       >
                         <Typography
+                          onClick={ handledelete}
                           sx={{
                             color: '#3F3D56',
                             fontSize: '0.8em',

@@ -71,6 +71,13 @@ function Rich_text({ setPostRender }) {
     { fileName: 'File uploaded/image/link' },
   ]);
 
+  const handledelete = (index) =>
+  { 
+    const values = [...uploadFile];
+    values.splice(index, 1);
+    setUploadFile(values);
+  }
+
   return (
     <>
       <Editor
@@ -138,6 +145,7 @@ function Rich_text({ setPostRender }) {
                           'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
                       },
                     }}
+                   
                   >
                     <img
                       src={
@@ -166,6 +174,7 @@ function Rich_text({ setPostRender }) {
                       }}
                     >
                       <Typography
+                        onClick={(index) => handledelete(index)}
                         sx={{
                           color: '#3F3D56',
                           fontSize: '0.8em',

@@ -47,7 +47,7 @@ const dataMember = [
   },
 ];
 
-function Members() {
+function Members({ members }) {
   return (
     <div
       style={{
@@ -182,83 +182,7 @@ function Members() {
           overflowY: 'auto',
         }}
       >
-        <Box
-          sx={{
-            width: 'relative',
-            height: 'auto',
-            display: 'flex',
-            gap: '0.5em',
-            alignItems: 'center',
-            padding: '0.2em 0.4em 0.2em 0.2em',
-            margin: '0.3em 1.3em',
-            backgroundColor: '#22252B',
-            borderRadius: '0.3em',
-            // "&: hover":
-            //   backgroundColor: "#282B31",
-            //   transition: "all 300ms"
-            // }
-          }}
-        >
-          <Avatar alt="Remy Sharp" src={AvatarIcon} />
-
-          <Box
-            sx={{
-              width: '11em',
-              height: 'relative',
-            }}
-          >
-            <Typography
-              children="Tom Holland"
-              sx={{
-                color: 'white',
-                fontSize: '0.7em',
-                fontWeight: '500',
-                height: 'max-content',
-                width: 'relative',
-                '&: hover': {
-                  cursor: 'default',
-                },
-              }}
-            />
-
-            <Typography
-              children="Meeting Host"
-              sx={{
-                color: '#DEDEDE',
-                fontSize: '0.6em',
-                fontWeight: '500',
-                height: 'max-content',
-                width: 'relative',
-                textTransform: 'Uppercase',
-                '&: hover': {
-                  cursor: 'default',
-                },
-              }}
-            />
-          </Box>
-
-          <Box flexGrow={1} />
-
-          <Tooltip title="This member's mic is in mute" placement="top">
-            <Box
-              sx={{
-                border: '1px solid #3A3E46',
-                height: '2em',
-                width: '2em',
-                padding: '0.3em',
-                backgroundColor: '#3A3E46',
-                borderRadius: '5em',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <MicOffOutlined sx={{ fontSize: '1.1em', color: '#DEDEDE' }} />
-            </Box>
-          </Tooltip>
-        </Box>
-
-        {dataMember.map(function (items, index) {
+        {members.current.map(function (items, index) {
           return (
             <Box
               key={index}
@@ -278,7 +202,10 @@ function Members() {
                 // }
               }}
             >
-              {items.avatar}
+              <Avatar
+                src={items.camera}
+                alt={items.memberName[0].toUpperCase()}
+              />
 
               <Typography
                 children={items.memberName}

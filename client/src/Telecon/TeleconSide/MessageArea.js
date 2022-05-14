@@ -18,14 +18,9 @@ import { FaBox } from 'react-icons/fa';
 import moment from 'moment';
 import Message from '../../assets/ImageJaven/Message.png';
 
-function MessageArea({
-  socket,
-  teleRoom,
-  username,
-  messagelist,
-}) {
-  const [currentMessage, setCurrentMessage] = React.useState('')
-  const [renderer, setRenderer] = React.useState(true)
+function MessageArea({ socket, teleRoom, username, messagelist }) {
+  const [currentMessage, setCurrentMessage] = React.useState('');
+  const [renderer, setRenderer] = React.useState(true);
 
   const sendMessage = async () => {
     if (currentMessage !== '') {
@@ -45,8 +40,8 @@ function MessageArea({
 
   React.useEffect(() => {
     socket.once('receive_message', (data) => {
-      messagelist.current = [...messagelist.current,data];
-      setRenderer((prev)=> !prev)
+      messagelist.current = [...messagelist.current, data];
+      setRenderer((prev) => !prev);
     });
   }, [renderer]);
 
@@ -158,7 +153,7 @@ function MessageArea({
                     }}
                     noWrap
                   >
-                   {messageContent.author}
+                    {messageContent.author}
                   </Typography>
 
                   <Box flexGrow={1} />

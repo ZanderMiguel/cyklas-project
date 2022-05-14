@@ -172,7 +172,7 @@ function Navbar() {
             anchorEl={anchorEl}
             onClose={handleCloseNotif}
           >
-            <Notificationpopover general={general}  items={items} setToggleAccept={setToggleAccept} setItems={ setItems}/>
+            <Notificationpopover general={general} items={items} setToggleAccept={setToggleAccept} setItems={ setItems}/>
           </CusPopover>
           <Box
             display="flex"
@@ -187,7 +187,10 @@ function Navbar() {
             }}
           >
             <Avatar
-              src={JSON.parse(localStorage.userData).data.user.image}
+              src={JSON.parse(localStorage.userData).data.user.image.replace(
+                'blob:',
+                ''
+              )}
               alt="profileImg"
             />
             <Box
