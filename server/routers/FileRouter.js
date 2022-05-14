@@ -17,6 +17,7 @@ const {
 const {
   submitActivity,
   displaySubmittedActivity,
+  getAllActivities,
 } = require('../controller/activitySubmitsController');
 
 module.exports = (upload) => {
@@ -41,6 +42,6 @@ module.exports = (upload) => {
     submitActivity
   );
   fileRouter.post('/activity/get/submit', displaySubmittedActivity);
-
+  fileRouter.post('/activity/get-handedout', getAllActivities);
   return fileRouter;
 };

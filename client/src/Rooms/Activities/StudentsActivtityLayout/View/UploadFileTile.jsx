@@ -360,18 +360,12 @@ function UploadFileTile({ submits, activityID }) {
             );
             formData.append('activityStatus', 'Submitted');
             axios
-              .post(
-                'http://localhost:5000/activity/submit',
-                formData,
-                {
-                  headers: {
-                    'Content-Type': 'multipart/form-data',
-                  },
-                }
-              )
-              .then( ( res ) =>
-                console.log( res.data )
-              )
+              .post('http://localhost:5000/activity/submit', formData, {
+                headers: {
+                  'Content-Type': 'multipart/form-data',
+                },
+              })
+              .then((res) => console.log(res.data))
               .catch((err) => console.log(err));
           }}
         >

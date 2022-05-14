@@ -27,11 +27,15 @@ async function createRooms(req, res) {
   }
 }
 
+const getRooms = async (req) => {
+  const room = await RoomsModel.find({
+    members: { $elemMatch: { $eq: req.body.userID } },
+  }).sort({ createdAt: -1 });
+  return room;
+};
 const displayRooms = async (req, res) => {
   try {
-    const room = await RoomsModel.find({
-      members: { $elemMatch: { $eq: req.body.userID } },
-    }).sort({ createdAt: -1 });
+    room = await getRooms(req);
     console.log('room displayed!');
     return res.json(room);
   } catch (error) {
@@ -99,6 +103,21 @@ const leaveRoom = async (req, res) => {
     return res.json(error);
   }
 };
+const getAllStudents = async (req, res) => {
+  try {
+    const allStds = await RoomsModel.find({
+      members: { $elemMatch: { $eq: req.body.userID } },
+    });
+    let stdCount = 0;
+    allStds.forEach((item) => {
+      stdCount += item.members.length - 1;
+    });
+    return res.json(stdCount);
+  } catch (error) {
+    console.log(error);
+    return res.json(error);
+  }
+};
 module.exports = {
   createRoomController: createRooms,
   displayRoomController: displayRooms,
@@ -107,4 +126,6 @@ module.exports = {
   findRoom,
   getMembersData,
   leaveRoom,
+  getAllStudents,
+  getRooms,
 };

@@ -109,7 +109,7 @@ const ClassCards_table = ( { roomsdata } ) =>
             <td>
             </td>
             <td> Total Rooms: </td>
-            <td data-label="Total Rooms"> {roomsdata.length} </td>
+            <td data-label="Total Rooms"> {roomsdata && roomsdata.length} </td>
           </tr>
         </tfoot>
       </table>

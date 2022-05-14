@@ -17,7 +17,7 @@ import Livequiz_queue from '../Form_content/Livequiz_queue';
 import Leave_conference from '../Form_content/Leave_conference';
 import JoinQuiz from '../Form_content/JoinQuiz';
 
-function MainSessionFooter() {
+function MainSessionFooter({ members, socket, teleRoom, setRedirect }) {
   const [toggleMic, setToggleMic] = React.useState(false);
   const [toggleCam, setToggleCam] = React.useState(false);
   const [toggleScreenShare, setToggleScreenShare] = React.useState(false);
@@ -311,10 +311,14 @@ function MainSessionFooter() {
         )}
         {opendialogMakeGroups && (
           <Make_groups
+            setRedirect={setRedirect}
+            socket={socket}
+            teleRoom={teleRoom}
             open={opendialogMakeGroups}
             close={handleCreateCloseMakeGroups}
             maxWidth="md"
             state={setOpenDialogMakeGroups}
+            members={members}
           />
         )}
       </Box>

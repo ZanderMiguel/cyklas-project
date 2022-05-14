@@ -187,7 +187,10 @@ function Navbar() {
             }}
           >
             <Avatar
-              src={JSON.parse(localStorage.userData).data.user.image}
+              src={JSON.parse(localStorage.userData).data.user.image.replace(
+                'blob:',
+                ''
+              )}
               alt="profileImg"
             />
             <Box

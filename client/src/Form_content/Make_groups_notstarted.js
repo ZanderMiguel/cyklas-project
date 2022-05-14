@@ -33,41 +33,16 @@ import CusPopover from '../components/Popover';
 import MakeGroupsSettingspopover from '../components/PopoverContent/MakeGroupsSettingspopover';
 import GROUP_MOVEMEMBER from './Makegroups_model/Groups_components/Groups_movemember';
 import GROUPS_SWAPMEMBER from './Makegroups_model/Groups_components/Groups_swapmember';
-
-const dataGroup = [
-  {
-    groupName: 'Group 1',
-    totalMembers: '3',
-    groupMembers: [
-      {
-        avatar: (
-          <Avatar src={AvatarIcon} sx={{ height: '2em', width: '2em' }} />
-        ),
-        memberName: 'zander',
-      },
-      {
-        avatar: (
-          <Avatar src={AvatarIcon} sx={{ height: '2em', width: '2em' }} />
-        ),
-        memberName: 'letsgo',
-      },
-    ],
-  },
-  {
-    groupName: 'Group 2',
-    totalMembers: '2',
-    groupMembers: [
-      {
-        avatar: (
-          <Avatar src={AvatarIcon} sx={{ height: '2em', width: '2em' }} />
-        ),
-        memberName: 'javen',
-      },
-    ],
-  },
-];
-
-function Make_groups_notstarted({ open, close, maxWidth }) {
+import { Redirect } from 'react-router-dom';
+function Make_groups_notstarted({
+  open,
+  close,
+  maxWidth,
+  groups,
+  socket,
+  teleRoom,
+  setRedirect,
+}) {
   const { designs } = useStyle();
 
   const [opendialogAddMembers, setOpenDialogAddMembers] = useState(false);
@@ -125,18 +100,30 @@ function Make_groups_notstarted({ open, close, maxWidth }) {
     useState(false);
 
   const handleCreateGroupsStarting = () => {
+    socket.emit('groupInit', teleRoom, groups.current);
     setOpenDialogGroupsStarting(true);
   };
 
   const handleCreateCloseGroupsStarting = () => {
     setOpenDialogGroupsStarting(false);
   };
-
+  socket.once('groupCollapse', (groups, roomID) => {
+    groups.forEach((items, index) =>
+      items.forEach((student) => {
+        if (student.stdID === JSON.parse(localStorage.userData).data.user._id) {
+          setRedirect(<Redirect to={`/telecon/${roomID}group${index}`} />);
+        }
+      })
+    );
+  });
   return (
     <div>
       <Dialogform
         open={open}
-        close={close}
+        close={() => {
+          groups.current = [];
+          close();
+        }}
         maxWidth={maxWidth}
         btn={
           <Button
@@ -149,7 +136,7 @@ function Make_groups_notstarted({ open, close, maxWidth }) {
               fontWeight: '600',
               textTransform: 'Capitalize',
               padding: '0.3em 3em',
-              boxShadow: "none",
+              boxShadow: 'none',
               '&: hover': {
                 backgroundColor: '#31B13E',
               },
@@ -227,7 +214,7 @@ function Make_groups_notstarted({ open, close, maxWidth }) {
                     fontSize: '0.8em',
                     fontWeight: '600',
                     textTransform: 'Capitalize',
-                    boxShadow: "none",
+                    boxShadow: 'none',
                     '&: hover': {
                       boxShadow: 'none',
                       backgroundColor: '#007FFF',
@@ -259,7 +246,7 @@ function Make_groups_notstarted({ open, close, maxWidth }) {
                     fontSize: '0.8em',
                     fontWeight: '600',
                     textTransform: 'Capitalize',
-                    boxShadow: "none",
+                    boxShadow: 'none',
                     '&: hover': {
                       backgroundColor: '#FCFCFC',
                       boxShadow: 'none',
@@ -283,219 +270,227 @@ function Make_groups_notstarted({ open, close, maxWidth }) {
           <Grid item xs={12} sx={{ marginTop: '2em' }}>
             <Box sx={{ width: 'relative', height: '23em' }}>
               <Grid item xs={12}>
-                {dataGroup.map((items, index) => {
-                  return (
-                    <Box
-                      sx={{
-                        width: 'relative',
-                        height: 'auto',
-                        display: 'flex',
-                      }}
-                    >
-                      <Accordion key={index} sx={designs.Accordion_Style}>
-                        <AccordionSummary
-                          sx={designs.AccordionSummary_Style}
-                          aria-controls="panel1a-content"
-                          id="panel1a-header"
-                        >
-                          <img
-                            src={GroupsIcon}
-                            alt=""
-                            style={{
-                              marginTop: '0.3em',
-                              height: '2em',
-                              width: '2em',
-                              marginRight: '1em',
-                            }}
-                          />
-
-                          <Typography sx={designs.GroupName_Typography_Style}>
-                            {items.groupName}
-                          </Typography>
-
-                          <Typography
-                            sx={designs.TotalMembers_Typography_Style}
-                          >
-                            {items.totalMembers}
-                          </Typography>
-                        </AccordionSummary>
-
-                        <Divider sx={{ margin: '0em 1.5em 0.5em 1.5em' }} />
-
-                        {items.groupMembers.map((items2, index) => {
-                          return (
-                            <List
-                              key={index}
-                              component="div"
-                              sx={designs.List_Style}
-                            >
-                              <ListItemAvatar
-                                sx={{ display: 'flex', alignItems: 'center' }}
-                              >
-                                {items2.avatar}
-                              </ListItemAvatar>
-
-                              <ListItemText>
-                                <Typography
-                                  sx={{
-                                    color: '#3F3D56',
-                                    fontSize: '0.8em',
-                                    fontWeight: '600',
-                                    width: '30em',
-                                    height: 'relative',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                  }}
-                                >
-                                  {items2.memberName}
-                                </Typography>
-                              </ListItemText>
-
-                              <ListItemText>
-                                <Button
-                                  onClick={handleCreateMoveMember}
-                                  variant="contained"
-                                  sx={{
-                                    backgroundColor: 'transparent',
-                                    boxShadow: 'none',
-                                    color: '#3F3D56',
-                                    textTransform: 'Capitalize',
-                                    fontSize: '0.8em',
-                                    fontWeight: '500',
-                                    width: '100%',
-                                    height: 'max-content',
-                                    padding: '0em',
-                                    boxShadow: "none",
-                                    '&: hover': {
-                                      backgroundColor: 'transparent',
-                                    },
-                                  }}
-                                >
-                                  Move
-                                </Button>
-                                {opendialogMoveMember && (
-                                  <GROUP_MOVEMEMBER
-                                    open={opendialogMoveMember}
-                                    close={handleCreateCloseMoveMember}
-                                    maxWidth="md"
-                                    state={setOpenDialogMoveMember}
-                                  />
-                                )}
-                              </ListItemText>
-
-                              <ListItemText>
-                                <Button
-                                  onClick={handleCreateSwapMember}
-                                  variant="contained"
-                                  sx={{
-                                    backgroundColor: 'transparent',
-                                    boxShadow: 'none',
-                                    color: '#3F3D56',
-                                    textTransform: 'Capitalize',
-                                    fontSize: '0.8em',
-                                    fontWeight: '500',
-                                    width: '100%',
-                                    height: 'max-content',
-                                    padding: '0em',
-                                    boxShadow: "none",
-                                    '&: hover': {
-                                      backgroundColor: 'transparent',
-                                    },
-                                  }}
-                                >
-                                  Swap
-                                </Button>
-                                {opendialogSwapMember && (
-                                  <GROUPS_SWAPMEMBER
-                                    open={opendialogSwapMember}
-                                    close={handleCreateCloseSwapMember}
-                                    maxWidth="md"
-                                    state={setOpenDialogSwapMember}
-                                  />
-                                )}
-                              </ListItemText>
-                            </List>
-                          );
-                        })}
-                      </Accordion>
-
+                {groups.current &&
+                  groups.current.map((items, index) => {
+                    return (
                       <Box
                         sx={{
-                          width: '10em',
-                          height: 'max-content',
-                          padding: '1.2em 0em',
+                          width: 'relative',
+                          height: 'auto',
                           display: 'flex',
-                          gap: '2em',
-                          alignItems: 'center',
-                          justifyContent: 'center',
                         }}
                       >
-                        <Tooltip title="Rename Group" placement="top">
-                          <IconButton
-                            edge="end"
-                            aria-label="edit"
-                            sx={{
-                              width: '0.8em',
-                              height: '0.8em',
-                              '&: hover': {
-                                backgroundColor: 'transparent',
-                                color: '#007FFF',
-                              },
-                            }}
+                        <Accordion key={index} sx={designs.Accordion_Style}>
+                          <AccordionSummary
+                            sx={designs.AccordionSummary_Style}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
                           >
-                            <BorderColorOutlined sx={{ fontSize: '0.9em' }} />
-                          </IconButton>
-                        </Tooltip>
+                            <img
+                              src={GroupsIcon}
+                              alt=""
+                              style={{
+                                marginTop: '0.3em',
+                                height: '2em',
+                                width: '2em',
+                                marginRight: '1em',
+                              }}
+                            />
 
-                        <Tooltip title="Delete Group" placement="top">
-                          <IconButton
-                            edge="end"
-                            aria-label="delete"
-                            sx={{
-                              width: '0.8em',
-                              height: '0.8em',
-                              '&: hover': {
-                                backgroundColor: 'transparent',
-                                color: '#FF3B00',
-                              },
-                            }}
-                          >
-                            <DeleteOutlined />
-                          </IconButton>
-                        </Tooltip>
+                            <Typography sx={designs.GroupName_Typography_Style}>
+                              Group {index + 1}
+                            </Typography>
 
-                        <Tooltip
-                          title="Add members in this group"
-                          placement="top"
+                            <Typography
+                              sx={designs.TotalMembers_Typography_Style}
+                            >
+                              {items.totalMembers}
+                            </Typography>
+                          </AccordionSummary>
+
+                          <Divider sx={{ margin: '0em 1.5em 0.5em 1.5em' }} />
+
+                          {items &&
+                            items.map((items2, index) => {
+                              return (
+                                <List
+                                  key={index}
+                                  component="div"
+                                  sx={designs.List_Style}
+                                >
+                                  <ListItemAvatar
+                                    sx={{
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                    }}
+                                  >
+                                    <Avatar
+                                      src={items2.camera}
+                                      alt={items2.memberName[0].toUpperCase()}
+                                    />
+                                  </ListItemAvatar>
+
+                                  <ListItemText>
+                                    <Typography
+                                      sx={{
+                                        color: '#3F3D56',
+                                        fontSize: '0.8em',
+                                        fontWeight: '600',
+                                        width: '30em',
+                                        height: 'relative',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                      }}
+                                    >
+                                      {items2.memberName}
+                                    </Typography>
+                                  </ListItemText>
+
+                                  <ListItemText>
+                                    <Button
+                                      onClick={handleCreateMoveMember}
+                                      variant="contained"
+                                      sx={{
+                                        backgroundColor: 'transparent',
+                                        boxShadow: 'none',
+                                        color: '#3F3D56',
+                                        textTransform: 'Capitalize',
+                                        fontSize: '0.8em',
+                                        fontWeight: '500',
+                                        width: '100%',
+                                        height: 'max-content',
+                                        padding: '0em',
+                                        boxShadow: 'none',
+                                        '&: hover': {
+                                          backgroundColor: 'transparent',
+                                        },
+                                      }}
+                                    >
+                                      Move
+                                    </Button>
+                                    {opendialogMoveMember && (
+                                      <GROUP_MOVEMEMBER
+                                        open={opendialogMoveMember}
+                                        close={handleCreateCloseMoveMember}
+                                        maxWidth="md"
+                                        state={setOpenDialogMoveMember}
+                                      />
+                                    )}
+                                  </ListItemText>
+
+                                  <ListItemText>
+                                    <Button
+                                      onClick={handleCreateSwapMember}
+                                      variant="contained"
+                                      sx={{
+                                        backgroundColor: 'transparent',
+                                        boxShadow: 'none',
+                                        color: '#3F3D56',
+                                        textTransform: 'Capitalize',
+                                        fontSize: '0.8em',
+                                        fontWeight: '500',
+                                        width: '100%',
+                                        height: 'max-content',
+                                        padding: '0em',
+                                        boxShadow: 'none',
+                                        '&: hover': {
+                                          backgroundColor: 'transparent',
+                                        },
+                                      }}
+                                    >
+                                      Swap
+                                    </Button>
+                                    {opendialogSwapMember && (
+                                      <GROUPS_SWAPMEMBER
+                                        open={opendialogSwapMember}
+                                        close={handleCreateCloseSwapMember}
+                                        maxWidth="md"
+                                        state={setOpenDialogSwapMember}
+                                      />
+                                    )}
+                                  </ListItemText>
+                                </List>
+                              );
+                            })}
+                        </Accordion>
+
+                        <Box
+                          sx={{
+                            width: '10em',
+                            height: 'max-content',
+                            padding: '1.2em 0em',
+                            display: 'flex',
+                            gap: '2em',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                          }}
                         >
-                          <IconButton
-                            onClick={handleCreateAddMembers}
-                            edge="end"
-                            aria-label="add"
-                            sx={{
-                              width: '0.9em',
-                              height: '0.9em',
-                              '&: hover': {
-                                backgroundColor: '#31B13E',
-                                color: 'white',
-                              },
-                            }}
+                          <Tooltip title="Rename Group" placement="top">
+                            <IconButton
+                              edge="end"
+                              aria-label="edit"
+                              sx={{
+                                width: '0.8em',
+                                height: '0.8em',
+                                '&: hover': {
+                                  backgroundColor: 'transparent',
+                                  color: '#007FFF',
+                                },
+                              }}
+                            >
+                              <BorderColorOutlined sx={{ fontSize: '0.9em' }} />
+                            </IconButton>
+                          </Tooltip>
+
+                          <Tooltip title="Delete Group" placement="top">
+                            <IconButton
+                              edge="end"
+                              aria-label="delete"
+                              sx={{
+                                width: '0.8em',
+                                height: '0.8em',
+                                '&: hover': {
+                                  backgroundColor: 'transparent',
+                                  color: '#FF3B00',
+                                },
+                              }}
+                            >
+                              <DeleteOutlined />
+                            </IconButton>
+                          </Tooltip>
+
+                          <Tooltip
+                            title="Add members in this group"
+                            placement="top"
                           >
-                            <AddCircleOutline sx={{ fontSize: '0.9em' }} />
-                          </IconButton>
-                        </Tooltip>
-                        {opendialogAddMembers && (
-                          <GROUPS_ADDMEMBER
-                            open={opendialogAddMembers}
-                            close={handleCreateCloseAddMembers}
-                            maxWidth="md"
-                            state={setOpenDialogAddMembers}
-                          />
-                        )}
+                            <IconButton
+                              onClick={handleCreateAddMembers}
+                              edge="end"
+                              aria-label="add"
+                              sx={{
+                                width: '0.9em',
+                                height: '0.9em',
+                                '&: hover': {
+                                  backgroundColor: '#31B13E',
+                                  color: 'white',
+                                },
+                              }}
+                            >
+                              <AddCircleOutline sx={{ fontSize: '0.9em' }} />
+                            </IconButton>
+                          </Tooltip>
+                          {opendialogAddMembers && (
+                            <GROUPS_ADDMEMBER
+                              open={opendialogAddMembers}
+                              close={handleCreateCloseAddMembers}
+                              maxWidth="md"
+                              state={setOpenDialogAddMembers}
+                            />
+                          )}
+                        </Box>
                       </Box>
-                    </Box>
-                  );
-                })}
+                    );
+                  })}
 
                 <Button
                   variant="contained"
@@ -511,7 +506,7 @@ function Make_groups_notstarted({ open, close, maxWidth }) {
                     fontSize: '0.7em',
                     fontWeight: '600',
                     textTransform: 'Capitalize',
-                    boxShadow: "none",
+                    boxShadow: 'none',
                     '&: hover': {
                       backgroundColor: '#FAF8F9',
                       boxShadow: 'rgba(0, 0, 0, 0.05) 0px 1px 2px 0px',

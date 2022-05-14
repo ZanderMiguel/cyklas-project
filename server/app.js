@@ -21,8 +21,7 @@ let gfs;
 const startAndConnectToDb = async () => {
   try {
     await mongoose.connect(
-      process.env.MONGODB_URI ||
-        'mongodb+srv://reypanerz:pantheonq1w2e3@learningmonggodb.jhlar.mongodb.net/Classes?retryWrites=true&w=majority',
+      'mongodb+srv://reypanerz:pantheonq1w2e3@learningmonggodb.jhlar.mongodb.net/Classes?retryWrites=true&w=majority',
       {
         useUnifiedTopology: true,
       }
@@ -65,7 +64,9 @@ io.on('connection', (socket) => {
       socket.to(roomID).emit('user-disconnected', socketID);
     });
   });
-
+  socket.on('groupInit', (roomID, groups) => {
+    socket.to(roomID).emit('groupCollapse', groups, roomID);
+  });
   socket.on('render', (members, id, roomID) => {
     socket.to(roomID).emit('rendered', members, id, roomID);
   });
