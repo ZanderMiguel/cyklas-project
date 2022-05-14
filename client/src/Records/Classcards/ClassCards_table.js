@@ -3,6 +3,7 @@ import './Styles/ClassCards_table_stylesheet.css';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 
+
 const dataTable = [
   {
     roomID: 'C20234',
@@ -54,7 +55,12 @@ const dataTable = [
   },
 ];
 
-function ClassCards_table({ roomsdata }) {
+
+
+const ClassCards_table = ( { roomsdata } ) => 
+{
+  
+
   return (
     <>
       <table className="classcards-table">
@@ -67,11 +73,11 @@ function ClassCards_table({ roomsdata }) {
         </thead>
 
         <tbody>
-          {dataTable.map(function (items, index) {
+          {roomsdata && roomsdata.map(function (items, index) {
             console.log(items.finalGrade);
             return (
               <tr key={index}>
-                <td data-label="Room Name"> {items.roomName} </td>
+                <td data-label="Room Name"> {items.RoomName} </td>
                 <td data-label="FINAL Grade"> {items.finalGrade} </td>
                 <td data-label="Actions">
                   <Button
@@ -100,12 +106,10 @@ function ClassCards_table({ roomsdata }) {
 
         <tfoot>
           <tr>
-            {/* <td> </td> */}
-            <td> </td>
-            {/* <td> </td>
-            <td> </td> */}
+            <td>
+            </td>
             <td> Total Rooms: </td>
-            <td data-label="Total Rooms"> 5 </td>
+            <td data-label="Total Rooms"> {roomsdata.length} </td>
           </tr>
         </tfoot>
       </table>

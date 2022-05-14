@@ -69,9 +69,8 @@ function ActivityFile({ item }) {
                 color: '#3F3D56',
                 fontSize: '0.8em',
                 fontWeight: '600',
-                width: 'relative',
                 height: 'auto',
-                flexGrow: 1
+                flexGrow: 1,
               }}
             >
               {item}
@@ -98,7 +97,6 @@ function ActivityFile({ item }) {
           </Box>
         </Box>
       </Tooltip>
-      {/* <Backdrop open={open} close={handleClose}/> */}
     </>
   );
 }

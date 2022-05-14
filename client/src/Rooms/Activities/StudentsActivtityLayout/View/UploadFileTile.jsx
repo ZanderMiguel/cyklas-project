@@ -8,7 +8,15 @@ import Excelfile from '../../../../assets/ImageJaven/Excelfile.png';
 import Powerpointfile from '../../../../assets/ImageJaven/Powerpointfile.png';
 
 function UploadFileTile({ submits, activityID }) {
-  const [uploadFile, setUploadFile] = React.useState([]);
+  const [uploadFile, setUploadFile] = React.useState( [] );
+  
+  
+  const handledelete = (index) =>
+  { 
+    const values = [...uploadFile];
+    values.splice(index, 1);
+    setUploadFile(values);
+  }
   return (
     <Box
       className="Student-container"
@@ -204,6 +212,7 @@ function UploadFileTile({ submits, activityID }) {
                   }}
                 >
                   <Typography
+                    onClick={(index)=> handledelete(index)}
                     sx={{
                       color: '#3F3D56',
                       fontSize: '0.8em',
@@ -332,6 +341,7 @@ function UploadFileTile({ submits, activityID }) {
           }}
           onClick={() => {
             const formData = new FormData();
+            
 
             uploadFile.forEach((item) => {
               formData.append('file', item.file);
@@ -359,7 +369,9 @@ function UploadFileTile({ submits, activityID }) {
                   },
                 }
               )
-              .then((res) => console.log(res.data))
+              .then( ( res ) =>
+                console.log( res.data )
+              )
               .catch((err) => console.log(err));
           }}
         >

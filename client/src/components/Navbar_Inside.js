@@ -172,7 +172,7 @@ function Navbar() {
             anchorEl={anchorEl}
             onClose={handleCloseNotif}
           >
-            <Notificationpopover general={general}  items={items} setToggleAccept={setToggleAccept} setItems={ setItems}/>
+            <Notificationpopover general={general} items={items} setToggleAccept={setToggleAccept} setItems={ setItems}/>
           </CusPopover>
           <Box
             display="flex"
