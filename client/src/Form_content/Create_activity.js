@@ -23,6 +23,9 @@ import Wordfile from '../assets/ImageJaven/Wordfile.png';
 import Pdffile from '../assets/ImageJaven/Pdffile.png';
 import Excelfile from '../assets/ImageJaven/Excelfile.png';
 import Powerpointfile from '../assets/ImageJaven/Powerpointfile.png';
+import Imagee from '../assets/ImageJaven/Imagee.png';
+import Videoo from '../assets/ImageJaven/Videoo.png';
+import Filee from '../assets/ImageJaven/Filee.png';
 import Dialogform from '../components/Dialogform';
 import Input from '../components/Input';
 import Datepicker from '../components/DatePicker';
@@ -250,20 +253,21 @@ function Create_activity({ item, open, close, setOpenDialog }) {
                       }}
                     >
                       <img
-                        src={
-                          item?.fileName.includes('.docx')
-                            ? Wordfile
-                            : item?.fileName.includes('.xls')
-                            ? Excelfile
-                            : item?.fileName.includes('.ppt') ||
-                              item?.fileName.includes('.pptx')
-                            ? Powerpointfile
-                            : item?.fileName.includes('.pdf') && Pdffile
-                        }
-                        style={{
-                          height: '40px',
-                        }}
-                      />
+                      src={
+                        item?.fileName.includes('.docx') ? Wordfile
+                          : item?.fileName.includes('.xls') ? Excelfile
+                          : item?.fileName.includes('.jpg') ||
+                            item?.fileName.includes('.png') ? Imagee
+                          : item?.fileName.includes('.mp4') ? Videoo
+                          : item?.fileName.includes('.ppt') ||
+                            item?.fileName.includes('.pptx') ? Powerpointfile
+                          : item?.fileName.includes('.pdf') ? Pdffile
+                          : item?.fileName.includes('.txt') && Filee
+                      }
+                      style={{
+                        height: '40px',
+                      }}
+                    />
 
                       <Box
                         className="Activity-filename"
@@ -298,16 +302,15 @@ function Create_activity({ item, open, close, setOpenDialog }) {
                             height: 'max-content',
                           }}
                         >
-                          {item?.fileName?.includes('.docx')
-                            ? 'WORD FILE'
-                            : item?.fileName?.includes('.xls')
-                            ? 'EXCEL FILE'
-                            : item?.fileName?.includes('.ppt') ||
-                              item?.fileName?.includes('.pptx')
-                            ? 'POWER POINT'
-                            : item.fileName.includes('.pdf')
-                            ? 'PDF FILE'
-                            : 'FILE'}
+                          {item?.fileName?.includes('.docx') ? 'WORD FILE'
+                          : item?.fileName?.includes('.xls') ? 'EXCEL FILE'
+                          : item?.fileName?.includes('.mp4') ? 'VIDEO FILE'
+                          : item?.fileName.includes('.jpg') ||
+                            item?.fileName.includes('.png') ? 'IMAGE FILE'
+                          : item?.fileName.includes('.ppt') ||
+                            item?.fileName.includes('.pptx') ? 'POWER POINT FILE'
+                          : item?.fileName.includes('.pdf') ? 'PDF FILE'
+                          : item?.fileName.includes('.txt') && 'FILE' }
                         </Typography>
                       </Box>
                     </Box>

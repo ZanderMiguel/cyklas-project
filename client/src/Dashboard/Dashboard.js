@@ -3,6 +3,7 @@ import { Container, Grid } from '@mui/material';
 import axios from 'axios';
 import DashboardSearchbar from './DashboardSearchbar';
 import DashboardStatistics from './DashboardStatistics';
+import DashboardStatisticsStudent from './DashboardStatisticsStudent';
 import DashboardStudentrankings from './DashboardStudentrankings';
 import DashboardProfessorratings from './DashboardProfessorratings';
 import DashboardRoomsclasses from './DashboardRoomsclasses';
@@ -34,7 +35,13 @@ function Dashboard() {
           columnSpacing={1}
           sx={{ marginBottom: '1em' }}
         >
-          <DashboardStatistics />
+          {JSON.parse(localStorage.userData).data.user.userType === 'Professor' ? (
+            <DashboardStatistics />
+          )
+          :
+          (
+            <DashboardStatisticsStudent />
+          )}
         </Grid>
         <Grid item xs={12} sx={{ marginBottom: '1em' }}>
           <DashboardRoomsclasses roomdata={roomdata} />
