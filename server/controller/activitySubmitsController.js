@@ -1,4 +1,6 @@
 const ActivitySubmitsModel = require('../models/model-activitySubmits');
+const { getRooms } = require('./roomsController');
+const { getActivity } = require('./createActivityController');
 const mongoose = require('mongoose');
 const fs = require('fs');
 require('dotenv').config();
@@ -79,7 +81,39 @@ const displaySubmittedActivity = async (req, res) => {
     return res.json(error);
   }
 };
+const getAllActivities = async (req, res) => {
+  try {
+    const rooms = await getRooms(req);
+    const userID = req.body.userID;
+    let allActivities = [];
+    let bobo = false;
+    rooms.forEach(async (item) => {
+      const req = {
+        body: { roomID: item._id.toString() },
+      };
+      getActivity(req)
+        .then((activities) => {
+          const allActs = activities.length;
+          activities.forEach((item) => {
+            ActivitySubmitsModel.find({
+              activityID: item._id.toString(),
+              'submittedBy.userID': userID,
+            })
+              .then((act) => {
+                return res.json({ submittedActivities: act.length, allActs });
+              })
+              .catch((err) => console.log(err));
+          });
+        })
+        .catch((err) => console.log(err));
+    });
+  } catch (error) {
+    console.log(error);
+    return res.json(error);
+  }
+};
 module.exports = {
   submitActivity,
   displaySubmittedActivity,
+  getAllActivities,
 };
