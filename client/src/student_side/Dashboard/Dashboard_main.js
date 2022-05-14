@@ -532,89 +532,6 @@ function Dashboard_main({ roomdata }) {
   return (
     <Container maxWidth="xl">
       <Grid container sx={{ height: 'auto' }}>
-        {/* <Grid item xs={12} sx = {{ marginTop: "1em" }}>
-            <Box sx={{ width: 'relative', height: 'auto', display: 'flex', flexWrap: "wrap" }}>
-            
-                <Box sx = {designs.SearchDashboard_Responsive_Style}>
-                    <IconButton
-                    aria-label="search"
-                    sx={{
-                        backgroundColor: '#FCF9FB',
-                        height: '1.3em',
-                        width: '1.3em'
-                    }}
-                    >
-                    <Search
-                        sx={{
-                        color: '#82818E',
-                        fontSize: '0.9em',
-                        }}
-                    />
-                    </IconButton>
-
-                    <Input
-                    variant="standard"
-                    placeholder="Search dashboard..."
-                    disableUnderline
-                    sx={{
-                        border: "1px solid black",
-                        height: '2.5em',
-                        width: '100%',
-                        backgroundColor: 'transparent',
-                        fontSize: '0.8em',
-                        fontWeight: '500',
-                        color: '#3F3D56',
-                    }}
-                    />
-                </Box>
-            
-
-                <FormControl
-                variant="standard"
-                sx={designs.SelectRoom_Style}
-                >
-                <InputLabel
-                    id="demo-simple-select-standard-label"
-                    sx={{
-                    fontSize: '0.9em',
-                    fontWeight: '500',
-                    color: '#3F3D56',
-                    textTransform: 'uppercase',
-                    }}
-                >
-                    Select Room
-                </InputLabel>
-
-                <Select
-                    labelId="demo-simple-select-standard-label"
-                    id="demo-simple-select-standard"
-                    value={selectRoom}
-                    onChange={handleChangeRoom}
-                    label="SelectRoom"
-                    disableUnderline
-                    sx={{
-                    width: '100%',
-                    fontSize: '0.9em',
-                    fontWeight: '400',
-                    color: '#3F3D56',
-                    borderBottom: '1px solid #DBDBDB',
-                    }}
-                >
-                    {dataRoom.map(({ value, label }) => (
-                    <MenuItem key={value} value={value}>
-                        {' '}
-                        {label}{' '}
-                    </MenuItem>
-                    ))}
-                </Select>
-                </FormControl>
-                
-                
-                
-                
-            </Box>
-            </Grid> */}
-
         <Grid item md={6} xs={12} sx={{ marginTop: '1em' }}>
           <Box sx={designs.SearchDashboard_Style}>
             <IconButton
@@ -1181,8 +1098,6 @@ function Dashboard_main({ roomdata }) {
             <Grid item xs={12} sx={{ height: 'auto' }}>
               <Dashboard_table roomdata={roomdata} />
             </Grid>
-            {/* <Box sx = {{ width: "100%", height: "60vh", border: "1px solid black"}}>
-                        </Box> */}
           </Grid>
 
           <Grid item xs={4} sx={designs.RightContainer_GridItem_Style}>
@@ -1220,16 +1135,6 @@ function Dashboard_main({ roomdata }) {
                     padding: '0em',
                   }}
                 >
-                  {/* <InputLabel id="demo-simple-select-standard-label"
-                    sx={{
-                    fontSize: '0.7em',
-                    fontWeight: '500',
-                    color: '#8E8E8E',
-                    textTransform: "none"
-                    }}>
-                    This week
-                    </InputLabel> */}
-
                   <Select
                     labelId="demo-simple-select-standard-label"
                     id="demo-simple-select-standard"
@@ -1246,8 +1151,7 @@ function Dashboard_main({ roomdata }) {
                   >
                     {dataRange.map(({ value, label }) => (
                       <MenuItem key={value} value={value}>
-                        {' '}
-                        {label}{' '}
+                        {label}
                       </MenuItem>
                     ))}
                   </Select>

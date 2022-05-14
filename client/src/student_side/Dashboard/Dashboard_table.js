@@ -106,22 +106,23 @@ function Dashboard_table({ roomdata }) {
         </thead>
 
         <tbody>
-          {dataTable.map(function (items, index) {
-            return (
-              <tr key={index}>
-                <td data-label="Room Name"> {items.roomName} </td>
-                <td data-label="Course"> {items.roomCourse} </td>
-                <td data-label="Year and Section"> {items.roomYearSec} </td>
-                <td data-label="Class Day"> {items.classDay} </td>
-                <td data-label="Class Time"> {items.classTime} </td>
-                <td data-label="Professor"> {items.professorName} </td>
-                <td data-label="">
-                  <button className="view-btn"> View </button>
-                  <button className="leave-btn"> Leave </button>
-                </td>
-              </tr>
-            );
-          })}
+          {roomdata &&
+            roomdata.map(function (items, index) {
+              return (
+                <tr key={index}>
+                  <td data-label="Room Name"> {items.RoomName} </td>
+                  <td data-label="Course"> {items.Course} </td>
+                  <td data-label="Year and Section">{items.yearAndSection}</td>
+                  <td data-label="Class Day"> {items.ClassDays} </td>
+                  <td data-label="Class Time"> {items.ClassTime} </td>
+                  <td data-label="Professor"> {items.Host.name} </td>
+                  <td data-label="">
+                    <button className="view-btn"> View </button>
+                    <button className="leave-btn"> Leave </button>
+                  </td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
     </div>

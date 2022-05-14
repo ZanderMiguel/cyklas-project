@@ -22,36 +22,32 @@ function Dashboard() {
 
   return (
     <>
-      {JSON.parse(localStorage.userData).data.user.userType === 'Student' ? (
-        <Dashboard_main roomdata={roomdata} />
-      ) : (
-        <Container maxWidth="md" sx={{ padding: '1.5em 0em' }}>
-          <Grid item xs={12} sx={{ marginBottom: '0.8em' }}>
-            <DashboardSearchbar />
-          </Grid>
+      <Container maxWidth="md" sx={{ padding: '1.5em 0em' }}>
+        <Grid item xs={12} sx={{ marginBottom: '0.8em' }}>
+          <DashboardSearchbar />
+        </Grid>
 
-          <Grid
-            container
-            item
-            xs={12}
-            columnSpacing={1}
-            sx={{ marginBottom: '1em' }}
-          >
-            <DashboardStatistics />
-          </Grid>
-          <Grid item xs={12} sx={{ marginBottom: '1em' }}>
-            <DashboardRoomsclasses roomdata={roomdata} />
-          </Grid>
+        <Grid
+          container
+          item
+          xs={12}
+          columnSpacing={1}
+          sx={{ marginBottom: '1em' }}
+        >
+          <DashboardStatistics />
+        </Grid>
+        <Grid item xs={12} sx={{ marginBottom: '1em' }}>
+          <DashboardRoomsclasses roomdata={roomdata} />
+        </Grid>
 
-          <Grid item xs={12} sx={{ marginBottom: '1em' }}>
-            <DashboardStudentrankings />
-          </Grid>
+        <Grid item xs={12} sx={{ marginBottom: '1em' }}>
+          <DashboardStudentrankings />
+        </Grid>
 
-          <Grid item xs={12} sx={{ marginBottom: '1em' }}>
-            <DashboardProfessorratings />
-          </Grid>
-        </Container>
-      )}
+        <Grid item xs={12} sx={{ marginBottom: '1em' }}>
+          <DashboardProfessorratings />
+        </Grid>
+      </Container>
     </>
   );
 }

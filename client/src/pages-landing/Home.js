@@ -19,6 +19,7 @@ import Flatimage from '../assets/Images/illustration.svg';
 import MaleLogo from '../assets/Images/avatar_male.png';
 import Register from '../Form_content/Register';
 import GoogleAuth from './GoogleAuth';
+import GoogleLogin from 'react-google-login';
 import Footer from './Footer';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -86,6 +87,7 @@ function Home() {
       ) : (
         <>
           <ToastContainer />
+
           <Box
             display="flex"
             justifyContent="center"
@@ -122,7 +124,6 @@ function Home() {
                   backgroundColor: 'white',
                 }}
               />
-
               {isMatch ? null : (
                 <Button
                   content="Create your account now"
