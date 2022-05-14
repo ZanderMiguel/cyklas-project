@@ -68,7 +68,7 @@ io.on('connection', (socket) => {
     socket.to(roomID).emit('join-group', groups, roomID);
   });
   socket.on('render', (members, id, roomID) => {
-    socket.to(roomID).emit('rendered', members, id, roomID);
+    socket.emit('rendered', members, id, roomID);
   });
 
   socket.on('sendMessage', (data) => {
