@@ -20,10 +20,10 @@ function OffCamera({
             id={items.id}
             key={items.id + items.stdID}
             style={{
-              minWidth: `calc(85%/${tileWidth.current})`,
-              height: `calc(${layout.current && layout.current.clientHeight}/${
-                tileWidth.current
-              })`,
+              minWidth: `calc(85%/${tileWidth})`,
+              height: `calc(${
+                layout.current && layout.current.clientHeight
+              }/${tileWidth})`,
             }}
           >
             <Box
@@ -41,7 +41,7 @@ function OffCamera({
             >
               <Avatar
                 alt={items.memberName[0].toUpperCase()}
-                src={items.camera}
+                src={items.camera.replace('blob:', '')}
                 sx={{ height: '5em', width: '5em' }}
               />
 

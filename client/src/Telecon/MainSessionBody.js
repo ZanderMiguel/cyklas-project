@@ -13,11 +13,11 @@ function MainSessionBody({
 }) {
   const [toggleMic, setToggleMic] = React.useState(false);
   const layout = React.useRef(null);
-  const tileWidth = React.useRef(1);
+  const [tileWidth, setTileWidth] = React.useState(1);
 
   React.useMemo(() => {
     layout.current &&
-      (tileWidth.current =
+      setTileWidth(
         layout.current.childNodes.length >= 36
           ? 7
           : layout.current.childNodes.length >= 25
@@ -28,18 +28,16 @@ function MainSessionBody({
           ? 4
           : layout.current.childNodes.length >= 4
           ? 3
-          : 2);
+          : 2
+      );
 
-    document.querySelector('#memberCount') &&
-      (document.querySelector('#memberCount').innerHTML =
-        layout.current?.childNodes?.length || 1);
     socket.once('join-others', (newMember, id, roomID) => {
-      setRenderer((prev) => !prev);
       members.current = _.uniqBy(
         [...newMember, ...members.current],
         (item) => item.stdID
       );
 
+      console.log('someone joined');
       socket.emit(
         'render',
         _.uniqBy([...newMember, ...members.current], (item) => item.stdID),
@@ -48,10 +46,14 @@ function MainSessionBody({
       );
     });
   }, [renderer]);
+  React.useEffect(() => {}, []);
+
   socket.once('user-disconnected', (id) => {
-    console.log(members.current);
     members.current = members.current.filter((item) => item.id !== id);
+    setRenderer((prev) => !prev);
+    //document.querySelector(`#${id}`).remove()
   });
+
   const handleToggleMic = () => {
     setToggleMic((prev) => !prev);
   };

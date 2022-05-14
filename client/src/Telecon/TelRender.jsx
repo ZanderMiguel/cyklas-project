@@ -33,7 +33,7 @@ function TelRender({ socket, socketID, myPeer }) {
   React.useMemo(() => {
     socket.emit('joinroom', teleRoom, members.current, socketID);
   }, []);
-  socket.once('rendered', (newMember) => {
+  socket.on('rendered', (newMember) => {
     members.current = _.uniqBy(
       [...newMember, ...members.current],
       (item) => item.stdID
