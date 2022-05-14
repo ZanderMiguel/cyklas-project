@@ -22,7 +22,7 @@ import View_activity from './Rooms/Activities/ProfActivityLayout/View_activity';
 import Activities_main from './Rooms/Activities/StudentsActivtityLayout/Activities_main';
 import Activity_viewed from './Rooms/Activities/StudentsActivtityLayout/View/Activity_viewed';
 import ExamViewedV2 from './Rooms/Activities/StudentsActivtityLayout/View/ExamViewedV2';
-
+import QuizViewedV2 from './Rooms/Activities/StudentsActivtityLayout/View/QuizViewedV2/QuizViewedV2';
 
 //Records & Classcards
 import Records from './Records/Records';
@@ -35,8 +35,9 @@ import Settings from './Settings/Settings';
 //Telecon
 import TeleconStart from './Telecon/TeleconStart';
 import TeleconRoomV2 from './Telecon/TeleconRoomV2';
-import LiveQuiz from "./Telecon/LiveQuiz";
-import LivequizQuestion from "./Telecon/LivequizQuestion";
+import LiveQuiz from "./Telecon/LIVE QUIZ/LiveQuiz";
+import LivequizQuestion from "./Telecon/LIVE QUIZ/LivequizQuestion";
+import LivequizStudentrankings from "./Telecon/LIVE QUIZ/LivequizStudentrankings";
 
 //Quizlit
 import QuizLit from './Quizlit/Quizlit';
@@ -56,6 +57,7 @@ import Notifications_viewall from './Notifications/Notifications_viewall';
 import Exam_take from './Dashboard/Exam_take';
 import Exam_start from './Dashboard/Exam_start';
 import View_quiz from './Quizlit/Quizbank-content-layout/Quizbank-view/View_quiz';
+import ViewQuizV2 from './Quizlit/Quizbank-content-layout/Quizbank-view/ViewQuizV2/ViewQuizV2';
 import View_exam from './Quizlit/Quizbank-content-layout/Quizbank-view/View_exam';
 import JoinQuiz from './Quizlit/TestComponents/JoinQuiz';
 import ToLobby from './Quizlit/TestComponents/ToLobby';
@@ -174,6 +176,7 @@ function App() {
 
               <Route path="/LiveQuiz" component = {LiveQuiz}/>
               <Route path="/LivequizQuestion" component = {LivequizQuestion}/>
+              <Route path="/LivequizStudentrankings" component = {LivequizStudentrankings}/>
 
               {/* <Route path="/TeleconRoomV2" component={TeleconRoomV2} /> */}
 
@@ -199,6 +202,7 @@ function App() {
               <Route exact path="/Evaluation" component={Evaluation} />
               <Route exact path="/Dashboard_main" component={Dashboard_main} />
               <Route exact path="/ExamViewedV2" component={ExamViewedV2} />
+              <Route exact path="/QuizViewedV2" component={QuizViewedV2} />
               <Route exact path="/Exam_take/:quizID" component={Exam_take} />
               <ProtectedRoutes
                 exact
@@ -207,6 +211,7 @@ function App() {
                 socket={socket}
               />
               <ProtectedRoutes exact path="/View_quiz" component={View_quiz} />
+              <ProtectedRoutes exact path="/ViewQuizV2" component={ViewQuizV2} />
               <ProtectedRoutes
                 exact
                 path="/quizlit/view_exam/:examID"

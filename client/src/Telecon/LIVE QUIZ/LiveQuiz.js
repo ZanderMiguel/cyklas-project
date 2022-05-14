@@ -1,8 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { Box, CssBaseline, Typography, Button, Grid, Container, Avatar, Divider, Tooltip } from "@mui/material";
-import AvatarIcon from "../assets/ImageJaven/Avatar.png";
-import Background89 from "../assets/ImageJaven/Background89.png";
+import AvatarIcon from "../../assets/ImageJaven/Avatar.png";
+import Background89 from "../../assets/ImageJaven/Background89.png";
 import { Check, VideocamOffOutlined, PeopleAlt } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 

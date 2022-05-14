@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Grid, Backdrop, Typography } from "@mui/material";
-import QuestionResult from "../QuestionResult";
+import QuestionResult from "./QuestionResult";
 import ChoiceA from "../../assets/ImageJaven/ChoiceA.png";
 import ChoiceB from "../../assets/ImageJaven/ChoiceB.png";
 import ChoiceC from "../../assets/ImageJaven/ChoiceC.png";

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Grid, Backdrop, Typography } from '@mui/material';
-import QuestionResult from '../QuestionResult';
+import QuestionResult from './QuestionResult';
 
 function LivequizSA() {
   const [open, setOpen] = React.useState(false);

@@ -1,14 +1,14 @@
 import React from 'react'
 import { CssBaseline, Box, Typography, Button, Grid, Container, Backdrop } from "@mui/material";
-import Background89 from "../assets/ImageJaven/Background89.png";
-import hqdefault from "../assets/ImageJaven/hqdefault.jpg";
+import Background89 from "../../assets/ImageJaven/Background89.png";
+import hqdefault from "../../assets/ImageJaven/hqdefault.jpg";
 import { TimerOutlined } from "@mui/icons-material";
 import QuestionResult from "./QuestionResult";
-import LivequizMulti from "./TeleconSide/LivequizMulti";
-import LivequizImagemulti from "./TeleconSide/LivequizImagemulti";
-import LivequizTF from "./TeleconSide/LivequizTF";
-import LivequizSA from "./TeleconSide/LivequizSA";
-import LivequizTimer from "./TeleconSide/LivequizTimer";
+import LivequizMulti from "./LivequizMulti";
+import LivequizImagemulti from "./LivequizImagemulti";
+import LivequizTF from "./LivequizTF";
+import LivequizSA from "./LivequizSA";
+import LivequizTimer from "./LivequizTimer";
 
 function LivequizQuestion() {
 
@@ -69,6 +69,19 @@ const [open, setOpen] = React.useState(false);
                 width: "relative",
                 height: "max-content",
                 textAlign: "center",
+                marginBottom: "0.1em"
+            }}/>
+
+            <Typography children = "Multiple Choice"
+            sx = {{
+                color: "#1389FF",
+                fontSize: "1em",
+                fontWeight: "700",
+                textTransform: "Uppercase",
+                width: "relative",
+                height: "max-content",
+                textAlign: "center",
+                paddingBottom: "0.3em",
                 marginBottom: "0.5em"
             }}/>
 
