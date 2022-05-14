@@ -351,7 +351,7 @@ function UploadFileTile({ submits, activityID }) {
             formData.append('activityStatus', 'Submitted');
             axios
               .post(
-                'https://murmuring-basin-16459.herokuapp.com/activity/submit',
+                'http://localhost:5000/activity/submit',
                 formData,
                 {
                   headers: {

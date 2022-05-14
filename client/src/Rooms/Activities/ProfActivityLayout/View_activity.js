@@ -65,13 +65,17 @@ function View_activity({ socket }) {
   const [score, setScore] = useState({});
   const [studentID, setStudentID] = React.useState({});
   const scores = React.useRef([]);
-  const handleChangeSort = (event) => {
+  
+  
+  
+  const handleChangeSort = ( event ) =>
+  {
     setSort(event.target.value);
   };
 
-  socket.on('post-comment', (uuid) => {
-    setCommentId(uuid);
-  });
+  // socket.on('post-comment', (uuid) => {
+  //   setCommentId(uuid);
+  // });
 
   React.useEffect(() => {
     axios
@@ -91,13 +95,16 @@ function View_activity({ socket }) {
           <Button
             onClick={() => {
               axios
-                .post('http://localhost:5000/records/activity/return', {
-                  roomID,
-                  userID: JSON.parse(localStorage.userData).data.user._id,
-                  scores: scores.current,
-                  category: activityView.activityType,
-                  maxPoints: activityView.activityPoints,
-                })
+                .post(
+                  'http://localhost:5000/records/activity/return',
+                  {
+                    roomID,
+                    userID: JSON.parse(localStorage.userData).data.user._id,
+                    scores: scores.current,
+                    category: activityView.activityType,
+                    maxPoints: activityView.activityPoints,
+                  }
+                )
                 .then((res) => console.log(res.data))
                 .catch((err) => console.log(err));
             }}
@@ -607,6 +614,7 @@ function View_activity({ socket }) {
                             'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
                         },
                       }}
+                      onClick={ ()=> alert('awit') }
                     >
                       <img
                         src={Wordfile}

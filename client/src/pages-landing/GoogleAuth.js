@@ -71,6 +71,7 @@ function GoogleAuth() {
         onSuccess={googleSuccess}
         onFailure={googleFailure}
         cookiePolicy={'single_host_origin'}
+        scope="profile"
       />
       {/* {state && (
         <SelectUserType

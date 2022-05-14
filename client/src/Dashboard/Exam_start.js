@@ -33,8 +33,9 @@ function Exam_start({ socket }) {
             quizID,
           })
           .then((res) => {
-            setData([response.data, res.data]);
-            console.log([response.data, res.data]);
+            // setData([response.data, res.data]);
+            // console.log([response.data, res.data]);
+            console.log(res)
           })
           .catch((err) => console.log(err));
       })

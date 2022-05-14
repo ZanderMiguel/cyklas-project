@@ -27,9 +27,9 @@ function Activity_viewed({ socket }) {
   const [submits, setSubmits] = useState(null);
   const [commentId, setCommentId] = useState(null);
 
-  socket.on('post-comment', (uuid) => {
-    setCommentId(uuid);
-  });
+  // socket.on('post-comment', (uuid) => {
+  //   setCommentId(uuid);
+  // });
 
   React.useEffect(() => {
     axios
