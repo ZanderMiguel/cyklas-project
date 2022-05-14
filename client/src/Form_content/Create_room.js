@@ -9,7 +9,7 @@ import { Grid, Button, Typography } from '@mui/material';
 
 const gradingsystems = [];
 
-function Create_room({ open, close, maxWidth, state, socket, gs }) {
+function Create_room({ open, close, maxWidth, state, socket, gs,setNewRoom }) {
   const [roomname, setRoomname] = useState('');
   const [course, setCourse] = useState('');
   const [classday, setClassDay] = useState('');
@@ -72,14 +72,14 @@ function Create_room({ open, close, maxWidth, state, socket, gs }) {
           members: [JSON.parse(localStorage.userData).data.user._id],
         })
         .then((res) => {
-          console.log(res.data);
+          console.log( res.data );
+          setNewRoom(prev => !prev)
           if (res.data.status === 'success') {
             state(false);
           }
         })
         .catch((err) => console.log(err.message));
     }
-    socket.emit('create-room');
   };
 
   return (

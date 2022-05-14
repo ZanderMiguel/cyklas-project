@@ -19,6 +19,7 @@ import {
   InsertLinkOutlined,
   HomeWork,
 } from '@mui/icons-material';
+import LoadingButton from '@mui/lab/LoadingButton';
 import Wordfile from '../assets/ImageJaven/Wordfile.png';
 import Pdffile from '../assets/ImageJaven/Pdffile.png';
 import Excelfile from '../assets/ImageJaven/Excelfile.png';
@@ -45,6 +46,7 @@ function Create_activity({ item, open, close, setOpenDialog }) {
     values.splice(index, 1);
     setUploadFile(values);
   }
+  const [isPending, setIsPending] = useState(false)
   const { roomID } = useParams();
   const [category, setCategory] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -74,20 +76,25 @@ function Create_activity({ item, open, close, setOpenDialog }) {
     setCategory(event.target.value);
   };
 
+
   const handleCreateActivity = () => {
     setTitleError(false);
     setPointsError(false);
-    setTypeError(false);
+    setTypeError( false );
 
     if (title === '') {
-      setTitleError(true);
+      setTitleError( true );
+      
     }
     if (points === '') {
-      setPointsError(true);
+      setPointsError( true );
+      
     }
     if (selectedCategory === '') {
-      setTypeError(true);
+      setTypeError( true );
     }
+
+    
 
     const formData = new FormData();
     uploadFile.forEach((item) => {
@@ -113,7 +120,10 @@ function Create_activity({ item, open, close, setOpenDialog }) {
     formData.append('activityDueDate', duedate);
     formData.append('activityInstruction', JSON.stringify(convertedState));
     formData.append('rooms', [roomID]);
-    axios
+    
+    
+    if (title, points, selectedCategory) {
+      axios
       .post('http://localhost:5000/activity/create', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -124,10 +134,14 @@ function Create_activity({ item, open, close, setOpenDialog }) {
         setUploadFile([
           ...uploadFile,
           { fileName: 'File uploaded/image/link' },
-        ]);
-        close();
+        ] );
+        setOpenDialog( false )
+        
       })
-      .catch((err) => console.log(err));
+        .catch( ( err ) =>
+        
+        {console.log( err ) } );
+    }
   };
 
   useEffect(() => {
@@ -387,7 +401,7 @@ function Create_activity({ item, open, close, setOpenDialog }) {
         </Grid>
         <Box className="action" display="flex" width="100%">
           <Box flexGrow={1} />
-          <Button
+         {!isPending ?  (<Button
             onClick={handleCreateActivity}
             variant="contained"
             sx={{
@@ -398,7 +412,10 @@ function Create_activity({ item, open, close, setOpenDialog }) {
             }}
           >
             Post
-          </Button>
+          </Button>) :
+           ( <LoadingButton loading fullWidth variant="contained">
+                        Submit
+            </LoadingButton>)}
         </Box>
       </Grid>
     </Dialogform>

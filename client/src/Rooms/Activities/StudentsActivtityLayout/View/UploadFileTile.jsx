@@ -7,9 +7,10 @@ import Pdffile from '../../../../assets/ImageJaven/Pdffile.png';
 import Excelfile from '../../../../assets/ImageJaven/Excelfile.png';
 import Powerpointfile from '../../../../assets/ImageJaven/Powerpointfile.png';
 
-function UploadFileTile({ submits, activityID }) {
+function UploadFileTile({ submits, activityID, duedate }) {
   const [uploadFile, setUploadFile] = React.useState( [] );
-  
+  const [status, setStatus] = React.useState( 'Handed-out')
+  console.log(Date.now(), Date.parse(duedate) )
   
   const handledelete = (index) =>
   { 
@@ -58,6 +59,7 @@ function UploadFileTile({ submits, activityID }) {
         </Typography>
 
         <Typography
+          
           sx={{
             height: 'max-content',
             fontSize: '15px',
@@ -67,17 +69,12 @@ function UploadFileTile({ submits, activityID }) {
             width: 'auto',
           }}
         >
-          {submits?.length > 0 ? submits[0].activityStatus : 'Handed-Out'}
+          {submits?.length > 0 ? submits[0].activityStatus : status}
         </Typography>
       </Box>
       {submits &&
         submits?.[0]?.media.map((item, index) => {
           return (
-            <Tooltip
-              key={index}
-              title="Click to download file"
-              placement="top-start"
-            >
               <Box
                 className="Attach-file"
                 sx={{
@@ -155,17 +152,11 @@ function UploadFileTile({ submits, activityID }) {
                   </Typography>
                 </Box>
               </Box>
-            </Tooltip>
           );
         })}
       {uploadFile &&
         uploadFile.map((item, key) => {
           return (
-            <Tooltip
-              key={key}
-              title="Click to download file"
-              placement="top-start"
-            >
               <Box
                 className="Attach-file"
                 sx={{
@@ -246,7 +237,6 @@ function UploadFileTile({ submits, activityID }) {
                   </Typography>
                 </Box>
               </Box>
-            </Tooltip>
           );
         })}
       <Box
@@ -339,7 +329,9 @@ function UploadFileTile({ submits, activityID }) {
               backgroundColor: '#005DC3',
             },
           }}
-          onClick={() => {
+          onClick={() =>
+          {
+            
             const formData = new FormData();
             
 
@@ -365,7 +357,7 @@ function UploadFileTile({ submits, activityID }) {
                   'Content-Type': 'multipart/form-data',
                 },
               })
-              .then((res) => console.log(res.data))
+              .then((res) => setStatus('submitted'))
               .catch((err) => console.log(err));
           }}
         >

@@ -25,7 +25,8 @@ function Activity_viewed({ socket }) {
   const [activityView, setActivityView] = useState(null);
   const { activityID } = useParams();
   const [submits, setSubmits] = useState(null);
-  const [commentId, setCommentId] = useState(null);
+  const [commentId, setCommentId] = useState( null );
+  
 
   // socket.on('post-comment', (uuid) => {
   //   setCommentId(uuid);
@@ -242,7 +243,8 @@ function Activity_viewed({ socket }) {
             ) : null}
 
             {activityView &&
-              activityView.media.map((item, index) => {
+              activityView.media.map( ( item, index ) => {
+  
                 return (
                   <Tooltip
                     key={index}
@@ -348,7 +350,7 @@ function Activity_viewed({ socket }) {
               })}
           </Box>
         </Box>
-        <UploadFileTile submits={submits} activityID={activityID} />
+        <UploadFileTile submits={submits} activityID={activityID} duedate={activityView && activityView.activityDueDate} />
         <CommentArea
           socket={socket}
           activityID={activityID}

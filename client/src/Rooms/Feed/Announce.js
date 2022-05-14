@@ -27,7 +27,7 @@ function Announce({ socket }) {
       })
       .then((res) => {
         setData(res.data);
-        socket.emit('create-comment');
+        setCommentRender(prev => !prev)
       })
       .catch((e) => {
         console.log(e.message);
@@ -51,7 +51,7 @@ function Announce({ socket }) {
               },
             }}
           >
-            <Rich_text socket={socket} setPostRender={setPostRender} />
+            <Rich_text socket={socket} setPostRender={setPostRender} setCommentRender={setCommentRender} />
           </Box>
         </Grid>
         <Grid item xs={12}>
@@ -60,6 +60,7 @@ function Announce({ socket }) {
               data={data}
               socket={socket}
               roomID={roomID}
+              postRender={postRender}
               setCommentRender={setCommentRender}
               setPostRender={setPostRender}
               commentRender={commentRender}

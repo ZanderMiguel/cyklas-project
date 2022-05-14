@@ -47,6 +47,7 @@ function Home() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsPending(prev => !prev)
     axios
       .post('http://localhost:5000/login', Object.fromEntries(myApi))
       .then((response) => {
@@ -67,8 +68,8 @@ function Home() {
         setMyApi(new Map());
       })
       .catch((err) => {
-        console.log(err.message);
-        setMyApi(new Map());
+        setMyApi( new Map() );
+        setIsPending(false);
         setNotif(
           toast.error(`${err.message}`, {
             position: toast.POSITION.TOP_CENTER,

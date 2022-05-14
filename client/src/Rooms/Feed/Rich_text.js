@@ -26,8 +26,8 @@ import { EditorState, convertToRaw } from 'draft-js';
 import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './Rich_text.css';
 
-function Rich_text({ setPostRender }) {
-  const [upload, setUpload] = React.useState('true');
+function Rich_text({ setPostRender,setCommentRender }) {
+  const [upload, setUpload] = React.useState( 'true' );
   const [editorState, setEditorState] = React.useState(
     EditorState.createEmpty()
   );
@@ -43,7 +43,11 @@ function Rich_text({ setPostRender }) {
 
   const { post, data, isPending } = usePost();
   const { roomID } = useParams();
-  const handleAnnounce = () => {
+  const handleAnnounce = () =>
+  {
+    setCommentRender( ( prev ) => !prev );
+    setPostRender( ( prev ) => !prev );
+
     post('http://localhost:5000/announce/create', {
       author: {
         userID: JSON.parse(localStorage.userData).data.user._id,
@@ -57,9 +61,10 @@ function Rich_text({ setPostRender }) {
     });
 
     if (!data || data) {
-      setEditorState('');
+      setEditorState( '' );
     }
-    setPostRender((prev) => !prev);
+
+    
     // socket.emit('create-post');
     // socket.emit('create-comment');
   };

@@ -9,7 +9,8 @@ import DashboardRoomsclasses from './DashboardRoomsclasses';
 import Dashboard_main from '../student_side/Dashboard/Dashboard_main';
 
 function Dashboard() {
-  const [roomdata, setRoom] = useState(null);
+  const [roomdata, setRoom] = useState( null );
+  const [allActivity, setAllActivity] = useState(null)
 
   React.useEffect(() => {
     axios
@@ -19,7 +20,7 @@ function Dashboard() {
       .then((res) => setRoom(res.data))
       .catch((err) => console.log(err));
 
-    axios.post( 'http://localhost:5000/activity/get-handedout', { userID: JSON.parse( localStorage.userData ).data.user._id } ).then( ( res ) => { console.log(res)} ).catch(err => 
+    axios.post( 'http://localhost:5000/activity/get-handedout', { userID: JSON.parse( localStorage.userData ).data.user._id } ).then( ( res ) => { setAllActivity(res.data)} ).catch(err => 
     console.log(err))
   }, []);
 
@@ -38,7 +39,7 @@ function Dashboard() {
           columnSpacing={1}
           sx={{ marginBottom: '1em' }}
         >
-          <DashboardStatistics />
+          <DashboardStatistics allActivity={ allActivity}/>
         </Grid>
         <Grid item xs={12} sx={{ marginBottom: '1em' }}>
           <DashboardRoomsclasses roomdata={roomdata} />

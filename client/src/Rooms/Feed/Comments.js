@@ -9,7 +9,7 @@ import useStyles from '../Styles/Announce_style';
 import ReactScrollableFeed from 'react-scrollable-feed';
 import axios from 'axios';
 
-function Comments({ postId, setCommentRender, commentRender }) {
+function Comments({ postId, setCommentRender, commentRender, postRender }) {
   const { designs } = useStyles();
   const [data, setData] = useState();
 
@@ -108,7 +108,7 @@ function Comments({ postId, setCommentRender, commentRender }) {
                       {JSON.parse(localStorage.userData).data.user._id ===
                         author.userID && (
                         <Box className="actions" sx={designs.Actions_Style}>
-                          <Box
+                          {/* <Box
                             onClick={handleEditComment}
                             sx={{
                               display: 'flex',
@@ -128,13 +128,13 @@ function Comments({ postId, setCommentRender, commentRender }) {
                             <Typography sx={designs.EditComment_Button_Style}>
                               Edit comment
                             </Typography>
-                          </Box>
-
+                          </Box> */}
+{/* 
                           <Divider
                             orientation="vertical"
                             flexItem
                             sx={designs.DividerV_Style}
-                          />
+                          /> */}
 
                           <Box
                             onClick={() => handleDeleteComment(_id)}
