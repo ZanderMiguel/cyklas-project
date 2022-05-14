@@ -46,7 +46,6 @@ function MainSessionBody({
       );
     });
   }, [renderer]);
-  React.useEffect(() => {}, []);
 
   socket.once('user-disconnected', (id) => {
     members.current = members.current.filter((item) => item.id !== id);

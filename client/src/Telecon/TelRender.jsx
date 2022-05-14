@@ -38,7 +38,6 @@ function TelRender({ socket, socketID, myPeer }) {
       [...newMember, ...members.current],
       (item) => item.stdID
     );
-    console.log('bobo');
     setRenderer((prev) => !prev);
   });
 
