@@ -44,22 +44,16 @@ function Records_tableClassRecords({ rooms }) {
       .then((res) => {
         setMembers(res.data);
         axios
-          .post(
-            'http://localhost:5000/gradingSystem/record',
-            {
-              roomID: rooms[event.target.value]._id,
-            }
-          )
+          .post('http://localhost:5000/gradingSystem/record', {
+            roomID: rooms[event.target.value]._id,
+          })
           .then((res) => {
             axios
-              .post(
-                'http://localhost:5000/records/overall',
-                {
-                  category: res.data[0].Category,
-                  roomID: rooms[event.target.value]._id,
-                  userID: JSON.parse(localStorage.userData).data.user._id,
-                }
-              )
+              .post('http://localhost:5000/records/overall', {
+                category: res.data[0].Category,
+                roomID: rooms[event.target.value]._id,
+                userID: JSON.parse(localStorage.userData).data.user._id,
+              })
               .then((res) => {
                 stdRecord.current = [];
                 setOverall(res.data);
@@ -202,13 +196,10 @@ function Records_tableClassRecords({ rooms }) {
                 records.map((items, index) => {
                   if (items.gradingSystem.length === 0) {
                     axios
-                      .put(
-                        'http://localhost:5000/records/applyGS',
-                        {
-                          crID: items._id,
-                          gradingSystem: stdRecord.current,
-                        }
-                      )
+                      .put('http://localhost:5000/records/applyGS', {
+                        crID: items._id,
+                        gradingSystem: stdRecord.current,
+                      })
                       .then((res) => {})
                       .catch((err) => console.log(err));
                   }

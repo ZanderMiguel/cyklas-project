@@ -29,8 +29,8 @@ module.exports = (upload) => {
   fileRouter.delete('/activity/delete', deleteActivityController);
   fileRouter.put('/activity/update/:id', updateActivityController);
   fileRouter.post('/activity/get', findActivity);
-  fileRouter.get( '/activity/download/:file', downloadFileByClick );
-  fileRouter.get( '/activity/preview/:file', previewFileByClick );
+  fileRouter.get('/activity/download/:file', downloadFileByClick);
+  fileRouter.get('/activity/preview/:file', previewFileByClick);
   fileRouter.put('/activity/create/comment', createActivityComment);
   fileRouter.post('/activity/get/comment', displayActivityComment);
   fileRouter.put('/activity/delete/comment', deleteController);

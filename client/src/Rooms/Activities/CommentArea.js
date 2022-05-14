@@ -16,10 +16,7 @@ function CommentArea({ socket, commentId, activityID }) {
 
   useEffect(() => {
     axios
-      .post(
-        'http://localhost:5000/activity/get/comment',
-        { activityID }
-      )
+      .post('http://localhost:5000/activity/get/comment', { activityID })
       .then((res) => {
         setActivityComment(res.data);
       })
@@ -29,23 +26,20 @@ function CommentArea({ socket, commentId, activityID }) {
   const handleComment = () => {
     if (commentContent !== '') {
       axios
-        .put(
-          'http://localhost:5000/activity/create/comment',
-          {
-            activityID,
-            commentObj: {
-              author: {
-                name: `${
-                  JSON.parse(localStorage.userData).data.user.firstName
-                } ${JSON.parse(localStorage.userData).data.user.lastName}`,
-                userID: JSON.parse(localStorage.userData).data.user._id,
-                avatar: JSON.parse(localStorage.userData).data.user.image,
-              },
-              content: commentContent,
-              commentDate: Date.now(),
+        .put('http://localhost:5000/activity/create/comment', {
+          activityID,
+          commentObj: {
+            author: {
+              name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
+                JSON.parse(localStorage.userData).data.user.lastName
+              }`,
+              userID: JSON.parse(localStorage.userData).data.user._id,
+              avatar: JSON.parse(localStorage.userData).data.user.image,
             },
-          }
-        )
+            content: commentContent,
+            commentDate: Date.now(),
+          },
+        })
         .then((res) => {
           setCommentContent('');
           socket.emit('create-comment');

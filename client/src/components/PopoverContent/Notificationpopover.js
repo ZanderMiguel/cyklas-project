@@ -94,7 +94,6 @@ function Notificationpopover({ general, request, items, setToggleAccept, setItem
                         fontSize: '0.7em',
                       }}
                     />
-                    {/* <Box sx = {designs.GeneralContainer_Sub2_Style}> {items.avatar}</Box> */}
                     <Box>
                       <Typography
                         sx={{

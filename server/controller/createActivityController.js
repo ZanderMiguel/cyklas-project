@@ -95,11 +95,8 @@ const downloadFileByClick = async ( req, res ) =>
 {
   res.download(`./files/${req.params.file}`);
 };
-
-const previewFileByClick = async ( req, res ) =>
-{
-  console.log( res )
-  return res.json('Preview')
+const previewFileByClick = async (req, res) => {
+  return res.json('preview');
 };
 
 const deleteActivity = async (req, res) => {

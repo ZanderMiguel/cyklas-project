@@ -71,10 +71,9 @@ function SelectRoom({ setData, dataRoom, setDataRoom }) {
                 <MenuItem
                   onClick={() => {
                     axios
-                      .post(
-                        'http://localhost:5000/get/members',
-                        { members: value.members }
-                      )
+                      .post('http://localhost:5000/get/members', {
+                        members: value.members,
+                      })
                       .then((res) => setData(res.data))
                       .catch((err) => console.log(err));
                   }}

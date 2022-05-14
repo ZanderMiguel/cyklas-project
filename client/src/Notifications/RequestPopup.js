@@ -5,21 +5,20 @@ import axios from 'axios';
 import moment from 'moment';
 import Nodata from '../assets/ImageJaven/Nodata.png';
 
-function RequestPopup( { items, setToggleAccept,setItems} ) {
+function RequestPopup({ items, setItems }) {
   const { designs } = useStyle();
-  // const [items, setItems] = React.useState(null);
-  // const [toggleAccept, setToggleAccept] = React.useState(false);
+  const [toggleAccept, setToggleAccept] = React.useState(false);
 
-  // React.useEffect(() => {
-  //   axios
-  //     .post('http://localhost:5000/requests', {
-  //       userID: JSON.parse(localStorage.userData).data.user._id,
-  //     })
-  //     .then((res) => {
-  //       setItems(res.data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, [toggleAccept]);
+  React.useEffect(() => {
+    axios
+      .post('http://localhost:5000/requests', {
+        userID: JSON.parse(localStorage.userData).data.user._id,
+      })
+      .then((res) => {
+        setItems(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, [toggleAccept]);
 
   const handleAcceptRequest = (event, stdImage, stdName, stdID) => {
     axios

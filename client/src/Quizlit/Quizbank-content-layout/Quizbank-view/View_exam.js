@@ -86,16 +86,13 @@ function View_exam() {
           <Button
             onClick={() => {
               axios
-                .post(
-                  'http://localhost:5000/records/return-grade',
-                  {
-                    roomID: dataRoom[0]._id,
-                    userID: JSON.parse(localStorage.userData).data.user._id,
-                    examID,
-                    scores: scores.current,
-                    stdID,
-                  }
-                )
+                .post('http://localhost:5000/records/return-grade', {
+                  roomID: dataRoom[0]._id,
+                  userID: JSON.parse(localStorage.userData).data.user._id,
+                  examID,
+                  scores: scores.current,
+                  stdID,
+                })
                 .then((res) => console.log(res.data))
                 .catch((err) => console.log(err));
             }}

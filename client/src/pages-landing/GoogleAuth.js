@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoogleLogin } from 'react-google-login';
+import GoogleLogin from 'react-google-login';
 import Google from '../assets/Rectangle 134.svg';
 import Button from '../components/Button';
 import axios from 'axios';
@@ -38,7 +38,7 @@ function GoogleAuth() {
         console.log(err);
       });
   };
-  const googleSuccess = async (res) => {
+  const googleSuccess = (res) => {
     const googleAuth = {
       firstName: res.profileObj.givenName,
       lastName: res.profileObj.familyName,
@@ -55,7 +55,7 @@ function GoogleAuth() {
   return (
     <div>
       <GoogleLogin
-        clientId="13670802182-e7uumsd18tmr4pt7ejobebcj8f93ho5i.apps.googleusercontent.com"
+        clientId="13670802182-ik5bgipp4un43kv140qom4pjavgovlqj.apps.googleusercontent.com"
         render={(renderProps) => (
           <Button
             variant="outlined"
@@ -73,14 +73,14 @@ function GoogleAuth() {
         cookiePolicy={'single_host_origin'}
         scope="profile"
       />
-      {state && (
+      {/* {state && (
         <SelectUserType
           open={state}
           close={() => setState(false)}
           signIn={signIn}
           googleData={googleData}
         />
-      )}
+      )} */}
     </div>
   );
 }

@@ -40,13 +40,10 @@ function Activity_viewed({ socket }) {
         setActivityView({ ...res.data.activity, ...res.data.myFile });
         console.log(res.data);
         axios
-          .post(
-            'http://localhost:5000/activity/get/submit',
-            {
-              activityID,
-              stdID: JSON.parse(localStorage.userData).data.user._id,
-            }
-          )
+          .post('http://localhost:5000/activity/get/submit', {
+            activityID,
+            stdID: JSON.parse(localStorage.userData).data.user._id,
+          })
           .then((res) => {
             setSubmits(res.data.activity);
           })

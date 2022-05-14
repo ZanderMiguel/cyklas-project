@@ -172,12 +172,9 @@ function Exam_start({ socket }) {
           <Button
             onClick={() => {
               axios
-                .post(
-                  'http://localhost:5000/answers/create',
-                  {
-                    answersPayload: qAnswers.current,
-                  }
-                )
+                .post('http://localhost:5000/answers/create', {
+                  answersPayload: qAnswers.current,
+                })
                 .then((res) => {
                   console.log(res.data);
                   setRedirect(<Redirect to="/dashboard" />);

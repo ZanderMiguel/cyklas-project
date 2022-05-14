@@ -18,7 +18,7 @@ function QuizPopover() {
 
   React.useEffect(() => {
     axios
-      .post('https://murmuring-basin-16459.herokuapp.com/myQuizlit', {
+      .post('http://localhost:5000/myQuizlit', {
         userID: JSON.parse(localStorage.userData).data.user._id,
       })
       .then((res) => {

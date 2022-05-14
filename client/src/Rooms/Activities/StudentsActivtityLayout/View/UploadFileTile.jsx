@@ -91,7 +91,15 @@ function UploadFileTile({ submits, activityID }) {
                 }}
               >
                 <img
-                  src={Wordfile}
+                  src={
+                    item?.includes('.docx')
+                      ? Wordfile
+                      : item?.includes('.xls')
+                      ? Excelfile
+                      : item?.includes('.ppt') || item?.includes('.pptx')
+                      ? Powerpointfile
+                      : item?.includes('.pdf') && Pdffile
+                  }
                   style={{
                     height: '40px',
                   }}

@@ -9,7 +9,7 @@ import useStyles from '../Styles/Announce_style';
 import ReactScrollableFeed from 'react-scrollable-feed';
 import axios from 'axios';
 
-function Comments({ postId, commentId, socket }) {
+function Comments({ postId, setCommentRender, commentRender }) {
   const { designs } = useStyles();
   const [data, setData] = useState();
 
@@ -19,8 +19,8 @@ function Comments({ postId, commentId, socket }) {
       .delete('http://localhost:5000/comment/delete', {
         data: { commentID: _id },
       })
-      .then(() => {
-        socket.emit('create-comment');
+      .then((res) => {
+        setCommentRender((prev) => !prev);
       })
       .catch((error) => console.log(error));
   };
@@ -50,7 +50,7 @@ function Comments({ postId, commentId, socket }) {
           }
         }
       });
-  }, [commentId]);
+  }, [commentRender]);
   return (
     <>
       <Box className="View-comments" sx={designs.View_Comments_Style}>

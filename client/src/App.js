@@ -79,15 +79,10 @@ function App() {
     },
   });
 
-  const socket = io( 'http://localhost:3001' );
-
-  
-  console.log(socket)
+  const socket = io.connect('http://localhost:3001');
 
   const [quizlit, setQuizlit] = React.useState(null);
-  socket.on('connect_error', (err) => {
-    console.log(`connect_error due to ${err.message}`);
-  });
+
   socket.on('joined-quizLobby', (lobby, quizLobby, questionArray) => {
     setQuizlit(
       <ProtectedRoutes
@@ -123,11 +118,11 @@ function App() {
                 socket={socket}
               />
               <ProtectedRoutes
-              exact
-              path="/rooms/:roomID"
-              component={Room_inside}
-              socket={socket}
-               />
+                exact
+                path="/rooms/:roomID"
+                component={Room_inside}
+                socket={socket}
+              />
 
               <ProtectedRoutes
                 exact
@@ -137,9 +132,11 @@ function App() {
               />
               <ProtectedRoutes
                 exact
+                socket={socket}
                 path="/rooms/:roomID/s/:activityID"
                 component={Activity_viewed}
               />
+
               {/* Quizlit */}
               <ProtectedRoutes exact path="/quizlit" component={QuizLit} />
               <ProtectedRoutes
@@ -178,9 +175,6 @@ function App() {
                 path="/LivequizStudentrankings"
                 component={LivequizStudentrankings}
               />
-
-              {/* <Route path="/TeleconRoomV2" component={TeleconRoomV2} /> */}
-
               {/* Records and Classcards */}
               <ProtectedRoutes exact path="/records" component={Records} />
               <ProtectedRoutes
@@ -216,9 +210,6 @@ function App() {
                 path="/quizlit/view_exam/:examID"
                 component={View_exam}
               />
-              <Route exact path="/quizlit/join">
-                <JoinQuiz socket={socket} />
-              </Route>
               <Route exact path="/quizlit/lobby">
                 <Lobby socket={socket} />
               </Route>

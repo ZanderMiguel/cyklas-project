@@ -21,7 +21,7 @@ import ReactHtmlParser from 'react-html-parser';
 import ActivityIcon from '../../../assets/ImageJaven/ActivityIcon.png';
 import ActivityFile from '../../../components/ActivityFile';
 
-function ActivitiesAccordion({ roomID, activity, setDeleteRender, socket }) {
+function ActivitiesAccordion({ roomID, activity, setDeleteRender }) {
   const { designs } = useStyle();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -89,13 +89,13 @@ function ActivitiesAccordion({ roomID, activity, setDeleteRender, socket }) {
                       className="Button-container-sub"
                       sx={designs.Button_Container_Sub}
                     >
-                      <IconButton
+                      {/* <IconButton
                         aria-label="edit"
                         size="small"
                         onClick={(event) => handleEdit(event)}
                       >
                         <EditOutlined sx={designs.Edit_Icon_Style} />
-                      </IconButton>
+                      </IconButton> */}
 
                       <IconButton
                         aria-label="delete"

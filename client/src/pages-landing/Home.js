@@ -19,6 +19,7 @@ import Flatimage from '../assets/Images/illustration.svg';
 import MaleLogo from '../assets/Images/avatar_male.png';
 import Register from '../Form_content/Register';
 import GoogleAuth from './GoogleAuth';
+import GoogleLogin from 'react-google-login';
 import Footer from './Footer';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -46,12 +47,9 @@ function Home() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsPending(true)
+    setIsPending(true);
     axios
-      .post(
-        'http://localhost:5000/login',
-        Object.fromEntries(myApi)
-      )
+      .post('http://localhost:5000/login', Object.fromEntries(myApi))
       .then((response) => {
         if (response.data.status === 'error') {
           setNotif(
@@ -59,12 +57,12 @@ function Home() {
               position: toast.POSITION.TOP_CENTER,
             })
           );
-        setIsPending(false)
+          setIsPending(false);
         } else {
           response.data.token &&
             localStorage.setItem('token', response.data.token);
-          localStorage.setItem( 'userData', JSON.stringify( response.data ) );
-         setIsPending(false)
+          localStorage.setItem('userData', JSON.stringify(response.data));
+          setIsPending(false);
         }
 
         setMyApi(new Map());
@@ -89,6 +87,7 @@ function Home() {
       ) : (
         <>
           <ToastContainer />
+
           <Box
             display="flex"
             justifyContent="center"
@@ -125,7 +124,6 @@ function Home() {
                   backgroundColor: 'white',
                 }}
               />
-
               {isMatch ? null : (
                 <Button
                   content="Create your account now"
@@ -216,28 +214,31 @@ function Home() {
                     </Typography>
                   </Grid>
                   <Grid item xs={12}>
-                   {!isPending ? <Button
-                      fullWidth
-                      variant="contained"
-                      borderRadius="10px"
-                      children="login"
-                      type="submit"
-                      sx={{
-                        backgroundColor: '#007FFF',
-                        fontSize: '0.9em',
-                        fontWeight: '600',
-                        color: 'white',
-                        borderRadius: '0.3em',
-                        boxShadow: 'none',
-                        marginBottom: '0em',
-                        '&:hover': {
-                          backgroundColor: '#0072e6',
-                        },
-                        }} /> :
-                        <LoadingButton loading fullWidth variant="contained">
+                    {!isPending ? (
+                      <Button
+                        fullWidth
+                        variant="contained"
+                        borderRadius="10px"
+                        children="login"
+                        type="submit"
+                        sx={{
+                          backgroundColor: '#007FFF',
+                          fontSize: '0.9em',
+                          fontWeight: '600',
+                          color: 'white',
+                          borderRadius: '0.3em',
+                          boxShadow: 'none',
+                          marginBottom: '0em',
+                          '&:hover': {
+                            backgroundColor: '#0072e6',
+                          },
+                        }}
+                      />
+                    ) : (
+                      <LoadingButton loading fullWidth variant="contained">
                         Submit
                       </LoadingButton>
-                      }
+                    )}
                   </Grid>
                   <Grid item xs={12}>
                     {isMatch ? (
