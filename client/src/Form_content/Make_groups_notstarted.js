@@ -41,7 +41,6 @@ function Make_groups_notstarted({
   groups,
   socket,
   teleRoom,
-  setRedirect,
 }) {
   const { designs } = useStyle();
 
@@ -107,15 +106,7 @@ function Make_groups_notstarted({
   const handleCreateCloseGroupsStarting = () => {
     setOpenDialogGroupsStarting(false);
   };
-  socket.once('groupCollapse', (groups, roomID) => {
-    groups.forEach((items, index) =>
-      items.forEach((student) => {
-        if (student.stdID === JSON.parse(localStorage.userData).data.user._id) {
-          setRedirect(<Redirect to={`/telecon/${roomID}group${index}`} />);
-        }
-      })
-    );
-  });
+
   return (
     <div>
       <Dialogform
@@ -274,6 +265,7 @@ function Make_groups_notstarted({
                   groups.current.map((items, index) => {
                     return (
                       <Box
+                        key={index}
                         sx={{
                           width: 'relative',
                           height: 'auto',

@@ -12,9 +12,8 @@ import {
 import Livequiz_queue from '../../Form_content/Livequiz_queue';
 import { Link } from 'react-router-dom';
 
-function QuizPopover() {
+function QuizPopover({ members, socket, teleRoom, setOpenDialog }) {
   const [quizzes, setQuizzes] = useState(null);
-  const [opendialog, setOpenDialog] = useState(false);
 
   React.useEffect(() => {
     axios
@@ -27,14 +26,6 @@ function QuizPopover() {
       })
       .catch((err) => console.log(err));
   }, []);
-
-  const handleStartQuiz = () => {
-    setOpenDialog(true);
-  };
-
-  const handleCloseQuiz = () => {
-    setOpenDialog(false);
-  };
 
   return (
     <Box height="15em" width="20em" padding="0.5em">
@@ -81,10 +72,13 @@ function QuizPopover() {
 
                 <Button
                   variant="contained"
-                  // onClick={handleStartQuiz}
-                  component={Link}
-                  to="/LiveQuiz"
-                  target="_blank"
+                  onClick={() => {
+                    setOpenDialog(true);
+                    socket.emit('quizParticipants', members, teleRoom, true);
+                  }}
+                  /*                component={Link}
+                  to={`/LiveQuiz/${teleRoom}`}
+                  target="_blank" */
                   children="Start Quiz"
                   sx={{
                     fontSize: '0.8em',
@@ -97,14 +91,6 @@ function QuizPopover() {
             </>
           );
         })}
-      {opendialog && (
-        <Livequiz_queue
-          open={opendialog}
-          close={handleCloseQuiz}
-          maxWidth="sm"
-          state={setOpenDialog}
-        />
-      )}
     </Box>
   );
 }

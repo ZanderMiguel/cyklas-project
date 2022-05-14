@@ -17,15 +17,7 @@ import Manual from './Makegroups_model/Manual';
 import SavedGroups from './Makegroups_model/SavedGroups';
 import MAKE_GROUPS_NOTSTARTED from './Make_groups_notstarted';
 
-function Make_groups({
-  open,
-  close,
-  maxWidth,
-  members,
-  socket,
-  teleRoom,
-  setRedirect,
-}) {
+function Make_groups({ open, close, maxWidth, members, socket, teleRoom }) {
   const groups = React.useRef([]);
   const [radioGroup, setRadioGroup] = useState('Automate');
 
@@ -34,14 +26,14 @@ function Make_groups({
   const handleCreateCreateGroups = () => {
     let i = 0;
     let max = 0;
-    while (i < members.current.length) {
+    while (i < members.length) {
       if (max === parseInt(document.querySelector('#groupNumber').value)) {
         i = 0;
       }
       groups.current[i] = groups.current[i]
-        ? [...groups.current[i], { ...members.current[max] }]
-        : [{ ...members.current[max] }];
-      if (max === members.current.length - 1) break;
+        ? [...groups.current[i], { ...members[max] }]
+        : [{ ...members[max] }];
+      if (max === members.length - 1) break;
       i++;
       max++;
     }
@@ -89,7 +81,6 @@ function Make_groups({
       >
         {opendialogCreateGroups && (
           <MAKE_GROUPS_NOTSTARTED
-            setRedirect={setRedirect}
             socket={socket}
             teleRoom={teleRoom}
             open={opendialogCreateGroups}

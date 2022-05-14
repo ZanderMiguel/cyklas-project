@@ -33,9 +33,9 @@ import Settings from './Settings/Settings';
 //Telecon
 import TeleconStart from './Telecon/TeleconStart';
 import TeleconRoomV2 from './Telecon/TeleconRoomV2';
-import LiveQuiz from "./Telecon/LIVE QUIZ/LiveQuiz";
-import LivequizQuestion from "./Telecon/LIVE QUIZ/LivequizQuestion";
-import LivequizStudentrankings from "./Telecon/LIVE QUIZ/LivequizStudentrankings";
+import LiveQuiz from './Telecon/LIVE QUIZ/LiveQuiz';
+import LivequizQuestion from './Telecon/LIVE QUIZ/LivequizQuestion';
+import LivequizStudentrankings from './Telecon/LIVE QUIZ/LivequizStudentrankings';
 
 //Quizlit
 import QuizLit from './Quizlit/Quizlit';
@@ -56,6 +56,8 @@ import TeleconLanding from './pages-landing/TeleconLanding';
 
 // Student Side
 import Dashboard_main from './student_side/Dashboard/Dashboard_main';
+import TeleconGroup from './pages-landing/TeleconGroup';
+import LiveQuizSetup from './Telecon/LiveQuizSetup';
 
 function App() {
   const theme = createTheme({
@@ -82,21 +84,7 @@ function App() {
   });
 
   const socket = io.connect('http://localhost:3001');
-  console.log(socket);
 
-  const [quizlit, setQuizlit] = React.useState(null);
-
-  socket.on('joined-quizLobby', (lobby, quizLobby, questionArray) => {
-    setQuizlit(
-      <ProtectedRoutes
-        exact
-        path="/livequiz_multiplechoice/:counter"
-        component={Livequiz_multiplechoice}
-        socket={socket}
-        questionArray={questionArray}
-      />
-    );
-  });
   axios.post('http://localhost:5000/rooms');
   return (
     <>
@@ -152,7 +140,7 @@ function App() {
                 path="/quizlit/createexam"
                 component={Examform}
               />
-              {quizlit}
+
               <Route exact path="/quizlit/join">
                 <JoinQuiz socket={socket} />
               </Route>
@@ -168,17 +156,21 @@ function App() {
               <Route path="/telecon-setup">
                 <TeleconLanding socket={socket} />
               </Route>
+              <Route path="/LiveQuiz/:roomID">
+                <LiveQuizSetup socket={socket} />
+              </Route>
+              <Route path="/telecon-setup/:group?">
+                <TeleconGroup socket={socket} />
+              </Route>
               <Route path="/telecon/:teleRoom">
                 <TeleconRoomV2 socket={socket} />
               </Route>
 
-              <Route path="/LiveQuiz" component = {LiveQuiz}/>
-              <Route path="/LivequizQuestion" component = {LivequizQuestion}/>
-              <Route path="/LivequizStudentrankings" component = {LivequizStudentrankings}/>
-
-              {/* <Route path="/TeleconRoomV2" component={TeleconRoomV2} /> */}
-
-              {/* Records and Classcards */}
+              <Route path="/LivequizQuestion" component={LivequizQuestion} />
+              <Route
+                path="/LivequizStudentrankings"
+                component={LivequizStudentrankings}
+              />
               <ProtectedRoutes exact path="/records" component={Records} />
               <ProtectedRoutes
                 exact
@@ -209,7 +201,11 @@ function App() {
                 socket={socket}
               />
               <ProtectedRoutes exact path="/View_quiz" component={View_quiz} />
-              <ProtectedRoutes exact path="/ViewQuizV2" component={ViewQuizV2} />
+              <ProtectedRoutes
+                exact
+                path="/ViewQuizV2"
+                component={ViewQuizV2}
+              />
               <ProtectedRoutes
                 exact
                 path="/quizlit/view_exam/:examID"
