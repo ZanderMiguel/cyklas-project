@@ -1,8 +1,8 @@
 import React from 'react'
 import { Box, Grid, Backdrop, Typography } from "@mui/material";
-import QuestionResult from "../QuestionResult";
+import QuestionResult from "./QuestionResult";
 
-function LivequizMulti() {
+function LivequizTF() {
 const [open, setOpen] = React.useState(false);
   const handleClose = () => {
     setOpen(false);
@@ -23,7 +23,7 @@ const [open, setOpen] = React.useState(false);
             borderRadius: "0.5em",
             width: "relative",
             "&: hover": {
-                margin: "0.5em 0em",
+                margin: "0em",
                 cursor: "pointer",
                 transition: "all 250ms"
             }
@@ -37,7 +37,7 @@ const [open, setOpen] = React.useState(false);
                 height: "max-content"
                 }}/>
 
-            <Typography children = "Blank Answer"
+            <Typography children = "True"
                 sx = {{
                 color: "white",
                 fontSize: "0.9em",
@@ -72,80 +72,7 @@ const [open, setOpen] = React.useState(false);
                 height: "max-content"
                 }}/>
 
-            <Typography children = "Blank Answer"
-                sx = {{
-                color: "white",
-                fontSize: "0.9em",
-                fontWeight: "600", 
-                width: "auto",
-                flexGrow: 1,
-                height: "max-content"
-                }}/>
-        </Box>
-    },
-    {
-        choice: <Box onClick={handleToggle}
-        sx = {{
-            margin: "0.5em",
-            display: "flex",
-            alignItems: "center",
-            padding: "0.8em 1.2em",
-            backgroundColor: "#66C34E",
-            borderRadius: "0.5em",
-            width: "relative",
-            "&: hover": {
-                margin: "0em",
-                cursor: "pointer",
-                transition: "all 250ms",
-            }
-        }}>
-            <Typography children = "C."
-                sx = {{ 
-                color: "white",
-                fontSize: "0.9em",
-                fontWeight: "600",
-                width: "2em",
-                height: "max-content"
-                }}/>
-
-            <Typography children = "Blank Answer"
-                sx = {{
-                color: "white",
-                fontSize: "0.9em",
-                fontWeight: "600", 
-                width: "auto",
-                flexGrow: 1,
-                height: "max-content"
-                }}/>
-        </Box>
-    },
-    {
-        choice: <Box onClick={handleToggle}
-        sx = {{
-            margin: "0.5em",
-            display: "flex",
-            alignItems: "center",
-            padding: "0.8em 1.2em",
-            backgroundColor: "#E3A649",
-            borderRadius: "0.5em",
-            width: "relative",
-            "&: hover": {
-                margin: "0em",
-                cursor: "pointer",
-                transition: "all 250ms",
-                backgroundColor: "#DBA047"
-            }
-        }}>
-            <Typography children = "D."
-                sx = {{ 
-                color: "white",
-                fontSize: "0.9em",
-                fontWeight: "600",
-                width: "2em",
-                height: "max-content"
-                }}/>
-
-            <Typography children = "Blank Answer"
+            <Typography children = "False"
                 sx = {{
                 color: "white",
                 fontSize: "0.9em",
@@ -179,4 +106,4 @@ onClick={handleClose}
   )
 }
 
-export default LivequizMulti
+export default LivequizTF
