@@ -85,8 +85,6 @@ const getAllActivities = async (req, res) => {
   try {
     const rooms = await getRooms(req);
     const userID = req.body.userID;
-    let allActivities = [];
-    let bobo = false;
     rooms.forEach(async (item) => {
       const req = {
         body: { roomID: item._id.toString() },

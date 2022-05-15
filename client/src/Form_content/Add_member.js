@@ -93,7 +93,7 @@ function Add_member({ open, close, maxWidth }) {
             <Box sx={{ height: 'auto', width: 'relative' }}>
               <Typography
                 sx={designs.TextFieldLabel_Style}
-                children="Classroom Link (For Professor(s))"
+                children="Classroom ID"
               />
               <TextField
                 variant="standard"

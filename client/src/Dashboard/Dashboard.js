@@ -24,15 +24,15 @@ function Dashboard() {
 
     axios.post( 'http://localhost:5000/activity/get-handedout', { userID: JSON.parse( localStorage.userData ).data.user._id } ).then( ( res ) => { setAllActivity(res.data)} ).catch(err => 
     console.log(err))
-  }, []);
+  }, [] );
 
 
   return (
     <>
       <Container maxWidth="md" sx={{ padding: '1.5em 0em' }}>
-        <Grid item xs={12} sx={{ marginBottom: '0.8em' }}>
+        {/* <Grid item xs={12} sx={{ marginBottom: '0.8em' }}>
           <DashboardSearchbar />
-        </Grid>
+        </Grid> */}
 
         <Grid
           container
@@ -42,12 +42,11 @@ function Dashboard() {
           sx={{ marginBottom: '1em' }}
         >
           {JSON.parse(localStorage.userData).data.user.userType === 'Professor' ? (
-            // <DashboardStatistics />
-            <DashboardStatisticsV2 />
+            <DashboardStatisticsV2 roomdata={ roomdata} />
           )
           :
           (
-            <DashboardStatisticsStudent />
+              <DashboardStatisticsStudent allActivity={allActivity} roomdata={ roomdata}/>
           )}
         </Grid>
         <Grid item xs={12} sx={{ marginBottom: '1em' }}>

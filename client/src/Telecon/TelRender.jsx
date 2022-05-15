@@ -13,8 +13,6 @@ import { useParams, Redirect } from 'react-router-dom';
 import _ from 'lodash';
 
 function TelRender({ socket, socketID, myPeer }) {
-  const [redirect, setRedirect] = React.useState(null);
-
   const [sidedrawer, setSideDrawer] = React.useState(false);
   const [sidecontent, setSideContent] = React.useState('');
   const messagelist = React.useRef([]);
@@ -28,6 +26,7 @@ function TelRender({ socket, socketID, myPeer }) {
       }`,
       stdID: JSON.parse(localStorage.userData).data.user._id,
       id: socketID,
+      userType: JSON.parse(localStorage.userData).data.user.userType,
     },
   ]);
 
@@ -39,7 +38,6 @@ function TelRender({ socket, socketID, myPeer }) {
       [...newMember, ...members.current],
       (item) => item.stdID
     );
-
     setRenderer((prev) => !prev);
   });
 
@@ -81,7 +79,6 @@ function TelRender({ socket, socketID, myPeer }) {
               members={members}
               socket={socket}
               teleRoom={teleRoom}
-              setRedirect={setRedirect}
             />
           </Box>
 
@@ -121,7 +118,6 @@ function TelRender({ socket, socketID, myPeer }) {
           />
         </Box>
       </Box>
-      {redirect && redirect}
     </>
   );
 }

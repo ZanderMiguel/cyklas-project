@@ -69,7 +69,7 @@ function Automate({ members }) {
             width: 'auto',
           }}
         >
-          {members.current.length}
+          {members.length}
         </Typography>
 
         <Typography
@@ -132,7 +132,7 @@ function Automate({ members }) {
       </Typography>
 
       <Box sx={{ width: 'relative', height: 'auto' }}>
-        {members.current.map(function (items, index) {
+        {members.map(function (items, index) {
           return (
             <Box
               key={index}

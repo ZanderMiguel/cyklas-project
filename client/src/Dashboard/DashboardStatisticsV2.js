@@ -7,7 +7,7 @@ import {
 import AvatarIcon from "../assets/ImageJaven/Avatar.png";
 import ProfileBackground from "../assets/ImageJaven/ProfileBackground.png";
 
-function DashboardStatisticsV2() {
+function DashboardStatisticsV2( { roomdata} ) {
   return (
     <>
           <Grid xs = {8}
@@ -31,14 +31,14 @@ function DashboardStatisticsV2() {
                     height: "auto",
                     width: "relative"
                 }}>
-                    <Avatar src = {AvatarIcon} alt = "Avatar" sx = {{ height: "4em", width: "4em" }}/>
+                    <Avatar src = {JSON.parse(localStorage.userData).data.user.image} alt = "Avatar" sx = {{ height: "4em", width: "4em" }}/>
 
                     <Box
                     sx = {{
                         height: "auto",
                         width: "auto"
                     }}>
-                        <Typography children = "Paul Rudd"
+                        <Typography children = {`${JSON.parse(localStorage.userData).data.user.firstName} ${JSON.parse(localStorage.userData).data.user.lastName}`}
                         sx = {{
                             marginTop: "0.3em",
                             fontSize: "1.2em",
@@ -47,7 +47,7 @@ function DashboardStatisticsV2() {
                             height: "max-content"
                         }}/>
 
-                        <Typography children = "completed this subject Embedded Programming"
+                        <Typography children = 'Professor'
                         sx = {{
                             fontSize: "0.8em",
                             fontWeight: "500",
@@ -242,7 +242,7 @@ function DashboardStatisticsV2() {
                       textTransform: 'Capitalize',
                     }}
                   >
-                    Total Students in this room
+                    Total Rooms
                   </Typography>
 
                   <Typography
@@ -257,7 +257,7 @@ function DashboardStatisticsV2() {
                       textTransform: 'Uppercase',
                     }}
                   >
-                    223
+                { roomdata && roomdata.length}
                   </Typography>
                 </Box>
               </Box>
