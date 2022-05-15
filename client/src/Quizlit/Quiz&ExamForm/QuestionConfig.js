@@ -24,10 +24,10 @@ function QuestionConfig({selectAnswerType, setAnswerType,questionMemo,counter}) 
             value: 'True or False',
             label: 'True or False',
         },
-        {
-            value: 'Short Answer',
-            label: 'Short Answer',
-        },
+        // {
+        //     value: 'Short Answer',
+        //     label: 'Short Answer',
+        // },
     ];
 
     const dataTimeLimit = [

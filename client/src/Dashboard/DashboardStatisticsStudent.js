@@ -6,213 +6,218 @@ import {
   UpcomingOutlined,
 } from '@mui/icons-material';
 
-const dataStats = [
-  {
-    icon: (
-      <Box
-        sx={{
-          height: '2.8em',
-          width: '2.8em',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          borderRadius: '3em',
-          backgroundColor: '#FF8000',
-        }}
-      >
-        <MeetingRoomOutlined sx={{ color: 'white', fontSize: '2em' }} />
-      </Box>
-    ),
-    label: 'Total Rooms',
-    total: '338',
-    update: (
-      <Box
-        sx={{
-          display: 'flex',
-          gap: '0.5em',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: 'relative',
-          margin: '0.5em 0em 0em 0em',
-          padding: '0.4em',
-          backgroundColor: '#F0F0F0',
-        }}
-      >
-        <Typography
-          sx={{
-            color: '#8E8E8E',
-            fontSize: '0.7em',
-            fontWeight: '700',
-            textTransform: 'uppercase',
-            height: 'relative',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            textAlign: 'center',
-          }}
-        ></Typography>
 
-        <Typography
-          sx={{
-            color: '#8E8E8E',
-            fontSize: '0.7em',
-            fontWeight: '600',
-            textTransform: 'uppercase',
-            height: 'relative',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            textAlign: 'center',
-          }}
-        >
-          No New Room
-        </Typography>
-      </Box>
-    ),
-  },
-  {
-    icon: (
-      <Box
-        sx={{
-          height: '2.8em',
-          width: '2.8em',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          borderRadius: '3em',
-          backgroundColor: '#007FFF',
-        }}
-      >
-        <UpcomingOutlined sx={{ color: 'white', fontSize: '2em' }} />
-      </Box>
-    ),
-    label: 'Upcoming Activities',
-    total: '567',
-    update: (
-      <Box
-        sx={{
-          display: 'flex',
-          gap: '0.5em',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: 'relative',
-          margin: '0.5em 0em 0em 0em',
-          padding: '0.4em',
-          backgroundColor: '#EDF3F9',
-          '&: hover': {
-            cursor: 'pointer',
-            transition: 'all 300ms',
-            backgroundColor: '#D8E9F9',
-          },
-        }}
-      >
-        <Typography
-          sx={{
-            color: '#007FFF',
-            fontSize: '0.7em',
-            fontWeight: '700',
-            textTransform: 'uppercase',
-            height: 'relative',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            textAlign: 'center',
-          }}
-        >
-          (2)
-        </Typography>
+function DashboardStatisticsStudent({allActivity, roomdata}) {
 
-        <Typography
-          sx={{
-            color: '#007FFF',
-            fontSize: '0.7em',
-            fontWeight: '600',
-            textTransform: 'uppercase',
-            height: 'relative',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            textAlign: 'center',
-          }}
-        >
-          New Activities Today
-        </Typography>
-      </Box>
-    ),
-  },
-  {
-    icon: (
-      <Box
-        sx={{
-          height: '2.8em',
-          width: '2.8em',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          borderRadius: '3em',
-          backgroundColor: '#47B753',
-        }}
-      >
-        <FactCheckOutlined sx={{ color: 'white', fontSize: '2em' }} />
-      </Box>
-    ),
-    label: 'Completed Subjects',
-    total: '103',
-    update: (
-      <Box
-        sx={{
-          display: 'flex',
-          gap: '0.5em',
-          justifyContent: 'center',
-          alignItems: 'center',
-          width: 'relative',
-          margin: '0.5em 0em 0em 0em',
-          padding: '0.4em',
-          backgroundColor: '#EDF3F9',
-          '&: hover': {
-            cursor: 'pointer',
-            transition: 'all 300ms',
-            backgroundColor: '#D8E9F9',
-          },
-        }}
-      >
-        <Typography
-          sx={{
-            color: '#007FFF',
-            fontSize: '0.7em',
-            fontWeight: '700',
-            textTransform: 'uppercase',
-            height: 'relative',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            textAlign: 'center',
-          }}
-        >
-          (4)
-        </Typography>
 
-        <Typography
+  const dataStats = [
+    {
+      icon: (
+        <Box
           sx={{
-            color: '#007FFF',
-            fontSize: '0.7em',
-            fontWeight: '600',
-            textTransform: 'uppercase',
-            height: 'relative',
+            height: '2.8em',
+            width: '2.8em',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            textAlign: 'center',
+            borderRadius: '3em',
+            backgroundColor: '#FF8000',
           }}
         >
-          Completed Subjects Today
-        </Typography>
-      </Box>
-    ),
-  },
-];
+          <MeetingRoomOutlined sx={{ color: 'white', fontSize: '2em' }} />
+        </Box>
+      ),
+      label: 'Total Rooms',
+      total: `${roomdata && roomdata.length}`,
+      update: (
+        <Box
+          sx={{
+            display: 'flex',
+            gap: '0.5em',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: 'relative',
+            margin: '0.5em 0em 0em 0em',
+            padding: '0.4em',
+            backgroundColor: '#F0F0F0',
+          }}
+        >
+          <Typography
+            sx={{
+              color: '#8E8E8E',
+              fontSize: '0.7em',
+              fontWeight: '700',
+              textTransform: 'uppercase',
+              height: 'relative',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              textAlign: 'center',
+            }}
+          ></Typography>
+  
+          <Typography
+            sx={{
+              color: '#8E8E8E',
+              fontSize: '0.7em',
+              fontWeight: '600',
+              textTransform: 'uppercase',
+              height: 'relative',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              textAlign: 'center',
+            }}
+          >
+            No New Room
+          </Typography>
+        </Box>
+      ),
+    },
+    {
+      icon: (
+        <Box
+          sx={{
+            height: '2.8em',
+            width: '2.8em',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: '3em',
+            backgroundColor: '#007FFF',
+          }}
+        >
+          <UpcomingOutlined sx={{ color: 'white', fontSize: '2em' }} />
+        </Box>
+      ),
+      label: 'Activities',
+      total: allActivity === null ? '0' : `${allActivity && allActivity.allActs}`,
+      update: (
+        <Box
+          sx={{
+            display: 'flex',
+            gap: '0.5em',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: 'relative',
+            margin: '0.5em 0em 0em 0em',
+            padding: '0.4em',
+            backgroundColor: '#EDF3F9',
+            '&: hover': {
+              cursor: 'pointer',
+              transition: 'all 300ms',
+              backgroundColor: '#D8E9F9',
+            },
+          }}
+        >
+          <Typography
+            sx={{
+              color: '#007FFF',
+              fontSize: '0.7em',
+              fontWeight: '700',
+              textTransform: 'uppercase',
+              height: 'relative',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              textAlign: 'center',
+            }}
+          >
+            (2)
+          </Typography>
+  
+          <Typography
+            sx={{
+              color: '#007FFF',
+              fontSize: '0.7em',
+              fontWeight: '600',
+              textTransform: 'uppercase',
+              height: 'relative',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              textAlign: 'center',
+            }}
+          >
+            New Activities Today
+          </Typography>
+        </Box>
+      ),
+    },
+    {
+      icon: (
+        <Box
+          sx={{
+            height: '2.8em',
+            width: '2.8em',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: '3em',
+            backgroundColor: '#47B753',
+          }}
+        >
+          <FactCheckOutlined sx={{ color: 'white', fontSize: '2em' }} />
+        </Box>
+      ),
+      label: 'Sumitted Activities',
+      total: allActivity === null ? '0' : `${allActivity&&allActivity.submittedActivities}`,
+      update: (
+        <Box
+          sx={{
+            display: 'flex',
+            gap: '0.5em',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: 'relative',
+            margin: '0.5em 0em 0em 0em',
+            padding: '0.4em',
+            backgroundColor: '#EDF3F9',
+            '&: hover': {
+              cursor: 'pointer',
+              transition: 'all 300ms',
+              backgroundColor: '#D8E9F9',
+            },
+          }}
+        >
+          <Typography
+            sx={{
+              color: '#007FFF',
+              fontSize: '0.7em',
+              fontWeight: '700',
+              textTransform: 'uppercase',
+              height: 'relative',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              textAlign: 'center',
+            }}
+          >
+            (4)
+          </Typography>
+  
+          <Typography
+            sx={{
+              color: '#007FFF',
+              fontSize: '0.7em',
+              fontWeight: '600',
+              textTransform: 'uppercase',
+              height: 'relative',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              textAlign: 'center',
+            }}
+          >
+            Completed Subjects Today
+          </Typography>
+        </Box>
+      ),
+    },
+  ];
+  
 
-function DashboardStatisticsStudent() {
+
   return (
     <>
       {dataStats.map(function (items, index) {

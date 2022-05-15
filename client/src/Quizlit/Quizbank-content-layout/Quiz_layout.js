@@ -40,7 +40,7 @@ function Quiz_layout({ bank }) {
               <Box
                 sx={designs.QuizName_User_Date}
                 component={Link}
-                to="/ViewQuizV2"
+                to="/quizlit/View_quiz"
               >
                 <Box sx={designs.QuizName}>
                   <Typography noWrap sx={designs.Quiz}>

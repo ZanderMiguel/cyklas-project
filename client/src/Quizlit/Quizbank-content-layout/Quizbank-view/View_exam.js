@@ -153,11 +153,11 @@ function View_exam() {
                 data.map(function (items, index) {
                   return (
                     <div key={index}>
-                      <StudentsList
+                      {items.userType === 'Student'&& <StudentsList
                         scores={scores}
                         items={items}
                         setStdID={setStdID}
-                      />
+                      />}
                     </div>
                   );
                 })}

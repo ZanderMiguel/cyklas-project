@@ -56,6 +56,15 @@ function RequestPopup({ items, setItems }) {
       .catch((err) => console.log(err));
   };
 
+  const handleDeleteRequest = (event, element) =>
+  {
+    axios.delete( 'http://localhost:5000/requests/decline', { data: {reqID: element} } ).then( res =>
+    {
+      setItems( res.data )
+      setToggleAccept(prev => !prev)
+    } ).catch( err => console.log( err ) )
+  }
+
   return (
     <>
       {items &&
@@ -175,6 +184,7 @@ function RequestPopup({ items, setItems }) {
                           boxShadow: 'none',
                         },
                       }}
+                      onClick={(event)=>{handleDeleteRequest(event, element._id)}}
                     >
                       Decline
                     </Button>

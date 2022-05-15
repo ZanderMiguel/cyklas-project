@@ -204,12 +204,12 @@ function Questions({ counter, questionMemo }) {
                   counter={counter}
                 />
               )}
-              {selectAnswerType === 'Short Answer' && (
+              {/* {selectAnswerType === 'Short Answer' && (
                 <Quiz_shortanswer
                   questionMemo={questionMemo}
                   counter={counter}
                 />
-              )}
+              )} */}
             </Box>
           </Box>
         </Grid>

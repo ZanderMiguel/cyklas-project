@@ -21,6 +21,7 @@ import {
   Tooltip,
   Input,
 } from '@mui/material';
+import { ToastContainer, toast } from 'react-toastify';
 import FileDownload from 'js-file-download';
 import moment from 'moment';
 import draftToHtml from 'draftjs-to-html';
@@ -67,7 +68,10 @@ function View_activity({ socket }) {
   const [commentId, setCommentId] = useState(null);
   const [score, setScore] = useState({});
   const [studentID, setStudentID] = React.useState({});
-  const scores = React.useRef([]);
+  const scores = React.useRef( [] );
+  const [notif, setNotif] = useState( null );
+  const [disBtn, setDisBtn] = useState(false)
+  
   
   
   
@@ -97,7 +101,9 @@ function View_activity({ socket }) {
       <Grid container columnSpacing={1}>
         <Grid item xs={4}>
           <Button
-            onClick={() => {
+            disabled={disBtn}
+            onClick={() =>
+            {
               axios
                 .post('http://localhost:5000/records/activity/return', {
                   roomID,
@@ -106,7 +112,16 @@ function View_activity({ socket }) {
                   category: activityView.activityType,
                   maxPoints: activityView.activityPoints,
                 })
-                .then((res) => console.log(res.data))
+                .then( ( res ) =>
+
+                {
+                  console.log(res)
+                  setNotif(
+                    toast.error('Submitted', {
+                      position: toast.POSITION.TOP_CENTER,
+                    } ) )
+                    setDisBtn(true)
+                })
                 .catch((err) => console.log(err));
             }}
             sx={designs.Return_Button_Style}
@@ -592,7 +607,9 @@ function View_activity({ socket }) {
             </Box>
 
             {submitData &&
-              submitData?.[0]?.media.map((item, index) => {
+              submitData?.[0]?.media.map( ( item, index ) =>
+              {
+                console.log(item)
                 return (
                   <Tooltip
                     key={index}
@@ -616,7 +633,16 @@ function View_activity({ socket }) {
                             'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
                         },
                       }}
-                      onClick={ ()=> alert('awit') }
+                      onClick={ ()=> axios.get(`http://localhost:5000/activity/download/${item}`, {
+                        responseType: 'blob',
+                      } ).then( res =>
+                      {
+                        console.log(res)
+                        // FileDownload(
+                        //   res.data,
+                        //   activityView[index].file.filename
+                        // );
+                      } ).catch( err => console.log( err ) )}
                     >
                       <img
                         src={Wordfile}
