@@ -20,10 +20,10 @@ function OffCamera({
             id={items.id}
             key={items.id + items.stdID}
             style={{
-              minWidth: `calc(85%/${tileWidth.current})`,
-              height: `calc(${layout.current && layout.current.clientHeight}/${
-                tileWidth.current
-              })`,
+              minWidth: `calc(85%/${tileWidth})`,
+              height: `calc(${
+                layout.current && layout.current.clientHeight
+              }/${tileWidth})`,
             }}
           >
             <Box
