@@ -20,6 +20,13 @@ const {
   getAllActivities,
 } = require('../controller/activitySubmitsController');
 
+const {
+  createAnnounce,
+  displayAnnounce,
+  deleteAnnounce,
+  updateAnnounce,
+} = require('../controller/announcementController');
+
 module.exports = (upload) => {
   fileRouter.post(
     '/activity/create',
@@ -43,5 +50,15 @@ module.exports = (upload) => {
   );
   fileRouter.post('/activity/get/submit', displaySubmittedActivity);
   fileRouter.post('/activity/get-handedout', getAllActivities);
+
+  //announce
+  fileRouter.post(
+    '/announce/create',
+    upload.array('file', 999),
+    createAnnounce
+  );
+  fileRouter.post('/announce', displayAnnounce);
+  fileRouter.delete('/announce/delete', deleteAnnounce);
+  fileRouter.put('/announce/update', updateAnnounce);
   return fileRouter;
 };

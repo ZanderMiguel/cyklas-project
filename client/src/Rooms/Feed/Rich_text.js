@@ -28,9 +28,12 @@ import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertToRaw } from 'draft-js';
 import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './Rich_text.css';
-
+import axios from 'axios';
 function Rich_text({ setPostRender, setCommentRender }) {
   const [upload, setUpload] = React.useState('true');
+  const [uploadFile, setUploadFile] = React.useState([
+    { fileName: 'File uploaded/image/link' },
+  ]);
   const [editorState, setEditorState] = React.useState(
     EditorState.createEmpty()
   );
@@ -46,38 +49,60 @@ function Rich_text({ setPostRender, setCommentRender }) {
 
   const { post, data, isPending } = usePost();
   const { roomID } = useParams();
+
   const handleAnnounce = () => {
     setCommentRender((prev) => !prev);
     setPostRender((prev) => !prev);
 
-    post('http://localhost:5000/announce/create', {
-      author: {
-        userID: JSON.parse(localStorage.userData).data.user._id,
-        name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
-          JSON.parse(localStorage.userData).data.user.lastName
-        } `,
-        avatar: JSON.parse(localStorage.userData).data.user.image,
-      },
-      rooms: [roomID],
-      content: convertedState,
+    const formData = new FormData();
+    uploadFile.forEach((item) => {
+      if (item.fileName !== 'File uploaded/image/link') {
+        formData.append('file', item.file);
+        formData.append('filaName', item.fileName);
+        formData.append('media', item.fileName);
+      }
     });
 
+    formData.append(
+      'author',
+      JSON.stringify({
+        name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
+          JSON.parse(localStorage.userData).data.user.lastName
+        }`,
+        userID: JSON.parse(localStorage.userData).data.user._id,
+        avatar: JSON.parse(localStorage.userData).data.user.image,
+      })
+    );
+    formData.append('content', JSON.stringify(convertedState));
+    formData.append('rooms', [roomID]);
+
+    if (editorState) {
+      axios
+        .post('http://localhost:5000/announce/create', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+          setUploadFile([{ fileName: 'File uploaded/image/link' }]);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+      // socket.emit('create-post');
+      // socket.emit('create-comment');
+    }
     if (!data || data) {
       setEditorState('');
     }
-
-    // socket.emit('create-post');
-    // socket.emit('create-comment');
   };
 
-  const [uploadFile, setUploadFile] = React.useState([
-    { fileName: 'File uploaded/image/link' },
-  ]);
-
-  const handledelete = (index) => {
-    const values = [...uploadFile];
-    values.splice(index, 1);
-    setUploadFile(values);
+  const handledelete = (event, index, filename) => {
+    const filtered = uploadFile.filter((item) => item.fileName !== filename);
+    console.log(filtered);
+    setUploadFile(filtered);
   };
 
   return (
@@ -182,7 +207,16 @@ function Rich_text({ setPostRender, setCommentRender }) {
                       }}
                     >
                       <Typography
-                        onClick={(index) => handledelete(index)}
+                        onClick={(event) =>
+                          handledelete(
+                            event,
+                            index,
+                            item?.fileName.replace(
+                              'File uploaded/image/link',
+                              ''
+                            )
+                          )
+                        }
                         sx={{
                           color: '#3F3D56',
                           fontSize: '0.8em',

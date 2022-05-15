@@ -57,7 +57,7 @@ function ActivitiesAccordion({ roomID, activity, setDeleteRender }) {
           } = items;
 
           return (
-            <Grid key={index} item xs={12}>
+            <Grid key={`act${index}`} item xs={12}>
               <Box className="Activity_Tiles" sx={designs.Activity_Tiles}>
                 <Accordion
                   expanded={expanded === `${index}`}

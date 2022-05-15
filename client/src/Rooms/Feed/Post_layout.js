@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import moment from 'moment';
 import Schoolworktiles_layout from '../Room-content-layout/Schoolworktiles_layout';
+import _ from 'lodash';
 
 import {
   Grid,
@@ -27,7 +28,7 @@ import useStyles from '../Styles/Announce_style';
 import axios from 'axios';
 import draftToHtml from 'draftjs-to-html';
 import ReactHtmlParser from 'react-html-parser';
-
+import FileTile from '../Activities/ProfActivityLayout/components/FileTile';
 function Post_layout({
   data,
   socket,
@@ -62,9 +63,8 @@ function Post_layout({
 
   const { post, data: comments } = usePost();
 
-  const handleSubmitComment = () =>
-  {
-    setCommentRender((prev) => !prev)
+  const handleSubmitComment = () => {
+    setCommentRender((prev) => !prev);
     post('http://localhost:5000/comment/create', {
       announcement: postID.current,
       content: commentContent,
@@ -77,9 +77,8 @@ function Post_layout({
       },
     });
     if (comments) {
-      setCommentContent( '' );
+      setCommentContent('');
     }
-    ;
   };
 
   return (
@@ -92,15 +91,16 @@ function Post_layout({
               <Box className="User" sx={designs.User_Style}>
                 <Avatar
                   alt="Remy Sharp"
-                  src={author.avatar.replace(
-                    'blob:',
-                    ''
-                  )}
+                  src={
+                    _.isString(author)
+                      ? JSON.parse(author).avatar.replace('blob', '')
+                      : author.avatar.replace('blob:', '')
+                  }
                   sx={designs.AvatarPost_Style}
                 />
                 <Box className="User-date" sx={designs.User_Date_Style}>
                   <Typography noWrap sx={designs.UserName_Typography_Style}>
-                    {author.name}
+                    {_.isString(author) ? JSON.parse(author).name : author.name}
                   </Typography>
 
                   <Box className="date" sx={designs.Date_Style}>
@@ -112,32 +112,53 @@ function Post_layout({
 
                 <Box sx={designs.BoxFlexGrow_Style} />
 
-                {author.userID ===
-                  JSON.parse(localStorage.userData).data.user._id && (
-                  <>
-                    {/* <IconButton
-                      name={_id}
-                      aria-label="options"
-                      onClick={handleEdit}
-                      sx={designs.Option_IconButton_Style}
-                    >
-                      <Tooltip title="Edit Post" placement="top">
-                        <BorderColorOutlined sx={designs.EditIcon_Style} />
-                      </Tooltip>
-                    </IconButton> */}
-                    <IconButton
-                      aria-label="options"
-                      onClick={(event) => handleDelete(event, _id)}
-                      sx={designs.Option_IconButton_Style}
-                    >
-                      <Tooltip title="Delete Post" placement="top">
-                        <DeleteOutlineOutlined sx={designs.DeleteIcon_Style} />
-                      </Tooltip>
-                    </IconButton>
-                  </>
-                )}
+                {_.isString(author)
+                  ? JSON.parse(author).userID ===
+                      JSON.parse(localStorage.userData).data.user._id && (
+                      <>
+                        <IconButton
+                          aria-label="options"
+                          onClick={(event) => handleDelete(event, _id)}
+                          sx={designs.Option_IconButton_Style}
+                        >
+                          <Tooltip title="Delete Post" placement="top">
+                            <DeleteOutlineOutlined
+                              sx={designs.DeleteIcon_Style}
+                            />
+                          </Tooltip>
+                        </IconButton>
+                      </>
+                    )
+                  : author.userID ===
+                      JSON.parse(localStorage.userData).data.user._id && (
+                      <>
+                        <IconButton
+                          aria-label="options"
+                          onClick={(event) => handleDelete(event, _id)}
+                          sx={designs.Option_IconButton_Style}
+                        >
+                          <Tooltip title="Delete Post" placement="top">
+                            <DeleteOutlineOutlined
+                              sx={designs.DeleteIcon_Style}
+                            />
+                          </Tooltip>
+                        </IconButton>
+                      </>
+                    )}
               </Box>
-              {content.quizID ? (
+
+              {_.isString(content) ? (
+                JSON.parse(content).quizID ? (
+                  <Schoolworktiles_layout
+                    roomID={roomID}
+                    content={JSON.parse(content).quizID}
+                  />
+                ) : (
+                  <Box className="post-content" sx={designs.Post_Content_Style}>
+                    {ReactHtmlParser(draftToHtml(JSON.parse(content)))}
+                  </Box>
+                )
+              ) : content.quizID ? (
                 <Schoolworktiles_layout
                   roomID={roomID}
                   content={content.quizID}
@@ -147,7 +168,14 @@ function Post_layout({
                   {ReactHtmlParser(draftToHtml(content))}
                 </Box>
               )}
-
+              {item.media && (
+                <>
+                  <Divider sx={designs.Divider_Style} />{' '}
+                  {item.media.map((filename) => (
+                    <FileTile item={filename} index={index} />
+                  ))}
+                </>
+              )}
               <Divider sx={designs.Divider_Style} />
 
               <Comments
@@ -162,10 +190,9 @@ function Post_layout({
               <Box className="write-comment" sx={designs.Write_Comment_Style}>
                 <Avatar
                   alt="Remy Sharp"
-                  src={JSON.parse(localStorage.userData).data.user.image.replace(
-                    'blob:',
-                    ''
-                  )}
+                  src={JSON.parse(
+                    localStorage.userData
+                  ).data.user.image.replace('blob:', '')}
                   sx={designs.AvatarComment_Style}
                 />
 
@@ -203,51 +230,6 @@ function Post_layout({
                     boxShadow: 'none',
                   }}
                 />
-
-                {/* <TextField
-                  id="filled-basic"
-                  onClick={(event) => {
-                    postID.current = event.target.name;
-                  }}
-                  name={_id}
-                  placeholder="Write a comment..."
-                  variant="filled"
-                  value={commentContent}
-                  onChange={(event) => setCommentContent(event.target.value)}
-                  onKeyPress={(event) => {
-                    event.key === 'Enter' && handleSubmitComment();
-                  }}
-                  sx={designs.Comment_TextField_Style}
-                  inputProps={{
-                    style: {
-                      height: '0px',
-                      fontSize: '0.9em',
-                      paddingBottom: '20px',
-                    },
-                  }} // font size of input text
-                  InputLabelProps={{
-                    style: {
-                      fontSize: '20px',
-                      color: '#8E8E8E',
-                      fontWeight: 'bold',
-                      marginBottom: '5px',
-                    },
-                  }} // font size of input label
-                  InputProps={{
-                    disableUnderline: true, // pantanggal ng bottom outline
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="send"
-                          sx={designs.Send_IconButton_Style}
-                          onClick={handleSubmitComment}
-                        >
-                          <Send sx={designs.SendIcon_Style} />
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                /> */}
               </Box>
             </Box>
           );

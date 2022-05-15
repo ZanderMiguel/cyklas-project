@@ -43,17 +43,6 @@ router.delete('/feed/delete/:id', deleteFeedController);
 router.put('/feed/update/:id', updateFeedController);
 
 const {
-  createAnnounce,
-  displayAnnounce,
-  deleteAnnounce,
-  updateAnnounce,
-} = require('../controller/announcementController');
-router.post('/announce/create', createAnnounce);
-router.post('/announce', displayAnnounce);
-router.delete('/announce/delete', deleteAnnounce);
-router.put('/announce/update', updateAnnounce);
-
-const {
   createComment,
   displayComment,
   deleteComment,

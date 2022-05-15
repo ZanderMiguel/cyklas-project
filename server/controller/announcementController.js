@@ -1,5 +1,29 @@
 const { AnnouncementModel } = require('../models/model-announcement');
 const mongoose = require('mongoose');
+const fs = require('fs');
+require('dotenv').config();
+let gfs;
+const openDB = async () => {
+  await mongoose.connect(
+    process.env.MONGODB_URI ||
+      'mongodb+srv://reypanerz:pantheonq1w2e3@learningmonggodb.jhlar.mongodb.net/Classes?retryWrites=true&w=majority',
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  );
+
+  const conn = mongoose.createConnection(
+    process.env.MONGODB_URI ||
+      'mongodb+srv://reypanerz:pantheonq1w2e3@learningmonggodb.jhlar.mongodb.net/Classes?retryWrites=true&w=majority'
+  );
+  conn.once('open', () => {
+    gfs = new mongoose.mongo.GridFSBucket(conn.db, {
+      bucketName: 'uploads',
+    });
+  });
+};
+openDB();
 async function createAnnouncement(req, res) {
   try {
     const announceID = mongoose.Types.ObjectId();
@@ -41,7 +65,7 @@ const displayAnnounce = async (req, res) => {
 const deleteAnnounce = async (req, res) => {
   try {
     await AnnouncementModel.findByIdAndDelete(req.body.announceID);
-    console.log('deleted')
+    console.log('deleted');
     return res.json({ status: 'Deleted' });
   } catch (error) {
     console.log('Something went wrong!');
