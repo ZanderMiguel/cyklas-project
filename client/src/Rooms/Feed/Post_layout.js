@@ -92,7 +92,10 @@ function Post_layout({
               <Box className="User" sx={designs.User_Style}>
                 <Avatar
                   alt="Remy Sharp"
-                  src={author.avatar}
+                  src={author.avatar.replace(
+                    'blob:',
+                    ''
+                  )}
                   sx={designs.AvatarPost_Style}
                 />
                 <Box className="User-date" sx={designs.User_Date_Style}>
@@ -159,7 +162,10 @@ function Post_layout({
               <Box className="write-comment" sx={designs.Write_Comment_Style}>
                 <Avatar
                   alt="Remy Sharp"
-                  src={JSON.parse(localStorage.userData).data.user.image}
+                  src={JSON.parse(localStorage.userData).data.user.image.replace(
+                    'blob:',
+                    ''
+                  )}
                   sx={designs.AvatarComment_Style}
                 />
 

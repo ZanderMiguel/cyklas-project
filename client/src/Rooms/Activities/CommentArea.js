@@ -162,7 +162,10 @@ function CommentArea({ socket, commentId, activityID }) {
                   >
                     <Avatar
                       alt="Remy Sharp"
-                      src={items.author.avatar}
+                      src={items.author.avatar.replace(
+                        'blob:',
+                        ''
+                      )}
                       sx={{
                         margin: '1px 0px',
                         height: '40px',
@@ -307,7 +310,10 @@ function CommentArea({ socket, commentId, activityID }) {
       >
         <Avatar
           alt="Remy Sharp"
-          src={JSON.parse(localStorage.userData).data.user.image}
+          src={JSON.parse(localStorage.userData).data.user.image.replace(
+            'blob:',
+            ''
+          )}
         />
 
         <Input

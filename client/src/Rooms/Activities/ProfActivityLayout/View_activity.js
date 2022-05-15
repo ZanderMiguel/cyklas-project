@@ -6,8 +6,6 @@ import {
   Checkbox,
   Container,
   Grid,
-  Avatar,
-  Autocomplete,
   TextField,
   FormControlLabel,
   IconButton,

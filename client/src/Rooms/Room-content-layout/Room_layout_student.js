@@ -139,7 +139,10 @@ function Room_layout_student({ data }) {
                     justifyContent="center"
                   >
                     <Avatar
-                      src={item.Host.avatar}
+                      src={item.Host.avatar.replace(
+                        'blob:',
+                        ''
+                      )}
                       sx={{ width: '4rem', height: '4rem' }}
                     />
                   </Box>

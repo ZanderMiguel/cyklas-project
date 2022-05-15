@@ -71,12 +71,17 @@ function Comments({ postId, setCommentRender, commentRender, postRender }) {
           {data &&
             data.map((items, index) => {
               const { author, content, createdAt, _id } = items;
+
+              console.log(author.avatar)
               return (
                 <div key={index}>
                   <Box className="User" sx={designs.User_Style}>
                     <Avatar
                       alt="Remy Sharp"
-                      src={author.avatar}
+                      src={author.avatar.replace(
+                        'blob:',
+                        ''
+                      )}
                       sx={{ margin: '1px 0px', height: '40px', width: '40px' }}
                     />
 

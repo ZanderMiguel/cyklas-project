@@ -213,7 +213,7 @@ function App() {
               />
               <ProtectedRoutes
                 exact
-                path="/ViewQuizV2"
+                path="/quizlit/ViewQuizV2"
                 component={ViewQuizV2}
               />
               <ProtectedRoutes

@@ -140,7 +140,10 @@ function MessageArea({ socket, teleRoom, username, messagelist }) {
                 >
                   <Avatar
                     alt="userAvatar"
-                    src={messageContent.avatar}
+                    src={messageContent.avatar.replace(
+                      'blob:',
+                      ''
+                    )}
                     sx={{ height: '1.6em', width: '1.6em' }}
                   />
                   <Typography

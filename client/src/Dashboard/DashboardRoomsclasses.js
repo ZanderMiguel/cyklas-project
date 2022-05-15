@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
-import { Avatar } from '@mui/material';
-import AvatarIcon from '../assets/ImageJaven/Avatar.png';
 import './Styles/DashboardRoomsclassesStylesheet.css';
-import { Star, Search } from '@mui/icons-material';
-import { Container, Grid, Typography, Button, Box } from '@mui/material';
+import {Grid, Typography, Button, Box } from '@mui/material';
 
 function DashboardRoomsclasses({ roomdata }) {
-  console.log(roomdata)
   return (
     <>
       <Box
