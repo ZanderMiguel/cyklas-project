@@ -71,7 +71,6 @@ const countActivity = async (req, res) => {
       room: { $elemMatch: { $eq: req.body.roomID } },
       'student.stdID': req.body.stdID,
     });
-    console.log(recordData);
     const activityCategory = await QuizlitModel.findById(req.body.examID);
     const activityCount = await QuizlitModel.find({
       gsCategory: activityCategory.gsCategory,
@@ -82,7 +81,7 @@ const countActivity = async (req, res) => {
       return item.gsCategory === activityCategory.gsCategory;
     });
     let grade = {};
-
+    console.log(oldActivities, 'obob');
     recordData.forEach((recordItem) => {
       console.log(recordItem);
       grade[recordItem.student.stdID] = [];
@@ -92,6 +91,7 @@ const countActivity = async (req, res) => {
         });
 
         recordItem.gradingSystem.forEach((item) => {
+          console.log(item);
           if (Object.entries(item)[0][0] === activityCategory.gsCategory) {
             grade[recordItem.student.stdID].push({
               [Object.entries(item)[0][0]]:
@@ -107,6 +107,7 @@ const countActivity = async (req, res) => {
           //console.log(grade[recordItem.student.stdID],recordItem.student.stdID)
         });
         //console.log(grade[recordItem.student.stdID])
+        console.log(grade[recordItem.student.stdID]);
         await ClassRecordModel.updateOne(
           {
             'professor.profID': req.body.userID,
@@ -227,13 +228,13 @@ const recordActivity = async (req, res) => {
           gradingSystem: gsApply,
         }
       );
-      await ActivitySubmitsModel.updateOne(
+      /*  await ActivitySubmitsModel.updateOne(
         {
           room: { $elemMatch: { $eq: req.body.activityID } },
           'submittedBy.userID': stdID,
         },
         { activityStatus: 'Graded', activityScore: score }
-      );
+      ); */
       console.log(gsApply);
     });
   } catch (error) {
