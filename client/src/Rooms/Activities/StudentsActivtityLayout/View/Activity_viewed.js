@@ -15,6 +15,9 @@ import Wordfile from '../../../../assets/ImageJaven/Wordfile.png';
 import Pdffile from '../../../../assets/ImageJaven/Pdffile.png';
 import Excelfile from '../../../../assets/ImageJaven/Excelfile.png';
 import Powerpointfile from '../../../../assets/ImageJaven/Powerpointfile.png';
+import Imagee from '../../../../assets/ImageJaven/Imagee.png';
+import Videoo from '../../../../assets/ImageJaven/Videoo.png';
+import Filee from '../../../../assets/ImageJaven/Filee.png';
 import ActivityIcon from '../../../../assets/ImageJaven/ActivityIcon.png';
 import moment from 'moment';
 import draftToHtml from 'draftjs-to-html';
@@ -25,7 +28,8 @@ function Activity_viewed({ socket }) {
   const [activityView, setActivityView] = useState(null);
   const { activityID } = useParams();
   const [submits, setSubmits] = useState(null);
-  const [commentId, setCommentId] = useState(null);
+  const [commentId, setCommentId] = useState( null );
+  
 
   // socket.on('post-comment', (uuid) => {
   //   setCommentId(uuid);
@@ -242,7 +246,8 @@ function Activity_viewed({ socket }) {
             ) : null}
 
             {activityView &&
-              activityView.media.map((item, index) => {
+              activityView.media.map( ( item, index ) => {
+  
                 return (
                   <Tooltip
                     key={index}
@@ -287,19 +292,21 @@ function Activity_viewed({ socket }) {
                       }}
                     >
                       <img
-                        src={
-                          item?.includes('.docx')
-                            ? Wordfile
-                            : item?.includes('.xls')
-                            ? Excelfile
-                            : item?.includes('.ppt') || item?.includes('.pptx')
-                            ? Powerpointfile
-                            : item?.includes('.pdf') && Pdffile
-                        }
-                        style={{
-                          height: '40px',
-                        }}
-                      />
+                      src={
+                        item?.includes('.docx') ? Wordfile
+                          : item?.includes('.xls') ? Excelfile
+                          : item?.includes('.jpg') ||
+                            item?.includes('.png') ? Imagee
+                          : item?.includes('.mp4') ? Videoo
+                          : item?.includes('.ppt') ||
+                            item?.includes('.pptx') ? Powerpointfile
+                          : item?.includes('.pdf') ? Pdffile
+                          : item?.includes('.txt') && Filee
+                      }
+                      style={{
+                        height: '40px',
+                      }}
+                    />
 
                       <Box
                         className="Activity-filename"
@@ -331,15 +338,15 @@ function Activity_viewed({ socket }) {
                             height: 'max-content',
                           }}
                         >
-                          {item?.includes('.docx')
-                            ? 'WORD FILE'
-                            : item?.includes('.xml')
-                            ? 'EXCEL FILE'
-                            : item?.includes('.ppt')
-                            ? 'POWERPOINT FILE'
-                            : item?.includes('.pdf')
-                            ? 'PDF FILE'
-                            : 'FILE'}
+                          {item?.includes('.docx') ? 'WORD FILE'
+                          : item?.includes('.xls') ? 'EXCEL FILE'
+                          : item?.includes('.mp4') ? 'VIDEO FILE'
+                          : item?.includes('.jpg') ||
+                            item?.includes('.png') ? 'IMAGE FILE'
+                          : item?.includes('.ppt') ||
+                            item?.includes('.pptx') ? 'POWER POINT FILE'
+                          : item?.includes('.pdf') ? 'PDF FILE'
+                          : item?.includes('.txt') && 'FILE' }
                         </Typography>
                       </Box>
                     </Box>
@@ -348,7 +355,7 @@ function Activity_viewed({ socket }) {
               })}
           </Box>
         </Box>
-        <UploadFileTile submits={submits} activityID={activityID} />
+        <UploadFileTile submits={submits} activityID={activityID} duedate={activityView && activityView.activityDueDate} />
         <CommentArea
           socket={socket}
           activityID={activityID}

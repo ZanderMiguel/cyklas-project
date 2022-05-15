@@ -51,7 +51,7 @@ function Activities_layout({ roomID, activity, socket }) {
             }}
           />
           <Typography
-            children="You did not post any activities."
+            children="You don't have any activities right now."
             sx={{
               fontSize: '1em',
               fontWeight: '600',
@@ -61,7 +61,7 @@ function Activities_layout({ roomID, activity, socket }) {
           />
 
           <Typography
-            children="Start creating activities for your student to work on."
+            children="Activities are created by your professor."
             sx={{
               fontSize: '0.8em',
               fontWeight: '500',

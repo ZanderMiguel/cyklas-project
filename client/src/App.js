@@ -194,7 +194,11 @@ function App() {
               <Route exact path="/Evaluation" component={Evaluation} />
               <Route exact path="/Dashboard_main" component={Dashboard_main} />
               <Route exact path="/ExamViewedV2" component={ExamViewedV2} />
-              <Route exact path="/QuizViewedV2" component={QuizViewedV2} />
+              <Route
+                exact
+                path="/quizlit/QuizViewedV2"
+                component={QuizViewedV2}
+              />
               <Route exact path="/Exam_take/:quizID" component={Exam_take} />
               <ProtectedRoutes
                 exact
@@ -202,7 +206,11 @@ function App() {
                 component={Exam_start}
                 socket={socket}
               />
-              <ProtectedRoutes exact path="/View_quiz" component={View_quiz} />
+              <ProtectedRoutes
+                exact
+                path="/quizlit/View_quiz"
+                component={View_quiz}
+              />
               <ProtectedRoutes
                 exact
                 path="/ViewQuizV2"

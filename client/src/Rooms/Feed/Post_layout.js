@@ -34,6 +34,7 @@ function Post_layout({
   roomID,
   setCommentRender,
   setPostRender,
+  postRender,
   commentRender,
 }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -61,7 +62,9 @@ function Post_layout({
 
   const { post, data: comments } = usePost();
 
-  const handleSubmitComment = () => {
+  const handleSubmitComment = () =>
+  {
+    setCommentRender((prev) => !prev)
     post('http://localhost:5000/comment/create', {
       announcement: postID.current,
       content: commentContent,
@@ -74,9 +77,9 @@ function Post_layout({
       },
     });
     if (comments) {
-      setCommentContent('');
+      setCommentContent( '' );
     }
-    setCommentRender((prev) => !prev);
+    ;
   };
 
   return (
@@ -109,7 +112,7 @@ function Post_layout({
                 {author.userID ===
                   JSON.parse(localStorage.userData).data.user._id && (
                   <>
-                    <IconButton
+                    {/* <IconButton
                       name={_id}
                       aria-label="options"
                       onClick={handleEdit}
@@ -118,7 +121,7 @@ function Post_layout({
                       <Tooltip title="Edit Post" placement="top">
                         <BorderColorOutlined sx={designs.EditIcon_Style} />
                       </Tooltip>
-                    </IconButton>
+                    </IconButton> */}
                     <IconButton
                       aria-label="options"
                       onClick={(event) => handleDelete(event, _id)}
@@ -148,6 +151,7 @@ function Post_layout({
                 postId={_id}
                 setCommentRender={setCommentRender}
                 socket={socket}
+                postRender={postRender}
                 commentRender={commentRender}
               />
 

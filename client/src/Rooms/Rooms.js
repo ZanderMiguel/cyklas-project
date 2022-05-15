@@ -18,6 +18,8 @@ function Rooms({ socket }) {
   const [opendialog, setOpenDialog] = useState(false);
   const [gs, setGs] = useState(null);
   const { post, data, error, isPending } = usePost();
+  const [newRoom, setNewRoom] = React.useState(false);
+
 
   React.useEffect(() => {
     axios
@@ -37,11 +39,10 @@ function Rooms({ socket }) {
     setOpenDialog(false);
   };
 
-  const [newRoom, setNewRoom] = React.useState(null);
 
-  socket.on('room-created', (created) => {
-    setNewRoom(created);
-  });
+  // socket.on('room-created', (created) => {
+  //   setNewRoom(created);
+  // });
 
   React.useMemo(() => {
     post('http://localhost:5000/rooms', {
@@ -85,7 +86,7 @@ function Rooms({ socket }) {
                     maxWidth="md"
                     state={setOpenDialog}
                     userData={JSON.parse(localStorage.userData)}
-                    socket={socket}
+                    setNewRoom={setNewRoom}
                   />
                 )}
               </Grid>

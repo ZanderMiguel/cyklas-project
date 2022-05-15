@@ -37,7 +37,6 @@ function Register({ open, close, setOpenDialog, setNotif }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsPending(true)
     setImgSrcError(false)
     setUserTypeError(false);
     setFirstNameError(false);

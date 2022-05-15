@@ -225,8 +225,7 @@ function Records_tableClassRecords({ rooms }) {
                       ))}
 
                       <td data-label="Class Standing">
-                        {' '}
-                        {items.classStanding}{' '}
+                        <Button variant='contained' children='Return'/>
                       </td>
                     </tr>
                   );

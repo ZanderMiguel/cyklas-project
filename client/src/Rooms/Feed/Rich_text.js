@@ -18,6 +18,9 @@ import Wordfile from '../../assets/ImageJaven/Wordfile.png';
 import Pdffile from '../../assets/ImageJaven/Pdffile.png';
 import Excelfile from '../../assets/ImageJaven/Excelfile.png';
 import Powerpointfile from '../../assets/ImageJaven/Powerpointfile.png';
+import Imagee from '../../assets/ImageJaven/Imagee.png';
+import Videoo from '../../assets/ImageJaven/Videoo.png';
+import Filee from '../../assets/ImageJaven/Filee.png';
 
 import usePost from '../../customHooks/usePost';
 import { useParams } from 'react-router-dom';
@@ -26,8 +29,8 @@ import { EditorState, convertToRaw } from 'draft-js';
 import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './Rich_text.css';
 
-function Rich_text({ setPostRender }) {
-  const [upload, setUpload] = React.useState('true');
+function Rich_text({ setPostRender,setCommentRender }) {
+  const [upload, setUpload] = React.useState( 'true' );
   const [editorState, setEditorState] = React.useState(
     EditorState.createEmpty()
   );
@@ -43,7 +46,11 @@ function Rich_text({ setPostRender }) {
 
   const { post, data, isPending } = usePost();
   const { roomID } = useParams();
-  const handleAnnounce = () => {
+  const handleAnnounce = () =>
+  {
+    setCommentRender( ( prev ) => !prev );
+    setPostRender( ( prev ) => !prev );
+
     post('http://localhost:5000/announce/create', {
       author: {
         userID: JSON.parse(localStorage.userData).data.user._id,
@@ -57,9 +64,10 @@ function Rich_text({ setPostRender }) {
     });
 
     if (!data || data) {
-      setEditorState('');
+      setEditorState( '' );
     }
-    setPostRender((prev) => !prev);
+
+    
     // socket.emit('create-post');
     // socket.emit('create-comment');
   };
@@ -146,14 +154,15 @@ function Rich_text({ setPostRender }) {
                   >
                     <img
                       src={
-                        item?.fileName.includes('.docx')
-                          ? Wordfile
-                          : item?.fileName.includes('.xls')
-                          ? Excelfile
+                        item?.fileName.includes('.docx') ? Wordfile
+                          : item?.fileName.includes('.xls') ? Excelfile
+                          : item?.fileName.includes('.jpg') ||
+                            item?.fileName.includes('.png') ? Imagee
+                          : item?.fileName.includes('.mp4') ? Videoo
                           : item?.fileName.includes('.ppt') ||
-                            item?.fileName.includes('.pptx')
-                          ? Powerpointfile
-                          : item?.fileName.includes('.pdf') && Pdffile
+                            item?.fileName.includes('.pptx') ? Powerpointfile
+                          : item?.fileName.includes('.pdf') ? Pdffile
+                          : item?.fileName.includes('.txt') && Filee
                       }
                       style={{
                         height: '40px',
@@ -191,16 +200,15 @@ function Rich_text({ setPostRender }) {
                           height: 'max-content',
                         }}
                       >
-                        {item?.fileName?.includes('.docx')
-                          ? 'WORD FILE'
-                          : item?.fileName?.includes('.xls')
-                          ? 'EXCEL.fileName FILE'
+                        {item?.fileName?.includes('.docx') ? 'WORD FILE'
+                          : item?.fileName?.includes('.xls') ? 'EXCEL FILE'
+                          : item?.fileName?.includes('.mp4') ? 'VIDEO FILE'
+                          : item?.fileName.includes('.jpg') ||
+                            item?.fileName.includes('.png') ? 'IMAGE FILE'
                           : item?.fileName.includes('.ppt') ||
-                            item?.fileName.includes('.pptx')
-                          ? 'POWER POINT'
-                          : item?.fileName.includes('.pdf')
-                          ? 'PDF FILE'
-                          : 'FILE'}
+                            item?.fileName.includes('.pptx') ? 'POWER POINT FILE'
+                          : item?.fileName.includes('.pdf') ? 'PDF FILE'
+                          : item?.fileName.includes('.txt') && 'FILE' }
                       </Typography>
                     </Box>
                   </Box>
