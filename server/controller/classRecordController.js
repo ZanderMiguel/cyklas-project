@@ -290,13 +290,14 @@ const recordActivity = async (req, res) => {
     await ActivitySubmitsModel.updateOne(
       {
         activityID: req.body.activityID,
+        'submittedBy.userID': req.body.stdID,
       },
       {
         activityScore: totalActivityPoints[0],
         activityStatus: 'Graded',
       }
     );
-
+    console.log(submitActivity);
     return res.json({ grades });
   } catch (error) {
     console.log(error);

@@ -38,31 +38,20 @@ function StudentList({
       {data &&
         data.map(function (items, index) {
           if (items.userType === 'Student') {
-            let stdData;
-            console.log(submitData);
-            axios
-              .post('http://localhost:5000/activity/get/submit', {
-                activityID,
-                stdID: items._id,
-              })
-              .then((res) => {
-                stdData = res.data.activity;
-                setSubmitData(res.data.activity);
-              })
-              .catch((err) => console.log(err));
-
             return (
               <Box
                 key={index}
                 sx={designs.Student_Box_Style}
                 onClick={() => {
                   setStudentID(items._id);
+                  console.log(items._id);
                   axios
                     .post('http://localhost:5000/activity/get/submit', {
                       activityID,
                       stdID: items._id,
                     })
                     .then((res) => {
+                      console.log(res.data.activity);
                       setSubmitData(res.data.activity);
                     })
                     .catch((err) => console.log(err));
@@ -70,31 +59,36 @@ function StudentList({
                     score[items._id] || 0;
                 }}
               >
-                <Checkbox
-                  sx={designs.Student_Checkbox_Style}
-                  disabled={
-                    stdData?.[0]?.submittedBy.userID === items._id &&
-                    stdData?.[0]?.activityStatus === 'Graded' &&
-                    true
-                  }
-                  onChange={(e) => {
-                    if (e.target.checked === true) {
-                      scores.current.push({
-                        stdID: items._id,
-                        score: score[items._id] || 0,
-                      });
+                {submitData && (
+                  <Checkbox
+                    sx={designs.Student_Checkbox_Style}
+                    disabled={
+                      submitData?.[0]?.activityStatus === 'Graded' && true
                     }
-                    if (e.target.checked === false) {
-                      scores.current = scores.current.filter((value) => {
-                        return value.stdID !== items._id;
-                      });
-                    }
-                  }}
-                />
+                    onChange={(e) => {
+                      if (e.target.checked === true) {
+                        scores.current.push({
+                          stdID: items._id,
+                          score: score[items._id] || 0,
+                        });
 
+                        /* console.log(
+                          scores.current.filter((value) => {
+                            return value.stdID;
+                          })
+                        ); */
+                      }
+                      if (e.target.checked === false) {
+                        scores.current = scores.current.filter((value) => {
+                          return value.stdID !== items._id;
+                        });
+                      }
+                    }}
+                  />
+                )}
                 <Avatar
                   alt="Remy Sharp"
-                  src={items.image.replace('blob:', '')}
+                  src={items.image}
                   sx={designs.Student_Avatar_Style}
                 />
                 <Typography
