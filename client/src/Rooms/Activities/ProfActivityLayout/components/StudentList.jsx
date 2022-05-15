@@ -47,6 +47,7 @@ function StudentList({
               })
               .then((res) => {
                 stdData = res.data.activity;
+                setSubmitData(res.data.activity);
               })
               .catch((err) => console.log(err));
 
@@ -69,35 +70,31 @@ function StudentList({
                     score[items._id] || 0;
                 }}
               >
-                {stdData && (
-                  <Checkbox
-                    sx={designs.Student_Checkbox_Style}
-                    disabled={
-                      stdData?.[0]?.submittedBy.userID === items._id &&
-                      stdData?.[0]?.activityStatus === 'Graded' &&
-                      true
+                <Checkbox
+                  sx={designs.Student_Checkbox_Style}
+                  disabled={
+                    stdData?.[0]?.submittedBy.userID === items._id &&
+                    stdData?.[0]?.activityStatus === 'Graded' &&
+                    true
+                  }
+                  onChange={(e) => {
+                    if (e.target.checked === true) {
+                      scores.current.push({
+                        stdID: items._id,
+                        score: score[items._id] || 0,
+                      });
                     }
-                    onChange={(e) => {
-                      if (e.target.checked === true) {
-                        scores.current.push({
-                          stdID: items._id,
-                          score: score[items._id] || 0,
-                        });
-                      }
-                      if (e.target.checked === false) {
-                        scores.current = scores.current.filter((value) => {
-                          return value.stdID !== items._id;
-                        });
-                      }
-                    }}
-                  />
-                )}
+                    if (e.target.checked === false) {
+                      scores.current = scores.current.filter((value) => {
+                        return value.stdID !== items._id;
+                      });
+                    }
+                  }}
+                />
+
                 <Avatar
                   alt="Remy Sharp"
-                  src={items.image.replace(
-                    'blob:',
-                    ''
-                  )}
+                  src={items.image.replace('blob:', '')}
                   sx={designs.Student_Avatar_Style}
                 />
                 <Typography

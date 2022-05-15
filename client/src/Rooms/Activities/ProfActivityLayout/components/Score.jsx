@@ -14,9 +14,9 @@ function Score({ score, activityView, items, designs, submitData }) {
         <Typography
           sx={designs.StudentScore_Typography_Style}
           id={`score${items._id}`}
-        >{`${score[items._id]} / ${
+        >{`${score[items._id] || 0} / ${
           activityView && activityView.activityPoints
-        }bobo`}</Typography>
+        }`}</Typography>
       )}
     </>
   );
