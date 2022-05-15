@@ -14,7 +14,7 @@ function MainSessionBody({
   const [toggleMic, setToggleMic] = React.useState(false);
   const layout = React.useRef(null);
   const [tileWidth, setTileWidth] = React.useState(1);
-
+  console.log('count');
   React.useMemo(() => {
     layout.current &&
       setTileWidth(
@@ -44,6 +44,7 @@ function MainSessionBody({
         id,
         roomID
       );
+      setRenderer((prev) => !prev);
     });
   }, [renderer]);
 
