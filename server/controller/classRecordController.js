@@ -70,7 +70,6 @@ const countActivity = async (req, res) => {
       'professor.profID': req.body.userID,
       room: { $elemMatch: { $eq: req.body.roomID } },
     });
-    console.log(recordData);
     const activityCategory = await QuizlitModel.findById(req.body.examID);
     const activityCount = await QuizlitModel.find({
       gsCategory: activityCategory.gsCategory,
@@ -81,7 +80,6 @@ const countActivity = async (req, res) => {
       return item.gsCategory === activityCategory.gsCategory;
     });
     let grade = {};
-    console.log(recordData);
     recordData.forEach((recordItem) => {
       console.log(recordItem);
       grade[recordItem.student.stdID] = [];
@@ -108,14 +106,14 @@ const countActivity = async (req, res) => {
         });
         //console.log(grade[recordItem.student.stdID])
         console.log(grade[recordItem.student.stdID]);
-        /* await ClassRecordModel.updateOne(
+        await ClassRecordModel.updateOne(
           {
             'professor.profID': req.body.userID,
             room: { $elemMatch: { $eq: req.body.roomID } },
             'student.stdID': scores.stdID,
           },
           { gradingSystem: grade[recordItem.student.stdID] }
-        ); */
+        );
       });
     });
 
@@ -228,13 +226,13 @@ const recordActivity = async (req, res) => {
           gradingSystem: gsApply,
         }
       );
-      await ActivitySubmitsModel.updateOne(
+      /*  await ActivitySubmitsModel.updateOne(
         {
           room: { $elemMatch: { $eq: req.body.activityID } },
           'submittedBy.userID': stdID,
         },
         { activityStatus: 'Graded', activityScore: score }
-      );
+      ); */
       console.log(gsApply);
     });
   } catch (error) {

@@ -44,6 +44,7 @@ function StudentList({
                 sx={designs.Student_Box_Style}
                 onClick={() => {
                   setStudentID(items._id);
+                  console.log(items._id);
                   axios
                     .post('http://localhost:5000/activity/get/submit', {
                       activityID,
@@ -51,16 +52,18 @@ function StudentList({
                     })
                     .then((res) => {
                       setSubmitData(res.data.activity);
-                      console.log(res.data.activity);
                     })
                     .catch((err) => console.log(err));
                   document.querySelector('#activityScore').value =
                     score[items._id] || 0;
                 }}
               >
-                {submitData && submitData?.[0]?.activityStatus !== 'Graded' && (
+                {submitData && (
                   <Checkbox
                     sx={designs.Student_Checkbox_Style}
+                    disabled={
+                      submitData?.[0]?.activityStatus === 'Graded' && true
+                    }
                     onChange={(e) => {
                       if (e.target.checked === true) {
                         scores.current.push({
@@ -68,11 +71,11 @@ function StudentList({
                           score: score[items._id] || 0,
                         });
 
-                        console.log(
+                        /* console.log(
                           scores.current.filter((value) => {
                             return value.stdID;
                           })
-                        );
+                        ); */
                       }
                       if (e.target.checked === false) {
                         scores.current = scores.current.filter((value) => {
