@@ -4,7 +4,9 @@ const ClassRecordModel = require('../models/model-classRecords');
 const GradingSystemModel = require('../models/model-gradingSystem');
 const { QuestionModel } = require('../models/model-questions');
 const { QuizlitModel } = require('../models/model-quizlit');
-
+const { getSubmittedActivity } = require('./activitySubmitsController');
+const { getActivity } = require('./createActivityController');
+const _ = require('lodash');
 const createClassRecord = async (req, res) => {
   try {
     const classRecord = new ClassRecordModel(req.body);
@@ -51,12 +53,15 @@ const applyGradingSystem = async (req, res) => {
     return res.json(error);
   }
 };
+const getClassRecord = async (req) => {
+  const classRecord = await ClassRecordModel.find({
+    room: { $elemMatch: { $eq: req.body.roomID } },
+  });
+  return classRecord;
+};
 const displayClassRecord = async (req, res) => {
   try {
-    const classRecord = await ClassRecordModel.find({
-      'professor.profID': req.body.userID,
-      room: { $elemMatch: { $eq: req.body.roomID } },
-    });
+    const classRecord = await getClassRecord(req);
     console.log('Class Record Dislayed');
     return res.json(classRecord.length > 0 ? classRecord : false);
   } catch (error) {
@@ -163,13 +168,12 @@ const getOverall = async (req, res) => {
 };
 const recordActivity = async (req, res) => {
   try {
-    const classRecord = await ClassRecordModel.find({
+    /* const classRecord = await ClassRecordModel.find({
       room: { $elemMatch: { $eq: req.body.roomID } },
     });
     const gradingSystem = await GradingSystemModel.find({
       rooms: { $elemMatch: { $eq: req.body.roomID } },
     });
-
     const quizlit = await QuizlitModel.find({
       rooms: { $elemMatch: { $eq: req.body.roomID } },
       gsCategory: req.body.category,
@@ -217,6 +221,8 @@ const recordActivity = async (req, res) => {
       let average = parseFloat(totalStdPoints / overAllPoints);
       const percentage = average * 100;
       gsApply[gsIndex][gsKey] = percentage;
+      shit.push(percentage);
+      console.log(percentage);
       await ClassRecordModel.updateMany(
         {
           room: { $elemMatch: { $eq: req.body.roomID } },
@@ -226,20 +232,78 @@ const recordActivity = async (req, res) => {
           gradingSystem: gsApply,
         }
       );
-      /*  await ActivitySubmitsModel.updateOne(
+      await ActivitySubmitsModel.updateOne(
         {
           room: { $elemMatch: { $eq: req.body.activityID } },
           'submittedBy.userID': stdID,
+          _id: classRecord[0]._id,
         },
         { activityStatus: 'Graded', activityScore: score }
-      ); */
-      console.log(gsApply);
+      );
+      gsApply[gsIndex][gsKey] = 0;
+      console.log(req.body);
+    }); */
+    ///booonaaak
+    const totalActivityPoints = [Object.entries(req.body.scores[0])[1][1]];
+
+    const submitActivity = await getSubmittedActivity(req);
+    const activity = await getActivity(req);
+    const classRecord = await getClassRecord(req);
+
+    activityScore = activity.filter((item) => {
+      return item.activityType === req.body.category;
     });
+
+    const totalMaxPoints = _.sum(
+      activityScore.map((item) => item.activityPoints)
+    );
+
+    /*  const totalPoints = _.sum(totalActivityPoints);
+    const totalMax = _.sum(totalMaxPoints);
+
+    console.log(totalPoints, totalMax, req.body.category); */
+    const totalPrevPoints = _.sum(
+      submitActivity.map((item) => item.activityScore)
+    );
+    const totalPoints =
+      parseInt(totalActivityPoints) + parseInt(totalPrevPoints);
+    const percentage = (totalPoints / totalMaxPoints) * 100;
+    const grades = classRecord[0].gradingSystem.map((item) => {
+      if (Object.entries(item)[0][0] === req.body.category) {
+        return { [Object.entries(item)[0][0]]: percentage };
+      }
+      return item;
+    });
+    console.log(percentage);
+
+    await ClassRecordModel.updateOne(
+      {
+        room: {
+          $elemMatch: { $eq: req.body.roomID },
+        },
+        'student.stdID': req.body.stdID,
+      },
+      {
+        gradingSystem: grades,
+      }
+    );
+    await ActivitySubmitsModel.updateOne(
+      {
+        activityID: req.body.activityID,
+      },
+      {
+        activityScore: totalActivityPoints[0],
+        activityStatus: 'Graded',
+      }
+    );
+
+    return res.json({ grades });
   } catch (error) {
     console.log(error);
     return res.json(error);
   }
 };
+
 module.exports = {
   createClassRecord,
   deleteClassRecord,

@@ -29,8 +29,8 @@ import { EditorState, convertToRaw } from 'draft-js';
 import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './Rich_text.css';
 
-function Rich_text({ setPostRender,setCommentRender }) {
-  const [upload, setUpload] = React.useState( 'true' );
+function Rich_text({ setPostRender, setCommentRender }) {
+  const [upload, setUpload] = React.useState('true');
   const [editorState, setEditorState] = React.useState(
     EditorState.createEmpty()
   );
@@ -46,10 +46,9 @@ function Rich_text({ setPostRender,setCommentRender }) {
 
   const { post, data, isPending } = usePost();
   const { roomID } = useParams();
-  const handleAnnounce = () =>
-  {
-    setCommentRender( ( prev ) => !prev );
-    setPostRender( ( prev ) => !prev );
+  const handleAnnounce = () => {
+    setCommentRender((prev) => !prev);
+    setPostRender((prev) => !prev);
 
     post('http://localhost:5000/announce/create', {
       author: {
@@ -64,10 +63,9 @@ function Rich_text({ setPostRender,setCommentRender }) {
     });
 
     if (!data || data) {
-      setEditorState( '' );
+      setEditorState('');
     }
 
-    
     // socket.emit('create-post');
     // socket.emit('create-comment');
   };
@@ -76,12 +74,11 @@ function Rich_text({ setPostRender,setCommentRender }) {
     { fileName: 'File uploaded/image/link' },
   ]);
 
-  const handledelete = (index) =>
-  { 
+  const handledelete = (index) => {
     const values = [...uploadFile];
     values.splice(index, 1);
     setUploadFile(values);
-  }
+  };
 
   return (
     <>
@@ -133,6 +130,7 @@ function Rich_text({ setPostRender,setCommentRender }) {
                 return (
                   <Box
                     className="Attach-file"
+                    key={index}
                     sx={{
                       marginBottom: '0.5em',
                       backgroundColor: 'white',
@@ -150,18 +148,23 @@ function Rich_text({ setPostRender,setCommentRender }) {
                           'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
                       },
                     }}
-                   
                   >
                     <img
                       src={
-                        item?.fileName.includes('.docx') ? Wordfile
-                          : item?.fileName.includes('.xls') ? Excelfile
+                        item?.fileName.includes('.docx')
+                          ? Wordfile
+                          : item?.fileName.includes('.xls')
+                          ? Excelfile
                           : item?.fileName.includes('.jpg') ||
-                            item?.fileName.includes('.png') ? Imagee
-                          : item?.fileName.includes('.mp4') ? Videoo
+                            item?.fileName.includes('.png')
+                          ? Imagee
+                          : item?.fileName.includes('.mp4')
+                          ? Videoo
                           : item?.fileName.includes('.ppt') ||
-                            item?.fileName.includes('.pptx') ? Powerpointfile
-                          : item?.fileName.includes('.pdf') ? Pdffile
+                            item?.fileName.includes('.pptx')
+                          ? Powerpointfile
+                          : item?.fileName.includes('.pdf')
+                          ? Pdffile
                           : item?.fileName.includes('.txt') && Filee
                       }
                       style={{
@@ -200,15 +203,21 @@ function Rich_text({ setPostRender,setCommentRender }) {
                           height: 'max-content',
                         }}
                       >
-                        {item?.fileName?.includes('.docx') ? 'WORD FILE'
-                          : item?.fileName?.includes('.xls') ? 'EXCEL FILE'
-                          : item?.fileName?.includes('.mp4') ? 'VIDEO FILE'
+                        {item?.fileName?.includes('.docx')
+                          ? 'WORD FILE'
+                          : item?.fileName?.includes('.xls')
+                          ? 'EXCEL FILE'
+                          : item?.fileName?.includes('.mp4')
+                          ? 'VIDEO FILE'
                           : item?.fileName.includes('.jpg') ||
-                            item?.fileName.includes('.png') ? 'IMAGE FILE'
+                            item?.fileName.includes('.png')
+                          ? 'IMAGE FILE'
                           : item?.fileName.includes('.ppt') ||
-                            item?.fileName.includes('.pptx') ? 'POWER POINT FILE'
-                          : item?.fileName.includes('.pdf') ? 'PDF FILE'
-                          : item?.fileName.includes('.txt') && 'FILE' }
+                            item?.fileName.includes('.pptx')
+                          ? 'POWER POINT FILE'
+                          : item?.fileName.includes('.pdf')
+                          ? 'PDF FILE'
+                          : item?.fileName.includes('.txt') && 'FILE'}
                       </Typography>
                     </Box>
                   </Box>

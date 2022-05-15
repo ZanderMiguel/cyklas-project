@@ -6,10 +6,7 @@ import {
   UpcomingOutlined,
 } from '@mui/icons-material';
 
-
-function DashboardStatisticsStudent({allActivity, roomdata}) {
-
-
+function DashboardStatisticsStudent({ allActivity, roomdata }) {
   const dataStats = [
     {
       icon: (
@@ -55,7 +52,7 @@ function DashboardStatisticsStudent({allActivity, roomdata}) {
               textAlign: 'center',
             }}
           ></Typography>
-  
+
           <Typography
             sx={{
               color: '#8E8E8E',
@@ -91,7 +88,8 @@ function DashboardStatisticsStudent({allActivity, roomdata}) {
         </Box>
       ),
       label: 'Activities',
-      total: allActivity === null ? '0' : `${allActivity && allActivity.allActs}`,
+      total:
+        allActivity === null ? '0' : `${allActivity && allActivity.allActs}`,
       update: (
         <Box
           sx={{
@@ -125,7 +123,7 @@ function DashboardStatisticsStudent({allActivity, roomdata}) {
           >
             (2)
           </Typography>
-  
+
           <Typography
             sx={{
               color: '#007FFF',
@@ -161,7 +159,10 @@ function DashboardStatisticsStudent({allActivity, roomdata}) {
         </Box>
       ),
       label: 'Sumitted Activities',
-      total: allActivity === null ? '0' : `${allActivity&&allActivity.submittedActivities}`,
+      total:
+        allActivity === null
+          ? '0'
+          : `${allActivity && allActivity.submittedActivities}`,
       update: (
         <Box
           sx={{
@@ -195,7 +196,7 @@ function DashboardStatisticsStudent({allActivity, roomdata}) {
           >
             (4)
           </Typography>
-  
+
           <Typography
             sx={{
               color: '#007FFF',
@@ -215,8 +216,6 @@ function DashboardStatisticsStudent({allActivity, roomdata}) {
       ),
     },
   ];
-  
-
 
   return (
     <>

@@ -14,7 +14,7 @@ import {
 import { Settings, Logout, Circle } from '@mui/icons-material';
 import useStyle from './Styles/Accountpopover_style';
 
-function Accountpopover({ avatar }) {
+function Accountpopover({ avatar, alt }) {
   const history = useHistory();
   const { designs } = useStyle();
   const theme = useTheme();
@@ -30,11 +30,7 @@ function Accountpopover({ avatar }) {
       <List component="nav" sx={designs.Nav_Style}>
         <ListItem sx={{ padding: '0em' }}>
           <Box sx={designs.Container_Sub_Style}>
-            <Avatar
-              src={avatar}
-              alt="profileImg"
-              sx={designs.ProfileImg_Style}
-            />
+            <Avatar src={avatar} alt={alt} sx={designs.ProfileImg_Style} />
             <Box>
               <Typography
                 sx={{
@@ -102,7 +98,7 @@ function Accountpopover({ avatar }) {
                       texTransform: 'none',
                       width: '13em',
                       height: 'auto',
-                      cursor: "default"
+                      cursor: 'default',
                     }}
                   >
                     {JSON.parse(localStorage.userData).data.user.emailAddress}
