@@ -35,7 +35,7 @@ function Exam_start({ socket }) {
           .then((res) => {
             setData([response.data, res.data]);
             // console.log([response.data, res.data]);
-            console.log(res)
+            console.log(res);
           })
           .catch((err) => console.log(err));
       })

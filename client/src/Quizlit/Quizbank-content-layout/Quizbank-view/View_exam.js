@@ -57,6 +57,7 @@ function View_exam() {
   const shrtAns = React.useRef({});
   const [dataRoom, setDataRoom] = React.useState(null);
   const scores = React.useRef([]);
+  const [selectRoom, setRoom] = useState('');
   const handleChangeSort = (event) => {
     setSort(event.target.value);
   };
@@ -87,7 +88,7 @@ function View_exam() {
             onClick={() => {
               axios
                 .post('http://localhost:5000/records/return-grade', {
-                  roomID: dataRoom[0]._id,
+                  roomID: selectRoom,
                   userID: JSON.parse(localStorage.userData).data.user._id,
                   examID,
                   scores: scores.current,
@@ -102,6 +103,8 @@ function View_exam() {
           </Button>
         </Grid>
         <SelectRoom
+          selectRoom={selectRoom}
+          setRoom={setRoom}
           setData={setData}
           dataRoom={dataRoom}
           setDataRoom={setDataRoom}
@@ -153,11 +156,13 @@ function View_exam() {
                 data.map(function (items, index) {
                   return (
                     <div key={index}>
-                      {items.userType === 'Student'&& <StudentsList
-                        scores={scores}
-                        items={items}
-                        setStdID={setStdID}
-                      />}
+                      {items.userType === 'Student' && (
+                        <StudentsList
+                          scores={scores}
+                          items={items}
+                          setStdID={setStdID}
+                        />
+                      )}
                     </div>
                   );
                 })}

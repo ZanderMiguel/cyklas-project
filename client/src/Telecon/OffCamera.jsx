@@ -10,6 +10,7 @@ function OffCamera({
   tileWidth,
   handleToggleMic,
   myPeer,
+  socket,
 }) {
   return (
     <>
@@ -19,18 +20,16 @@ function OffCamera({
             id={items.id}
             key={items.id + items.stdID}
             style={{
-              minWidth: `calc(85%/${tileWidth.current})`,
-              height: `calc(${layout.current && layout.current.clientHeight}/${
-                tileWidth.current
-              })`,
+              minWidth: `calc(85%/${tileWidth})`,
+              height: `calc(${
+                layout.current && layout.current.clientHeight
+              }/${tileWidth})`,
             }}
           >
             <Box
               sx={{
                 position: 'relative',
                 backgroundColor: '#25282E',
-                // backgroundImage: `url(${download})`,
-                // backgroundSize: 'cover',
                 height: '100%',
                 width: 'relative',
                 borderRadius: '0.5em',
@@ -42,10 +41,7 @@ function OffCamera({
             >
               <Avatar
                 alt={items.memberName[0].toUpperCase()}
-                src={items.camera.replace(
-                  'blob:',
-                  ''
-                )}
+                src={items.camera.replace('blob:', '')}
                 sx={{ height: '5em', width: '5em' }}
               />
 

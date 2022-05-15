@@ -12,9 +12,9 @@ import useStyle from '../../Styles/View_exam_style';
 
 import axios from 'axios';
 
-function SelectRoom({ setData, dataRoom, setDataRoom }) {
+function SelectRoom({ setData, dataRoom, setDataRoom, selectRoom, setRoom }) {
   const { designs } = useStyle();
-  const [selectRoom, setRoom] = useState('');
+
   const handleChangeRoom = (event) => {
     setRoom(event.target.value);
   };
@@ -25,6 +25,7 @@ function SelectRoom({ setData, dataRoom, setDataRoom }) {
         userID: JSON.parse(localStorage.userData).data.user._id,
       })
       .then((res) => {
+        console.log(res.data);
         setDataRoom(res.data);
       })
       .catch((err) => console.log(err));
@@ -78,7 +79,7 @@ function SelectRoom({ setData, dataRoom, setDataRoom }) {
                       .catch((err) => console.log(err));
                   }}
                   key={index}
-                  value={value.RoomName}
+                  value={value._id}
                 >
                   {value.RoomName}
                 </MenuItem>

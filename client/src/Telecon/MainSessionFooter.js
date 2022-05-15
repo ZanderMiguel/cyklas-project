@@ -17,7 +17,7 @@ import Livequiz_queue from '../Form_content/Livequiz_queue';
 import Leave_conference from '../Form_content/Leave_conference';
 import JoinQuiz from '../Form_content/JoinQuiz';
 
-function MainSessionFooter({ members, socket, teleRoom, setRedirect }) {
+function MainSessionFooter({ members, socket, teleRoom }) {
   const [toggleMic, setToggleMic] = React.useState(false);
   const [toggleCam, setToggleCam] = React.useState(false);
   const [toggleScreenShare, setToggleScreenShare] = React.useState(false);
@@ -61,18 +61,6 @@ function MainSessionFooter({ members, socket, teleRoom, setRedirect }) {
   const handleCreateClose = () => {
     setOpenDialog(false);
   };
-
-  // const [opendialogJoinQuiz, setOpenDialogJoinQuiz] =
-  //   React.useState(false);
-
-  // const handleCreateJoinQuiz = () => {
-  //   setOpenDialogJoinQuiz(true);
-  // };
-
-  // const handleCreateCloseJoinQuiz = () => {
-  //   setOpenDialogJoinQuiz(false);
-  // };
-
   const [opendialogLeaveConference, setOpenDialogLeaveConference] =
     React.useState(false);
 
@@ -84,6 +72,14 @@ function MainSessionFooter({ members, socket, teleRoom, setRedirect }) {
     setOpenDialogLeaveConference(false);
   };
 
+  socket.on('openAcceptDialog', (room, open) => {
+    if (JSON.parse(localStorage.userData).data.user.userType === 'Student') {
+      setOpenDialog(open);
+    }
+  });
+  socket.on('joined-lobby', (stdID, roomID) => {
+    console.log('tanga');
+  });
   return (
     <>
       {/* Main Session Footer */}
@@ -248,16 +244,6 @@ function MainSessionFooter({ members, socket, teleRoom, setRedirect }) {
             <MdOutlineQuiz style={{ color: '#DEDEDE', fontSize: '0.9em' }} />
           </IconButton>
         </Tooltip>
-
-        {/* {opendialogJoinQuiz && (
-          <JoinQuiz
-            open={opendialogJoinQuiz}
-            close={handleCreateCloseJoinQuiz}
-            maxWidth="sm"
-            state={setOpenDialogJoinQuiz}
-          />
-          )} */}
-
         <CusPopover
           open={quiz}
           anchorEl={anchorEl}
@@ -271,11 +257,20 @@ function MainSessionFooter({ members, socket, teleRoom, setRedirect }) {
             horizontal: 'center',
           }}
         >
-          <QuizPopover />
+          <QuizPopover
+            setOpenDialog={setOpenDialog}
+            members={members.current.filter(
+              (item) => item.userType === 'Student'
+            )}
+            socket={socket}
+            teleRoom={teleRoom}
+          />
         </CusPopover>
 
         {opendialog && (
           <Livequiz_queue
+            teleRoom={teleRoom}
+            socket={socket}
             open={opendialog}
             close={handleCreateClose}
             maxWidth="sm"
@@ -311,14 +306,15 @@ function MainSessionFooter({ members, socket, teleRoom, setRedirect }) {
         )}
         {opendialogMakeGroups && (
           <Make_groups
-            setRedirect={setRedirect}
             socket={socket}
             teleRoom={teleRoom}
             open={opendialogMakeGroups}
             close={handleCreateCloseMakeGroups}
             maxWidth="md"
             state={setOpenDialogMakeGroups}
-            members={members}
+            members={members.current.filter(
+              (item) => item.userType === 'Student'
+            )}
           />
         )}
       </Box>

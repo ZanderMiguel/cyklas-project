@@ -121,7 +121,7 @@ function Home() {
                   margin: '0.8em 0em',
                   width: '60%',
                   padding: '0.2em 0em',
-                  backgroundColor: 'white',
+                  backgroundColor: 'transparent',
                 }}
               />
               {isMatch ? null : (

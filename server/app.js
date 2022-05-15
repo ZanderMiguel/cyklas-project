@@ -45,7 +45,6 @@ const startAndConnectToDb = async () => {
     console.log(err);
   }
 };
-console.log(process.env.SOCKET);
 //middlewares
 app.use(cors());
 app.use(express.json());
@@ -64,10 +63,11 @@ io.on('connection', (socket) => {
       socket.to(roomID).emit('user-disconnected', socketID);
     });
   });
-  socket.on('groupInit', (roomID, groups) => {
-    socket.to(roomID).emit('groupCollapse', groups, roomID);
+  socket.once('groupInit', (roomID, groups) => {
+    console.log(roomID);
+    socket.to(roomID).emit('join-group', groups, roomID);
   });
-  socket.on('render', (members, id, roomID) => {
+  socket.once('render', (members, id, roomID) => {
     socket.to(roomID).emit('rendered', members, id, roomID);
   });
 
@@ -75,6 +75,21 @@ io.on('connection', (socket) => {
     socket.to(data.room).emit('receive_message', data);
   });
 
+  //Live quiz socket
+  socket.on('quizParticipants', (members, room, open) => {
+    quizLobby[room] = { members, room, open };
+    socket.to(room).emit('openAcceptDialog', room, open);
+  });
+  socket.once('quizLobby', (roomID) => {
+    socket.emit('quizInit', quizLobby[roomID], roomID);
+  });
+  socket.on('enter-lobby', (stdID, roomID) => {
+    console.log('inamos');
+    socket.to(roomID).emit('joined-lobby', stdID, roomID);
+  });
+  socket.on('testing', (s, roomID) => {
+    socket.emit('test', s);
+  });
   socket.on('create-room', () => {
     socket.emit('room-created', v4());
   });
