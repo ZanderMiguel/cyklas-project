@@ -42,7 +42,10 @@ function OffCamera({
             >
               <Avatar
                 alt={items.memberName[0].toUpperCase()}
-                src={items.camera}
+                src={items.camera.replace(
+                  'blob:',
+                  ''
+                )}
                 sx={{ height: '5em', width: '5em' }}
               />
 

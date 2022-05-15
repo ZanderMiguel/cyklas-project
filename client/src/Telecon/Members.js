@@ -203,7 +203,10 @@ function Members({ members }) {
               }}
             >
               <Avatar
-                src={items.camera}
+                src={items.camera.replace(
+                  'blob:',
+                  ''
+                )}
                 alt={items.memberName[0].toUpperCase()}
               />
 

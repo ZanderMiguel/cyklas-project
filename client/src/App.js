@@ -82,7 +82,6 @@ function App() {
   });
 
   const socket = io.connect('http://localhost:3001');
-  console.log(socket);
 
   const [quizlit, setQuizlit] = React.useState(null);
 

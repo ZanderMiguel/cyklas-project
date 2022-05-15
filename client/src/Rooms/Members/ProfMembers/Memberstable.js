@@ -22,7 +22,7 @@ import { useParams, Redirect } from 'react-router-dom';
 function Memberstable({ members, setRefresher }) {
   const { designs } = useStyle();
   const { roomID } = useParams();
-  console.log( members )
+console.log(members && members)
   
   return (
     <>
@@ -67,7 +67,10 @@ function Memberstable({ members, setRefresher }) {
                         {items.userType === 'Professor' && (
                           <ListItem key={index} sx={designs.ListItem_Style}>
                             <ListItemAvatar>
-                              <Avatar src={items.image} />
+                              <Avatar src={items.image.replace(
+                  'blob:',
+                  ''
+                )} />
                             </ListItemAvatar>
                             <ListItemText>
                               <Typography sx={designs.Prof_Typography_Style}>

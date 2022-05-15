@@ -6,8 +6,6 @@ import {
   Checkbox,
   Container,
   Grid,
-  Avatar,
-  Autocomplete,
   TextField,
   FormControlLabel,
   IconButton,
@@ -104,6 +102,7 @@ function View_activity({ socket }) {
             disabled={disBtn}
             onClick={() =>
             {
+              
               axios
                 .post('http://localhost:5000/records/activity/return', {
                   roomID,
@@ -113,7 +112,6 @@ function View_activity({ socket }) {
                   maxPoints: activityView.activityPoints,
                 })
                 .then( ( res ) =>
-
                 {
                   console.log(res)
                   setNotif(

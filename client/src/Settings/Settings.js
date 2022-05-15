@@ -104,7 +104,10 @@ function Settings() {
                       />
                     ) : (
                       <Avatar
-                        src={JSON.parse(localStorage.userData).data.user.image}
+                        src={JSON.parse(localStorage.userData).data.user.image.replace(
+                          'blob:',
+                          ''
+                        )}
                         sx={{
                           width: '3.5em',
                           height: '3.5em',

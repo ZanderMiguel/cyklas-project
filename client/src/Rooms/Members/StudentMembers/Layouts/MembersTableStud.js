@@ -83,7 +83,10 @@ function MembersTableStud({ members }) {
                           <>
                             <ListItem sx={designs.ListItem_Style}>
                               <ListItemAvatar>
-                                <Avatar src={items.image} />
+                                <Avatar src={items.image.replace(
+                                        'blob:',
+                                        ''
+                                      )} />
                               </ListItemAvatar>
 
                               <ListItemText>

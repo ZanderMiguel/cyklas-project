@@ -226,9 +226,11 @@ function Navbar() {
             onClose={handleCloseArrow}
           >
             <Accountpopover
-              avatar={`${Buffer.from(
-                JSON.parse(localStorage.userData).data.user.image
-              ).toString()}`}
+              avatar={
+                JSON.parse(localStorage.userData).data.user.image.replace(
+                  'blob:',
+                  ''
+                )}
             />
           </CusPopover>
         </Toolbar>

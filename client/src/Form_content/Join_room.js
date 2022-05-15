@@ -34,7 +34,10 @@ function Join_room({ open, close, maxWidth }) {
           <Grid item xs={12}>
             <Box display="flex" alignItems="center" marginBottom="1em">
               <Avatar
-                src={JSON.parse(localStorage.userData).data.user.image}
+                src={JSON.parse(localStorage.userData).data.user.image.replace(
+                  'blob:',
+                  ''
+                )}
                 sx={{ marginRight: '0.5em', width: '3rem', height: '3rem' }}
               />
               <Box>

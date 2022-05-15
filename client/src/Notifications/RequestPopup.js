@@ -74,7 +74,10 @@ function RequestPopup({ items, setItems }) {
             <div key={index}>
               <Box sx={designs.RequestContainer_Sub_Style}>
                 <Box sx={designs.RequestContainer_Sub2_Style}>
-                  <Avatar src={element.requests.userImage} alt="" />
+                  <Avatar src={element.requests.userImage.replace(
+                'blob:',
+                ''
+              )} alt="" />
                 </Box>
 
                 <Box>

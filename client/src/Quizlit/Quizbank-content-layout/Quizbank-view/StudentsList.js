@@ -36,7 +36,10 @@ function StudentsList({ items, setStdID, scores }) {
             />}
             <Avatar
                 alt="Remy Sharp"
-                src={items.image}
+                src={items.image.replace(
+                    'blob:',
+                    ''
+                  )}
                 sx={designs.Student_Avatar_Style}
             />
             <Typography
