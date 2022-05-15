@@ -66,15 +66,11 @@ function View_activity({ socket }) {
   const [commentId, setCommentId] = useState(null);
   const [score, setScore] = useState({});
   const [studentID, setStudentID] = React.useState({});
-  const scores = React.useRef( [] );
-  const [notif, setNotif] = useState( null );
-  const [disBtn, setDisBtn] = useState(false)
-  
-  
-  
-  
-  const handleChangeSort = ( event ) =>
-  {
+  const scores = React.useRef([]);
+  const [notif, setNotif] = useState(null);
+  const [disBtn, setDisBtn] = useState(false);
+
+  const handleChangeSort = (event) => {
     setSort(event.target.value);
   };
 
@@ -100,9 +96,7 @@ function View_activity({ socket }) {
         <Grid item xs={4}>
           <Button
             disabled={disBtn}
-            onClick={() =>
-            {
-              
+            onClick={() => {
               axios
                 .post('http://localhost:5000/records/activity/return', {
                   roomID,
@@ -110,15 +104,17 @@ function View_activity({ socket }) {
                   scores: scores.current,
                   category: activityView.activityType,
                   maxPoints: activityView.activityPoints,
+                  activityID: submitData[0].activityID,
+                  stdID: studentID,
                 })
-                .then( ( res ) =>
-                {
-                  console.log(res)
+                .then((res) => {
+                  console.log(res);
                   setNotif(
                     toast.error('Submitted', {
                       position: toast.POSITION.TOP_CENTER,
-                    } ) )
-                    setDisBtn(true)
+                    })
+                  );
+                  setDisBtn(true);
                 })
                 .catch((err) => console.log(err));
             }}
@@ -481,22 +477,27 @@ function View_activity({ socket }) {
                           },
                         }}
                       >
-                       <img
-                      src={
-                        item?.includes('.docx') ? Wordfile
-                          : item?.includes('.xls') ? Excelfile
-                          : item?.includes('.jpg') ||
-                            item?.includes('.png') ? Imagee
-                          : item?.includes('.mp4') ? Videoo
-                          : item?.includes('.ppt') ||
-                            item?.includes('.pptx') ? Powerpointfile
-                          : item?.includes('.pdf') ? Pdffile
-                          : item?.includes('.txt') && Filee
-                      }
-                      style={{
-                        height: '40px',
-                      }}
-                    />
+                        <img
+                          src={
+                            item?.includes('.docx')
+                              ? Wordfile
+                              : item?.includes('.xls')
+                              ? Excelfile
+                              : item?.includes('.jpg') || item?.includes('.png')
+                              ? Imagee
+                              : item?.includes('.mp4')
+                              ? Videoo
+                              : item?.includes('.ppt') ||
+                                item?.includes('.pptx')
+                              ? Powerpointfile
+                              : item?.includes('.pdf')
+                              ? Pdffile
+                              : item?.includes('.txt') && Filee
+                          }
+                          style={{
+                            height: '40px',
+                          }}
+                        />
 
                         <Box
                           className="Activity-filename"
@@ -529,15 +530,20 @@ function View_activity({ socket }) {
                               height: 'max-content',
                             }}
                           >
-                            {item?.includes('.docx') ? 'WORD FILE'
-                          : item?.includes('.xls') ? 'EXCEL FILE'
-                          : item?.includes('.mp4') ? 'VIDEO FILE'
-                          : item?.includes('.jpg') ||
-                            item?.includes('.png') ? 'IMAGE FILE'
-                          : item?.includes('.ppt') ||
-                            item?.includes('.pptx') ? 'POWER POINT FILE'
-                          : item?.includes('.pdf') ? 'PDF FILE'
-                          : item?.includes('.txt') && 'FILE' }
+                            {item?.includes('.docx')
+                              ? 'WORD FILE'
+                              : item?.includes('.xls')
+                              ? 'EXCEL FILE'
+                              : item?.includes('.mp4')
+                              ? 'VIDEO FILE'
+                              : item?.includes('.jpg') || item?.includes('.png')
+                              ? 'IMAGE FILE'
+                              : item?.includes('.ppt') ||
+                                item?.includes('.pptx')
+                              ? 'POWER POINT FILE'
+                              : item?.includes('.pdf')
+                              ? 'PDF FILE'
+                              : item?.includes('.txt') && 'FILE'}
                           </Typography>
                         </Box>
                       </Box>
@@ -605,9 +611,8 @@ function View_activity({ socket }) {
             </Box>
 
             {submitData &&
-              submitData?.[0]?.media.map( ( item, index ) =>
-              {
-                console.log(item)
+              submitData?.[0]?.media.map((item, index) => {
+                console.log(item);
                 return (
                   <Tooltip
                     key={index}
@@ -631,16 +636,23 @@ function View_activity({ socket }) {
                             'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
                         },
                       }}
-                      onClick={ ()=> axios.get(`http://localhost:5000/activity/download/${item}`, {
-                        responseType: 'blob',
-                      } ).then( res =>
-                      {
-                        console.log(res)
-                        // FileDownload(
-                        //   res.data,
-                        //   activityView[index].file.filename
-                        // );
-                      } ).catch( err => console.log( err ) )}
+                      onClick={() =>
+                        axios
+                          .get(
+                            `http://localhost:5000/activity/download/${item}`,
+                            {
+                              responseType: 'blob',
+                            }
+                          )
+                          .then((res) => {
+                            console.log(res);
+                            // FileDownload(
+                            //   res.data,
+                            //   activityView[index].file.filename
+                            // );
+                          })
+                          .catch((err) => console.log(err))
+                      }
                     >
                       <img
                         src={Wordfile}

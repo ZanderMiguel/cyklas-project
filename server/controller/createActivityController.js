@@ -1,4 +1,4 @@
-const Activity = require( '../models/model-activity' );
+const Activity = require('../models/model-activity');
 const mongoose = require('mongoose');
 const fs = require('fs');
 require('dotenv').config();
@@ -44,7 +44,9 @@ async function createActivity(req, res) {
 }
 const getActivity = async (req) => {
   const activity = await Activity.find({
-    rooms: req.body.roomID.replace(':', ''),
+    rooms: Array.isArray(req.body.roomID)
+      ? { $in: req.body.roomID }
+      : { $elemMatch: { $eq: req.body.roomID } },
   }).sort({ createdAt: -1 });
   return activity;
 };
@@ -76,7 +78,7 @@ const findActivity = async (req, res) => {
       files.forEach((item) => {
         activity.media.forEach((clientFile) => {
           if (clientFile === item.filename.split(`_split_`)[0]) {
-            myFile.push( { file: item } );
+            myFile.push({ file: item });
             gfs
               .openDownloadStream(item._id)
               .pipe(fs.createWriteStream(`./files/${item.filename}`));
@@ -94,8 +96,7 @@ const findActivity = async (req, res) => {
     });
   }
 };
-const downloadFileByClick = async ( req, res ) =>
-{
+const downloadFileByClick = async (req, res) => {
   /* gfs.find().toArray((err, files) => {
     if (!files[0] || files.length === 0) {
       return 'No files available';
@@ -135,7 +136,6 @@ const deleteActivity = async (req, res) => {
     });
   }
 };
-
 
 const updateActivity = async (req, res) => {
   try {

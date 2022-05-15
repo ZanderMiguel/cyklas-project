@@ -47,12 +47,22 @@ const submitActivity = async (req, res) => {
     return res.json(error);
   }
 };
+const getSubmittedActivity = async (req) => {
+  const activity = await ActivitySubmitsModel.find({
+    'submittedBy.userID': req.body.stdID,
+  });
+  return activity;
+};
+const getSubmitted = async (req) => {
+  const activity = await ActivitySubmitsModel.find({
+    activityID: req.body.activityID,
+    'submittedBy.userID': req.body.stdID,
+  });
+  return activity;
+};
 const displaySubmittedActivity = async (req, res) => {
   try {
-    const activity = await ActivitySubmitsModel.find({
-      activityID: req.body.activityID,
-      'submittedBy.userID': req.body.stdID,
-    });
+    const activity = await getSubmitted(req);
     console.log('activity found!');
     gfs.find().toArray((err, files) => {
       if (!files[0] || files.length === 0) {
@@ -81,30 +91,27 @@ const displaySubmittedActivity = async (req, res) => {
     return res.json(error);
   }
 };
+const collect = async (req) => {
+  const rooms = await getRooms(req);
+  const userID = req.body.userID;
+  const roomIDs = rooms.map((item) => item._id.toString());
+  const request = {
+    body: { roomID: roomIDs },
+  };
+  const activities = await getActivity(request);
+  const actIDs = activities.map((item) => item._id.toString());
+  const actLen = await ActivitySubmitsModel.find({
+    activityID: { $in: actIDs },
+    'submittedBy.userID': userID,
+  });
+  console.log(actIDs);
+  return { submittedActivities: actLen.length, allActs: actIDs.length };
+};
 const getAllActivities = async (req, res) => {
   try {
-    const rooms = await getRooms(req);
-    const userID = req.body.userID;
-    rooms.forEach(async (item) => {
-      const req = {
-        body: { roomID: item._id.toString() },
-      };
-      getActivity(req)
-        .then((activities) => {
-          const allActs = activities.length;
-          activities.forEach((item) => {
-            ActivitySubmitsModel.find({
-              activityID: item._id.toString(),
-              'submittedBy.userID': userID,
-            })
-              .then((act) => {
-                return res.json({ submittedActivities: act.length, allActs });
-              })
-              .catch((err) => console.log(err));
-          });
-        })
-        .catch((err) => console.log(err));
-    });
+    const data = await collect(req);
+    console.log(data);
+    return res.json(data);
   } catch (error) {
     console.log(error);
     return res.json(error);
@@ -114,4 +121,5 @@ module.exports = {
   submitActivity,
   displaySubmittedActivity,
   getAllActivities,
+  getSubmittedActivity,
 };

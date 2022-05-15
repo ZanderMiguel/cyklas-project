@@ -23,7 +23,7 @@ import AvatarIcon from '../assets/ImageJaven/Avatar.png';
 import { useTheme } from '@mui/material/styles';
 import { PostAdd } from '@mui/icons-material';
 import { useLocation } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
 
 const general = [
   {
@@ -89,7 +89,6 @@ function Navbar() {
   const location = useLocation();
   const [items, setItems] = React.useState(null);
   const [toggleAccept, setToggleAccept] = React.useState(false);
-
 
   React.useEffect(() => {
     axios
@@ -172,7 +171,12 @@ function Navbar() {
             anchorEl={anchorEl}
             onClose={handleCloseNotif}
           >
-            <Notificationpopover general={general} items={items} setToggleAccept={setToggleAccept} setItems={ setItems}/>
+            <Notificationpopover
+              general={general}
+              items={items}
+              setToggleAccept={setToggleAccept}
+              setItems={setItems}
+            />
           </CusPopover>
           <Box
             display="flex"
@@ -191,7 +195,9 @@ function Navbar() {
                 'blob:',
                 ''
               )}
-              alt="profileImg"
+              alt={JSON.parse(
+                localStorage.userData
+              ).data.user.firstName[0].toUpperCase()}
             />
             <Box
               sx={{
@@ -226,11 +232,13 @@ function Navbar() {
             onClose={handleCloseArrow}
           >
             <Accountpopover
-              avatar={
-                JSON.parse(localStorage.userData).data.user.image.replace(
-                  'blob:',
-                  ''
-                )}
+              avatar={JSON.parse(localStorage.userData).data.user.image.replace(
+                'blob:',
+                ''
+              )}
+              alt={JSON.parse(
+                localStorage.userData
+              ).data.user.firstName[0].toUpperCase()}
             />
           </CusPopover>
         </Toolbar>
