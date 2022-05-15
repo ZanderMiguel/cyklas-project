@@ -3,11 +3,28 @@ import { Grid, Box, Typography, Avatar } from '@mui/material';
 import {
   Star,
   SchoolOutlined
-} from '@mui/icons-material';
+} from '@mui/icons-material'; 
+import axios from 'axios'
 import AvatarIcon from "../assets/ImageJaven/Avatar.png";
 import ProfileBackground from "../assets/ImageJaven/ProfileBackground.png";
 
-function DashboardStatisticsV2( { roomdata} ) {
+
+
+
+function DashboardStatisticsV2( { roomdata } )
+{
+const studentsLength = React.useRef(null)
+
+  React.useEffect( () =>
+{
+  axios.post( 'http://localhost:5000/room/get/student-length', {
+    userID: JSON.parse(localStorage.userData).data.user._id,
+  } ).then( (res) =>
+   {
+    studentsLength.current = res.data
+  }).catch((err)=> console.log(err))
+  }, [] )
+  
   return (
     <>
           <Grid xs = {8}
@@ -84,117 +101,6 @@ function DashboardStatisticsV2( { roomdata} ) {
           </Grid>
 
           <Grid xs = {4} sx = {{ paddingLeft: "0.5em" }}>
-          {/* <Box
-              sx={{
-                width: 'relative',
-                height: '10em',
-                display: "flex",
-                justifyContent: "space-between",
-                flexDirection: "column",
-                padding: '1em 0em 0em 0em',
-                backgroundColor: 'white'
-              }}
-            >
-              <Box
-                sx={{
-                  display: 'flex',
-                  gap: '1em',
-                  width: 'relative',
-                  margin: '0em 1em',
-                }}
-              >
-                <Box sx={{ height: 'auto', width: 'auto' }}>
-                    <Box
-                        sx={{
-                        height: '2.8em',
-                        width: '2.8em',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        borderRadius: '3em',
-                        backgroundColor: '#FF8000',
-                        }}
-                    >
-                        <SchoolOutlined sx={{ color: 'white', fontSize: '2em' }} />
-                    </Box>
-                </Box>
-
-                <Box sx={{ height: 'auto', width: 'relative' }}>
-                  <Typography
-                    sx={{
-                      color: '#8E8E8E',
-                      fontSize: '0.8em',
-                      fontWeight: '500',
-                      width: 'auto',
-                      height: 'auto',
-                      textTransform: 'Capitalize',
-                    }}
-                  >
-                    Total Students in this room
-                  </Typography>
-
-                  <Typography
-                    noWrap
-                    sx={{
-                      color: '#615F79',
-                      fontSize: '1.8em',
-                      fontWeight: '600',
-                      width: 'relative',
-                      height: 'auto',
-                      wordBreak: 'break-all',
-                      textTransform: 'Uppercase',
-                    }}
-                  >
-                    223
-                  </Typography>
-                </Box>
-              </Box>
-              
-              <Box
-                sx={{
-                display: 'flex',
-                gap: '0.5em',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: 'relative',
-                margin: '0.5em 0em 0em 0em',
-                padding: '0.4em',
-                backgroundColor: '#F0F0F0',
-                }}
-            >
-                <Typography
-                sx={{
-                    color: '#8E8E8E',
-                    fontSize: '0.7em',
-                    fontWeight: '700',
-                    textTransform: 'uppercase',
-                    height: 'relative',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    textAlign: 'center',
-                }}
-                ></Typography>
-
-                <Typography
-                sx={{
-                    color: '#8E8E8E',
-                    fontSize: '0.7em',
-                    fontWeight: '600',
-                    textTransform: 'uppercase',
-                    height: 'relative',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    textAlign: 'center',
-                }}
-                >
-                No New Added Student Today
-                </Typography>
-            </Box>
-            </Box> */}
-
-
             <Box
               sx={{
                 width: 'relative',
@@ -242,7 +148,7 @@ function DashboardStatisticsV2( { roomdata} ) {
                       textTransform: 'Capitalize',
                     }}
                   >
-                    Total Rooms
+                    Total Enrolled Students
                   </Typography>
 
                   <Typography
@@ -257,7 +163,7 @@ function DashboardStatisticsV2( { roomdata} ) {
                       textTransform: 'Uppercase',
                     }}
                   >
-                { roomdata && roomdata.length}
+                {studentsLength.current}
                   </Typography>
                 </Box>
               </Box>

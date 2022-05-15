@@ -92,10 +92,7 @@ function Post_layout({
               <Box className="User" sx={designs.User_Style}>
                 <Avatar
                   alt="Remy Sharp"
-                  src={author.avatar.replace(
-                    'blob:',
-                    ''
-                  )}
+                  src={author.avatar}
                   sx={designs.AvatarPost_Style}
                 />
                 <Box className="User-date" sx={designs.User_Date_Style}>
