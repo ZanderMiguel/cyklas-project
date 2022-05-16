@@ -86,7 +86,6 @@ const countActivity = async (req, res) => {
     });
     let grade = {};
     recordData.forEach((recordItem) => {
-      console.log(recordItem);
       grade[recordItem.student.stdID] = [];
       req.body.scores.forEach(async (scores) => {
         recordItem.gradingSystem.filter((item, index) => {
@@ -94,7 +93,6 @@ const countActivity = async (req, res) => {
         });
 
         recordItem.gradingSystem.forEach((item) => {
-          console.log(item);
           if (Object.entries(item)[0][0] === activityCategory.gsCategory) {
             grade[recordItem.student.stdID].push({
               [Object.entries(item)[0][0]]:
@@ -110,7 +108,7 @@ const countActivity = async (req, res) => {
           //console.log(grade[recordItem.student.stdID],recordItem.student.stdID)
         });
         //console.log(grade[recordItem.student.stdID])
-        console.log(grade[recordItem.student.stdID]);
+
         await ClassRecordModel.updateOne(
           {
             'professor.profID': req.body.userID,
@@ -121,7 +119,10 @@ const countActivity = async (req, res) => {
         );
       });
     });
-
+    await QuizlitModel.findByIdAndUpdate(req.body.examID, {
+      $push: { students: req.body.stdID },
+    });
+    console.log(req.body);
     return res.json({
       status: 'success',
       message: 'success',

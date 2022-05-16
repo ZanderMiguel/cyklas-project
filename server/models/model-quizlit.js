@@ -6,13 +6,12 @@ const QuizlitSchema = new mongoose.Schema(
     author: { type: Object, required: true },
     title: { type: String, required: true },
     quizType: { type: String, required: true },
-    graded: { type: Boolean, required: true },
-    rooms: { type: Array},
-    dueDate: {type: String},
-    timeLimit: {type: String},
-    students: { type: String},
-    instruction: {type:String},
-    gsCategory: {type: String, require: true}
+    rooms: { type: Array },
+    dueDate: { type: String },
+    timeLimit: { type: String },
+    students: { type: Array },
+    instruction: { type: String },
+    gsCategory: { type: String, require: true },
   },
   { timestamps: true }
 );

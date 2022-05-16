@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Container, Box, Typography, Input } from '@mui/material';
 
-function ShortAnswerChecked() {
+function ShortAnswerChecked({ data, index, answers }) {
   return (
     <Grid
       item
@@ -30,7 +30,7 @@ function ShortAnswerChecked() {
           }}
         >
           <Typography
-            children="Question 2"
+            children={`Question ${index + 1}`}
             sx={{
               flexGrow: '1',
               fontSize: '1em',
@@ -42,7 +42,7 @@ function ShortAnswerChecked() {
           />
 
           <Typography
-            children="Short Answer"
+            children={data.answerType}
             sx={{
               fontSize: '0.7em',
               fontWeight: '500',
@@ -52,7 +52,7 @@ function ShortAnswerChecked() {
             }}
           />
           <Typography
-            children="2 points"
+            children={data.points}
             sx={{
               fontSize: '0.7em',
               fontWeight: '500',
@@ -64,7 +64,7 @@ function ShortAnswerChecked() {
         </Box>
 
         <Typography
-          children="Hello darkness my old friend"
+          children={data.questionsContent}
           sx={{
             flexGrow: '1',
             fontSize: '0.8em',
@@ -96,7 +96,7 @@ function ShortAnswerChecked() {
             }}
           >
             <Input
-              placeholder="Wala po akong sinagot dito."
+              placeholder={answers.answers}
               multiline
               rows={6}
               readOnly

@@ -193,7 +193,11 @@ function App() {
               {/* Student Side */}
               <Route exact path="/Evaluation" component={Evaluation} />
               <Route exact path="/Dashboard_main" component={Dashboard_main} />
-              <Route exact path="/ExamViewedV2" component={ExamViewedV2} />
+              <Route
+                exact
+                path="/ExamViewedV2/:quizID"
+                component={ExamViewedV2}
+              />
               <Route
                 exact
                 path="/quizlit/QuizViewedV2"

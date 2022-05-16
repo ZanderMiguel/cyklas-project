@@ -17,10 +17,25 @@ import ShortAnswerChecked from './ShortAnswerChecked';
 import CheckboxChecked from './CheckboxChecked';
 import TrueorfalseChecked from './TrueorfalseChecked';
 import AvatarIcon from '../../../../assets/ImageJaven/Avatar.png';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 function ExamViewedV2() {
+  const { quizID } = useParams();
+  const [data, setData] = React.useState(null);
+
+  React.useEffect(() => {
+    axios
+      .post('http://localhost:5000/answers/all', { quizID })
+      .then((res) => {
+        setData(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <>
       <CssBaseline />
@@ -60,15 +75,23 @@ function ExamViewedV2() {
           xs={12}
           sx={{
             display: 'flex',
-                gap: '0.5em',
-                alignItems: 'center',
-                padding: '0.5em 1.1em 0.5em 0.9em',
-                marginBottom: '0.5em',
-                backgroundColor: "white",
-                borderRadius: "0.3em"
+            gap: '0.5em',
+            alignItems: 'center',
+            padding: '0.5em 1.1em 0.5em 0.9em',
+            marginBottom: '0.5em',
+            backgroundColor: 'white',
+            borderRadius: '0.3em',
           }}
         >
-          <Avatar src={AvatarIcon} alt="Avatar" />
+          <Avatar
+            src={JSON.parse(localStorage.userData).data.user.image.replace(
+              'blob:',
+              ''
+            )}
+            alt={JSON.parse(
+              localStorage.userData
+            ).data.user.firstName[0].toUpperCase()}
+          />
 
           <Box
             sx={{
@@ -78,7 +101,9 @@ function ExamViewedV2() {
             }}
           >
             <Typography
-              children="Armin Arlert"
+              children={`${
+                JSON.parse(localStorage.userData).data.user.firstName
+              } ${JSON.parse(localStorage.userData).data.user.lastName}`}
               sx={{
                 color: '#3F3D56',
                 fontSize: '0.8em',
@@ -90,7 +115,7 @@ function ExamViewedV2() {
             />
 
             <Typography
-              children="submitted this exam on December 04, 2021"
+              children={data && data.quizlit.dueDate}
               sx={{
                 color: '#8E8E8E',
                 fontSize: '0.7em',
@@ -172,7 +197,7 @@ function ExamViewedV2() {
               />
 
               <Typography
-                children="Untitled Exam"
+                children={data && data.quizlit.title}
                 sx={{
                   flexGrow: '1',
                   fontSize: '1.3em',
@@ -185,7 +210,7 @@ function ExamViewedV2() {
             </Box>
 
             <Typography
-              children="No description"
+              children={data && data.quizlit.instruction}
               sx={{
                 flexGrow: '1',
                 fontSize: '0.8em',
@@ -198,11 +223,41 @@ function ExamViewedV2() {
             />
           </Box>
         </Grid>
-
-        <MultipleChoiceChecked />
-        <ShortAnswerChecked />
-        <CheckboxChecked />
-        <TrueorfalseChecked />
+        {data &&
+          data.answers.map((item, index) => {
+            return (
+              <div key={index}>
+                {data[index].answerType === 'Multiple Choice' && (
+                  <MultipleChoiceChecked
+                    data={data[index]}
+                    answers={data.answers[index]}
+                    index={index}
+                  />
+                )}
+                {data[index].answerType === 'True or False' && (
+                  <TrueorfalseChecked
+                    data={data[index]}
+                    answers={data.answers[index]}
+                    index={index}
+                  />
+                )}
+                {data[index].answerType === 'Short Answer' && (
+                  <ShortAnswerChecked
+                    data={data[index]}
+                    index={index}
+                    answers={data.answers[index]}
+                  />
+                )}
+                {data[index].answerType === 'Checkboxes' && (
+                  <CheckboxChecked
+                    index={index}
+                    data={data[index]}
+                    answers={data.answers[index]}
+                  />
+                )}
+              </div>
+            );
+          })}
       </Container>
     </>
   );

@@ -1,96 +1,33 @@
 import React from 'react';
 import { Grid, Container, Box, Typography } from '@mui/material';
 
-const dataAnswerChoices = [
-  {
-    choice: (
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          height: 'auto',
-          width: 'relative',
-          flexGrow: 1,
-          border: '1px solid #007FFF',
-          backgroundColor: '#DFF0FF',
-          borderRadius: '0.3em',
-          padding: '0.5em 0.7em',
-          marginBottom: '0.5em',
-        }}
-      >
-        <Typography
-          children="A."
-          sx={{
-            width: '2em',
-            height: 'max-content',
-            fontSize: '0.8em',
-            fontWeight: '500',
-            color: '#3F3D56',
-            textTransform: 'Uppercase',
-          }}
-        />
+const correctStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  height: 'auto',
+  width: 'relative',
+  flexGrow: 1,
+  border: '1px solid #007FFF',
+  backgroundColor: '#DFF0FF',
+  borderRadius: '0.3em',
+  padding: '0.5em 0.7em',
+  marginBottom: '0.5em',
+};
+const normal = {
+  display: 'flex',
+  alignItems: 'center',
+  height: 'auto',
+  width: 'relative',
+  flexGrow: 1,
+  border: '1px solid #DBDBDB',
+  backgroundColor: '#FCFCFC',
+  borderRadius: '0.3em',
+  padding: '0.5em 0.7em',
+  marginBottom: '0.5em',
+};
 
-        <Typography
-          children="True"
-          sx={{
-            width: 'auto',
-            flexGrow: 1,
-            height: 'max-content',
-            fontSize: '0.8em',
-            fontWeight: '500',
-            color: '#3F3D56',
-            textTransform: 'none',
-          }}
-        />
-      </Box>
-    ),
-  },
-  {
-    choice: (
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          height: 'auto',
-          width: 'relative',
-          flexGrow: 1,
-          border: '1px solid #DBDBDB',
-          backgroundColor: '#FCFCFC',
-          borderRadius: '0.3em',
-          padding: '0.5em 0.7em',
-          marginBottom: '0.5em',
-        }}
-      >
-        <Typography
-          children="B."
-          sx={{
-            width: '2em',
-            height: 'max-content',
-            fontSize: '0.8em',
-            fontWeight: '500',
-            color: '#3F3D56',
-            textTransform: 'Uppercase',
-          }}
-        />
-
-        <Typography
-          children="False"
-          sx={{
-            width: 'auto',
-            flexGrow: 1,
-            height: 'max-content',
-            fontSize: '0.8em',
-            fontWeight: '500',
-            color: '#3F3D56',
-            textTransform: 'none',
-          }}
-        />
-      </Box>
-    ),
-  },
-];
-
-function TrueorfalseChecked() {
+function TrueorfalseChecked({ data, answers, index }) {
+  const letters = ['A', 'B'];
   return (
     <Grid
       item
@@ -119,7 +56,7 @@ function TrueorfalseChecked() {
           }}
         >
           <Typography
-            children="Question 4"
+            children={`Question ${index + 1}`}
             sx={{
               flexGrow: '1',
               fontSize: '1em',
@@ -131,7 +68,7 @@ function TrueorfalseChecked() {
           />
 
           <Typography
-            children="True or False"
+            children={data.answerType}
             sx={{
               fontSize: '0.7em',
               fontWeight: '500',
@@ -141,7 +78,7 @@ function TrueorfalseChecked() {
             }}
           />
           <Typography
-            children="2 points"
+            children={data.points}
             sx={{
               fontSize: '0.7em',
               fontWeight: '500',
@@ -153,7 +90,7 @@ function TrueorfalseChecked() {
         </Box>
 
         <Typography
-          children="Hello darkness my old friend"
+          children={data.questionsContent}
           sx={{
             flexGrow: '1',
             fontSize: '0.8em',
@@ -165,7 +102,11 @@ function TrueorfalseChecked() {
           }}
         />
 
-        {dataAnswerChoices.map(function (items, index) {
+        {Object.values(data.qAnswers).map(function (items, index) {
+          const correct =
+            parseInt(answers.answers.replace('answer', '')) === index + 1
+              ? true
+              : false;
           return (
             <Box
               key={index}
@@ -174,7 +115,32 @@ function TrueorfalseChecked() {
                 height: 'auto',
               }}
             >
-              {items.choice}
+              <Box sx={correct ? correctStyle : normal}>
+                <Typography
+                  children={letters[index]}
+                  sx={{
+                    width: '2em',
+                    height: 'max-content',
+                    fontSize: '0.8em',
+                    fontWeight: '500',
+                    color: '#3F3D56',
+                    textTransform: 'Uppercase',
+                  }}
+                />
+
+                <Typography
+                  children={items}
+                  sx={{
+                    width: 'auto',
+                    flexGrow: 1,
+                    height: 'max-content',
+                    fontSize: '0.8em',
+                    fontWeight: '500',
+                    color: '#3F3D56',
+                    textTransform: 'none',
+                  }}
+                />
+              </Box>
             </Box>
           );
         })}
@@ -195,7 +161,9 @@ function TrueorfalseChecked() {
             }}
           />
           <Typography
-            children="A"
+            children={
+              letters[parseInt(data.correctAnswer.replace('answer', '')) - 1]
+            }
             sx={{
               color: '#007FFF',
               fontSize: '0.8em',

@@ -62,6 +62,7 @@ const {
   findQuizlitController,
   displayQuizlitOnQuizlit,
   displayQuizlitOnRoom,
+  displayQuizlitOfStudents,
 } = require('../controller/quizlitController');
 router.post('/quizlit/create', createQuizlitController);
 router.put('/quizlit/update', updateQuizlitController);
@@ -69,6 +70,7 @@ router.delete('/quizlit/delete', deleteQuizlitController);
 router.post('/quizlit', findQuizlitController);
 router.post('/myQuizlit', displayQuizlitOnQuizlit);
 router.post('/roomQuizlit', displayQuizlitOnRoom);
+router.post('/quizlit/student', displayQuizlitOfStudents);
 const {
   createQuestionController,
   updateQuestionController,
@@ -104,11 +106,12 @@ const {
   createAnswer,
   displayAnswer,
   updateScore,
+  displayAllAnswers,
 } = require('../controller/answersController');
 router.post('/answers/create', createAnswer);
 router.post('/answers', displayAnswer);
 router.put('/answers/update', updateScore);
-
+router.post('/answers/all', displayAllAnswers);
 const {
   createGradingSystem,
   updateGradingSystem,
