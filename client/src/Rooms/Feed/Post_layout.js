@@ -94,7 +94,7 @@ function Post_layout({
                   src={
                     _.isString(author)
                       ? JSON.parse(author).avatar.replace('blob', '')
-                      : author.avatar.replace('blob:', '')
+                      : author.avatar
                   }
                   sx={designs.AvatarPost_Style}
                 />

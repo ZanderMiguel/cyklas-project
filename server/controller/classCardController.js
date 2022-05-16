@@ -12,7 +12,9 @@ const createClassCard = async (req, res) => {
 };
 const displayClassCard = async (req, res) => {
   try {
-    const classCard = await ClassCardModel.find({ student: req.body.useID });
+    const classCard = await ClassCardModel.find({
+      'student.stdID': req.body.stdID,
+    });
     console.log('Class Card Displayed');
     return res.json(classCard);
   } catch (error) {

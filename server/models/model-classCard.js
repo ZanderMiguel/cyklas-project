@@ -2,9 +2,10 @@ const mongoose = require('mongoose');
 
 const ClassCardSchema = new mongoose.Schema(
   {
-    classRecord: [{ type: mongoose.Schema.Types.ObjectId }],
-    student: { type: mongoose.Schema.Types.ObjectId },
-    professor: { type: mongoose.Schema.Types.ObjectId },
+    classRecord: [{ type: Object }],
+    student: { type: Object },
+    professor: { type: Object },
+    overall: { type: String },
   },
   { timestamps: true }
 );

@@ -215,7 +215,7 @@ function Records_tableClassRecords({ rooms }) {
                           {items.student.name}
                         </div>
                       </td>
-                      <td data-label="Overall">
+                      <td data-label="Overall" id="overall">
                         {' '}
                         {Math.round(overall[items.student.stdID])}{' '}
                       </td>
@@ -225,7 +225,35 @@ function Records_tableClassRecords({ rooms }) {
                       ))}
 
                       <td data-label="Class Standing">
-                        <Button variant='contained' children='Return'/>
+                        <Button
+                          variant="contained"
+                          children="Return"
+                          onClick={() => {
+                            console.log({
+                              classRecord: {
+                                roomName: rooms[selectRoom].RoomName,
+                                roomID: rooms[selectRoom]._id,
+                              },
+                              professor: items.professor,
+                              student: items.student,
+                              overall:
+                                document.querySelector('#overall').innerHTML,
+                            });
+                            axios
+                              .post('http://localhost:5000/cards/create', {
+                                classRecord: {
+                                  roomName: rooms[selectRoom].RoomName,
+                                  roomID: rooms[selectRoom]._id,
+                                },
+                                professor: items.professor,
+                                student: items.student,
+                                overall:
+                                  document.querySelector('#overall').innerHTML,
+                              })
+                              .then((res) => console.log(res))
+                              .catch((err) => console.log(err));
+                          }}
+                        />
                       </td>
                     </tr>
                   );
