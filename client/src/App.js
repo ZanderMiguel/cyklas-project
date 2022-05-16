@@ -58,7 +58,7 @@ import TeleconLanding from './pages-landing/TeleconLanding';
 import Dashboard_main from './student_side/Dashboard/Dashboard_main';
 import TeleconGroup from './pages-landing/TeleconGroup';
 import LiveQuizSetup from './Telecon/LiveQuizSetup';
-
+import EvaluationV2 from './Records/Classcards/EvaluationV2';
 function App() {
   const theme = createTheme({
     typography: {
@@ -114,7 +114,6 @@ function App() {
                 component={Room_inside}
                 socket={socket}
               />
-
               <ProtectedRoutes
                 exact
                 path="/rooms/:roomID/p/:activityID"
@@ -191,7 +190,7 @@ function App() {
               />
 
               {/* Student Side */}
-              <Route exact path="/Evaluation" component={Evaluation} />
+              <Route exact path="/Evaluation" component={EvaluationV2} />
               <Route exact path="/Dashboard_main" component={Dashboard_main} />
               <Route
                 exact

@@ -105,9 +105,9 @@ const countActivity = async (req, res) => {
           ) {
             grade[recordItem.student.stdID].push(item);
           }
-          //console.log(grade[recordItem.student.stdID],recordItem.student.stdID)
         });
-        //console.log(grade[recordItem.student.stdID])
+
+        const quizScore = await QuestionModel.find({});
 
         await ClassRecordModel.updateOne(
           {
@@ -175,7 +175,22 @@ const recordActivity = async (req, res) => {
     const activity = await getActivity(req);
     const classRecord = await getClassRecord(req);
 
-    activityScore = activity.filter((item) => {
+    /* const quizlit = await QuizlitModel.find({
+      roomID: { $elemMatch: { $eq: req.body.roomID } },
+      students: { $elemMatch: { $eq: req.body.stdID } },
+      gsCategory: req.body.category,
+    });
+
+    const quizScores = {};
+    const qzID = quizlit.map((item) => item._id);
+    const questions = await QuestionModel.find({
+      quizID: { $in: qzID },
+    });
+    const qpnts = questions.map((item) =>
+      parseInt(item.points.replace(' point', '').replace(' ponits', ''))
+    ); */
+
+    const activityScore = activity.filter((item) => {
       return item.activityType === req.body.category;
     });
 
@@ -196,7 +211,7 @@ const recordActivity = async (req, res) => {
     });
     console.log(percentage);
 
-    await ClassRecordModel.updateOne(
+    /* await ClassRecordModel.updateOne(
       {
         room: {
           $elemMatch: { $eq: req.body.roomID },
@@ -216,8 +231,8 @@ const recordActivity = async (req, res) => {
         activityScore: totalActivityPoints[0],
         activityStatus: 'Graded',
       }
-    );
-    console.log(submitActivity);
+    ); */
+    console.log(req.body);
     return res.json({ grades });
   } catch (error) {
     console.log(error);
