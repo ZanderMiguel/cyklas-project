@@ -53,7 +53,7 @@ import ToLobby from './Quizlit/TestComponents/ToLobby';
 import Lobby from './Quizlit/TestComponents/Lobby';
 import Notfound from './Notfound';
 import TeleconLanding from './pages-landing/TeleconLanding';
-
+import QuizGameSetup from './pages-landing/QuizGameSetup';
 // Student Side
 import Dashboard_main from './student_side/Dashboard/Dashboard_main';
 import TeleconGroup from './pages-landing/TeleconGroup';
@@ -166,8 +166,12 @@ function App() {
               <Route path="/telecon/:teleRoom">
                 <TeleconRoomV2 socket={socket} />
               </Route>
-
-              <Route path="/LivequizQuestion" component={LivequizQuestion} />
+              <Route exact path="/quizgame/setup/:quizID">
+                <QuizGameSetup socket={socket} />
+              </Route>
+              <Route exact path="/quiz-game/:quizID/:qIdx">
+                <LivequizQuestion socket={socket} />
+              </Route>
               <Route
                 path="/LivequizStudentrankings"
                 component={LivequizStudentrankings}
@@ -190,7 +194,11 @@ function App() {
               />
 
               {/* Student Side */}
-              <Route exact path="/Evaluation" component={EvaluationV2} />
+              <Route
+                exact
+                path="/Evaluation/:evalID"
+                component={EvaluationV2}
+              />
               <Route exact path="/Dashboard_main" component={Dashboard_main} />
               <Route
                 exact

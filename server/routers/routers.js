@@ -145,8 +145,19 @@ router.post('/records/activity/return', recordActivity);
 const {
   createClassCard,
   displayClassCard,
+  findClassCard,
 } = require('../controller/classCardController');
 router.post('/cards/create', createClassCard);
 router.post('/cards', displayClassCard);
+router.post('/cards/getData', findClassCard);
+
+const {
+  displayRatings,
+  createEvaluation,
+  getOverallRate,
+} = require('../controller/evaluationController');
+router.post('/evaluation/create', createEvaluation);
+router.get('/ratings/display', displayRatings);
+router.get('/find/rate', getOverallRate);
 
 module.exports = router;

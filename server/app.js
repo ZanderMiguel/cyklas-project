@@ -52,6 +52,8 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use(router);
 let quizLobby = {};
+let quizData = {};
+let quizlitData = {};
 //let teleMembers = {};
 io.on('connection', (socket) => {
   socket.on('joinroom', (roomID, members, socketID) => {
@@ -76,19 +78,16 @@ io.on('connection', (socket) => {
   });
 
   //Live quiz socket
-  socket.on('quizParticipants', (members, room, open) => {
-    quizLobby[room] = { members, room, open };
+  socket.on('quizParticipants', (members, room, open, qID) => {
+    quizLobby[room] = { members, room, open, qID };
     socket.to(room).emit('openAcceptDialog', room, open);
   });
   socket.once('quizLobby', (roomID) => {
     socket.emit('quizInit', quizLobby[roomID], roomID);
   });
   socket.on('enter-lobby', (stdID, roomID) => {
-    console.log('inamos');
+    socket.join(roomID);
     socket.to(roomID).emit('joined-lobby', stdID, roomID);
-  });
-  socket.on('testing', (s, roomID) => {
-    socket.emit('test', s);
   });
   socket.on('create-room', () => {
     socket.emit('room-created', v4());
@@ -99,7 +98,21 @@ io.on('connection', (socket) => {
   socket.on('create-comment', () => {
     socket.emit('post-comment', v4());
   });
-  socket.on('timer-start', (time, point, qCount, lobby, name) => {
+
+  //Quiz Game sockets
+  socket.on('quizgameInit', (members, roomID) => {
+    socket.to(roomID).emit('initializeGame', members);
+  });
+  socket.once('loadData', (quizSrc, quizID, quizlitSrc) => {
+    console.log(quizSrc);
+    quizData[quizID] = quizSrc;
+    quizlitData[quizID] = quizSrc;
+  });
+  socket.once('start-quiz', (quizID) => {
+    socket.join(quizID);
+    socket.emit('data-loaded', quizData[quizID], quizID, quizlitData[quizID]);
+  });
+  /* socket.on('timer-start', (time, point, qCount, lobby, name) => {
     socket.join(lobby);
     quizLobby[lobby][name]['questionCount'] = qCount;
     const timer = setInterval(() => {
@@ -153,13 +166,45 @@ io.on('connection', (socket) => {
     quizLobby[lobby][name]['index'] = 0;
     quizLobby[lobby][name]['questionCount'] = 0;
     quizLobby[lobby][name]['points'] = 0;
-  });
+  }); */
   const exam_time = {};
+  const quizGameTime = {};
+  const scoreBoard = {};
+  const next = {};
+  const qProgress = {};
   socket.on('start-exam', (id, examTime) => {
     socket.join(id);
     examTime[examTime.length - 1] = 0;
     exam_time[id] = examTime;
     io.in(id).emit('timer-start', exam_time[id]);
+  });
+
+  socket.on('start-quiz-time', (quizID, time, qIdx) => {
+    quizGameTime[quizID] = parseInt(time);
+    const countdown = setInterval(() => {
+      socket.emit('tick', quizID, quizGameTime[quizID]);
+      quizGameTime[quizID]--;
+    }, 1000);
+    setTimeout(() => {
+      clearInterval(countdown);
+      socket.emit('timesup', qIdx + 1);
+    }, time * 1000 + 2000);
+  });
+  socket.on('to-next', (count, quizID, point, stdID, qIdx) => {
+    let breaktime = count;
+    console.log(qProgress[quizID]);
+    scoreBoard[stdID] = scoreBoard[stdID]
+      ? [...scoreBoard[stdID], point]
+      : [point];
+
+    const countdown = setInterval(() => {
+      socket.emit('tick-next', breaktime);
+      breaktime--;
+    }, 1000);
+    setTimeout(() => {
+      clearInterval(countdown);
+      socket.emit('next', qIdx + 1);
+    }, count * 1000 + 2000);
   });
 });
 

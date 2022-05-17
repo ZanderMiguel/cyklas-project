@@ -29,8 +29,7 @@ const dataRatingKeys = [
   },
 ];
 
-function EvaluationTable() {
-  const rating = React.useState({});
+function EvaluationTable({ rating }) {
   const handleChange = (e) => {
     rating.current[e.target.name] = e.target.value;
     console.log(rating);
@@ -941,7 +940,7 @@ function EvaluationTable() {
       attribute: 'Subject matter knowledge/ command on subject/ topic',
       choices: (
         <FormControl>
-          <RadioGroup onChange={handleChange} row>
+          <RadioGroup onChange={handleChange} name="r14" row>
             <FormControlLabel
               value="1"
               control={
@@ -1286,7 +1285,7 @@ function EvaluationTable() {
       attribute: 'Class control',
       choices: (
         <FormControl>
-          <RadioGroup onChange={handleChange} row>
+          <RadioGroup onChange={handleChange} name="r19" row>
             <FormControlLabel
               value="1"
               control={
@@ -1355,7 +1354,7 @@ function EvaluationTable() {
       attribute: 'Time management',
       choices: (
         <FormControl>
-          <RadioGroup onChange={handleChange} name="r20">
+          <RadioGroup onChange={handleChange} name="r20" row>
             <FormControlLabel
               value="1"
               control={

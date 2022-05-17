@@ -17,7 +17,7 @@ import {
   Select,
   MenuItem,
 } from '@mui/material';
-
+import axios from 'axios';
 const dataRange = [
   {
     value: 'THIS WEEK',
@@ -31,45 +31,6 @@ const dataRange = [
     value: 'THIS YEAR',
     label: 'THIS YEAR',
   },
-];
-
-const dataTable = [
-  {
-    professorAvatar: (
-      <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-    ),
-    professorName: 'Paul Rudd',
-    roomClass: 'Software Engineering',
-    // ratings: '98.7',
-    icon: <Star sx={{ fontSize: '1.7em', color: '#F9A826'  }} />
-  },
-  {
-    professorAvatar: (
-      <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-    ),
-    professorName: 'Tom Holland',
-    roomClass: 'Programming Language',
-    // ratings: '98.5',
-    icon: <Star sx={{ fontSize: '1.7em', color: '#F9A826'  }} />
-  },
-  {
-    professorAvatar: (
-      <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-    ),
-    professorName: 'Tom Hiddleston',
-    roomClass: 'Introduction to Computing',
-    // ratings: '98.2',
-    icon: <Star sx={{ fontSize: '1.7em', color: '#F9A826'  }} />
-  },
-  {
-    professorAvatar: (
-      <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-    ),
-    professorName: 'Robert Downey Jr.',
-    roomClass: 'College Algebra',
-    // ratings: '98.1',
-    icon: <Star sx={{ fontSize: '1.7em', color: '#F9A826'  }} />
-  }
 ];
 
 const dataRoom = [
@@ -96,90 +57,115 @@ function DashboardProfessorratings() {
   const handleChangeRange = (event) => {
     setSelectRange(event.target.value);
   };
-
+  const [ratings, setRatings] = useState(null);
+  React.useEffect(() => {
+    axios
+      .get('http://localhost:5000/ratings/display')
+      .then((res) => {
+        setRatings(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <>
-        <Box
-            sx={{
-            backgroundColor: 'transparent',
+      <Box
+        sx={{
+          backgroundColor: 'transparent',
+          display: 'flex',
+          width: 'relative',
+          height: 'auto',
+          marginBottom: '0.3em',
+        }}
+      >
+        <Typography
+          children="Professor Ratings"
+          sx={{
+            color: '#8E8E8E',
+            fontSize: '0.8em',
+            fontWeight: '500',
+            width: 'auto',
+            flexGrow: 1,
+            height: 'relative',
             display: 'flex',
-            width: 'relative',
-            height: 'auto',
-            marginBottom: "0.3em"
-            }}>
-                <Typography children = "Professor Ratings"
-                sx={{
-                color: '#8E8E8E',
-                fontSize: '0.8em',
-                fontWeight: '500',
-                width: 'auto',
-                flexGrow: 1,
-                height: 'relative',
-                display: 'flex',
-                alignItems: 'center',
-                textTransform: 'Uppercase',
-                }}/>
+            alignItems: 'center',
+            textTransform: 'Uppercase',
+          }}
+        />
 
-                <FormControl
-                    variant="standard"
-                    sx={{
-                    width: 'auto',
-                    padding: '0em',
-                    }}>
-                    <Select
-                      labelId="demo-simple-select-standard-label"
-                      id="demo-simple-select-standard"
-                      value={selectRange}
-                      onChange={handleChangeRange}
-                      label="SelectRoom"
-                      disableUnderline
-                      sx={{
-                        width: '100%',
-                        fontSize: '0.7em',
-                        fontWeight: '500',
-                        color: '#007FFF',
-                        textTransform: "Uppercase"
-                      }}>
-                      {dataRange.map(({ value, label }) => (
-                        <MenuItem key={value} value={value}>
-                          {' '}
-                          {label}{' '}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                </FormControl>
-        </Box>
+        <FormControl
+          variant="standard"
+          sx={{
+            width: 'auto',
+            padding: '0em',
+          }}
+        >
+          <Select
+            labelId="demo-simple-select-standard-label"
+            id="demo-simple-select-standard"
+            value={selectRange}
+            onChange={handleChangeRange}
+            label="SelectRoom"
+            disableUnderline
+            sx={{
+              width: '100%',
+              fontSize: '0.7em',
+              fontWeight: '500',
+              color: '#007FFF',
+              textTransform: 'Uppercase',
+            }}
+          >
+            {dataRange.map(({ value, label }) => (
+              <MenuItem key={value} value={value}>
+                {' '}
+                {label}{' '}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
 
-        <Grid item xs={12}>
-          <table className="professorRatings-table">
-            <thead>
-              <tr>
-                <th> Professor Name </th>
-                <th> Room/ Class </th>
-                <th> Ratings </th>
-                {/* <th>  </th> */}
-              </tr>
-            </thead>
+      <Grid item xs={12}>
+        <table className="professorRatings-table">
+          <thead>
+            <tr>
+              <th> Professor Name </th>
+              <th> Room/ Class </th>
+              <th> Ratings </th>
+              {/* <th>  </th> */}
+            </tr>
+          </thead>
 
-            <tbody>
-              {dataTable.map(function (items, index) {
+          <tbody>
+            {ratings &&
+              ratings.map(function (items, index) {
                 return (
                   <tr key={index}>
                     <td>
                       <div className="professor-name">
                         {items.professorAvatar}
-                        {items.professorName}
+                        {items._id.prof}
                       </div>
                     </td>
-                    <td data-label="Room/ Class"> {items.roomClass} </td>
-                    <td data-label="Ratings"> {items.icon} </td>
+                    <td data-label="Room/ Class"> {items._id.room} </td>
+                    <td
+                      data-label="Ratings"
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {items.rating}{' '}
+                      <Star sx={{ fontSize: '1.7em', color: '#F9A826' }} />
+                    </td>
                     {/* <td> {items.icon} </td> */}
                   </tr>
                 );
               })}
-            </tbody>
-          </table>
-        </Grid>
+          </tbody>
+        </table>
+      </Grid>
     </>
   );
 }

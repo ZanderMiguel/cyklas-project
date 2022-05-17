@@ -7,7 +7,7 @@ import ProfileBackground from '../assets/ImageJaven/ProfileBackground.png';
 
 function DashboardStatisticsV2({ roomdata }) {
   const studentsLength = React.useRef(null);
-
+  const [rate, setRate] = React.useState(null);
   React.useEffect(() => {
     axios
       .post('http://localhost:5000/room/get/student-length', {
@@ -15,6 +15,18 @@ function DashboardStatisticsV2({ roomdata }) {
       })
       .then((res) => {
         studentsLength.current = res.data;
+      })
+      .catch((err) => console.log(err));
+    axios
+      .get('http://localhost:5000/find/rate')
+      .then((res) => {
+        setRate(
+          res.data.filter(
+            (item) =>
+              item._id.profID ===
+              JSON.parse(localStorage.userData).data.user._id
+          )
+        );
       })
       .catch((err) => console.log(err));
   }, []);
@@ -97,7 +109,7 @@ function DashboardStatisticsV2({ roomdata }) {
             <Star sx={{ color: '#F9A826', fontSize: '2em' }} />
 
             <Typography
-              children="97.7 Ratings"
+              children={`${rate && rate[0].rating} Ratings`} //tang
               sx={{
                 fontSize: '1.3em',
                 fontWeight: '700',
