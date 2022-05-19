@@ -84,7 +84,7 @@ function Livequiz_queue({ open, close, maxWidth, socket, teleRoom }) {
               },
             }}
           >
-            Start Quiz!
+            Join Quiz
           </Button>
         }
       >
@@ -118,7 +118,7 @@ function Livequiz_queue({ open, close, maxWidth, socket, teleRoom }) {
                     height: 'max-content',
                   }}
                 >
-                  Embedded Programming
+                  Web Development
                 </Typography>
 
                 <Typography
@@ -132,7 +132,7 @@ function Livequiz_queue({ open, close, maxWidth, socket, teleRoom }) {
                     height: 'max-content',
                   }}
                 >
-                  BSCS 3A
+                  BSCS 4A
                 </Typography>
               </Box>
 
@@ -152,26 +152,10 @@ function Livequiz_queue({ open, close, maxWidth, socket, teleRoom }) {
                   alignItems: 'center',
                 }}
               >
-                Untitled Quiz
+                Sample Quiz
               </Typography>
             </Box>
           </Grid>
-
-          {/* <Grid container sx = {{ width: "relative", height: "25em", overflowY: "auto" }}> */}
-          <Typography
-            sx={{
-              margin: '2em 2em 0em 2em',
-              padding: '0em 0em 0.8em 0em',
-              color: '#3F3D56',
-              fontSize: '0.8em',
-              fontWeight: '600',
-              width: '100%',
-              height: 'max-content',
-              borderBottom: '1px solid #DBDBDB',
-            }}
-          >
-            People who are joining this quiz
-          </Typography>
 
           <Grid item xs={12}>
             <Box
@@ -183,7 +167,10 @@ function Livequiz_queue({ open, close, maxWidth, socket, teleRoom }) {
                 margin: '0em 2em 0.3em 1.5em',
               }}
             >
-              <Avatar src={AvatarIcon} sx={{ marginRight: '0.5em' }} />
+              <Avatar
+                src="https://lh3.googleusercontent.com/-4L_AVXGCCdu1A7zzeGridINVKyc_BXQM1dlfAZ-Y1Km8PBD-yjzAVy-AfP6wphfJD7kq6fGCrs84Nah=s220-rw"
+                sx={{ marginRight: '0.5em' }}
+              />
 
               <Box
                 sx={{
@@ -203,7 +190,7 @@ function Livequiz_queue({ open, close, maxWidth, socket, teleRoom }) {
                     height: 'auto',
                   }}
                 >
-                  Mark Andrei (You)
+                  Catherine Mae Mirador
                 </Typography>
 
                 <Typography
@@ -252,7 +239,7 @@ function Livequiz_queue({ open, close, maxWidth, socket, teleRoom }) {
                   alignItems: 'center',
                 }}
               >
-                BSCS 3A
+                BSCS 4A
               </Typography>
 
               <Box flexGrow={1} />
@@ -300,139 +287,6 @@ function Livequiz_queue({ open, close, maxWidth, socket, teleRoom }) {
               </Box>
             </Box>
           </Grid>
-
-          <Typography
-            sx={{
-              margin: '2em 2em 0em 2em',
-              padding: '0em 0em 0.8em 0em',
-              color: '#3F3D56',
-              fontSize: '0.8em',
-              fontWeight: '600',
-              width: '100%',
-              textAlign: 'right',
-              height: 'max-content',
-              borderBottom: '1px solid #DBDBDB',
-            }}
-          >
-            5 / 5
-          </Typography>
-          {dataStudents.map(function (items, index) {
-            return (
-              <Grid key={index} item xs={12}>
-                <Box
-                  sx={{
-                    height: 'auto',
-                    width: 'relative',
-                    display: 'flex',
-                    padding: '0.5em 0em',
-                    margin: '0em 2em 0.3em 1.5em',
-                  }}
-                >
-                  <Avatar src={AvatarIcon} sx={{ marginRight: '0.5em' }} />
-
-                  <Box
-                    sx={{
-                      height: 'auto',
-                      width: '8em',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        color: '#3F3D56',
-                        fontSize: '0.8em',
-                        fontWeight: '600',
-                        width: 'relative',
-                        height: 'auto',
-                      }}
-                    >
-                      {items.studentName}
-                    </Typography>
-                  </Box>
-
-                  <Box flexGrow={1} />
-
-                  <Typography
-                    sx={{
-                      color: '#007FFF',
-                      fontSize: '0.8em',
-                      fontWeight: '500',
-                      width: '5em',
-                      height: 'relative',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                  >
-                    {items.userType}
-                  </Typography>
-
-                  <Box flexGrow={1} />
-
-                  <Typography
-                    noWrap
-                    sx={{
-                      color: '#3F3D56',
-                      fontSize: '0.8em',
-                      fontWeight: '500',
-                      width: '6em',
-                      height: 'relative',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                  >
-                    {items.courseYearSec}
-                  </Typography>
-
-                  <Box flexGrow={1} />
-
-                  <Box
-                    sx={{
-                      width: 'auto',
-                      height: 'relative',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      gap: '0.3em',
-                    }}
-                  >
-                    <Check sx={{ color: '#5AD357', fontSize: '1.1em' }} />
-
-                    <Typography
-                      sx={{
-                        color: '#5AD357',
-                        fontSize: '0.8em',
-                        fontWeight: '600',
-                        textTransform: 'uppercase',
-                        width: 'auto',
-                        height: 'max-content',
-                      }}
-                    >
-                      Ready
-                    </Typography>
-                  </Box>
-
-                  <Box flexGrow={1} />
-
-                  <Box
-                    sx={{
-                      height: 'relative',
-                      width: 'auto',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                  >
-                    {items.cameraStatus}
-                  </Box>
-                </Box>
-              </Grid>
-            );
-          })}
-          {/* </Grid> */}
         </Grid>
       </Dialogform>
     </div>

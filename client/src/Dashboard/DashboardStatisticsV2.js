@@ -109,7 +109,7 @@ function DashboardStatisticsV2({ roomdata }) {
             <Star sx={{ color: '#F9A826', fontSize: '2em' }} />
 
             <Typography
-              children={`${rate && rate[0].rating} Ratings`} //tang
+              children={`${(rate && rate[0]?.rating) || 0} Ratings`} //tang
               sx={{
                 fontSize: '1.3em',
                 fontWeight: '700',

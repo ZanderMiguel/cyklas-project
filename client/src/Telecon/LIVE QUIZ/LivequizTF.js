@@ -1,8 +1,9 @@
 import React from 'react';
 import { Box, Grid, Backdrop, Typography } from '@mui/material';
 
-function LivequizTF({ quizData, point, socket }) {
+function LivequizTF({ quizData, point, socket, answer }) {
   const handleToggle = (event, ans) => {
+    answer.current = ans;
     if (ans === quizData.correctAnswer) {
       point.current = parseInt(
         quizData.points.replace(' points', '').replace(' point', '')

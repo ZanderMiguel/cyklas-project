@@ -2,8 +2,9 @@ import React from 'react';
 import { Box, Grid, Backdrop, Typography } from '@mui/material';
 import QuestionResult from './QuestionResult';
 
-function LivequizMulti({ quizData, point, socket }) {
+function LivequizMulti({ quizData, point, socket, answer }) {
   const handleToggle = (e, ans) => {
+    answer.current = ans;
     if (ans === quizData.correctAnswer) {
       point.current = parseInt(
         quizData.points.replace(' points', '').replace(' point', '')

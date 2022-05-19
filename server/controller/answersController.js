@@ -56,9 +56,21 @@ const displayAllAnswers = async (req, res) => {
     return res.json(error);
   }
 };
+const createGameAnswer = async (req, res) => {
+  try {
+    const answer = new AnswerModel(req.body);
+    await answer.save();
+
+    return res.json(answer);
+  } catch (error) {
+    console.log(error);
+    return res.json(error);
+  }
+};
 module.exports = {
   createAnswer,
   displayAnswer,
   updateScore,
   displayAllAnswers,
+  createGameAnswer,
 };

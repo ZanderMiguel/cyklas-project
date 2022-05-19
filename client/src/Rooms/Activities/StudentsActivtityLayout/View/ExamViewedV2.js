@@ -149,7 +149,7 @@ function ExamViewedV2() {
             />
 
             <Typography
-              children="8 / 8"
+              children="15 / 15"
               sx={{
                 color: '#007FFF',
                 fontSize: '0.8em',

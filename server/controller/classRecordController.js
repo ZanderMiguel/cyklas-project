@@ -211,7 +211,7 @@ const recordActivity = async (req, res) => {
     });
     console.log(percentage);
 
-    /* await ClassRecordModel.updateOne(
+    await ClassRecordModel.updateOne(
       {
         room: {
           $elemMatch: { $eq: req.body.roomID },
@@ -231,7 +231,7 @@ const recordActivity = async (req, res) => {
         activityScore: totalActivityPoints[0],
         activityStatus: 'Graded',
       }
-    ); */
+    );
     console.log(req.body);
     return res.json({ grades });
   } catch (error) {

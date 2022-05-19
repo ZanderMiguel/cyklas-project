@@ -18,7 +18,7 @@ import LivequizTF from './LivequizTF';
 import LivequizSA from './LivequizSA';
 import LivequizTimer from './LivequizTimer';
 import { useParams, Redirect } from 'react-router-dom';
-
+import axios from 'axios';
 function LivequizQuestion({ socket }) {
   const { quizID, qIdx } = useParams();
   const [quizSrc, setQuizSrc] = React.useState(null);
@@ -26,12 +26,7 @@ function LivequizQuestion({ socket }) {
   const point = React.useRef(0);
   const [redirect, setRedirect] = React.useState(null);
   const quizlitSrc = React.useRef(null);
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleToggle = () => {
-    setOpen(!open);
-  };
+  const answer = React.useRef('');
   React.useEffect(() => {
     socket.emit('start-quiz', quizID);
     socket.once('data-loaded', (quizData, quiID, quizlitData) => {
@@ -40,6 +35,30 @@ function LivequizQuestion({ socket }) {
       console.log(quizlitData);
     });
   }, []);
+  React.useEffect(() => {
+    if (open) {
+      axios
+        .post('http://localhost:5000/answer/quizgame', {
+          questions: quizSrc[qIdx]._id,
+          answers: answer.current,
+          answeredBy: JSON.parse(localStorage.userData).data.user._id,
+          score: point.current,
+        })
+        .then((res) => {
+          console.log(res.data);
+          point.current = 0;
+          answer.current = '';
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [open]);
+
+  /* {
+    questions: quizSrc[qIdx]._id,
+    answers: answer.current,
+    answeredBy: JSON.parse(localStorage.userData).data.user._id,
+    score: point.current,
+  } */
   socket.on('timesup', () => {
     setOpen(true);
     socket.emit(
@@ -160,13 +179,15 @@ function LivequizQuestion({ socket }) {
                         quizData={quizSrc[qIdx]}
                         point={point}
                         socket={socket}
+                        answer={answer}
                       />
                     )}
-                    {quizSrc[qIdx].answerType === 'Image' && (
+                    {quizSrc[qIdx].answerType === 'Image Multiple Choice' && (
                       <LivequizImagemulti
                         quizData={quizSrc[qIdx]}
                         point={point}
                         socket={socket}
+                        answer={answer}
                       />
                     )}
                     {quizSrc[qIdx].answerType === 'True or False' && (
@@ -174,10 +195,16 @@ function LivequizQuestion({ socket }) {
                         quizData={quizSrc[qIdx]}
                         point={point}
                         socket={socket}
+                        answer={answer}
                       />
                     )}
                     {quizSrc[qIdx].answerType === 'Short Answer' && (
-                      <LivequizSA />
+                      <LivequizSA
+                        quizData={quizSrc[qIdx]}
+                        point={point}
+                        socket={socket}
+                        answer={answer}
+                      />
                     )}
                   </Grid>
                 </Box>

@@ -107,11 +107,13 @@ const {
   displayAnswer,
   updateScore,
   displayAllAnswers,
+  createGameAnswer,
 } = require('../controller/answersController');
 router.post('/answers/create', createAnswer);
 router.post('/answers', displayAnswer);
 router.put('/answers/update', updateScore);
 router.post('/answers/all', displayAllAnswers);
+router.post('/answer/quizgame', createGameAnswer);
 const {
   createGradingSystem,
   updateGradingSystem,

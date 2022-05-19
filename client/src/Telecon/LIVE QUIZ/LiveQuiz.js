@@ -62,7 +62,7 @@ function LiveQuiz({ members, roomID, socket }) {
             }}
           >
             <Typography
-              children="Untitled Quiz"
+              children="Sample Quiz"
               sx={{
                 color: 'white',
                 fontSize: '1.5em',
@@ -82,7 +82,7 @@ function LiveQuiz({ members, roomID, socket }) {
               }}
             >
               <Typography
-                children="4 items"
+                children="2 items"
                 sx={{
                   color: 'white',
                   fontSize: '1em',
@@ -92,7 +92,7 @@ function LiveQuiz({ members, roomID, socket }) {
               />
 
               <Typography
-                children="Overall Points: 100 points"
+                children="Overall Points: 7 points"
                 sx={{
                   color: 'white',
                   fontSize: '1em',

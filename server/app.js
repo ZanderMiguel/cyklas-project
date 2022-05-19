@@ -169,6 +169,7 @@ io.on('connection', (socket) => {
   }); */
   const exam_time = {};
   const quizGameTime = {};
+  const stdTime = {};
   const scoreBoard = {};
   const next = {};
   const qProgress = {};
@@ -179,11 +180,13 @@ io.on('connection', (socket) => {
     io.in(id).emit('timer-start', exam_time[id]);
   });
 
-  socket.on('start-quiz-time', (quizID, time, qIdx) => {
-    quizGameTime[quizID] = parseInt(time);
+  socket.on('start-quiz-time', (quizID, time, qIdx, stdID) => {
+    stdTime[stdID] = parseInt(time);
+    quizGameTime[quizID] = Object.assign({}, stdTime);
+
     const countdown = setInterval(() => {
-      socket.emit('tick', quizID, quizGameTime[quizID]);
-      quizGameTime[quizID]--;
+      socket.emit('tick', quizID, quizGameTime[quizID][stdID]);
+      quizGameTime[quizID][stdID]--;
     }, 1000);
     setTimeout(() => {
       clearInterval(countdown);
@@ -193,9 +196,6 @@ io.on('connection', (socket) => {
   socket.on('to-next', (count, quizID, point, stdID, qIdx) => {
     let breaktime = count;
     console.log(qProgress[quizID]);
-    scoreBoard[stdID] = scoreBoard[stdID]
-      ? [...scoreBoard[stdID], point]
-      : [point];
 
     const countdown = setInterval(() => {
       socket.emit('tick-next', breaktime);

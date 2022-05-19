@@ -4,11 +4,16 @@ import { TimerOutlined } from '@mui/icons-material';
 
 function LivequizTimer({ socket, quizID, data, qIdx }) {
   const [seconds, setSeconds] = React.useState(0);
-  console.log(data);
   React.useEffect(() => {
     if (data) {
       const time = data.timeLimit.replace(' seconds', '');
-      socket.emit('start-quiz-time', quizID, time, qIdx);
+      socket.emit(
+        'start-quiz-time',
+        quizID,
+        time,
+        qIdx,
+        JSON.parse(localStorage.userData).data.user._id
+      );
       socket.on('tick', (quizID, time) => {
         setSeconds(time);
       });
