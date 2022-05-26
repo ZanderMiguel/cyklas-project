@@ -2,6 +2,7 @@ import React from 'react';
 import Peer from 'peerjs';
 import TelRender from './TelRender';
 import { Redirect } from 'react-router-dom';
+// const PeerServer = require('peer');
 function TeleconRoomV2({ socket }) {
   const [redirect, setRedirect] = React.useState(null);
 

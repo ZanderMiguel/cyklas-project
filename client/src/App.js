@@ -2,6 +2,7 @@ import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { io } from 'socket.io-client';
 import ProtectedRoutes from './components/ProtectedRoutes';
+
 import {
   BrowserRouter as Router,
   Route,
@@ -55,7 +56,6 @@ import Notfound from './Notfound';
 import TeleconLanding from './pages-landing/TeleconLanding';
 import QuizGameSetup from './pages-landing/QuizGameSetup';
 // Student Side
-import Dashboard_main from './student_side/Dashboard/Dashboard_main';
 import TeleconGroup from './pages-landing/TeleconGroup';
 import LiveQuizSetup from './Telecon/LiveQuizSetup';
 import EvaluationV2 from './Records/Classcards/EvaluationV2';
@@ -199,7 +199,6 @@ function App() {
                 path="/Evaluation/:evalID"
                 component={EvaluationV2}
               />
-              <Route exact path="/Dashboard_main" component={Dashboard_main} />
               <Route
                 exact
                 path="/ExamViewedV2/:quizID"

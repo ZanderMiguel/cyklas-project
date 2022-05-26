@@ -1,6 +1,5 @@
 import React from 'react';
-import { Boxs as Box } from '../../components/Component';
-import { Typography, IconButton } from '@mui/material';
+import { Typography, IconButton, Box } from '@mui/material';
 import ExamIcon from '../../assets/ImageJaven/ExamIcon.png';
 import { MoreVert } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
@@ -24,7 +23,7 @@ function Exam_layout({ bank }) {
   return (
     <>
       {bank.map((item, idx) => {
-        const { title,_id } = item;
+        const { title, _id } = item;
         return (
           <Box sx={designs.BoxTileContainer} key={idx}>
             <Box sx={designs.ExamContainer}>
