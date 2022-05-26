@@ -3,7 +3,7 @@ import { Button, Box } from '@mui/material';
 import DIalogform from '../Dialogform';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-function LeaveRoom({ open, close, setRefresher, roomID }) {
+function LeaveRoom({ open, close, setRefresher, roomID, setNewRoom }) {
   return (
     <DIalogform
       open={open}
@@ -20,9 +20,8 @@ function LeaveRoom({ open, close, setRefresher, roomID }) {
                   userID: JSON.parse(localStorage.userData).data.user._id,
                 })
                 .then((res) => {
-                  setRefresher(<Redirect to="/rooms" />);
-                  close();
-                  console.log(res.data);
+                  setRefresher( <Redirect to="/rooms" /> );
+                  setNewRoom((prev)=>!prev)
                 })
                 .catch((err) => console.log(err));
             }}

@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom';
 import RoomBackground6 from '../../assets/ImageJaven/RoomBackground6.png';
 import '../Styles/View_activity_style.css';
 
-function Room_layout({ data, socket }) {
+function Room_layout({ data, socket , setNewRoom }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClickOption = (event) => {
@@ -160,7 +160,7 @@ function Room_layout({ data, socket }) {
                 anchorEl={anchorEl}
                 onClose={handleCloseOption}
               >
-                <RoomOptionspopover_professor />
+                <RoomOptionspopover_professor id={ id} setNewRoom={setNewRoom} />
               </CusPopover>
             </Paper>
           </Grid>
