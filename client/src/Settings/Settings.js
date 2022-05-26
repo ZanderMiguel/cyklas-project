@@ -6,22 +6,15 @@ import {
   Typography,
   Button,
   Avatar,
-  IconButton,
   Tooltip,
   Stack,
   TextField,
 } from '@mui/material';
-import UploadImage from '@mui/material/Button';
-import { CameraAltOutlined, AccountBox, Lock } from '@mui/icons-material';
-import { styled } from '@mui/material/styles';
+import { AccountBox, Lock } from '@mui/icons-material';
 import Background15 from '../assets/ImageJaven/Background15.png';
 import Input from '../components/Input';
 
 function Settings() {
-  const InsertImage = styled('input')({
-    display: 'none',
-  });
-
   const [imgSrc, setImgSrc] = useState(null);
 
   const [showPasswordCurrent, setShowPasswordCurrent] = React.useState(false);
@@ -54,7 +47,7 @@ function Settings() {
     setMyApi(myApi.set([e.target.name], e.target.value));
   };
   return (
-    <Container maxWidth="md" sx = {{ padding: "2em 0em"}}>
+    <Container maxWidth="md" sx={{ padding: '2em 0em' }}>
       <Grid container>
         <Grid
           item
@@ -64,7 +57,7 @@ function Settings() {
             marginBottom: '0.8em',
             boxShadow:
               'rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px',
-            borderRadius: "0.3em"
+            borderRadius: '0.3em',
           }}
         >
           <Box
@@ -104,10 +97,9 @@ function Settings() {
                       />
                     ) : (
                       <Avatar
-                        src={JSON.parse(localStorage.userData).data.user.image.replace(
-                          'blob:',
-                          ''
-                        )}
+                        src={JSON.parse(
+                          localStorage.userData
+                        ).data.user.image.replace('blob:', '')}
                         sx={{
                           width: '3.5em',
                           height: '3.5em',
@@ -179,8 +171,8 @@ function Settings() {
             height: 'auto',
             marginBottom: '0.8em',
             boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 2px 0px',
-            backgroundColor: "white",
-            borderRadius: "0.3em 0.3em 0em 0em",
+            backgroundColor: 'white',
+            borderRadius: '0.3em 0.3em 0em 0em',
             '&: hover': {
               transition: 'all 250ms',
               boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 12px',
@@ -213,53 +205,57 @@ function Settings() {
               />
             </Box>
 
-              <Stack>
-                <Typography
-                  children="First Name"
-                  sx={{
-                    fontWeight: '500',
+            <Stack>
+              <Typography
+                children="First Name"
+                sx={{
+                  fontWeight: '500',
+                  color: '#3F3D56',
+                  fontSize: '0.8em',
+                  margin: '1em 0em 0.3em 0em',
+                }}
+              />
+              <TextField
+                variant="outlined"
+                defaultValue={
+                  JSON.parse(localStorage.userData).data.user.firstName
+                }
+                placeholder="Enter first name..."
+                inputProps={{
+                  style: {
+                    height: '0.5em',
+                    fontSize: '0.9em',
                     color: '#3F3D56',
-                    fontSize: '0.8em',
-                    margin: '1em 0em 0.3em 0em',
-                  }}
-                />
-                <TextField
-                  variant="outlined"
-                  defaultValue={JSON.parse(localStorage.userData).data.user.firstName}
-                  placeholder="Enter first name..."
-                  inputProps={{
-                    style: {
-                      height: '0.5em',
-                      fontSize: '0.9em',
-                      color: '#3F3D56',
-                      fontWeight: 500,
-                    },
-                  }}
-                />
+                    fontWeight: 500,
+                  },
+                }}
+              />
 
-                <Typography
-                  children="Last Name"
-                  sx={{
-                    fontWeight: '500',
+              <Typography
+                children="Last Name"
+                sx={{
+                  fontWeight: '500',
+                  color: '#3F3D56',
+                  fontSize: '0.8em',
+                  margin: '1em 0em 0.3em 0em',
+                }}
+              />
+              <TextField
+                variant="outlined"
+                defaultValue={
+                  JSON.parse(localStorage.userData).data.user.lastName
+                }
+                placeholder="Enter last name..."
+                inputProps={{
+                  style: {
+                    height: '0.5em',
+                    fontSize: '0.9em',
                     color: '#3F3D56',
-                    fontSize: '0.8em',
-                    margin: '1em 0em 0.3em 0em',
-                  }}
-                />
-                <TextField
-                  variant="outlined"
-                  defaultValue={JSON.parse(localStorage.userData).data.user.lastName}
-                  placeholder="Enter last name..."
-                  inputProps={{
-                    style: {
-                      height: '0.5em',
-                      fontSize: '0.9em',
-                      color: '#3F3D56',
-                      fontWeight: 500,
-                    },
-                  }}
-                />
-              </Stack>
+                    fontWeight: 500,
+                  },
+                }}
+              />
+            </Stack>
           </Box>
         </Grid>
 
@@ -270,8 +266,8 @@ function Settings() {
             height: 'auto',
             marginBottom: '0.8em',
             boxShadow: 'rgba(0, 0, 0, 0.1) 0px 1px 2px 0px',
-            backgroundColor: "white",
-            borderRadius: "0.3em 0.3em 0em 0em",
+            backgroundColor: 'white',
+            borderRadius: '0.3em 0.3em 0em 0em',
             '&: hover': {
               transition: 'all 250ms',
               boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 12px',
@@ -327,7 +323,9 @@ function Settings() {
 
               <TextField
                 variant="outlined"
-                defaultValue={JSON.parse(localStorage.userData).data.user.emailAddress}
+                defaultValue={
+                  JSON.parse(localStorage.userData).data.user.emailAddress
+                }
                 placeholder="Enter your email address..."
                 sx={{}}
                 inputProps={{

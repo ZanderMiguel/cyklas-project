@@ -2,6 +2,7 @@ import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { io } from 'socket.io-client';
 import ProtectedRoutes from './components/ProtectedRoutes';
+
 import {
   BrowserRouter as Router,
   Route,
@@ -26,6 +27,7 @@ import Room_inside from './Rooms/Room-content-layout/Room_inside';
 import Records from './Records/Records';
 import ClassCards_main from './Records/Classcards/ClassCards_main';
 import Evaluation from './Records/Classcards/Evaluation';
+import EvaluationV2 from './Records/Classcards/EvaluationV2';
 
 //Setting
 import Settings from './Settings/Settings';
@@ -45,6 +47,7 @@ import Livequiz_multiplechoice from './Quizlit/LiveQuiz/Livequiz_multiplechoice'
 import Notifications_viewall from './Notifications/Notifications_viewall';
 import Exam_take from './Dashboard/Exam_take';
 import Exam_start from './Dashboard/Exam_start';
+import ExamSubmitted from './Dashboard/ExamSubmitted';
 import View_quiz from './Quizlit/Quizbank-content-layout/Quizbank-view/View_quiz';
 import ViewQuizV2 from './Quizlit/Quizbank-content-layout/Quizbank-view/ViewQuizV2/ViewQuizV2';
 import View_exam from './Quizlit/Quizbank-content-layout/Quizbank-view/View_exam';
@@ -53,12 +56,11 @@ import ToLobby from './Quizlit/TestComponents/ToLobby';
 import Lobby from './Quizlit/TestComponents/Lobby';
 import Notfound from './Notfound';
 import TeleconLanding from './pages-landing/TeleconLanding';
-
+import QuizGameSetup from './pages-landing/QuizGameSetup';
 // Student Side
-import Dashboard_main from './student_side/Dashboard/Dashboard_main';
 import TeleconGroup from './pages-landing/TeleconGroup';
 import LiveQuizSetup from './Telecon/LiveQuizSetup';
-
+import EvaluationV2 from './Records/Classcards/EvaluationV2';
 function App() {
   const theme = createTheme({
     typography: {
@@ -114,7 +116,6 @@ function App() {
                 component={Room_inside}
                 socket={socket}
               />
-
               <ProtectedRoutes
                 exact
                 path="/rooms/:roomID/p/:activityID"
@@ -167,8 +168,12 @@ function App() {
               <Route path="/telecon/:teleRoom">
                 <TeleconRoomV2 socket={socket} />
               </Route>
-
-              <Route path="/LivequizQuestion" component={LivequizQuestion} />
+              <Route exact path="/quizgame/setup/:quizID">
+                <QuizGameSetup socket={socket} />
+              </Route>
+              <Route exact path="/quiz-game/:quizID/:qIdx">
+                <LivequizQuestion socket={socket} />
+              </Route>
               <Route
                 path="/LivequizStudentrankings"
                 component={LivequizStudentrankings}
@@ -191,9 +196,16 @@ function App() {
               />
 
               {/* Student Side */}
-              <Route exact path="/Evaluation" component={Evaluation} />
-              <Route exact path="/Dashboard_main" component={Dashboard_main} />
-              <Route exact path="/ExamViewedV2" component={ExamViewedV2} />
+              <Route
+                exact
+                path="/Evaluation/:evalID"
+                component={EvaluationV2}
+              />
+              <Route
+                exact
+                path="/ExamViewedV2/:quizID"
+                component={ExamViewedV2}
+              />
               <Route
                 exact
                 path="/quizlit/QuizViewedV2"
@@ -206,6 +218,7 @@ function App() {
                 component={Exam_start}
                 socket={socket}
               />
+              <Route exact path="/ExamSubmitted" component={ExamSubmitted} />
               <ProtectedRoutes
                 exact
                 path="/quizlit/View_quiz"

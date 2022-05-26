@@ -229,22 +229,22 @@ function Records_tableClassRecords({ rooms }) {
                           variant="contained"
                           children="Return"
                           onClick={() => {
-                            console.log({
-                              classRecord: {
-                                roomName: rooms[selectRoom].RoomName,
-                                roomID: rooms[selectRoom]._id,
-                              },
-                              professor: items.professor,
-                              student: items.student,
-                              overall:
-                                document.querySelector('#overall').innerHTML,
-                            });
-                            axios
-                              .post('http://localhost:5000/cards/create', {
+                            console.log(
+                              {
                                 classRecord: {
                                   roomName: rooms[selectRoom].RoomName,
                                   roomID: rooms[selectRoom]._id,
                                 },
+                                professor: items.professor,
+                                student: items.student,
+                                overall:
+                                  document.querySelector('#overall').innerHTML,
+                              },
+                              rooms[selectRoom]
+                            );
+                            axios
+                              .post('http://localhost:5000/cards/create', {
+                                classRecord: { ...rooms[selectRoom] },
                                 professor: items.professor,
                                 student: items.student,
                                 overall:

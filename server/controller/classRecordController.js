@@ -86,7 +86,6 @@ const countActivity = async (req, res) => {
     });
     let grade = {};
     recordData.forEach((recordItem) => {
-      console.log(recordItem);
       grade[recordItem.student.stdID] = [];
       req.body.scores.forEach(async (scores) => {
         recordItem.gradingSystem.filter((item, index) => {
@@ -94,7 +93,6 @@ const countActivity = async (req, res) => {
         });
 
         recordItem.gradingSystem.forEach((item) => {
-          console.log(item);
           if (Object.entries(item)[0][0] === activityCategory.gsCategory) {
             grade[recordItem.student.stdID].push({
               [Object.entries(item)[0][0]]:
@@ -107,10 +105,10 @@ const countActivity = async (req, res) => {
           ) {
             grade[recordItem.student.stdID].push(item);
           }
-          //console.log(grade[recordItem.student.stdID],recordItem.student.stdID)
         });
-        //console.log(grade[recordItem.student.stdID])
-        console.log(grade[recordItem.student.stdID]);
+
+        const quizScore = await QuestionModel.find({});
+
         await ClassRecordModel.updateOne(
           {
             'professor.profID': req.body.userID,
@@ -121,7 +119,10 @@ const countActivity = async (req, res) => {
         );
       });
     });
-
+    await QuizlitModel.findByIdAndUpdate(req.body.examID, {
+      $push: { students: req.body.stdID },
+    });
+    console.log(req.body);
     return res.json({
       status: 'success',
       message: 'success',
@@ -174,7 +175,22 @@ const recordActivity = async (req, res) => {
     const activity = await getActivity(req);
     const classRecord = await getClassRecord(req);
 
-    activityScore = activity.filter((item) => {
+    /* const quizlit = await QuizlitModel.find({
+      roomID: { $elemMatch: { $eq: req.body.roomID } },
+      students: { $elemMatch: { $eq: req.body.stdID } },
+      gsCategory: req.body.category,
+    });
+
+    const quizScores = {};
+    const qzID = quizlit.map((item) => item._id);
+    const questions = await QuestionModel.find({
+      quizID: { $in: qzID },
+    });
+    const qpnts = questions.map((item) =>
+      parseInt(item.points.replace(' point', '').replace(' ponits', ''))
+    ); */
+
+    const activityScore = activity.filter((item) => {
       return item.activityType === req.body.category;
     });
 
@@ -216,7 +232,7 @@ const recordActivity = async (req, res) => {
         activityStatus: 'Graded',
       }
     );
-    console.log(submitActivity);
+    console.log(req.body);
     return res.json({ grades });
   } catch (error) {
     console.log(error);

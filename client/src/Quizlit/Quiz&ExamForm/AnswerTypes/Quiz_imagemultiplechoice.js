@@ -25,6 +25,7 @@ function Quiz_imagemultiplechoice({
       JSON.parse(localStorage.userData).data.user.firstName
     );
   };
+  const [check, setCheck] = useState(false);
   return (
     <>
       <Grid container columnSpacing={2} rowSpacing={1}>
@@ -77,13 +78,21 @@ function Quiz_imagemultiplechoice({
             {questionMemo && (
               <IconButton
                 aria-label="correct-answer"
-                sx={designs.Correct_Answer_IconButton_Style}
+                sx={
+                  (designs.Correct_Answer_IconButton_Style,
+                  check === 'answer1' && { backgroundColor: 'white' })
+                }
                 onClick={() => {
                   questionMemo.current[counter - 1]['correctAnswer'] =
                     'answer1';
+                  setCheck('answer1');
                 }}
               >
-                <Check sx={designs.CheckIcon_Style} />
+                <Check
+                  sx={{
+                    fontSize: '0.8em',
+                  }}
+                />
               </IconButton>
             )}
           </Box>
@@ -138,13 +147,21 @@ function Quiz_imagemultiplechoice({
             {questionMemo && (
               <IconButton
                 aria-label="correct-answer"
-                sx={designs.Correct_Answer_IconButton_Style}
+                sx={
+                  (designs.Correct_Answer_IconButton_Style,
+                  check === 'answer2' && { backgroundColor: 'white' })
+                }
                 onClick={() => {
                   questionMemo.current[counter - 1]['correctAnswer'] =
                     'answer2';
+                  setCheck('answer2');
                 }}
               >
-                <Check sx={designs.CheckIcon_Style} />
+                <Check
+                  sx={{
+                    fontSize: '0.8em',
+                  }}
+                />
               </IconButton>
             )}
           </Box>
@@ -201,13 +218,21 @@ function Quiz_imagemultiplechoice({
             {questionMemo && (
               <IconButton
                 aria-label="correct-answer"
-                sx={designs.Correct_Answer_IconButton_Style}
+                sx={
+                  (designs.Correct_Answer_IconButton_Style,
+                  check === 'answer3' && { backgroundColor: 'white' })
+                }
                 onClick={() => {
                   questionMemo.current[counter - 1]['correctAnswer'] =
                     'answer3';
+                  setCheck('answer3');
                 }}
               >
-                <Check sx={designs.CheckIcon_Style} />
+                <Check
+                  sx={{
+                    fontSize: '0.8em',
+                  }}
+                />
               </IconButton>
             )}
           </Box>
@@ -262,13 +287,21 @@ function Quiz_imagemultiplechoice({
             {questionMemo && (
               <IconButton
                 aria-label="correct-answer"
-                sx={designs.Correct_Answer_IconButton_Style}
+                sx={
+                  (designs.Correct_Answer_IconButton_Style,
+                  check === 'answer4' && { backgroundColor: 'white' })
+                }
                 onClick={() => {
                   questionMemo.current[counter - 1]['correctAnswer'] =
                     'answer4';
+                  setCheck('answer4');
                 }}
               >
-                <Check sx={designs.CheckIcon_Style} />
+                <Check
+                  sx={{
+                    fontSize: '0.8em',
+                  }}
+                />
               </IconButton>
             )}
           </Box>

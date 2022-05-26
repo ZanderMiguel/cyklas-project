@@ -34,14 +34,14 @@ const ClassCards_table = ({ roomsdata }) => {
                 <tr key={index}>
                   <td data-label="Room Name">
                     {' '}
-                    {items.classRecord[0].roomName}{' '}
+                    {items.classRecord[0].RoomName}{' '}
                   </td>
                   <td data-label="FINAL Grade"> {items.overall} </td>
                   <td data-label="Actions">
                     <Button
                       // disabled
                       component={Link}
-                      to="/Evaluation"
+                      to={`/Evaluation/${items._id}`}
                       variant="contained"
                       children="Evaluate"
                       sx={{

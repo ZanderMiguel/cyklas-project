@@ -3,26 +3,34 @@ import { Box, Typography, IconButton, Grid } from '@mui/material';
 import { Check } from '@mui/icons-material';
 import useStyle from './Styles/Quiz_trueorfalse_style';
 
-function Quiz_trueorfalse({ questionMemo, counter,questionArray,socket }) {
+function Quiz_trueorfalse({ questionMemo, counter, questionArray, socket }) {
   const { designs } = useStyle();
+  const [check, setCheck] = React.useState(null);
   const handleClick = (event) => {
-    questionMemo.current[counter - 1]['answer2'] = 'False'
-    questionMemo.current[counter - 1]['answer1'] = 'True'
-  }
+    questionMemo.current[counter - 1]['answer2'] = 'False';
+    questionMemo.current[counter - 1]['answer1'] = 'True';
+  };
   const sendAnswer = (answer) => {
-    console.log(answer)
-    socket.emit('send-answer',answer,questionArray[counter].correctAnswer,JSON.parse(localStorage.userData).data.user.firstName)
-  }
+    console.log(answer);
+    socket.emit(
+      'send-answer',
+      answer,
+      questionArray[counter].correctAnswer,
+      JSON.parse(localStorage.userData).data.user.firstName
+    );
+  };
   return (
     <>
       <Grid container columnSpacing={2} rowSpacing={1}>
         <Grid item xs={12} sm={6}>
           <Box className="answer-true" sx={designs.Answer_True_Style}>
-            <Box 
-            onClick={()=>{
-              questionArray && sendAnswer('answer1')
-            }}
-            className="Quiz-item" sx={designs.Quiz_Item_Style}>
+            <Box
+              onClick={() => {
+                questionArray && sendAnswer('answer1');
+              }}
+              className="Quiz-item"
+              sx={designs.Quiz_Item_Style}
+            >
               <Typography sx={designs.Quiz_Item_Typography_Style}>
                 A.
               </Typography>
@@ -31,29 +39,41 @@ function Quiz_trueorfalse({ questionMemo, counter,questionArray,socket }) {
 
             <Box flexGrow={1} height="relative" />
 
-            {questionMemo && <IconButton
-
-              aria-label="correct-answer"
-              sx={designs.Correct_Answer_IconButton_Style}
-              name="answer1"
-              onClick={(event) => {
-
-                handleClick(event)
-                questionMemo.current[counter - 1]['correctAnswer'] = 'answer1'
-              }}
-            >
-              <Check sx={designs.CheckIcon_Style} />
-            </IconButton>}
+            {questionMemo && (
+              <IconButton
+                aria-label="correct-answer"
+                sx={
+                  (designs.Correct_Answer_IconButton_Style,
+                  check === 'answer1' && { backgroundColor: 'white' })
+                }
+                name="answer1"
+                onClick={(event) => {
+                  setCheck('answer1');
+                  handleClick(event);
+                  questionMemo.current[counter - 1]['correctAnswer'] =
+                    'answer1';
+                  setCheck('answer1');
+                }}
+              >
+                <Check
+                  sx={{
+                    fontSize: '0.8em',
+                  }}
+                />
+              </IconButton>
+            )}
           </Box>
         </Grid>
 
         <Grid item xs={12} sm={6}>
           <Box className="answer-false" sx={designs.Answer_False_Style}>
-            <Box 
-            onClick={()=>{
-              questionArray && sendAnswer('answer1')
-            }}
-            className="Quiz-item" sx={designs.Quiz_Item_Style}>
+            <Box
+              onClick={() => {
+                questionArray && sendAnswer('answer1');
+              }}
+              className="Quiz-item"
+              sx={designs.Quiz_Item_Style}
+            >
               <Typography sx={designs.Quiz_Item_Typography_Style2}>
                 B.
               </Typography>
@@ -62,17 +82,28 @@ function Quiz_trueorfalse({ questionMemo, counter,questionArray,socket }) {
 
             <Box flexGrow={1} height="relative" />
 
-            {questionMemo && <IconButton
-              aria-label="correct-answer"
-              sx={designs.Correct_Answer_IconButton_Style}
-              name="answer2"
-              onClick={(event) => {
-                handleClick(event)
-                questionMemo.current[counter - 1]['correctAnswer'] = 'answer2'
-              }}
-            >
-              <Check sx={designs.CheckIcon_Style} />
-            </IconButton>}
+            {questionMemo && (
+              <IconButton
+                aria-label="correct-answer"
+                sx={
+                  (designs.Correct_Answer_IconButton_Style,
+                  check === 'answer2' && { backgroundColor: 'white' })
+                }
+                name="answer2"
+                onClick={(event) => {
+                  handleClick(event);
+                  questionMemo.current[counter - 1]['correctAnswer'] =
+                    'answer2';
+                  setCheck('answer2');
+                }}
+              >
+                <Check
+                  sx={{
+                    fontSize: '0.8em',
+                  }}
+                />
+              </IconButton>
+            )}
           </Box>
         </Grid>
       </Grid>
@@ -81,4 +112,3 @@ function Quiz_trueorfalse({ questionMemo, counter,questionArray,socket }) {
 }
 
 export default Quiz_trueorfalse;
-

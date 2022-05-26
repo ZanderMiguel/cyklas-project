@@ -23,7 +23,7 @@ import {
 } from '@mui/icons-material';
 import NewGrade from '../assets/ImageJaven/NewGrade.png';
 import axios from 'axios';
-
+import _ from 'lodash';
 function NewGradingSystem({
   index,
   response,
@@ -37,7 +37,8 @@ function NewGradingSystem({
   const [expanded, setExpanded] = useState(false);
   const [input, setInput] = useState([{ category: '', percentage: '' }]);
   const [CS, setCS] = useState(60);
-
+  const [saveChanges, setSaveChanges] = React.useState(true);
+  let rate = React.useRef([]);
   const addCategories = () => {
     const category = [];
     response.Category.forEach((item, index) => {
@@ -60,6 +61,23 @@ function NewGradingSystem({
 
   const handleChangeInput = (index, event) => {
     data.current[index][event.target.name] = event.target.value;
+    //tanga
+
+    if (event.target.name.includes('Percentage')) {
+      rate.current[index] = event.target.value;
+    }
+    const points = rate.current.map((item) => parseInt(item));
+
+    if (_.sum(points) > CS) {
+      setSaveChanges(false);
+    }
+    if (_.sum(points) < CS) {
+      setSaveChanges(true);
+    }
+
+    /* if (Number.isInteger(_.sum(points))) {
+      setSaveChanges(false);
+    } */
   };
 
   const handleAddFields = () => {
@@ -264,6 +282,7 @@ function NewGradingSystem({
                       <TextField
                         {...attrib}
                         {...percent}
+                        className="percent"
                         name={`Percentage ${index}`}
                         label="Percentage"
                         autoComplete="off"
@@ -494,6 +513,7 @@ function NewGradingSystem({
 
           {!response && (
             <Button
+              disabled={!saveChanges}
               onClick={() => {
                 const Category = [];
                 for (let i = 0; i < data.current.length; i++) {

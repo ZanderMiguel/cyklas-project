@@ -122,4 +122,5 @@ module.exports = {
   displaySubmittedActivity,
   getAllActivities,
   getSubmittedActivity,
+  getSubmitted,
 };

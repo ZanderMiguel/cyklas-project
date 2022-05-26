@@ -62,6 +62,7 @@ const {
   findQuizlitController,
   displayQuizlitOnQuizlit,
   displayQuizlitOnRoom,
+  displayQuizlitOfStudents,
 } = require('../controller/quizlitController');
 router.post('/quizlit/create', createQuizlitController);
 router.put('/quizlit/update', updateQuizlitController);
@@ -69,6 +70,7 @@ router.delete('/quizlit/delete', deleteQuizlitController);
 router.post('/quizlit', findQuizlitController);
 router.post('/myQuizlit', displayQuizlitOnQuizlit);
 router.post('/roomQuizlit', displayQuizlitOnRoom);
+router.post('/quizlit/student', displayQuizlitOfStudents);
 const {
   createQuestionController,
   updateQuestionController,
@@ -104,11 +106,14 @@ const {
   createAnswer,
   displayAnswer,
   updateScore,
+  displayAllAnswers,
+  createGameAnswer,
 } = require('../controller/answersController');
 router.post('/answers/create', createAnswer);
 router.post('/answers', displayAnswer);
 router.put('/answers/update', updateScore);
-
+router.post('/answers/all', displayAllAnswers);
+router.post('/answer/quizgame', createGameAnswer);
 const {
   createGradingSystem,
   updateGradingSystem,
@@ -142,8 +147,19 @@ router.post('/records/activity/return', recordActivity);
 const {
   createClassCard,
   displayClassCard,
+  findClassCard,
 } = require('../controller/classCardController');
 router.post('/cards/create', createClassCard);
 router.post('/cards', displayClassCard);
+router.post('/cards/getData', findClassCard);
+
+const {
+  displayRatings,
+  createEvaluation,
+  getOverallRate,
+} = require('../controller/evaluationController');
+router.post('/evaluation/create', createEvaluation);
+router.get('/ratings/display', displayRatings);
+router.get('/find/rate', getOverallRate);
 
 module.exports = router;

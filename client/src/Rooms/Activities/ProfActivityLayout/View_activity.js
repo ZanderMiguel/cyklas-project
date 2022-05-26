@@ -96,7 +96,7 @@ function View_activity({ socket }) {
       <Grid container columnSpacing={1}>
         <Grid item xs={4}>
           <Button
-            disabled={disBtn}
+            /* disabled={disBtn} */
             onClick={() => {
               axios
                 .post('http://localhost:5000/records/activity/return', {

@@ -1,14 +1,17 @@
-import React from 'react'
-import CorrectAnswer from "./CorrectAnswer";
-import WrongAnswer from "./WrongAnswer";
+import React from 'react';
+import CorrectAnswer from './CorrectAnswer';
+import WrongAnswer from './WrongAnswer';
 
-function QuestionResult() {
+function QuestionResult({ point, socket }) {
   return (
     <>
-    {/* <CorrectAnswer/> */}
-    <WrongAnswer/>
+      {point.current > 0 ? (
+        <CorrectAnswer point={point} socket={socket} />
+      ) : (
+        <WrongAnswer point={point} socket={socket} />
+      )}
     </>
-  )
+  );
 }
 
-export default QuestionResult
+export default QuestionResult;
