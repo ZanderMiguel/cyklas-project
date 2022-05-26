@@ -12,7 +12,9 @@ const createClassCard = async (req, res) => {
 };
 const displayClassCard = async (req, res) => {
   try {
-    const classCard = await ClassCardModel.find({ student: req.body.useID });
+    const classCard = await ClassCardModel.find({
+      'student.stdID': req.body.stdID,
+    });
     console.log('Class Card Displayed');
     return res.json(classCard);
   } catch (error) {
@@ -20,4 +22,16 @@ const displayClassCard = async (req, res) => {
     return res.json(error);
   }
 };
-module.exports = { createClassCard, displayClassCard };
+const findClassCard = async (req, res) => {
+  try {
+    const classCard = await ClassCardModel.findById(
+      req.body.evalID.replace(':', '')
+    );
+    console.log(classCard);
+    return res.json(classCard);
+  } catch (error) {
+    console.log(error);
+    return res.json(error);
+  }
+};
+module.exports = { createClassCard, displayClassCard, findClassCard };

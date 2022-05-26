@@ -3,187 +3,34 @@ import { Grid, Container, Box, Typography, Checkbox } from '@mui/material';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-const dataAnswerChoices = [
-  {
-    choice: (
-      <Box
-        sx={{
-          display: 'flex',
-          gap: '0.8em',
-          alignItems: 'center',
-          height: 'auto',
-          width: 'relative',
-          flexGrow: 1,
-          border: '1px solid #007FFF',
-          backgroundColor: '#DFF0FF',
-          borderRadius: '0.3em',
-          padding: '0.5em 0.7em',
-          marginBottom: '0.5em',
-        }}
-      >
-        <Checkbox
-          {...label}
-          disabled
-          checked
-          sx={{
-            color: '#8E8E8E',
-            borderRadius: '0em',
-            height: '0.8em',
-            width: '0.8em',
-            '&: hover': { backgroundColor: 'transparent' },
-          }}
-        />
+const correctStyle = {
+  display: 'flex',
+  gap: '0.8em',
+  alignItems: 'center',
+  height: 'auto',
+  width: 'relative',
+  flexGrow: 1,
+  border: '1px solid #007FFF',
+  backgroundColor: '#DFF0FF',
+  borderRadius: '0.3em',
+  padding: '0.5em 0.7em',
+  marginBottom: '0.5em',
+};
+const normal = {
+  display: 'flex',
+  gap: '0.8em',
+  alignItems: 'center',
+  height: 'auto',
+  width: 'relative',
+  flexGrow: 1,
+  border: '1px solid #DBDBDB',
+  backgroundColor: '#FCFCFC',
+  borderRadius: '0.3em',
+  padding: '0.5em 0.7em',
+  marginBottom: '0.5em',
+};
 
-        <Typography
-          children="Blank Answer"
-          sx={{
-            width: 'auto',
-            flexGrow: 1,
-            height: 'max-content',
-            fontSize: '0.8em',
-            fontWeight: '500',
-            color: '#3F3D56',
-            textTransform: 'none',
-          }}
-        />
-      </Box>
-    ),
-  },
-  {
-    choice: (
-      <Box
-        sx={{
-          display: 'flex',
-          gap: '0.8em',
-          alignItems: 'center',
-          height: 'auto',
-          width: 'relative',
-          flexGrow: 1,
-          border: '1px solid #DBDBDB',
-          backgroundColor: '#FCFCFC',
-          borderRadius: '0.3em',
-          padding: '0.5em 0.7em',
-          marginBottom: '0.5em',
-        }}
-      >
-        <Checkbox
-          sx={{
-            color: '#8E8E8E',
-            borderRadius: '0em',
-            height: '0.8em',
-            width: '0.8em',
-            '&: hover': { backgroundColor: 'transparent' },
-          }}
-        />
-
-        <Typography
-          children="Blank Answer"
-          sx={{
-            width: 'auto',
-            flexGrow: 1,
-            height: 'max-content',
-            fontSize: '0.8em',
-            fontWeight: '500',
-            color: '#3F3D56',
-            textTransform: 'none',
-          }}
-        />
-      </Box>
-    ),
-  },
-  {
-    choice: (
-      <Box
-        sx={{
-          display: 'flex',
-          gap: '0.8em',
-          alignItems: 'center',
-          height: 'auto',
-          width: 'relative',
-          flexGrow: 1,
-          border: '1px solid #007FFF',
-          backgroundColor: '#DFF0FF',
-          borderRadius: '0.3em',
-          padding: '0.5em 0.7em',
-          marginBottom: '0.5em',
-        }}
-      >
-        <Checkbox
-          {...label}
-          disabled
-          checked
-          sx={{
-            color: '#8E8E8E',
-            borderRadius: '0em',
-            height: '0.8em',
-            width: '0.8em',
-            '&: hover': { backgroundColor: 'transparent' },
-          }}
-        />
-
-        <Typography
-          children="Blank Answer"
-          sx={{
-            width: 'auto',
-            flexGrow: 1,
-            height: 'max-content',
-            fontSize: '0.8em',
-            fontWeight: '500',
-            color: '#3F3D56',
-            textTransform: 'none',
-          }}
-        />
-      </Box>
-    ),
-  },
-  {
-    choice: (
-      <Box
-        sx={{
-          display: 'flex',
-          gap: '0.8em',
-          alignItems: 'center',
-          height: 'auto',
-          width: 'relative',
-          flexGrow: 1,
-          border: '1px solid #007FFF',
-          backgroundColor: '#DFF0FF',
-          borderRadius: '0.3em',
-          padding: '0.5em 0.7em',
-          marginBottom: '0.5em',
-        }}
-      >
-        <Checkbox
-          {...label}
-          disabled
-          checked
-          sx={{
-            color: '#8E8E8E',
-            borderRadius: '0em',
-            height: '0.8em',
-            width: '0.8em',
-            '&: hover': { backgroundColor: 'transparent' },
-          }}
-        />
-
-        <Typography
-          children="Blank Answer"
-          sx={{
-            width: 'auto',
-            flexGrow: 1,
-            height: 'max-content',
-            fontSize: '0.8em',
-            fontWeight: '500',
-            color: '#3F3D56',
-            textTransform: 'none',
-          }}
-        />
-      </Box>
-    ),
-  },
-];
-
-function CheckedboxChecked() {
+function CheckedboxChecked({ data, answers, index }) {
   return (
     <Grid
       item
@@ -212,7 +59,7 @@ function CheckedboxChecked() {
           }}
         >
           <Typography
-            children="Question 3"
+            children={`Question ${index + 1}`}
             sx={{
               flexGrow: '1',
               fontSize: '1em',
@@ -224,7 +71,7 @@ function CheckedboxChecked() {
           />
 
           <Typography
-            children="Checkboxes"
+            children={data.answerType}
             sx={{
               fontSize: '0.7em',
               fontWeight: '500',
@@ -234,7 +81,7 @@ function CheckedboxChecked() {
             }}
           />
           <Typography
-            children="2 points"
+            children={data.points}
             sx={{
               fontSize: '0.7em',
               fontWeight: '500',
@@ -246,7 +93,7 @@ function CheckedboxChecked() {
         </Box>
 
         <Typography
-          children="Hello darkness my old friend"
+          children={data.questionsContent}
           sx={{
             flexGrow: '1',
             fontSize: '0.8em',
@@ -258,7 +105,9 @@ function CheckedboxChecked() {
           }}
         />
 
-        {dataAnswerChoices.map(function (items, index) {
+        {Object.values(data.qAnswers).map(function (items, index) {
+          const correct = answers.answers.includes(index + 1) ? true : false;
+          console.log(correct);
           return (
             <Box
               key={index}
@@ -267,7 +116,33 @@ function CheckedboxChecked() {
                 height: 'auto',
               }}
             >
-              {items.choice}
+              <Box sx={correct ? correctStyle : normal}>
+                <Checkbox
+                  {...label}
+                  disabled
+                  checked={correct}
+                  sx={{
+                    color: '#8E8E8E',
+                    borderRadius: '0em',
+                    height: '0.8em',
+                    width: '0.8em',
+                    '&: hover': { backgroundColor: 'transparent' },
+                  }}
+                />
+
+                <Typography
+                  children={items}
+                  sx={{
+                    width: 'auto',
+                    flexGrow: 1,
+                    height: 'max-content',
+                    fontSize: '0.8em',
+                    fontWeight: '500',
+                    color: '#3F3D56',
+                    textTransform: 'none',
+                  }}
+                />
+              </Box>
             </Box>
           );
         })}
@@ -288,7 +163,7 @@ function CheckedboxChecked() {
             }}
           />
           <Typography
-            children="Option 1, Option 3, Option 4"
+            children={data.correctAnswer}
             sx={{
               color: '#007FFF',
               fontSize: '0.8em',

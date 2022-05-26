@@ -17,20 +17,21 @@ import { Check, PeopleAlt } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
 function LiveQuiz({ members, roomID, socket }) {
-  let [entered, setEntered] = React.useState([]);
-  socket.on('joined-lobby', (stdID, roomID) => {
-    console.log('tanga');
-    setEntered([...entered, stdID]);
-  });
-
+  let [entered, setEntered] = React.useState([
+    JSON.parse(localStorage.userData).data.user._id,
+  ]);
+  React.useEffect(() => {
+    socket.on('joined-lobby', (stdID, roomID) => {
+      setEntered([...entered, stdID]);
+    });
+  }, []);
   socket.emit(
     'enter-lobby',
     JSON.parse(localStorage.userData).data.user._id,
     roomID
   );
-
-  socket.on('test', (s) => {
-    console.log(s);
+  socket.on('initializeGame', (members) => {
+    window.open(`/quizgame/setup/${members.qID}`, '_self');
   });
   return (
     <>
@@ -61,7 +62,7 @@ function LiveQuiz({ members, roomID, socket }) {
             }}
           >
             <Typography
-              children="Untitled Quiz"
+              children="Sample Quiz"
               sx={{
                 color: 'white',
                 fontSize: '1.5em',
@@ -81,7 +82,7 @@ function LiveQuiz({ members, roomID, socket }) {
               }}
             >
               <Typography
-                children="4 items"
+                children="2 items"
                 sx={{
                   color: 'white',
                   fontSize: '1em',
@@ -91,7 +92,7 @@ function LiveQuiz({ members, roomID, socket }) {
               />
 
               <Typography
-                children="Overall Points: 100 points"
+                children="Overall Points: 7 points"
                 sx={{
                   color: 'white',
                   fontSize: '1em',
@@ -102,24 +103,27 @@ function LiveQuiz({ members, roomID, socket }) {
             </Box>
           </Box>
 
-          <Button
-            onClick={() => {
-              socket.emit('testing', 'tanginamo', roomID);
-            }}
-            variant="contained"
-            children="Start Quiz"
-            /* component={Link}
+          {JSON.parse(localStorage.userData).data.user.userType ===
+            'Professor' && (
+            <Button
+              onClick={() => {
+                socket.emit('quizgameInit', members, roomID);
+              }}
+              variant="contained"
+              children="Start Quiz"
+              /* component={Link}
             to="/LivequizQuestion" */
-            sx={{
-              textTransform: 'Capitalize',
-              fontSize: '0.9em',
-              fontWeight: '600',
-              boxShadow: 'none',
-              '&: hover': {
+              sx={{
+                textTransform: 'Capitalize',
+                fontSize: '0.9em',
+                fontWeight: '600',
                 boxShadow: 'none',
-              },
-            }}
-          />
+                '&: hover': {
+                  boxShadow: 'none',
+                },
+              }}
+            />
+          )}
         </Grid>
 
         <Container
@@ -233,12 +237,10 @@ function LiveQuiz({ members, roomID, socket }) {
                           height: 'max-content',
                         }}
                       >
-                        {JSON.parse(localStorage.userData).data.user._id ===
-                          items.stdID && 'Ready'}
                         {entered.includes(items.stdID)
                           ? JSON.parse(localStorage.userData).data.user._id ===
                             items.stdID
-                            ? ''
+                            ? 'Ready'
                             : 'Ready'
                           : 'Absent'}
                       </Typography>

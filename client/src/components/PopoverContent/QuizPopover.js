@@ -73,7 +73,13 @@ function QuizPopover({ members, socket, teleRoom, setOpenDialog }) {
                 <Button
                   variant="contained"
                   onClick={() => {
-                    socket.emit('quizParticipants', members, teleRoom, true);
+                    socket.emit(
+                      'quizParticipants',
+                      members,
+                      teleRoom,
+                      true,
+                      items._id
+                    );
                   }}
                   component={Link}
                   to={`/LiveQuiz/${teleRoom}`}
