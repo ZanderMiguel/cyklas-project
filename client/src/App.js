@@ -26,6 +26,7 @@ import Room_inside from './Rooms/Room-content-layout/Room_inside';
 import Records from './Records/Records';
 import ClassCards_main from './Records/Classcards/ClassCards_main';
 import Evaluation from './Records/Classcards/Evaluation';
+import EvaluationV2 from './Records/Classcards/EvaluationV2';
 
 //Setting
 import Settings from './Settings/Settings';
@@ -45,6 +46,7 @@ import Livequiz_multiplechoice from './Quizlit/LiveQuiz/Livequiz_multiplechoice'
 import Notifications_viewall from './Notifications/Notifications_viewall';
 import Exam_take from './Dashboard/Exam_take';
 import Exam_start from './Dashboard/Exam_start';
+import ExamSubmitted from './Dashboard/ExamSubmitted';
 import View_quiz from './Quizlit/Quizbank-content-layout/Quizbank-view/View_quiz';
 import ViewQuizV2 from './Quizlit/Quizbank-content-layout/Quizbank-view/ViewQuizV2/ViewQuizV2';
 import View_exam from './Quizlit/Quizbank-content-layout/Quizbank-view/View_exam';
@@ -192,6 +194,7 @@ function App() {
 
               {/* Student Side */}
               <Route exact path="/Evaluation" component={Evaluation} />
+              <Route exact path="/EvaluationV2" component={EvaluationV2} />
               <Route exact path="/Dashboard_main" component={Dashboard_main} />
               <Route exact path="/ExamViewedV2" component={ExamViewedV2} />
               <Route
@@ -206,6 +209,7 @@ function App() {
                 component={Exam_start}
                 socket={socket}
               />
+              <Route exact path="/ExamSubmitted" component={ExamSubmitted} />
               <ProtectedRoutes
                 exact
                 path="/quizlit/View_quiz"
