@@ -4,11 +4,8 @@ import { Divider, Box, Typography, Tabs, Tab, Button } from "@mui/material";
 import { Circle, NotificationsActive } from "@mui/icons-material";
 import useStyle from "./Styles/Notificationpopover_style";
 import RequestPopup from "../../Notifications/RequestPopup";
-<<<<<<< HEAD
-=======
 import Nodata from "../../assets/ImageJaven/Nodata.png";
 
->>>>>>> a91a4090c783ddabccf032e4bf045a60cb3e46fb
 function Notificationpopover({
   general,
   request,
