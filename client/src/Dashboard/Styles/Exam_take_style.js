@@ -24,7 +24,7 @@ function useStyle() {
             height: "auto",
             width: "relative",
             paddingBottom: "2em",
-            backgroundColor: "#FCFCFC",
+            backgroundColor: "white",
             borderLeft: "1px solid #DBDBDB",
             borderRight: "1px solid #DBDBDB",
             borderBottom: "1px solid #DBDBDB"
