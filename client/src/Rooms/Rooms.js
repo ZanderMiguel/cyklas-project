@@ -44,7 +44,7 @@ function Rooms({ socket }) {
   //   setNewRoom(created);
   // });
 
-  React.useMemo(() => {
+  React.useEffect(() => {
     post('http://localhost:5000/rooms', {
       userID: JSON.parse(localStorage.userData).data.user._id,
     });
@@ -91,7 +91,7 @@ function Rooms({ socket }) {
                 )}
               </Grid>
               {error && console.log(error)}
-              {data && data.length > 0 && <Room_layout data={data} />}
+              {data && data.length > 0 && <Room_layout data={data} setNewRoom={setNewRoom} />}
               {data && data.length === 0 && (
                 <Box
                   sx={{

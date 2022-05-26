@@ -27,7 +27,7 @@ function Member({ roomdata }) {
         members: roomdata.room.members,
       })
       .then((res) => {
-        console.log(res.data)
+
         setMembers( res.data )
       } )
       .catch((err) => console.log(err));
