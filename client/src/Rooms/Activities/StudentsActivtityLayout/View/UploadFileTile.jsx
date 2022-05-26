@@ -13,7 +13,6 @@ import Filee from '../../../../assets/ImageJaven/Filee.png';
 function UploadFileTile({ submits, activityID, duedate }) {
   const [uploadFile, setUploadFile] = React.useState( [] );
   const [status, setStatus] = React.useState( 'Handed-out')
-  console.log(Date.now(), Date.parse(duedate) )
   
   const handledelete = (index) =>
   { 
@@ -78,7 +77,8 @@ function UploadFileTile({ submits, activityID, duedate }) {
       {submits &&
         submits?.[0]?.media.map((item, index) => {
           return (
-              <Box
+            <Box
+                key={index}
                 className="Attach-file"
                 sx={{
                   backgroundColor: 'white',

@@ -42,7 +42,6 @@ function Activity_viewed({ socket }) {
       })
       .then((res) => {
         setActivityView({ ...res.data.activity, ...res.data.myFile });
-        console.log(res.data);
         axios
           .post('http://localhost:5000/activity/get/submit', {
             activityID,

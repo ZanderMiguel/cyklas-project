@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Container,
   Box,
@@ -10,23 +10,23 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
-} from '@mui/material';
-import useStyle from './Styles/People_table_layout_style';
+} from "@mui/material";
+import useStyle from "./Styles/People_table_layout_style";
 
 function MembersTableStud({ members }) {
   const { designs } = useStyle();
   return (
-    <Box sx={{ width: 'relative', height: 'auto' }}>
+    <Box sx={{ width: "relative", height: "auto" }}>
       <Grid container rowSpacing={1}>
         <Grid item xs={12}>
-          <Box className="Total" sx={designs.Total_Style}/>
+          <Box className="Total" sx={designs.Total_Style} />
           <Box sx={designs.Professor_Container_Style}>
             <Box
               className="container"
               sx={designs.Professor_Container_Sub_Style}
             >
               <Typography sx={designs.Professor_Typography_Style}>
-                Professors
+                Professor
               </Typography>
             </Box>
             <Divider />
@@ -37,7 +37,7 @@ function MembersTableStud({ members }) {
                   members.map((items, index) => {
                     return (
                       <div key={index}>
-                        {items.userType === 'Professor' && (
+                        {items.userType === "Professor" && (
                           <ListItem key={index} sx={designs.ListItem_Style}>
                             <ListItemAvatar>
                               <Avatar src={items.image} />
@@ -79,14 +79,13 @@ function MembersTableStud({ members }) {
                   members.map((items, index) => {
                     return (
                       <div key={index}>
-                        {items.userType === 'Student' && (
+                        {items.userType === "Student" && (
                           <>
                             <ListItem sx={designs.ListItem_Style}>
                               <ListItemAvatar>
-                                <Avatar src={items.image.replace(
-                                        'blob:',
-                                        ''
-                                      )} />
+                                <Avatar
+                                  src={items.image.replace("blob:", "")}
+                                />
                               </ListItemAvatar>
 
                               <ListItemText>

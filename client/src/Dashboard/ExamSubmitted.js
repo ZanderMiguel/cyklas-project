@@ -9,65 +9,7 @@ function ExamSubmitted() {
 
   return (
     <Container maxWidth = "md" sx = {{ padding: "2em 0em" }}>
-        <Grid item xs={12} sx={designs.ExamTake_GridItem_Style}>
-          <Typography sx={designs.ExamName_Typography_Style}>
-            Untitled Exam
-          </Typography>
-
-          <Box className="container" sx={designs.Container_Style}>
-            <Typography sx={designs.Instructions_Typography_Style}>
-              No description.
-            </Typography>
-
-            <Divider sx={designs.Divider_Style} />
-
-            <Box className="Exam-details" sx={designs.Exam_Details_Style}>
-              <Grid container rowSpacing={1} columnSpacing={1}>
-                <Grid item md={2} sm={6} xs={12}>
-                  <Typography sx={designs.Items_Typography_Style}>
-                    4 items
-                  </Typography>
-                </Grid>
-                <Grid item md={3} sm={6} xs={12}>
-                  <Box className="Points" sx={designs.Points_Style}>
-                    <Typography sx={designs.OverallPoints_Typography_Style}>
-                      Overall Points:
-                    </Typography>
-
-                    <Typography sx={designs.Points_Typography_Style}>
-                      10 points
-                    </Typography>
-                  </Box>
-                </Grid>
-
-                <Grid item md={4} sm={6} xs={12}>
-                  <Box className="DueDate" sx={designs.DueDate_Style}>
-                    <Typography sx={designs.DueDate_Typography_Style}>
-                      Due Date:
-                    </Typography>
-
-                    <Typography sx={designs.Date_Typography_Style}>
-                      July 19, 2020
-                    </Typography>
-                  </Box>
-                </Grid>
-                <Grid item md={3} sm={6} xs={12}>
-                  <Box className="TimeLimit" sx={designs.TimeLimit_Style}>
-                    <Typography sx={designs.TimeLimit_Typography_Style}>
-                      Time Limit:
-                    </Typography>
-
-                    <Typography sx={designs.Time_Typography_Style}>
-                      1 hour
-                    </Typography>
-                  </Box>
-                </Grid>
-              </Grid>
-            </Box>
-          </Box>
-        </Grid>
-
-        <Grid item xs = {12}
+       <Grid item xs = {12}
         sx = {{
             marginTop: "0.8em",
             backgroundColor: "white",
@@ -102,13 +44,13 @@ function ExamSubmitted() {
                 height: "max-content",
                 marginBottom: "2em"
             }}>
-            You will see your exam results in (Rooms > Activities > Exams), <br/>
+            You will see your exam results in (Rooms {'>'} Activities {'>'} Exams), <br/>
             once your professor check and return it.
             </Typography>
 
-            <Typography children = "Go to Feed for now."
+            <Typography children = "Go to Rooms for now."
             component = {Link}
-            to = ""
+            to = "/rooms"
             sx = {{
                 color: "#007FFF",
                 fontSize: "0.8em",

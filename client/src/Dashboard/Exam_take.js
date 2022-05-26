@@ -43,7 +43,7 @@ function Exam_take() {
 
           <Box className="container" sx={designs.Container_Style}>
             <Typography sx={designs.Instructions_Typography_Style}>
-              No description.
+              {data && data.instruction}
             </Typography>
 
             <Divider sx={designs.Divider_Style} />

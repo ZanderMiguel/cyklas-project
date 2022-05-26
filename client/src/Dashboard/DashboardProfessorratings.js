@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Avatar } from '@mui/material';
-import AvatarIcon from '../assets/ImageJaven/Avatar.png';
-import './Styles/DashboardProfessorratingsStylesheet.css';
-import { Star, Search } from '@mui/icons-material';
+import React, { useState } from "react";
+import { Avatar } from "@mui/material";
+import AvatarIcon from "../assets/ImageJaven/Avatar.png";
+import "./Styles/DashboardProfessorratingsStylesheet.css";
+import { Star, Search } from "@mui/icons-material";
 import {
   Container,
   Grid,
@@ -16,54 +16,49 @@ import {
   InputLabel,
   Select,
   MenuItem,
-} from '@mui/material';
-import axios from 'axios';
-const dataRange = [
-  {
-    value: 'THIS WEEK',
-    label: 'THIS WEEK',
-  },
-  {
-    value: 'THIS MONTH',
-    label: 'THIS MONTH',
-  },
-  {
-    value: 'THIS YEAR',
-    label: 'THIS YEAR',
-  },
-];
+} from "@mui/material";
+import axios from "axios";
+// const dataRange = [
+//   {
+//     value: 'THIS WEEK',
+//     label: 'THIS WEEK',
+//   },
+//   {
+//     value: 'THIS MONTH',
+//     label: 'THIS MONTH',
+//   },
+//   {
+//     value: 'THIS YEAR',
+//     label: 'THIS YEAR',
+//   },
+// ];
 
 const dataRoom = [
   {
-    value: 'Embedded Programming',
-    label: 'Embedded Programming',
+    value: "Embedded Programming",
+    label: "Embedded Programming",
   },
   {
-    value: 'Art Appreciation',
-    label: 'Art Appreciation',
+    value: "Art Appreciation",
+    label: "Art Appreciation",
   },
   {
-    value: 'Science, Technology and Society',
-    label: 'Science, Technology and Society',
+    value: "Science, Technology and Society",
+    label: "Science, Technology and Society",
   },
   {
-    value: 'Software Engineering',
-    label: 'Software Engineering',
+    value: "Software Engineering",
+    label: "Software Engineering",
   },
 ];
 
 function DashboardProfessorratings() {
-  const [selectRange, setSelectRange] = useState('THIS WEEK');
-  const handleChangeRange = (event) => {
-    setSelectRange(event.target.value);
-  };
   const [ratings, setRatings] = useState(null);
   React.useEffect(() => {
     axios
-      .get('http://localhost:5000/ratings/display')
+      .get("http://localhost:5000/ratings/display")
       .then((res) => {
         setRatings(res.data);
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -71,58 +66,27 @@ function DashboardProfessorratings() {
     <>
       <Box
         sx={{
-          backgroundColor: 'transparent',
-          display: 'flex',
-          width: 'relative',
-          height: 'auto',
-          marginBottom: '0.3em',
+          backgroundColor: "transparent",
+          display: "flex",
+          width: "relative",
+          height: "auto",
+          marginBottom: "0.3em",
         }}
       >
         <Typography
           children="Professor Ratings"
           sx={{
-            color: '#8E8E8E',
-            fontSize: '0.8em',
-            fontWeight: '500',
-            width: 'auto',
+            color: "#8E8E8E",
+            fontSize: "0.8em",
+            fontWeight: "500",
+            width: "auto",
             flexGrow: 1,
-            height: 'relative',
-            display: 'flex',
-            alignItems: 'center',
-            textTransform: 'Uppercase',
+            height: "relative",
+            display: "flex",
+            alignItems: "center",
+            textTransform: "Uppercase",
           }}
         />
-
-        <FormControl
-          variant="standard"
-          sx={{
-            width: 'auto',
-            padding: '0em',
-          }}
-        >
-          <Select
-            labelId="demo-simple-select-standard-label"
-            id="demo-simple-select-standard"
-            value={selectRange}
-            onChange={handleChangeRange}
-            label="SelectRoom"
-            disableUnderline
-            sx={{
-              width: '100%',
-              fontSize: '0.7em',
-              fontWeight: '500',
-              color: '#007FFF',
-              textTransform: 'Uppercase',
-            }}
-          >
-            {dataRange.map(({ value, label }) => (
-              <MenuItem key={value} value={value}>
-                {' '}
-                {label}{' '}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
       </Box>
 
       <Grid item xs={12}>
@@ -151,13 +115,13 @@ function DashboardProfessorratings() {
                     <td
                       data-label="Ratings"
                       style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
                       }}
                     >
-                      {items.rating}{' '}
-                      <Star sx={{ fontSize: '1.7em', color: '#F9A826' }} />
+                      {items.rating}{" "}
+                      <Star sx={{ fontSize: "1.7em", color: "#F9A826" }} />
                     </td>
                     {/* <td> {items.icon} </td> */}
                   </tr>
