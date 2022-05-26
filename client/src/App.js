@@ -60,7 +60,7 @@ import QuizGameSetup from './pages-landing/QuizGameSetup';
 // Student Side
 import TeleconGroup from './pages-landing/TeleconGroup';
 import LiveQuizSetup from './Telecon/LiveQuizSetup';
-import EvaluationV2 from './Records/Classcards/EvaluationV2';
+
 function App() {
   const theme = createTheme({
     typography: {
