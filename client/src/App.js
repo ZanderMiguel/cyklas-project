@@ -48,10 +48,7 @@ import Notifications_viewall from "./Notifications/Notifications_viewall";
 import Exam_take from "./Dashboard/Exam_take";
 import Exam_start from "./Dashboard/Exam_start";
 import ExamSubmitted from "./Dashboard/ExamSubmitted";
-<<<<<<< HEAD
-=======
 import ExamAutosubmit from "./Dashboard/ExamAutosubmit";
->>>>>>> a91a4090c783ddabccf032e4bf045a60cb3e46fb
 import View_quiz from "./Quizlit/Quizbank-content-layout/Quizbank-view/View_quiz";
 import ViewQuizV2 from "./Quizlit/Quizbank-content-layout/Quizbank-view/ViewQuizV2/ViewQuizV2";
 import View_exam from "./Quizlit/Quizbank-content-layout/Quizbank-view/View_exam";
@@ -145,6 +142,7 @@ function App() {
                 path="/quizlit/createexam"
                 component={Examform}
               />
+              <ProtectedRoutes exact path="/examautosubmit" component={ExamAutosubmit}/>
 
               <Route exact path="/quizlit/join">
                 <JoinQuiz socket={socket} />
@@ -226,14 +224,10 @@ function App() {
                 component={Exam_start}
                 socket={socket}
               />
-<<<<<<< HEAD
               <ProtectedRoutes exact path="/ExamSubmitted" component={ExamSubmitted} />
-=======
-              <Route exact path="/ExamSubmitted" component={ExamSubmitted} />
 
-              <Route exact path="/ExamAutosubmit" component={ExamAutosubmit} />
+              <ProtectedRoutes exact path="/ExamAutosubmit" component={ExamAutosubmit} />
 
->>>>>>> a91a4090c783ddabccf032e4bf045a60cb3e46fb
               <ProtectedRoutes
                 exact
                 path="/quizlit/View_quiz"

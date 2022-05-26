@@ -3,11 +3,8 @@ import { Divider, Box, Typography, Avatar, Button } from "@mui/material";
 import useStyle from "../components/PopoverContent/Styles/Notificationpopover_style";
 import axios from "axios";
 import moment from "moment";
-<<<<<<< HEAD
 import Nodata from "../assets/ImageJaven/Nodata.png";
-=======
 import RequestSent from "../assets/ImageJaven/RequestSent.png";
->>>>>>> a91a4090c783ddabccf032e4bf045a60cb3e46fb
 
 function RequestPopup({ items, setItems }) {
   const { designs } = useStyle();
@@ -217,7 +214,6 @@ function RequestPopup({ items, setItems }) {
             alignItems: "center",
           }}
         >
-<<<<<<< HEAD
           <Box
             sx={{
               height: "7em",
@@ -238,25 +234,11 @@ function RequestPopup({ items, setItems }) {
               }}
             />
           </Box>
-=======
-          <img
-            src={RequestSent}
-            alt="Request Sent"
-            style={{
-              height: "7em",
-              marginTop: "2em",
-            }}
-          />
->>>>>>> a91a4090c783ddabccf032e4bf045a60cb3e46fb
 
           <Typography
             children="There is no request to show."
             sx={{
-<<<<<<< HEAD
               fontSize: "0.8em",
-=======
-              fontSize: "0.9em",
->>>>>>> a91a4090c783ddabccf032e4bf045a60cb3e46fb
               fontWeight: "600",
               color: "#3F3D56",
               marginRight: "1em",
