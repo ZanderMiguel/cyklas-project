@@ -4,6 +4,11 @@ import { Divider, Box, Typography, Tabs, Tab, Button } from "@mui/material";
 import { Circle, NotificationsActive } from "@mui/icons-material";
 import useStyle from "./Styles/Notificationpopover_style";
 import RequestPopup from "../../Notifications/RequestPopup";
+<<<<<<< HEAD
+=======
+import Nodata from "../../assets/ImageJaven/Nodata.png";
+
+>>>>>>> a91a4090c783ddabccf032e4bf045a60cb3e46fb
 function Notificationpopover({
   general,
   request,
@@ -57,16 +62,16 @@ function Notificationpopover({
             component={Link}
             to="/Notifications_viewall"
             sx={{
-              margin: '0em 1em 0.8em 2em',
-              padding: '0em 1em',
-              fontSize: '0.8em',
-              fontWeight: '500',
-              textTransform: 'none',
-              backgroundColor: 'transparent',
-              color: '#007FFF',
-              width: 'max-content',
-              '&: hover': {
-                backgroundColor: 'transparent',
+              margin: "0em 1em 0.8em 2em",
+              padding: "0em 1em",
+              fontSize: "0.8em",
+              fontWeight: "500",
+              textTransform: "none",
+              backgroundColor: "transparent",
+              color: "#007FFF",
+              width: "max-content",
+              "&: hover": {
+                backgroundColor: "transparent",
               },
             }}
           >
@@ -164,8 +169,45 @@ function Notificationpopover({
                 </div>
               ))
             ) : (
-              <Box sx={designs.GeneralContainer_Sub3y_Style}>
-                <Typography children="have nothing to show" />
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.8em",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Box
+                  sx={{
+                    height: "7em",
+                    width: "7em",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: "8em",
+                    backgroundColor: "#F3F3F3",
+                    margin: "1.5em 1em 0em 0em",
+                  }}
+                >
+                  <img
+                    src={Nodata}
+                    alt="No Data"
+                    style={{
+                      height: "8em",
+                    }}
+                  />
+                </Box>
+
+                <Typography
+                  children="There is no notification to show."
+                  sx={{
+                    fontSize: "0.9em",
+                    fontWeight: "600",
+                    color: "#3F3D56",
+                    marginRight: "1em",
+                  }}
+                />
               </Box>
             )}
           </Box>
