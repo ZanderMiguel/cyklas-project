@@ -383,7 +383,7 @@ function View_activity({ socket }) {
                       color: '#3F3D56',
                     }}
                   >
-                    / {activityView && activityView.activityPoints}
+                    {activityView && activityView.activityPoints}
                   </Typography>
                 </Box>
               </Grid>

@@ -10,16 +10,18 @@ import {
   Tooltip,
 } from '@mui/material';
 import { DoorFrontOutlined } from '@mui/icons-material';
+import axios from 'axios'
 import { Link } from 'react-router-dom';
 import CssBasedLine from '@mui/material/CssBaseline';
 import RoomBackground6 from '../../assets/ImageJaven/RoomBackground6.png';
 
-function Room_layout_student({ data }) {
+function Room_layout_student({ data,setNewRoom }) {
   return (
     <>
       <CssBasedLine />
       {data &&
-        data.map((item, index) => {
+        data.map( ( item, index ) =>
+        {
           return (
             <Grid item xs={12} key={index}>
               <Paper
@@ -154,6 +156,18 @@ function Room_layout_student({ data }) {
                           marginLeft: '0.3em',
                           height: '1.2em',
                           width: '1.2em',
+                        }}
+                        onClick={() =>
+                        { 
+                          axios
+                            .put('http://localhost:5000/room/leave', {
+                              roomID: item._id,
+                              userID: JSON.parse(localStorage.userData).data.user._id,
+                            })
+                            .then((res) => {
+                              setNewRoom(prev => !prev)
+                            })
+                            .catch((err) => console.log(err));
                         }}
                       >
                         <DoorFrontOutlined

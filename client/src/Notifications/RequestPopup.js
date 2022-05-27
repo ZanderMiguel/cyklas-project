@@ -214,6 +214,18 @@ function RequestPopup({ items, setItems }) {
             alignItems: 'center',
           }}
         >
+          <Box
+            sx={{
+              height: "7em",
+              width: "7em",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: "8em",
+              backgroundColor: "#F3F3F3",
+              margin: "1em 1em 0em 0em",
+            }}
+          >
           <img
             src={RequestSent}
             alt="Request Sent"
@@ -222,6 +234,8 @@ function RequestPopup({ items, setItems }) {
               marginTop: '2em',
             }}
           />
+          </Box>
+         
 
           <Typography
             children="There is no request to show."

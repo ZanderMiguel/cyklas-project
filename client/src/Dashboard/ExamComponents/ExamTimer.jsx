@@ -44,7 +44,7 @@ function ExamTimer({ data, socket, qAnswers }) {
       })
       .then((res) => {
         console.log(res.data);
-        setRedirect(<Redirect to="/ExamSubmitted" />);
+        setRedirect(<Redirect to="/examautosubmit" />);
       })
       .catch((err) => console.log(err));
     }

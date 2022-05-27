@@ -142,6 +142,7 @@ function App() {
                 path="/quizlit/createexam"
                 component={Examform}
               />
+              <ProtectedRoutes exact path="/examautosubmit" component={ExamAutosubmit}/>
 
               <Route exact path="/quizlit/join">
                 <JoinQuiz socket={socket} />
