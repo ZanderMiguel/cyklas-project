@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Box,
   Typography,
@@ -29,26 +29,26 @@ import AvatarIcon from '../../../assets/ImageJaven/Avatar.png';
 
 const dataSort = [
   {
-    value: 'First Name',
-    label: 'First Name',
+    value: "First Name",
+    label: "First Name",
   },
   {
-    value: 'Last Name',
-    label: 'Last Name',
+    value: "Last Name",
+    label: "Last Name",
   },
   {
-    value: 'Submitted',
-    label: 'Submitted',
+    value: "Submitted",
+    label: "Submitted",
   },
   {
-    value: 'Graded',
-    label: 'Graded',
+    value: "Graded",
+    label: "Graded",
   },
 ];
 
 function View_exam() {
   const { designs } = useStyle();
-  const [selectSort, setSort] = useState('');
+  const [selectSort, setSort] = useState("");
   const [data, setData] = useState(null);
   const { examID } = useParams();
   const [quizData, setQuizData] = useState(null);
@@ -59,14 +59,16 @@ function View_exam() {
   const shrtAns = React.useRef({});
   const [dataRoom, setDataRoom] = React.useState(null);
   const scores = React.useRef([]);
-  const [selectRoom, setRoom] = useState( '' );
   const [examreturn, setExamReturn]  = useState(null)
+  const [selectRoom, setRoom] = useState("");
+  const indexs = React.useRef(null);
+
   const handleChangeSort = (event) => {
     setSort(event.target.value);
   };
   React.useMemo(() => {
     axios
-      .post('http://localhost:5000/quizlit', {
+      .post("http://localhost:5000/quizlit", {
         quizID: examID,
       })
       .then((res) => {
@@ -81,17 +83,18 @@ function View_exam() {
   document.getElementById(`${stdID}`) &&
     (document.getElementById(`${stdID}`).innerHTML = `${Math.round(
       (score / overAll) * 100
-    )}%`.replace('NaN%', 'Missing'));
+    )}%`.replace("NaN%", "Missing"));
 
+  console.log(data && indexs.current && data[indexs.current]);
   return (
     <Container maxWidth="lg">
       <ToastContainer/>
       <Grid container columnSpacing={1}>
-        <Grid item xs={4} sx={{ margin: '0.5em 0em' }}>
+        <Grid item xs={4} sx={{ margin: "0.5em 0em" }}>
           <Button
             onClick={() => {
               axios
-                .post('http://localhost:5000/records/return-grade', {
+                .post("http://localhost:5000/records/return-grade", {
                   roomID: selectRoom,
                   userID: JSON.parse(localStorage.userData).data.user._id,
                   examID,
@@ -119,7 +122,7 @@ function View_exam() {
           dataRoom={dataRoom}
           setDataRoom={setDataRoom}
         />
-        <Grid item xs={4} sx={{ paddingRight: '0.8em' }}>
+        <Grid item xs={4} sx={{ paddingRight: "0.8em" }}>
           <Box className="Student-list" sx={designs.Student_List_Style}>
             <Box className="Sort-container" sx={designs.Sort_Container_Style}>
               <FormControlLabel
@@ -166,11 +169,13 @@ function View_exam() {
                 data.map(function (items, index) {
                   return (
                     <div key={index}>
-                      {items.userType === 'Student' && (
+                      {items.userType === "Student" && (
                         <StudentsList
                           scores={scores}
                           items={items}
                           setStdID={setStdID}
+                          index={index}
+                          indexs={indexs}
                         />
                       )}
                     </div>
@@ -184,93 +189,105 @@ function View_exam() {
           <Box
             className="Right-container"
             sx={{
-              width: '100%',
-              height: 'auto',
-              paddingBottom: '1em',
-              backgroundColor: 'transparent',
+              width: "100%",
+              height: "auto",
+              paddingBottom: "1em",
+              backgroundColor: "transparent",
             }}
           >
             <Grid
               item
               xs={12}
               sx={{
-                display: 'flex',
-                gap: '0.5em',
-                alignItems: 'center',
-                padding: '0.5em 0.8em 0.5em 0.5em',
-                marginBottom: '0.5em',
-                backgroundColor: 'white',
+                display: "flex",
+                gap: "0.5em",
+                alignItems: "center",
+                padding: "0.5em 0.8em 0.5em 0.5em",
+                marginBottom: "0.5em",
+                backgroundColor: "white",
               }}
             >
               <Avatar src={AvatarIcon} alt="Avatar" />
 
               <Box
                 sx={{
-                  width: 'auto',
+                  width: "auto",
                   flexGrow: 1,
-                  height: 'auto',
+                  height: "auto",
                 }}
               >
                 <Typography
-                  children="Armin Arlert"
+                  children={
+                    data &&
+                    indexs.current &&
+                    `${data[indexs.current].firstName} ${
+                      data[indexs.current].lastName
+                    }`
+                  }
                   // children={`${quizData && quizData.author.name}`}
                   sx={{
-                    color: '#3F3D56',
-                    fontSize: '0.8em',
-                    fontWeight: '600',
-                    textTransform: 'none',
-                    width: 'auto',
-                    height: 'max-content',
+                    color: "#3F3D56",
+                    fontSize: "0.8em",
+                    fontWeight: "600",
+                    textTransform: "none",
+                    width: "auto",
+                    height: "max-content",
                   }}
                 />
 
                 <Typography
-                  children="submitted this exam on May 10, 2022 / 5:02 PM"
+                  children={
+                    data &&
+                    indexs.current &&
+                    `submitted this exam on ${moment(
+                      data[indexs.current].createdAt
+                    ).format("ll")}`
+                  }
                   // children={`created this exam on ${
                   //   quizData &&
                   //   moment(quizData.createdAt).format('MMMM DD YYYY / h:mm a')
                   // }`}
                   sx={{
-                    color: '#8E8E8E',
-                    fontSize: '0.7em',
-                    fontWeight: '500',
-                    textTransform: 'none',
-                    width: 'auto',
-                    height: 'max-content',
+                    color: "#8E8E8E",
+                    fontSize: "0.7em",
+                    fontWeight: "500",
+                    textTransform: "none",
+                    width: "auto",
+                    height: "max-content",
                   }}
                 />
               </Box>
 
               <Box
                 sx={{
-                  display: 'flex',
-                  gap: '0.8em',
-                  alignItems: 'center',
-                  width: 'auto',
-                  height: 'auto',
+                  display: "flex",
+                  gap: "0.8em",
+                  alignItems: "center",
+                  width: "auto",
+                  height: "auto",
                 }}
               >
                 <Typography
                   children="Score:"
                   sx={{
-                    color: '#8E8E8E',
-                    fontSize: '0.8em',
-                    fontWeight: '600',
-                    textTransform: 'Uppercase',
-                    width: 'auto',
-                    height: 'max-content',
+                    color: "#8E8E8E",
+                    fontSize: "0.8em",
+                    fontWeight: "600",
+                    textTransform: "Uppercase",
+                    width: "auto",
+                    height: "max-content",
                   }}
                 />
 
                 <Typography
                   children={`${score} / ${overAll}`}
                   sx={{
-                    color: '#007FFF',
-                    fontSize: '0.8em',
-                    fontWeight: '700',
-                    textTransform: 'Uppercase',
-                    width: 'auto',
-                    height: 'max-content',
+                    color: "#007FFF",
+                    fontSize: "0.8em",
+                    fontWeight: "700",
+                    textTransform: "Uppercase",
+                    width: "auto",
+                    height: "max-content",
                   }}
                 />
               </Box>
@@ -280,44 +297,44 @@ function View_exam() {
               item
               xs={12}
               sx={{
-                backgroundColor: 'white',
-                padding: '0.8em 1em',
-                borderRadius: '0.3em',
-                display: 'flex',
-                alignItems: 'center',
-                margin: '0em 0em 0.8em 0em',
+                backgroundColor: "white",
+                padding: "0.8em 1em",
+                borderRadius: "0.3em",
+                display: "flex",
+                alignItems: "center",
+                margin: "0em 0em 0.8em 0em",
               }}
             >
               <Box
                 sx={{
                   flexGrow: 1,
-                  height: 'auto',
+                  height: "auto",
                 }}
               >
                 <Box
                   sx={{
-                    display: 'flex',
-                    gap: '0.8em',
-                    alignItems: 'center',
-                    marginBottom: '0.5em',
+                    display: "flex",
+                    gap: "0.8em",
+                    alignItems: "center",
+                    marginBottom: "0.5em",
                   }}
                 >
                   <img
                     src={ExamIcon}
                     alt="Exam Icon"
                     style={{
-                      height: '2em',
+                      height: "2em",
                     }}
                   />
 
                   <Typography
                     children={quizData && quizData.title}
                     sx={{
-                      flexGrow: '1',
-                      fontSize: '1.3em',
-                      fontWeight: '600',
-                      color: '#3F3D56',
-                      height: 'max-content',
+                      flexGrow: "1",
+                      fontSize: "1.3em",
+                      fontWeight: "600",
+                      color: "#3F3D56",
+                      height: "max-content",
                     }}
                   />
                 </Box>
@@ -325,13 +342,13 @@ function View_exam() {
                 <Typography
                   children={quizData && quizData.instruction}
                   sx={{
-                    flexGrow: '1',
-                    fontSize: '0.8em',
-                    fontWeight: '400',
-                    color: '#8E8E8E',
-                    textTransform: 'none',
-                    height: 'max-content',
-                    paddingBottom: '1.5em',
+                    flexGrow: "1",
+                    fontSize: "0.8em",
+                    fontWeight: "400",
+                    color: "#8E8E8E",
+                    textTransform: "none",
+                    height: "max-content",
+                    paddingBottom: "1.5em",
                   }}
                 />
               </Box>

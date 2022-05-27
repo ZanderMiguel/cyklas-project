@@ -240,7 +240,7 @@ function RequestPopup({ items, setItems }) {
             children="There is no request to show."
             sx={{
               fontSize: "0.8em",
-              fontWeight: "600",
+              fontWeight: "400",
               color: "#3F3D56",
               marginRight: "1em",
             }}

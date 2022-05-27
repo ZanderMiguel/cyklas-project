@@ -1,126 +1,72 @@
 .classcards-table {
-    border-collapse: collapse;
-    margin: 0.5em 0em 1em 0em;
-    font-size: 0.8em;
-    font-weight: 400;
-    color: #3F3D56;
-    width: 100%;
-    border: none;
-    text-align: center;
-    font-family: Poppins;
-    background-color: white;
+  border-collapse: collapse;
+  font-size: 0.8em;
+  font-weight: 400;
+  color: #3f3d56;
+  width: 100%;
+  border: none;
+  text-align: center;
+  font-family: Poppins;
+  background-color: white;
 }
 .classcards-table thead tr {
-    background-color: #ebebeb;
-    color: #5f6166;
-    font-size: 1em;
-    text-align: center;
+  background-color: #ebebeb;
+  color: #5f6166;
+  font-size: 1em;
+  text-align: center;
 }
 .classcards-table thead tr th {
-    font-weight: 600;
+  font-weight: 600;
 }
 .classcards-table thead tr th:first-child {
-    text-align: left;
-    padding-left: 1.5em;
+  text-align: left;
+  padding-left: 1.5em;
 }
 .classcards-table thead tr th:nth-child(2) {
-    text-align: center;
+  text-align: center;
 }
 .classcards-table th,
 .classcards-table td {
-    padding: 1em;
+  padding: 1em;
 }
 .classcards-table tbody tr {
-    border-bottom: 1px solid #DBDBDB;
+  border-bottom: 1px solid #dbdbdb;
 }
 .classcards-table tbody tr td:first-child {
-    text-align: left;
-    padding-left: 1.5em;
+  text-align: left;
+  padding-left: 1.5em;
 }
 .classcards-table tbody tr td:nth-child(2) {
-    text-align: center;
+  text-align: center;
 }
 .classcards-table tbody tr:hover {
-    background-color: #FCFCFC;
-    transition: all 300ms;
+  background-color: #fcfcfc;
+  transition: all 300ms;
 }
 .classcards-table tbody tr td:first-child {
-    color: #007FFF;
-    font-weight: 600;
+  color: #007fff;
+  font-weight: 600;
 }
 .classcards-table tbody td .evaluate-btn {
-    font-family: Poppins;
-    text-decoration: none;
-    color: white;
-    font-size: 0.9em;
-    font-weight: 600;
-    /* background-color: #0276EA; */
-    background-color: #dbdada;
-    padding: 0.3em 1.3em;
-    border: none;
-    border-radius: 0.5em;
-} 
+  font-family: Poppins;
+  text-decoration: none;
+  color: white;
+  font-size: 0.9em;
+  font-weight: 600;
+  /* background-color: #0276EA; */
+  background-color: #dbdada;
+  padding: 0.3em 1.3em;
+  border: none;
+  border-radius: 0.5em;
+}
 /* .classcards-table tbody td .evaluate-btn:hover {
     cursor: pointer;
     background-color: #056dd4;
     transition: all 300ms;
 } */
 .classcards-table tfoot tr {
-    background-color: #ececec;
-    color: #3F3D56;
-    font-weight: 600;
-    padding: 0.1em 0em;
-}
-@media (max-width: 830px) {
-    .classcards-table th,
-    .classcards-table td {
-    padding: 0.7em;
-    }
-    .classcards-table thead {
-        display: none;
-    }
-    .classcards-table tbody tr {
-        width: 100%;
-    }
-    .classcards-table tbody tr td {
-        display: block;
-        width: 237%;
-        text-align: right;
-        position: relative;
-    }
-    .classcards-table tbody tr td:first-child {
-        display: block;
-        width: 237%;
-        text-align: left;
-        position: relative;
-    }
-    .classcards-table tbody tr td:last-child {
-        display: block;
-        padding-left: 1em;
-        padding-right: 1em;
-        border-bottom: 1px solid transparent;
-    }
-    .classcards-table tbody tr td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 0;
-        width: 50%;
-        padding-left: 1em;
-        font-weight: 600;
-        text-align: left;
-    }
-}
-@media (max-width: 455px) {
-    .classcards-table tbody tr td {
-        display: block;
-        width: 250%;
-        text-align: right;
-        position: relative;
-    }
-    .classcards-table tbody tr td:first-child {
-        display: block;
-        width: 250%;
-        text-align: left;
-        position: relative;
-    }
+  background-color: #ececec;
+  color: #3f3d56;
+  font-weight: 600;
+  padding: 0.1em 0em;
 }
