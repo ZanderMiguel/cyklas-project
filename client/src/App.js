@@ -224,9 +224,17 @@ function App() {
                 component={Exam_start}
                 socket={socket}
               />
-              <ProtectedRoutes exact path="/ExamSubmitted" component={ExamSubmitted} />
+              <ProtectedRoutes
+                exact
+                path="/ExamSubmitted"
+                component={ExamSubmitted}
+              />
 
-              <ProtectedRoutes exact path="/ExamAutosubmit" component={ExamAutosubmit} />
+              <ProtectedRoutes
+                exact
+                path="/ExamAutosubmit"
+                component={ExamAutosubmit}
+              />
 
               <ProtectedRoutes
                 exact

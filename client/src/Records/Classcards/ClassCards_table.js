@@ -28,7 +28,7 @@ const ClassCards_table = ({ roomsdata }) => {
         </thead>
 
         <tbody>
-          {cc &&
+          {cc && 
             cc.map(function (items, index) {
               return (
                 <tr key={index}>

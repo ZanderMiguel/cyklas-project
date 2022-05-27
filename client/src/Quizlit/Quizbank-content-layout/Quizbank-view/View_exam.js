@@ -14,6 +14,8 @@ import {
   MenuItem,
   Avatar,
 } from '@mui/material';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ExamIcon from '../../../assets/ImageJaven/ExamIcon.png';
 import useStyle from '../../Styles/View_exam_style';
 import '../../Styles/View_quiz_stylesheet.css';
@@ -57,7 +59,8 @@ function View_exam() {
   const shrtAns = React.useRef({});
   const [dataRoom, setDataRoom] = React.useState(null);
   const scores = React.useRef([]);
-  const [selectRoom, setRoom] = useState('');
+  const [selectRoom, setRoom] = useState( '' );
+  const [examreturn, setExamReturn]  = useState(null)
   const handleChangeSort = (event) => {
     setSort(event.target.value);
   };
@@ -82,6 +85,7 @@ function View_exam() {
 
   return (
     <Container maxWidth="lg">
+      <ToastContainer/>
       <Grid container columnSpacing={1}>
         <Grid item xs={4} sx={{ margin: '0.5em 0em' }}>
           <Button
@@ -94,7 +98,13 @@ function View_exam() {
                   scores: scores.current,
                   stdID,
                 })
-                .then((res) => console.log(res.data))
+                .then( ( res ) => 
+                    {if ( res ) {
+                  setExamReturn(
+                    toast.success( "Successfuly return", {
+                      position: toast.POSITION.TOP_CENTER,
+                    } ) )
+                }})
                 .catch((err) => console.log(err));
             }}
             sx={designs.Return_Button_Style}

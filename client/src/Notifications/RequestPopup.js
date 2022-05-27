@@ -3,7 +3,6 @@ import { Divider, Box, Typography, Avatar, Button } from "@mui/material";
 import useStyle from "../components/PopoverContent/Styles/Notificationpopover_style";
 import axios from "axios";
 import moment from "moment";
-import Nodata from "../assets/ImageJaven/Nodata.png";
 import RequestSent from "../assets/ImageJaven/RequestSent.png";
 
 function RequestPopup({ items, setItems }) {
@@ -226,14 +225,16 @@ function RequestPopup({ items, setItems }) {
               margin: "1em 1em 0em 0em",
             }}
           >
-            <img
-              src={Nodata}
-              alt="No Data"
-              style={{
-                height: "8em",
-              }}
-            />
+          <img
+            src={RequestSent}
+            alt="Request Sent"
+            style={{
+              height: "7em",
+              marginTop: "2em",
+            }}
+          />
           </Box>
+         
 
           <Typography
             children="There is no request to show."

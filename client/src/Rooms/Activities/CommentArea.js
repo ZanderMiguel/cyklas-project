@@ -162,10 +162,7 @@ function CommentArea({ socket, commentId, activityID }) {
                   >
                     <Avatar
                       alt="Remy Sharp"
-                      src={items.author.avatar.replace(
-                        'blob:',
-                        ''
-                      )}
+                      src={items.author}
                       sx={{
                         margin: '1px 0px',
                         height: '40px',

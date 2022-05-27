@@ -11,11 +11,10 @@ import Videoo from "../../../../assets/ImageJaven/Videoo.png";
 import Filee from "../../../../assets/ImageJaven/Filee.png";
 
 function UploadFileTile({ submits, activityID, duedate }) {
-  const [uploadFile, setUploadFile] = React.useState( [] );
-  const [status, setStatus] = React.useState( 'Handed-out')
-  
-  const handledelete = (index) =>
-  { 
+  const [uploadFile, setUploadFile] = React.useState([]);
+  const [status, setStatus] = React.useState("Handed-out");
+
+  const handledelete = (index) => {
     const values = [...uploadFile];
     values.splice(index, 1);
     setUploadFile(values);
@@ -77,7 +76,7 @@ function UploadFileTile({ submits, activityID, duedate }) {
         submits?.[0]?.media.map((item, index) => {
           return (
             <Box
-            key={index}
+              key={index}
               className="Attach-file"
               sx={{
                 backgroundColor: "white",
