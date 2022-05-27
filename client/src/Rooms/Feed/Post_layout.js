@@ -73,7 +73,7 @@ function Post_layout({
           JSON.parse(localStorage.userData).data.user.lastName
         }`,
         userID: JSON.parse(localStorage.userData).data.user._id,
-        avatar: JSON.parse(localStorage.userData).data.user.image,
+        avatar: JSON.parse(localStorage.userData).data.imageUrl,
       },
     });
     if (comments) {
@@ -93,7 +93,7 @@ function Post_layout({
                   alt="Remy Sharp"
                   src={
                     _.isString(author)
-                      ? JSON.parse(author).avatar.replace('blob', '')
+                      ? JSON.parse(author).avatar
                       : author.avatar
                   }
                   sx={designs.AvatarPost_Style}
@@ -190,9 +190,7 @@ function Post_layout({
               <Box className="write-comment" sx={designs.Write_Comment_Style}>
                 <Avatar
                   alt="Remy Sharp"
-                  src={JSON.parse(
-                    localStorage.userData
-                  ).data.user.image.replace('blob:', '')}
+                  src={JSON.parse(localStorage.userData).data.imageUrl}
                   sx={designs.AvatarComment_Style}
                 />
 

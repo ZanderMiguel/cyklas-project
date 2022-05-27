@@ -72,11 +72,9 @@ const displaySubmittedActivity = async (req, res) => {
 
       files.forEach((item) => {
         activity?.media?.[0].forEach((clientFile) => {
-          if (
-            clientFile.replace(' ', '') ===
-            item.filename.split(`_split_`)[0].replace(' ', '')
-          ) {
+          if (item.filename.includes(clientFile)) {
             myFile.push({ file: item });
+            console.log(item.filename, clientFile);
             gfs
               .openDownloadStream(item._id)
               .pipe(fs.createWriteStream(`./files/${item.filename}`));

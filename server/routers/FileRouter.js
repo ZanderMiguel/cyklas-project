@@ -27,6 +27,14 @@ const {
   updateAnnounce,
 } = require('../controller/announcementController');
 
+const {
+  createRegistrationController,
+  displayRegistrationController,
+  deleteRegistrationController,
+  userLogInController,
+  updateUserData,
+} = require('../controller/registrationController');
+
 module.exports = (upload) => {
   fileRouter.post(
     '/activity/create',
@@ -38,7 +46,7 @@ module.exports = (upload) => {
   fileRouter.put('/activity/update/:id', updateActivityController);
   fileRouter.post('/activity/get', findActivity);
   fileRouter.get('/activity/download/:file', downloadFileByClick);
-  fileRouter.get('/activity/preview/:file', previewFileByClick);
+  fileRouter.post('/activity/preview', previewFileByClick);
   fileRouter.put('/activity/create/comment', createActivityComment);
   fileRouter.post('/activity/get/comment', displayActivityComment);
   fileRouter.put('/activity/delete/comment', deleteController);
@@ -60,5 +68,16 @@ module.exports = (upload) => {
   fileRouter.post('/announce', displayAnnounce);
   fileRouter.delete('/announce/delete', deleteAnnounce);
   fileRouter.put('/announce/update', updateAnnounce);
+
+  //registration and login
+  fileRouter.post(
+    '/register',
+    upload.single('avatar'),
+    createRegistrationController
+  );
+  fileRouter.post('/getUser', displayRegistrationController);
+  fileRouter.delete('/register/:id', deleteRegistrationController);
+  fileRouter.post('/login', userLogInController);
+  fileRouter.post('/user/update', updateUserData);
   return fileRouter;
 };

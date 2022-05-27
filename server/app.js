@@ -9,7 +9,7 @@ const path = require('path');
 
 const io = require('socket.io')(3001, {
   cors: {
-    origin: ['http://localhost:3000'],
+    origin: ['http://localhost:3000', 'cyklas.tech'],
   },
 });
 
@@ -48,8 +48,7 @@ const startAndConnectToDb = async () => {
 //middlewares
 app.use(cors());
 app.use(express.json());
-
-app.use(express.static('public'));
+app.use('/static', express.static('files'));
 app.use(router);
 let quizLobby = {};
 let quizData = {};
@@ -222,7 +221,6 @@ const storage = new GridFsStorage({
         }
         const filename =
           file.originalname.replace(' ', '') +
-          '_split_' +
           buf.toString('hex') +
           path.extname(file.originalname);
         const fileInfo = {

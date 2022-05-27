@@ -35,7 +35,7 @@ function RequestPopup({ items, setItems }) {
           name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
             JSON.parse(localStorage.userData).data.user.lastName
           }`,
-          image: JSON.parse(localStorage.userData).data.user.image,
+          image: JSON.parse(localStorage.userData).data.imageUrl,
         },
       })
       .then((res) => {
@@ -56,14 +56,17 @@ function RequestPopup({ items, setItems }) {
       .catch((err) => console.log(err));
   };
 
-  const handleDeleteRequest = (event, element) =>
-  {
-    axios.delete( 'http://localhost:5000/requests/decline', { data: {reqID: element} } ).then( res =>
-    {
-      setItems( res.data )
-      setToggleAccept(prev => !prev)
-    } ).catch( err => console.log( err ) )
-  }
+  const handleDeleteRequest = (event, element) => {
+    axios
+      .delete('http://localhost:5000/requests/decline', {
+        data: { reqID: element },
+      })
+      .then((res) => {
+        setItems(res.data);
+        setToggleAccept((prev) => !prev);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <>
@@ -74,10 +77,10 @@ function RequestPopup({ items, setItems }) {
             <div key={index}>
               <Box sx={designs.RequestContainer_Sub_Style}>
                 <Box sx={designs.RequestContainer_Sub2_Style}>
-                  <Avatar src={element.requests.userImage.replace(
-                'blob:',
-                ''
-              )} alt="" />
+                  <Avatar
+                    src={element.requests.userImage.replace('blob:', '')}
+                    alt=""
+                  />
                 </Box>
 
                 <Box>
@@ -187,7 +190,9 @@ function RequestPopup({ items, setItems }) {
                           boxShadow: 'none',
                         },
                       }}
-                      onClick={(event)=>{handleDeleteRequest(event, element._id)}}
+                      onClick={(event) => {
+                        handleDeleteRequest(event, element._id);
+                      }}
                     >
                       Decline
                     </Button>

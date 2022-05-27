@@ -9,9 +9,8 @@ import Input from '../components/Input';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-
 function Register({ open, close, setOpenDialog, setNotif }) {
-  const [isPending, setIsPending] = useState(false)
+  const [isPending, setIsPending] = useState(false);
   const [toggleprof, setToggleProf] = useState('text');
   const [togglestud, setToggleStud] = useState('text');
   const [imgSrc, setImgSrc] = useState(null);
@@ -24,7 +23,7 @@ function Register({ open, close, setOpenDialog, setNotif }) {
   const [showPassword, setShowPassword] = useState(false);
 
   //error States
-  const [imgSrcError,setImgSrcError ] = useState(false)
+  const [imgSrcError, setImgSrcError] = useState(false);
   const [usertypeError, setUserTypeError] = useState(false);
   const [firstnameError, setFirstNameError] = useState(false);
   const [lastnameError, setLastNameError] = useState(false);
@@ -37,16 +36,16 @@ function Register({ open, close, setOpenDialog, setNotif }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setImgSrcError(false)
+    setImgSrcError(false);
     setUserTypeError(false);
     setFirstNameError(false);
     setLastNameError(false);
     setEmailAddressError(false);
     setPasswordError(false);
-    setConfirmPasswordError( false );
-    
-    if ( imgSrc === null ) { 
-      setImgSrcError(true)
+    setConfirmPasswordError(false);
+
+    if (imgSrc === null) {
+      setImgSrcError(true);
     }
 
     if (usertype === '') {
@@ -83,23 +82,33 @@ function Register({ open, close, setOpenDialog, setNotif }) {
       password &&
       confirmpassword === password
     ) {
-      const userRegister = {
+      const formdata = new FormData();
+      formdata.append('userType', usertype);
+      formdata.append('firstName', firstname);
+      formdata.append('lastName', lastname);
+      formdata.append('emailAddress', emailaddress);
+      formdata.append('password', password);
+      formdata.append('image', imgSrc.imgName);
+      formdata.append('avatar', imgSrc.image);
+      /* const userRegister = {
         userType: usertype,
         firstName: firstname,
         lastName: lastname,
         emailAddress: emailaddress,
         password,
         image: imgSrc,
-      };
+      }; */
 
       axios
-        .post('http://localhost:5000/register', userRegister)
-        .then( ( res ) =>
-        {
-          if (res)
-          {
-            setOpenDialog( false )
-            setIsPending(false)
+        .post('http://localhost:5000/register', formdata, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        .then((res) => {
+          if (res) {
+            setOpenDialog(false);
+            setIsPending(false);
           }
 
           setNotif(
@@ -110,11 +119,10 @@ function Register({ open, close, setOpenDialog, setNotif }) {
               closeOnClick: true,
             })
           );
-         
         })
         .catch((err) => {
-          setOpenDialog( true )
-          setIsPending(false) 
+          setOpenDialog(true);
+          setIsPending(false);
           setNotif(
             toast.error(`${err}`, {
               position: toast.POSITION.TOP_CENTER,
@@ -154,7 +162,7 @@ function Register({ open, close, setOpenDialog, setNotif }) {
                 <label htmlFor="getFile">
                   <Tooltip title="Upload Account Picture" placement="top">
                     <Avatar
-                      src={imgSrc}
+                      src={imgSrc?.link}
                       sx={{
                         width: '64px',
                         height: '64px',
@@ -173,8 +181,11 @@ function Register({ open, close, setOpenDialog, setNotif }) {
                   id="getFile"
                   style={{ display: 'none' }}
                   onChange={(event) => {
-                    console.log(URL.createObjectURL(event.target.files[0]));
-                    setImgSrc(URL.createObjectURL(event.target.files[0]));
+                    setImgSrc({
+                      link: URL.createObjectURL(event.target.files[0]),
+                      imgName: event.target.files[0].name,
+                      image: event.target.files[0],
+                    });
                   }}
                 />
               </div>
@@ -304,25 +315,28 @@ function Register({ open, close, setOpenDialog, setNotif }) {
                   onChange={(event) => setConfirmPassword(event.target.value)}
                 />
                 <Grid item xs={12}>
-                  {!isPending ? <CusButton
-                    content="Create Account"
-                    fullWidth
-                    variant="contained"
-                    borderRadius="10px"
-                    type="submit"
-                    sx={{
-                      backgroundColor: '#007FFF',
-                      color: 'white',
-                      fontWeight: '600',
-                      boxShadow: 'none',
-                      '&:hover': {
-                        backgroundColor: '#0072e6',
-                      },
-                    }}
-                  /> :
-                  <LoadingButton loading fullWidth variant="outlined">
-                  Submit
-                </LoadingButton>}
+                  {!isPending ? (
+                    <CusButton
+                      content="Create Account"
+                      fullWidth
+                      variant="contained"
+                      borderRadius="10px"
+                      type="submit"
+                      sx={{
+                        backgroundColor: '#007FFF',
+                        color: 'white',
+                        fontWeight: '600',
+                        boxShadow: 'none',
+                        '&:hover': {
+                          backgroundColor: '#0072e6',
+                        },
+                      }}
+                    />
+                  ) : (
+                    <LoadingButton loading fullWidth variant="outlined">
+                      Submit
+                    </LoadingButton>
+                  )}
                 </Grid>
               </Grid>
             </form>

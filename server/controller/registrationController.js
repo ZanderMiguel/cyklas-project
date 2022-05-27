@@ -4,9 +4,30 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { OAuth2Client } = require('google-auth-library');
 const mongoose = require('mongoose');
-const client = new OAuth2Client(
-  '90759507047-37dohu0dq74j6oui4b6hvb3tj4vpphkm.apps.googleusercontent.com'
-);
+const fs = require('fs');
+require('dotenv').config();
+let gfs;
+const openDB = async () => {
+  await mongoose.connect(
+    process.env.MONGODB_URI ||
+      'mongodb+srv://reypanerz:pantheonq1w2e3@learningmonggodb.jhlar.mongodb.net/Classes?retryWrites=true&w=majority',
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  );
+
+  const conn = mongoose.createConnection(
+    process.env.MONGODB_URI ||
+      'mongodb+srv://reypanerz:pantheonq1w2e3@learningmonggodb.jhlar.mongodb.net/Classes?retryWrites=true&w=majority'
+  );
+  conn.once('open', () => {
+    gfs = new mongoose.mongo.GridFSBucket(conn.db, {
+      bucketName: 'uploads',
+    });
+  });
+};
+openDB();
 const EvaluationModel = require('../models/model-evaluation');
 const createRegistration = async (req, res) => {
   try {
@@ -96,10 +117,31 @@ const userLogIn = async (req, res) => {
         process.env.ACCESS_TOKEN,
         { expiresIn: '1h' }
       );
-      return res.json({
-        status: 'success',
-        token: token,
-        data: { user },
+      gfs.find().toArray((err, files) => {
+        if (!files[0] || files.length === 0) {
+          return 'No files available';
+        }
+        const myFile = [];
+        console.log(user);
+        files.forEach((item) => {
+          if (item.filename.includes(user.image)) {
+            console.log('meron');
+            myFile.push({ file: item });
+            gfs
+              .openDownloadStream(item._id)
+              .pipe(fs.createWriteStream(`./files/${item.filename}`));
+          }
+        });
+        console.log(myFile);
+        return res.json({
+          status: 'success',
+          token: token,
+          data: {
+            user,
+            myFile,
+            imageUrl: `http://localhost:5000/static/${myFile[0].file.filename}`,
+          },
+        });
       });
     }
   } catch (err) {
@@ -136,10 +178,20 @@ const deleteRegistration = async (req, res) => {
     });
   }
 };
-
+const updateUserData = async (req, res) => {
+  try {
+    await UserModel.findByIdAndUpdate(req.body.userID, req.body);
+    console.log('Logged in');
+    return res.json({ status: 'success' });
+  } catch (err) {
+    console.log(err);
+    return res.json(err);
+  }
+};
 module.exports = {
   createRegistrationController: createRegistration,
   displayRegistrationController: displayRegistration,
   deleteRegistrationController: deleteRegistration,
   userLogInController: userLogIn,
+  updateUserData,
 };

@@ -89,7 +89,7 @@ function Navbar() {
   const location = useLocation();
   const [items, setItems] = React.useState(null);
   const [toggleAccept, setToggleAccept] = React.useState(false);
-
+  const [userImg, setUserImg] = React.useState('');
   React.useEffect(() => {
     axios
       .post('http://localhost:5000/requests', {
@@ -97,6 +97,7 @@ function Navbar() {
       })
       .then((res) => {
         setItems(res.data);
+        setUserImg(`http://localhost:5000/static/${res.data.data.myFile[0]}`);
       })
       .catch((err) => console.log(err));
   }, [toggleAccept]);
@@ -191,10 +192,7 @@ function Navbar() {
             }}
           >
             <Avatar
-              src={JSON.parse(localStorage.userData).data.user.image.replace(
-                'blob:',
-                ''
-              )}
+              src={JSON.parse(localStorage.userData).data.imageUrl}
               alt={JSON.parse(
                 localStorage.userData
               ).data.user.firstName[0].toUpperCase()}
@@ -232,10 +230,7 @@ function Navbar() {
             onClose={handleCloseArrow}
           >
             <Accountpopover
-              avatar={JSON.parse(localStorage.userData).data.user.image.replace(
-                'blob:',
-                ''
-              )}
+              avatar={JSON.parse(localStorage.userData).data.imageUrl}
               alt={JSON.parse(
                 localStorage.userData
               ).data.user.firstName[0].toUpperCase()}

@@ -1,9 +1,9 @@
 import React from 'react';
 import BackDrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-import FileViewer from 'react-file-viewer';
+import FileViewer, { DocViewerRenderers } from 'react-doc-viewer';
 import './ComponentStyles.css';
-function Backdrop({ open, close }) {
+function Backdrop({ open, close, file }) {
   return (
     <BackDrop
       sx={{
@@ -15,8 +15,20 @@ function Backdrop({ open, close }) {
       onClick={close}
     >
       <FileViewer
-        fileType="jpg"
-        filePath="https://sa.kapamilya.com/absnews/abscbnnews/media/2017/entertainment/12/01/robin-padilla-2017-112917.jpg"
+        pluginRenderers={DocViewerRenderers}
+        documents={[
+          {
+            uri: `https://frozen-mountain-12506.herokuapp.com/static/${file.filename}`,
+          },
+        ]}
+        config={{
+          header: {
+            disableHeader: false,
+            disableFileName: false,
+            retainURLParams: false,
+          },
+        }}
+        style={{ height: '100vh', width: '70%' }}
       />
     </BackDrop>
   );

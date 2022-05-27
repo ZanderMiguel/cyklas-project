@@ -1,16 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
-const {
-  createRegistrationController,
-  displayRegistrationController,
-  deleteRegistrationController,
-  userLogInController,
-} = require('../controller/registrationController');
-router.post('/register', createRegistrationController);
-router.post('/getUser', displayRegistrationController);
-router.delete('/register/:id', deleteRegistrationController);
-router.post('/login', userLogInController);
 
 //router.post('/activity/submit', multiparty, uploadNewFile, submitActivity);
 const {

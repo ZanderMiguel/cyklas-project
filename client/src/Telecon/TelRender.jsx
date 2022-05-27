@@ -20,7 +20,7 @@ function TelRender({ socket, socketID, myPeer }) {
   const [renderer, setRenderer] = React.useState(false);
   const members = React.useRef([
     {
-      camera: JSON.parse(localStorage.userData).data.user.image,
+      camera: JSON.parse(localStorage.userData).data.imageUrl,
       memberName: `${JSON.parse(localStorage.userData).data.user.firstName} ${
         JSON.parse(localStorage.userData).data.user.lastName
       }`,

@@ -19,7 +19,7 @@ function MembersTableStud({ members }) {
     <Box sx={{ width: 'relative', height: 'auto' }}>
       <Grid container rowSpacing={1}>
         <Grid item xs={12}>
-          <Box className="Total" sx={designs.Total_Style}/>
+          <Box className="Total" sx={designs.Total_Style} />
           <Box sx={designs.Professor_Container_Style}>
             <Box
               className="container"
@@ -40,7 +40,7 @@ function MembersTableStud({ members }) {
                         {items.userType === 'Professor' && (
                           <ListItem key={index} sx={designs.ListItem_Style}>
                             <ListItemAvatar>
-                              <Avatar src={items.image} />
+                              <Avatar src={items.imageUrl} />
                             </ListItemAvatar>
                             <ListItemText>
                               <Typography sx={designs.Prof_Typography_Style}>
@@ -83,10 +83,7 @@ function MembersTableStud({ members }) {
                           <>
                             <ListItem sx={designs.ListItem_Style}>
                               <ListItemAvatar>
-                                <Avatar src={items.image.replace(
-                                        'blob:',
-                                        ''
-                                      )} />
+                                <Avatar src={items.imageUrl} />
                               </ListItemAvatar>
 
                               <ListItemText>

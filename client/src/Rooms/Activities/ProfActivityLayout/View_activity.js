@@ -38,6 +38,7 @@ import axios from 'axios';
 import StudentList from './components/StudentList';
 import CommentArea from '../CommentArea';
 import FileTile from './components/FileTile';
+import Backdrop from '../../../components/Backdrop';
 const dataSort = [
   {
     value: 'First Name',
@@ -58,7 +59,6 @@ const dataSort = [
 ];
 
 function View_activity({ socket }) {
-  const [view, setView] = React.useState(false);
   const { designs } = useStyle();
   const { roomID, activityID } = useParams();
   const [selectSort, setSort] = useState('');
@@ -68,9 +68,10 @@ function View_activity({ socket }) {
   const [score, setScore] = useState({});
   const [studentID, setStudentID] = React.useState({});
   const scores = React.useRef([]);
+  const [open, setOpen] = React.useState(false);
   const [notif, setNotif] = useState(null);
   const [disBtn, setDisBtn] = useState(false);
-
+  const previewData = React.useRef(null);
   const handleChangeSort = (event) => {
     setSort(event.target.value);
   };
@@ -532,23 +533,18 @@ function View_activity({ socket }) {
                             'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
                         },
                       }}
-                      onClick={() =>
+                      onClick={() => {
                         axios
-                          .get(
-                            `http://localhost:5000/activity/download/${item}`,
-                            {
-                              responseType: 'blob',
-                            }
-                          )
-                          .then((res) => {
-                            console.log(res);
-                            /* FileDownload(
-                              res.data,
-                              activityView[index].file.filename
-                            ); */
+                          .post('http://localhost:5000/activity/preview', {
+                            file: activityView[index].file.filename,
                           })
-                          .catch((err) => console.log(err))
-                      }
+                          .then((res) => {
+                            console.log(res.data);
+                            previewData.current = res.data.myFile[0].file;
+                            setOpen(true);
+                          })
+                          .catch((err) => console.log(err));
+                      }}
                     >
                       <img
                         src={Wordfile}
@@ -602,6 +598,13 @@ function View_activity({ socket }) {
           />
         </Grid>
       </Grid>
+      {open && (
+        <Backdrop
+          open={open}
+          close={() => setOpen(false)}
+          file={previewData.current}
+        />
+      )}
     </Container>
   );
 }
