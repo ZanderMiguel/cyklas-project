@@ -26,7 +26,7 @@ function MembersTableStud({ members }) {
               sx={designs.Professor_Container_Sub_Style}
             >
               <Typography sx={designs.Professor_Typography_Style}>
-                Professors
+                Professor
               </Typography>
             </Box>
             <Divider />

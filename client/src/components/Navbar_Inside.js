@@ -26,62 +26,62 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 const general = [
-  {
-    avatar: <Avatar src={AvatarIcon} />,
-    action: 'You are added to a new room "SOFTWARE ENGINEERING 2".',
-    user: 'Zander Miguel',
-    dateTime: 'December 25, 2024 at 9:05 AM',
-  },
-  {
-    avatar: (
-      <PostAdd
-        sx={{ color: '#47B753', borderRadius: '2em', fontSize: '2em' }}
-      />
-    ),
-    action:
-      'You posted a new announcement on your room "EMBEDDED PROGRAMMING".',
-    user: 'Mark Andrei (You)',
-    dateTime: 'December 14, 2024 at 3:05 PM',
-  },
-  {
-    avatar: <Avatar src={AvatarIcon} />,
-    action:
-      'Your student from "EMBEDDED PROGRAMMING" wrote a comment on your post.',
-    user: 'Paul Rudd',
-    dateTime: 'November 16, 2024 at 12:35 AM',
-  },
-  {
-    avatar: <Avatar src={AvatarIcon} />,
-    action: 'Your student from "EMBEDDED PROGRAMMING" submitted an Activity.',
-    user: 'Paul Rudd',
-    dateTime: 'November 15, 2024 at 7:05 PM',
-  },
-  {
-    avatar: <Avatar src={AvatarIcon} />,
-    action:
-      'Your student from "EMBEDDED PROGRAMMING" wrote a comment on your post.',
-    user: 'Paul Rudd',
-    dateTime: 'November 16, 2024 at 12:35 AM',
-  },
-  {
-    avatar: <Avatar src={AvatarIcon} />,
-    action: 'Your student from "EMBEDDED PROGRAMMING" submitted an Activity.',
-    user: 'Paul Rudd',
-    dateTime: 'November 15, 2024 at 7:05 PM',
-  },
-  {
-    avatar: <Avatar src={AvatarIcon} />,
-    action:
-      'Your student from "EMBEDDED PROGRAMMING" wrote a comment on your post.',
-    user: 'Paul Rudd',
-    dateTime: 'November 16, 2024 at 12:35 AM',
-  },
-  {
-    avatar: <Avatar src={AvatarIcon} />,
-    action: 'Your student from "EMBEDDED PROGRAMMING" submitted an Activity.',
-    user: 'Paul Rudd',
-    dateTime: 'November 15, 2024 at 7:05 PM',
-  },
+  // {
+  //   avatar: <Avatar src={AvatarIcon} />,
+  //   action: 'You are added to a new room "SOFTWARE ENGINEERING 2".',
+  //   user: 'Zander Miguel',
+  //   dateTime: 'December 25, 2024 at 9:05 AM',
+  // },
+  // {
+  //   avatar: (
+  //     <PostAdd
+  //       sx={{ color: '#47B753', borderRadius: '2em', fontSize: '2em' }}
+  //     />
+  //   ),
+  //   action:
+  //     'You posted a new announcement on your room "EMBEDDED PROGRAMMING".',
+  //   user: 'Mark Andrei (You)',
+  //   dateTime: 'December 14, 2024 at 3:05 PM',
+  // },
+  // {
+  //   avatar: <Avatar src={AvatarIcon} />,
+  //   action:
+  //     'Your student from "EMBEDDED PROGRAMMING" wrote a comment on your post.',
+  //   user: 'Paul Rudd',
+  //   dateTime: 'November 16, 2024 at 12:35 AM',
+  // },
+  // {
+  //   avatar: <Avatar src={AvatarIcon} />,
+  //   action: 'Your student from "EMBEDDED PROGRAMMING" submitted an Activity.',
+  //   user: 'Paul Rudd',
+  //   dateTime: 'November 15, 2024 at 7:05 PM',
+  // },
+  // {
+  //   avatar: <Avatar src={AvatarIcon} />,
+  //   action:
+  //     'Your student from "EMBEDDED PROGRAMMING" wrote a comment on your post.',
+  //   user: 'Paul Rudd',
+  //   dateTime: 'November 16, 2024 at 12:35 AM',
+  // },
+  // {
+  //   avatar: <Avatar src={AvatarIcon} />,
+  //   action: 'Your student from "EMBEDDED PROGRAMMING" submitted an Activity.',
+  //   user: 'Paul Rudd',
+  //   dateTime: 'November 15, 2024 at 7:05 PM',
+  // },
+  // {
+  //   avatar: <Avatar src={AvatarIcon} />,
+  //   action:
+  //     'Your student from "EMBEDDED PROGRAMMING" wrote a comment on your post.',
+  //   user: 'Paul Rudd',
+  //   dateTime: 'November 16, 2024 at 12:35 AM',
+  // },
+  // {
+  //   avatar: <Avatar src={AvatarIcon} />,
+  //   action: 'Your student from "EMBEDDED PROGRAMMING" submitted an Activity.',
+  //   user: 'Paul Rudd',
+  //   dateTime: 'November 15, 2024 at 7:05 PM',
+  // },
 ];
 
 function Navbar() {

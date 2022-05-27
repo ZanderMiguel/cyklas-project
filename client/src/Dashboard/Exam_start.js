@@ -59,7 +59,7 @@ function Exam_start({ socket }) {
           borderRadius: '0em 0em 0.5em 0.5em',
         }}
       >
-        {data && <ExamTimer data={data[0]} socket={socket} />}
+        {data && <ExamTimer data={data[0]} socket={socket} qAnswers={qAnswers} />}
       </Grid>
 
       <Grid
@@ -177,7 +177,7 @@ function Exam_start({ socket }) {
                 })
                 .then((res) => {
                   console.log(res.data);
-                  setRedirect(<Redirect to="/dashboard" />);
+                  setRedirect(<Redirect to="/ExamSubmitted" />);
                 })
                 .catch((err) => console.log(err));
             }}

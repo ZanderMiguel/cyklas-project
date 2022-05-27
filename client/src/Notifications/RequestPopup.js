@@ -3,7 +3,7 @@ import { Divider, Box, Typography, Avatar, Button } from '@mui/material';
 import useStyle from '../components/PopoverContent/Styles/Notificationpopover_style';
 import axios from 'axios';
 import moment from 'moment';
-import Nodata from '../assets/ImageJaven/Nodata.png';
+import RequestSent from '../assets/ImageJaven/RequestSent.png';
 
 function RequestPopup({ items, setItems }) {
   const { designs } = useStyle();
@@ -73,6 +73,7 @@ function RequestPopup({ items, setItems }) {
       {items &&
         items.length > 0 &&
         items.map((element, index) => {
+          console.log(element);
           return (
             <div key={index}>
               <Box sx={designs.RequestContainer_Sub_Style}>
@@ -213,32 +214,20 @@ function RequestPopup({ items, setItems }) {
             alignItems: 'center',
           }}
         >
-          <Box
-            sx={{
+          <img
+            src={RequestSent}
+            alt="Request Sent"
+            style={{
               height: '7em',
-              width: '7em',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              borderRadius: '8em',
-              backgroundColor: '#F3F3F3',
-              margin: '1em 1em 0em 0em',
+              marginTop: '2em',
             }}
-          >
-            <img
-              src={Nodata}
-              alt="No Data"
-              style={{
-                height: '8em',
-              }}
-            />
-          </Box>
+          />
 
           <Typography
             children="There is no request to show."
             sx={{
               fontSize: '0.8em',
-              fontWeight: '600',
+              fontWeight: '400',
               color: '#3F3D56',
               marginRight: '1em',
             }}

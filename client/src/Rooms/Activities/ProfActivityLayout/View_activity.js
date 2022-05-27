@@ -459,11 +459,11 @@ function View_activity({ socket }) {
               borderRadius: '0.3em 0.3em 0em 0em',
               padding: '0.3em 1.5em 1.5em 1.5em',
               backgroundColor: 'white',
-              '&: hover': {
-                boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
-                borderBottom: '4px solid #007FFF',
-                transition: 'all 250ms',
-              },
+              // '&: hover': {
+              //   boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+              //   borderBottom: '4px solid #007FFF',
+              //   transition: 'all 250ms',
+              // },
             }}
           >
             <Box
@@ -489,22 +489,43 @@ function View_activity({ socket }) {
                 Student's Uploaded Files
               </Typography>
 
-              <Typography
-                sx={{
-                  height: 'max-content',
-                  fontSize: '15px',
-                  fontWeight: '700',
-                  textTransform: 'Uppercase',
-                  color: '#007FFF',
-                  width: 'auto',
-                }}
-              >
-                {submitData && submitData?.length < 0
-                  ? 'Handed-Out'
-                  : submitData?.length > 0
-                  ? 'Submitted'
-                  : 'Missing'}
-              </Typography>
+              {submitData && submitData?.length < 0 ? (
+                <Typography
+                  children="Handed-out"
+                  sx={{
+                    height: 'max-content',
+                    fontSize: '15px',
+                    fontWeight: '700',
+                    textTransform: 'Uppercase',
+                    color: '#007FFF',
+                    width: 'auto',
+                  }}
+                />
+              ) : submitData?.length > 0 ? (
+                <Typography
+                  children="Submitted"
+                  sx={{
+                    height: 'max-content',
+                    fontSize: '15px',
+                    fontWeight: '700',
+                    textTransform: 'Uppercase',
+                    color: '#43A047',
+                    width: 'auto',
+                  }}
+                />
+              ) : (
+                <Typography
+                  children="Missing"
+                  sx={{
+                    height: 'max-content',
+                    fontSize: '15px',
+                    fontWeight: '700',
+                    textTransform: 'Uppercase',
+                    color: '#DF5555',
+                    width: 'auto',
+                  }}
+                />
+              )}
             </Box>
 
             {submitData &&

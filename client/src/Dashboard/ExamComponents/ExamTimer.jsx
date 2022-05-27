@@ -1,15 +1,16 @@
 import React from 'react';
+import axios from 'axios'
 import { Box, Typography } from '@mui/material';
 import { TimerOutlined } from '@mui/icons-material';
 import useStyle from '../Styles/Exam_start_style';
 import { Redirect } from 'react-router-dom';
-function ExamTimer({ data, socket }) {
+function ExamTimer({ data, socket, qAnswers }) {
   const { designs } = useStyle();
   const seconds = React.useRef(0);
   const minutes = React.useRef(0);
   const hours = React.useRef(0);
   const [tick, setTick] = React.useState(true);
-  const [redirect, setRedirecct] = React.useState(null);
+  const [redirect, setRedirect] = React.useState(null);
   React.useEffect(() => {
     const time = data.timeLimit
       .replace(' minutes', ':')
@@ -37,7 +38,15 @@ function ExamTimer({ data, socket }) {
   }, []);
   const clock = setTimeout(() => {
     if (seconds.current <= 0 && minutes.current <= 0 && hours.current <= 0) {
-      setRedirecct(<Redirect to="/dashboard" />);
+      axios
+      .post('http://localhost:5000/answers/create', {
+        answersPayload: qAnswers.current,
+      })
+      .then((res) => {
+        console.log(res.data);
+        setRedirect(<Redirect to="/ExamSubmitted" />);
+      })
+      .catch((err) => console.log(err));
     }
     if (seconds.current > 0) {
       seconds.current--;

@@ -1,17 +1,16 @@
 import React from 'react';
-import {Redirect, useLocation} from 'react-router-dom'
+import { Redirect, useLocation } from 'react-router-dom';
 import Dialogform from '../components/Dialogform';
 import Input from '../components/Input';
 import CusButton from '../components/Button';
 import { Grid, Typography, Avatar, Box } from '@mui/material';
 import Divider from '@mui/material/Divider';
 
-
 function Join_room({ open, close, maxWidth }) {
-  const location = useLocation()
+  const location = useLocation();
   const [joinId, setJoinId] = React.useState('');
-  const [joinIdError, setJoinIdError] = React.useState(false)
-  const [redirect, setRedirect] = React.useState(null)
+  const [joinIdError, setJoinIdError] = React.useState(false);
+  const [redirect, setRedirect] = React.useState(null);
 
   return (
     <div>
@@ -34,10 +33,7 @@ function Join_room({ open, close, maxWidth }) {
           <Grid item xs={12}>
             <Box display="flex" alignItems="center" marginBottom="1em">
               <Avatar
-                src={JSON.parse(localStorage.userData).data.user.image.replace(
-                  'blob:',
-                  ''
-                )}
+                src={JSON.parse(localStorage.userData).data.imageUrl}
                 sx={{ marginRight: '0.5em', width: '3rem', height: '3rem' }}
               />
               <Box>
@@ -98,12 +94,17 @@ function Join_room({ open, close, maxWidth }) {
               <CusButton
                 variant="contained"
                 content="join room"
-                onClick={()=>{
-                  setJoinIdError(false)
-                  if (joinId === ''){setJoinIdError(true)}
-                  if(joinId) {
-                    setRedirect(<Redirect to={`${location.pathname}/${joinId}`}/>)
-                  }}}
+                onClick={() => {
+                  setJoinIdError(false);
+                  if (joinId === '') {
+                    setJoinIdError(true);
+                  }
+                  if (joinId) {
+                    setRedirect(
+                      <Redirect to={`${location.pathname}/${joinId}`} />
+                    );
+                  }
+                }}
                 sx={{
                   backgroundColor: '#007FFF',
                   color: 'white',

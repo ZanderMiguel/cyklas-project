@@ -80,7 +80,12 @@ function Records_tableClassRecords({ rooms }) {
 
   return (
     <>
-      <Grid container columnSpacing={1} rowSpacing={1}>
+      <Grid
+        container
+        columnSpacing={1}
+        rowSpacing={1}
+        sx={{ overflowX: 'hidden' }}
+      >
         <Grid item xs={4}>
           <FormControl
             variant="standard"
@@ -176,7 +181,13 @@ function Records_tableClassRecords({ rooms }) {
             />
           </Box>
         </Grid>
-        <Grid item xs={12}>
+        <Box
+          sx={{
+            minWidth: '100%',
+            overflowX: 'auto',
+            margin: '1em 0em',
+          }}
+        >
           <table className="records-table">
             <thead>
               <tr>
@@ -303,7 +314,7 @@ function Records_tableClassRecords({ rooms }) {
               </tr>
             </tfoot>
           </table>
-        </Grid>
+        </Box>
       </Grid>
     </>
   );
