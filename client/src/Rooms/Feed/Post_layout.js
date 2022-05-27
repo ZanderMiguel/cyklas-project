@@ -93,7 +93,7 @@ function Post_layout({
                   alt="Remy Sharp"
                   src={
                     _.isString(author)
-                      ? JSON.parse(author).avatar.replace("blob", "")
+                      ? JSON.parse(author).avatar
                       : author.avatar
                   }
                   sx={designs.AvatarPost_Style}
@@ -148,7 +148,7 @@ function Post_layout({
               </Box>
 
               {_.isString(content) ? (
-                JSON.parse(content).quizID? (
+                JSON.parse(content).quizID ? (
                   <Schoolworktiles_layout
                     roomID={roomID}
                     content={JSON.parse(content).quizID}
