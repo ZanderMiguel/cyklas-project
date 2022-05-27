@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Avatar } from '@mui/material';
-import NoRecords from '../assets/ImageJaven/NoRecords.png';
-import './Styles/Records_tableClassRecords_stylesheet.css';
-import { WorkspacePremium, Search } from '@mui/icons-material';
+import React, { useState } from "react";
+import { Avatar } from "@mui/material";
+import NoRecords from "../assets/ImageJaven/NoRecords.png";
+import "./Styles/Records_tableClassRecords_stylesheet.css";
+import { WorkspacePremium, Search } from "@mui/icons-material";
 import {
   Container,
   Grid,
@@ -16,11 +16,11 @@ import {
   InputLabel,
   Select,
   MenuItem,
-} from '@mui/material';
-import axios from 'axios';
+} from "@mui/material";
+import axios from "axios";
 
 function Records_tableClassRecords({ rooms }) {
-  const [selectRoom, setSelectRoom] = useState('Embedded Programming');
+  const [selectRoom, setSelectRoom] = useState("Embedded Programming");
   const [members, setMembers] = useState(null);
   const [category, setCategory] = useState(null);
   const [records, setRecords] = useState(null);
@@ -29,7 +29,7 @@ function Records_tableClassRecords({ rooms }) {
   const handleChangeRoom = (event) => {
     setSelectRoom(event.target.value);
     axios
-      .post('http://localhost:5000/records', {
+      .post("http://localhost:5000/records", {
         userID: JSON.parse(localStorage.userData).data.user._id,
         roomID: rooms[event.target.value]._id,
       })
@@ -38,18 +38,18 @@ function Records_tableClassRecords({ rooms }) {
       })
       .catch((err) => console.log(err));
     axios
-      .post('http://localhost:5000/get/members', {
+      .post("http://localhost:5000/get/members", {
         members: rooms[event.target.value].members,
       })
       .then((res) => {
         setMembers(res.data);
         axios
-          .post('http://localhost:5000/gradingSystem/record', {
+          .post("http://localhost:5000/gradingSystem/record", {
             roomID: rooms[event.target.value]._id,
           })
           .then((res) => {
             axios
-              .post('http://localhost:5000/records/overall', {
+              .post("http://localhost:5000/records/overall", {
                 category: res.data[0].Category,
                 roomID: rooms[event.target.value]._id,
                 userID: JSON.parse(localStorage.userData).data.user._id,
@@ -66,12 +66,12 @@ function Records_tableClassRecords({ rooms }) {
   };
 
   const [selectCourseYearSection, setSelectCourseYearSection] =
-    useState('BSCS 3A');
+    useState("BSCS 3A");
 
   const handleChangeCourseYearSection = (event) => {
     setSelectCourseYearSection(event.target.value);
   };
-  const [selectTerm, setSelectTerm] = useState('MID TERM');
+  const [selectTerm, setSelectTerm] = useState("MID TERM");
 
   const handleChangeTerm = (event) => {
     setSelectTerm(event.target.value);
@@ -79,13 +79,18 @@ function Records_tableClassRecords({ rooms }) {
 
   return (
     <>
-      <Grid container columnSpacing={1} rowSpacing={1}>
+      <Grid
+        container
+        columnSpacing={1}
+        rowSpacing={1}
+        sx={{ overflowX: "hidden" }}
+      >
         <Grid item xs={4}>
           <FormControl
             variant="standard"
             sx={{
-              width: '100%',
-              paddingTop: '0em',
+              width: "100%",
+              paddingTop: "0em",
             }}
           >
             <Select
@@ -98,18 +103,18 @@ function Records_tableClassRecords({ rooms }) {
               label="SelectRoom"
               disableUnderline
               sx={{
-                width: '100%',
-                fontSize: '0.9em',
-                fontWeight: '400',
-                color: '#3F3D56',
-                border: '1px solid #DBDBDB',
-                backgroundColor: 'white',
-                textTransform: 'Uppercase',
-                borderRadius: '0.2em',
-                padding: '0.2em 0em 0.2em 0.6em',
-                '&: hover': {
-                  boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
-                  transition: 'all 300ms',
+                width: "100%",
+                fontSize: "0.9em",
+                fontWeight: "400",
+                color: "#3F3D56",
+                border: "1px solid #DBDBDB",
+                backgroundColor: "white",
+                textTransform: "Uppercase",
+                borderRadius: "0.2em",
+                padding: "0.2em 0em 0.2em 0.6em",
+                "&: hover": {
+                  boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+                  transition: "all 300ms",
                 },
               }}
             >
@@ -127,36 +132,36 @@ function Records_tableClassRecords({ rooms }) {
         <Grid item xs={4}>
           <Box
             sx={{
-              border: '1px solid #DBDBDB',
-              backgroundColor: 'white',
-              borderRadius: '0.3em',
-              padding: '0.3em 1em 0.3em 0.8em',
-              display: 'flex',
-              gap: '0.5em',
-              alignItems: 'center',
-              height: 'auto',
-              width: '100%',
-              '&: hover': {
-                boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
-                transition: 'all 300ms',
+              border: "1px solid #DBDBDB",
+              backgroundColor: "white",
+              borderRadius: "0.3em",
+              padding: "0.3em 1em 0.3em 0.8em",
+              display: "flex",
+              gap: "0.5em",
+              alignItems: "center",
+              height: "auto",
+              width: "100%",
+              "&: hover": {
+                boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+                transition: "all 300ms",
               },
             }}
           >
             <IconButton
               aria-label="search"
               sx={{
-                backgroundColor: 'transparent',
-                height: '1em',
-                width: '1em',
-                '&: hover': {
-                  backgroundColor: '#FCF9FB',
+                backgroundColor: "transparent",
+                height: "1em",
+                width: "1em",
+                "&: hover": {
+                  backgroundColor: "#FCF9FB",
                 },
               }}
             >
               <Search
                 sx={{
-                  color: '#82818E',
-                  fontSize: '0.9em',
+                  color: "#82818E",
+                  fontSize: "0.9em",
                 }}
               />
             </IconButton>
@@ -166,16 +171,22 @@ function Records_tableClassRecords({ rooms }) {
               placeholder="Search student..."
               disableUnderline
               sx={{
-                width: '100%',
-                backgroundColor: 'transparent',
-                fontSize: '0.8em',
-                fontWeight: '500',
-                color: '#3F3D56',
+                width: "100%",
+                backgroundColor: "transparent",
+                fontSize: "0.8em",
+                fontWeight: "500",
+                color: "#3F3D56",
               }}
             />
           </Box>
         </Grid>
-        <Grid item xs={12}>
+        <Box
+          sx={{
+            minWidth: "100%",
+            overflowX: "auto",
+            margin: "1em 0em",
+          }}
+        >
           <table className="records-table">
             <thead>
               <tr>
@@ -184,7 +195,9 @@ function Records_tableClassRecords({ rooms }) {
                 {/*map some shit */}
                 {category &&
                   category.map((item, index) => {
-                    stdRecord.current.push({ [Object.entries(item)[0][0]]: 0 });
+                    stdRecord.current.push({
+                      [Object.entries(item)[0][0]]: 0,
+                    });
                     return <th key={index}> {Object.entries(item)[0][0]} </th>;
                   })}
                 <th> Action </th>
@@ -196,7 +209,7 @@ function Records_tableClassRecords({ rooms }) {
                 records.map((items, index) => {
                   if (items.gradingSystem.length === 0) {
                     axios
-                      .put('http://localhost:5000/records/applyGS', {
+                      .put("http://localhost:5000/records/applyGS", {
                         crID: items._id,
                         gradingSystem: stdRecord.current,
                       })
@@ -210,14 +223,14 @@ function Records_tableClassRecords({ rooms }) {
                         <div className="student-name">
                           <Avatar
                             src={items.student.image}
-                            sx={{ height: '1.5em', width: '1.5em' }}
+                            sx={{ height: "1.5em", width: "1.5em" }}
                           />
                           {items.student.name}
                         </div>
                       </td>
                       <td data-label="Overall" id="overall">
-                        {' '}
-                        {Math.round(overall[items.student.stdID])}{' '}
+                        {" "}
+                        {Math.round(overall[items.student.stdID])}{" "}
                       </td>
                       {/*map some shit*/}
                       {items.gradingSystem.map((item, ind) => (
@@ -238,17 +251,17 @@ function Records_tableClassRecords({ rooms }) {
                                 professor: items.professor,
                                 student: items.student,
                                 overall:
-                                  document.querySelector('#overall').innerHTML,
+                                  document.querySelector("#overall").innerHTML,
                               },
                               rooms[selectRoom]
                             );
                             axios
-                              .post('http://localhost:5000/cards/create', {
+                              .post("http://localhost:5000/cards/create", {
                                 classRecord: { ...rooms[selectRoom] },
                                 professor: items.professor,
                                 student: items.student,
                                 overall:
-                                  document.querySelector('#overall').innerHTML,
+                                  document.querySelector("#overall").innerHTML,
                               })
                               .then((res) => console.log(res))
                               .catch((err) => console.log(err));
@@ -261,39 +274,39 @@ function Records_tableClassRecords({ rooms }) {
               ) : (
                 <Box
                   sx={{
-                    width: '220%',
-                    height: '70vh',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    flexWrap: 'wrap',
+                    width: "220%",
+                    height: "70vh",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexWrap: "wrap",
                   }}
                 >
                   <img
                     src={NoRecords}
                     alt="No Records"
                     style={{
-                      height: '17em',
-                      margin: '0em 0em 1.5em 0em',
+                      height: "17em",
+                      margin: "0em 0em 1.5em 0em",
                     }}
                   />
                   <Typography
                     children="You did not have any records from your students yet."
                     sx={{
-                      fontSize: '1.2em',
-                      fontWeight: '600',
-                      color: '#3F3D56',
-                      marginBottom: '0.3em',
+                      fontSize: "1.2em",
+                      fontWeight: "600",
+                      color: "#3F3D56",
+                      marginBottom: "0.3em",
                     }}
                   />
 
                   <Typography
                     children="Please check/ return any classworks of your students."
                     sx={{
-                      fontSize: '1em',
-                      fontWeight: '500',
-                      color: '#8E8E8E',
+                      fontSize: "1em",
+                      fontWeight: "500",
+                      color: "#8E8E8E",
                     }}
                   />
                 </Box>
@@ -314,7 +327,7 @@ function Records_tableClassRecords({ rooms }) {
               </tr>
             </tfoot>
           </table>
-        </Grid>
+        </Box>
       </Grid>
     </>
   );

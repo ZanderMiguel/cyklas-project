@@ -1,18 +1,18 @@
-import React from 'react';
-import { Box, Typography, Checkbox, Avatar } from '@mui/material';
-import '../../Styles/View_quiz_stylesheet.css';
-import useStyle from '../../Styles/View_exam_style';
-function StudentsList({ items, setStdID, scores }) {
+import React from "react";
+import { Box, Typography, Checkbox, Avatar } from "@mui/material";
+import "../../Styles/View_quiz_stylesheet.css";
+import useStyle from "../../Styles/View_exam_style";
+function StudentsList({ items, setStdID, scores, indexs, index }) {
   const { designs } = useStyle();
   return (
     <Box
       sx={designs.Student_Box_Style}
       onClick={() => {
-        console.log(items._id);
+        indexs.current = index;
         setStdID(items._id);
       }}
     >
-      {document.getElementById(`${items._id}`)?.innerHTML !== 'Graded' && (
+      {document.getElementById(`${items._id}`)?.innerHTML !== "Graded" && (
         <Checkbox
           sx={designs.Student_Checkbox_Style}
           onChange={(e) => {
@@ -21,7 +21,7 @@ function StudentsList({ items, setStdID, scores }) {
                 stdID: items._id,
                 score: document
                   .getElementById(`${items._id}`)
-                  .innerHTML.replace('%', ''),
+                  .innerHTML.replace("%", ""),
               });
 
               console.log(
@@ -46,14 +46,14 @@ function StudentsList({ items, setStdID, scores }) {
       <Typography
         noWrap
         sx={{
-          height: 'max-content',
-          width: '47%',
-          textTransform: 'Capitalize',
-          textAlign: 'Left',
-          fontSize: '13px',
-          fontWeight: '500',
-          color: '#3F3D56',
-          margin: '10px 0px 10px 0px',
+          height: "max-content",
+          width: "47%",
+          textTransform: "Capitalize",
+          textAlign: "Left",
+          fontSize: "13px",
+          fontWeight: "500",
+          color: "#3F3D56",
+          margin: "10px 0px 10px 0px",
         }}
       >
         {items.firstName} {items.lastName}

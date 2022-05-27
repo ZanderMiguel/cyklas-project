@@ -225,8 +225,8 @@ function RequestPopup({ items, setItems }) {
           <Typography
             children="There is no request to show."
             sx={{
-              fontSize: "0.9em",
-              fontWeight: "600",
+              fontSize: "0.8em",
+              fontWeight: "400",
               color: "#3F3D56",
               marginRight: "1em",
             }}
