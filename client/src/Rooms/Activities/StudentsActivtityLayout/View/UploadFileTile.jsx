@@ -9,18 +9,18 @@ import Powerpointfile from '../../../../assets/ImageJaven/Powerpointfile.png';
 import Imagee from '../../../../assets/ImageJaven/Imagee.png';
 import Videoo from '../../../../assets/ImageJaven/Videoo.png';
 import Filee from '../../../../assets/ImageJaven/Filee.png';
-
+import Backdrop from '../../../../components/Backdrop';
 function UploadFileTile({ submits, activityID, duedate }) {
-  const [uploadFile, setUploadFile] = React.useState( [] );
-  const [status, setStatus] = React.useState( 'Handed-out')
-  console.log(Date.now(), Date.parse(duedate) )
-  
-  const handledelete = (index) =>
-  { 
+  const [uploadFile, setUploadFile] = React.useState([]);
+  const [status, setStatus] = React.useState('Handed-out');
+  console.log(Date.now(), Date.parse(duedate));
+  const [open, setOpen] = React.useState(false);
+  const previewData = React.useRef(null);
+  const handledelete = (index) => {
     const values = [...uploadFile];
     values.splice(index, 1);
     setUploadFile(values);
-  }
+  };
   return (
     <Box
       className="Student-container"
@@ -62,7 +62,6 @@ function UploadFileTile({ submits, activityID, duedate }) {
         </Typography>
 
         <Typography
-          
           sx={{
             height: 'max-content',
             fontSize: '15px',
@@ -78,170 +77,190 @@ function UploadFileTile({ submits, activityID, duedate }) {
       {submits &&
         submits?.[0]?.media.map((item, index) => {
           return (
+            <Box
+              onClick={() => {
+                axios
+                  .post('http://localhost:5000/activity/preview', {
+                    file: item,
+                  })
+                  .then((res) => {
+                    console.log(res.data);
+                    previewData.current = res.data.myFile[0].file;
+                    setOpen(true);
+                  })
+                  .catch((err) => console.log(err));
+              }}
+              className="Attach-file"
+              sx={{
+                backgroundColor: 'white',
+                margin: '0.5em 0em 0em 0em',
+                width: '100%',
+                padding: '0.5em 0.9em',
+                display: 'flex',
+                gap: '0.9em',
+                height: 'auto',
+                alignItems: 'center',
+                border: '1px solid #D4D4D4',
+                borderRadius: '0.3em',
+                '&: hover': {
+                  cursor: 'pointer',
+                  boxShadow:
+                    'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
+                },
+              }}
+            >
+              <img
+                src={
+                  item?.includes('.docx')
+                    ? Wordfile
+                    : item?.includes('.xls')
+                    ? Excelfile
+                    : item?.includes('.jpg') || item?.includes('.png')
+                    ? Imagee
+                    : item?.includes('.mp4')
+                    ? Videoo
+                    : item?.includes('.ppt') || item?.includes('.pptx')
+                    ? Powerpointfile
+                    : item?.includes('.pdf')
+                    ? Pdffile
+                    : item?.includes('.txt') && Filee
+                }
+                style={{
+                  height: '40px',
+                }}
+              />
+
               <Box
-                className="Attach-file"
+                className="Activity-filename"
                 sx={{
-                  backgroundColor: 'white',
-                  margin: '0.5em 0em 0em 0em',
-                  width: '100%',
-                  padding: '0.5em 0.9em',
+                  width: 'auto',
                   display: 'flex',
-                  gap: '0.9em',
-                  height: 'auto',
-                  alignItems: 'center',
-                  border: '1px solid #D4D4D4',
-                  borderRadius: '0.3em',
-                  '&: hover': {
-                    cursor: 'pointer',
-                    boxShadow:
-                      'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
-                  },
+                  flexDirection: 'column',
+                  flexGrow: 1,
                 }}
               >
-                <img
-                      src={
-                        item?.includes('.docx') ? Wordfile
-                          : item?.includes('.xls') ? Excelfile
-                          : item?.includes('.jpg') ||
-                            item?.includes('.png') ? Imagee
-                          : item?.includes('.mp4') ? Videoo
-                          : item?.includes('.ppt') ||
-                            item?.includes('.pptx') ? Powerpointfile
-                          : item?.includes('.pdf') ? Pdffile
-                          : item?.includes('.txt') && Filee
-                      }
-                      style={{
-                        height: '40px',
-                      }}
-                    />
-
-                <Box
-                  className="Activity-filename"
+                <Typography
                   sx={{
+                    color: '#3F3D56',
+                    fontSize: '0.8em',
+                    fontWeight: '600',
                     width: 'auto',
-                    display: 'flex',
-                    flexDirection: 'column',
                     flexGrow: 1,
+                    height: 'auto',
                   }}
                 >
-                  <Typography
-                    sx={{
-                      color: '#3F3D56',
-                      fontSize: '0.8em',
-                      fontWeight: '600',
-                      width: 'auto',
-                      flexGrow: 1,
-                      height: 'auto',
-                    }}
-                  >
-                    {item}
-                  </Typography>
+                  {item}
+                </Typography>
 
-                  <Typography
-                    sx={{
-                      color: '#3F3D56',
-                      fontSize: '0.7em',
-                      width: 'max-content',
-                      height: 'max-content',
-                    }}
-                  >
-                    {item?.includes('.docx') ? 'WORD FILE'
-                          : item?.includes('.xls') ? 'EXCEL FILE'
-                          : item?.includes('.mp4') ? 'VIDEO FILE'
-                          : item?.includes('.jpg') ||
-                            item?.includes('.png') ? 'IMAGE FILE'
-                          : item?.includes('.ppt') ||
-                            item?.includes('.pptx') ? 'POWER POINT FILE'
-                          : item?.includes('.pdf') ? 'PDF FILE'
-                          : item?.includes('.txt') && 'FILE' }
-                  </Typography>
-                </Box>
+                <Typography
+                  sx={{
+                    color: '#3F3D56',
+                    fontSize: '0.7em',
+                    width: 'max-content',
+                    height: 'max-content',
+                  }}
+                >
+                  {item?.includes('.docx')
+                    ? 'WORD FILE'
+                    : item?.includes('.xls')
+                    ? 'EXCEL FILE'
+                    : item?.includes('.mp4')
+                    ? 'VIDEO FILE'
+                    : item?.includes('.jpg') || item?.includes('.png')
+                    ? 'IMAGE FILE'
+                    : item?.includes('.ppt') || item?.includes('.pptx')
+                    ? 'POWER POINT FILE'
+                    : item?.includes('.pdf')
+                    ? 'PDF FILE'
+                    : item?.includes('.txt') && 'FILE'}
+                </Typography>
               </Box>
+            </Box>
           );
         })}
       {uploadFile &&
         uploadFile.map((item, key) => {
           return (
-              <Box
-                className="Attach-file"
-                sx={{
-                  backgroundColor: 'white',
-                  margin: '0.5em 0em 0em 0em',
-                  width: '100%',
-                  padding: '0.5em 0.9em',
-                  display: 'flex',
-                  gap: '0.9em',
-                  alignItems: 'center',
+            <Box
+              className="Attach-file"
+              sx={{
+                backgroundColor: 'white',
+                margin: '0.5em 0em 0em 0em',
+                width: '100%',
+                padding: '0.5em 0.9em',
+                display: 'flex',
+                gap: '0.9em',
+                alignItems: 'center',
 
-                  border: '1px solid #D4D4D4',
-                  borderRadius: '0.3em',
-                  '&: hover': {
-                    cursor: 'pointer',
-                    boxShadow:
-                      'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
-                  },
+                border: '1px solid #D4D4D4',
+                borderRadius: '0.3em',
+                '&: hover': {
+                  cursor: 'pointer',
+                  boxShadow:
+                    'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
+                },
+              }}
+            >
+              <img
+                src={
+                  item?.fileName.includes('.docx')
+                    ? Wordfile
+                    : item?.fileName.includes('.xls')
+                    ? Excelfile
+                    : item?.fileName.includes('.ppt') ||
+                      item?.fileName.includes('.pptx')
+                    ? Powerpointfile
+                    : item?.fileName.includes('.pdf') && Pdffile
+                }
+                style={{
+                  height: '40px',
+                }}
+              />
+
+              <Box
+                className="Activity-filename"
+                sx={{
+                  width: 'auto',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  flexGrow: 1,
                 }}
               >
-                <img
-                  src={
-                    item?.fileName.includes('.docx')
-                      ? Wordfile
-                      : item?.fileName.includes('.xls')
-                      ? Excelfile
-                      : item?.fileName.includes('.ppt') ||
-                        item?.fileName.includes('.pptx')
-                      ? Powerpointfile
-                      : item?.fileName.includes('.pdf') && Pdffile
-                  }
-                  style={{
-                    height: '40px',
-                  }}
-                />
-
-                <Box
-                  className="Activity-filename"
+                <Typography
+                  onClick={(index) => handledelete(index)}
                   sx={{
+                    color: '#3F3D56',
+                    fontSize: '0.8em',
+                    fontWeight: '600',
                     width: 'auto',
-                    display: 'flex',
-                    flexDirection: 'column',
                     flexGrow: 1,
+                    height: 'auto',
                   }}
                 >
-                  <Typography
-                    onClick={(index)=> handledelete(index)}
-                    sx={{
-                      color: '#3F3D56',
-                      fontSize: '0.8em',
-                      fontWeight: '600',
-                      width: 'auto',
-                      flexGrow: 1,
-                      height: 'auto',
-                    }}
-                  >
-                    {item.fileName}
-                  </Typography>
+                  {item.fileName}
+                </Typography>
 
-                  <Typography
-                    sx={{
-                      color: '#3F3D56',
-                      fontSize: '0.7em',
-                      width: 'max-content',
-                      height: 'max-content',
-                    }}
-                  >
-                    {item?.fileName.includes('.docx')
-                      ? 'WORD FILE'
-                      : item?.fileName.includes('.xls')
-                      ? 'EXCEL FILE'
-                      : item?.fileName.includes('.ppt') ||
-                        item?.fileName.includes('.pptx')
-                      ? 'POWER POINT'
-                      : item?.fileName.includes('.pdf')
-                      ? 'PDF FILE'
-                      : 'FILE'}
-                  </Typography>
-                </Box>
+                <Typography
+                  sx={{
+                    color: '#3F3D56',
+                    fontSize: '0.7em',
+                    width: 'max-content',
+                    height: 'max-content',
+                  }}
+                >
+                  {item?.fileName.includes('.docx')
+                    ? 'WORD FILE'
+                    : item?.fileName.includes('.xls')
+                    ? 'EXCEL FILE'
+                    : item?.fileName.includes('.ppt') ||
+                      item?.fileName.includes('.pptx')
+                    ? 'POWER POINT'
+                    : item?.fileName.includes('.pdf')
+                    ? 'PDF FILE'
+                    : 'FILE'}
+                </Typography>
               </Box>
+            </Box>
           );
         })}
       <Box
@@ -334,11 +353,8 @@ function UploadFileTile({ submits, activityID, duedate }) {
               backgroundColor: '#005DC3',
             },
           }}
-          onClick={() =>
-          {
-            
+          onClick={() => {
             const formData = new FormData();
-            
 
             uploadFile.forEach((item) => {
               formData.append('file', item.file);
@@ -369,6 +385,13 @@ function UploadFileTile({ submits, activityID, duedate }) {
           Submit
         </Button>
       </Box>
+      {open && (
+        <Backdrop
+          open={open}
+          close={() => setOpen(false)}
+          file={previewData.current}
+        />
+      )}
     </Box>
   );
 }

@@ -18,6 +18,7 @@ const createClassRecord = async (req, res) => {
     return res.json(error);
   }
 };
+
 const deleteClassRecord = async (req, res) => {
   try {
     await ClassRecordModel.findByIdAndDelete(req.body.crID);

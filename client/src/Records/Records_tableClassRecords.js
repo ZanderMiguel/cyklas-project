@@ -56,6 +56,7 @@ function Records_tableClassRecords({ rooms }) {
               })
               .then((res) => {
                 stdRecord.current = [];
+                console.log(res.data);
                 setOverall(res.data);
               })
               .catch((err) => console.log(err));
@@ -181,10 +182,8 @@ function Records_tableClassRecords({ rooms }) {
               <tr>
                 <th> Student Name </th>
                 <th> Overall Grade </th>
-                {/*map some shit */}
                 {category &&
                   category.map((item, index) => {
-                    stdRecord.current.push({ [Object.entries(item)[0][0]]: 0 });
                     return <th key={index}> {Object.entries(item)[0][0]} </th>;
                   })}
                 <th> Action </th>
@@ -194,16 +193,6 @@ function Records_tableClassRecords({ rooms }) {
             <tbody>
               {records && overall && records.length > 0 ? (
                 records.map((items, index) => {
-                  if (items.gradingSystem.length === 0) {
-                    axios
-                      .put('http://localhost:5000/records/applyGS', {
-                        crID: items._id,
-                        gradingSystem: stdRecord.current,
-                      })
-                      .then((res) => {})
-                      .catch((err) => console.log(err));
-                  }
-
                   return (
                     <tr key={index}>
                       <td>
