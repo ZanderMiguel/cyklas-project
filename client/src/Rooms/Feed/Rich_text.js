@@ -71,7 +71,7 @@ function Rich_text({ setPostRender, setCommentRender }) {
             JSON.parse(localStorage.userData).data.user.lastName
           }`,
           userID: JSON.parse(localStorage.userData).data.user._id,
-          avatar: JSON.parse(localStorage.userData).data.user.image,
+          avatar: JSON.parse(localStorage.userData).data.imageUrl,
         })
       );
       formData.append('content', JSON.stringify(convertedState));
