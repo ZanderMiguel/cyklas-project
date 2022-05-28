@@ -22,7 +22,6 @@ const ClassCards_table = ({ roomsdata }) => {
         style={{
           minWidth: "100%",
           overflowX: "auto",
-
           margin: "0.5em 0em 1em 0em",
         }}
       >

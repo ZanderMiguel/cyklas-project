@@ -77,7 +77,7 @@ const findActivity = async (req, res) => {
 
       files.forEach((item) => {
         activity.media.forEach((clientFile) => {
-          if (clientFile === item.filename.split(`_split_`)[0]) {
+          if (item.filename.includes(clientFile)) {
             myFile.push({ file: item });
             gfs
               .openDownloadStream(item._id)
@@ -120,7 +120,23 @@ const downloadFileByClick = async (req, res) => {
   res.download(`./files/${req.params.file}`);
 };
 const previewFileByClick = async (req, res) => {
-  return res.json('preview');
+  gfs.find().toArray((err, files) => {
+    if (!files[0] || files.length === 0) {
+      return 'No files available';
+    }
+    const myFile = [];
+
+    files.forEach((item) => {
+      if (item.filename.includes(req.body.file)) {
+        myFile.push({ file: item });
+        gfs
+          .openDownloadStream(item._id)
+          .pipe(fs.createWriteStream(`./files/${item.filename}`));
+      }
+    });
+
+    return res.json({ myFile });
+  });
 };
 
 const deleteActivity = async (req, res) => {

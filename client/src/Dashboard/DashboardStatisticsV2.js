@@ -58,7 +58,7 @@ function DashboardStatisticsV2({ roomdata }) {
             }}
           >
             <Avatar
-              src={JSON.parse(localStorage.userData).data.user.image}
+              src={JSON.parse(localStorage.userData).data.imageUrl}
               alt="Avatar"
               sx={{ height: "4em", width: "4em" }}
             />

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import {
   Box,
   Typography,
@@ -18,70 +18,71 @@ import {
   MenuItem,
   Tooltip,
   Input,
-} from "@mui/material";
-import { ToastContainer, toast } from "react-toastify";
-import FileDownload from "js-file-download";
-import moment from "moment";
-import draftToHtml from "draftjs-to-html";
-import ReactHtmlParser from "react-html-parser";
-import Wordfile from "../../../assets/ImageJaven/Wordfile.png";
-import Pdffile from "../../../assets/ImageJaven/Pdffile.png";
-import Excelfile from "../../../assets/ImageJaven/Excelfile.png";
-import Powerpointfile from "../../../assets/ImageJaven/Powerpointfile.png";
-import Imagee from "../../../assets/ImageJaven/Imagee.png";
-import Videoo from "../../../assets/ImageJaven/Videoo.png";
-import Filee from "../../../assets/ImageJaven/Filee.png";
-import useStyle from "../../Styles/View_activity_style";
-import "../../Styles/View_activity_style.css";
-import ActivityIcon from "../../../assets/ImageJaven/ActivityIcon.png";
-import axios from "axios";
-import StudentList from "./components/StudentList";
-import CommentArea from "../CommentArea";
-import FileTile from "./components/FileTile";
+} from '@mui/material';
+import { ToastContainer, toast } from 'react-toastify';
+import FileDownload from 'js-file-download';
+import moment from 'moment';
+import draftToHtml from 'draftjs-to-html';
+import ReactHtmlParser from 'react-html-parser';
+import Wordfile from '../../../assets/ImageJaven/Wordfile.png';
+import Pdffile from '../../../assets/ImageJaven/Pdffile.png';
+import Excelfile from '../../../assets/ImageJaven/Excelfile.png';
+import Powerpointfile from '../../../assets/ImageJaven/Powerpointfile.png';
+import Imagee from '../../../assets/ImageJaven/Imagee.png';
+import Videoo from '../../../assets/ImageJaven/Videoo.png';
+import Filee from '../../../assets/ImageJaven/Filee.png';
+import useStyle from '../../Styles/View_activity_style';
+import '../../Styles/View_activity_style.css';
+import ActivityIcon from '../../../assets/ImageJaven/ActivityIcon.png';
+import axios from 'axios';
+import StudentList from './components/StudentList';
+import CommentArea from '../CommentArea';
+import FileTile from './components/FileTile';
+import Backdrop from '../../../components/Backdrop';
 const dataSort = [
   {
-    value: "First Name",
-    label: "First Name",
+    value: 'First Name',
+    label: 'First Name',
   },
   {
-    value: "Last Name",
-    label: "Last Name",
+    value: 'Last Name',
+    label: 'Last Name',
   },
   {
-    value: "Submitted",
-    label: "Submitted",
+    value: 'Submitted',
+    label: 'Submitted',
   },
   {
-    value: "Graded",
-    label: "Graded",
+    value: 'Graded',
+    label: 'Graded',
   },
 ];
 
 function View_activity({ socket }) {
-  const [view, setView] = React.useState(false);
   const { designs } = useStyle();
   const { roomID, activityID } = useParams();
-  const [selectSort, setSort] = useState("");
+  const [selectSort, setSort] = useState('');
   const [activityView, setActivityView] = useState(null);
   const [submitData, setSubmitData] = useState(null);
   const [commentId, setCommentId] = useState(null);
   const [score, setScore] = useState({});
   const [studentID, setStudentID] = React.useState({});
   const scores = React.useRef([]);
+  const [open, setOpen] = React.useState(false);
   const [notif, setNotif] = useState(null);
   const [disBtn, setDisBtn] = useState(false);
-
+  const previewData = React.useRef(null);
   const handleChangeSort = (event) => {
     setSort(event.target.value);
   };
 
-  socket.on("post-comment", (uuid) => {
+  socket.on('post-comment', (uuid) => {
     setCommentId(uuid);
   });
 
   React.useEffect(() => {
     axios
-      .post("http://localhost:5000/activity/get", {
+      .post('http://localhost:5000/activity/get', {
         activityID,
       })
       .then((res) => {
@@ -92,14 +93,14 @@ function View_activity({ socket }) {
   }, []);
 
   return (
-    <Container maxWidth="lg" sx={{ padding: "0.5em 0em" }}>
+    <Container maxWidth="lg" sx={{ padding: '0.5em 0em' }}>
       <Grid container columnSpacing={1}>
         <Grid item xs={4}>
           <Button
             /* disabled={disBtn} */
             onClick={() => {
               axios
-                .post("http://localhost:5000/records/activity/return", {
+                .post('http://localhost:5000/records/activity/return', {
                   roomID,
                   userID: JSON.parse(localStorage.userData).data.user._id,
                   scores: scores.current,
@@ -111,7 +112,7 @@ function View_activity({ socket }) {
                 .then((res) => {
                   console.log(res);
                   setNotif(
-                    toast.error("Submitted", {
+                    toast.error('Submitted', {
                       position: toast.POSITION.TOP_CENTER,
                     })
                   );
@@ -186,41 +187,41 @@ function View_activity({ socket }) {
           <Box
             className="Right-container"
             sx={{
-              width: "100%",
-              height: "auto",
-              padding: "0.5em 0em 1em 0em",
-              marginBottom: "1em",
-              border: "1px solid #DBDBDB",
-              borderRadius: "0.3em",
-              backgroundColor: "white",
+              width: '100%',
+              height: 'auto',
+              padding: '0.5em 0em 1em 0em',
+              marginBottom: '1em',
+              border: '1px solid #DBDBDB',
+              borderRadius: '0.3em',
+              backgroundColor: 'white',
             }}
           >
             <Box
               className="Header"
               sx={{
-                padding: "0.5em 1.5em",
-                height: "auto",
-                width: "relative",
-                display: "flex",
-                gap: "0.8em",
-                alignItems: "center",
+                padding: '0.5em 1.5em',
+                height: 'auto',
+                width: 'relative',
+                display: 'flex',
+                gap: '0.8em',
+                alignItems: 'center',
               }}
             >
               <img
                 src={ActivityIcon}
                 style={{
-                  height: "35px",
+                  height: '35px',
                 }}
               />
 
               <Typography
                 sx={{
-                  height: "max-content",
-                  fontSize: "18px",
-                  fontWeight: "700",
-                  textTransform: "Uppercase",
-                  color: "#3F3D56",
-                  width: "auto",
+                  height: 'max-content',
+                  fontSize: '18px',
+                  fontWeight: '700',
+                  textTransform: 'Uppercase',
+                  color: '#3F3D56',
+                  width: 'auto',
                   flexGrow: 1,
                 }}
               >
@@ -229,39 +230,39 @@ function View_activity({ socket }) {
 
               <Typography
                 sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  height: "relative",
-                  fontSize: "12px",
-                  fontWeight: "500",
-                  textTransform: "Capitalize",
-                  color: "#3F3D56",
+                  display: 'flex',
+                  alignItems: 'center',
+                  height: 'relative',
+                  fontSize: '12px',
+                  fontWeight: '500',
+                  textTransform: 'Capitalize',
+                  color: '#3F3D56',
                 }}
               >
                 {activityView && activityView.activityType}
               </Typography>
             </Box>
 
-            <Grid container sx={{ padding: "0.9em 1.5em" }}>
+            <Grid container sx={{ padding: '0.9em 1.5em' }}>
               <Grid item xs={6}>
                 <Box
                   sx={{
-                    width: "relative",
-                    height: "max-content",
-                    display: "flex",
-                    gap: "0.8em",
-                    marginBottom: "0.4em",
+                    width: 'relative',
+                    height: 'max-content',
+                    display: 'flex',
+                    gap: '0.8em',
+                    marginBottom: '0.4em',
                   }}
                 >
                   <Typography
                     sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      height: "relative",
-                      fontSize: "0.8em",
-                      fontWeight: "600",
-                      textTransform: "Capitalize",
-                      color: "#3F3D56",
+                      display: 'flex',
+                      alignItems: 'center',
+                      height: 'relative',
+                      fontSize: '0.8em',
+                      fontWeight: '600',
+                      textTransform: 'Capitalize',
+                      color: '#3F3D56',
                     }}
                   >
                     Points:
@@ -269,13 +270,13 @@ function View_activity({ socket }) {
 
                   <Typography
                     sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      height: "relative",
-                      fontSize: "0.8em",
-                      fontWeight: "500",
-                      textTransform: "Capitalize",
-                      color: "#3F3D56",
+                      display: 'flex',
+                      alignItems: 'center',
+                      height: 'relative',
+                      fontSize: '0.8em',
+                      fontWeight: '500',
+                      textTransform: 'Capitalize',
+                      color: '#3F3D56',
                     }}
                   >
                     {activityView && activityView.activityPoints}
@@ -284,21 +285,21 @@ function View_activity({ socket }) {
 
                 <Box
                   sx={{
-                    width: "relative",
-                    height: "max-content",
-                    display: "flex",
-                    gap: "0.8em",
+                    width: 'relative',
+                    height: 'max-content',
+                    display: 'flex',
+                    gap: '0.8em',
                   }}
                 >
                   <Typography
                     sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      height: "relative",
-                      fontSize: "0.8em",
-                      fontWeight: "600",
-                      textTransform: "Capitalize",
-                      color: "#3F3D56",
+                      display: 'flex',
+                      alignItems: 'center',
+                      height: 'relative',
+                      fontSize: '0.8em',
+                      fontWeight: '600',
+                      textTransform: 'Capitalize',
+                      color: '#3F3D56',
                     }}
                   >
                     Due Date:
@@ -306,17 +307,17 @@ function View_activity({ socket }) {
 
                   <Typography
                     sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      height: "relative",
-                      fontSize: "0.8em",
-                      fontWeight: "500",
-                      textTransform: "Capitalize",
-                      color: "#3F3D56",
+                      display: 'flex',
+                      alignItems: 'center',
+                      height: 'relative',
+                      fontSize: '0.8em',
+                      fontWeight: '500',
+                      textTransform: 'Capitalize',
+                      color: '#3F3D56',
                     }}
                   >
                     {activityView &&
-                      moment(activityView.activityDueDate).format("LL")}
+                      moment(activityView.activityDueDate).format('LL')}
                   </Typography>
                 </Box>
               </Grid>
@@ -324,24 +325,24 @@ function View_activity({ socket }) {
               <Grid item xs={6}>
                 <Box
                   sx={{
-                    width: "relative",
-                    height: "max-content",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.8em",
-                    justifyContent: "flex-end",
+                    width: 'relative',
+                    height: 'max-content',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.8em',
+                    justifyContent: 'flex-end',
                   }}
                 >
                   <Typography
                     children="Score:"
                     sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      height: "relative",
-                      fontSize: "0.8em",
-                      fontWeight: "500",
-                      textTransform: "Uppercase",
-                      color: "#3F3D56",
+                      display: 'flex',
+                      alignItems: 'center',
+                      height: 'relative',
+                      fontSize: '0.8em',
+                      fontWeight: '500',
+                      textTransform: 'Uppercase',
+                      color: '#3F3D56',
                     }}
                   />
                   <TextField
@@ -361,58 +362,58 @@ function View_activity({ socket }) {
                     variant="standard"
                     inputProps={{
                       style: {
-                        width: "3em",
-                        height: "1em",
-                        fontSize: "0.9em",
-                        color: "#007FFF",
+                        width: '3em',
+                        height: '1em',
+                        fontSize: '0.9em',
+                        color: '#007FFF',
                         fontWeight: 600,
-                        textAlign: "center",
+                        textAlign: 'center',
                       },
                     }}
                   />
 
                   <Typography
                     sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      height: "relative",
-                      fontSize: "0.8em",
-                      fontWeight: "600",
-                      textTransform: "Capitalize",
-                      color: "#3F3D56",
+                      display: 'flex',
+                      alignItems: 'center',
+                      height: 'relative',
+                      fontSize: '0.8em',
+                      fontWeight: '600',
+                      textTransform: 'Capitalize',
+                      color: '#3F3D56',
                     }}
                   >
-                    / {activityView && activityView.activityPoints}
+                    {activityView && activityView.activityPoints}
                   </Typography>
                 </Box>
               </Grid>
             </Grid>
             <Divider
               sx={{
-                width: "relative",
-                margin: "0em 1.5em",
+                width: 'relative',
+                margin: '0em 1.5em',
               }}
             />
 
             <Box
               className="Activity-instructions"
               sx={{
-                height: "auto",
-                width: "relative",
-                margin: "0.1em 0em 0em 0em",
-                padding: "0.3em 1.5em",
+                height: 'auto',
+                width: 'relative',
+                margin: '0.1em 0em 0em 0em',
+                padding: '0.3em 1.5em',
               }}
             >
               {activityView && activityView.activityInstruction ? (
                 <>
                   <Typography
                     sx={{
-                      width: "100%",
-                      fontSize: "0.9em",
-                      fontWeight: "600",
-                      textTransform: "Uppercase",
-                      color: "#3F3D56",
-                      marginTop: "0.3em",
+                      width: '100%',
+                      fontSize: '0.9em',
+                      fontWeight: '600',
+                      textTransform: 'Uppercase',
+                      color: '#3F3D56',
+                      marginTop: '0.3em',
                     }}
                   >
                     Instructions:
@@ -420,12 +421,12 @@ function View_activity({ socket }) {
 
                   <Typography
                     sx={{
-                      width: "100%",
-                      fontSize: "0.8em",
-                      fontWeight: "500",
-                      textTransform: "none",
-                      color: "#3F3D56",
-                      marginBottom: "0.5em",
+                      width: '100%',
+                      fontSize: '0.8em',
+                      fontWeight: '500',
+                      textTransform: 'none',
+                      color: '#3F3D56',
+                      marginBottom: '0.5em',
                     }}
                   >
                     {ReactHtmlParser(
@@ -452,12 +453,12 @@ function View_activity({ socket }) {
           <Box
             className="Student-container"
             sx={{
-              height: "auto",
-              width: "relative",
-              marginBottom: "1em",
-              borderRadius: "0.3em 0.3em 0em 0em",
-              padding: "0.3em 1.5em 1.5em 1.5em",
-              backgroundColor: "white",
+              height: 'auto',
+              width: 'relative',
+              marginBottom: '1em',
+              borderRadius: '0.3em 0.3em 0em 0em',
+              padding: '0.3em 1.5em 1.5em 1.5em',
+              backgroundColor: 'white',
               // '&: hover': {
               //   boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
               //   borderBottom: '4px solid #007FFF',
@@ -467,21 +468,21 @@ function View_activity({ socket }) {
           >
             <Box
               sx={{
-                width: "relative",
-                height: "auto",
-                display: "flex",
-                alignItems: "center",
-                margin: "0.5em 0em 1em 0em",
+                width: 'relative',
+                height: 'auto',
+                display: 'flex',
+                alignItems: 'center',
+                margin: '0.5em 0em 1em 0em',
               }}
             >
               <Typography
                 sx={{
-                  height: "max-content",
-                  fontSize: "15px",
-                  fontWeight: "600",
-                  textTransform: "Uppercase",
-                  color: "#6D6B85",
-                  width: "auto",
+                  height: 'max-content',
+                  fontSize: '15px',
+                  fontWeight: '600',
+                  textTransform: 'Uppercase',
+                  color: '#6D6B85',
+                  width: 'auto',
                   flexGrow: 1,
                 }}
               >
@@ -492,36 +493,36 @@ function View_activity({ socket }) {
                 <Typography
                   children="Handed-out"
                   sx={{
-                    height: "max-content",
-                    fontSize: "15px",
-                    fontWeight: "700",
-                    textTransform: "Uppercase",
-                    color: "#007FFF",
-                    width: "auto",
+                    height: 'max-content',
+                    fontSize: '15px',
+                    fontWeight: '700',
+                    textTransform: 'Uppercase',
+                    color: '#007FFF',
+                    width: 'auto',
                   }}
                 />
               ) : submitData?.length > 0 ? (
                 <Typography
                   children="Submitted"
                   sx={{
-                    height: "max-content",
-                    fontSize: "15px",
-                    fontWeight: "700",
-                    textTransform: "Uppercase",
-                    color: "#43A047",
-                    width: "auto",
+                    height: 'max-content',
+                    fontSize: '15px',
+                    fontWeight: '700',
+                    textTransform: 'Uppercase',
+                    color: '#43A047',
+                    width: 'auto',
                   }}
                 />
               ) : (
                 <Typography
                   children="Missing"
                   sx={{
-                    height: "max-content",
-                    fontSize: "15px",
-                    fontWeight: "700",
-                    textTransform: "Uppercase",
-                    color: "#DF5555",
-                    width: "auto",
+                    height: 'max-content',
+                    fontSize: '15px',
+                    fontWeight: '700',
+                    textTransform: 'Uppercase',
+                    color: '#DF5555',
+                    width: 'auto',
                   }}
                 />
               )}
@@ -539,62 +540,57 @@ function View_activity({ socket }) {
                     <Box
                       className="Attach-file"
                       sx={{
-                        backgroundColor: "white",
-                        margin: "0.5em 0em 0em 0em",
-                        width: "100%",
-                        padding: "0.5em 0.9em",
-                        display: "flex",
-                        gap: "0.9em",
-                        border: "1px solid #D4D4D4",
-                        borderRadius: "0.3em",
-                        "&: hover": {
-                          cursor: "pointer",
+                        backgroundColor: 'white',
+                        margin: '0.5em 0em 0em 0em',
+                        width: '100%',
+                        padding: '0.5em 0.9em',
+                        display: 'flex',
+                        gap: '0.9em',
+                        border: '1px solid #D4D4D4',
+                        borderRadius: '0.3em',
+                        '&: hover': {
+                          cursor: 'pointer',
                           boxShadow:
-                            "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px",
+                            'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
                         },
                       }}
-                      onClick={() =>
+                      onClick={() => {
                         axios
-                          .get(
-                            `http://localhost:5000/activity/download/${item}`,
-                            {
-                              responseType: "blob",
-                            }
-                          )
-                          .then((res) => {
-                            console.log(res);
-                            /* FileDownload(
-                              res.data,
-                              activityView[index].file.filename
-                            ); */
+                          .post('http://localhost:5000/activity/preview', {
+                            file: activityView[index].file.filename,
                           })
-                          .catch((err) => console.log(err))
-                      }
+                          .then((res) => {
+                            console.log(res.data);
+                            previewData.current = res.data.myFile[0].file;
+                            setOpen(true);
+                          })
+                          .catch((err) => console.log(err));
+                      }}
                     >
                       <img
                         src={Wordfile}
                         style={{
-                          height: "40px",
+                          height: '40px',
                         }}
                       />
 
                       <Box
                         className="Activity-filename"
                         sx={{
-                          width: "auto",
-                          display: "flex",
-                          flexDirection: "column",
+                          width: 'auto',
+                          display: 'flex',
+                          flexDirection: 'column',
                           flexGrow: 1,
                         }}
                       >
                         <Typography
                           noWrap
                           sx={{
-                            color: "#3F3D56",
-                            fontSize: "0.8em",
-                            fontWeight: "600",
-                            width: "relative",
-                            height: "max-content",
+                            color: '#3F3D56',
+                            fontSize: '0.8em',
+                            fontWeight: '600',
+                            width: 'relative',
+                            height: 'max-content',
                           }}
                         >
                           {item}
@@ -602,10 +598,10 @@ function View_activity({ socket }) {
 
                         <Typography
                           sx={{
-                            color: "#3F3D56",
-                            fontSize: "0.7em",
-                            width: "max-content",
-                            height: "max-content",
+                            color: '#3F3D56',
+                            fontSize: '0.7em',
+                            width: 'max-content',
+                            height: 'max-content',
                           }}
                         >
                           Document File
@@ -623,6 +619,13 @@ function View_activity({ socket }) {
           />
         </Grid>
       </Grid>
+      {open && (
+        <Backdrop
+          open={open}
+          close={() => setOpen(false)}
+          file={previewData.current}
+        />
+      )}
     </Container>
   );
 }

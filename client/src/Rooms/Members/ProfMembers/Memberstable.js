@@ -18,12 +18,11 @@ import useStyle from './Styles/People_table_style';
 import axios from 'axios';
 import { useParams, Redirect } from 'react-router-dom';
 
-
 function Memberstable({ members, setRefresher }) {
   const { designs } = useStyle();
   const { roomID } = useParams();
-console.log(members && members)
-  
+  console.log(members && members);
+
   return (
     <>
       <Grid container rowSpacing={1}>
@@ -67,10 +66,7 @@ console.log(members && members)
                         {items.userType === 'Professor' && (
                           <ListItem key={index} sx={designs.ListItem_Style}>
                             <ListItemAvatar>
-                              <Avatar src={items.image.replace(
-                  'blob:',
-                  ''
-                )} />
+                              <Avatar src={items.imageUrl} />
                             </ListItemAvatar>
                             <ListItemText>
                               <Typography sx={designs.Prof_Typography_Style}>
@@ -125,7 +121,7 @@ console.log(members && members)
                           <>
                             <ListItem sx={designs.ListItem_Style}>
                               <ListItemAvatar>
-                                <Avatar src={items.image} />
+                                <Avatar src={items.imageUrl} />
                               </ListItemAvatar>
 
                               <ListItemText>

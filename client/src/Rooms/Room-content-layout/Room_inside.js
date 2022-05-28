@@ -40,7 +40,7 @@ function Room_inside({ socket }) {
           JSON.parse(localStorage.userData).data.user.lastName
         }`,
         roomID,
-        userImage: JSON.parse(localStorage.userData).data.user.image,
+        userImage: JSON.parse(localStorage.userData).data.imageUrl,
       })
       .then((res) => {
         setRoomData(res.data);

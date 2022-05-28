@@ -27,7 +27,7 @@ function MessageArea({ socket, teleRoom, username, messagelist }) {
       const messageData = {
         room: teleRoom,
         author: JSON.parse(localStorage.userData).data.user.firstName,
-        avatar: JSON.parse(localStorage.userData).data.user.image,
+        avatar: JSON.parse(localStorage.userData).data.imageUrl,
         message: currentMessage,
         time: moment(Date.now()).format('LT'),
       };
@@ -140,10 +140,7 @@ function MessageArea({ socket, teleRoom, username, messagelist }) {
                 >
                   <Avatar
                     alt="userAvatar"
-                    src={messageContent.avatar.replace(
-                      'blob:',
-                      ''
-                    )}
+                    src={messageContent.avatar.replace('blob:', '')}
                     sx={{ height: '1.6em', width: '1.6em' }}
                   />
                   <Typography

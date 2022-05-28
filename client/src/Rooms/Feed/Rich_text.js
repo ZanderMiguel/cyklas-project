@@ -51,32 +51,32 @@ function Rich_text({ setPostRender, setCommentRender }) {
   const { roomID } = useParams();
 
   const handleAnnounce = () => {
-    setCommentRender((prev) => !prev);
-    setPostRender((prev) => !prev);
-
-    const formData = new FormData();
-    uploadFile.forEach((item) => {
-      if (item.fileName !== "File uploaded/image/link") {
-        formData.append("file", item.file);
-        formData.append("filaName", item.fileName);
-        formData.append("media", item.fileName);
-      }
-    });
-
-    formData.append(
-      "author",
-      JSON.stringify({
-        name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
-          JSON.parse(localStorage.userData).data.user.lastName
-        }`,
-        userID: JSON.parse(localStorage.userData).data.user._id,
-        avatar: JSON.parse(localStorage.userData).data.imageUrl,
-      })
-    );
-    formData.append("content", JSON.stringify(convertedState));
-    formData.append("rooms", [roomID]);
-
     if (editorState) {
+      setCommentRender((prev) => !prev);
+      setPostRender((prev) => !prev);
+
+      const formData = new FormData();
+      uploadFile.forEach((item) => {
+        if (item.fileName !== "File uploaded/image/link") {
+          formData.append("file", item.file);
+          formData.append("filaName", item.fileName);
+          formData.append("media", item.fileName);
+        }
+      });
+
+      formData.append(
+        "author",
+        JSON.stringify({
+          name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
+            JSON.parse(localStorage.userData).data.user.lastName
+          }`,
+          userID: JSON.parse(localStorage.userData).data.user._id,
+          avatar: JSON.parse(localStorage.userData).data.imageUrl,
+        })
+      );
+      formData.append("content", JSON.stringify(convertedState));
+      formData.append("rooms", [roomID]);
+
       axios
         .post("http://localhost:5000/announce/create", formData, {
           headers: {
@@ -84,15 +84,13 @@ function Rich_text({ setPostRender, setCommentRender }) {
           },
         })
         .then((res) => {
-          console.log(res.data);
+          setPostRender((prev) => !prev);
+          setCommentRender((prev) => !prev);
           setUploadFile([{ fileName: "File uploaded/image/link" }]);
         })
         .catch((err) => {
           console.log(err);
         });
-
-      // socket.emit('create-post');
-      // socket.emit('create-comment');
     }
     if (!data || data) {
       setEditorState("");

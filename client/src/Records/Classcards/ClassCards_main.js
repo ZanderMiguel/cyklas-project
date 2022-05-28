@@ -27,7 +27,7 @@ function ClassCards_main() {
             sx={designs.Content_Container_Style}
           >
             <Grid container rowSpacing={1}>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <Box sx={designs.SearchBar_Style}>
                   <IconButton
                     aria-label="search"
@@ -43,7 +43,7 @@ function ClassCards_main() {
                     sx={designs.SearchBar_Input_Style}
                   />
                 </Box>
-              </Grid>
+              </Grid> */}
 
               <Grid item xs={12}>
                 <ClassCards_table roomsdata={roomsdata} />

@@ -34,7 +34,7 @@ function CommentArea({ socket, commentId, activityID }) {
                 JSON.parse(localStorage.userData).data.user.lastName
               }`,
               userID: JSON.parse(localStorage.userData).data.user._id,
-              avatar: JSON.parse(localStorage.userData).data.user.image,
+              avatar: JSON.parse(localStorage.userData).data.imageUrl,
             },
             content: commentContent,
             commentDate: Date.now(),
@@ -147,7 +147,7 @@ function CommentArea({ socket, commentId, activityID }) {
         <ReactScrollableFeed>
           {activityComment &&
             activityComment.map((items, index) => {
-              console.log( activityComment )
+              console.log(activityComment);
               return (
                 <div key={index}>
                   <Box
@@ -162,10 +162,7 @@ function CommentArea({ socket, commentId, activityID }) {
                   >
                     <Avatar
                       alt="Remy Sharp"
-                      src={items.author.avatar.replace(
-                        'blob:',
-                        ''
-                      )}
+                      src={items.author.avatar}
                       sx={{
                         margin: '1px 0px',
                         height: '40px',
@@ -216,77 +213,82 @@ function CommentArea({ socket, commentId, activityID }) {
                         {items.content}
                       </Box>
 
-                     {JSON.parse(localStorage.userData).data.user._id === items.author.userID && <> <Box
-                        className="actions"
-                        sx={{
-                          marginTop: '0.3em',
-                          display: 'flex',
-                          gap: '1em',
-                        }}
-                      >
-                        <Box
-                          sx={{
-                            display: 'flex',
-                            gap: '0.5em',
-                            width: 'auto',
-                            height: 'auto',
-                            '&: hover': {
-                              cursor: 'pointer',
-                              textDecoration: 'underline',
-                            },
-                          }}
-                        >
-                          <BorderColorOutlined
-                            sx={{ color: '#585670', fontSize: '0.9em' }}
-                          />
-
-                          <Typography
+                      {JSON.parse(localStorage.userData).data.user._id ===
+                        items.author.userID && (
+                        <>
+                          {' '}
+                          <Box
+                            className="actions"
                             sx={{
-                              fontSize: '0.5em',
-                              fontWeight: '400',
-                              color: '#3F3D56',
+                              marginTop: '0.3em',
+                              display: 'flex',
+                              gap: '1em',
                             }}
                           >
-                            Edit comment
-                          </Typography>
-                        </Box>
+                            <Box
+                              sx={{
+                                display: 'flex',
+                                gap: '0.5em',
+                                width: 'auto',
+                                height: 'auto',
+                                '&: hover': {
+                                  cursor: 'pointer',
+                                  textDecoration: 'underline',
+                                },
+                              }}
+                            >
+                              <BorderColorOutlined
+                                sx={{ color: '#585670', fontSize: '0.9em' }}
+                              />
 
-                        <Divider
-                          orientation="vertical"
-                          flexItem
-                          sx={{
-                            margin: '0.2em 0em',
-                          }}
-                        />
+                              <Typography
+                                sx={{
+                                  fontSize: '0.5em',
+                                  fontWeight: '400',
+                                  color: '#3F3D56',
+                                }}
+                              >
+                                Edit comment
+                              </Typography>
+                            </Box>
 
-                        <Box
-                          sx={{
-                            display: 'flex',
-                            gap: '0.5em',
-                            width: 'auto',
-                            height: 'auto',
-                            '&: hover': {
-                              cursor: 'pointer',
-                              textDecoration: 'underline',
-                            },
-                          }}
-                        >
-                          <DeleteOutlineOutlined
-                            sx={{ color: '#585670', fontSize: '0.9em' }}
-                          />
+                            <Divider
+                              orientation="vertical"
+                              flexItem
+                              sx={{
+                                margin: '0.2em 0em',
+                              }}
+                            />
 
-                          <Typography
-                            sx={{
-                              fontSize: '0.5em',
-                              fontWeight: '400',
-                              color: '#3F3D56',
-                            }}
-                          >
-                            Delete comment
-                          </Typography>
-                        </Box>
-                      </Box>
-                      </>}
+                            <Box
+                              sx={{
+                                display: 'flex',
+                                gap: '0.5em',
+                                width: 'auto',
+                                height: 'auto',
+                                '&: hover': {
+                                  cursor: 'pointer',
+                                  textDecoration: 'underline',
+                                },
+                              }}
+                            >
+                              <DeleteOutlineOutlined
+                                sx={{ color: '#585670', fontSize: '0.9em' }}
+                              />
+
+                              <Typography
+                                sx={{
+                                  fontSize: '0.5em',
+                                  fontWeight: '400',
+                                  color: '#3F3D56',
+                                }}
+                              >
+                                Delete comment
+                              </Typography>
+                            </Box>
+                          </Box>
+                        </>
+                      )}
                     </Box>
                   </Box>
                 </div>
@@ -310,10 +312,7 @@ function CommentArea({ socket, commentId, activityID }) {
       >
         <Avatar
           alt="Remy Sharp"
-          src={JSON.parse(localStorage.userData).data.user.image.replace(
-            'blob:',
-            ''
-          )}
+          src={JSON.parse(localStorage.userData).data.imageUrl}
         />
 
         <Input

@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
-import moment from "moment";
-import Schoolworktiles_layout from "../Room-content-layout/Schoolworktiles_layout";
-import _ from "lodash";
+import React, { useState, useEffect, useRef } from 'react';
+import moment from 'moment';
+import Schoolworktiles_layout from '../Room-content-layout/Schoolworktiles_layout';
+import _ from 'lodash';
 
 import {
   Grid,
@@ -15,20 +15,20 @@ import {
   Tooltip,
   Input,
   Button,
-} from "@mui/material";
+} from '@mui/material';
 import {
   Send,
   BorderColorOutlined,
   DeleteOutlineOutlined,
-} from "@mui/icons-material";
-import Comments from "./Comments";
-import AvatarIcon from "../../assets/ImageJaven/Avatar.png";
-import usePost from "../../customHooks/usePost";
-import useStyles from "../Styles/Announce_style";
-import axios from "axios";
-import draftToHtml from "draftjs-to-html";
-import ReactHtmlParser from "react-html-parser";
-import FileTile from "../Activities/ProfActivityLayout/components/FileTile";
+} from '@mui/icons-material';
+import Comments from './Comments';
+import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
+import usePost from '../../customHooks/usePost';
+import useStyles from '../Styles/Announce_style';
+import axios from 'axios';
+import draftToHtml from 'draftjs-to-html';
+import ReactHtmlParser from 'react-html-parser';
+import FileTile from '../Activities/ProfActivityLayout/components/FileTile';
 function Post_layout({
   data,
   socket,
@@ -39,14 +39,14 @@ function Post_layout({
   commentRender,
 }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [commentContent, setCommentContent] = useState("");
+  const [commentContent, setCommentContent] = useState('');
   const postID = useRef(null);
   const { designs } = useStyles();
 
   const handleEdit = (event) => {};
   const handleDelete = (event, _id) => {
     axios
-      .delete("http://localhost:5000/announce/delete", {
+      .delete('http://localhost:5000/announce/delete', {
         data: { announceID: _id },
       })
       .then((res) => {
@@ -65,7 +65,7 @@ function Post_layout({
 
   const handleSubmitComment = () => {
     setCommentRender((prev) => !prev);
-    post("http://localhost:5000/comment/create", {
+    post('http://localhost:5000/comment/create', {
       announcement: postID.current,
       content: commentContent,
       author: {
@@ -73,11 +73,11 @@ function Post_layout({
           JSON.parse(localStorage.userData).data.user.lastName
         }`,
         userID: JSON.parse(localStorage.userData).data.user._id,
-        avatar: JSON.parse(localStorage.userData).data.user.image,
+        avatar: JSON.parse(localStorage.userData).data.imageUrl,
       },
     });
     if (comments) {
-      setCommentContent("");
+      setCommentContent('');
     }
   };
 
@@ -105,7 +105,7 @@ function Post_layout({
 
                   <Box className="date" sx={designs.Date_Style}>
                     <Typography sx={designs.Date_Typography_Style}>
-                      {moment(createdAt).format("MMMM DD YYYY / h:mm a")}
+                      {moment(createdAt).format('MMMM DD YYYY / h:mm a')}
                     </Typography>
                   </Box>
                 </Box>
@@ -170,7 +170,7 @@ function Post_layout({
               )}
               {item.media && (
                 <>
-                  <Divider sx={designs.Divider_Style} />{" "}
+                  <Divider sx={designs.Divider_Style} />{' '}
                   {item.media.map((filename) => (
                     <FileTile item={filename} index={index} />
                   ))}
@@ -190,9 +190,7 @@ function Post_layout({
               <Box className="write-comment" sx={designs.Write_Comment_Style}>
                 <Avatar
                   alt="Remy Sharp"
-                  src={JSON.parse(
-                    localStorage.userData
-                  ).data.user.image.replace("blob:", "")}
+                  src={JSON.parse(localStorage.userData).data.imageUrl}
                   sx={designs.AvatarComment_Style}
                 />
 
@@ -201,22 +199,22 @@ function Post_layout({
                   placeholder="Write a comment..."
                   onChange={(event) => setCommentContent(event.target.value)}
                   onKeyPress={(event) => {
-                    event.key === "Enter" && handleSubmitComment();
+                    event.key === 'Enter' && handleSubmitComment();
                   }}
                   onClick={(event) => {
                     postID.current = event.target.name;
                   }}
                   disableUnderline
                   sx={{
-                    border: "1px solid #DBDBDB",
-                    borderRadius: "0.3em",
-                    color: "#3F3D56",
-                    fontSize: "0.9em",
-                    padding: "0.3em 0.8em",
-                    width: "100%",
-                    "&: hover": {
-                      border: "1px solid #007FFF",
-                      transition: "all 300ms",
+                    border: '1px solid #DBDBDB',
+                    borderRadius: '0.3em',
+                    color: '#3F3D56',
+                    fontSize: '0.9em',
+                    padding: '0.3em 0.8em',
+                    width: '100%',
+                    '&: hover': {
+                      border: '1px solid #007FFF',
+                      transition: 'all 300ms',
                     },
                   }}
                 />
@@ -226,8 +224,8 @@ function Post_layout({
                   variant="contained"
                   onClick={handleSubmitComment}
                   sx={{
-                    fontWeight: "600",
-                    boxShadow: "none",
+                    fontWeight: '600',
+                    boxShadow: 'none',
                   }}
                 />
               </Box>

@@ -9,7 +9,7 @@ import { Grid, Button, Typography } from '@mui/material';
 
 const gradingsystems = [];
 
-function Create_room({ open, close, maxWidth, state, socket, gs,setNewRoom }) {
+function Create_room({ open, close, maxWidth, state, socket, gs, setNewRoom }) {
   const [roomname, setRoomname] = useState('');
   const [course, setCourse] = useState('');
   const [classday, setClassDay] = useState('');
@@ -64,7 +64,7 @@ function Create_room({ open, close, maxWidth, state, socket, gs,setNewRoom }) {
             name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
               JSON.parse(localStorage.userData).data.user.lastName
             }`,
-            avatar: JSON.parse(localStorage.userData).data.user.image,
+            avatar: JSON.parse(localStorage.userData).data.imageUrl,
           },
           userID: JSON.parse(localStorage.userData).data.user._id,
           gsID: gradingsystem,
@@ -72,8 +72,8 @@ function Create_room({ open, close, maxWidth, state, socket, gs,setNewRoom }) {
           members: [JSON.parse(localStorage.userData).data.user._id],
         })
         .then((res) => {
-          console.log( res.data );
-          setNewRoom(prev => !prev)
+          console.log(res.data);
+          setNewRoom((prev) => !prev);
           if (res.data.status === 'success') {
             state(false);
           }

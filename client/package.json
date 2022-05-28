@@ -32,6 +32,7 @@
     "react-chatbot-kit": "^2.0.1",
     "react-contenteditable": "^3.3.6",
     "react-copy-to-clipboard": "^5.1.0",
+    "react-doc-viewer": "^0.1.5",
     "react-dom": "^17.0.2",
     "react-draft-wysiwyg": "^1.14.7",
     "react-file-viewer": "^1.2.1",

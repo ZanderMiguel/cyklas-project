@@ -1,8 +1,8 @@
-import React from "react";
-import logo from "../assets/Ellipse 3.svg";
-import Notificationpopover from "./PopoverContent/Notificationpopover";
+import React from 'react';
+import logo from '../assets/Ellipse 3.svg';
+import Notificationpopover from './PopoverContent/Notificationpopover';
 // import Notifications_viewall from '../Notifications/Notifications_viewall';
-import Accountpopover from "./PopoverContent/Accountpopover";
+import Accountpopover from './PopoverContent/Accountpopover';
 
 //MUI imports
 import {
@@ -12,18 +12,18 @@ import {
   Typography,
   IconButton,
   CssBaseline,
-} from "@mui/material";
-import { Badge } from "@mui/material";
-import Avatar from "@mui/material/Avatar";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import Drawer from "./Drawer";
-import CusPopover from "./Popover";
-import AvatarIcon from "../assets/ImageJaven/Avatar.png";
-import { useTheme } from "@mui/material/styles";
-import { PostAdd } from "@mui/icons-material";
-import { useLocation } from "react-router-dom";
-import axios from "axios";
+} from '@mui/material';
+import { Badge } from '@mui/material';
+import Avatar from '@mui/material/Avatar';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import Drawer from './Drawer';
+import CusPopover from './Popover';
+import AvatarIcon from '../assets/ImageJaven/Avatar.png';
+import { useTheme } from '@mui/material/styles';
+import { PostAdd } from '@mui/icons-material';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 const general = [
   // {
@@ -89,14 +89,15 @@ function Navbar() {
   const location = useLocation();
   const [items, setItems] = React.useState(null);
   const [toggleAccept, setToggleAccept] = React.useState(false);
-
+  const [userImg, setUserImg] = React.useState('');
   React.useEffect(() => {
     axios
-      .post("http://localhost:5000/requests", {
+      .post('http://localhost:5000/requests', {
         userID: JSON.parse(localStorage.userData).data.user._id,
       })
       .then((res) => {
         setItems(res.data);
+        setUserImg(`http://localhost:5000/static/${res.data.data.myFile[0]}`);
       })
       .catch((err) => console.log(err));
   }, [toggleAccept]);
@@ -126,7 +127,7 @@ function Navbar() {
     <>
       <CssBaseline />
       <AppBar
-        style={{ backgroundColor: "#EBEBEB", overflow: "auto" }}
+        style={{ backgroundColor: '#EBEBEB', overflow: 'auto' }}
         position="sticky"
         elevation={1}
       >
@@ -137,33 +138,33 @@ function Navbar() {
           <Typography
             sx={{
               flexGrow: 1,
-              color: "#3F3D56",
-              fontWeight: "600",
-              marginLeft: "10px",
+              color: '#3F3D56',
+              fontWeight: '600',
+              marginLeft: '10px',
             }}
             variant="h6"
           >
-            {location.pathname.slice(0, 10) === "/dashboard"
-              ? "Dashboard"
-              : location.pathname.slice(0, 9) === "/telecon"
-              ? "Telecon"
+            {location.pathname.slice(0, 10) === '/dashboard'
+              ? 'Dashboard'
+              : location.pathname.slice(0, 9) === '/telecon'
+              ? 'Telecon'
               : location.pathname.slice(0, 6) === `/rooms`
-              ? "Rooms"
-              : location.pathname.slice(0, 11) === "/classcards"
-              ? "Class Card"
-              : location.pathname.slice(0, 8) === "/quizlit"
-              ? "Quizlit"
-              : location.pathname.slice(0, 8) === "/records"
-              ? "Records"
-              : location.pathname.slice(0, 9) === "/settings" && "Settings"}
+              ? 'Rooms'
+              : location.pathname.slice(0, 11) === '/classcards'
+              ? 'Class Card'
+              : location.pathname.slice(0, 8) === '/quizlit'
+              ? 'Quizlit'
+              : location.pathname.slice(0, 8) === '/records'
+              ? 'Records'
+              : location.pathname.slice(0, 9) === '/settings' && 'Settings'}
           </Typography>
           <IconButton size="small" onClick={handleClickNotif}>
             <Badge
-              variant={items && items.length > 0 ? "dot" : null}
+              variant={items && items.length > 0 ? 'dot' : null}
               color="primary"
               overlap="circular"
             >
-              <NotificationsIcon sx={{ color: "rgba(0, 0, 0, 0.54)" }} />
+              <NotificationsIcon sx={{ color: 'rgba(0, 0, 0, 0.54)' }} />
             </Badge>
           </IconButton>
           <CusPopover
@@ -183,47 +184,44 @@ function Navbar() {
             alignItems="center"
             onClick={handleClickArrow}
             sx={{
-              ml: "20px",
-              "&:hover": {
-                cursor: "pointer",
-                backgroundColor: "",
+              ml: '20px',
+              '&:hover': {
+                cursor: 'pointer',
+                backgroundColor: '',
               },
             }}
           >
             <Avatar
-              src={JSON.parse(localStorage.userData).data.user.image.replace(
-                "blob:",
-                ""
-              )}
+              src={JSON.parse(localStorage.userData).data.imageUrl}
               alt={JSON.parse(
                 localStorage.userData
               ).data.user.firstName[0].toUpperCase()}
             />
             <Box
               sx={{
-                display: "flex",
-                [theme.breakpoints.down("md")]: {
-                  display: "none",
+                display: 'flex',
+                [theme.breakpoints.down('md')]: {
+                  display: 'none',
                 },
               }}
             >
               <Box
                 sx={{
-                  ml: "5px",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  maxWidth: "7rem",
+                  ml: '5px',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  maxWidth: '7rem',
                 }}
               >
                 <Typography
                   noWrap
                   variant="body1"
-                  sx={{ fontWeight: 500, color: "#3F3D56" }}
+                  sx={{ fontWeight: 500, color: '#3F3D56' }}
                 >
                   {JSON.parse(localStorage.userData).data.user.firstName}
                 </Typography>
               </Box>
-              <ArrowDropDownIcon sx={{ color: "rgba(0, 0, 0, 0.54)", ml: 1 }} />
+              <ArrowDropDownIcon sx={{ color: 'rgba(0, 0, 0, 0.54)', ml: 1 }} />
             </Box>
           </Box>
           <CusPopover
@@ -232,10 +230,7 @@ function Navbar() {
             onClose={handleCloseArrow}
           >
             <Accountpopover
-              avatar={JSON.parse(localStorage.userData).data.user.image.replace(
-                "blob:",
-                ""
-              )}
+              avatar={JSON.parse(localStorage.userData).data.imageUrl}
               alt={JSON.parse(
                 localStorage.userData
               ).data.user.firstName[0].toUpperCase()}

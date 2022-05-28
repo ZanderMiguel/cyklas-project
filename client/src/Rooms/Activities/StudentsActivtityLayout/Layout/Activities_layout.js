@@ -19,7 +19,6 @@ import moment from 'moment';
 import ActivityFile from '../../../../components/ActivityFile';
 import NoActivities from '../../../../assets/ImageJaven/NoActivities.png';
 
-
 function Activities_layout({ roomID, activity, socket }) {
   const { designs } = useStyle();
   const [expanded, setExpanded] = React.useState(false);
