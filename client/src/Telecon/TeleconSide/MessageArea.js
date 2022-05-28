@@ -12,13 +12,12 @@ import {
   Paper,
   Button,
 } from '@mui/material';
-import { Send, Chat } from '@mui/icons-material';
+import { Chat } from '@mui/icons-material';
 import ReactScrollableFeed from 'react-scrollable-feed';
-import { FaBox } from 'react-icons/fa';
 import moment from 'moment';
 import Message from '../../assets/ImageJaven/Message.png';
 
-function MessageArea({ socket, teleRoom, username, messagelist }) {
+function MessageArea({ socket, teleRoom, messagelist }) {
   const [currentMessage, setCurrentMessage] = React.useState('');
   const [renderer, setRenderer] = React.useState(true);
 
@@ -120,78 +119,79 @@ function MessageArea({ socket, teleRoom, username, messagelist }) {
               }}
             />
           </Box>
-          {messagelist.current.map((messageContent, index) => {
-            return (
-              <Box
-                key={index}
-                sx={{
-                  padding: '0em 0.5em',
-                  marginBottom: '1em',
-                }}
-              >
+          {messagelist &&
+            messagelist.current.map((messageContent, index) => {
+              return (
                 <Box
+                  key={index}
                   sx={{
-                    display: 'flex',
-                    gap: '0.5em',
-                    alignItems: 'center',
                     padding: '0em 0.5em',
-                    marginBottom: '0.1em',
+                    marginBottom: '1em',
                   }}
                 >
-                  <Avatar
-                    alt="userAvatar"
-                    src={messageContent.avatar.replace('blob:', '')}
-                    sx={{ height: '1.6em', width: '1.6em' }}
-                  />
-                  <Typography
+                  <Box
                     sx={{
-                      fontSize: '0.7em',
-                      fontWeight: 500,
-                      mr: '5px',
-                      color: 'white',
-                      maxWidth: '15em',
-                    }}
-                    noWrap
-                  >
-                    {messageContent.author}
-                  </Typography>
-
-                  <Box flexGrow={1} />
-
-                  <Typography sx={{ fontSize: '0.6em', color: '#8E8E8E' }}>
-                    {messageContent.time}
-                  </Typography>
-                </Box>
-
-                <Box
-                  sx={{
-                    width: 'max-content',
-                    border: '1px solid #464646',
-                    borderRadius: '0em 0.3em 0.3em 0.3em',
-                    backgroundColor: '#282B31',
-                    padding: '0.3em 0.7em',
-                    marginLeft: '3.2em',
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      maxWidth: '20em',
-                      flexWrap: 'wrap',
-                      fontSize: '0.7em',
-                      color: 'white',
-                      fontWeight: '500',
-                      wordBreak: 'break-all',
-                      '&: hover': {
-                        cursor: 'text',
-                      },
+                      display: 'flex',
+                      gap: '0.5em',
+                      alignItems: 'center',
+                      padding: '0em 0.5em',
+                      marginBottom: '0.1em',
                     }}
                   >
-                    {messageContent.message}
-                  </Typography>
+                    <Avatar
+                      alt="userAvatar"
+                      src={messageContent.avatar.replace('blob:', '')}
+                      sx={{ height: '1.6em', width: '1.6em' }}
+                    />
+                    <Typography
+                      sx={{
+                        fontSize: '0.7em',
+                        fontWeight: 500,
+                        mr: '5px',
+                        color: 'white',
+                        maxWidth: '15em',
+                      }}
+                      noWrap
+                    >
+                      {messageContent.author}
+                    </Typography>
+
+                    <Box flexGrow={1} />
+
+                    <Typography sx={{ fontSize: '0.6em', color: '#8E8E8E' }}>
+                      {messageContent.time}
+                    </Typography>
+                  </Box>
+
+                  <Box
+                    sx={{
+                      width: 'max-content',
+                      border: '1px solid #464646',
+                      borderRadius: '0em 0.3em 0.3em 0.3em',
+                      backgroundColor: '#282B31',
+                      padding: '0.3em 0.7em',
+                      marginLeft: '3.2em',
+                    }}
+                  >
+                    <Typography
+                      sx={{
+                        maxWidth: '20em',
+                        flexWrap: 'wrap',
+                        fontSize: '0.7em',
+                        color: 'white',
+                        fontWeight: '500',
+                        wordBreak: 'break-all',
+                        '&: hover': {
+                          cursor: 'text',
+                        },
+                      }}
+                    >
+                      {messageContent.message}
+                    </Typography>
+                  </Box>
                 </Box>
-              </Box>
-            );
-          })}
+              );
+            })}
         </ReactScrollableFeed>
       </Box>
 

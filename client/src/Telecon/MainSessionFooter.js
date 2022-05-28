@@ -15,6 +15,7 @@ import CusPopover from '../components/Popover';
 import QuizPopover from '../components/PopoverContent/QuizPopover';
 import Livequiz_queue from '../Form_content/Livequiz_queue';
 import Leave_conference from '../Form_content/Leave_conference';
+import Join_livequiz from '../Form_content/Join_livequiz';
 import JoinQuiz from '../Form_content/JoinQuiz';
 
 function MainSessionFooter({ members, socket, teleRoom }) {
