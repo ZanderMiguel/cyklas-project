@@ -38,7 +38,7 @@ function Dialogform({
           xs={12}
           sx={{
             display: "flex",
-            padding: "0.8em 1em 1.5em 1.8em",
+            padding: "0.8em 1em 0em 1.5em",
           }}
         >
           {divider && (

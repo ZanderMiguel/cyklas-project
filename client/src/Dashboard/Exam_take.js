@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Container,
   Grid,
@@ -6,11 +6,11 @@ import {
   Typography,
   Button,
   Divider,
-} from '@mui/material';
-import { Link, useParams } from 'react-router-dom';
-import ExamIconButton from '../assets/ImageJaven/ExamIconButton.png';
-import useStyle from './Styles/Exam_take_style';
-import axios from 'axios';
+} from "@mui/material";
+import { Link, useParams } from "react-router-dom";
+import ExamIconButton from "../assets/ImageJaven/ExamIconButton.png";
+import useStyle from "./Styles/Exam_take_style";
+import axios from "axios";
 function Exam_take() {
   const { designs } = useStyle();
   const { quizID } = useParams();
@@ -18,12 +18,12 @@ function Exam_take() {
   const [items, setItems] = React.useState(null);
   React.useMemo(() => {
     axios
-      .post('http://localhost:5000/quizlit', { quizID })
+      .post("http://localhost:5000/quizlit", { quizID })
       .then((res) => {
         console.log(res.data);
         setData(res.data);
         axios
-          .post('http://localhost:5000/question', {
+          .post("http://localhost:5000/question", {
             quizID,
           })
           .then((response) => {
@@ -34,7 +34,16 @@ function Exam_take() {
       .catch((err) => console.log(err));
   }, [quizID]);
   return (
-    <Container maxWidth="md">
+    <Container
+      maxWidth="md"
+      sx={{
+        height: "85vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <Grid container rowSpacing={1}>
         <Grid item xs={12} sx={designs.ExamTake_GridItem_Style}>
           <Typography sx={designs.ExamName_Typography_Style}>
@@ -107,7 +116,7 @@ function Exam_take() {
                   src={ExamIconButton}
                   alt="ExamIconButton"
                   style={{
-                    height: '1em',
+                    height: "1em",
                   }}
                 />
               }

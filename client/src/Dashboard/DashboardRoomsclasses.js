@@ -58,7 +58,7 @@ function DashboardRoomsclasses({ roomdata }) {
               <th> Year and Section </th>
               <th> Class Day </th>
               <th> Class Time </th>
-              <th> Actions </th>
+              <th> </th>
             </tr>
           </thead>
 
@@ -75,18 +75,18 @@ function DashboardRoomsclasses({ roomdata }) {
                     <td>
                       <Button
                         variant="contained"
-                        children="View"
+                        children="Enter Room"
                         onClick={() => history.push(`/rooms/${items._id}`)}
                         sx={{
                           color: "white",
-                          fontSize: "0.8em",
-                          fontWeight: "500",
+                          fontSize: "0.9em",
+                          fontWeight: "600",
                           boxShadow: "none",
                           marginRight: "0.5em",
                           padding: "0.3em 1em",
                           textTransform: "capitalize",
                           "&: hover": {
-                            color: "#007FFF",
+                            color: "#white",
                             boxShadow: "none",
                           },
                         }}

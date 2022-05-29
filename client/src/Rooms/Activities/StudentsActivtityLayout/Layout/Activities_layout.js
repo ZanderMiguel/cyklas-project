@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Typography,
   Accordion,
@@ -8,16 +8,17 @@ import {
   Grid,
   Box,
   Button,
-} from '@mui/material';
-import ActivityIcon from '../../../../assets/ImageJaven/ActivityIcon.png';
-import useStyle from './Styles/Activities_layout_style';
-import Divider from '@mui/material/Divider';
-import { Link } from 'react-router-dom';
-import draftToHtml from 'draftjs-to-html';
-import ReactHtmlParser from 'react-html-parser';
-import moment from 'moment';
-import ActivityFile from '../../../../components/ActivityFile';
-import NoActivities from '../../../../assets/ImageJaven/NoActivities.png';
+} from "@mui/material";
+import ActivityIcon from "../../../../assets/ImageJaven/ActivityIcon.png";
+import useStyle from "./Styles/Activities_layout_style";
+import Divider from "@mui/material/Divider";
+import { Link } from "react-router-dom";
+import draftToHtml from "draftjs-to-html";
+import ReactHtmlParser from "react-html-parser";
+import moment from "moment";
+import ActivityFile from "../../../../components/ActivityFile";
+import NoActivities from "../../../../assets/ImageJaven/NoActivities.png";
+import { ExpandMore } from "@mui/icons-material";
 
 function Activities_layout({ roomID, activity, socket }) {
   const { designs } = useStyle();
@@ -32,40 +33,40 @@ function Activities_layout({ roomID, activity, socket }) {
       {activity && activity.length === 0 && (
         <Box
           sx={{
-            width: '100%',
-            height: '70vh',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexWrap: 'wrap',
+            width: "100%",
+            height: "70vh",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            flexWrap: "wrap",
           }}
         >
           <img
             src={NoActivities}
             alt="No Activities"
             style={{
-              height: '13em',
-              margin: '0em 2.5em 1.5em 0em',
+              height: "13em",
+              margin: "0em 2.5em 1.5em 0em",
             }}
           />
           <Typography
             children="You don't have any activities right now."
             sx={{
-              fontSize: '1em',
-              fontWeight: '600',
-              color: '#3F3D56',
-              marginBottom: '0.3em',
+              fontSize: "1em",
+              fontWeight: "600",
+              color: "#3F3D56",
+              marginBottom: "0.3em",
             }}
           />
 
           <Typography
             children="Activities are created by your professor."
             sx={{
-              fontSize: '0.8em',
-              fontWeight: '500',
-              color: '#8E8E8E',
-              marginLeft: '0.8em',
+              fontSize: "0.8em",
+              fontWeight: "500",
+              color: "#8E8E8E",
+              marginLeft: "0.8em",
             }}
           />
         </Box>
@@ -89,6 +90,7 @@ function Activities_layout({ roomID, activity, socket }) {
                   sx={designs.Accordion_Style}
                 >
                   <AccordionSummary
+                    expandIcon={<ExpandMore />}
                     aria-controls={items.Activity}
                     id={items.Activity_FileName_Typography}
                     sx={designs.AccordionSummary_Style}
@@ -97,8 +99,8 @@ function Activities_layout({ roomID, activity, socket }) {
                       <img
                         src={ActivityIcon}
                         style={{
-                          height: '30px',
-                          margin: '4px 15px 0px 0px',
+                          height: "30px",
+                          margin: "4px 15px 0px 0px",
                         }}
                       />
                       <Typography noWrap sx={designs.Activity_Typography}>
@@ -128,26 +130,22 @@ function Activities_layout({ roomID, activity, socket }) {
                         </Box>
                       </Box>
 
-                      <Box
-                        display="flex"
-                        gap="0.8em"
-                        padding="0.8em 0em 0em 0em"
-                      >
+                      <Box display="flex" gap="0.8em">
                         <Typography
                           sx={{
-                            fontWeight: '600',
-                            fontSize: '13px',
+                            fontWeight: "600",
+                            fontSize: "13px",
                           }}
                         >
-                          {duedate ? `Due Date: ` : 'No Due Date'}
+                          {duedate ? `Due Date: ` : "No Due Date"}
                         </Typography>
                         <Typography
                           sx={{
-                            fontWeight: '500',
-                            fontSize: '13px',
+                            fontWeight: "500",
+                            fontSize: "13px",
                           }}
                         >
-                          {duedate ? moment(duedate).format('LL') : ''}
+                          {duedate ? moment(duedate).format("LL") : ""}
                         </Typography>
                       </Box>
                     </Box>
@@ -156,17 +154,18 @@ function Activities_layout({ roomID, activity, socket }) {
                       sx={designs.Activity_Details2_Style}
                     >
                       <Typography sx={designs.Instructions_Typography}>
-                        {instruction ? 'Instructions: ' : ''}
+                        {instruction ? "Instructions: " : ""}
                       </Typography>
-                      <Box>
+                      <Box
+                        sx={{
+                          padding: "0em",
+                          marginBottom: "0.5em",
+                        }}
+                      >
                         {ReactHtmlParser(draftToHtml(JSON.parse(instruction)))}
                       </Box>
                     </Box>
-                    <Box
-                      sx={{
-                        padding: '0.8em 1.2em',
-                      }}
-                    >
+                    <Box>
                       <Grid container columnSpacing={1} rowSpacing={1}>
                         {media.map((item, index) => {
                           return (
@@ -180,14 +179,14 @@ function Activities_layout({ roomID, activity, socket }) {
                   </AccordionDetails>
                   <Divider />
                   <AccordionActions
-                    sx={{ justifyContent: 'center', padding: '5px' }}
+                    sx={{ justifyContent: "center", padding: "5px" }}
                   >
                     <Button
                       sx={designs.ViewHomework_Button_Style}
                       component={Link}
                       to={`/rooms/${roomID}/s/${items._id}`}
                     >
-                      VIEW ACTIVITY
+                      View activity
                     </Button>
                   </AccordionActions>
                 </Accordion>
