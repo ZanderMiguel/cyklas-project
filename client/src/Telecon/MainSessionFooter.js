@@ -210,41 +210,48 @@ function MainSessionFooter({ members, socket, teleRoom }) {
             )}
           </IconButton>
         </Tooltip>
-
-        <Tooltip title="Make Groups" placement="top">
-          <IconButton
-            onClick={handleCreateMakeGroups}
-            sx={{
-              border: '1px solid #DEDEDE',
-              height: '1.8em',
-              width: '1.8em',
-              padding: '0.3em',
-              '&: hover': {
-                backgroundColor: '#282B31',
-              },
-            }}
-          >
-            <FaObjectGroup style={{ color: '#DEDEDE', fontSize: '0.8em' }} />
-          </IconButton>
-        </Tooltip>
-
-        <Tooltip title="Conduct LIVE Quiz" placement="top">
-          <IconButton
-            onClick={handleClickQuiz}
-            // onClick={handleCreateJoinQuiz}
-            sx={{
-              border: '1px solid #DEDEDE',
-              height: '1.8em',
-              width: '1.8em',
-              padding: '0.3em',
-              '&: hover': {
-                backgroundColor: '#282B31',
-              },
-            }}
-          >
-            <MdOutlineQuiz style={{ color: '#DEDEDE', fontSize: '0.9em' }} />
-          </IconButton>
-        </Tooltip>
+        {JSON.parse(localStorage.userData).data.user.userType ===
+          'Professor' && (
+          <>
+            <Tooltip title="Make Groups" placement="top">
+              <IconButton
+                onClick={handleCreateMakeGroups}
+                sx={{
+                  border: '1px solid #DEDEDE',
+                  height: '1.8em',
+                  width: '1.8em',
+                  padding: '0.3em',
+                  '&: hover': {
+                    backgroundColor: '#282B31',
+                  },
+                }}
+              >
+                <FaObjectGroup
+                  style={{ color: '#DEDEDE', fontSize: '0.8em' }}
+                />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Conduct LIVE Quiz" placement="top">
+              <IconButton
+                onClick={handleClickQuiz}
+                // onClick={handleCreateJoinQuiz}
+                sx={{
+                  border: '1px solid #DEDEDE',
+                  height: '1.8em',
+                  width: '1.8em',
+                  padding: '0.3em',
+                  '&: hover': {
+                    backgroundColor: '#282B31',
+                  },
+                }}
+              >
+                <MdOutlineQuiz
+                  style={{ color: '#DEDEDE', fontSize: '0.9em' }}
+                />
+              </IconButton>
+            </Tooltip>
+          </>
+        )}
         <CusPopover
           open={quiz}
           anchorEl={anchorEl}

@@ -1,7 +1,6 @@
 import React from 'react';
 import logo from '../assets/Ellipse 3.svg';
 import Notificationpopover from './PopoverContent/Notificationpopover';
-// import Notifications_viewall from '../Notifications/Notifications_viewall';
 import Accountpopover from './PopoverContent/Accountpopover';
 
 //MUI imports
@@ -84,12 +83,13 @@ const general = [
   // },
 ];
 
-function Navbar() {
+function Navbar({ image }) {
   const theme = useTheme();
   const location = useLocation();
   const [items, setItems] = React.useState(null);
   const [toggleAccept, setToggleAccept] = React.useState(false);
   const [userImg, setUserImg] = React.useState('');
+
   React.useEffect(() => {
     axios
       .post('http://localhost:5000/requests', {
@@ -192,7 +192,7 @@ function Navbar() {
             }}
           >
             <Avatar
-              src={JSON.parse(localStorage.userData).data.imageUrl}
+              src={image}
               alt={JSON.parse(
                 localStorage.userData
               ).data.user.firstName[0].toUpperCase()}

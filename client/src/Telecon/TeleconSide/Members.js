@@ -1,5 +1,6 @@
 import React from 'react';
-import NoContent from '../assets/ImageJaven/NoContent.png';
+import NoContent from '../../assets/ImageJaven/NoContent.png';
+import AvatarIcon from '../../assets/ImageJaven/Avatar.png';
 import {
   Box,
   Typography,
@@ -14,7 +15,6 @@ import {
   KeyboardVoiceOutlined,
   MicOffOutlined,
 } from '@mui/icons-material';
-import AvatarIcon from '../assets/ImageJaven/Avatar.png';
 
 const dataMember = [
   {
@@ -163,7 +163,7 @@ function Members({ members }) {
         />
 
         <Typography
-          children="8"
+          children={members && members.current.length}
           sx={{
             color: '#DEDEDE',
             fontSize: '0.8em',
@@ -203,10 +203,7 @@ function Members({ members }) {
               }}
             >
               <Avatar
-                src={items.camera.replace(
-                  'blob:',
-                  ''
-                )}
+                src={items.camera.replace('blob:', '')}
                 alt={items.memberName[0].toUpperCase()}
               />
 

@@ -5,10 +5,10 @@ import MainSessionHeader from './MainSessionHeader';
 import MainSessionBody from './MainSessionBody';
 import MainSessionFooter from './MainSessionFooter';
 import RightContentSideBar from './RightContentSideBar';
-import MeetingInformation from './MeetingInformation';
-import Members from './Members';
+import MeetingInformation from './TeleconSide/MeetingInformation';
+import Members from './TeleconSide/Members';
 import MessageArea from './TeleconSide/MessageArea';
-import PresentationCriteria from './PresentationCriteria';
+import PresentationCriteria from './TeleconSide/PresentationCriteria';
 import { useParams, Redirect } from 'react-router-dom';
 import _ from 'lodash';
 
@@ -94,7 +94,7 @@ function TelRender({ socket, socketID, myPeer }) {
             <Slide direction="left" in={sidedrawer} mountOnEnter unmountOnExit>
               <Box sx={{ height: '98vh' }}>
                 {sidecontent === 'MeetingInformation' ? (
-                  <MeetingInformation />
+                  <MeetingInformation roomID={teleRoom} />
                 ) : sidecontent === 'Members' ? (
                   <Members members={members} />
                 ) : sidecontent === 'MessageArea' ? (

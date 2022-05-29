@@ -69,6 +69,7 @@ function MainSessionBody({
           flexWrap: 'wrap',
           justifyContent: 'center',
           whiteSpace: 'break-spaces',
+          margin: '1em',
         }}
         ref={layout}
       >

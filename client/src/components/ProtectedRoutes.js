@@ -17,7 +17,9 @@ function ProtectedRoutes({
   return (
     <>
       <CssBaseline />
-      {localStorage.token && <Navbar />}
+      {localStorage.token && (
+        <Navbar image={JSON.parse(localStorage.userData).data.imageUrl} />
+      )}
       {Component ? (
         <Route
           {...attrib}

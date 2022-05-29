@@ -115,7 +115,7 @@ function Automate({ members }) {
         </Typography>
       </Box>
 
-      <Typography
+      {/* <Typography
         sx={{
           color: '#3F3D56',
           fontSize: '0.8em',
@@ -129,7 +129,7 @@ function Automate({ members }) {
         }}
       >
         5 / 5
-      </Typography>
+      </Typography> */}
 
       <Box sx={{ width: 'relative', height: 'auto' }}>
         {members.map(function (items, index) {
@@ -201,7 +201,7 @@ function Automate({ members }) {
         })}
       </Box>
 
-      <Box
+      {/* <Box
         sx={{
           backgroundColor: '#EDF3F9',
           display: 'flex',
@@ -237,7 +237,7 @@ function Automate({ members }) {
         >
           students per group.
         </Typography>
-      </Box>
+      </Box> */}
     </Box>
   );
 }
