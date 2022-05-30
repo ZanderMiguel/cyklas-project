@@ -39,6 +39,7 @@ function GoogleAuth() {
       });
   };
   const googleSuccess = (res) => {
+    console.log(res);
     const googleAuth = {
       firstName: res.profileObj.givenName,
       lastName: res.profileObj.familyName,
@@ -49,13 +50,13 @@ function GoogleAuth() {
     signIn(googleAuth);
   };
   const googleFailure = (error) => {
-    console.log('error');
+    console.log(error);
   };
 
   return (
     <div>
       <GoogleLogin
-        clientId="13670802182-ik5bgipp4un43kv140qom4pjavgovlqj.apps.googleusercontent.com"
+        clientId="579265708499-7ii87q3j1lhihqbuu20224o4mofhstme.apps.googleusercontent.com"
         render={(renderProps) => (
           <Button
             variant="outlined"
@@ -71,16 +72,15 @@ function GoogleAuth() {
         onSuccess={googleSuccess}
         onFailure={googleFailure}
         cookiePolicy={'single_host_origin'}
-        scope="profile"
       />
-      {/* {state && (
+      {state && (
         <SelectUserType
           open={state}
           close={() => setState(false)}
           signIn={signIn}
           googleData={googleData}
         />
-      )} */}
+      )}
     </div>
   );
 }

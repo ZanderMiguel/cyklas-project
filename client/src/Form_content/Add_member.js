@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Dialogform from '../components/Dialogform';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   Grid,
   Box,
@@ -16,17 +17,21 @@ import useStyle from './Styles/Add_member_style';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 function Add_member({ open, close, maxWidth }) {
-  const location = useLocation()
+  const location = useLocation();
   const [copy, setCopy] = useState(false);
   const { designs } = useStyle();
 
-
-  
-
   return (
     <div>
-      <Dialogform open={open} close={close} maxWidth={maxWidth}>
-        <Grid item xs={12}>
+      <ToastContainer />
+      <Dialogform
+        open={open}
+        close={close}
+        maxWidth={maxWidth}
+        divider
+        title="Joining Link"
+      >
+        {/* <Grid item xs={12}>
           <Stack sx={designs.Stack_Style}>
             <Typography sx={designs.TextFieldLabel_Style}>
               Add Member'(s)
@@ -80,7 +85,7 @@ function Add_member({ open, close, maxWidth }) {
               }}
             />
           </Divider>
-        </Grid>
+        </Grid> */}
         <Stack sx={designs.Stack_Style}>
           <Box
             sx={{
@@ -99,7 +104,7 @@ function Add_member({ open, close, maxWidth }) {
                 variant="standard"
                 disabled
                 sx={designs.TextField2_Style}
-                defaultValue={location.pathname.replace('/rooms/','')}
+                defaultValue={location.pathname.replace('/rooms/', '')}
                 // InputProps={{ readOnly: true }}
               />
             </Box>
@@ -113,13 +118,24 @@ function Add_member({ open, close, maxWidth }) {
               }}
             >
               <CopyToClipboard
-                text={location.pathname.replace('/rooms/','')}
+                text={location.pathname.replace('/rooms/', '')}
                 onCopy={() => {
                   setCopy(true);
                 }}
               >
                 <Button
                   variant="contained"
+                  onClick={() =>
+                    toast.info('Link copied!', {
+                      position: 'bottom-center',
+                      autoClose: 2000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                    })
+                  }
                   startIcon={<ContentCopy />}
                   sx={{
                     border: '1px solid #0069D3',
