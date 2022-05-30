@@ -174,7 +174,7 @@ function Make_groups({ open, close, maxWidth, members, socket, teleRoom }) {
                       }
                       label="Manual"
                     />
-                    <FormControlLabel
+                    {/* <FormControlLabel
                       checked={radioGroup === 'Saved Groups'}
                       value="Saved Groups"
                       onChange={(e) => {
@@ -194,7 +194,7 @@ function Make_groups({ open, close, maxWidth, members, socket, teleRoom }) {
                         />
                       }
                       label="Saved Groups"
-                    />
+                    /> */}
                   </RadioGroup>
                 </FormControl>
               </Box>

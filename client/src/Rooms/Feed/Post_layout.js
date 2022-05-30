@@ -171,7 +171,7 @@ function Post_layout({
               {item.media && (
                 <>
                   <Divider sx={designs.Divider_Style} />{" "}
-                  {item.media.map((filename) => (
+                  {item.media.map((filename, index) => (
                     <FileTile item={filename} index={index} />
                   ))}
                 </>

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Avatar } from "@mui/material";
-import AvatarIcon from "../assets/ImageJaven/Avatar.png";
-import "./Styles/DashboardStudentrankingsStylesheet.css";
-import { WorkspacePremium, Search } from "@mui/icons-material";
+import React, { useState } from 'react';
+import { Avatar } from '@mui/material';
+import AvatarIcon from '../assets/ImageJaven/Avatar.png';
+import './Styles/DashboardStudentrankingsStylesheet.css';
+import { WorkspacePremium, Search } from '@mui/icons-material';
 import {
   Container,
   Grid,
@@ -16,7 +16,7 @@ import {
   InputLabel,
   Select,
   MenuItem,
-} from "@mui/material";
+} from '@mui/material';
 
 const dataRange = [
   // {
@@ -34,57 +34,57 @@ const dataRange = [
 ];
 
 const dataTable = [
-  // {
-  //   studentAvatar: (
-  //     <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-  //   ),
-  //  studentName: 'Paul Rudd',
-  //   yearSection: '3A',
-  // },
-  // {
-  //   studentAvatar: (
-  //     <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-  //   ),
-  //   studentName: 'Tom Holland',
-  //   yearSection: '3A',
-  // },
-  // {
-  //   studentAvatar: (
-  //     <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-  //   ),
-  //   studentName: 'Tom Hiddleston',
-  //   yearSection: '3A',
-  // },
-  // {
-  //   studentAvatar: (
-  //     <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
-  //   ),
-  //   studentName: 'Robert Downey Jr.',
-  //   yearSection: '3A',
-  // },
+  {
+    studentAvatar: (
+      <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
+    ),
+    studentName: 'Paul Rudd',
+    yearSection: '3A',
+  },
+  {
+    studentAvatar: (
+      <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
+    ),
+    studentName: 'Tom Holland',
+    yearSection: '3A',
+  },
+  {
+    studentAvatar: (
+      <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
+    ),
+    studentName: 'Tom Hiddleston',
+    yearSection: '3A',
+  },
+  {
+    studentAvatar: (
+      <Avatar src={AvatarIcon} sx={{ height: '1.5em', width: '1.5em' }} />
+    ),
+    studentName: 'Robert Downey Jr.',
+    yearSection: '3A',
+  },
 ];
 
 const dataRoom = [
   {
-    value: "Embedded Programming",
-    label: "Embedded Programming",
+    value: 'Embedded Programming',
+    label: 'Embedded Programming',
   },
   {
-    value: "Art Appreciation",
-    label: "Art Appreciation",
+    value: 'Art Appreciation',
+    label: 'Art Appreciation',
   },
   {
-    value: "Science, Technology and Society",
-    label: "Science, Technology and Society",
+    value: 'Science, Technology and Society',
+    label: 'Science, Technology and Society',
   },
   {
-    value: "Software Engineering",
-    label: "Software Engineering",
+    value: 'Software Engineering',
+    label: 'Software Engineering',
   },
 ];
 
 function DashboardStudentrankings() {
-  const [selectRange, setSelectRange] = useState("");
+  const [selectRange, setSelectRange] = useState('');
   const handleChangeRange = (event) => {
     setSelectRange(event.target.value);
   };
@@ -93,33 +93,33 @@ function DashboardStudentrankings() {
     <>
       <Box
         sx={{
-          backgroundColor: "transparent",
-          display: "flex",
-          width: "relative",
-          height: "auto",
-          marginBottom: "0.3em",
+          backgroundColor: 'transparent',
+          display: 'flex',
+          width: 'relative',
+          height: 'auto',
+          marginBottom: '0.3em',
         }}
       >
         <Typography
           children="Student Rankings"
           sx={{
-            color: "#8E8E8E",
-            fontSize: "0.8em",
-            fontWeight: "500",
-            width: "auto",
+            color: '#8E8E8E',
+            fontSize: '0.8em',
+            fontWeight: '500',
+            width: 'auto',
             flexGrow: 1,
-            height: "relative",
-            display: "flex",
-            alignItems: "center",
-            textTransform: "Uppercase",
+            height: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            textTransform: 'Uppercase',
           }}
         />
 
         <FormControl
           variant="standard"
           sx={{
-            width: "auto",
-            padding: "0em",
+            width: 'auto',
+            padding: '0em',
           }}
         >
           <Select
@@ -130,17 +130,17 @@ function DashboardStudentrankings() {
             label="SelectRoom"
             disableUnderline
             sx={{
-              width: "100%",
-              fontSize: "0.7em",
-              fontWeight: "500",
-              color: "#007FFF",
-              textTransform: "Uppercase",
+              width: '100%',
+              fontSize: '0.7em',
+              fontWeight: '500',
+              color: '#007FFF',
+              textTransform: 'Uppercase',
             }}
           >
             {dataRange.map(({ value, label }) => (
               <MenuItem key={value} value={value}>
-                {" "}
-                {label}{" "}
+                {' '}
+                {label}{' '}
               </MenuItem>
             ))}
           </Select>

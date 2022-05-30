@@ -1,9 +1,13 @@
-import React from 'react';
-import NoContent from '../assets/ImageJaven/NoContent.png';
-import { Container, Grid, Box, Typography, Divider } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Box, Typography } from '@mui/material';
 import { Info } from '@mui/icons-material';
 
-function MeetingInformation() {
+function MeetingInformation({ roomID }) {
+  const [dateState, setDateState] = useState(new Date());
+  useEffect(() => {
+    setInterval(() => setDateState(new Date()), 5000);
+  }, []);
+
   return (
     <div
       style={{
@@ -58,7 +62,7 @@ function MeetingInformation() {
           children="Meeting ID:"
           sx={{
             height: 'relative',
-            width: 'auto',
+            width: '100px',
             color: '#DEDEDE',
             fontSize: '0.8em',
             fontWeight: '500',
@@ -67,7 +71,7 @@ function MeetingInformation() {
         />
 
         <Typography
-          children="VM22KRT"
+          children={roomID}
           sx={{
             height: 'relative',
             width: 'auto',
@@ -156,19 +160,23 @@ function MeetingInformation() {
 
       <Box
         sx={{
-          backgroundColor: "#22252B",
+          backgroundColor: '#22252B',
           width: 'relative',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           gap: '1.2em',
           padding: '0.3em 0em',
-          margin: "1.5em",
+          margin: '1.5em',
           borderRadius: '0.3em',
         }}
       >
         <Typography
-          children="December 12, 2021"
+          children={dateState.toLocaleDateString('en-GB', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+          })}
           sx={{
             height: 'relative',
             width: 'auto',
@@ -180,7 +188,11 @@ function MeetingInformation() {
         />
 
         <Typography
-          children="3:23 PM"
+          children={dateState.toLocaleString('en-US', {
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true,
+          })}
           sx={{
             height: 'relative',
             width: 'auto',
