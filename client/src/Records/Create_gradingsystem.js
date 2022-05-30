@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import Dialogform from '../components/Dialogform';
-import { Box, Button } from '@mui/material';
-import Input from '../components/Input';
-import NewGradingSystem from './NewGradingSystem';
+import React, { useState } from "react";
+import Dialogform from "../components/Dialogform";
+import { Box, Button, TextField, Typography } from "@mui/material";
+import Input from "../components/Input";
+import NewGradingSystem from "./NewGradingSystem";
 
 function Create_gradingsystem({
   open,
@@ -14,7 +14,7 @@ function Create_gradingsystem({
   data,
   setRenderer,
 }) {
-  const [gradingname, setGradingName] = useState('');
+  const [gradingname, setGradingName] = useState("");
   // const handleAddGrading = () => {
   //   axios
   //     .post('http://localhost:5000/gradingSystem/create', {
@@ -25,7 +25,7 @@ function Create_gradingsystem({
   // };
 
   const handleGradingName = (event) => {
-    name.current[counter]['GradingName'] = event.target.value;
+    name.current[counter]["GradingName"] = event.target.value;
   };
   return (
     <Dialogform
@@ -49,19 +49,48 @@ function Create_gradingsystem({
             ]);
             close();
           }}
+          sx={{
+            color: "white",
+            fontSize: "0.8em",
+            fontWeight: "600",
+            textTransform: "Capitalize",
+            padding: "0.3em 1.5em",
+            boxShadow: "none",
+          }}
         >
           Add
         </Button>
       }
     >
-      <Box padding={2}>
-        <Input
-          inputLabel="Grading Name"
-          size="small"
-          autoFocus
+      <Box
+        sx={{
+          padding: "0em 1.5em",
+          marginBottom: "0.5em",
+        }}
+      >
+        <Typography
+          children="Grading System Name"
+          sx={{
+            fontWeight: "500",
+            color: "#3F3D56",
+            fontSize: "0.9em",
+            margin: "0em 0em 0.3em 0em",
+          }}
+        />
+
+        <TextField
           onChange={handleGradingName}
           fullWidth
           autoComplete="off"
+          inputProps={{
+            style: {
+              height: "0.5em",
+              fontSize: "0.9em",
+              color: "#3F3D56",
+              fontWeight: 500,
+              margin: "0em",
+            },
+          }}
         />
       </Box>
     </Dialogform>

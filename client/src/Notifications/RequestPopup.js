@@ -1,9 +1,9 @@
-import React from 'react';
-import { Divider, Box, Typography, Avatar, Button } from '@mui/material';
-import useStyle from '../components/PopoverContent/Styles/Notificationpopover_style';
-import axios from 'axios';
-import moment from 'moment';
-import RequestSent from '../assets/ImageJaven/RequestSent.png';
+import React from "react";
+import { Divider, Box, Typography, Avatar, Button } from "@mui/material";
+import useStyle from "../components/PopoverContent/Styles/Notificationpopover_style";
+import axios from "axios";
+import moment from "moment";
+import RequestSent from "../assets/ImageJaven/RequestSent.png";
 
 function RequestPopup({ items, setItems }) {
   const { designs } = useStyle();
@@ -11,7 +11,7 @@ function RequestPopup({ items, setItems }) {
 
   React.useEffect(() => {
     axios
-      .post('http://localhost:5000/requests', {
+      .post("http://localhost:5000/requests", {
         userID: JSON.parse(localStorage.userData).data.user._id,
       })
       .then((res) => {
@@ -22,7 +22,7 @@ function RequestPopup({ items, setItems }) {
 
   const handleAcceptRequest = (event, stdImage, stdName, stdID) => {
     axios
-      .post('http://localhost:5000/records/create', {
+      .post("http://localhost:5000/records/create", {
         room: event.target.name,
         student: {
           stdID,
@@ -44,7 +44,7 @@ function RequestPopup({ items, setItems }) {
       .catch((err) => console.log(err));
 
     axios
-      .post('http://localhost:5000/requests/accept', {
+      .post("http://localhost:5000/requests/accept", {
         roomID: event.target.name,
         memberID: stdID,
         reqID: event.target.nonce,
@@ -58,7 +58,7 @@ function RequestPopup({ items, setItems }) {
 
   const handleDeleteRequest = (event, element) => {
     axios
-      .delete('http://localhost:5000/requests/decline', {
+      .delete("http://localhost:5000/requests/decline", {
         data: { reqID: element },
       })
       .then((res) => {
@@ -79,7 +79,7 @@ function RequestPopup({ items, setItems }) {
               <Box sx={designs.RequestContainer_Sub_Style}>
                 <Box sx={designs.RequestContainer_Sub2_Style}>
                   <Avatar
-                    src={element.requests.userImage.replace('blob:', '')}
+                    src={element.requests.userImage.replace("blob:", "")}
                     alt=""
                   />
                 </Box>
@@ -87,10 +87,10 @@ function RequestPopup({ items, setItems }) {
                 <Box>
                   <Typography
                     sx={{
-                      fontSize: '0.8em',
-                      fontWeight: '600',
-                      color: '#3F3D56',
-                      width: 'relative',
+                      fontSize: "0.8em",
+                      fontWeight: "600",
+                      color: "#3F3D56",
+                      width: "relative",
                     }}
                   >
                     {element.requests.userName}
@@ -98,68 +98,68 @@ function RequestPopup({ items, setItems }) {
 
                   <Box
                     sx={{
-                      width: 'relative',
-                      height: 'auto',
-                      display: 'flex',
-                      gap: '0.5em',
-                      flexWrap: 'wrap',
+                      width: "relative",
+                      height: "auto",
+                      display: "flex",
+                      gap: "0.5em",
+                      flexWrap: "wrap",
                     }}
                   >
                     <Typography
                       children="is requesting to join your room"
                       sx={{
-                        fontSize: '0.8em',
-                        fontWeight: '500',
-                        color: '#64627F',
-                        width: 'auto',
-                        textTransform: 'none',
+                        fontSize: "0.8em",
+                        fontWeight: "500",
+                        color: "#64627F",
+                        width: "auto",
+                        textTransform: "none",
                       }}
                     />
 
                     <Typography
                       children={`"${element.requests.RoomName}"`}
                       sx={{
-                        fontSize: '0.8em',
-                        fontWeight: '600',
-                        color: '#64627F',
-                        width: 'auto',
-                        textTransform: 'Uppercase',
+                        fontSize: "0.8em",
+                        fontWeight: "600",
+                        color: "#64627F",
+                        width: "auto",
+                        textTransform: "Uppercase",
                       }}
                     />
                   </Box>
 
                   <Typography
                     sx={{
-                      fontSize: '0.7em',
-                      fontWeight: '500',
-                      color: '#8E8E8E',
-                      width: 'relative',
+                      fontSize: "0.7em",
+                      fontWeight: "500",
+                      color: "#8E8E8E",
+                      width: "relative",
                     }}
                   >
-                    {moment(element.createdAt).format('MMMM DD YYYY / h:mm a')}
+                    {moment(element.createdAt).format("MMMM DD YYYY / h:mm a")}
                   </Typography>
 
                   <Box
                     sx={{
-                      marginTop: '0.5em',
-                      width: 'relative',
-                      height: 'auto',
-                      display: 'flex',
-                      gap: '1em',
+                      marginTop: "0.5em",
+                      width: "relative",
+                      height: "auto",
+                      display: "flex",
+                      gap: "1em",
                     }}
                   >
                     <Button
                       variant="contained"
                       sx={{
-                        fontSize: '0.7em',
-                        fontWeight: '600',
-                        textTransform: 'Capitalize',
-                        color: 'white',
-                        backgroundColor: '#0069D3',
-                        padding: '0.1em 2em',
-                        boxShadow: 'none',
-                        '&: hover': {
-                          backgroundColor: '#005DC3',
+                        fontSize: "0.7em",
+                        fontWeight: "600",
+                        textTransform: "Capitalize",
+                        color: "white",
+                        backgroundColor: "#0069D3",
+                        padding: "0.1em 2em",
+                        boxShadow: "none",
+                        "&: hover": {
+                          backgroundColor: "#005DC3",
                         },
                       }}
                       onClick={(event) =>
@@ -179,16 +179,16 @@ function RequestPopup({ items, setItems }) {
                     <Button
                       variant="contained"
                       sx={{
-                        fontSize: '0.7em',
-                        fontWeight: '600',
-                        textTransform: 'Capitalize',
-                        color: '#3F3D56',
-                        backgroundColor: 'transparent',
-                        padding: '0.1em 2em',
-                        boxShadow: 'none',
-                        '&: hover': {
-                          backgroundColor: 'transparent',
-                          boxShadow: 'none',
+                        fontSize: "0.7em",
+                        fontWeight: "600",
+                        textTransform: "Capitalize",
+                        color: "#3F3D56",
+                        backgroundColor: "transparent",
+                        padding: "0.1em 2em",
+                        boxShadow: "none",
+                        "&: hover": {
+                          backgroundColor: "transparent",
+                          boxShadow: "none",
                         },
                       }}
                       onClick={(event) => {
@@ -207,43 +207,29 @@ function RequestPopup({ items, setItems }) {
       {items && items.length === 0 && (
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '0.8em',
-            justifyContent: 'center',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            gap: "0.8em",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          <Box
-            sx={{
-              height: "7em",
-              width: "7em",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              borderRadius: "8em",
-              backgroundColor: "#F3F3F3",
-              margin: "1em 1em 0em 0em",
-            }}
-          >
           <img
             src={RequestSent}
             alt="Request Sent"
             style={{
-              height: '7em',
-              marginTop: '2em',
+              height: "7em",
+              marginTop: "2em",
             }}
           />
-          </Box>
-         
 
           <Typography
             children="There is no request to show."
             sx={{
-              fontSize: '0.8em',
-              fontWeight: '400',
-              color: '#3F3D56',
-              marginRight: '1em',
+              fontSize: "0.8em",
+              fontWeight: "400",
+              color: "#3F3D56",
+              marginRight: "1em",
             }}
           />
         </Box>

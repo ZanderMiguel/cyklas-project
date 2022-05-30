@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import Dialogform from '../components/Dialogform';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useState } from "react";
+import Dialogform from "../components/Dialogform";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   Grid,
   Box,
@@ -10,11 +10,12 @@ import {
   Divider,
   TextField,
   Stack,
-} from '@mui/material';
-import { ContentCopy } from '@mui/icons-material';
-import { useLocation } from 'react-router-dom';
-import useStyle from './Styles/Add_member_style';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
+  Input,
+} from "@mui/material";
+import { ContentCopy } from "@mui/icons-material";
+import { useLocation } from "react-router-dom";
+import useStyle from "./Styles/Add_member_style";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 function Add_member({ open, close, maxWidth }) {
   const location = useLocation();
@@ -29,7 +30,7 @@ function Add_member({ open, close, maxWidth }) {
         close={close}
         maxWidth={maxWidth}
         divider
-        title="Joining Link"
+        title="Add member"
       >
         {/* <Grid item xs={12}>
           <Stack sx={designs.Stack_Style}>
@@ -86,39 +87,68 @@ function Add_member({ open, close, maxWidth }) {
             />
           </Divider>
         </Grid> */}
+
+        <Box
+          sx={{
+            padding: "0em 1.5em 1.5em 1.5em",
+          }}
+        >
+          <Typography
+            children="Copy the link of this room and share it with your class in order for them to join."
+            sx={{
+              color: "#8E8E8E",
+              fontSize: "0.8em",
+              fontWeight: "500",
+            }}
+          />
+        </Box>
         <Stack sx={designs.Stack_Style}>
           <Box
             sx={{
-              height: 'auto',
-              width: 'relative',
-              display: 'flex',
-              gap: '0.8em',
+              height: "auto",
+              width: "relative",
+              display: "flex",
+              gap: "0.8em",
             }}
           >
-            <Box sx={{ height: 'auto', width: 'relative' }}>
+            <Box sx={{ height: "auto", width: "relative" }}>
               <Typography
                 sx={designs.TextFieldLabel_Style}
                 children="Classroom ID"
               />
-              <TextField
+              <Input
+                disableUnderline
+                readOnly
+                defaultValue={location.pathname.replace("/rooms/", "")}
+                sx={{
+                  width: "100%",
+                  fontWeight: "500",
+                  color: "white",
+                  fontSize: "0.9em",
+                  borderRadius: "0.2em",
+                  padding: "0.1em 0.5em 0em 0.5em",
+                  backgroundColor: "#C3C3C3",
+                }}
+              />
+              {/* <TextField
                 variant="standard"
                 disabled
                 sx={designs.TextField2_Style}
-                defaultValue={location.pathname.replace('/rooms/', '')}
-                // InputProps={{ readOnly: true }}
-              />
+                defaultValue={location.pathname.replace("/rooms/", "")}
+                inputProps={{ color: "white" }}
+              /> */}
             </Box>
 
             <Box
               sx={{
-                height: 'auto',
-                width: 'relative',
-                display: 'flex',
-                alignItems: 'flex-end',
+                height: "auto",
+                width: "relative",
+                display: "flex",
+                alignItems: "flex-end",
               }}
             >
               <CopyToClipboard
-                text={location.pathname.replace('/rooms/', '')}
+                text={location.pathname.replace("/rooms/", "")}
                 onCopy={() => {
                   setCopy(true);
                 }}
@@ -126,8 +156,8 @@ function Add_member({ open, close, maxWidth }) {
                 <Button
                   variant="contained"
                   onClick={() =>
-                    toast.info('Link copied!', {
-                      position: 'bottom-center',
+                    toast.info("Link copied!", {
+                      position: "bottom-center",
                       autoClose: 2000,
                       hideProgressBar: false,
                       closeOnClick: true,
@@ -138,19 +168,19 @@ function Add_member({ open, close, maxWidth }) {
                   }
                   startIcon={<ContentCopy />}
                   sx={{
-                    border: '1px solid #0069D3',
-                    backgroundColor: 'transparent',
-                    height: 'max-content',
-                    boxShadow: 'none',
-                    color: '#0069D3',
-                    fontSize: '0.8em',
-                    fontWeight: '600',
-                    textTransform: 'Capitalize',
-                    padding: '0.3em 3em',
-                    '&: hover': {
-                      border: '1px solid #005DC3',
-                      backgroundColor: 'transparent',
-                      boxShadow: 'none',
+                    border: "1px solid transparent",
+                    backgroundColor: "transparent",
+                    height: "max-content",
+                    boxShadow: "none",
+                    color: "#0069D3",
+                    fontSize: "0.8em",
+                    fontWeight: "600",
+                    textTransform: "Capitalize",
+                    padding: "0.3em 1.5em",
+                    "&: hover": {
+                      border: "1px solid #005DC3",
+                      backgroundColor: "transparent",
+                      boxShadow: "none",
                     },
                   }}
                 >

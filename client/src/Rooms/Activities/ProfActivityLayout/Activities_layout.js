@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Typography,
   Accordion,
@@ -9,17 +9,19 @@ import {
   Grid,
   Box,
   Button,
-} from '@mui/material';
-import moment from 'moment';
-import axios from 'axios';
-import { EditOutlined, DeleteOutlined } from '@mui/icons-material';
-import useStyle from '../../Styles/ActivitiesAccordion_Style';
-import Divider from '@mui/material/Divider';
-import { Link } from 'react-router-dom';
-import draftToHtml from 'draftjs-to-html';
-import ReactHtmlParser from 'react-html-parser';
-import ActivityIcon from '../../../assets/ImageJaven/ActivityIcon.png';
-import ActivityFile from '../../../components/ActivityFile';
+  Tooltip,
+} from "@mui/material";
+import moment from "moment";
+import axios from "axios";
+import { EditOutlined, DeleteOutlined, ExpandMore } from "@mui/icons-material";
+import useStyle from "../../Styles/ActivitiesAccordion_Style";
+import Divider from "@mui/material/Divider";
+import { Link } from "react-router-dom";
+import draftToHtml from "draftjs-to-html";
+import ReactHtmlParser from "react-html-parser";
+import ActivityIcon from "../../../assets/ImageJaven/ActivityIcon.png";
+import ActivityFile from "../../../components/ActivityFile";
+import DeletingActivityConfirmation from "../../../Form_content/DeletingActivityConfirmation";
 
 function ActivitiesAccordion({ roomID, activity, setDeleteRender }) {
   const { designs } = useStyle();
@@ -35,11 +37,26 @@ function ActivitiesAccordion({ roomID, activity, setDeleteRender }) {
   const handleDelete = (event, _id) => {
     event.stopPropagation();
     axios
-      .delete('http://localhost:5000/activity/delete', {
+      .delete("http://localhost:5000/activity/delete", {
         data: { id: _id },
       })
       .then((res) => setDeleteRender((prev) => !prev))
       .catch((err) => console.log(err));
+  };
+
+  const [
+    opendialogDeletingActivityConfirmation,
+    setOpenDialogDeletingActivityConfirmation,
+  ] = React.useState(false);
+
+  const handleCreateDeletingActivityConfirmation = (event) => {
+    event.stopPropagation();
+    setOpenDialogDeletingActivityConfirmation(true);
+  };
+
+  const handleCreateCloseDeletingActivityConfirmation = (event) => {
+    event.stopPropagation();
+    setOpenDialogDeletingActivityConfirmation(false);
   };
 
   return (
@@ -65,6 +82,7 @@ function ActivitiesAccordion({ roomID, activity, setDeleteRender }) {
                   sx={designs.Accordion_Style}
                 >
                   <AccordionSummary
+                    expandIcon={<ExpandMore />}
                     aria-controls={items.Activity}
                     id={items.Activity_FileName_Typography}
                     sx={designs.AccordionSummary_Style}
@@ -73,8 +91,8 @@ function ActivitiesAccordion({ roomID, activity, setDeleteRender }) {
                       <img
                         src={ActivityIcon}
                         style={{
-                          height: '30px',
-                          margin: '4px 15px 0px 0px',
+                          height: "30px",
+                          margin: "4px 15px 0px 0px",
                         }}
                       />
                       <Typography noWrap sx={designs.Activity_Typography}>
@@ -97,89 +115,111 @@ function ActivitiesAccordion({ roomID, activity, setDeleteRender }) {
                         <EditOutlined sx={designs.Edit_Icon_Style} />
                       </IconButton> */}
 
-                      <IconButton
-                        aria-label="delete"
-                        size="small"
-                        onClick={(event) => handleDelete(event, _id)}
-                      >
-                        <DeleteOutlined sx={designs.Delete_Icon_Style} />
-                      </IconButton>
+                      <Tooltip title="Delete this activity" placement="right">
+                        <IconButton
+                          aria-label="delete"
+                          size="small"
+                          // onClick={(event) => handleDelete(event, _id)}
+                          onClick={(event) =>
+                            handleCreateDeletingActivityConfirmation(event)
+                          }
+                          sx={{ marginRight: "0.5em" }}
+                        >
+                          <DeleteOutlined sx={designs.Delete_Icon_Style} />
+                        </IconButton>
+                      </Tooltip>
+                      {opendialogDeletingActivityConfirmation && (
+                        <DeletingActivityConfirmation
+                          open={opendialogDeletingActivityConfirmation}
+                          close={handleCreateCloseDeletingActivityConfirmation}
+                          maxWidth="sm"
+                          state={setOpenDialogDeletingActivityConfirmation}
+                        />
+                      )}
                     </Box>
                   </AccordionSummary>
                   <Divider />
 
                   <AccordionDetails sx={designs.Accordion_Details_Style}>
                     <Box
-                      className="Activity-details"
-                      sx={designs.Activity_Details_Style}
+                      sx={{
+                        padding: "0em 1em",
+                      }}
                     >
                       <Box
-                        className="Type_Due_Date"
-                        sx={designs.Type_Due_Date_Style}
+                        className="Activity-details"
+                        sx={designs.Activity_Details_Style}
                       >
-                        <Box className="Type">
-                          <Typography sx={designs.Type_Responsive_Typography}>
-                            {type}
+                        <Box
+                          className="Type_Due_Date"
+                          sx={designs.Type_Due_Date_Style}
+                        >
+                          <Box className="Type">
+                            <Typography sx={designs.Type_Responsive_Typography}>
+                              {type}
+                            </Typography>
+                          </Box>
+                        </Box>
+                        <Box display="flex">
+                          <Typography
+                            sx={{
+                              mt: 1,
+                              fontWeight: "500",
+                              fontSize: "13px",
+                            }}
+                          >
+                            {duedate ? `Due Date: ` : "No Due Date"}
+                          </Typography>
+                          <Typography
+                            sx={{
+                              ml: 1,
+                              mt: 1,
+                              fontWeight: "500",
+                              fontSize: "13px",
+                            }}
+                          >
+                            {duedate
+                              ? moment(duedate).format("MMMM DD YYYY")
+                              : ""}
                           </Typography>
                         </Box>
                       </Box>
-                      <Box display="flex">
-                        <Typography
-                          sx={{
-                            mt: 1,
-                            fontWeight: '500',
-                            fontSize: '13px',
-                          }}
-                        >
-                          {duedate ? `Due Date: ` : 'No Due Date'}
+                      <Box
+                        className="Activity-details2"
+                        sx={designs.Activity_Details2_Style}
+                      >
+                        <Typography sx={designs.Instructions_Typography}>
+                          {instruction ? "Instructions: " : ""}
                         </Typography>
-                        <Typography
-                          sx={{
-                            ml: 1,
-                            mt: 1,
-                            fontWeight: '500',
-                            fontSize: '13px',
-                          }}
-                        >
-                          {duedate
-                            ? moment(duedate).format('MMMM DD YYYY')
-                            : ''}
-                        </Typography>
+                        <Box>
+                          {ReactHtmlParser(
+                            draftToHtml(JSON.parse(instruction))
+                          )}
+                        </Box>
                       </Box>
-                    </Box>
-                    <Box
-                      className="Activity-details2"
-                      sx={designs.Activity_Details2_Style}
-                    >
-                      <Typography sx={designs.Instructions_Typography}>
-                        {instruction ? 'Instructions: ' : ''}
-                      </Typography>
-                      <Box>
-                        {ReactHtmlParser(draftToHtml(JSON.parse(instruction)))}
+                      <Box sx={{ padding: "0.8em 0em" }}>
+                        <Grid container spacing={1}>
+                          {media.map((item) => {
+                            return (
+                              <Grid item key={index} xs={12}>
+                                <ActivityFile item={item} />
+                              </Grid>
+                            );
+                          })}
+                        </Grid>
                       </Box>
-                    </Box>
-                    <Box sx={{ padding: '0.8em 2.8em' }}>
-                      <Grid container spacing={1}>
-                        {media.map((item) => {
-                          return (
-                            <Grid item key={index} xs={12}>
-                              <ActivityFile item={item} />
-                            </Grid>
-                          );
-                        })}
-                      </Grid>
                     </Box>
                   </AccordionDetails>
                   <Divider />
                   <AccordionActions
-                    sx={{ justifyContent: 'center', padding: '5px' }}
+                    sx={{ justifyContent: "center", padding: "5px" }}
                   >
                     <Button
                       sx={designs.ViewHomework_Button_Style}
                       component={Link}
                       to={`/rooms/${roomID}/p/${_id}`}
                     >
-                      VIEW ACTIVITY
+                      View activity
                     </Button>
                   </AccordionActions>
                 </Accordion>

@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import Dialogform from '../components/Dialogform';
-import Input from '../components/Input';
-import Dropdown from '../components/Drowpdown';
-import usePost from '../customHooks/usePost';
-import moment from 'moment';
-import axios from 'axios';
-import { Grid, Button, Typography } from '@mui/material';
+import React, { useState } from "react";
+import Dialogform from "../components/Dialogform";
+import Input from "../components/Input";
+import Dropdown from "../components/Drowpdown";
+import usePost from "../customHooks/usePost";
+import moment from "moment";
+import axios from "axios";
+import { Grid, Button, Typography } from "@mui/material";
 
 const gradingsystems = [];
 
 function Create_room({ open, close, maxWidth, state, socket, gs, setNewRoom }) {
-  const [roomname, setRoomname] = useState('');
-  const [course, setCourse] = useState('');
-  const [classday, setClassDay] = useState('');
-  const [yearAndSection, setYearandsection] = useState('');
-  const [classtime, setClassTime] = useState('');
-  const [gradingsystem, setGradingSystem] = useState('');
+  const [roomname, setRoomname] = useState("");
+  const [course, setCourse] = useState("");
+  const [classday, setClassDay] = useState("");
+  const [yearAndSection, setYearandsection] = useState("");
+  const [classtime, setClassTime] = useState("");
+  const [gradingsystem, setGradingSystem] = useState("");
 
   const [roomnameError, setRoomnameError] = useState(false);
   const [gradingsystemError, setGradingSystemError] = useState(false);
@@ -42,10 +42,10 @@ function Create_room({ open, close, maxWidth, state, socket, gs, setNewRoom }) {
     setGradingSystemError(false);
 
     {
-      roomname === '' && setRoomnameError(true);
+      roomname === "" && setRoomnameError(true);
     }
     {
-      gradingsystem === '' && setGradingSystemError(true);
+      gradingsystem === "" && setGradingSystemError(true);
     }
 
     const room = {
@@ -53,13 +53,13 @@ function Create_room({ open, close, maxWidth, state, socket, gs, setNewRoom }) {
       Course: course,
       ClassDays: classday,
       yearAndSection,
-      ClassTime: moment(`March 25,2022 ${classtime}`).format('h:mm a'),
+      ClassTime: moment(`March 25,2022 ${classtime}`).format("h:mm a"),
       GradingSystem: gradingsystem,
     };
 
     if (roomname && gradingsystem) {
       axios
-        .post('http://localhost:5000/rooms/create', {
+        .post("http://localhost:5000/rooms/create", {
           Host: {
             name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
               JSON.parse(localStorage.userData).data.user.lastName
@@ -74,7 +74,7 @@ function Create_room({ open, close, maxWidth, state, socket, gs, setNewRoom }) {
         .then((res) => {
           console.log(res.data);
           setNewRoom((prev) => !prev);
-          if (res.data.status === 'success') {
+          if (res.data.status === "success") {
             state(false);
           }
         })
@@ -96,8 +96,8 @@ function Create_room({ open, close, maxWidth, state, socket, gs, setNewRoom }) {
             type="submit"
             form="form1"
             sx={{
-              fontWeight: '600',
-              boxShadow: 'none',
+              fontWeight: "600",
+              boxShadow: "none",
             }}
           >
             Submit
@@ -105,12 +105,16 @@ function Create_room({ open, close, maxWidth, state, socket, gs, setNewRoom }) {
         }
       >
         <Typography
-          sx={{ ml: '2em', p: 0, fontColor: 'gray', fontSize: '0.8em' }}
+          sx={{ ml: "2em", p: 0, fontColor: "gray", fontSize: "0.8em" }}
         >
-          {`NOTE: Before creating a room you must have a grading system. Go to RECORDS > Grading System`}{' '}
+          {`NOTE: Before creating a room you must have a grading system. Go to RECORDS > Grading System`}{" "}
         </Typography>
         <form onSubmit={handleSubmit} id="form1">
-          <Grid container spacing={2} sx={{ padding: 2, overflow: 'auto' }}>
+          <Grid
+            container
+            spacing={2}
+            sx={{ padding: "1em 1.5em 0.5em 1.5em", overflow: "auto" }}
+          >
             <Input
               autoFocus
               inputLabel="Room Name"
