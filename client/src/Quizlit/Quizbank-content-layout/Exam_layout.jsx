@@ -1,19 +1,27 @@
-import React from 'react';
-import { Typography, IconButton, Box } from '@mui/material';
-import ExamIcon from '../../assets/ImageJaven/ExamIcon.png';
-import { MoreVert } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
-import useStyle from '../Styles/Exam_style';
-import CusPopover from '../../components/Popover';
-import SchoolworksTilespopover from '../../components/PopoverContent/SchoolworksTilespopover';
+import React from "react";
+import { Typography, IconButton, Box } from "@mui/material";
+import ExamIcon from "../../assets/ImageJaven/ExamIcon.png";
+import { MoreVert, DeleteOutlined } from "@mui/icons-material";
+import { Link } from "react-router-dom";
+import useStyle from "../Styles/Exam_style";
+import CusPopover from "../../components/Popover";
+import SchoolworksTilespopover from "../../components/PopoverContent/SchoolworksTilespopover";
+import axios from "axios";
 
 function Exam_layout({ bank }) {
   const { designs } = useStyle();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClickOption = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleDelete = (_id) => {
+    console.log(_id);
+
+    axios
+      .delete("http://localhost:5000/quizlit/delete", {
+        quizID: _id,
+      })
+      .then((res) => console.log(res))
+      .catch((error) => console.log(error));
   };
   const handleCloseOption = () => {
     setAnchorEl(null);
@@ -24,6 +32,7 @@ function Exam_layout({ bank }) {
     <>
       {bank.map((item, idx) => {
         const { title, _id } = item;
+
         return (
           <Box sx={designs.BoxTileContainer} key={idx}>
             <Box sx={designs.ExamContainer}>
@@ -31,8 +40,8 @@ function Exam_layout({ bank }) {
                 src={ExamIcon}
                 alt="QuizIcon"
                 style={{
-                  height: '2.2em',
-                  margin: '0em 0.8em 0em 0em',
+                  height: "2.2em",
+                  margin: "0em 0.8em 0em 0em",
                 }}
               />
 
@@ -50,20 +59,21 @@ function Exam_layout({ bank }) {
 
               <Box sx={designs.BoxOptions}>
                 <IconButton
-                  onClick={handleClickOption}
+                  onClick={() => handleDelete(_id)}
                   sx={designs.IconButtonOptions}
                 >
-                  <MoreVert sx={designs.MoreVertIcon} />
+                  {/* <MoreVert sx={designs.MoreVertIcon} /> */}
+                  <DeleteOutlined sx={designs.MoreVertIcon} />
                 </IconButton>
 
-                <CusPopover
+                {/* <CusPopover
                   PaperProps={{ elevation: 1 }}
                   open={account}
                   anchorEl={anchorEl}
                   onClose={handleCloseOption}
                 >
-                  <SchoolworksTilespopover />
-                </CusPopover>
+                  <SchoolworksTilespopover/>
+                </CusPopover> */}
               </Box>
             </Box>
           </Box>

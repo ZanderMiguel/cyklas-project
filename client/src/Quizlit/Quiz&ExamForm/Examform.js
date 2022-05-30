@@ -9,6 +9,8 @@ import { AddCircle, Add } from '@mui/icons-material';
 import Post_exam from '../../Form_content/Post_exam';
 import Exam_Questions from './AnswerTypes/Exam_Questions';
 import ExamIconButton from '../../assets/ImageJaven/ExamIconButton.png';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Examform() {
   const { designs } = useStyle();
@@ -35,6 +37,7 @@ function Examform() {
   };
   return (
     <Container maxWidth="md" sx={{ padding: '2em 0em' }}>
+   <ToastContainer />
       <Grid
         container
         justifyContent="center"
@@ -178,6 +181,7 @@ function Examform() {
               questionMemo={questionMemo}
               exam={exam}
               counter={counter}
+              toast={toast}
             />
           )}
         </Grid>
