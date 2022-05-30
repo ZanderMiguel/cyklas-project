@@ -199,10 +199,12 @@ function Post_exam({
   return (
     <div>
       <Dialogform
+        divider
         open={open}
         close={close}
         fullWidth
         maxWidth={maxWidth}
+        title="Post exam to this room/ class"
         btn={
           <Box
             sx={{
@@ -267,8 +269,8 @@ function Post_exam({
           </Box>
         }
       >
-        <Grid container sx={{ padding: "0em 2em" }}>
-          <Grid item xs={12}>
+        <Grid container sx={{ p: "0em 1.5em" }}>
+          {/* <Grid item xs={12}>
             <Typography
               sx={{
                 color: "#3F3D56",
@@ -280,126 +282,103 @@ function Post_exam({
             >
               Post exam to this room/ class?
             </Typography>
-          </Grid>
+          </Grid> */}
 
           <Grid item xs={6} sx={{ marginTop: "1em" }}>
-            <FormControl
-              variant="standard"
+            <Typography
+              variant="body1"
               sx={{
-                width: "100%",
+                fontWeight: "500",
+                color: "#3F3D56",
+                fontSize: "0.8em",
+                margin: "0em 0em 0.3em 0em",
+              }}
+            >
+              Select Room
+            </Typography>
+
+            <Select
+              labelId="demo-simple-select-standard-label"
+              id="demo-simple-select-standard"
+              value={selectRoom}
+              onChange={handleChangeRoom}
+              disableUnderline
+              fullWidth
+              sx={{
+                height: "2.8em",
+                fontSize: "0.9em",
+                color: "#3F3D56",
+                fontWeight: 500,
                 paddingTop: "0em",
+                paddingBottom: "0em",
                 marginBottom: "0.8em",
               }}
             >
-              <InputLabel
-                id="demo-simple-select-standard-label"
-                sx={{
-                  fontSize: "0.9em",
-                  fontWeight: "500",
-                  color: "#3F3D56",
-                  textTransform: "Capitalize",
-                }}
-              >
-                Select Room
-              </InputLabel>
+              {dataRoom &&
+                dataRoom.map((value, index) => {
+                  return (
+                    <MenuItem
+                      key={index}
+                      value={value}
+                      accessKey={value._id}
+                      onClick={(e) => {
+                        roomId.current = e.target.accessKey;
+                        axios
+                          .post("http://localhost:5000/gradingSystem/record", {
+                            roomID: e.target.accessKey,
+                          })
+                          .then((res) => {
+                            setGSData(res.data[0].Category);
+                            console.log(res.data);
+                          })
+                          .catch((err) => console.log(err));
+                      }}
+                    >
+                      {value.RoomName}
+                    </MenuItem>
+                  );
+                })}
+            </Select>
 
-              <Select
-                labelId="demo-simple-select-standard-label"
-                id="demo-simple-select-standard"
-                value={selectRoom}
-                onChange={handleChangeRoom}
-                label="SelectRoom"
-                disableUnderline
-                sx={{
-                  width: "100%",
-                  fontSize: "0.9em",
-                  fontWeight: "500",
-                  color: "#3F3D56",
-                  borderBottom: "1px solid #DBDBDB",
-                  "&: hover": {
-                    borderBottom: "1px solid #007FFF",
-                    transition: "all 300ms",
-                  },
-                }}
-              >
-                {dataRoom &&
-                  dataRoom.map((value, index) => {
-                    return (
-                      <MenuItem
-                        key={index}
-                        value={value}
-                        accessKey={value._id}
-                        onClick={(e) => {
-                          roomId.current = e.target.accessKey;
-                          axios
-                            .post(
-                              "http://localhost:5000/gradingSystem/record",
-                              { roomID: e.target.accessKey }
-                            )
-                            .then((res) => {
-                              setGSData(res.data[0].Category);
-                              console.log(res.data);
-                            })
-                            .catch((err) => console.log(err));
-                        }}
-                      >
-                        {value.RoomName}
-                      </MenuItem>
-                    );
-                  })}
-              </Select>
-            </FormControl>
-
-            <FormControl
-              variant="standard"
+            <Typography
+              variant="body1"
               sx={{
-                width: "100%",
+                fontWeight: "500",
+                color: "#3F3D56",
+                fontSize: "0.8em",
+                margin: "0em 0em 0.3em 0em",
+              }}
+            >
+              Select Course Year and Section
+            </Typography>
+
+            <Select
+              labelId="demo-simple-select-standard-label"
+              id="demo-simple-select-standard"
+              value={selectCourseYearSec}
+              onChange={handleChangeCourseYearSec}
+              disableUnderline
+              fullWidth
+              sx={{
+                height: "2.8em",
+                fontSize: "0.9em",
+                color: "#3F3D56",
+                fontWeight: 500,
                 paddingTop: "0em",
+                paddingBottom: "0em",
                 marginBottom: "0.8em",
               }}
             >
-              <InputLabel
-                id="demo-simple-select-standard-label"
-                sx={{
-                  fontSize: "0.9em",
-                  fontWeight: "500",
-                  color: "#3F3D56",
-                  textTransform: "Capitalize",
-                }}
-              >
-                Select Course Year and Section
-              </InputLabel>
-
-              <Select
-                labelId="demo-simple-select-standard-label"
-                id="demo-simple-select-standard"
-                value={selectCourseYearSec}
-                onChange={handleChangeCourseYearSec}
-                label="SelectCourseYearSec"
-                disableUnderline
-                sx={{
-                  width: "100%",
-                  fontSize: "0.9em",
-                  fontWeight: "500",
-                  color: "#3F3D56",
-                  borderBottom: "1px solid #DBDBDB",
-                  "&: hover": {
-                    borderBottom: "1px solid #007FFF",
-                    transition: "all 300ms",
-                  },
-                }}
-              >
-                {dataRoom &&
-                  dataRoom.map((value, index) => {
-                    return (
-                      <MenuItem key={index} value={value}>
-                        {" "}
-                        {value.Course} {value.yearAndSection}
-                      </MenuItem>
-                    );
-                  })}
-              </Select>
-            </FormControl>
+              {dataRoom &&
+                dataRoom.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value}>
+                      {" "}
+                      {value.Course} {value.yearAndSection}
+                    </MenuItem>
+                  );
+                })}
+            </Select>
 
             {/* <FormControl
               variant="standard"
@@ -448,104 +427,83 @@ function Post_exam({
                 ))}
               </Select>
             </FormControl> */}
-            <FormControl
-              variant="standard"
+
+            <Typography
+              variant="body1"
               sx={{
-                width: "100%",
+                fontWeight: "500",
+                color: "#3F3D56",
+                fontSize: "0.8em",
+                margin: "0em 0em 0.3em 0em",
+              }}
+            >
+              Set Time Limit
+            </Typography>
+
+            <Select
+              labelId="demo-simple-select-standard-label"
+              id="demo-simple-select-standard"
+              value={selectTimeLimit}
+              onChange={handleChangeTimeLimit}
+              disableUnderline
+              fullWidth
+              sx={{
+                height: "2.8em",
+                fontSize: "0.9em",
+                color: "#3F3D56",
+                fontWeight: 500,
                 paddingTop: "0em",
+                paddingBottom: "0em",
                 marginBottom: "0.8em",
               }}
             >
-              <InputLabel
-                id="demo-simple-select-standard-label"
-                sx={{
-                  fontSize: "0.9em",
-                  fontWeight: "500",
-                  color: "#3F3D56",
-                  textTransform: "Capitalize",
-                }}
-              >
-                Set Time Limit
-              </InputLabel>
-
-              <Select
-                labelId="demo-simple-select-standard-label"
-                id="demo-simple-select-standard"
-                value={selectTimeLimit}
-                onChange={handleChangeTimeLimit}
-                label="SelectTimeLimit"
-                disableUnderline
-                sx={{
-                  width: "100%",
-                  fontSize: "0.9em",
-                  fontWeight: "500",
-                  color: "#3F3D56",
-                  borderBottom: "1px solid #DBDBDB",
-                  "&: hover": {
-                    borderBottom: "1px solid #007FFF",
-                    transition: "all 300ms",
-                  },
-                }}
-              >
-                {dataTimeLimit.map(({ value, label }) => (
-                  <MenuItem key={value} value={value}>
-                    {" "}
-                    {label}{" "}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+              {dataTimeLimit.map(({ value, label }) => (
+                <MenuItem key={value} value={value}>
+                  {" "}
+                  {label}{" "}
+                </MenuItem>
+              ))}
+            </Select>
           </Grid>
 
           <Grid item xs={6} sx={{ marginTop: "1em" }}>
             <Box sx={{ width: "relative", height: "auto", paddingLeft: "2em" }}>
-              <FormControl
-                variant="standard"
+              <Typography
+                variant="body1"
                 sx={{
-                  width: "100%",
+                  fontWeight: "500",
+                  color: "#3F3D56",
+                  fontSize: "0.8em",
+                  margin: "0em 0em 0.3em 0em",
+                }}
+              >
+                Select Category
+              </Typography>
+
+              <Select
+                labelId="demo-simple-select-standard-label"
+                id="demo-simple-select-standard"
+                value={selectTerm}
+                onChange={handleChangeTerm}
+                disableUnderline
+                fullWidth
+                sx={{
+                  height: "2.8em",
+                  fontSize: "0.9em",
+                  color: "#3F3D56",
+                  fontWeight: 500,
                   paddingTop: "0em",
+                  paddingBottom: "0em",
                   marginBottom: "0.8em",
                 }}
               >
-                <InputLabel
-                  id="demo-simple-select-standard-label"
-                  sx={{
-                    fontSize: "0.9em",
-                    fontWeight: "500",
-                    color: "#3F3D56",
-                    textTransform: "Capitalize",
-                  }}
-                >
-                  Select Category
-                </InputLabel>
-
-                <Select
-                  labelId="demo-simple-select-standard-label"
-                  id="demo-simple-select-standard"
-                  value={selectTerm}
-                  onChange={handleChangeTerm}
-                  label="SelectRoom"
-                  disableUnderline
-                  sx={{
-                    width: "100%",
-                    fontSize: "0.9em",
-                    fontWeight: "500",
-                    color: "#3F3D56",
-                    borderBottom: "1px solid #DBDBDB",
-                    "&: hover": {
-                      borderBottom: "1px solid #007FFF",
-                      transition: "all 300ms",
-                    },
-                  }}
-                >
-                  {gsData &&
-                    gsData.map((item, index) => (
-                      <MenuItem key={index} value={Object.entries(item)[0][0]}>
-                        {Object.entries(item)[0][0]}
-                      </MenuItem>
-                    ))}
-                </Select>
-              </FormControl>
+                {gsData &&
+                  gsData.map((item, index) => (
+                    <MenuItem key={index} value={Object.entries(item)[0][0]}>
+                      {Object.entries(item)[0][0]}
+                    </MenuItem>
+                  ))}
+              </Select>
               {/* 
               <FormControl
                 variant="standard"
@@ -594,13 +552,19 @@ function Post_exam({
                   ))}
                 </Select>
               </FormControl> */}
+              <Typography
+                variant="body1"
+                sx={{
+                  fontWeight: "500",
+                  color: "#3F3D56",
+                  fontSize: "0.8em",
+                  margin: "0em 0em 0.3em 0em",
+                }}
+              >
+                Due Date
+              </Typography>
 
-              <Datepicker
-                styled="standard"
-                inputLabel="Due Date"
-                duedate={duedate}
-                setDueDate={setDueDate}
-              />
+              <Datepicker duedate={duedate} setDueDate={setDueDate} />
             </Box>
           </Grid>
 

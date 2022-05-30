@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Typography,
   TextField,
@@ -7,29 +7,29 @@ import {
   Box,
   Button,
   Grid,
-} from '@mui/material';
-import useStyle from '../Styles/Quiz_multiplechoice_style';
-import { AddCircle, MoreVert } from '@mui/icons-material';
-import Quiz_imagemultiplechoice from './AnswerTypes/Quiz_imagemultiplechoice';
-import Quiz_trueorfalse from './AnswerTypes/Quiz_trueorfalse';
-import Quiz_shortanswer from './AnswerTypes/Quiz_shortanswer';
-import Image_GIF from './Image_GIF';
-import QuestionConfig from './QuestionConfig';
-import Quiz_multiplechoice from './AnswerTypes/Quiz_multiplechoice';
+} from "@mui/material";
+import useStyle from "../Styles/Quiz_multiplechoice_style";
+import { AddCircle, MoreVert } from "@mui/icons-material";
+import Quiz_imagemultiplechoice from "./AnswerTypes/Quiz_imagemultiplechoice";
+import Quiz_trueorfalse from "./AnswerTypes/Quiz_trueorfalse";
+import Quiz_shortanswer from "./AnswerTypes/Quiz_shortanswer";
+import Image_GIF from "./Image_GIF";
+import QuestionConfig from "./QuestionConfig";
+import Quiz_multiplechoice from "./AnswerTypes/Quiz_multiplechoice";
 function Questions({ counter, questionMemo }) {
   React.useMemo(() => {
     questionMemo.current[counter - 1] = {
-      answerType: 'Multiple Choice',
-      points: '1 point',
-      timeLimit: '10 seconds',
+      answerType: "Multiple Choice",
+      points: "1 point",
+      timeLimit: "10 seconds",
     };
   }, []);
 
   const [opendialog, setOpenDialog] = useState(false);
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState("");
   const { designs } = useStyle();
 
-  const [selectAnswerType, setAnswerType] = useState('Multiple Choice');
+  const [selectAnswerType, setAnswerType] = useState("Multiple Choice");
   const handleChange = (event) => {
     questionMemo.current[counter - 1][event.target.name] = event.target.value;
   };
@@ -71,13 +71,13 @@ function Questions({ counter, questionMemo }) {
                     sx={designs.Quiz_Question_TextField_Style}
                     inputProps={{
                       style: {
-                        height: '0em',
-                        fontSize: '0.8em',
-                        paddingLeft: '0.2em',
-                        paddingRight: '0em',
-                        marginBottom: '1.2em',
-                        marginRight: '3.5em',
-                        color: 'white',
+                        height: "0em",
+                        fontSize: "0.8em",
+                        fontWeight: "600",
+                        paddingRight: "0em",
+                        marginBottom: "1.2em",
+                        marginRight: "1.5em",
+                        color: "white",
                       },
                     }}
                     InputProps={{
@@ -108,7 +108,7 @@ function Questions({ counter, questionMemo }) {
                     className="Quiz-question-image-sub"
                     sx={designs.Quiz_Question_Image_Sub_Style}
                   >
-                    {image !== '' ? (
+                    {image !== "" ? (
                       <>
                         <Box
                           width="80%"
@@ -121,14 +121,14 @@ function Questions({ counter, questionMemo }) {
                             width="100%"
                             height="300px"
                             style={{
-                              padding: '0.7em 0em 0em 1em',
-                              objectFit: 'contain',
+                              padding: "0.7em 0em 0em 1em",
+                              objectFit: "contain",
                             }}
                           />
                         </Box>
                         <Button
                           variant="contained"
-                          onClick={() => setImage('')}
+                          onClick={() => setImage("")}
                         >
                           remove
                         </Button>
@@ -146,9 +146,9 @@ function Questions({ counter, questionMemo }) {
                           startIcon={
                             <AddCircle
                               style={{
-                                marginRight: '0.2em',
-                                fontSize: '2em',
-                                color: '#716F87',
+                                marginRight: "0.2em",
+                                fontSize: "2em",
+                                color: "#716F87",
                               }}
                             />
                           }
@@ -183,7 +183,7 @@ function Questions({ counter, questionMemo }) {
             </Box>
 
             <Box className="Quiz-answers" sx={designs.Quiz_Answers_Style}>
-              {selectAnswerType === 'Multiple Choice' && (
+              {selectAnswerType === "Multiple Choice" && (
                 <Quiz_multiplechoice
                   handleChange={handleChange}
                   questionMemo={questionMemo}
@@ -191,14 +191,14 @@ function Questions({ counter, questionMemo }) {
                 />
               )}
 
-              {selectAnswerType === 'Image Multiple Choice' && (
+              {selectAnswerType === "Image Multiple Choice" && (
                 <Quiz_imagemultiplechoice
                   handleImage={handleImage}
                   questionMemo={questionMemo}
                   counter={counter}
                 />
               )}
-              {selectAnswerType === 'True or False' && (
+              {selectAnswerType === "True or False" && (
                 <Quiz_trueorfalse
                   questionMemo={questionMemo}
                   counter={counter}

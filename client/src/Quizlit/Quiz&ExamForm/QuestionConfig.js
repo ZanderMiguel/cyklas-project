@@ -6,9 +6,10 @@ import {
   MenuItem,
   FormControl,
   InputLabel,
+  Tooltip,
 } from "@mui/material";
 import useStyle from "../Styles/Quiz_multiplechoice_style";
-import { Delete } from "@mui/icons-material";
+import { DeleteOutlined } from "@mui/icons-material";
 function QuestionConfig({
   selectAnswerType,
   setAnswerType,
@@ -135,9 +136,11 @@ function QuestionConfig({
   return (
     <Box className="Other-buttons" sx={designs.Other_Buttons_Style}>
       <Box className="Delete-question" sx={designs.Delete_Question_Style}>
-        <IconButton aria-label="delete" sx={designs.Delete_IconButton_Style}>
-          <Delete sx={designs.DeleteIcon_Style} />
-        </IconButton>
+        <Tooltip title="Delete question" placement="right">
+          <IconButton aria-label="delete" sx={designs.Delete_IconButton_Style}>
+            <DeleteOutlined sx={designs.DeleteIcon_Style} />
+          </IconButton>
+        </Tooltip>
       </Box>
 
       <FormControl variant="standard" sx={designs.FormControl_Style}>
