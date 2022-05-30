@@ -21,18 +21,17 @@ function MainSessionHeader() {
         <Box
           sx={{
             height: '2.5em',
-            width: 'auto',
             flexGrow: 1,
             display: 'flex',
             gap: '0.8em',
             alignItems: 'center',
-            backgroundColor: '#2B2E34',
+            backgroundColor: 'transparent',
             padding: '0.3em 0.6em',
             borderRadius: '0.4em',
             // display: "none"
           }}
         >
-          <Avatar
+          {/* <Avatar
             alt="Remy Sharp"
             src={AvatarIcon}
             sx={{ height: '1.7em', width: '1.7em' }}
@@ -53,7 +52,7 @@ function MainSessionHeader() {
                 cursor: 'default',
               },
             }}
-          />
+          /> */}
         </Box>
 
         {/* <Box flexGrow = {1}/> */}
