@@ -1,0 +1,8 @@
+.Footer .Content .Socials .Social-buttons Button:hover {
+    transform: scale(1.1);
+    transition: all 100ms;
+}
+
+.Footer .Content2 .TC-PP Button:hover {
+    color: white;
+}

@@ -1,0 +1,32 @@
+.wrapper-class {
+   background: #F8F8F8;
+}
+.editor-class {
+ height: 150px;
+ padding: 0px 20px;
+}
+.toolbar-class {
+    padding: 5px 0px;
+    border-radius: 0px;
+    border: none;
+    display: flex;
+    justify-content: flex-start;
+    background: transparent;
+    flex-wrap: wrap;
+    font-size: 15px;
+    margin-bottom: 0px;
+}
+.rdw-option-wrapper {
+    border: 1px solid #F1F1F1;
+    padding: 5px;
+    min-width: 30px;
+    height: 30px;
+    border-radius: 2px;
+    margin: 0 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: white;
+    text-transform: capitalize;
+}
