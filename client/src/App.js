@@ -13,6 +13,8 @@ import axios from "axios";
 //Landing Page
 import Navbar_landingpage from "./components/Navbar_landingpage";
 import Forgot_password from "./pages-landing/Forgot_password";
+import EmailVerification from "./pages-landing/EmailVerification";
+
 //Dashboard
 import Dashboard from "./Dashboard/Dashboard";
 //Rooms
@@ -99,6 +101,7 @@ function App() {
               <Redirect exact from="/" to="/home/login" />
               <Redirect exact from="/home" to="/home/login" />
               <Route path="/forgotpassword" component={Forgot_password} />
+              <Route path="/EmailVerification" component={EmailVerification} />
               <Route exact path="/home/:page?" component={Navbar_landingpage} />
 
               {/* Dashboard */}
@@ -142,7 +145,11 @@ function App() {
                 path="/quizlit/createexam"
                 component={Examform}
               />
-              <ProtectedRoutes exact path="/examautosubmit" component={ExamAutosubmit}/>
+              <ProtectedRoutes
+                exact
+                path="/examautosubmit"
+                component={ExamAutosubmit}
+              />
 
               <Route exact path="/quizlit/join">
                 <JoinQuiz socket={socket} />

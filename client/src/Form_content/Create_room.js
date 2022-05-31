@@ -5,7 +5,7 @@ import Dropdown from "../components/Drowpdown";
 import usePost from "../customHooks/usePost";
 import moment from "moment";
 import axios from "axios";
-import { Grid, Button, Typography } from "@mui/material";
+import { Grid, Button, Typography, Box } from "@mui/material";
 
 const gradingsystems = [];
 
@@ -105,71 +105,179 @@ function Create_room({ open, close, maxWidth, state, socket, gs, setNewRoom }) {
         }
       >
         <Typography
-          sx={{ ml: "2em", p: 0, fontColor: "gray", fontSize: "0.8em" }}
+          sx={{
+            marginLeft: "2em",
+            color: "#3F3D56",
+            fontSize: "0.8em",
+            fontWeight: "400",
+          }}
         >
-          {`NOTE: Before creating a room you must have a grading system. Go to RECORDS > Grading System`}{" "}
+          NOTE: &nbsp; Before creating a room you must have a grading system
+          first. Go to (Records > Grading System)
         </Typography>
         <form onSubmit={handleSubmit} id="form1">
           <Grid
             container
-            spacing={2}
-            sx={{ padding: "1em 1.5em 0.5em 1.5em", overflow: "auto" }}
+            spacing={1}
+            sx={{ padding: "1.5em 1em 0em 1.3em", overflow: "auto" }}
           >
-            <Input
-              autoFocus
-              inputLabel="Room Name"
-              placeholder="Enter room name..."
-              autoComplete="off"
-              value={roomname}
-              onChange={(e) => setRoomname(e.target.value)}
-              half
-            />
-            <Input
-              inputLabel="Course"
-              placeholder="Enter course..."
-              autoComplete="off"
-              required
-              value={course}
-              onChange={(e) => setCourse(e.target.value)}
-              half
-            />
-            <Input
-              inputLabel="Class Day"
-              placeholder="Enter class day..."
-              autoComplete="off"
-              required
-              value={classday}
-              onChange={(e) => setClassDay(e.target.value)}
-              half
-            />
-            <Input
-              inputLabel="Year and Section"
-              placeholder="Enter year and section..."
-              autoComplete="off"
-              required
-              value={yearAndSection}
-              onChange={(e) => setYearandsection(e.target.value)}
-              half
-            />
-            <Input
-              inputLabel="Class time"
-              autoComplete="off"
-              value={classtime}
-              onChange={handleTime}
-              type="time"
-              half
-              required
-            />
-            <Dropdown
-              inputLabel="Grading System"
-              autoComplete="off"
-              value={gradingsystem}
-              error={gradingsystemError}
-              typeerror="Please select grading system. If doesnt have one make sure to create in RECORDS tab."
-              onChange={handleChangeGradingSystem}
-              options={gradingsystems}
-              half
-            />
+            <Grid item xs={6}>
+              <Box
+                sx={{
+                  width: "relative",
+                  padding: "0em 0.5em 0.8em 0.5em",
+                }}
+              >
+                <Typography
+                  children="Room Name"
+                  sx={{
+                    fontWeight: "500",
+                    color: "#3F3D56",
+                    fontSize: "0.9em",
+                  }}
+                />
+                <Input
+                  autoFocus
+                  placeholder="Enter room name..."
+                  autoComplete="off"
+                  value={roomname}
+                  onChange={(e) => setRoomname(e.target.value)}
+                  fullWidth
+                />
+              </Box>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Box
+                sx={{
+                  width: "relative",
+                  padding: "0em 0.5em 0.8em 0.5em",
+                }}
+              >
+                <Typography
+                  children="Course"
+                  sx={{
+                    fontWeight: "500",
+                    color: "#3F3D56",
+                    fontSize: "0.9em",
+                  }}
+                />
+
+                <Input
+                  placeholder="Enter course..."
+                  autoComplete="off"
+                  required
+                  value={course}
+                  onChange={(e) => setCourse(e.target.value)}
+                  fullWidth
+                />
+              </Box>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Box
+                sx={{
+                  width: "relative",
+                  padding: "0em 0.5em 0.8em 0.5em",
+                }}
+              >
+                <Typography
+                  children="Class Day"
+                  sx={{
+                    fontWeight: "500",
+                    color: "#3F3D56",
+                    fontSize: "0.9em",
+                  }}
+                />
+                <Input
+                  placeholder="Enter class day..."
+                  autoComplete="off"
+                  required
+                  value={classday}
+                  onChange={(e) => setClassDay(e.target.value)}
+                  fullWidth
+                />
+              </Box>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Box
+                sx={{
+                  width: "relative",
+                  padding: "0em 0.5em 0.8em 0.5em",
+                }}
+              >
+                <Typography
+                  children="Year and Section"
+                  sx={{
+                    fontWeight: "500",
+                    color: "#3F3D56",
+                    fontSize: "0.9em",
+                  }}
+                />
+                <Input
+                  placeholder="Enter year and section..."
+                  autoComplete="off"
+                  required
+                  value={yearAndSection}
+                  onChange={(e) => setYearandsection(e.target.value)}
+                  fullWidth
+                />
+              </Box>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Box
+                sx={{
+                  width: "relative",
+                  padding: "0em 0.5em 0.8em 0.5em",
+                }}
+              >
+                <Typography
+                  children="Class time"
+                  sx={{
+                    fontWeight: "500",
+                    color: "#3F3D56",
+                    fontSize: "0.9em",
+                  }}
+                />
+                <Input
+                  autoComplete="off"
+                  value={classtime}
+                  onChange={handleTime}
+                  type="time"
+                  fullWidth
+                  required
+                />
+              </Box>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Box
+                sx={{
+                  width: "relative",
+                  padding: "0em 0.5em 0.8em 0.5em",
+                }}
+              >
+                <Typography
+                  children="Grading System"
+                  sx={{
+                    fontWeight: "500",
+                    color: "#3F3D56",
+                    fontSize: "0.9em",
+                  }}
+                />
+                <Dropdown
+                  autoComplete="off"
+                  value={gradingsystem}
+                  error={gradingsystemError}
+                  typeerror="Please select grading system. If doesnt have one make sure to create in RECORDS tab."
+                  onChange={handleChangeGradingSystem}
+                  options={gradingsystems}
+                  fullWidth
+                />
+              </Box>
+            </Grid>
           </Grid>
         </form>
       </Dialogform>

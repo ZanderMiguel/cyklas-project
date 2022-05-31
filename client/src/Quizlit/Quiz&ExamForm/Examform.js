@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { TextField, Box, Button, Container, Grid, Input } from '@mui/material';
-import CusButton from '../../components/Button';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import useStyle from '../Styles/Examform_style';
-import '../Styles/Examform_stylesheet.css';
-import { AddCircle, Add } from '@mui/icons-material';
-import Post_exam from '../../Form_content/Post_exam';
-import Exam_Questions from './AnswerTypes/Exam_Questions';
-import ExamIconButton from '../../assets/ImageJaven/ExamIconButton.png';
+import { TextField, Box, Button, Container, Grid, Input } from "@mui/material";
+import CusButton from "../../components/Button";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import useStyle from "../Styles/Examform_style";
+import "../Styles/Examform_stylesheet.css";
+import { AddCircle, Add } from "@mui/icons-material";
+import Post_exam from "../../Form_content/Post_exam";
+import Exam_Questions from "./AnswerTypes/Exam_Questions";
+import ExamIconButton from "../../assets/ImageJaven/ExamIconButton.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -36,26 +36,26 @@ function Examform() {
     setOpenDialog2(false);
   };
   return (
-    <Container maxWidth="md" sx={{ padding: '2em 0em' }}>
-   <ToastContainer />
+    <Container maxWidth="md" sx={{ padding: "2em 0em" }}>
+      <ToastContainer />
       <Grid
         container
         justifyContent="center"
         rowSpacing={1}
-        sx={{ margin: '0.5em 0em 2em 0em' }}
+        sx={{ margin: "0.5em 0em 2em 0em" }}
       >
         <Grid
           item
           xs={12}
           sx={{
-            marginBottom: '0.8em',
-            backgroundColor: 'white',
-            borderRadius: '0.3em 0.3em 0em 0em',
-            padding: '0.5em 1.1em',
-            '&: hover': {
-              transition: 'all 250ms',
-              boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 12px',
-              borderBottom: '4px solid #007FFF',
+            marginBottom: "0.8em",
+            backgroundColor: "white",
+            borderRadius: "0.3em 0.3em 0em 0em",
+            padding: "0.5em 1.1em",
+            "&: hover": {
+              transition: "all 250ms",
+              boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px",
+              borderBottom: "4px solid #007FFF",
             },
           }}
         >
@@ -63,15 +63,15 @@ function Examform() {
             defaultValue="Untitled Exam"
             disableUnderline
             onChange={(event) => {
-              exam.current['title'] = event.target.value;
+              exam.current["title"] = event.target.value;
             }}
             name="title"
             sx={{
-              width: '100%',
-              height: 'auto',
-              fontSize: '1.3em',
-              fontWeight: '600',
-              color: '#3F3D56',
+              width: "100%",
+              height: "auto",
+              fontSize: "1.3em",
+              fontWeight: "600",
+              color: "#3F3D56",
             }}
           />
 
@@ -81,15 +81,15 @@ function Examform() {
             multiline
             rows={4}
             onChange={(event) => {
-              exam.current['instruction'] = event.target.value;
+              exam.current["instruction"] = event.target.value;
             }}
             name="instruction"
             sx={{
-              width: '100%',
-              height: 'auto',
-              fontSize: '0.8em',
-              fontWeight: '400',
-              color: '#8E8E8E',
+              width: "100%",
+              height: "auto",
+              fontSize: "0.8em",
+              fontWeight: "400",
+              color: "#8E8E8E",
             }}
           />
         </Grid>
@@ -106,7 +106,7 @@ function Examform() {
           );
         })}
 
-        <Grid item xs={12} sx={{ marginBottom: '2em' }}>
+        <Grid item xs={12} sx={{ marginBottom: "2em" }}>
           <Button
             children="Add question"
             variant="contained"
@@ -123,14 +123,14 @@ function Examform() {
               ]);
             }}
             sx={{
-              fontSize: '0.8em',
-              fontWeight: '600',
-              color: '#white',
-              textTransform: 'Capitalize',
-              boxShadow: 'none',
-              padding: '0.4em 1.3em',
-              '&: hover': {
-                boxShadow: 'none',
+              fontSize: "0.8em",
+              fontWeight: "600",
+              color: "#white",
+              textTransform: "Capitalize",
+              boxShadow: "none",
+              padding: "0.4em 1.3em",
+              "&: hover": {
+                boxShadow: "none",
               },
             }}
           />
@@ -140,10 +140,10 @@ function Examform() {
           item
           xs={12}
           sx={{
-            borderTop: '1px solid #DBDBDB',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
+            borderTop: "1px solid #DBDBDB",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <CusButton
@@ -153,20 +153,22 @@ function Examform() {
             type="submit"
             id="examform"
             sx={{
-              fontWeight: '600',
-              marginTop: '1em',
-              textDecoration: 'none',
-              backgroundColor: '#4caf50',
-              color: 'white',
-              '&:hover': {
-                backgroundColor: '#43a047',
+              paddingRight: "1.5em",
+              paddingLeft: "1.5em",
+              fontWeight: "600",
+              marginTop: "1em",
+              textDecoration: "none",
+              backgroundColor: "#4caf50",
+              color: "white",
+              "&:hover": {
+                backgroundColor: "#43a047",
               },
             }}
             startIcon={
               <img
                 src={ExamIconButton}
                 alt="Exam Icon Button"
-                style={{ height: '1em' }}
+                style={{ height: "1em" }}
               />
             }
           />

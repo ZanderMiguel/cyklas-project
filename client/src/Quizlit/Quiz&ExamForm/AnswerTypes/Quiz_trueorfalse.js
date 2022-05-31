@@ -1,19 +1,19 @@
-import React from 'react';
-import { Box, Typography, IconButton, Grid } from '@mui/material';
-import { Check } from '@mui/icons-material';
-import useStyle from './Styles/Quiz_trueorfalse_style';
+import React from "react";
+import { Box, Typography, IconButton, Grid } from "@mui/material";
+import { Check } from "@mui/icons-material";
+import useStyle from "./Styles/Quiz_trueorfalse_style";
 
 function Quiz_trueorfalse({ questionMemo, counter, questionArray, socket }) {
   const { designs } = useStyle();
   const [check, setCheck] = React.useState(null);
   const handleClick = (event) => {
-    questionMemo.current[counter - 1]['answer2'] = 'False';
-    questionMemo.current[counter - 1]['answer1'] = 'True';
+    questionMemo.current[counter - 1]["answer2"] = "False";
+    questionMemo.current[counter - 1]["answer1"] = "True";
   };
   const sendAnswer = (answer) => {
     console.log(answer);
     socket.emit(
-      'send-answer',
+      "send-answer",
       answer,
       questionArray[counter].correctAnswer,
       JSON.parse(localStorage.userData).data.user.firstName
@@ -26,7 +26,7 @@ function Quiz_trueorfalse({ questionMemo, counter, questionArray, socket }) {
           <Box className="answer-true" sx={designs.Answer_True_Style}>
             <Box
               onClick={() => {
-                questionArray && sendAnswer('answer1');
+                questionArray && sendAnswer("answer1");
               }}
               className="Quiz-item"
               sx={designs.Quiz_Item_Style}
@@ -43,21 +43,38 @@ function Quiz_trueorfalse({ questionMemo, counter, questionArray, socket }) {
               <IconButton
                 aria-label="correct-answer"
                 sx={
-                  (designs.Correct_Answer_IconButton_Style,
-                  check === 'answer1' && { backgroundColor: 'white' })
+                  check === "answer1"
+                    ? {
+                        height: "1.3em",
+                        width: "1.3em",
+                        backgroundColor: "white",
+                        color: "#975DF5",
+                        marginRight: "0.1em",
+                        "&: hover": {
+                          backgroundColor: "white",
+                          color: "#975DF5",
+                        },
+                      }
+                    : {
+                        height: "1.3em",
+                        width: "1.3em",
+                        border: "2px solid white",
+                        color: "white",
+                        marginRight: "0.1em",
+                      }
                 }
                 name="answer1"
                 onClick={(event) => {
-                  setCheck('answer1');
+                  setCheck("answer1");
                   handleClick(event);
-                  questionMemo.current[counter - 1]['correctAnswer'] =
-                    'answer1';
-                  setCheck('answer1');
+                  questionMemo.current[counter - 1]["correctAnswer"] =
+                    "answer1";
+                  setCheck("answer1");
                 }}
               >
                 <Check
                   sx={{
-                    fontSize: '0.8em',
+                    fontSize: "0.8em",
                   }}
                 />
               </IconButton>
@@ -69,7 +86,7 @@ function Quiz_trueorfalse({ questionMemo, counter, questionArray, socket }) {
           <Box className="answer-false" sx={designs.Answer_False_Style}>
             <Box
               onClick={() => {
-                questionArray && sendAnswer('answer1');
+                questionArray && sendAnswer("answer1");
               }}
               className="Quiz-item"
               sx={designs.Quiz_Item_Style}
@@ -86,20 +103,37 @@ function Quiz_trueorfalse({ questionMemo, counter, questionArray, socket }) {
               <IconButton
                 aria-label="correct-answer"
                 sx={
-                  (designs.Correct_Answer_IconButton_Style,
-                  check === 'answer2' && { backgroundColor: 'white' })
+                  check === "answer2"
+                    ? {
+                        height: "1.3em",
+                        width: "1.3em",
+                        backgroundColor: "white",
+                        color: "#F55D5D",
+                        marginRight: "0.1em",
+                        "&: hover": {
+                          backgroundColor: "white",
+                          color: "#F55D5D",
+                        },
+                      }
+                    : {
+                        height: "1.3em",
+                        width: "1.3em",
+                        border: "2px solid white",
+                        color: "white",
+                        marginRight: "0.1em",
+                      }
                 }
                 name="answer2"
                 onClick={(event) => {
                   handleClick(event);
-                  questionMemo.current[counter - 1]['correctAnswer'] =
-                    'answer2';
-                  setCheck('answer2');
+                  questionMemo.current[counter - 1]["correctAnswer"] =
+                    "answer2";
+                  setCheck("answer2");
                 }}
               >
                 <Check
                   sx={{
-                    fontSize: '0.8em',
+                    fontSize: "0.8em",
                   }}
                 />
               </IconButton>

@@ -96,9 +96,9 @@ function Add_member({ open, close, maxWidth }) {
           <Typography
             children="Copy the link of this room and share it with your class in order for them to join."
             sx={{
-              color: "#8E8E8E",
+              color: "#3F3D56",
               fontSize: "0.8em",
-              fontWeight: "500",
+              fontWeight: "400",
             }}
           />
         </Box>
@@ -156,12 +156,12 @@ function Add_member({ open, close, maxWidth }) {
                 <Button
                   variant="contained"
                   onClick={() =>
-                    toast.info("Link copied!", {
+                    toast.success("Link Copied!", {
                       position: "bottom-center",
                       autoClose: 2000,
-                      hideProgressBar: false,
+                      hideProgressBar: true,
                       closeOnClick: true,
-                      pauseOnHover: true,
+                      pauseOnHover: false,
                       draggable: true,
                       progress: undefined,
                     })
