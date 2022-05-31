@@ -1,8 +1,9 @@
 import React from "react";
 import "./Styles/ClassCards_table_stylesheet.css";
-import { Button } from "@mui/material";
+import { Button, Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import NoClasscards from "../../assets/ImageJaven/NoClasscards.png";
 
 const ClassCards_table = ({ roomsdata }) => {
   const [cc, setCC] = React.useState(null);
@@ -68,7 +69,44 @@ const ClassCards_table = ({ roomsdata }) => {
                 );
               })
             ) : (
-              <p> yawa </p>
+              <Box
+                sx={{
+                  width: "145%",
+                  height: "70vh",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexWrap: "wrap",
+                }}
+              >
+                <img
+                  src={NoClasscards}
+                  alt="No Classcards"
+                  style={{
+                    height: "17em",
+                    margin: "0em 0em 1.5em 0em",
+                  }}
+                />
+                <Typography
+                  children="You do not have any grade on your room(s)."
+                  sx={{
+                    fontSize: "1.2em",
+                    fontWeight: "600",
+                    color: "#3F3D56",
+                    marginBottom: "0.3em",
+                  }}
+                />
+
+                <Typography
+                  children="Maybe your professor(s) are currently checking your records."
+                  sx={{
+                    fontSize: "1em",
+                    fontWeight: "500",
+                    color: "#8E8E8E",
+                  }}
+                />
+              </Box>
             )}
           </tbody>
 
