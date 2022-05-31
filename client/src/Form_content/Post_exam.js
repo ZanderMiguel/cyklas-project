@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import Dialogform from '../components/Dialogform';
+import React, { useState } from "react";
+import Dialogform from "../components/Dialogform";
 
-import moment from 'moment';
+import moment from "moment";
 import {
   Grid,
   Box,
@@ -13,33 +13,33 @@ import {
   MenuItem,
   Divider,
   Checkbox,
-} from '@mui/material';
-import { Save } from '@mui/icons-material';
-import Datepicker from '../components/DatePicker';
-import ExamIconButton from '../assets/ImageJaven/ExamIconButton.png';
-import useStyle from './Styles/Post_exam_style';
-import axios from 'axios';
+} from "@mui/material";
+import { Save } from "@mui/icons-material";
+import Datepicker from "../components/DatePicker";
+import ExamIconButton from "../assets/ImageJaven/ExamIconButton.png";
+import useStyle from "./Styles/Post_exam_style";
+import axios from "axios";
 
 const dataTimeLimit = [
   {
-    value: '10 seconds',
-    label: '10 seconds',
+    value: "10 seconds",
+    label: "10 seconds",
   },
   {
-    value: '30 minutes',
-    label: '30 minutes',
+    value: "30 minutes",
+    label: "30 minutes",
   },
   {
-    value: '45 minutes',
-    label: '45 minutes',
+    value: "45 minutes",
+    label: "45 minutes",
   },
   {
-    value: '1 hour',
-    label: '1 hour',
+    value: "1 hour",
+    label: "1 hour",
   },
   {
-    value: '2 hours',
-    label: '2 hours',
+    value: "2 hours",
+    label: "2 hours",
   },
 ];
 function Post_exam({
@@ -54,45 +54,45 @@ function Post_exam({
 }) {
   const { designs } = useStyle();
 
-  const [selectRoom, setSelectRoom] = useState('');
+  const [selectRoom, setSelectRoom] = useState("");
   const [duedate, setDueDate] = useState(null);
   const [gsData, setGSData] = useState(null);
   const handleChangeRoom = (event) => {
     setSelectRoom(event.target.value);
   };
 
-  const [selectCourseYearSec, setSelectCourseYearSec] = useState('');
+  const [selectCourseYearSec, setSelectCourseYearSec] = useState("");
 
   const handleChangeCourseYearSec = (event) => {
     setSelectCourseYearSec(event.target.value);
   };
 
-  const [selectStudent, setSelectStudent] = useState('');
+  const [selectStudent, setSelectStudent] = useState("");
 
   const handleChangeStudent = (event) => {
     setSelectStudent(event.target.value);
   };
 
-  const [selectTerm, setSelectTerm] = useState('');
+  const [selectTerm, setSelectTerm] = useState("");
 
   const handleChangeTerm = (event) => {
     setSelectTerm(event.target.value);
   };
 
-  const [selectDueDate, setSelectDueDate] = useState('');
+  const [selectDueDate, setSelectDueDate] = useState("");
 
   const handleChangeDueDate = (event) => {
     setSelectDueDate(event.target.value);
   };
 
-  const [selectTimeLimit, setSelectTimeLimit] = useState('');
+  const [selectTimeLimit, setSelectTimeLimit] = useState("");
   const handleChangeTimeLimit = (event) => {
     setSelectTimeLimit(event.target.value);
   };
   const handleClickSave = (type) => {
     const questionPayload = [];
     axios
-      .post('http://localhost:5000/quizlit/create', {
+      .post("http://localhost:5000/quizlit/create", {
         author: {
           userID: JSON.parse(localStorage.userData).data.user._id,
           name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
@@ -100,12 +100,12 @@ function Post_exam({
           } `,
         },
         rooms: [roomId.current],
-        dueDate: 'unavailable',
+        dueDate: "unavailable",
         timeLimit: selectTimeLimit,
-        students: 'unavailable',
+        students: "unavailable",
         title: exam.current.title,
         instruction: exam.current.instruction,
-        quizType: 'Exam',
+        quizType: "Exam",
         graded: false,
         type,
         gsCategory: selectTerm,
@@ -133,12 +133,12 @@ function Post_exam({
           });
         });
         axios
-          .post('http://localhost:5000/question/create', {
+          .post("http://localhost:5000/question/create", {
             questionPayload,
           })
           .then((res) => {
-            toast.success('You have created and post an Exam', {
-              position: 'top-right',
+            toast.success("Exam is sucessfully created and posted!", {
+              position: "top-left",
               autoClose: 3000,
               hideProgressBar: false,
               closeOnClick: false,
@@ -157,12 +157,12 @@ function Post_exam({
   };
   let point = 0;
   questionMemo.current.forEach((item) => {
-    point += parseInt(item.points.replace(' point', ''));
+    point += parseInt(item.points.replace(" point", ""));
   });
   const [dataRoom, setDataRoom] = React.useState(null);
   React.useMemo(() => {
     axios
-      .post('http://localhost:5000/rooms', {
+      .post("http://localhost:5000/rooms", {
         userID: JSON.parse(localStorage.userData).data.user._id,
       })
       .then((res) => {
@@ -182,10 +182,10 @@ function Post_exam({
         btn={
           <Box
             sx={{
-              display: 'flex',
-              gap: '1em',
-              height: 'auto',
-              width: 'relative',
+              display: "flex",
+              gap: "1em",
+              height: "auto",
+              width: "relative",
             }}
           >
             <Button
@@ -195,18 +195,18 @@ function Post_exam({
                 handleClickSave(null);
               }}
               sx={{
-                border: '1px solid #007FFF',
-                backgroundColor: 'transparent',
-                boxShadow: 'none',
-                color: '#007FFF',
-                fontSize: '0.8em',
-                fontWeight: '600',
-                textTransform: 'Capitalize',
-                padding: '0.3em 3em',
-                '&: hover': {
-                  border: '1px solid #0072ED',
-                  backgroundColor: 'transparent',
-                  boxShadow: 'none',
+                border: "1px solid #007FFF",
+                backgroundColor: "transparent",
+                boxShadow: "none",
+                color: "#007FFF",
+                fontSize: "0.8em",
+                fontWeight: "600",
+                textTransform: "Capitalize",
+                padding: "0.3em 3em",
+                "&: hover": {
+                  border: "1px solid #0072ED",
+                  backgroundColor: "transparent",
+                  boxShadow: "none",
                 },
               }}
             >
@@ -216,25 +216,25 @@ function Post_exam({
             <Button
               variant="contained"
               onClick={() => {
-                handleClickSave('quizlit');
+                handleClickSave("quizlit");
               }}
               startIcon={
                 <img
                   src={ExamIconButton}
                   alt="examicon"
-                  style={{ height: '0.7em', width: '0.7em' }}
+                  style={{ height: "0.7em", width: "0.7em" }}
                 />
               }
               sx={{
-                backgroundColor: '#49B854',
-                color: 'white',
-                fontSize: '0.8em',
-                fontWeight: '600',
-                textTransform: 'Capitalize',
-                padding: '0.3em 3em',
-                boxShadow: 'none',
-                '&: hover': {
-                  backgroundColor: '#31B13E',
+                backgroundColor: "#49B854",
+                color: "white",
+                fontSize: "0.8em",
+                fontWeight: "600",
+                textTransform: "Capitalize",
+                padding: "0.3em 3em",
+                boxShadow: "none",
+                "&: hover": {
+                  backgroundColor: "#31B13E",
                 },
               }}
             >
@@ -243,7 +243,7 @@ function Post_exam({
           </Box>
         }
       >
-        <Grid container sx={{ p: '0em 1.5em' }}>
+        <Grid container sx={{ p: "0em 1.5em" }}>
           {/* <Grid item xs={12}>
             <Typography
               sx={{
@@ -258,14 +258,14 @@ function Post_exam({
             </Typography>
           </Grid> */}
 
-          <Grid item xs={6} sx={{ marginTop: '1em' }}>
+          <Grid item xs={6} sx={{ marginTop: "1em" }}>
             <Typography
               variant="body1"
               sx={{
-                fontWeight: '500',
-                color: '#3F3D56',
-                fontSize: '0.8em',
-                margin: '0em 0em 0.3em 0em',
+                fontWeight: "500",
+                color: "#3F3D56",
+                fontSize: "0.8em",
+                margin: "0em 0em 0.3em 0em",
               }}
             >
               Select Room
@@ -279,13 +279,13 @@ function Post_exam({
               disableUnderline
               fullWidth
               sx={{
-                height: '2.8em',
-                fontSize: '0.9em',
-                color: '#3F3D56',
+                height: "2.8em",
+                fontSize: "0.9em",
+                color: "#3F3D56",
                 fontWeight: 500,
-                paddingTop: '0em',
-                paddingBottom: '0em',
-                marginBottom: '0.8em',
+                paddingTop: "0em",
+                paddingBottom: "0em",
+                marginBottom: "0.8em",
               }}
             >
               {dataRoom &&
@@ -298,7 +298,7 @@ function Post_exam({
                       onClick={(e) => {
                         roomId.current = e.target.accessKey;
                         axios
-                          .post('http://localhost:5000/gradingSystem/record', {
+                          .post("http://localhost:5000/gradingSystem/record", {
                             roomID: e.target.accessKey,
                           })
                           .then((res) => {
@@ -317,10 +317,10 @@ function Post_exam({
             <Typography
               variant="body1"
               sx={{
-                fontWeight: '500',
-                color: '#3F3D56',
-                fontSize: '0.8em',
-                margin: '0em 0em 0.3em 0em',
+                fontWeight: "500",
+                color: "#3F3D56",
+                fontSize: "0.8em",
+                margin: "0em 0em 0.3em 0em",
               }}
             >
               Select Course Year and Section
@@ -334,20 +334,20 @@ function Post_exam({
               disableUnderline
               fullWidth
               sx={{
-                height: '2.8em',
-                fontSize: '0.9em',
-                color: '#3F3D56',
+                height: "2.8em",
+                fontSize: "0.9em",
+                color: "#3F3D56",
                 fontWeight: 500,
-                paddingTop: '0em',
-                paddingBottom: '0em',
-                marginBottom: '0.8em',
+                paddingTop: "0em",
+                paddingBottom: "0em",
+                marginBottom: "0.8em",
               }}
             >
               {dataRoom &&
                 dataRoom.map((value, index) => {
                   return (
                     <MenuItem key={index} value={value}>
-                      {' '}
+                      {" "}
                       {value.Course} {value.yearAndSection}
                     </MenuItem>
                   );
@@ -405,10 +405,10 @@ function Post_exam({
             <Typography
               variant="body1"
               sx={{
-                fontWeight: '500',
-                color: '#3F3D56',
-                fontSize: '0.8em',
-                margin: '0em 0em 0.3em 0em',
+                fontWeight: "500",
+                color: "#3F3D56",
+                fontSize: "0.8em",
+                margin: "0em 0em 0.3em 0em",
               }}
             >
               Set Time Limit
@@ -422,33 +422,33 @@ function Post_exam({
               disableUnderline
               fullWidth
               sx={{
-                height: '2.8em',
-                fontSize: '0.9em',
-                color: '#3F3D56',
+                height: "2.8em",
+                fontSize: "0.9em",
+                color: "#3F3D56",
                 fontWeight: 500,
-                paddingTop: '0em',
-                paddingBottom: '0em',
-                marginBottom: '0.8em',
+                paddingTop: "0em",
+                paddingBottom: "0em",
+                marginBottom: "0.8em",
               }}
             >
               {dataTimeLimit.map(({ value, label }) => (
                 <MenuItem key={value} value={value}>
-                  {' '}
-                  {label}{' '}
+                  {" "}
+                  {label}{" "}
                 </MenuItem>
               ))}
             </Select>
           </Grid>
 
-          <Grid item xs={6} sx={{ marginTop: '1em' }}>
-            <Box sx={{ width: 'relative', height: 'auto', paddingLeft: '2em' }}>
+          <Grid item xs={6} sx={{ marginTop: "1em" }}>
+            <Box sx={{ width: "relative", height: "auto", paddingLeft: "2em" }}>
               <Typography
                 variant="body1"
                 sx={{
-                  fontWeight: '500',
-                  color: '#3F3D56',
-                  fontSize: '0.8em',
-                  margin: '0em 0em 0.3em 0em',
+                  fontWeight: "500",
+                  color: "#3F3D56",
+                  fontSize: "0.8em",
+                  margin: "0em 0em 0.3em 0em",
                 }}
               >
                 Select Category
@@ -462,13 +462,13 @@ function Post_exam({
                 disableUnderline
                 fullWidth
                 sx={{
-                  height: '2.8em',
-                  fontSize: '0.9em',
-                  color: '#3F3D56',
+                  height: "2.8em",
+                  fontSize: "0.9em",
+                  color: "#3F3D56",
                   fontWeight: 500,
-                  paddingTop: '0em',
-                  paddingBottom: '0em',
-                  marginBottom: '0.8em',
+                  paddingTop: "0em",
+                  paddingBottom: "0em",
+                  marginBottom: "0.8em",
                 }}
               >
                 {gsData &&
@@ -529,10 +529,10 @@ function Post_exam({
               <Typography
                 variant="body1"
                 sx={{
-                  fontWeight: '500',
-                  color: '#3F3D56',
-                  fontSize: '0.8em',
-                  margin: '0em 0em 0.3em 0em',
+                  fontWeight: "500",
+                  color: "#3F3D56",
+                  fontSize: "0.8em",
+                  margin: "0em 0em 0.3em 0em",
                 }}
               >
                 Due Date
@@ -581,7 +581,7 @@ function Post_exam({
                         </Typography>
 
                         <Typography sx={designs.Date_Typography_Style}>
-                          {duedate && moment(duedate).format('ll')}
+                          {duedate && moment(duedate).format("ll")}
                         </Typography>
                       </Box>
                     </Grid>
@@ -605,11 +605,11 @@ function Post_exam({
           <Grid item xs={12}>
             <Typography
               sx={{
-                color: '#3F3D56',
-                fontSize: '0.8em',
-                fontWeight: '600',
-                height: 'max-content',
-                width: '40em',
+                color: "#3F3D56",
+                fontSize: "0.8em",
+                fontWeight: "600",
+                height: "max-content",
+                width: "40em",
               }}
             >
               This exam will:

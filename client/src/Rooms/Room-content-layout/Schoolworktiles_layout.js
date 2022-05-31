@@ -1,17 +1,17 @@
-import React from 'react';
-import useStyle from '../Styles/Announce_style';
-import { Box, Grid, Tooltip } from '@mui/material';
-import { MoreVert } from '@mui/icons-material';
-import ActivityIcon from '../../assets/ImageJaven/ActivityIcon.png';
-import QuizIcon from '../../assets/ImageJaven/QuizIcon.png';
-import ExamIcon from '../../assets/ImageJaven/ExamIcon.png';
-import MeetingIcon from '../../assets/ImageJaven/MeetingIcon.png';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import CusPopover from '../../components/Popover';
-import SchoolworksTilespopover from '../../components/PopoverContent/SchoolworksTilespopover';
-import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+import React from "react";
+import useStyle from "../Styles/Announce_style";
+import { Box, Grid, Tooltip } from "@mui/material";
+import { MoreVert } from "@mui/icons-material";
+import ActivityIcon from "../../assets/ImageJaven/ActivityIcon.png";
+import QuizIcon from "../../assets/ImageJaven/QuizIcon.png";
+import ExamIcon from "../../assets/ImageJaven/ExamIcon.png";
+import MeetingIcon from "../../assets/ImageJaven/MeetingIcon.png";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import CusPopover from "../../components/Popover";
+import SchoolworksTilespopover from "../../components/PopoverContent/SchoolworksTilespopover";
+import axios from "axios";
+import { Redirect } from "react-router-dom";
 function Schoolworktiles_layout({ content, roomID }) {
   const { designs } = useStyle();
   const [redirect, setRedirect] = React.useState(null);
@@ -27,7 +27,7 @@ function Schoolworktiles_layout({ content, roomID }) {
   const [data, setData] = React.useState(null);
   React.useMemo(() => {
     axios
-      .post('http://localhost:5000/quizlit', {
+      .post("http://localhost:5000/quizlit", {
         quizID: content,
       })
       .then((res) => {
@@ -40,22 +40,37 @@ function Schoolworktiles_layout({ content, roomID }) {
     <>
       {data && (
         <>
-          <Grid item xs={12} sx={{ padding: '1em 0em' }}>
+          <Grid item xs={12} sx={{ padding: "0.5em" }}>
             <Tooltip title="Open exam" placement="top-start">
-              <Box sx={designs.BoxTileContainer}>
+              <Box
+                sx={{
+                  className: "Tiles1",
+                  width: "relative",
+                  height: "auto",
+                  padding: "0.5em 1em",
+                  display: "flex",
+                  border: " 1px solid #DBDBDB",
+                  borderRadius: "0.3em",
+                  "&: hover": {
+                    cursor: "pointer",
+                    boxShadow:
+                      "rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px",
+                  },
+                }}
+              >
                 <Box sx={designs.ActivityContainer}>
-                  {data && data.quizType === 'Exam' ? (
+                  {data && data.quizType === "Exam" ? (
                     <img
                       src={ExamIcon}
                       style={{
-                        height: '2em',
+                        height: "2em",
                       }}
                     />
                   ) : (
                     <img
                       src={QuizIcon}
                       style={{
-                        height: '2em',
+                        height: "2em",
                       }}
                     />
                   )}
@@ -66,7 +81,7 @@ function Schoolworktiles_layout({ content, roomID }) {
                         <Redirect
                           to={
                             JSON.parse(localStorage.userData).data.user
-                              .userType === 'Student'
+                              .userType === "Student"
                               ? `/Exam_take/${data._id}`
                               : `/quizlit/view_exam/${data._id}`
                           }

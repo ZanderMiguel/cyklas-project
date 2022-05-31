@@ -13,19 +13,19 @@ import {
   Select,
   MenuItem,
   Avatar,
-} from '@mui/material';
+} from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ExamIcon from '../../../assets/ImageJaven/ExamIcon.png';
-import useStyle from '../../Styles/View_exam_style';
-import '../../Styles/View_quiz_stylesheet.css';
-import SelectRoom from './SelectRoom';
-import StudentsList from './StudentsList';
-import CheckAnswers from './CheckAnswers';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import moment from 'moment';
-import AvatarIcon from '../../../assets/ImageJaven/Avatar.png';
+import ExamIcon from "../../../assets/ImageJaven/ExamIcon.png";
+import useStyle from "../../Styles/View_exam_style";
+import "../../Styles/View_quiz_stylesheet.css";
+import SelectRoom from "./SelectRoom";
+import StudentsList from "./StudentsList";
+import CheckAnswers from "./CheckAnswers";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import moment from "moment";
+import AvatarIcon from "../../../assets/ImageJaven/Avatar.png";
 
 const dataSort = [
   {
@@ -59,7 +59,7 @@ function View_exam() {
   const shrtAns = React.useRef({});
   const [dataRoom, setDataRoom] = React.useState(null);
   const scores = React.useRef([]);
-  const [examreturn, setExamReturn]  = useState(null)
+  const [examreturn, setExamReturn] = useState(null);
   const [selectRoom, setRoom] = useState("");
   const indexs = React.useRef(null);
 
@@ -88,7 +88,7 @@ function View_exam() {
   console.log(data && indexs.current && data[indexs.current]);
   return (
     <Container maxWidth="lg">
-      <ToastContainer/>
+      <ToastContainer />
       <Grid container columnSpacing={1}>
         <Grid item xs={4} sx={{ margin: "0.5em 0em" }}>
           <Button
@@ -101,13 +101,15 @@ function View_exam() {
                   scores: scores.current,
                   stdID,
                 })
-                .then( ( res ) => 
-                    {if ( res ) {
-                  setExamReturn(
-                    toast.success( "Successfuly return", {
-                      position: toast.POSITION.TOP_CENTER,
-                    } ) )
-                }})
+                .then((res) => {
+                  if (res) {
+                    setExamReturn(
+                      toast.success("Successfuly return", {
+                        position: toast.POSITION.TOP_CENTER,
+                      })
+                    );
+                  }
+                })
                 .catch((err) => console.log(err));
             }}
             sx={designs.Return_Button_Style}
@@ -209,33 +211,34 @@ function View_exam() {
             >
               <Avatar src={AvatarIcon} alt="Avatar" />
 
-              <Box
+              {/* <Box
                 sx={{
                   width: "auto",
                   flexGrow: 1,
                   height: "auto",
                 }}
-              >
-                <Typography
-                  children={
-                    data &&
-                    indexs.current &&
-                    `${data[indexs.current].firstName} ${
-                      data[indexs.current].lastName
-                    }`
-                  }
-                  // children={`${quizData && quizData.author.name}`}
-                  sx={{
-                    color: "#3F3D56",
-                    fontSize: "0.8em",
-                    fontWeight: "600",
-                    textTransform: "none",
-                    width: "auto",
-                    height: "max-content",
-                  }}
-                />
+              > */}
+              <Typography
+                children={
+                  data &&
+                  indexs.current &&
+                  `${data[indexs.current].firstName} ${
+                    data[indexs.current].lastName
+                  }`
+                }
+                // children={`${quizData && quizData.author.name}`}
+                sx={{
+                  color: "#3F3D56",
+                  fontSize: "0.8em",
+                  fontWeight: "600",
+                  textTransform: "none",
+                  width: "auto",
+                  flexGrow: 1,
+                  height: "max-content",
+                }}
+              />
 
-                <Typography
+              {/* <Typography
                   children={
                     data &&
                     indexs.current &&
@@ -255,8 +258,8 @@ function View_exam() {
                     width: "auto",
                     height: "max-content",
                   }}
-                />
-              </Box>
+                /> */}
+              {/* </Box> */}
 
               <Box
                 sx={{

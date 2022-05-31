@@ -23,12 +23,13 @@ function Notificationpopover({
     <>
       <Box
         sx={{
-          padding: "0.8em 0em 0em 0em",
+          padding: "0.8em 0em",
           position: "sticky",
           top: 0,
           width: "25em",
           height: "auto",
           backgroundColor: "white",
+          borderBottom: "1px solid #DBDBDB",
         }}
       >
         <Box
@@ -53,7 +54,7 @@ function Notificationpopover({
             Notifications
           </Typography>
 
-          <Box flexGrow={1} />
+          {/* <Box flexGrow={1} /> */}
 
           {/* <Button
             component={Link}
@@ -76,10 +77,10 @@ function Notificationpopover({
           </Button> */}
         </Box>
 
-        <Tabs value={value} onChange={handleChange} sx={{ margin: "0em 1em" }}>
-          {/* <Tab label="General" disableRipple /> */}
-          {/* <Tab label="Requests" disableRipple /> */}
-        </Tabs>
+        {/* <Tabs value={value} onChange={handleChange} sx={{ margin: "0em 1em" }}>
+          <Tab label="General" disableRipple />
+          <Tab label="Requests" disableRipple />
+        </Tabs> */}
       </Box>
       <Box sx={designs.RequestContainer_Style}>
         <RequestPopup
