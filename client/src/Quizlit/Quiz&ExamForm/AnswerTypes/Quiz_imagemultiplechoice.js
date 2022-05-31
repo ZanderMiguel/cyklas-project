@@ -79,8 +79,25 @@ function Quiz_imagemultiplechoice({
               <IconButton
                 aria-label="correct-answer"
                 sx={
-                  (designs.Correct_Answer_IconButton_Style,
-                  check === 'answer1' && { backgroundColor: 'white' })
+                  check === 'answer1'
+                    ? {
+                        height: '1.3em',
+                        width: '1.3em',
+                        backgroundColor: 'white',
+                        color: '#975DF5',
+                        marginRight: '0.1em',
+                        '&: hover': {
+                          backgroundColor: 'white',
+                          color: '#975DF5',
+                        },
+                      }
+                    : {
+                        height: '1.3em',
+                        width: '1.3em',
+                        border: '2px solid white',
+                        color: 'white',
+                        marginRight: '0.1em',
+                      }
                 }
                 onClick={() => {
                   questionMemo.current[counter - 1]['correctAnswer'] =
@@ -148,8 +165,25 @@ function Quiz_imagemultiplechoice({
               <IconButton
                 aria-label="correct-answer"
                 sx={
-                  (designs.Correct_Answer_IconButton_Style,
-                  check === 'answer2' && { backgroundColor: 'white' })
+                  check === 'answer2'
+                    ? {
+                        height: '1.3em',
+                        width: '1.3em',
+                        backgroundColor: 'white',
+                        color: '#F55D5D',
+                        marginRight: '0.1em',
+                        '&: hover': {
+                          backgroundColor: 'white',
+                          color: '#F55D5D',
+                        },
+                      }
+                    : {
+                        height: '1.3em',
+                        width: '1.3em',
+                        border: '2px solid white',
+                        color: 'white',
+                        marginRight: '0.1em',
+                      }
                 }
                 onClick={() => {
                   questionMemo.current[counter - 1]['correctAnswer'] =
@@ -219,8 +253,25 @@ function Quiz_imagemultiplechoice({
               <IconButton
                 aria-label="correct-answer"
                 sx={
-                  (designs.Correct_Answer_IconButton_Style,
-                  check === 'answer3' && { backgroundColor: 'white' })
+                  check === 'answer3'
+                    ? {
+                        height: '1.3em',
+                        width: '1.3em',
+                        backgroundColor: 'white',
+                        color: '#6CCF53',
+                        marginRight: '0.1em',
+                        '&: hover': {
+                          backgroundColor: 'white',
+                          color: '#6CCF53',
+                        },
+                      }
+                    : {
+                        height: '1.3em',
+                        width: '1.3em',
+                        border: '2px solid white',
+                        color: 'white',
+                        marginRight: '0.1em',
+                      }
                 }
                 onClick={() => {
                   questionMemo.current[counter - 1]['correctAnswer'] =
@@ -288,8 +339,25 @@ function Quiz_imagemultiplechoice({
               <IconButton
                 aria-label="correct-answer"
                 sx={
-                  (designs.Correct_Answer_IconButton_Style,
-                  check === 'answer4' && { backgroundColor: 'white' })
+                  check === 'answer4'
+                    ? {
+                        height: '1.3em',
+                        width: '1.3em',
+                        backgroundColor: 'white',
+                        color: '#F1B04E',
+                        marginRight: '0.1em',
+                        '&: hover': {
+                          backgroundColor: 'white',
+                          color: '#F1B04E',
+                        },
+                      }
+                    : {
+                        height: '1.3em',
+                        width: '1.3em',
+                        border: '2px solid white',
+                        color: 'white',
+                        marginRight: '0.1em',
+                      }
                 }
                 onClick={() => {
                   questionMemo.current[counter - 1]['correctAnswer'] =

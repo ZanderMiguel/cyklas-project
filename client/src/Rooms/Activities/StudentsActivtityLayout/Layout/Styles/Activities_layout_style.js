@@ -27,11 +27,11 @@ function useStyle() {
     Accordion_Style: {
       width: '100%',
       backgroundColor: 'white',
-      border: "1px solid #DBDBDB",
+      border: '1px solid #DBDBDB',
       boxShadow: 'none',
     },
     AccordionSummary_Style: {
-      padding: '0em 1.5em',
+      padding: '0em 1em 0em 1.5em',
       [theme.breakpoints.down('sm')]: {
         padding: '0em 1em 0em 0.8em',
       },
@@ -56,13 +56,13 @@ function useStyle() {
       paddingTop: '7px',
     },
     Type_Typography: {
-      width: '80px',
+      width: '8em',
       color: '#3F3D56',
       fontWeight: '500',
       fontSize: '13px',
       paddingTop: '7px',
-      marginLeft: '0.5em',
-      textAlign: 'center',
+      marginRight: '0.5em',
+      textAlign: 'left',
       [theme.breakpoints.down('md')]: {
         display: 'none',
       },
@@ -152,14 +152,11 @@ function useStyle() {
       gap: '5px',
     },
     Accordion_Details_Style: {
-      paddingTop: '0px',
+      padding: '0.8em 1.5em',
     },
     Activity_Details_Style: {
       width: 'relative',
-      margin: '0px 20px 15px 20px',
-      [theme.breakpoints.down('sm')]: {
-        margin: '0px 5px 15px 5px',
-      },
+      marginBottom: '0.5em',
     },
     Type_Due_Date_Style: {
       [theme.breakpoints.up('md')]: {
@@ -273,14 +270,10 @@ function useStyle() {
     },
     Activity_Details2_Style: {
       width: 'relative',
-      margin: '0px 20px',
-      [theme.breakpoints.down('sm')]: {
-        margin: '0px 5px 0px 5px',
-      },
     },
     Instructions_Typography: {
       color: '#3F3D56',
-      fontSize: '14px',
+      fontSize: '13px',
       fontWeight: 'bold',
       textTransform: 'Uppercase',
       width: 'auto',
@@ -333,13 +326,13 @@ function useStyle() {
     },
     ViewHomework_Button_Style: {
       color: '#0069D3',
-      fontWeight: '700',
+      fontWeight: '600',
       textTransform: 'Capitalize',
-      padding: "0.7em 0em",
-      width: "100%",
+      padding: '0.5em 0em',
+      width: '100%',
       '&: hover': {
-        backgroundColor: '#F0F0F0',
-      }
+        backgroundColor: '#F9F9F9',
+      },
     },
   };
   return { designs };

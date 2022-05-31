@@ -10,7 +10,7 @@ function useStyle() {
       height: 'auto',
       margin: '20px 0px',
       paddingBottom: '15px',
-      border: "1px solid #DBDBDB",
+      border: '1px solid #DBDBDB',
       borderRadius: '0.3em 0.3em 0em 0em',
       '&: hover': {
         boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
@@ -179,14 +179,15 @@ function useStyle() {
       className: 'Tiles1',
       width: 'relative',
       height: 'auto',
-      margin: '0em 4.5em 1em 4.5em',
+      marginBottom: '0.5em',
       padding: '0.5em 1em',
       display: 'flex',
       border: ' 1px solid #DBDBDB',
       borderRadius: '0.3em',
       '&: hover': {
+        cursor: 'pointer',
         boxShadow:
-          'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
+          'rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px',
       },
     },
     ActivityContainer: {

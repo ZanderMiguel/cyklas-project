@@ -14,6 +14,8 @@ import axios from 'axios';
 import Navbar_landingpage from './components/Navbar_landingpage';
 import Forgot_password from './pages-landing/Forgot_password';
 import ChangePass from './pages-landing/ChangePass';
+import EmailVerification from './pages-landing/EmailVerification';
+
 //Dashboard
 import Dashboard from './Dashboard/Dashboard';
 //Rooms
@@ -101,6 +103,7 @@ function App() {
               <Redirect exact from="/home" to="/home/login" />
               <Route path="/forgotpassword" component={Forgot_password} />
               <Route path="/changepassword/:token" component={ChangePass} />
+              <Route path="/EmailVerification" component={EmailVerification} />
               <Route exact path="/home/:page?" component={Navbar_landingpage} />
 
               {/* Dashboard */}

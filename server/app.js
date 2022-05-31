@@ -71,7 +71,6 @@ io.on('connection', (socket) => {
   socket.once('render', (members, id, roomID) => {
     socket.to(roomID).emit('rendered', members, id, roomID);
   });
-
   socket.on('sendMessage', (data) => {
     socket.to(data.room).emit('receive_message', data);
   });

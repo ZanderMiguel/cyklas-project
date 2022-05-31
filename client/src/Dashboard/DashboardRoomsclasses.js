@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import "./Styles/DashboardRoomsclassesStylesheet.css";
-import { Grid, Typography, Button, Box } from "@mui/material";
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import './Styles/DashboardRoomsclassesStylesheet.css';
+import { Grid, Typography, Button, Box } from '@mui/material';
 
 function DashboardRoomsclasses({ roomdata }) {
   let history = useHistory();
@@ -9,25 +9,25 @@ function DashboardRoomsclasses({ roomdata }) {
     <>
       <Box
         sx={{
-          backgroundColor: "transparent",
-          display: "flex",
-          width: "relative",
-          height: "auto",
-          marginBottom: "0.3em",
+          backgroundColor: 'transparent',
+          display: 'flex',
+          width: 'relative',
+          height: 'auto',
+          marginBottom: '0.3em',
         }}
       >
         <Typography
           children="Rooms and Classes Schedules"
           sx={{
-            color: "#8E8E8E",
-            fontSize: "0.8em",
-            fontWeight: "500",
-            width: "auto",
+            color: '#8E8E8E',
+            fontSize: '0.8em',
+            fontWeight: '500',
+            width: 'auto',
             flexGrow: 1,
-            height: "relative",
-            display: "flex",
-            alignItems: "center",
-            textTransform: "Uppercase",
+            height: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            textTransform: 'Uppercase',
           }}
         />
 
@@ -58,7 +58,7 @@ function DashboardRoomsclasses({ roomdata }) {
               <th> Year and Section </th>
               <th> Class Day </th>
               <th> Class Time </th>
-              <th> Actions </th>
+              <th> </th>
             </tr>
           </thead>
 
@@ -75,19 +75,19 @@ function DashboardRoomsclasses({ roomdata }) {
                     <td>
                       <Button
                         variant="contained"
-                        children="View"
+                        children="Enter Room"
                         onClick={() => history.push(`/rooms/${items._id}`)}
                         sx={{
-                          color: "white",
-                          fontSize: "0.8em",
-                          fontWeight: "500",
-                          boxShadow: "none",
-                          marginRight: "0.5em",
-                          padding: "0.3em 1em",
-                          textTransform: "capitalize",
-                          "&: hover": {
-                            color: "#007FFF",
-                            boxShadow: "none",
+                          color: 'white',
+                          fontSize: '0.9em',
+                          fontWeight: '600',
+                          boxShadow: 'none',
+                          marginRight: '0.5em',
+                          padding: '0.3em 1em',
+                          textTransform: 'capitalize',
+                          '&: hover': {
+                            color: '#white',
+                            boxShadow: 'none',
                           },
                         }}
                       />

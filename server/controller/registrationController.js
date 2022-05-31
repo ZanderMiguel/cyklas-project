@@ -188,7 +188,6 @@ const updateUserData = async (req, res) => {
     return res.json(err);
   }
 };
-
 module.exports = {
   createRegistrationController: createRegistration,
   displayRegistrationController: displayRegistration,

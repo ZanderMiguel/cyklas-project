@@ -27,9 +27,15 @@ function useStyle() {
       fontSize: '1em',
     },
     Quiz_Container_Style: {
+      marginBottom: '0.8em',
       height: 'auto',
       width: '100%',
-      border: '1px solid #DBDBDB',
+      borderRadius: '0.3em 0.3em 0em 0em',
+      '&: hover': {
+        transition: 'all 250ms',
+        boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 12px',
+        borderBottom: '4px solid #007FFF',
+      },
       [theme.breakpoints.up('sm')]: {
         marginTop: '0.1em',
       },
@@ -38,13 +44,13 @@ function useStyle() {
       display: 'flex',
       width: '100%',
       height: 'auto',
+      borderRadius: '0.3em 0.3em 0em 0em',
     },
     Quiz_Question_Style: {
       width: '80%',
       height: 'auto',
-      backgroundColor: 'White',
-      borderRight: '1px solid #DBDBDB',
-      borderBottom: '1px solid #DBDBDB',
+      backgroundColor: 'white',
+      borderRadius: '0.3em 0em 0em 0em',
       [theme.breakpoints.down('sm')]: {
         width: '100%',
         borderRight: 'none',
@@ -54,30 +60,32 @@ function useStyle() {
       width: '100%',
       height: 'auto',
       backgroundColor: '#007FFF',
+      borderRadius: '0.3em 0em 0em 0em',
     },
     Quiz_Question_TextField_Style: {
       width: '100%',
       height: 'auto',
       backgroundColor: '#007FFF',
       borderRadius: '0em',
+      borderRadius: '0.3em 0em 0em 0em',
       '&: hover': {
         backgroundColor: '#007FFF',
       },
     },
     Instruction_Input_Style: {
-      backgroundColor: "transparent",
-      fontSize: "0.9em",
-      fontWeight: "500",
-      color: "#3F3D56"
+      backgroundColor: 'transparent',
+      fontSize: '0.9em',
+      fontWeight: '500',
+      color: '#3F3D56',
     },
     Quiz_Item_Style: {
       height: '1.9em',
       width: '1.9em',
-      margin: '0em 0.3em 1em 1.9em',
+      margin: '0em 0.3em 1em 0.2em',
       backgroundColor: 'White',
       borderRadius: '3em',
       [theme.breakpoints.down('sm')]: {
-        margin: '0em 0.3em 1em 0.5em',
+        margin: '0em 0.3em 1em 0.2em',
       },
     },
     Quiz_Item_Typography_Style: {
@@ -119,7 +127,11 @@ function useStyle() {
       width: '50%',
       height: 'relative',
       backgroundColor: 'White',
-      borderBottom: '1px solid #DBDBDB',
+      borderRadius: '0em 0.3em 0em 0em',
+      '&: hover': {
+        transition: 'all 250ms',
+        boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
+      },
       [theme.breakpoints.down('sm')]: {
         display: 'none',
       },
@@ -138,7 +150,7 @@ function useStyle() {
     },
     Delete_IconButton_Style: {
       float: 'right',
-      marginRight: '1.5em',
+      marginRight: '0.5em',
       height: '1.5em',
       width: '1.5em',
     },
@@ -147,7 +159,7 @@ function useStyle() {
       fontSize: '1em',
     },
     FormControl_Style: {
-      width: '80%',
+      width: '87%',
     },
     InputLabel_Style: {
       fontSize: '0.9em',
@@ -171,7 +183,9 @@ function useStyle() {
       borderBottom: '1px solid #DBDBDB',
     },
     Quiz_Answers_Style: {
-      padding: '1em 2.5em',
+      backgroundColor: 'white',
+      borderTop: '1px solid #DBDBDB',
+      padding: '1em',
       width: 'relative',
       height: 'auto',
       display: 'flex',
@@ -280,24 +294,24 @@ function useStyle() {
       width: 'max-content',
       padding: '0.4em 2.4em',
       borderRadius: '0.4em',
-      boxShadow: "none",
-      "&: hover": {
-        boxShadow: "none"
-      }
+      boxShadow: 'none',
+      '&: hover': {
+        boxShadow: 'none',
+      },
     },
     CreateQuiz_Button_Style: {
-      backgroundColor: "#4CAF50",
+      backgroundColor: '#4CAF50',
       borderRadius: '0.4em',
-      color: "white",
-      fontSize: "0.8em",
-      fontWeight: "700",
-      textTransform: "Capitalize",
-      padding: "0.4em 2.4em",
-      boxShadow: "none",
-      "&: hover": {
-        backgroundColor: "#43A047"
-      }
-    }
+      color: 'white',
+      fontSize: '0.8em',
+      fontWeight: '700',
+      textTransform: 'Capitalize',
+      padding: '0.4em 2.4em',
+      boxShadow: 'none',
+      '&: hover': {
+        backgroundColor: '#43A047',
+      },
+    },
   };
 
   return { designs };

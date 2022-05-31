@@ -31,8 +31,8 @@ function FileTile({ item, index, activityView }) {
           className="Attach-file"
           sx={{
             backgroundColor: 'white',
-            margin: '0.5em 0em 0em 0em',
-            width: '100%',
+            margin: '0.5em 0.5em',
+            width: 'relative',
             height: 'auto',
             padding: '0.5em 0.9em',
             display: 'flex',

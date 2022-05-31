@@ -191,7 +191,7 @@ function useStyle() {
     Quiz_Item_Style2: {
       height: '1.9em',
       width: '1.9em',
-      margin: '0em 0.3em 1em 0.8em',
+      margin: '0em 0.3em 1em 0.2em',
       backgroundColor: 'White',
       borderRadius: '3em',
       [theme.breakpoints.down('sm')]: {
@@ -207,7 +207,8 @@ function useStyle() {
     Correct_Answer_IconButton_Style: {
       height: '1.2em',
       width: '1.2em',
-      border: '2px solid White',
+      backgroundColor: 'red',
+      color: 'white',
       marginRight: '0.6em',
       [theme.breakpoints.down('sm')]: {
         marginRight: '0.2em',

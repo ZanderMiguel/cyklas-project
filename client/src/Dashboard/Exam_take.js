@@ -34,7 +34,16 @@ function Exam_take() {
       .catch((err) => console.log(err));
   }, [quizID]);
   return (
-    <Container maxWidth="md">
+    <Container
+      maxWidth="md"
+      sx={{
+        height: '85vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       <Grid container rowSpacing={1}>
         <Grid item xs={12} sx={designs.ExamTake_GridItem_Style}>
           <Typography sx={designs.ExamName_Typography_Style}>

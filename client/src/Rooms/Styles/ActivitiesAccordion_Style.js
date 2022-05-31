@@ -26,11 +26,11 @@ function useStyle() {
     Accordion_Style: {
       width: '100%',
       backgroundColor: 'white',
-      border: "1px solid #DBDBDB",
+      border: '1px solid #DBDBDB',
       boxShadow: 'none',
     },
     AccordionSummary_Style: {
-      padding: '0em 1.5em',
+      padding: '0em 1em 0em 1.5em',
     },
     Activity_Icon_Activity_Type: {
       display: 'flex',
@@ -48,13 +48,13 @@ function useStyle() {
       paddingTop: '7px',
     },
     Type_Typography: {
-      width: '6.5em',
-      textAlign: "left",
+      width: '8em',
+      textAlign: 'left',
       color: '#3F3D56',
       fontWeight: '500',
       fontSize: '13px',
       paddingTop: '7px',
-      marginRight: "1.5em",
+      marginRight: '1.5em',
       [theme.breakpoints.down('md')]: {
         display: 'none',
       },
@@ -116,23 +116,16 @@ function useStyle() {
     },
     Edit_Icon_Style: {
       color: '#707070',
-      "&: hover": {
+      '&: hover': {
         color: '#007FFF',
-      }
+      },
     },
     Delete_Icon_Style: {
       color: '#707070',
     },
-    Accordion_Details_Style: {
-      paddingTop: '0px',
-    },
     Activity_Details_Style: {
-      width: '90%',
+      width: 'relative',
       flexWrap: 'wrap',
-      margin: '0px 45px 15px 45px',
-      [theme.breakpoints.down('sm')]: {
-        margin: '0px 15px 15px 15px',
-      },
     },
     Type_Due_Date_Style: {
       [theme.breakpoints.up('md')]: {
@@ -245,14 +238,11 @@ function useStyle() {
       },
     },
     Activity_Details2_Style: {
-      width: '90%',
+      marginTop: '0.3em',
+      width: 'relative',
       color: '#3F3D56',
       fontWeight: '500',
       fontSize: '13px',
-      margin: '0px 45px',
-      [theme.breakpoints.down('sm')]: {
-        margin: '0px 15px 0px 15px',
-      },
     },
     Instructions_Typography: {
       color: '#3F3D56',
@@ -311,13 +301,13 @@ function useStyle() {
     },
     ViewHomework_Button_Style: {
       color: '#0069D3',
-      fontWeight: '700',
+      fontWeight: '600',
       textTransform: 'Capitalize',
-      padding: "0.7em 0em",
-      width: "100%",
+      padding: '0.5em 0em',
+      width: '100%',
       '&: hover': {
-        backgroundColor: '#F0F0F0',
-      }
+        backgroundColor: '#F9F9F9',
+      },
     },
   };
   return { designs };

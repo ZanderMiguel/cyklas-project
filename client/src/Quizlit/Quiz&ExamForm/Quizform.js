@@ -6,10 +6,13 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import useStyle from '../Styles/Quiz_multiplechoice_style';
 import Questions from './Questions';
 
-import { AddCircle } from '@mui/icons-material';
+import { Add } from '@mui/icons-material';
 import usePost from '../../customHooks/usePost';
 import axios from 'axios';
 import Background11 from '../../assets/ImageJaven/Background11.png';
+import QuizIconButton from '../../assets/ImageJaven/QuizIconButton.png';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Quizform() {
   const { post } = usePost();
@@ -29,87 +32,122 @@ function Quizform() {
   };
 
   return (
-    <Container maxWidth="lg">
-      <Grid
-        container
-        justifyContent="center"
-        rowSpacing={1}
-        sx={{ margin: '0.5em 0em 2em 0em' }}
-      >
-        <Grid item container justifyContent="flex-end">
-          <Grid item></Grid>
-        </Grid>
-        <Grid item xs={12}>
-          <Box
-            className="Quiz-title"
-            height="auto"
-            width="100%"
-            padding="0.8em 1.5em 2.6em 1.5em"
-            borderRadius="0em 0em 0.5em 0.5em"
-            sx={{
-              backgroundImage: `url(${Background11})`,
-              backgroundSize: 'cover',
-            }}
-          >
-            <Input
-              variant="standard"
-              multiline
-              rows={3}
-              overflowY="hidden"
-              disableUnderline
-              onChange={(event) => {
-                title.current = event.target.value;
-              }}
-              defaultValue="Untitled Quiz"
+    <>
+      <ToastContainer />
+      <Container maxWidth="md" sx={{ padding: '2em 0em' }}>
+        <Grid
+          container
+          justifyContent="center"
+          rowSpacing={1}
+          sx={{ margin: '0.5em 0em 2em 0em' }}
+        >
+          <Grid item xs={12}>
+            <Box
+              className="Quiz-title"
+              height="auto"
+              width="100%"
+              marginBottom="0.8em"
+              padding="0.3em 1.1em 1.5em 1.1em"
+              borderRadius="0.3em 0.3em 0em 0em"
               sx={{
-                overflowY: 'hidden',
-                width: '60%',
-                backgroundColor: 'transparent',
-                fontSize: '1.4em',
-                fontWeight: '600',
-                color: 'white',
+                backgroundImage: `url(${Background11})`,
+                backgroundSize: 'cover',
+                '&: hover': {
+                  transition: 'all 250ms',
+                  boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 12px',
+                },
               }}
-            />
-          </Box>
-        </Grid>
+            >
+              <Input
+                variant="standard"
+                multiline
+                rows={3}
+                overflowY="hidden"
+                disableUnderline
+                onChange={(event) => {
+                  title.current = event.target.value;
+                }}
+                defaultValue="Untitled Quiz"
+                sx={{
+                  overflowY: 'hidden',
+                  width: '60%',
+                  backgroundColor: 'transparent',
+                  fontSize: '1.3em',
+                  fontWeight: '600',
+                  color: 'white',
+                }}
+              />
+            </Box>
+          </Grid>
 
-        {qArray.map((item, index) => {
-          return (
-            <Grid item xs={12} key={index}>
-              {item}
-            </Grid>
-          );
-        })}
-        <Grid item xs={12} sx={{ marginBottom: '2em' }}>
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              width: 'relative',
-              height: 'auto',
-            }}
-          >
+          {qArray.map((item, index) => {
+            return (
+              <Grid item xs={12} key={index}>
+                {item}
+              </Grid>
+            );
+          })}
+          <Grid item xs={12} sx={{ marginBottom: '2em' }}>
             <Button
               variant="contained"
               startIcon={
-                <AddCircle
+                <Add
                   style={{
                     marginRight: '5px',
                   }}
                 />
               }
-              sx={designs.Add_Question_Button_Style}
               type="submit"
               onClick={handleQuestionAdd}
+              sx={{
+                fontSize: '0.8em',
+                fontWeight: '600',
+                color: '#white',
+                textTransform: 'Capitalize',
+                boxShadow: 'none',
+                padding: '0.4em 1.3em',
+                '&: hover': {
+                  boxShadow: 'none',
+                },
+              }}
             >
               Add Question
             </Button>
-            <Box flexGrow={1} />
+          </Grid>
+
+          <Grid
+            item
+            xs={12}
+            sx={{
+              borderTop: '1px solid #DBDBDB',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
             <Button
               variant="contained"
               children="Create Quiz"
-              sx={designs.CreateQuiz_Button_Style}
               id="quizform"
+              sx={{
+                marginTop: '1em',
+                paddingRight: '1.5em',
+                paddingLeft: '1.5em',
+                fontWeight: '600',
+                textDecoration: 'none',
+                backgroundColor: '#4caf50',
+                color: 'white',
+                '&:hover': {
+                  backgroundColor: '#43a047',
+                },
+              }}
+              startIcon={
+                <img
+                  src={QuizIconButton}
+                  alt="Quiz Icon Button"
+                  style={{ height: '1em' }}
+                />
+              }
               onClick={() => {
                 const questionPayload = [];
 
@@ -129,6 +167,15 @@ function Quizform() {
                     graded: false,
                   })
                   .then((res) => {
+                    toast.success('Quiz is successfully created.', {
+                      position: 'top-left',
+                      autoClose: 5000,
+                      hideProgressBar: true,
+                      closeOnClick: true,
+                      pauseOnHover: false,
+                      draggable: true,
+                      progress: undefined,
+                    });
                     questionMemo.current.forEach((item) => {
                       const {
                         title,
@@ -160,10 +207,10 @@ function Quizform() {
                   .catch((err) => console.log(err));
               }}
             />
-          </Box>
+          </Grid>
         </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </>
   );
 }
 

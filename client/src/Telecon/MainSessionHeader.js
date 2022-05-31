@@ -18,44 +18,6 @@ function MainSessionHeader() {
           borderBottom: '1px solid #464646',
         }}
       >
-        <Box
-          sx={{
-            height: '2.5em',
-            width: 'auto',
-            flexGrow: 1,
-            display: 'flex',
-            gap: '0.8em',
-            alignItems: 'center',
-            backgroundColor: '#2B2E34',
-            padding: '0.3em 0.6em',
-            borderRadius: '0.4em',
-            // display: "none"
-          }}
-        >
-          <Avatar
-            alt="Remy Sharp"
-            src={AvatarIcon}
-            sx={{ height: '1.7em', width: '1.7em' }}
-          />
-
-          <Typography
-            children="Josh Brolin joined the meeting."
-            sx={{
-              color: 'white',
-              fontSize: '0.8em',
-              fontWeight: '600',
-              textTransform: 'none',
-              height: 'max-content',
-              width: 'auto',
-              flexGrow: 1,
-              wordSpacing: '0.1em',
-              '&: hover': {
-                cursor: 'default',
-              },
-            }}
-          />
-        </Box>
-
         {/* <Box flexGrow = {1}/> */}
 
         <Box

@@ -122,7 +122,7 @@ function Post_layout({
                           onClick={(event) => handleDelete(event, _id)}
                           sx={designs.Option_IconButton_Style}
                         >
-                          <Tooltip title="Delete Post" placement="top">
+                          <Tooltip title="Delete Post" placement="right">
                             <DeleteOutlineOutlined
                               sx={designs.DeleteIcon_Style}
                             />

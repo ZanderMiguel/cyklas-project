@@ -30,7 +30,6 @@ function Quiz_multiplechoice({ handleChange, questionMemo, counter }) {
               style: {
                 height: '0em',
                 fontSize: '0.8em',
-                paddingLeft: '0.1em',
                 paddingRight: '0em',
                 marginBottom: '1em',
                 marginRight: '0.5em',
@@ -59,11 +58,25 @@ function Quiz_multiplechoice({ handleChange, questionMemo, counter }) {
                     }}
                     aria-label="correct-answer"
                     sx={
-                      (designs.Correct_Answer_IconButton_Style,
-                      check === 'answer1' && {
-                        backgroundColor: 'white',
-                        color: '#975DF5',
-                      })
+                      check === 'answer1'
+                        ? {
+                            height: '1.3em',
+                            width: '1.3em',
+                            backgroundColor: 'white',
+                            color: '#975DF5',
+                            marginRight: '0.1em',
+                            '&: hover': {
+                              backgroundColor: 'white',
+                              color: '#975DF5',
+                            },
+                          }
+                        : {
+                            height: '1.3em',
+                            width: '1.3em',
+                            border: '2px solid white',
+                            color: 'white',
+                            marginRight: '0.1em',
+                          }
                     }
                   >
                     <Check
@@ -120,11 +133,25 @@ function Quiz_multiplechoice({ handleChange, questionMemo, counter }) {
                     }}
                     aria-label="correct-answer"
                     sx={
-                      (designs.Correct_Answer_IconButton_Style,
-                      check === 'answer2' && {
-                        backgroundColor: 'white',
-                        color: '#F55D5D',
-                      })
+                      check === 'answer2'
+                        ? {
+                            height: '1.3em',
+                            width: '1.3em',
+                            backgroundColor: 'white',
+                            color: '#F55D5D',
+                            marginRight: '0.1em',
+                            '&: hover': {
+                              backgroundColor: 'white',
+                              color: '#F55D5D',
+                            },
+                          }
+                        : {
+                            height: '1.3em',
+                            width: '1.3em',
+                            border: '2px solid white',
+                            color: 'white',
+                            marginRight: '0.1em',
+                          }
                     }
                   >
                     <Check
@@ -183,11 +210,25 @@ function Quiz_multiplechoice({ handleChange, questionMemo, counter }) {
                     }}
                     aria-label="correct-answer"
                     sx={
-                      (designs.Correct_Answer_IconButton_Style,
-                      check === 'answer3' && {
-                        backgroundColor: 'white',
-                        color: '#6CCF53',
-                      })
+                      check === 'answer3'
+                        ? {
+                            height: '1.3em',
+                            width: '1.3em',
+                            backgroundColor: 'white',
+                            color: '#6CCF53',
+                            marginRight: '0.1em',
+                            '&: hover': {
+                              backgroundColor: 'white',
+                              color: '#6CCF53',
+                            },
+                          }
+                        : {
+                            height: '1.3em',
+                            width: '1.3em',
+                            border: '2px solid white',
+                            color: 'white',
+                            marginRight: '0.1em',
+                          }
                     }
                   >
                     <Check
@@ -244,11 +285,25 @@ function Quiz_multiplechoice({ handleChange, questionMemo, counter }) {
                     name="answer4"
                     aria-label="correct-answer"
                     sx={
-                      (designs.Correct_Answer_IconButton_Style,
-                      check === 'answer4' && {
-                        backgroundColor: 'white',
-                        color: '#F1B04E',
-                      })
+                      check === 'answer4'
+                        ? {
+                            height: '1.3em',
+                            width: '1.3em',
+                            backgroundColor: 'white',
+                            color: '#F1B04E',
+                            marginRight: '0.1em',
+                            '&: hover': {
+                              backgroundColor: 'white',
+                              color: '#F1B04E',
+                            },
+                          }
+                        : {
+                            height: '1.3em',
+                            width: '1.3em',
+                            border: '2px solid white',
+                            color: 'white',
+                            marginRight: '0.1em',
+                          }
                     }
                   >
                     <Check

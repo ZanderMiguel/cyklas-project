@@ -73,10 +73,10 @@ function Questions({ counter, questionMemo }) {
                       style: {
                         height: '0em',
                         fontSize: '0.8em',
-                        paddingLeft: '0.2em',
+                        fontWeight: '600',
                         paddingRight: '0em',
                         marginBottom: '1.2em',
-                        marginRight: '3.5em',
+                        marginRight: '1.5em',
                         color: 'white',
                       },
                     }}

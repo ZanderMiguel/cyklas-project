@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import Dialogform from "../components/Dialogform";
+import React, { useState } from 'react';
+import Dialogform from '../components/Dialogform';
 import {
   Grid,
   Box,
@@ -11,46 +11,46 @@ import {
   MenuItem,
   Divider,
   Checkbox,
-} from "@mui/material";
-import { Save } from "@mui/icons-material";
-import Datepicker from "../components/DatePicker";
-import ExamIconButton from "../assets/ImageJaven/ExamIconButton.png";
-import useStyle from "./Styles/Post_exam_style";
-import axios from "axios";
+} from '@mui/material';
+import { Save } from '@mui/icons-material';
+import Datepicker from '../components/DatePicker';
+import ExamIconButton from '../assets/ImageJaven/ExamIconButton.png';
+import useStyle from './Styles/Post_exam_style';
+import axios from 'axios';
 const dataStudent = [
   {
-    value: "All Student",
-    label: "All Student",
+    value: 'All Student',
+    label: 'All Student',
   },
   {
-    value: "Paul Rudd",
-    label: "Paul Rudd",
+    value: 'Paul Rudd',
+    label: 'Paul Rudd',
   },
   {
-    value: "Tom Hiddleston",
-    label: "Tom Hiddleston",
+    value: 'Tom Hiddleston',
+    label: 'Tom Hiddleston',
   },
   {
-    value: "Tom Holland",
-    label: "Tom Holland",
+    value: 'Tom Holland',
+    label: 'Tom Holland',
   },
   {
-    value: "Sebastian Stan",
-    label: "Sebastian Stan",
+    value: 'Sebastian Stan',
+    label: 'Sebastian Stan',
   },
   {
-    value: "Robert Downey Jr.",
-    label: "Robert Downey Jr.",
+    value: 'Robert Downey Jr.',
+    label: 'Robert Downey Jr.',
   },
 ];
 const dataTerm = [
   {
-    value: "1",
-    label: "1",
+    value: '1',
+    label: '1',
   },
   {
-    value: "2",
-    label: "2",
+    value: '2',
+    label: '2',
   },
 ];
 
@@ -58,24 +58,24 @@ const dataDueDate = [];
 
 const dataTimeLimit = [
   {
-    value: "10 seconds",
-    label: "10 seconds",
+    value: '10 seconds',
+    label: '10 seconds',
   },
   {
-    value: "30 minutes",
-    label: "30 minutes",
+    value: '30 minutes',
+    label: '30 minutes',
   },
   {
-    value: "45 minutes",
-    label: "45 minutes",
+    value: '45 minutes',
+    label: '45 minutes',
   },
   {
-    value: "1 hour",
-    label: "1 hour",
+    value: '1 hour',
+    label: '1 hour',
   },
   {
-    value: "2 hours",
-    label: "2 hours",
+    value: '2 hours',
+    label: '2 hours',
   },
 ];
 function Post_exam({
@@ -89,45 +89,45 @@ function Post_exam({
 }) {
   const { designs } = useStyle();
 
-  const [selectRoom, setSelectRoom] = useState("");
+  const [selectRoom, setSelectRoom] = useState('');
   const [duedate, setDueDate] = useState(null);
   const [gsData, setGSData] = useState(null);
   const handleChangeRoom = (event) => {
     setSelectRoom(event.target.value);
   };
 
-  const [selectCourseYearSec, setSelectCourseYearSec] = useState("");
+  const [selectCourseYearSec, setSelectCourseYearSec] = useState('');
 
   const handleChangeCourseYearSec = (event) => {
     setSelectCourseYearSec(event.target.value);
   };
 
-  const [selectStudent, setSelectStudent] = useState("");
+  const [selectStudent, setSelectStudent] = useState('');
 
   const handleChangeStudent = (event) => {
     setSelectStudent(event.target.value);
   };
 
-  const [selectTerm, setSelectTerm] = useState("");
+  const [selectTerm, setSelectTerm] = useState('');
 
   const handleChangeTerm = (event) => {
     setSelectTerm(event.target.value);
   };
 
-  const [selectDueDate, setSelectDueDate] = useState("");
+  const [selectDueDate, setSelectDueDate] = useState('');
 
   const handleChangeDueDate = (event) => {
     setSelectDueDate(event.target.value);
   };
 
-  const [selectTimeLimit, setSelectTimeLimit] = useState("");
+  const [selectTimeLimit, setSelectTimeLimit] = useState('');
   const handleChangeTimeLimit = (event) => {
     setSelectTimeLimit(event.target.value);
   };
   const handleClickSave = (type) => {
     const questionPayload = [];
     axios
-      .post("http://localhost:5000/quizlit/create", {
+      .post('http://localhost:5000/quizlit/create', {
         author: {
           userID: JSON.parse(localStorage.userData).data.user._id,
           name: `${JSON.parse(localStorage.userData).data.user.firstName} ${
@@ -135,12 +135,12 @@ function Post_exam({
           } `,
         },
         rooms: [roomId.current],
-        dueDate: "unavailable",
+        dueDate: 'unavailable',
         timeLimit: selectTimeLimit,
-        students: "unavailable",
+        students: 'unavailable',
         title: exam.current.title,
         instruction: exam.current.instruction,
-        quizType: "Exam",
+        quizType: 'Exam',
         graded: false,
         type,
         gsCategory: selectTerm,
@@ -168,7 +168,7 @@ function Post_exam({
           });
         });
         axios
-          .post("http://localhost:5000/question/create", {
+          .post('http://localhost:5000/question/create', {
             questionPayload,
           })
           .then((res) => {
@@ -183,12 +183,12 @@ function Post_exam({
   };
   let point = 0;
   questionMemo.current.forEach((item) => {
-    point += parseInt(item.points.replace(" point", ""));
+    point += parseInt(item.points.replace(' point', ''));
   });
   const [dataRoom, setDataRoom] = React.useState(null);
   React.useMemo(() => {
     axios
-      .post("http://localhost:5000/rooms", {
+      .post('http://localhost:5000/rooms', {
         userID: JSON.parse(localStorage.userData).data.user._id,
       })
       .then((res) => {
@@ -199,17 +199,19 @@ function Post_exam({
   return (
     <div>
       <Dialogform
+        divider
         open={open}
         close={close}
         fullWidth
         maxWidth={maxWidth}
+        title="Post exam to this room/ class"
         btn={
           <Box
             sx={{
-              display: "flex",
-              gap: "1em",
-              height: "auto",
-              width: "relative",
+              display: 'flex',
+              gap: '1em',
+              height: 'auto',
+              width: 'relative',
             }}
           >
             <Button
@@ -219,18 +221,18 @@ function Post_exam({
                 handleClickSave(null);
               }}
               sx={{
-                border: "1px solid #007FFF",
-                backgroundColor: "transparent",
-                boxShadow: "none",
-                color: "#007FFF",
-                fontSize: "0.8em",
-                fontWeight: "600",
-                textTransform: "Capitalize",
-                padding: "0.3em 3em",
-                "&: hover": {
-                  border: "1px solid #0072ED",
-                  backgroundColor: "transparent",
-                  boxShadow: "none",
+                border: '1px solid #007FFF',
+                backgroundColor: 'transparent',
+                boxShadow: 'none',
+                color: '#007FFF',
+                fontSize: '0.8em',
+                fontWeight: '600',
+                textTransform: 'Capitalize',
+                padding: '0.3em 3em',
+                '&: hover': {
+                  border: '1px solid #0072ED',
+                  backgroundColor: 'transparent',
+                  boxShadow: 'none',
                 },
               }}
             >
@@ -240,25 +242,25 @@ function Post_exam({
             <Button
               variant="contained"
               onClick={() => {
-                handleClickSave("quizlit");
+                handleClickSave('quizlit');
               }}
               startIcon={
                 <img
                   src={ExamIconButton}
                   alt="examicon"
-                  style={{ height: "0.7em", width: "0.7em" }}
+                  style={{ height: '0.7em', width: '0.7em' }}
                 />
               }
               sx={{
-                backgroundColor: "#49B854",
-                color: "white",
-                fontSize: "0.8em",
-                fontWeight: "600",
-                textTransform: "Capitalize",
-                padding: "0.3em 3em",
-                boxShadow: "none",
-                "&: hover": {
-                  backgroundColor: "#31B13E",
+                backgroundColor: '#49B854',
+                color: 'white',
+                fontSize: '0.8em',
+                fontWeight: '600',
+                textTransform: 'Capitalize',
+                padding: '0.3em 3em',
+                boxShadow: 'none',
+                '&: hover': {
+                  backgroundColor: '#31B13E',
                 },
               }}
             >
@@ -267,8 +269,8 @@ function Post_exam({
           </Box>
         }
       >
-        <Grid container sx={{ padding: "0em 2em" }}>
-          <Grid item xs={12}>
+        <Grid container sx={{ p: '0em 1.5em' }}>
+          {/* <Grid item xs={12}>
             <Typography
               sx={{
                 color: "#3F3D56",
@@ -280,126 +282,103 @@ function Post_exam({
             >
               Post exam to this room/ class?
             </Typography>
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={6} sx={{ marginTop: "1em" }}>
-            <FormControl
-              variant="standard"
+          <Grid item xs={6} sx={{ marginTop: '1em' }}>
+            <Typography
+              variant="body1"
               sx={{
-                width: "100%",
-                paddingTop: "0em",
-                marginBottom: "0.8em",
+                fontWeight: '500',
+                color: '#3F3D56',
+                fontSize: '0.8em',
+                margin: '0em 0em 0.3em 0em',
               }}
             >
-              <InputLabel
-                id="demo-simple-select-standard-label"
-                sx={{
-                  fontSize: "0.9em",
-                  fontWeight: "500",
-                  color: "#3F3D56",
-                  textTransform: "Capitalize",
-                }}
-              >
-                Select Room
-              </InputLabel>
+              Select Room
+            </Typography>
 
-              <Select
-                labelId="demo-simple-select-standard-label"
-                id="demo-simple-select-standard"
-                value={selectRoom}
-                onChange={handleChangeRoom}
-                label="SelectRoom"
-                disableUnderline
-                sx={{
-                  width: "100%",
-                  fontSize: "0.9em",
-                  fontWeight: "500",
-                  color: "#3F3D56",
-                  borderBottom: "1px solid #DBDBDB",
-                  "&: hover": {
-                    borderBottom: "1px solid #007FFF",
-                    transition: "all 300ms",
-                  },
-                }}
-              >
-                {dataRoom &&
-                  dataRoom.map((value, index) => {
-                    return (
-                      <MenuItem
-                        key={index}
-                        value={value}
-                        accessKey={value._id}
-                        onClick={(e) => {
-                          roomId.current = e.target.accessKey;
-                          axios
-                            .post(
-                              "http://localhost:5000/gradingSystem/record",
-                              { roomID: e.target.accessKey }
-                            )
-                            .then((res) => {
-                              setGSData(res.data[0].Category);
-                              console.log(res.data);
-                            })
-                            .catch((err) => console.log(err));
-                        }}
-                      >
-                        {value.RoomName}
-                      </MenuItem>
-                    );
-                  })}
-              </Select>
-            </FormControl>
-
-            <FormControl
-              variant="standard"
+            <Select
+              labelId="demo-simple-select-standard-label"
+              id="demo-simple-select-standard"
+              value={selectRoom}
+              onChange={handleChangeRoom}
+              disableUnderline
+              fullWidth
               sx={{
-                width: "100%",
-                paddingTop: "0em",
-                marginBottom: "0.8em",
+                height: '2.8em',
+                fontSize: '0.9em',
+                color: '#3F3D56',
+                fontWeight: 500,
+                paddingTop: '0em',
+                paddingBottom: '0em',
+                marginBottom: '0.8em',
               }}
             >
-              <InputLabel
-                id="demo-simple-select-standard-label"
-                sx={{
-                  fontSize: "0.9em",
-                  fontWeight: "500",
-                  color: "#3F3D56",
-                  textTransform: "Capitalize",
-                }}
-              >
-                Select Course Year and Section
-              </InputLabel>
+              {dataRoom &&
+                dataRoom.map((value, index) => {
+                  return (
+                    <MenuItem
+                      key={index}
+                      value={value}
+                      accessKey={value._id}
+                      onClick={(e) => {
+                        roomId.current = e.target.accessKey;
+                        axios
+                          .post('http://localhost:5000/gradingSystem/record', {
+                            roomID: e.target.accessKey,
+                          })
+                          .then((res) => {
+                            setGSData(res.data[0].Category);
+                            console.log(res.data);
+                          })
+                          .catch((err) => console.log(err));
+                      }}
+                    >
+                      {value.RoomName}
+                    </MenuItem>
+                  );
+                })}
+            </Select>
 
-              <Select
-                labelId="demo-simple-select-standard-label"
-                id="demo-simple-select-standard"
-                value={selectCourseYearSec}
-                onChange={handleChangeCourseYearSec}
-                label="SelectCourseYearSec"
-                disableUnderline
-                sx={{
-                  width: "100%",
-                  fontSize: "0.9em",
-                  fontWeight: "500",
-                  color: "#3F3D56",
-                  borderBottom: "1px solid #DBDBDB",
-                  "&: hover": {
-                    borderBottom: "1px solid #007FFF",
-                    transition: "all 300ms",
-                  },
-                }}
-              >
-                {dataRoom &&
-                  dataRoom.map((value, index) => {
-                    return (
-                      <MenuItem key={index} value={value}>
-                        {" "}
-                        {value.Course} {value.yearAndSection}
-                      </MenuItem>
-                    );
-                  })}
-              </Select>
-            </FormControl>
+            <Typography
+              variant="body1"
+              sx={{
+                fontWeight: '500',
+                color: '#3F3D56',
+                fontSize: '0.8em',
+                margin: '0em 0em 0.3em 0em',
+              }}
+            >
+              Select Course Year and Section
+            </Typography>
+
+            <Select
+              labelId="demo-simple-select-standard-label"
+              id="demo-simple-select-standard"
+              value={selectCourseYearSec}
+              onChange={handleChangeCourseYearSec}
+              disableUnderline
+              fullWidth
+              sx={{
+                height: '2.8em',
+                fontSize: '0.9em',
+                color: '#3F3D56',
+                fontWeight: 500,
+                paddingTop: '0em',
+                paddingBottom: '0em',
+                marginBottom: '0.8em',
+              }}
+            >
+              {dataRoom &&
+                dataRoom.map((value, index) => {
+                  return (
+                    <MenuItem key={index} value={value}>
+                      {' '}
+                      {value.Course} {value.yearAndSection}
+                    </MenuItem>
+                  );
+                })}
+            </Select>
 
             {/* <FormControl
               variant="standard"
@@ -448,104 +427,83 @@ function Post_exam({
                 ))}
               </Select>
             </FormControl> */}
-            <FormControl
-              variant="standard"
+
+            <Typography
+              variant="body1"
               sx={{
-                width: "100%",
-                paddingTop: "0em",
-                marginBottom: "0.8em",
+                fontWeight: '500',
+                color: '#3F3D56',
+                fontSize: '0.8em',
+                margin: '0em 0em 0.3em 0em',
               }}
             >
-              <InputLabel
-                id="demo-simple-select-standard-label"
+              Set Time Limit
+            </Typography>
+
+            <Select
+              labelId="demo-simple-select-standard-label"
+              id="demo-simple-select-standard"
+              value={selectTimeLimit}
+              onChange={handleChangeTimeLimit}
+              disableUnderline
+              fullWidth
+              sx={{
+                height: '2.8em',
+                fontSize: '0.9em',
+                color: '#3F3D56',
+                fontWeight: 500,
+                paddingTop: '0em',
+                paddingBottom: '0em',
+                marginBottom: '0.8em',
+              }}
+            >
+              {dataTimeLimit.map(({ value, label }) => (
+                <MenuItem key={value} value={value}>
+                  {' '}
+                  {label}{' '}
+                </MenuItem>
+              ))}
+            </Select>
+          </Grid>
+
+          <Grid item xs={6} sx={{ marginTop: '1em' }}>
+            <Box sx={{ width: 'relative', height: 'auto', paddingLeft: '2em' }}>
+              <Typography
+                variant="body1"
                 sx={{
-                  fontSize: "0.9em",
-                  fontWeight: "500",
-                  color: "#3F3D56",
-                  textTransform: "Capitalize",
+                  fontWeight: '500',
+                  color: '#3F3D56',
+                  fontSize: '0.8em',
+                  margin: '0em 0em 0.3em 0em',
                 }}
               >
-                Set Time Limit
-              </InputLabel>
+                Select Category
+              </Typography>
 
               <Select
                 labelId="demo-simple-select-standard-label"
                 id="demo-simple-select-standard"
-                value={selectTimeLimit}
-                onChange={handleChangeTimeLimit}
-                label="SelectTimeLimit"
+                value={selectTerm}
+                onChange={handleChangeTerm}
                 disableUnderline
+                fullWidth
                 sx={{
-                  width: "100%",
-                  fontSize: "0.9em",
-                  fontWeight: "500",
-                  color: "#3F3D56",
-                  borderBottom: "1px solid #DBDBDB",
-                  "&: hover": {
-                    borderBottom: "1px solid #007FFF",
-                    transition: "all 300ms",
-                  },
+                  height: '2.8em',
+                  fontSize: '0.9em',
+                  color: '#3F3D56',
+                  fontWeight: 500,
+                  paddingTop: '0em',
+                  paddingBottom: '0em',
+                  marginBottom: '0.8em',
                 }}
               >
-                {dataTimeLimit.map(({ value, label }) => (
-                  <MenuItem key={value} value={value}>
-                    {" "}
-                    {label}{" "}
-                  </MenuItem>
-                ))}
+                {gsData &&
+                  gsData.map((item, index) => (
+                    <MenuItem key={index} value={Object.entries(item)[0][0]}>
+                      {Object.entries(item)[0][0]}
+                    </MenuItem>
+                  ))}
               </Select>
-            </FormControl>
-          </Grid>
-
-          <Grid item xs={6} sx={{ marginTop: "1em" }}>
-            <Box sx={{ width: "relative", height: "auto", paddingLeft: "2em" }}>
-              <FormControl
-                variant="standard"
-                sx={{
-                  width: "100%",
-                  paddingTop: "0em",
-                  marginBottom: "0.8em",
-                }}
-              >
-                <InputLabel
-                  id="demo-simple-select-standard-label"
-                  sx={{
-                    fontSize: "0.9em",
-                    fontWeight: "500",
-                    color: "#3F3D56",
-                    textTransform: "Capitalize",
-                  }}
-                >
-                  Select Category
-                </InputLabel>
-
-                <Select
-                  labelId="demo-simple-select-standard-label"
-                  id="demo-simple-select-standard"
-                  value={selectTerm}
-                  onChange={handleChangeTerm}
-                  label="SelectRoom"
-                  disableUnderline
-                  sx={{
-                    width: "100%",
-                    fontSize: "0.9em",
-                    fontWeight: "500",
-                    color: "#3F3D56",
-                    borderBottom: "1px solid #DBDBDB",
-                    "&: hover": {
-                      borderBottom: "1px solid #007FFF",
-                      transition: "all 300ms",
-                    },
-                  }}
-                >
-                  {gsData &&
-                    gsData.map((item, index) => (
-                      <MenuItem key={index} value={Object.entries(item)[0][0]}>
-                        {Object.entries(item)[0][0]}
-                      </MenuItem>
-                    ))}
-                </Select>
-              </FormControl>
               {/* 
               <FormControl
                 variant="standard"
@@ -594,13 +552,19 @@ function Post_exam({
                   ))}
                 </Select>
               </FormControl> */}
+              <Typography
+                variant="body1"
+                sx={{
+                  fontWeight: '500',
+                  color: '#3F3D56',
+                  fontSize: '0.8em',
+                  margin: '0em 0em 0.3em 0em',
+                }}
+              >
+                Due Date
+              </Typography>
 
-              <Datepicker
-                styled="standard"
-                inputLabel="Due Date"
-                duedate={duedate}
-                setDueDate={setDueDate}
-              />
+              <Datepicker duedate={duedate} setDueDate={setDueDate} />
             </Box>
           </Grid>
 
@@ -667,11 +631,11 @@ function Post_exam({
           <Grid item xs={12}>
             <Typography
               sx={{
-                color: "#3F3D56",
-                fontSize: "0.8em",
-                fontWeight: "600",
-                height: "max-content",
-                width: "40em",
+                color: '#3F3D56',
+                fontSize: '0.8em',
+                fontWeight: '600',
+                height: 'max-content',
+                width: '40em',
               }}
             >
               This exam will:

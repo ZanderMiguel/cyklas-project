@@ -150,6 +150,8 @@ function Examform() {
             type="submit"
             id="examform"
             sx={{
+              paddingRight: '1.5em',
+              paddingLeft: '1.5em',
               fontWeight: '600',
               marginTop: '1em',
               textDecoration: 'none',

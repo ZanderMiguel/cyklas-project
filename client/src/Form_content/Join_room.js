@@ -14,27 +14,24 @@ function Join_room({ open, close, maxWidth }) {
 
   return (
     <div>
-      <Dialogform open={open} close={close} maxWidth={maxWidth}>
-        <Grid container sx={{ padding: '0em 2em' }}>
+      <Dialogform
+        open={open}
+        close={close}
+        maxWidth={maxWidth}
+        divider
+        title="Join room as a student"
+      >
+        <Grid container sx={{ padding: '1em 1.5em 1.5em 1.5em' }}>
           <Grid item xs={12}>
-            <Typography
-              sx={{
-                marginBottom: '0.8em',
-                width: '100%',
-                height: 'max-content',
-                color: '#2C2A46',
-                fontSize: '1.2em',
-                fontWeight: 600,
-              }}
+            <Box
+              display="flex"
+              alignItems="center"
+              marginBottom="1em"
+              gap="1em"
             >
-              Join room as a Student
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Box display="flex" alignItems="center" marginBottom="1em">
               <Avatar
                 src={JSON.parse(localStorage.userData).data.imageUrl}
-                sx={{ marginRight: '0.5em', width: '3rem', height: '3rem' }}
+                sx={{ width: '3rem', height: '3rem' }}
               />
               <Box>
                 <Typography
@@ -116,39 +113,6 @@ function Join_room({ open, close, maxWidth }) {
                 }}
               />
             </Box>
-          </Grid>
-          <Grid item xs={12} sx={{ margin: '1em 0em 0.3em 0em' }}>
-            <Divider>
-              <Typography
-                children="or"
-                sx={{
-                  color: '#3F3D56',
-                  fontSize: '0.8em',
-                  fontWeight: '600',
-                  textTransform: 'uppercase',
-                }}
-              />
-            </Divider>
-          </Grid>
-          <Grid item xs={12}>
-            <Typography
-              sx={{ color: '#3F3D56', fontSize: '0.8em', fontWeight: 600 }}
-            >
-              Another way of joining a room is to ask your teacher to manually
-              add you.
-            </Typography>
-            <Typography
-              sx={{
-                width: 'auto',
-                height: 'max-content',
-                color: '#3F3D56',
-                fontSize: '0.8em',
-                fontWeight: '400',
-                margin: '0.3em 0em 2em 0em',
-              }}
-            >
-              You will be notified on your gmail that you are added to a room.
-            </Typography>
           </Grid>
         </Grid>
       </Dialogform>

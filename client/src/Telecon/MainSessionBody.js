@@ -49,7 +49,6 @@ function MainSessionBody({
         id,
         roomID
       );
-
       setRenderer((prev) => !prev);
     });
   }, [renderer]);
@@ -95,7 +94,7 @@ function MainSessionBody({
               'style',
               `
             object-fit: contain;
-            height: 100%;
+            max-height: ${testDiv.clientHeight}px;
             width: 100%;
             border-radius: 0.5em;
             position: relative;

@@ -43,8 +43,25 @@ function Quiz_trueorfalse({ questionMemo, counter, questionArray, socket }) {
               <IconButton
                 aria-label="correct-answer"
                 sx={
-                  (designs.Correct_Answer_IconButton_Style,
-                  check === 'answer1' && { backgroundColor: 'white' })
+                  check === 'answer1'
+                    ? {
+                        height: '1.3em',
+                        width: '1.3em',
+                        backgroundColor: 'white',
+                        color: '#975DF5',
+                        marginRight: '0.1em',
+                        '&: hover': {
+                          backgroundColor: 'white',
+                          color: '#975DF5',
+                        },
+                      }
+                    : {
+                        height: '1.3em',
+                        width: '1.3em',
+                        border: '2px solid white',
+                        color: 'white',
+                        marginRight: '0.1em',
+                      }
                 }
                 name="answer1"
                 onClick={(event) => {
@@ -86,8 +103,25 @@ function Quiz_trueorfalse({ questionMemo, counter, questionArray, socket }) {
               <IconButton
                 aria-label="correct-answer"
                 sx={
-                  (designs.Correct_Answer_IconButton_Style,
-                  check === 'answer2' && { backgroundColor: 'white' })
+                  check === 'answer2'
+                    ? {
+                        height: '1.3em',
+                        width: '1.3em',
+                        backgroundColor: 'white',
+                        color: '#F55D5D',
+                        marginRight: '0.1em',
+                        '&: hover': {
+                          backgroundColor: 'white',
+                          color: '#F55D5D',
+                        },
+                      }
+                    : {
+                        height: '1.3em',
+                        width: '1.3em',
+                        border: '2px solid white',
+                        color: 'white',
+                        marginRight: '0.1em',
+                      }
                 }
                 name="answer2"
                 onClick={(event) => {

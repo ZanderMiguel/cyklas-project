@@ -1,9 +1,9 @@
 import React from 'react';
 import Dialogform from '../components/Dialogform';
 import { Grid, Box, Typography, Button } from '@mui/material';
-import { CallEnd } from '@mui/icons-material';
+import ExtensionIcon from '@mui/icons-material/Extension';
 
-function Leave_conference({ open, close, maxWidth }) {
+function Join_livequiz({ open, close, maxWidth }) {
   return (
     <div>
       <Dialogform
@@ -41,9 +41,9 @@ function Leave_conference({ open, close, maxWidth }) {
 
             <Button
               variant="contained"
-              startIcon={<CallEnd />}
+              startIcon={<ExtensionIcon />}
               sx={{
-                backgroundColor: '#F74747',
+                backgroundColor: '#4CAF50',
                 color: 'white',
                 fontSize: '0.8em',
                 fontWeight: '600',
@@ -51,11 +51,11 @@ function Leave_conference({ open, close, maxWidth }) {
                 padding: '0.3em 3em',
                 boxShadow: 'none',
                 '&: hover': {
-                  backgroundColor: '#F02D2D',
+                  backgroundColor: '#4CAF50',
                 },
               }}
             >
-              Leave
+              Join
             </Button>
           </Box>
         }
@@ -71,7 +71,7 @@ function Leave_conference({ open, close, maxWidth }) {
               height: 'max-content',
             }}
           >
-            Do you want to leave this conference?
+            Do want to join the Live Quiz?
           </Typography>
 
           <Typography
@@ -84,8 +84,8 @@ function Leave_conference({ open, close, maxWidth }) {
               height: 'max-content',
             }}
           >
-            You can rejoin to this conference if the Host is still inside and
-            did not end the meeting or dismiss the class.
+            If you join the live quiz, it will take you to the lobby where your
+            other classmates who joined are in there.
           </Typography>
         </Grid>
       </Dialogform>
@@ -93,4 +93,4 @@ function Leave_conference({ open, close, maxWidth }) {
   );
 }
 
-export default Leave_conference;
+export default Join_livequiz;

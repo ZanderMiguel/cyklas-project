@@ -18,6 +18,7 @@ import ReactHtmlParser from 'react-html-parser';
 import moment from 'moment';
 import ActivityFile from '../../../../components/ActivityFile';
 import NoActivities from '../../../../assets/ImageJaven/NoActivities.png';
+import { ExpandMore } from '@mui/icons-material';
 
 function Activities_layout({ roomID, activity, socket }) {
   const { designs } = useStyle();
@@ -89,6 +90,7 @@ function Activities_layout({ roomID, activity, socket }) {
                   sx={designs.Accordion_Style}
                 >
                   <AccordionSummary
+                    expandIcon={<ExpandMore />}
                     aria-controls={items.Activity}
                     id={items.Activity_FileName_Typography}
                     sx={designs.AccordionSummary_Style}
@@ -128,11 +130,7 @@ function Activities_layout({ roomID, activity, socket }) {
                         </Box>
                       </Box>
 
-                      <Box
-                        display="flex"
-                        gap="0.8em"
-                        padding="0.8em 0em 0em 0em"
-                      >
+                      <Box display="flex" gap="0.8em">
                         <Typography
                           sx={{
                             fontWeight: '600',
@@ -158,15 +156,16 @@ function Activities_layout({ roomID, activity, socket }) {
                       <Typography sx={designs.Instructions_Typography}>
                         {instruction ? 'Instructions: ' : ''}
                       </Typography>
-                      <Box>
+                      <Box
+                        sx={{
+                          padding: '0em',
+                          marginBottom: '0.5em',
+                        }}
+                      >
                         {ReactHtmlParser(draftToHtml(JSON.parse(instruction)))}
                       </Box>
                     </Box>
-                    <Box
-                      sx={{
-                        padding: '0.8em 1.2em',
-                      }}
-                    >
+                    <Box>
                       <Grid container columnSpacing={1} rowSpacing={1}>
                         {media.map((item, index) => {
                           return (
@@ -187,7 +186,7 @@ function Activities_layout({ roomID, activity, socket }) {
                       component={Link}
                       to={`/rooms/${roomID}/s/${items._id}`}
                     >
-                      VIEW ACTIVITY
+                      View activity
                     </Button>
                   </AccordionActions>
                 </Accordion>
