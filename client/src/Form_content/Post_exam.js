@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Dialogform from '../components/Dialogform';
+
+import moment from 'moment';
 import {
   Grid,
   Box,
@@ -17,44 +19,6 @@ import Datepicker from '../components/DatePicker';
 import ExamIconButton from '../assets/ImageJaven/ExamIconButton.png';
 import useStyle from './Styles/Post_exam_style';
 import axios from 'axios';
-const dataStudent = [
-  {
-    value: 'All Student',
-    label: 'All Student',
-  },
-  {
-    value: 'Paul Rudd',
-    label: 'Paul Rudd',
-  },
-  {
-    value: 'Tom Hiddleston',
-    label: 'Tom Hiddleston',
-  },
-  {
-    value: 'Tom Holland',
-    label: 'Tom Holland',
-  },
-  {
-    value: 'Sebastian Stan',
-    label: 'Sebastian Stan',
-  },
-  {
-    value: 'Robert Downey Jr.',
-    label: 'Robert Downey Jr.',
-  },
-];
-const dataTerm = [
-  {
-    value: '1',
-    label: '1',
-  },
-  {
-    value: '2',
-    label: '2',
-  },
-];
-
-const dataDueDate = [];
 
 const dataTimeLimit = [
   {
@@ -86,6 +50,7 @@ function Post_exam({
   exam,
   counter,
   itemCount,
+  toast,
 }) {
   const { designs } = useStyle();
 
@@ -172,6 +137,15 @@ function Post_exam({
             questionPayload,
           })
           .then((res) => {
+            toast.success('You have created and post an Exam', {
+              position: 'top-right',
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined,
+            });
             console.log(questionPayload);
             questionMemo.current = [{}];
             counter.current = 0;
@@ -571,12 +545,12 @@ function Post_exam({
           <Grid container rowSpacing={1}>
             <Grid item xs={12} sx={designs.ExamTake_GridItem_Style}>
               <Typography sx={designs.ExamName_Typography_Style}>
-                Preliminary Exam
+                {exam.current.title}
               </Typography>
 
               <Box className="container" sx={designs.Container_Style}>
                 <Typography sx={designs.Instructions_Typography_Style}>
-                  No description.
+                  {exam.current.instruction}
                 </Typography>
 
                 <Divider sx={designs.Divider_Style} />
@@ -607,7 +581,7 @@ function Post_exam({
                         </Typography>
 
                         <Typography sx={designs.Date_Typography_Style}>
-                          December 12, 2021
+                          {duedate && moment(duedate).format('ll')}
                         </Typography>
                       </Box>
                     </Grid>
@@ -618,7 +592,7 @@ function Post_exam({
                         </Typography>
 
                         <Typography sx={designs.Time_Typography_Style}>
-                          01h 00m 00s
+                          {selectTimeLimit}
                         </Typography>
                       </Box>
                     </Grid>

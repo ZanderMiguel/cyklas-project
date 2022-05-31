@@ -77,22 +77,19 @@ function Notificationpopover({
         </Box>
 
         <Tabs value={value} onChange={handleChange} sx={{ margin: "0em 1em" }}>
-          <Tab label="General" disableRipple />
-          <Tab label="Requests" disableRipple />
+          {/* <Tab label="General" disableRipple /> */}
+          {/* <Tab label="Requests" disableRipple /> */}
         </Tabs>
       </Box>
+      <Box sx={designs.RequestContainer_Style}>
+        <RequestPopup
+          items={items}
+          setToggleAccept={setToggleAccept}
+          setItems={setItems}
+        />
+      </Box>
 
-      {value === 1 && (
-        <Box sx={designs.RequestContainer_Style}>
-          <RequestPopup
-            items={items}
-            setToggleAccept={setToggleAccept}
-            setItems={setItems}
-          />
-        </Box>
-      )}
-
-      {value === 0 && (
+      {/* {value === 0 && (
         <>
           <Box sx={designs.GeneralContainer_Style}>
             {general.length > 0 ? (
@@ -209,7 +206,7 @@ function Notificationpopover({
             )}
           </Box>
         </>
-      )}
+      )} */}
     </>
   );
 }
