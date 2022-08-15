@@ -15,7 +15,6 @@ import "react-toastify/dist/ReactToastify.css";
 import useStyle from "./Styles/Home_styles";
 
 function Home() {
-  const [isPending, setIsPending] = useState(false);
   const [opendialog, setOpenDialog] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [emailAddress, setEmailAddress] = useState("");
@@ -38,7 +37,6 @@ function Home() {
     e.preventDefault();
 
     if (emailAddress && password) {
-      setIsPending(true);
       axios
         .post("http://localhost:5000/login", {
           emailAddress: emailAddress,
@@ -51,7 +49,6 @@ function Home() {
                 position: toast.POSITION.TOP_CENTER,
               })
             );
-            setIsPending(false);
           } else {
             response.data.token &&
               localStorage.setItem("token", response.data.token);
@@ -60,11 +57,9 @@ function Home() {
               userID: response.data.data.user._id,
               imageUrl: response.data.data.imageUrl,
             });
-            setIsPending(false);
           }
         })
         .catch((err) => {
-          setIsPending(false);
           setNotif(
             toast.error(`${err.message}`, {
               position: toast.POSITION.TOP_CENTER,
